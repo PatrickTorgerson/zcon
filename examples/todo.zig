@@ -7,8 +7,7 @@
 const std = @import("std");
 const zcon = @import("zcon");
 
-const Task = struct
-{
+const Task = struct {
     label: []const u8,
     complete: bool = false,
 
@@ -24,16 +23,16 @@ const Task = struct
     pub fn dupe(this: Task, allocator: std.mem.Allocator) !Task {
         var buff = try allocator.alloc(u8, this.label.len);
         std.mem.copy(u8, buff, this.label);
-        return Task {
+        return Task{
             .label = buff,
         };
     }
 
     pub fn render(this: Task) void {
-        if(this.complete)
+        if (this.complete)
             zcon.write("[*]")
         else
-             zcon.write("[ ]");
+            zcon.write("[ ]");
         zcon.print(" {s: <40}\n", .{this.label});
     }
 };
@@ -45,7 +44,7 @@ const List = struct {
     pub fn init(allocator: std.mem.Allocator, label: []const u8) !List {
         var buff = try allocator.alloc(u8, label.len);
         std.mem.copy(u8, buff, label);
-        return List {
+        return List{
             .label = buff,
             .items = std.ArrayList(Task).init(allocator),
         };
@@ -53,15 +52,14 @@ const List = struct {
 
     pub fn deinit(this: *List, allocator: std.mem.Allocator) void {
         allocator.free(this.label);
-        for(this.items.items) |*item| {
+        for (this.items.items) |*item| {
             item.deinit(allocator);
         }
         this.items.deinit();
         this.* = undefined;
     }
 
-    pub fn add_task(this: *List, task: Task, allocator: std.mem.Allocator) !void
-    {
+    pub fn add_task(this: *List, task: Task, allocator: std.mem.Allocator) !void {
         try this.items.append(try task.dupe(allocator));
     }
 
@@ -70,7 +68,7 @@ const List = struct {
         zcon.indent(1);
         defer zcon.indent(-1);
 
-        for(this.items.items) |item|
+        for (this.items.items) |item|
             item.render();
     }
 };
@@ -78,8 +76,7 @@ const List = struct {
 var root: List = undefined;
 var root_i: usize = 0;
 
-pub fn main() !void
-{
+pub fn main() !void {
     try zcon.enable_input_events();
 
     zcon.alternate_buffer();
@@ -100,103 +97,95 @@ pub fn main() !void
 
     render_root(size);
 
-    loop: while(true)
-    while(zcon.poll_input()) |input| {
-        switch(input) {
-            .key_pressed => |key| {
-                if(key.equals(.c, .{.ctrl})) {
-                    break :loop;
-                }
-                else if(command) {
-                    if(key.equals(.enter, .{})) {
-                        command = false;
+    loop: while (true)
+        while (zcon.poll_input()) |input| {
+            switch (input) {
+                .key_pressed => |key| {
+                    if (key.equals(.c, .{.ctrl})) {
+                        break :loop;
+                    } else if (command) {
+                        if (key.equals(.enter, .{})) {
+                            command = false;
 
-                        zcon.show_cursor(false);
-                        try do_command(allocator, command_buffer[0..command_i]);
+                            zcon.show_cursor(false);
+                            try do_command(allocator, command_buffer[0..command_i]);
+                            render_root(size);
+                        } else if (key.equals(.backspace, .{})) {
+                            if (command_i > 0) {
+                                zcon.backspace();
+                                command_i -= 1;
+                            }
+                        } else if (key.equals(.backspace, .{.ctrl})) {
+                            if (command_i > 0) {
+                                while (command_buffer[command_i - 1] == ' ') {
+                                    command_i -= 1;
+                                    if (command_i <= 0) break;
+                                }
+                                while (command_i > 0 and command_buffer[command_i - 1] != ' ') {
+                                    command_i -= 1;
+                                    if (command_i <= 0) break;
+                                }
+                                zcon.clear_line();
+                                zcon.set_cursor(.{ .x = 1, .y = size.height });
+                                zcon.print(": {s}", .{command_buffer[0..command_i]});
+                            }
+                        } else if (key.char) |char| {
+                            zcon.print("{u}", .{char});
+                            command_buffer[command_i] = char;
+                            command_i += 1;
+                        }
+                    } else if (key.equals(.semicolon, .{.shift})) {
+                        zcon.set_cursor(.{ .x = 1, .y = size.height });
+                        zcon.write(": ");
+                        command_i = 0;
+                        zcon.show_cursor(true);
+                        command = true;
+                    } else if (key.equals(.up, .{})) {
+                        if (root_i > 0)
+                            root_i -= 1;
+                        render_root(size);
+                    } else if (key.equals(.down, .{})) {
+                        if (root.items.items.len > 0 and root_i < root.items.items.len - 1)
+                            root_i += 1;
+                        render_root(size);
+                    } else if (key.equals(.space, .{})) {
+                        if (root.items.items.len > 0)
+                            root.items.items[root_i].complete = !root.items.items[root_i].complete;
                         render_root(size);
                     }
-                    else if(key.equals(.backspace, .{})) {
-                        if(command_i > 0) {
-                            zcon.backspace();
-                            command_i -= 1;
-                        }
-                    }
-                    else if(key.equals(.backspace, .{.ctrl})) {
-                        if(command_i > 0) {
-                            while(command_buffer[command_i - 1] == ' ') {
-                                command_i -= 1;
-                                if(command_i <= 0) break;
-                            }
-                            while(command_i > 0 and command_buffer[command_i - 1] != ' ') {
-                                command_i -= 1;
-                                if(command_i <= 0) break;
-                            }
-                            zcon.clear_line();
-                            zcon.set_cursor(.{.x = 1, .y = size.height});
-                            zcon.print(": {s}", .{command_buffer[0..command_i]});
-                        }
-                    }
-                    else if(key.char) |char| {
-                        zcon.print("{u}", .{char});
-                        command_buffer[command_i] = char;
-                        command_i += 1;
-                    }
-                }
-                else if(key.equals(.semicolon, .{.shift})) {
-                    zcon.set_cursor(.{.x = 1, .y = size.height});
-                    zcon.write(": ");
-                    command_i = 0;
-                    zcon.show_cursor(true);
-                    command = true;
-                }
-                else if(key.equals(.up, .{})) {
-                    if(root_i > 0)
-                        root_i -= 1;
+                },
+                .buffer_resize => |s| {
+                    size = s;
                     render_root(size);
-                }
-                else if(key.equals(.down, .{})) {
-                    if(root.items.items.len > 0 and root_i < root.items.items.len - 1)
-                        root_i += 1;
-                    render_root(size);
-                }
-                else if(key.equals(.space, .{})) {
-                    if(root.items.items.len > 0)
-                        root.items.items[root_i].complete = !root.items.items[root_i].complete;
-                    render_root(size);
-                }
-            },
-            .buffer_resize => |s| {
-                size = s;
-                render_root(size);
-            },
-            else => {}
-        }
-    };
+                },
+                else => {},
+            }
+        };
 
     // free memory and check for leaks
     root.deinit(allocator);
     zcon.clear_buffer();
     zcon.set_cursor(.{ .x = 1, .y = 1 });
-    if(gpa.detectLeaks()) {
+    if (gpa.detectLeaks()) {
         // hang
-        while(true)
-        while(zcon.poll_input()) |input| {
-            switch(input) {
-                .key_pressed => |_| return error.leaks_detected,
-                else => {}
-            }
-        };
+        while (true)
+            while (zcon.poll_input()) |input| {
+                switch (input) {
+                    .key_pressed => |_| return error.leaks_detected,
+                    else => {},
+                }
+            };
     }
 }
 
 pub fn render_root(size: zcon.Size) void {
     zcon.clear_buffer();
     zcon.set_cursor(.{ .x = 1, .y = 1 });
-    zcon.print("// TODO: {}, {}", .{size.width, size.height});
-    zcon.draw_box_at(.{ .x = 1, .y = 2 }, size.resized(0,-2));
+    zcon.print("// TODO: {}, {}", .{ size.width, size.height });
+    zcon.draw_box_at(.{ .x = 1, .y = 2 }, size.resized(0, -2));
     zcon.set_cursor(.{ .x = 2, .y = 3 });
-    for(root.items.items) |item,i| {
-        if(i == root_i)
+    for (root.items.items) |item, i| {
+        if (i == root_i)
             zcon.set_color(zcon.bright_black_bg);
         zcon.set_cursor_x(2);
         item.render();
@@ -204,7 +193,6 @@ pub fn render_root(size: zcon.Size) void {
     }
 }
 
-fn do_command(allocator: std.mem.Allocator, command: []const u8) !void
-{
+fn do_command(allocator: std.mem.Allocator, command: []const u8) !void {
     try root.add_task(.{ .label = command }, allocator);
 }

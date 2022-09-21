@@ -3453,16 +3453,16 @@ pub const WDIAG_IHV_WLAN_ID = extern struct {
     dwReasonCode: u32,
 };
 
-pub const DOT11EXT_ALLOCATE_BUFFER = fn(
+pub const DOT11EXT_ALLOCATE_BUFFER = fn (
     dwByteCount: u32,
     ppvBuffer: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_FREE_BUFFER = fn(
+pub const DOT11EXT_FREE_BUFFER = fn (
     pvMemory: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const DOT11EXT_SET_PROFILE_CUSTOM_USER_DATA = fn(
+pub const DOT11EXT_SET_PROFILE_CUSTOM_USER_DATA = fn (
     hDot11SvcHandle: ?HANDLE,
     hConnectSession: ?HANDLE,
     dwSessionID: u32,
@@ -3471,7 +3471,7 @@ pub const DOT11EXT_SET_PROFILE_CUSTOM_USER_DATA = fn(
     pvData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_GET_PROFILE_CUSTOM_USER_DATA = fn(
+pub const DOT11EXT_GET_PROFILE_CUSTOM_USER_DATA = fn (
     hDot11SvcHandle: ?HANDLE,
     hConnectSession: ?HANDLE,
     dwSessionID: u32,
@@ -3479,26 +3479,26 @@ pub const DOT11EXT_GET_PROFILE_CUSTOM_USER_DATA = fn(
     ppvData: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_SET_CURRENT_PROFILE = fn(
+pub const DOT11EXT_SET_CURRENT_PROFILE = fn (
     hDot11SvcHandle: ?HANDLE,
     hConnectSession: ?HANDLE,
     pIhvConnProfile: ?*DOT11EXT_IHV_CONNECTIVITY_PROFILE,
     pIhvSecProfile: ?*DOT11EXT_IHV_SECURITY_PROFILE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_SEND_UI_REQUEST = fn(
+pub const DOT11EXT_SEND_UI_REQUEST = fn (
     hDot11SvcHandle: ?HANDLE,
     pIhvUIRequest: ?*DOT11EXT_IHV_UI_REQUEST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_PRE_ASSOCIATE_COMPLETION = fn(
+pub const DOT11EXT_PRE_ASSOCIATE_COMPLETION = fn (
     hDot11SvcHandle: ?HANDLE,
     hConnectSession: ?HANDLE,
     dwReasonCode: u32,
     dwWin32Error: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_POST_ASSOCIATE_COMPLETION = fn(
+pub const DOT11EXT_POST_ASSOCIATE_COMPLETION = fn (
     hDot11SvcHandle: ?HANDLE,
     hSecuritySessionID: ?HANDLE,
     pPeer: ?*?*u8,
@@ -3506,12 +3506,12 @@ pub const DOT11EXT_POST_ASSOCIATE_COMPLETION = fn(
     dwWin32Error: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_SEND_NOTIFICATION = fn(
+pub const DOT11EXT_SEND_NOTIFICATION = fn (
     hDot11SvcHandle: ?HANDLE,
     pNotificationData: ?*L2_NOTIFICATION_DATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_SEND_PACKET = fn(
+pub const DOT11EXT_SEND_PACKET = fn (
     hDot11SvcHandle: ?HANDLE,
     uPacketLen: u32,
     // TODO: what to do with BytesParamIndex 1?
@@ -3519,7 +3519,7 @@ pub const DOT11EXT_SEND_PACKET = fn(
     hSendCompletion: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_SET_ETHERTYPE_HANDLING = fn(
+pub const DOT11EXT_SET_ETHERTYPE_HANDLING = fn (
     hDot11SvcHandle: ?HANDLE,
     uMaxBackLog: u32,
     uNumOfExemption: u32,
@@ -3528,43 +3528,43 @@ pub const DOT11EXT_SET_ETHERTYPE_HANDLING = fn(
     pusRegistration: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_SET_AUTH_ALGORITHM = fn(
+pub const DOT11EXT_SET_AUTH_ALGORITHM = fn (
     hDot11SvcHandle: ?HANDLE,
     dwAuthAlgo: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_SET_UNICAST_CIPHER_ALGORITHM = fn(
+pub const DOT11EXT_SET_UNICAST_CIPHER_ALGORITHM = fn (
     hDot11SvcHandle: ?HANDLE,
     dwUnicastCipherAlgo: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_SET_MULTICAST_CIPHER_ALGORITHM = fn(
+pub const DOT11EXT_SET_MULTICAST_CIPHER_ALGORITHM = fn (
     hDot11SvcHandle: ?HANDLE,
     dwMulticastCipherAlgo: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_SET_DEFAULT_KEY = fn(
+pub const DOT11EXT_SET_DEFAULT_KEY = fn (
     hDot11SvcHandle: ?HANDLE,
     pKey: ?*DOT11_CIPHER_DEFAULT_KEY_VALUE,
     dot11Direction: DOT11_DIRECTION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_SET_KEY_MAPPING_KEY = fn(
+pub const DOT11EXT_SET_KEY_MAPPING_KEY = fn (
     hDot11SvcHandle: ?HANDLE,
     pKey: ?*DOT11_CIPHER_KEY_MAPPING_KEY_VALUE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_SET_DEFAULT_KEY_ID = fn(
+pub const DOT11EXT_SET_DEFAULT_KEY_ID = fn (
     hDot11SvcHandle: ?HANDLE,
     uDefaultKeyId: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_SET_EXCLUDE_UNENCRYPTED = fn(
+pub const DOT11EXT_SET_EXCLUDE_UNENCRYPTED = fn (
     hDot11SvcHandle: ?HANDLE,
     bExcludeUnencrypted: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_NIC_SPECIFIC_EXTENSION = fn(
+pub const DOT11EXT_NIC_SPECIFIC_EXTENSION = fn (
     hDot11SvcHandle: ?HANDLE,
     dwInBufferSize: u32,
     // TODO: what to do with BytesParamIndex 1?
@@ -3574,40 +3574,40 @@ pub const DOT11EXT_NIC_SPECIFIC_EXTENSION = fn(
     pvOutBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_ONEX_START = fn(
+pub const DOT11EXT_ONEX_START = fn (
     hDot11SvcHandle: ?HANDLE,
     pEapAttributes: ?*EAP_ATTRIBUTES,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_ONEX_STOP = fn(
+pub const DOT11EXT_ONEX_STOP = fn (
     hDot11SvcHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_PROCESS_ONEX_PACKET = fn(
+pub const DOT11EXT_PROCESS_ONEX_PACKET = fn (
     hDot11SvcHandle: ?HANDLE,
     dwInPacketSize: u32,
     // TODO: what to do with BytesParamIndex 1?
     pvInPacket: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_REQUEST_VIRTUAL_STATION = fn(
+pub const DOT11EXT_REQUEST_VIRTUAL_STATION = fn (
     hDot11PrimaryHandle: ?HANDLE,
     pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_RELEASE_VIRTUAL_STATION = fn(
+pub const DOT11EXT_RELEASE_VIRTUAL_STATION = fn (
     hDot11PrimaryHandle: ?HANDLE,
     pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_QUERY_VIRTUAL_STATION_PROPERTIES = fn(
+pub const DOT11EXT_QUERY_VIRTUAL_STATION_PROPERTIES = fn (
     hDot11SvcHandle: ?HANDLE,
     pbIsVirtualStation: ?*BOOL,
     pgPrimary: ?*Guid,
     pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXT_SET_VIRTUAL_STATION_AP_PROPERTIES = fn(
+pub const DOT11EXT_SET_VIRTUAL_STATION_AP_PROPERTIES = fn (
     hDot11SvcHandle: ?HANDLE,
     hConnectSession: ?HANDLE,
     dwNumProperties: u32,
@@ -3615,36 +3615,35 @@ pub const DOT11EXT_SET_VIRTUAL_STATION_AP_PROPERTIES = fn(
     pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXTIHV_GET_VERSION_INFO = fn(
+pub const DOT11EXTIHV_GET_VERSION_INFO = fn (
     pDot11IHVVersionInfo: ?*DOT11_IHV_VERSION_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXTIHV_INIT_SERVICE = fn(
+pub const DOT11EXTIHV_INIT_SERVICE = fn (
     dwVerNumUsed: u32,
     pDot11ExtAPI: ?*DOT11EXT_APIS,
     pvReserved: ?*anyopaque,
     pDot11IHVHandlers: ?*DOT11EXT_IHV_HANDLERS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXTIHV_INIT_VIRTUAL_STATION = fn(
+pub const DOT11EXTIHV_INIT_VIRTUAL_STATION = fn (
     pDot11ExtVSAPI: ?*DOT11EXT_VIRTUAL_STATION_APIS,
     pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXTIHV_DEINIT_SERVICE = fn(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const DOT11EXTIHV_DEINIT_SERVICE = fn () callconv(@import("std").os.windows.WINAPI) void;
 
-pub const DOT11EXTIHV_INIT_ADAPTER = fn(
+pub const DOT11EXTIHV_INIT_ADAPTER = fn (
     pDot11Adapter: ?*DOT11_ADAPTER,
     hDot11SvcHandle: ?HANDLE,
     phIhvExtAdapter: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXTIHV_DEINIT_ADAPTER = fn(
+pub const DOT11EXTIHV_DEINIT_ADAPTER = fn (
     hIhvExtAdapter: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const DOT11EXTIHV_PERFORM_PRE_ASSOCIATE = fn(
+pub const DOT11EXTIHV_PERFORM_PRE_ASSOCIATE = fn (
     hIhvExtAdapter: ?HANDLE,
     hConnectSession: ?HANDLE,
     pIhvProfileParams: ?*DOT11EXT_IHV_PROFILE_PARAMS,
@@ -3654,11 +3653,11 @@ pub const DOT11EXTIHV_PERFORM_PRE_ASSOCIATE = fn(
     pdwReasonCode: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXTIHV_ADAPTER_RESET = fn(
+pub const DOT11EXTIHV_ADAPTER_RESET = fn (
     hIhvExtAdapter: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXTIHV_PERFORM_POST_ASSOCIATE = fn(
+pub const DOT11EXTIHV_PERFORM_POST_ASSOCIATE = fn (
     hIhvExtAdapter: ?HANDLE,
     hSecuritySessionID: ?HANDLE,
     pPortState: ?*DOT11_PORT_STATE,
@@ -3667,13 +3666,13 @@ pub const DOT11EXTIHV_PERFORM_POST_ASSOCIATE = fn(
     pDot11AssocParams: ?*DOT11_ASSOCIATION_COMPLETION_PARAMETERS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXTIHV_STOP_POST_ASSOCIATE = fn(
+pub const DOT11EXTIHV_STOP_POST_ASSOCIATE = fn (
     hIhvExtAdapter: ?HANDLE,
     pPeer: ?*?*u8,
     dot11AssocStatus: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXTIHV_VALIDATE_PROFILE = fn(
+pub const DOT11EXTIHV_VALIDATE_PROFILE = fn (
     hIhvExtAdapter: ?HANDLE,
     pIhvProfileParams: ?*DOT11EXT_IHV_PROFILE_PARAMS,
     pIhvConnProfile: ?*DOT11EXT_IHV_CONNECTIVITY_PROFILE,
@@ -3681,7 +3680,7 @@ pub const DOT11EXTIHV_VALIDATE_PROFILE = fn(
     pdwReasonCode: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXTIHV_PERFORM_CAPABILITY_MATCH = fn(
+pub const DOT11EXTIHV_PERFORM_CAPABILITY_MATCH = fn (
     hIhvExtAdapter: ?HANDLE,
     pIhvProfileParams: ?*DOT11EXT_IHV_PROFILE_PARAMS,
     pIhvConnProfile: ?*DOT11EXT_IHV_CONNECTIVITY_PROFILE,
@@ -3690,7 +3689,7 @@ pub const DOT11EXTIHV_PERFORM_CAPABILITY_MATCH = fn(
     pdwReasonCode: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXTIHV_CREATE_DISCOVERY_PROFILES = fn(
+pub const DOT11EXTIHV_CREATE_DISCOVERY_PROFILES = fn (
     hIhvExtAdapter: ?HANDLE,
     bInsecure: BOOL,
     pIhvProfileParams: ?*DOT11EXT_IHV_PROFILE_PARAMS,
@@ -3699,12 +3698,12 @@ pub const DOT11EXTIHV_CREATE_DISCOVERY_PROFILES = fn(
     pdwReasonCode: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXTIHV_PROCESS_SESSION_CHANGE = fn(
+pub const DOT11EXTIHV_PROCESS_SESSION_CHANGE = fn (
     uEventType: u32,
     pSessionNotification: ?*WTSSESSION_NOTIFICATION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXTIHV_RECEIVE_INDICATION = fn(
+pub const DOT11EXTIHV_RECEIVE_INDICATION = fn (
     hIhvExtAdapter: ?HANDLE,
     indicationType: DOT11EXT_IHV_INDICATION_TYPE,
     uBufferLength: u32,
@@ -3712,42 +3711,42 @@ pub const DOT11EXTIHV_RECEIVE_INDICATION = fn(
     pvBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXTIHV_RECEIVE_PACKET = fn(
+pub const DOT11EXTIHV_RECEIVE_PACKET = fn (
     hIhvExtAdapter: ?HANDLE,
     dwInBufferSize: u32,
     // TODO: what to do with BytesParamIndex 1?
     pvInBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXTIHV_SEND_PACKET_COMPLETION = fn(
+pub const DOT11EXTIHV_SEND_PACKET_COMPLETION = fn (
     hSendCompletion: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXTIHV_IS_UI_REQUEST_PENDING = fn(
+pub const DOT11EXTIHV_IS_UI_REQUEST_PENDING = fn (
     guidUIRequest: Guid,
     pbIsRequestPending: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXTIHV_PROCESS_UI_RESPONSE = fn(
+pub const DOT11EXTIHV_PROCESS_UI_RESPONSE = fn (
     guidUIRequest: Guid,
     dwByteCount: u32,
     // TODO: what to do with BytesParamIndex 1?
     pvResponseBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXTIHV_QUERY_UI_REQUEST = fn(
+pub const DOT11EXTIHV_QUERY_UI_REQUEST = fn (
     hIhvExtAdapter: ?HANDLE,
     connectionPhase: DOT11EXT_IHV_CONNECTION_PHASE,
     ppIhvUIRequest: ?*?*DOT11EXT_IHV_UI_REQUEST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXTIHV_ONEX_INDICATE_RESULT = fn(
+pub const DOT11EXTIHV_ONEX_INDICATE_RESULT = fn (
     hIhvExtAdapter: ?HANDLE,
     msOneXResult: DOT11_MSONEX_RESULT,
     pDot11MsOneXResultParams: ?*DOT11_MSONEX_RESULT_PARAMS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DOT11EXTIHV_CONTROL = fn(
+pub const DOT11EXTIHV_CONTROL = fn (
     hIhvExtAdapter: ?HANDLE,
     dwInBufferSize: u32,
     // TODO: what to do with BytesParamIndex 1?
@@ -3812,7 +3811,6 @@ pub const DOT11EXT_VIRTUAL_STATION_APIS = extern struct {
     Dot11ExtSetVirtualStationAPProperties: ?DOT11EXT_SET_VIRTUAL_STATION_AP_PROPERTIES,
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
 //--------------------------------------------------------------------------------
@@ -3822,13 +3820,9 @@ pub const DOT11EXT_VIRTUAL_STATION_APIS = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (28)
@@ -3864,58 +3858,152 @@ const WTSSESSION_NOTIFICATION = @import("../system/remote_desktop.zig").WTSSESSI
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "DOT11EXT_ALLOCATE_BUFFER")) { _ = DOT11EXT_ALLOCATE_BUFFER; }
-    if (@hasDecl(@This(), "DOT11EXT_FREE_BUFFER")) { _ = DOT11EXT_FREE_BUFFER; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_PROFILE_CUSTOM_USER_DATA")) { _ = DOT11EXT_SET_PROFILE_CUSTOM_USER_DATA; }
-    if (@hasDecl(@This(), "DOT11EXT_GET_PROFILE_CUSTOM_USER_DATA")) { _ = DOT11EXT_GET_PROFILE_CUSTOM_USER_DATA; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_CURRENT_PROFILE")) { _ = DOT11EXT_SET_CURRENT_PROFILE; }
-    if (@hasDecl(@This(), "DOT11EXT_SEND_UI_REQUEST")) { _ = DOT11EXT_SEND_UI_REQUEST; }
-    if (@hasDecl(@This(), "DOT11EXT_PRE_ASSOCIATE_COMPLETION")) { _ = DOT11EXT_PRE_ASSOCIATE_COMPLETION; }
-    if (@hasDecl(@This(), "DOT11EXT_POST_ASSOCIATE_COMPLETION")) { _ = DOT11EXT_POST_ASSOCIATE_COMPLETION; }
-    if (@hasDecl(@This(), "DOT11EXT_SEND_NOTIFICATION")) { _ = DOT11EXT_SEND_NOTIFICATION; }
-    if (@hasDecl(@This(), "DOT11EXT_SEND_PACKET")) { _ = DOT11EXT_SEND_PACKET; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_ETHERTYPE_HANDLING")) { _ = DOT11EXT_SET_ETHERTYPE_HANDLING; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_AUTH_ALGORITHM")) { _ = DOT11EXT_SET_AUTH_ALGORITHM; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_UNICAST_CIPHER_ALGORITHM")) { _ = DOT11EXT_SET_UNICAST_CIPHER_ALGORITHM; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_MULTICAST_CIPHER_ALGORITHM")) { _ = DOT11EXT_SET_MULTICAST_CIPHER_ALGORITHM; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_DEFAULT_KEY")) { _ = DOT11EXT_SET_DEFAULT_KEY; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_KEY_MAPPING_KEY")) { _ = DOT11EXT_SET_KEY_MAPPING_KEY; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_DEFAULT_KEY_ID")) { _ = DOT11EXT_SET_DEFAULT_KEY_ID; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_EXCLUDE_UNENCRYPTED")) { _ = DOT11EXT_SET_EXCLUDE_UNENCRYPTED; }
-    if (@hasDecl(@This(), "DOT11EXT_NIC_SPECIFIC_EXTENSION")) { _ = DOT11EXT_NIC_SPECIFIC_EXTENSION; }
-    if (@hasDecl(@This(), "DOT11EXT_ONEX_START")) { _ = DOT11EXT_ONEX_START; }
-    if (@hasDecl(@This(), "DOT11EXT_ONEX_STOP")) { _ = DOT11EXT_ONEX_STOP; }
-    if (@hasDecl(@This(), "DOT11EXT_PROCESS_ONEX_PACKET")) { _ = DOT11EXT_PROCESS_ONEX_PACKET; }
-    if (@hasDecl(@This(), "DOT11EXT_REQUEST_VIRTUAL_STATION")) { _ = DOT11EXT_REQUEST_VIRTUAL_STATION; }
-    if (@hasDecl(@This(), "DOT11EXT_RELEASE_VIRTUAL_STATION")) { _ = DOT11EXT_RELEASE_VIRTUAL_STATION; }
-    if (@hasDecl(@This(), "DOT11EXT_QUERY_VIRTUAL_STATION_PROPERTIES")) { _ = DOT11EXT_QUERY_VIRTUAL_STATION_PROPERTIES; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_VIRTUAL_STATION_AP_PROPERTIES")) { _ = DOT11EXT_SET_VIRTUAL_STATION_AP_PROPERTIES; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_GET_VERSION_INFO")) { _ = DOT11EXTIHV_GET_VERSION_INFO; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_INIT_SERVICE")) { _ = DOT11EXTIHV_INIT_SERVICE; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_INIT_VIRTUAL_STATION")) { _ = DOT11EXTIHV_INIT_VIRTUAL_STATION; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_DEINIT_SERVICE")) { _ = DOT11EXTIHV_DEINIT_SERVICE; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_INIT_ADAPTER")) { _ = DOT11EXTIHV_INIT_ADAPTER; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_DEINIT_ADAPTER")) { _ = DOT11EXTIHV_DEINIT_ADAPTER; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_PERFORM_PRE_ASSOCIATE")) { _ = DOT11EXTIHV_PERFORM_PRE_ASSOCIATE; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_ADAPTER_RESET")) { _ = DOT11EXTIHV_ADAPTER_RESET; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_PERFORM_POST_ASSOCIATE")) { _ = DOT11EXTIHV_PERFORM_POST_ASSOCIATE; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_STOP_POST_ASSOCIATE")) { _ = DOT11EXTIHV_STOP_POST_ASSOCIATE; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_VALIDATE_PROFILE")) { _ = DOT11EXTIHV_VALIDATE_PROFILE; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_PERFORM_CAPABILITY_MATCH")) { _ = DOT11EXTIHV_PERFORM_CAPABILITY_MATCH; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_CREATE_DISCOVERY_PROFILES")) { _ = DOT11EXTIHV_CREATE_DISCOVERY_PROFILES; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_PROCESS_SESSION_CHANGE")) { _ = DOT11EXTIHV_PROCESS_SESSION_CHANGE; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_RECEIVE_INDICATION")) { _ = DOT11EXTIHV_RECEIVE_INDICATION; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_RECEIVE_PACKET")) { _ = DOT11EXTIHV_RECEIVE_PACKET; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_SEND_PACKET_COMPLETION")) { _ = DOT11EXTIHV_SEND_PACKET_COMPLETION; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_IS_UI_REQUEST_PENDING")) { _ = DOT11EXTIHV_IS_UI_REQUEST_PENDING; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_PROCESS_UI_RESPONSE")) { _ = DOT11EXTIHV_PROCESS_UI_RESPONSE; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_QUERY_UI_REQUEST")) { _ = DOT11EXTIHV_QUERY_UI_REQUEST; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_ONEX_INDICATE_RESULT")) { _ = DOT11EXTIHV_ONEX_INDICATE_RESULT; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_CONTROL")) { _ = DOT11EXTIHV_CONTROL; }
+    if (@hasDecl(@This(), "DOT11EXT_ALLOCATE_BUFFER")) {
+        _ = DOT11EXT_ALLOCATE_BUFFER;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_FREE_BUFFER")) {
+        _ = DOT11EXT_FREE_BUFFER;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_PROFILE_CUSTOM_USER_DATA")) {
+        _ = DOT11EXT_SET_PROFILE_CUSTOM_USER_DATA;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_GET_PROFILE_CUSTOM_USER_DATA")) {
+        _ = DOT11EXT_GET_PROFILE_CUSTOM_USER_DATA;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_CURRENT_PROFILE")) {
+        _ = DOT11EXT_SET_CURRENT_PROFILE;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SEND_UI_REQUEST")) {
+        _ = DOT11EXT_SEND_UI_REQUEST;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_PRE_ASSOCIATE_COMPLETION")) {
+        _ = DOT11EXT_PRE_ASSOCIATE_COMPLETION;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_POST_ASSOCIATE_COMPLETION")) {
+        _ = DOT11EXT_POST_ASSOCIATE_COMPLETION;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SEND_NOTIFICATION")) {
+        _ = DOT11EXT_SEND_NOTIFICATION;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SEND_PACKET")) {
+        _ = DOT11EXT_SEND_PACKET;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_ETHERTYPE_HANDLING")) {
+        _ = DOT11EXT_SET_ETHERTYPE_HANDLING;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_AUTH_ALGORITHM")) {
+        _ = DOT11EXT_SET_AUTH_ALGORITHM;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_UNICAST_CIPHER_ALGORITHM")) {
+        _ = DOT11EXT_SET_UNICAST_CIPHER_ALGORITHM;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_MULTICAST_CIPHER_ALGORITHM")) {
+        _ = DOT11EXT_SET_MULTICAST_CIPHER_ALGORITHM;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_DEFAULT_KEY")) {
+        _ = DOT11EXT_SET_DEFAULT_KEY;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_KEY_MAPPING_KEY")) {
+        _ = DOT11EXT_SET_KEY_MAPPING_KEY;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_DEFAULT_KEY_ID")) {
+        _ = DOT11EXT_SET_DEFAULT_KEY_ID;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_EXCLUDE_UNENCRYPTED")) {
+        _ = DOT11EXT_SET_EXCLUDE_UNENCRYPTED;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_NIC_SPECIFIC_EXTENSION")) {
+        _ = DOT11EXT_NIC_SPECIFIC_EXTENSION;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_ONEX_START")) {
+        _ = DOT11EXT_ONEX_START;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_ONEX_STOP")) {
+        _ = DOT11EXT_ONEX_STOP;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_PROCESS_ONEX_PACKET")) {
+        _ = DOT11EXT_PROCESS_ONEX_PACKET;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_REQUEST_VIRTUAL_STATION")) {
+        _ = DOT11EXT_REQUEST_VIRTUAL_STATION;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_RELEASE_VIRTUAL_STATION")) {
+        _ = DOT11EXT_RELEASE_VIRTUAL_STATION;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_QUERY_VIRTUAL_STATION_PROPERTIES")) {
+        _ = DOT11EXT_QUERY_VIRTUAL_STATION_PROPERTIES;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_VIRTUAL_STATION_AP_PROPERTIES")) {
+        _ = DOT11EXT_SET_VIRTUAL_STATION_AP_PROPERTIES;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_GET_VERSION_INFO")) {
+        _ = DOT11EXTIHV_GET_VERSION_INFO;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_INIT_SERVICE")) {
+        _ = DOT11EXTIHV_INIT_SERVICE;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_INIT_VIRTUAL_STATION")) {
+        _ = DOT11EXTIHV_INIT_VIRTUAL_STATION;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_DEINIT_SERVICE")) {
+        _ = DOT11EXTIHV_DEINIT_SERVICE;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_INIT_ADAPTER")) {
+        _ = DOT11EXTIHV_INIT_ADAPTER;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_DEINIT_ADAPTER")) {
+        _ = DOT11EXTIHV_DEINIT_ADAPTER;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_PERFORM_PRE_ASSOCIATE")) {
+        _ = DOT11EXTIHV_PERFORM_PRE_ASSOCIATE;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_ADAPTER_RESET")) {
+        _ = DOT11EXTIHV_ADAPTER_RESET;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_PERFORM_POST_ASSOCIATE")) {
+        _ = DOT11EXTIHV_PERFORM_POST_ASSOCIATE;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_STOP_POST_ASSOCIATE")) {
+        _ = DOT11EXTIHV_STOP_POST_ASSOCIATE;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_VALIDATE_PROFILE")) {
+        _ = DOT11EXTIHV_VALIDATE_PROFILE;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_PERFORM_CAPABILITY_MATCH")) {
+        _ = DOT11EXTIHV_PERFORM_CAPABILITY_MATCH;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_CREATE_DISCOVERY_PROFILES")) {
+        _ = DOT11EXTIHV_CREATE_DISCOVERY_PROFILES;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_PROCESS_SESSION_CHANGE")) {
+        _ = DOT11EXTIHV_PROCESS_SESSION_CHANGE;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_RECEIVE_INDICATION")) {
+        _ = DOT11EXTIHV_RECEIVE_INDICATION;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_RECEIVE_PACKET")) {
+        _ = DOT11EXTIHV_RECEIVE_PACKET;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_SEND_PACKET_COMPLETION")) {
+        _ = DOT11EXTIHV_SEND_PACKET_COMPLETION;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_IS_UI_REQUEST_PENDING")) {
+        _ = DOT11EXTIHV_IS_UI_REQUEST_PENDING;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_PROCESS_UI_RESPONSE")) {
+        _ = DOT11EXTIHV_PROCESS_UI_RESPONSE;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_QUERY_UI_REQUEST")) {
+        _ = DOT11EXTIHV_QUERY_UI_REQUEST;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_ONEX_INDICATE_RESULT")) {
+        _ = DOT11EXTIHV_ONEX_INDICATE_RESULT;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_CONTROL")) {
+        _ = DOT11EXTIHV_CONTROL;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

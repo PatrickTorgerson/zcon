@@ -15,10 +15,7 @@ pub const VERIFIER_ENUM_RESOURCE_FLAGS = enum(u32) {
         DONT_RESOLVE_TRACES: u1 = 0,
         SUSPEND: u1 = 0,
     }) VERIFIER_ENUM_RESOURCE_FLAGS {
-        return @intToEnum(VERIFIER_ENUM_RESOURCE_FLAGS,
-              (if (o.DONT_RESOLVE_TRACES == 1) @enumToInt(VERIFIER_ENUM_RESOURCE_FLAGS.DONT_RESOLVE_TRACES) else 0)
-            | (if (o.SUSPEND == 1) @enumToInt(VERIFIER_ENUM_RESOURCE_FLAGS.SUSPEND) else 0)
-        );
+        return @intToEnum(VERIFIER_ENUM_RESOURCE_FLAGS, (if (o.DONT_RESOLVE_TRACES == 1) @enumToInt(VERIFIER_ENUM_RESOURCE_FLAGS.DONT_RESOLVE_TRACES) else 0) | (if (o.SUSPEND == 1) @enumToInt(VERIFIER_ENUM_RESOURCE_FLAGS.SUSPEND) else 0));
     }
 };
 pub const AVRF_ENUM_RESOURCES_FLAGS_DONT_RESOLVE_TRACES = VERIFIER_ENUM_RESOURCE_FLAGS.DONT_RESOLVE_TRACES;
@@ -96,24 +93,23 @@ pub const AvrfResourceHeapAllocation = eAvrfResourceTypes.HeapAllocation;
 pub const AvrfResourceHandleTrace = eAvrfResourceTypes.HandleTrace;
 pub const AvrfResourceMax = eAvrfResourceTypes.Max;
 
-pub const AVRF_RESOURCE_ENUMERATE_CALLBACK = fn(
+pub const AVRF_RESOURCE_ENUMERATE_CALLBACK = fn (
     ResourceDescription: ?*anyopaque,
     EnumerationContext: ?*anyopaque,
     EnumerationLevel: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK = fn(
+pub const AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK = fn (
     HeapAllocation: ?*AVRF_HEAP_ALLOCATION,
     EnumerationContext: ?*anyopaque,
     EnumerationLevel: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK = fn(
+pub const AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK = fn (
     HandleOperation: ?*AVRF_HANDLE_OPERATION,
     EnumerationContext: ?*anyopaque,
     EnumerationLevel: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (1)
@@ -126,19 +122,14 @@ pub extern "verifier" fn VerifierEnumerateResource(
     EnumerationContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (1)
@@ -147,13 +138,17 @@ const HANDLE = @import("../foundation.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "AVRF_RESOURCE_ENUMERATE_CALLBACK")) { _ = AVRF_RESOURCE_ENUMERATE_CALLBACK; }
-    if (@hasDecl(@This(), "AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK")) { _ = AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK; }
-    if (@hasDecl(@This(), "AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK")) { _ = AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK; }
+    if (@hasDecl(@This(), "AVRF_RESOURCE_ENUMERATE_CALLBACK")) {
+        _ = AVRF_RESOURCE_ENUMERATE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK")) {
+        _ = AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK")) {
+        _ = AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

@@ -245,27 +245,27 @@ pub const IID_IFilter = &IID_IFilter_Value;
 pub const IFilter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Init: fn(
+        Init: fn (
             self: *const IFilter,
             grfFlags: u32,
             cAttributes: u32,
             aAttributes: [*]const FULLPROPSPEC,
             pFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-        GetChunk: fn(
+        GetChunk: fn (
             self: *const IFilter,
             pStat: ?*STAT_CHUNK,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-        GetText: fn(
+        GetText: fn (
             self: *const IFilter,
             pcwcBuffer: ?*u32,
             awcBuffer: [*:0]u16,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-        GetValue: fn(
+        GetValue: fn (
             self: *const IFilter,
             ppPropValue: ?*?*PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-        BindRegion: fn(
+        BindRegion: fn (
             self: *const IFilter,
             origPos: FILTERREGION,
             riid: ?*const Guid,
@@ -273,29 +273,31 @@ pub const IFilter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) i32,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilter_Init(self: *const T, grfFlags: u32, cAttributes: u32, aAttributes: [*]const FULLPROPSPEC, pFlags: ?*u32) callconv(.Inline) i32 {
-            return @ptrCast(*const IFilter.VTable, self.vtable).Init(@ptrCast(*const IFilter, self), grfFlags, cAttributes, aAttributes, pFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilter_GetChunk(self: *const T, pStat: ?*STAT_CHUNK) callconv(.Inline) i32 {
-            return @ptrCast(*const IFilter.VTable, self.vtable).GetChunk(@ptrCast(*const IFilter, self), pStat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilter_GetText(self: *const T, pcwcBuffer: ?*u32, awcBuffer: [*:0]u16) callconv(.Inline) i32 {
-            return @ptrCast(*const IFilter.VTable, self.vtable).GetText(@ptrCast(*const IFilter, self), pcwcBuffer, awcBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilter_GetValue(self: *const T, ppPropValue: ?*?*PROPVARIANT) callconv(.Inline) i32 {
-            return @ptrCast(*const IFilter.VTable, self.vtable).GetValue(@ptrCast(*const IFilter, self), ppPropValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilter_BindRegion(self: *const T, origPos: FILTERREGION, riid: ?*const Guid, ppunk: ?*?*anyopaque) callconv(.Inline) i32 {
-            return @ptrCast(*const IFilter.VTable, self.vtable).BindRegion(@ptrCast(*const IFilter, self), origPos, riid, ppunk);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFilter_Init(self: *const T, grfFlags: u32, cAttributes: u32, aAttributes: [*]const FULLPROPSPEC, pFlags: ?*u32) i32 {
+                return @ptrCast(*const IFilter.VTable, self.vtable).Init(@ptrCast(*const IFilter, self), grfFlags, cAttributes, aAttributes, pFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFilter_GetChunk(self: *const T, pStat: ?*STAT_CHUNK) i32 {
+                return @ptrCast(*const IFilter.VTable, self.vtable).GetChunk(@ptrCast(*const IFilter, self), pStat);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFilter_GetText(self: *const T, pcwcBuffer: ?*u32, awcBuffer: [*:0]u16) i32 {
+                return @ptrCast(*const IFilter.VTable, self.vtable).GetText(@ptrCast(*const IFilter, self), pcwcBuffer, awcBuffer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFilter_GetValue(self: *const T, ppPropValue: ?*?*PROPVARIANT) i32 {
+                return @ptrCast(*const IFilter.VTable, self.vtable).GetValue(@ptrCast(*const IFilter, self), ppPropValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFilter_BindRegion(self: *const T, origPos: FILTERREGION, riid: ?*const Guid, ppunk: ?*?*anyopaque) i32 {
+                return @ptrCast(*const IFilter.VTable, self.vtable).BindRegion(@ptrCast(*const IFilter, self), origPos, riid, ppunk);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -305,7 +307,7 @@ pub const IID_IPhraseSink = &IID_IPhraseSink_Value;
 pub const IPhraseSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        PutSmallPhrase: fn(
+        PutSmallPhrase: fn (
             self: *const IPhraseSink,
             pwcNoun: ?[*:0]const u16,
             cwcNoun: u32,
@@ -313,24 +315,26 @@ pub const IPhraseSink = extern struct {
             cwcModifier: u32,
             ulAttachmentType: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PutPhrase: fn(
+        PutPhrase: fn (
             self: *const IPhraseSink,
             pwcPhrase: ?[*:0]const u16,
             cwcPhrase: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhraseSink_PutSmallPhrase(self: *const T, pwcNoun: ?[*:0]const u16, cwcNoun: u32, pwcModifier: ?[*:0]const u16, cwcModifier: u32, ulAttachmentType: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhraseSink.VTable, self.vtable).PutSmallPhrase(@ptrCast(*const IPhraseSink, self), pwcNoun, cwcNoun, pwcModifier, cwcModifier, ulAttachmentType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhraseSink_PutPhrase(self: *const T, pwcPhrase: ?[*:0]const u16, cwcPhrase: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhraseSink.VTable, self.vtable).PutPhrase(@ptrCast(*const IPhraseSink, self), pwcPhrase, cwcPhrase);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhraseSink_PutSmallPhrase(self: *const T, pwcNoun: ?[*:0]const u16, cwcNoun: u32, pwcModifier: ?[*:0]const u16, cwcModifier: u32, ulAttachmentType: u32) HRESULT {
+                return @ptrCast(*const IPhraseSink.VTable, self.vtable).PutSmallPhrase(@ptrCast(*const IPhraseSink, self), pwcNoun, cwcNoun, pwcModifier, cwcModifier, ulAttachmentType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhraseSink_PutPhrase(self: *const T, pwcPhrase: ?[*:0]const u16, cwcPhrase: u32) HRESULT {
+                return @ptrCast(*const IPhraseSink.VTable, self.vtable).PutPhrase(@ptrCast(*const IPhraseSink, self), pwcPhrase, cwcPhrase);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -362,9 +366,7 @@ pub const DBKIND_PGUID_PROPID = DBKINDENUM.PGUID_PROPID;
 pub const DBKIND_PROPID = DBKINDENUM.PROPID;
 pub const DBKIND_GUID = DBKINDENUM.GUID;
 
-
-
-pub const DBID = switch(@import("../zig.zig").arch) {
+pub const DBID = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         uGuid: extern union {
             guid: Guid,
@@ -423,19 +425,14 @@ pub extern "query" fn BindIFilterFromStream(
     ppIUnk: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (8)
@@ -450,9 +447,7 @@ const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

@@ -3243,10 +3243,7 @@ pub const ATF_FLAGS = enum(u32) {
         TIMEOUTON: u1 = 0,
         ONOFFFEEDBACK: u1 = 0,
     }) ATF_FLAGS {
-        return @intToEnum(ATF_FLAGS,
-              (if (o.TIMEOUTON == 1) @enumToInt(ATF_FLAGS.TIMEOUTON) else 0)
-            | (if (o.ONOFFFEEDBACK == 1) @enumToInt(ATF_FLAGS.ONOFFFEEDBACK) else 0)
-        );
+        return @intToEnum(ATF_FLAGS, (if (o.TIMEOUTON == 1) @enumToInt(ATF_FLAGS.TIMEOUTON) else 0) | (if (o.ONOFFFEEDBACK == 1) @enumToInt(ATF_FLAGS.ONOFFFEEDBACK) else 0));
     }
 };
 pub const ATF_TIMEOUTON = ATF_FLAGS.TIMEOUTON;
@@ -3274,17 +3271,7 @@ pub const CHOOSECOLOR_FLAGS = enum(u32) {
         SOLIDCOLOR: u1 = 0,
         ANYCOLOR: u1 = 0,
     }) CHOOSECOLOR_FLAGS {
-        return @intToEnum(CHOOSECOLOR_FLAGS,
-              (if (o.RGBINIT == 1) @enumToInt(CHOOSECOLOR_FLAGS.RGBINIT) else 0)
-            | (if (o.FULLOPEN == 1) @enumToInt(CHOOSECOLOR_FLAGS.FULLOPEN) else 0)
-            | (if (o.PREVENTFULLOPEN == 1) @enumToInt(CHOOSECOLOR_FLAGS.PREVENTFULLOPEN) else 0)
-            | (if (o.SHOWHELP == 1) @enumToInt(CHOOSECOLOR_FLAGS.SHOWHELP) else 0)
-            | (if (o.ENABLEHOOK == 1) @enumToInt(CHOOSECOLOR_FLAGS.ENABLEHOOK) else 0)
-            | (if (o.ENABLETEMPLATE == 1) @enumToInt(CHOOSECOLOR_FLAGS.ENABLETEMPLATE) else 0)
-            | (if (o.ENABLETEMPLATEHANDLE == 1) @enumToInt(CHOOSECOLOR_FLAGS.ENABLETEMPLATEHANDLE) else 0)
-            | (if (o.SOLIDCOLOR == 1) @enumToInt(CHOOSECOLOR_FLAGS.SOLIDCOLOR) else 0)
-            | (if (o.ANYCOLOR == 1) @enumToInt(CHOOSECOLOR_FLAGS.ANYCOLOR) else 0)
-        );
+        return @intToEnum(CHOOSECOLOR_FLAGS, (if (o.RGBINIT == 1) @enumToInt(CHOOSECOLOR_FLAGS.RGBINIT) else 0) | (if (o.FULLOPEN == 1) @enumToInt(CHOOSECOLOR_FLAGS.FULLOPEN) else 0) | (if (o.PREVENTFULLOPEN == 1) @enumToInt(CHOOSECOLOR_FLAGS.PREVENTFULLOPEN) else 0) | (if (o.SHOWHELP == 1) @enumToInt(CHOOSECOLOR_FLAGS.SHOWHELP) else 0) | (if (o.ENABLEHOOK == 1) @enumToInt(CHOOSECOLOR_FLAGS.ENABLEHOOK) else 0) | (if (o.ENABLETEMPLATE == 1) @enumToInt(CHOOSECOLOR_FLAGS.ENABLETEMPLATE) else 0) | (if (o.ENABLETEMPLATEHANDLE == 1) @enumToInt(CHOOSECOLOR_FLAGS.ENABLETEMPLATEHANDLE) else 0) | (if (o.SOLIDCOLOR == 1) @enumToInt(CHOOSECOLOR_FLAGS.SOLIDCOLOR) else 0) | (if (o.ANYCOLOR == 1) @enumToInt(CHOOSECOLOR_FLAGS.ANYCOLOR) else 0));
     }
 };
 pub const CC_RGBINIT = CHOOSECOLOR_FLAGS.RGBINIT;
@@ -3374,13 +3361,7 @@ pub const GESTURECONFIG_FLAGS = enum(u32) {
         PAN_WITH_GUTTER: u1 = 0,
         PAN_WITH_INERTIA: u1 = 0,
     }) GESTURECONFIG_FLAGS {
-        return @intToEnum(GESTURECONFIG_FLAGS,
-              (if (o.ALLGESTURES == 1) @enumToInt(GESTURECONFIG_FLAGS.ALLGESTURES) else 0)
-            | (if (o.PAN_WITH_SINGLE_FINGER_VERTICALLY == 1) @enumToInt(GESTURECONFIG_FLAGS.PAN_WITH_SINGLE_FINGER_VERTICALLY) else 0)
-            | (if (o.PAN_WITH_SINGLE_FINGER_HORIZONTALLY == 1) @enumToInt(GESTURECONFIG_FLAGS.PAN_WITH_SINGLE_FINGER_HORIZONTALLY) else 0)
-            | (if (o.PAN_WITH_GUTTER == 1) @enumToInt(GESTURECONFIG_FLAGS.PAN_WITH_GUTTER) else 0)
-            | (if (o.PAN_WITH_INERTIA == 1) @enumToInt(GESTURECONFIG_FLAGS.PAN_WITH_INERTIA) else 0)
-        );
+        return @intToEnum(GESTURECONFIG_FLAGS, (if (o.ALLGESTURES == 1) @enumToInt(GESTURECONFIG_FLAGS.ALLGESTURES) else 0) | (if (o.PAN_WITH_SINGLE_FINGER_VERTICALLY == 1) @enumToInt(GESTURECONFIG_FLAGS.PAN_WITH_SINGLE_FINGER_VERTICALLY) else 0) | (if (o.PAN_WITH_SINGLE_FINGER_HORIZONTALLY == 1) @enumToInt(GESTURECONFIG_FLAGS.PAN_WITH_SINGLE_FINGER_HORIZONTALLY) else 0) | (if (o.PAN_WITH_GUTTER == 1) @enumToInt(GESTURECONFIG_FLAGS.PAN_WITH_GUTTER) else 0) | (if (o.PAN_WITH_INERTIA == 1) @enumToInt(GESTURECONFIG_FLAGS.PAN_WITH_INERTIA) else 0));
     }
 };
 pub const GC_ALLGESTURES = GESTURECONFIG_FLAGS.ALLGESTURES;
@@ -3441,29 +3422,7 @@ pub const CFE_UNDERLINE = enum(u32) {
         UNDERLINE: u1 = 0,
         UNDERLINENONE: u1 = 0,
     }) CFE_UNDERLINE {
-        return @intToEnum(CFE_UNDERLINE,
-              (if (o.CF1UNDERLINE == 1) @enumToInt(CFE_UNDERLINE.CF1UNDERLINE) else 0)
-            | (if (o.INVERT == 1) @enumToInt(CFE_UNDERLINE.INVERT) else 0)
-            | (if (o.UNDERLINETHICKLONGDASH == 1) @enumToInt(CFE_UNDERLINE.UNDERLINETHICKLONGDASH) else 0)
-            | (if (o.UNDERLINETHICKDOTTED == 1) @enumToInt(CFE_UNDERLINE.UNDERLINETHICKDOTTED) else 0)
-            | (if (o.UNDERLINETHICKDASHDOTDOT == 1) @enumToInt(CFE_UNDERLINE.UNDERLINETHICKDASHDOTDOT) else 0)
-            | (if (o.UNDERLINETHICKDASHDOT == 1) @enumToInt(CFE_UNDERLINE.UNDERLINETHICKDASHDOT) else 0)
-            | (if (o.UNDERLINETHICKDASH == 1) @enumToInt(CFE_UNDERLINE.UNDERLINETHICKDASH) else 0)
-            | (if (o.UNDERLINELONGDASH == 1) @enumToInt(CFE_UNDERLINE.UNDERLINELONGDASH) else 0)
-            | (if (o.UNDERLINEHEAVYWAVE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEHEAVYWAVE) else 0)
-            | (if (o.UNDERLINEDOUBLEWAVE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEDOUBLEWAVE) else 0)
-            | (if (o.UNDERLINEHAIRLINE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEHAIRLINE) else 0)
-            | (if (o.UNDERLINETHICK == 1) @enumToInt(CFE_UNDERLINE.UNDERLINETHICK) else 0)
-            | (if (o.UNDERLINEWAVE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEWAVE) else 0)
-            | (if (o.UNDERLINEDASHDOTDOT == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEDASHDOTDOT) else 0)
-            | (if (o.UNDERLINEDASHDOT == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEDASHDOT) else 0)
-            | (if (o.UNDERLINEDASH == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEDASH) else 0)
-            | (if (o.UNDERLINEDOTTED == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEDOTTED) else 0)
-            | (if (o.UNDERLINEDOUBLE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEDOUBLE) else 0)
-            | (if (o.UNDERLINEWORD == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEWORD) else 0)
-            | (if (o.UNDERLINE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINE) else 0)
-            | (if (o.UNDERLINENONE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINENONE) else 0)
-        );
+        return @intToEnum(CFE_UNDERLINE, (if (o.CF1UNDERLINE == 1) @enumToInt(CFE_UNDERLINE.CF1UNDERLINE) else 0) | (if (o.INVERT == 1) @enumToInt(CFE_UNDERLINE.INVERT) else 0) | (if (o.UNDERLINETHICKLONGDASH == 1) @enumToInt(CFE_UNDERLINE.UNDERLINETHICKLONGDASH) else 0) | (if (o.UNDERLINETHICKDOTTED == 1) @enumToInt(CFE_UNDERLINE.UNDERLINETHICKDOTTED) else 0) | (if (o.UNDERLINETHICKDASHDOTDOT == 1) @enumToInt(CFE_UNDERLINE.UNDERLINETHICKDASHDOTDOT) else 0) | (if (o.UNDERLINETHICKDASHDOT == 1) @enumToInt(CFE_UNDERLINE.UNDERLINETHICKDASHDOT) else 0) | (if (o.UNDERLINETHICKDASH == 1) @enumToInt(CFE_UNDERLINE.UNDERLINETHICKDASH) else 0) | (if (o.UNDERLINELONGDASH == 1) @enumToInt(CFE_UNDERLINE.UNDERLINELONGDASH) else 0) | (if (o.UNDERLINEHEAVYWAVE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEHEAVYWAVE) else 0) | (if (o.UNDERLINEDOUBLEWAVE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEDOUBLEWAVE) else 0) | (if (o.UNDERLINEHAIRLINE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEHAIRLINE) else 0) | (if (o.UNDERLINETHICK == 1) @enumToInt(CFE_UNDERLINE.UNDERLINETHICK) else 0) | (if (o.UNDERLINEWAVE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEWAVE) else 0) | (if (o.UNDERLINEDASHDOTDOT == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEDASHDOTDOT) else 0) | (if (o.UNDERLINEDASHDOT == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEDASHDOT) else 0) | (if (o.UNDERLINEDASH == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEDASH) else 0) | (if (o.UNDERLINEDOTTED == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEDOTTED) else 0) | (if (o.UNDERLINEDOUBLE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEDOUBLE) else 0) | (if (o.UNDERLINEWORD == 1) @enumToInt(CFE_UNDERLINE.UNDERLINEWORD) else 0) | (if (o.UNDERLINE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINE) else 0) | (if (o.UNDERLINENONE == 1) @enumToInt(CFE_UNDERLINE.UNDERLINENONE) else 0));
     }
 };
 pub const CFU_CF1UNDERLINE = CFE_UNDERLINE.CF1UNDERLINE;
@@ -3523,15 +3482,7 @@ pub const SECTION_FLAGS = enum(u32) {
         EXTEND_SIZE: u1 = 0,
         MAP_EXECUTE_EXPLICIT: u1 = 0,
     }) SECTION_FLAGS {
-        return @intToEnum(SECTION_FLAGS,
-              (if (o.ALL_ACCESS == 1) @enumToInt(SECTION_FLAGS.ALL_ACCESS) else 0)
-            | (if (o.QUERY == 1) @enumToInt(SECTION_FLAGS.QUERY) else 0)
-            | (if (o.MAP_WRITE == 1) @enumToInt(SECTION_FLAGS.MAP_WRITE) else 0)
-            | (if (o.MAP_READ == 1) @enumToInt(SECTION_FLAGS.MAP_READ) else 0)
-            | (if (o.MAP_EXECUTE == 1) @enumToInt(SECTION_FLAGS.MAP_EXECUTE) else 0)
-            | (if (o.EXTEND_SIZE == 1) @enumToInt(SECTION_FLAGS.EXTEND_SIZE) else 0)
-            | (if (o.MAP_EXECUTE_EXPLICIT == 1) @enumToInt(SECTION_FLAGS.MAP_EXECUTE_EXPLICIT) else 0)
-        );
+        return @intToEnum(SECTION_FLAGS, (if (o.ALL_ACCESS == 1) @enumToInt(SECTION_FLAGS.ALL_ACCESS) else 0) | (if (o.QUERY == 1) @enumToInt(SECTION_FLAGS.QUERY) else 0) | (if (o.MAP_WRITE == 1) @enumToInt(SECTION_FLAGS.MAP_WRITE) else 0) | (if (o.MAP_READ == 1) @enumToInt(SECTION_FLAGS.MAP_READ) else 0) | (if (o.MAP_EXECUTE == 1) @enumToInt(SECTION_FLAGS.MAP_EXECUTE) else 0) | (if (o.EXTEND_SIZE == 1) @enumToInt(SECTION_FLAGS.EXTEND_SIZE) else 0) | (if (o.MAP_EXECUTE_EXPLICIT == 1) @enumToInt(SECTION_FLAGS.MAP_EXECUTE_EXPLICIT) else 0));
     }
 };
 pub const SECTION_ALL_ACCESS = SECTION_FLAGS.ALL_ACCESS;
@@ -3604,37 +3555,7 @@ pub const TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH = enum(u32) {
         WRITE_SETMARKS: u1 = 0,
         WRITE_SHORT_FMKS: u1 = 0,
     }) TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH {
-        return @intToEnum(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH,
-              (if (o.ABS_BLK_IMMED == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.ABS_BLK_IMMED) else 0)
-            | (if (o.ABSOLUTE_BLK == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.ABSOLUTE_BLK) else 0)
-            | (if (o.END_OF_DATA == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.END_OF_DATA) else 0)
-            | (if (o.FILEMARKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.FILEMARKS) else 0)
-            | (if (o.LOAD_UNLOAD == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.LOAD_UNLOAD) else 0)
-            | (if (o.LOAD_UNLD_IMMED == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.LOAD_UNLD_IMMED) else 0)
-            | (if (o.LOCK_UNLOCK == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.LOCK_UNLOCK) else 0)
-            | (if (o.LOCK_UNLK_IMMED == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.LOCK_UNLK_IMMED) else 0)
-            | (if (o.LOG_BLK_IMMED == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.LOG_BLK_IMMED) else 0)
-            | (if (o.LOGICAL_BLK == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.LOGICAL_BLK) else 0)
-            | (if (o.RELATIVE_BLKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.RELATIVE_BLKS) else 0)
-            | (if (o.REVERSE_POSITION == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.REVERSE_POSITION) else 0)
-            | (if (o.REWIND_IMMEDIATE == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.REWIND_IMMEDIATE) else 0)
-            | (if (o.SEQUENTIAL_FMKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SEQUENTIAL_FMKS) else 0)
-            | (if (o.SEQUENTIAL_SMKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SEQUENTIAL_SMKS) else 0)
-            | (if (o.SET_BLOCK_SIZE == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SET_BLOCK_SIZE) else 0)
-            | (if (o.SET_COMPRESSION == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SET_COMPRESSION) else 0)
-            | (if (o.SET_ECC == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SET_ECC) else 0)
-            | (if (o.SET_PADDING == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SET_PADDING) else 0)
-            | (if (o.SET_REPORT_SMKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SET_REPORT_SMKS) else 0)
-            | (if (o.SETMARKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SETMARKS) else 0)
-            | (if (o.SPACE_IMMEDIATE == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SPACE_IMMEDIATE) else 0)
-            | (if (o.TENSION == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.TENSION) else 0)
-            | (if (o.TENSION_IMMED == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.TENSION_IMMED) else 0)
-            | (if (o.WRITE_FILEMARKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.WRITE_FILEMARKS) else 0)
-            | (if (o.WRITE_LONG_FMKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.WRITE_LONG_FMKS) else 0)
-            | (if (o.WRITE_MARK_IMMED == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.WRITE_MARK_IMMED) else 0)
-            | (if (o.WRITE_SETMARKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.WRITE_SETMARKS) else 0)
-            | (if (o.WRITE_SHORT_FMKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.WRITE_SHORT_FMKS) else 0)
-        );
+        return @intToEnum(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH, (if (o.ABS_BLK_IMMED == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.ABS_BLK_IMMED) else 0) | (if (o.ABSOLUTE_BLK == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.ABSOLUTE_BLK) else 0) | (if (o.END_OF_DATA == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.END_OF_DATA) else 0) | (if (o.FILEMARKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.FILEMARKS) else 0) | (if (o.LOAD_UNLOAD == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.LOAD_UNLOAD) else 0) | (if (o.LOAD_UNLD_IMMED == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.LOAD_UNLD_IMMED) else 0) | (if (o.LOCK_UNLOCK == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.LOCK_UNLOCK) else 0) | (if (o.LOCK_UNLK_IMMED == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.LOCK_UNLK_IMMED) else 0) | (if (o.LOG_BLK_IMMED == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.LOG_BLK_IMMED) else 0) | (if (o.LOGICAL_BLK == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.LOGICAL_BLK) else 0) | (if (o.RELATIVE_BLKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.RELATIVE_BLKS) else 0) | (if (o.REVERSE_POSITION == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.REVERSE_POSITION) else 0) | (if (o.REWIND_IMMEDIATE == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.REWIND_IMMEDIATE) else 0) | (if (o.SEQUENTIAL_FMKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SEQUENTIAL_FMKS) else 0) | (if (o.SEQUENTIAL_SMKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SEQUENTIAL_SMKS) else 0) | (if (o.SET_BLOCK_SIZE == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SET_BLOCK_SIZE) else 0) | (if (o.SET_COMPRESSION == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SET_COMPRESSION) else 0) | (if (o.SET_ECC == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SET_ECC) else 0) | (if (o.SET_PADDING == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SET_PADDING) else 0) | (if (o.SET_REPORT_SMKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SET_REPORT_SMKS) else 0) | (if (o.SETMARKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SETMARKS) else 0) | (if (o.SPACE_IMMEDIATE == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.SPACE_IMMEDIATE) else 0) | (if (o.TENSION == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.TENSION) else 0) | (if (o.TENSION_IMMED == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.TENSION_IMMED) else 0) | (if (o.WRITE_FILEMARKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.WRITE_FILEMARKS) else 0) | (if (o.WRITE_LONG_FMKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.WRITE_LONG_FMKS) else 0) | (if (o.WRITE_MARK_IMMED == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.WRITE_MARK_IMMED) else 0) | (if (o.WRITE_SETMARKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.WRITE_SETMARKS) else 0) | (if (o.WRITE_SHORT_FMKS == 1) @enumToInt(TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.WRITE_SHORT_FMKS) else 0));
     }
 };
 pub const TAPE_DRIVE_ABS_BLK_IMMED = TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.ABS_BLK_IMMED;
@@ -3687,13 +3608,11 @@ pub const DEV_BROADCAST_VOLUME_FLAGS = enum(u16) {
 pub const DBTF_MEDIA = DEV_BROADCAST_VOLUME_FLAGS.MEDIA;
 pub const DBTF_NET = DEV_BROADCAST_VOLUME_FLAGS.NET;
 
-pub const PUMS_SCHEDULER_ENTRY_POINT = fn(
+pub const PUMS_SCHEDULER_ENTRY_POINT = fn (
     Reason: RTL_UMS_SCHEDULER_REASON,
     ActivationPayload: usize,
     SchedulerParam: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
-
-
 
 pub const TP_POOL = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -4037,9 +3956,6 @@ pub const SCOPE_TABLE_AMD64 = extern struct {
         JumpTarget: u32,
     },
 };
-
-
-
 
 pub const SCOPE_TABLE_ARM = extern struct {
     Count: u32,
@@ -4533,7 +4449,6 @@ pub const REARRANGE_FILE_DATA = extern struct {
     Length: u32,
     Flags: u32,
 };
-
 
 pub const SHUFFLE_FILE_DATA = extern struct {
     StartingOffset: i64,
@@ -5353,7 +5268,7 @@ pub const IMAGE_IMPORT_BY_NAME = extern struct {
     Name: [1]CHAR,
 };
 
-pub const PIMAGE_TLS_CALLBACK = fn(
+pub const PIMAGE_TLS_CALLBACK = fn (
     DllHandle: ?*anyopaque,
     Reason: u32,
     Reserved: ?*anyopaque,
@@ -5828,11 +5743,11 @@ pub const HEAP_OPTIMIZE_RESOURCES_INFORMATION = extern struct {
     Flags: u32,
 };
 
-pub const WORKERCALLBACKFUNC = fn(
+pub const WORKERCALLBACKFUNC = fn (
     param0: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const APC_CALLBACK_FUNCTION = fn(
+pub const APC_CALLBACK_FUNCTION = fn (
     param0: u32,
     param1: ?*anyopaque,
     param2: ?*anyopaque,
@@ -6153,25 +6068,25 @@ pub const KTMOBJECT_CURSOR = extern struct {
     ObjectIds: [1]Guid,
 };
 
-pub const PTERMINATION_HANDLER = switch(@import("../zig.zig").arch) {
-    .Arm64 => fn(
+pub const PTERMINATION_HANDLER = switch (@import("../zig.zig").arch) {
+    .Arm64 => fn (
         _abnormal_termination: BOOLEAN,
         EstablisherFrame: u64,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    .X64 => fn(
+    .X64 => fn (
         _abnormal_termination: BOOLEAN,
         EstablisherFrame: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-pub const POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK = switch(@import("../zig.zig").arch) {
-    .Arm64 => fn(
+pub const POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK = switch (@import("../zig.zig").arch) {
+    .Arm64 => fn (
         Process: ?HANDLE,
         TableAddress: ?*anyopaque,
         Entries: ?*u32,
         Functions: ?*?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    .X64 => fn(
+    .X64 => fn (
         Process: ?HANDLE,
         TableAddress: ?*anyopaque,
         Entries: ?*u32,
@@ -6179,14 +6094,14 @@ pub const POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK = switch(@import("../zig.zig")
     ) callconv(@import("std").os.windows.WINAPI) u32,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-pub const PEXCEPTION_FILTER = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => fn(
+pub const PEXCEPTION_FILTER = switch (@import("../zig.zig").arch) {
+    .X64, .Arm64 => fn (
         ExceptionPointers: ?*EXCEPTION_POINTERS,
         EstablisherFrame: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-pub const REARRANGE_FILE_DATA32 = switch(@import("../zig.zig").arch) {
+pub const REARRANGE_FILE_DATA32 = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         SourceStartingOffset: u64,
         TargetOffset: u64,
@@ -6205,7 +6120,6 @@ pub extern "user32" fn UnregisterDeviceNotification(
     Handle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (2)
 //--------------------------------------------------------------------------------
@@ -6220,8 +6134,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const DEV_BROADCAST_DEVICEINTERFACE_ = thismodule.DEV_BROADCAST_DEVICEINTERFACE_W;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const DEV_BROADCAST_PORT_ = *opaque{};
-        pub const DEV_BROADCAST_DEVICEINTERFACE_ = *opaque{};
+        pub const DEV_BROADCAST_PORT_ = *opaque {};
+        pub const DEV_BROADCAST_DEVICEINTERFACE_ = *opaque {};
     } else struct {
         pub const DEV_BROADCAST_PORT_ = @compileError("'DEV_BROADCAST_PORT_' requires that UNICODE be set to true or false in the root module");
         pub const DEV_BROADCAST_DEVICEINTERFACE_ = @compileError("'DEV_BROADCAST_DEVICEINTERFACE_' requires that UNICODE be set to true or false in the root module");
@@ -6248,34 +6162,50 @@ const SID = @import("../security.zig").SID;
 const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
 const TOKEN_USER = @import("../security.zig").TOKEN_USER;
 // 3 arch-specific imports
-const EXCEPTION_POINTERS = switch(@import("../zig.zig").arch) {
+const EXCEPTION_POINTERS = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => @import("../system/diagnostics/debug.zig").EXCEPTION_POINTERS,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-const IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY = switch(@import("../zig.zig").arch) {
+const IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY = switch (@import("../zig.zig").arch) {
     .Arm64 => @import("../system/diagnostics/debug.zig").IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-const IMAGE_RUNTIME_FUNCTION_ENTRY = switch(@import("../zig.zig").arch) {
+const IMAGE_RUNTIME_FUNCTION_ENTRY = switch (@import("../zig.zig").arch) {
     .X64 => @import("../system/diagnostics/debug.zig").IMAGE_RUNTIME_FUNCTION_ENTRY,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PUMS_SCHEDULER_ENTRY_POINT")) { _ = PUMS_SCHEDULER_ENTRY_POINT; }
-    if (@hasDecl(@This(), "PIMAGE_TLS_CALLBACK")) { _ = PIMAGE_TLS_CALLBACK; }
-    if (@hasDecl(@This(), "WORKERCALLBACKFUNC")) { _ = WORKERCALLBACKFUNC; }
-    if (@hasDecl(@This(), "APC_CALLBACK_FUNCTION")) { _ = APC_CALLBACK_FUNCTION; }
-    if (@hasDecl(@This(), "PTERMINATION_HANDLER")) { _ = PTERMINATION_HANDLER; }
-    if (@hasDecl(@This(), "PTERMINATION_HANDLER")) { _ = PTERMINATION_HANDLER; }
-    if (@hasDecl(@This(), "POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK")) { _ = POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK; }
-    if (@hasDecl(@This(), "POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK")) { _ = POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK; }
-    if (@hasDecl(@This(), "PEXCEPTION_FILTER")) { _ = PEXCEPTION_FILTER; }
+    if (@hasDecl(@This(), "PUMS_SCHEDULER_ENTRY_POINT")) {
+        _ = PUMS_SCHEDULER_ENTRY_POINT;
+    }
+    if (@hasDecl(@This(), "PIMAGE_TLS_CALLBACK")) {
+        _ = PIMAGE_TLS_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WORKERCALLBACKFUNC")) {
+        _ = WORKERCALLBACKFUNC;
+    }
+    if (@hasDecl(@This(), "APC_CALLBACK_FUNCTION")) {
+        _ = APC_CALLBACK_FUNCTION;
+    }
+    if (@hasDecl(@This(), "PTERMINATION_HANDLER")) {
+        _ = PTERMINATION_HANDLER;
+    }
+    if (@hasDecl(@This(), "PTERMINATION_HANDLER")) {
+        _ = PTERMINATION_HANDLER;
+    }
+    if (@hasDecl(@This(), "POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK")) {
+        _ = POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK")) {
+        _ = POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PEXCEPTION_FILTER")) {
+        _ = PEXCEPTION_FILTER;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

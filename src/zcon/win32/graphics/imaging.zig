@@ -932,97 +932,99 @@ pub const IID_IWICPalette = &IID_IWICPalette_Value;
 pub const IWICPalette = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        InitializePredefined: fn(
+        InitializePredefined: fn (
             self: *const IWICPalette,
             ePaletteType: WICBitmapPaletteType,
             fAddTransparentColor: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InitializeCustom: fn(
+        InitializeCustom: fn (
             self: *const IWICPalette,
             pColors: [*]u32,
             cCount: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InitializeFromBitmap: fn(
+        InitializeFromBitmap: fn (
             self: *const IWICPalette,
             pISurface: ?*IWICBitmapSource,
             cCount: u32,
             fAddTransparentColor: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InitializeFromPalette: fn(
+        InitializeFromPalette: fn (
             self: *const IWICPalette,
             pIPalette: ?*IWICPalette,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetType: fn(
+        GetType: fn (
             self: *const IWICPalette,
             pePaletteType: ?*WICBitmapPaletteType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetColorCount: fn(
+        GetColorCount: fn (
             self: *const IWICPalette,
             pcCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetColors: fn(
+        GetColors: fn (
             self: *const IWICPalette,
             cCount: u32,
             pColors: [*]u32,
             pcActualColors: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsBlackWhite: fn(
+        IsBlackWhite: fn (
             self: *const IWICPalette,
             pfIsBlackWhite: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsGrayscale: fn(
+        IsGrayscale: fn (
             self: *const IWICPalette,
             pfIsGrayscale: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HasAlpha: fn(
+        HasAlpha: fn (
             self: *const IWICPalette,
             pfHasAlpha: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPalette_InitializePredefined(self: *const T, ePaletteType: WICBitmapPaletteType, fAddTransparentColor: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPalette.VTable, self.vtable).InitializePredefined(@ptrCast(*const IWICPalette, self), ePaletteType, fAddTransparentColor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPalette_InitializeCustom(self: *const T, pColors: [*]u32, cCount: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPalette.VTable, self.vtable).InitializeCustom(@ptrCast(*const IWICPalette, self), pColors, cCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPalette_InitializeFromBitmap(self: *const T, pISurface: ?*IWICBitmapSource, cCount: u32, fAddTransparentColor: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPalette.VTable, self.vtable).InitializeFromBitmap(@ptrCast(*const IWICPalette, self), pISurface, cCount, fAddTransparentColor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPalette_InitializeFromPalette(self: *const T, pIPalette: ?*IWICPalette) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPalette.VTable, self.vtable).InitializeFromPalette(@ptrCast(*const IWICPalette, self), pIPalette);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPalette_GetType(self: *const T, pePaletteType: ?*WICBitmapPaletteType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPalette.VTable, self.vtable).GetType(@ptrCast(*const IWICPalette, self), pePaletteType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPalette_GetColorCount(self: *const T, pcCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPalette.VTable, self.vtable).GetColorCount(@ptrCast(*const IWICPalette, self), pcCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPalette_GetColors(self: *const T, cCount: u32, pColors: [*]u32, pcActualColors: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPalette.VTable, self.vtable).GetColors(@ptrCast(*const IWICPalette, self), cCount, pColors, pcActualColors);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPalette_IsBlackWhite(self: *const T, pfIsBlackWhite: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPalette.VTable, self.vtable).IsBlackWhite(@ptrCast(*const IWICPalette, self), pfIsBlackWhite);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPalette_IsGrayscale(self: *const T, pfIsGrayscale: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPalette.VTable, self.vtable).IsGrayscale(@ptrCast(*const IWICPalette, self), pfIsGrayscale);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPalette_HasAlpha(self: *const T, pfHasAlpha: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPalette.VTable, self.vtable).HasAlpha(@ptrCast(*const IWICPalette, self), pfHasAlpha);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPalette_InitializePredefined(self: *const T, ePaletteType: WICBitmapPaletteType, fAddTransparentColor: BOOL) HRESULT {
+                return @ptrCast(*const IWICPalette.VTable, self.vtable).InitializePredefined(@ptrCast(*const IWICPalette, self), ePaletteType, fAddTransparentColor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPalette_InitializeCustom(self: *const T, pColors: [*]u32, cCount: u32) HRESULT {
+                return @ptrCast(*const IWICPalette.VTable, self.vtable).InitializeCustom(@ptrCast(*const IWICPalette, self), pColors, cCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPalette_InitializeFromBitmap(self: *const T, pISurface: ?*IWICBitmapSource, cCount: u32, fAddTransparentColor: BOOL) HRESULT {
+                return @ptrCast(*const IWICPalette.VTable, self.vtable).InitializeFromBitmap(@ptrCast(*const IWICPalette, self), pISurface, cCount, fAddTransparentColor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPalette_InitializeFromPalette(self: *const T, pIPalette: ?*IWICPalette) HRESULT {
+                return @ptrCast(*const IWICPalette.VTable, self.vtable).InitializeFromPalette(@ptrCast(*const IWICPalette, self), pIPalette);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPalette_GetType(self: *const T, pePaletteType: ?*WICBitmapPaletteType) HRESULT {
+                return @ptrCast(*const IWICPalette.VTable, self.vtable).GetType(@ptrCast(*const IWICPalette, self), pePaletteType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPalette_GetColorCount(self: *const T, pcCount: ?*u32) HRESULT {
+                return @ptrCast(*const IWICPalette.VTable, self.vtable).GetColorCount(@ptrCast(*const IWICPalette, self), pcCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPalette_GetColors(self: *const T, cCount: u32, pColors: [*]u32, pcActualColors: ?*u32) HRESULT {
+                return @ptrCast(*const IWICPalette.VTable, self.vtable).GetColors(@ptrCast(*const IWICPalette, self), cCount, pColors, pcActualColors);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPalette_IsBlackWhite(self: *const T, pfIsBlackWhite: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWICPalette.VTable, self.vtable).IsBlackWhite(@ptrCast(*const IWICPalette, self), pfIsBlackWhite);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPalette_IsGrayscale(self: *const T, pfIsGrayscale: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWICPalette.VTable, self.vtable).IsGrayscale(@ptrCast(*const IWICPalette, self), pfIsGrayscale);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPalette_HasAlpha(self: *const T, pfHasAlpha: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWICPalette.VTable, self.vtable).HasAlpha(@ptrCast(*const IWICPalette, self), pfHasAlpha);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1032,25 +1034,25 @@ pub const IID_IWICBitmapSource = &IID_IWICBitmapSource_Value;
 pub const IWICBitmapSource = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSize: fn(
+        GetSize: fn (
             self: *const IWICBitmapSource,
             puiWidth: ?*u32,
             puiHeight: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPixelFormat: fn(
+        GetPixelFormat: fn (
             self: *const IWICBitmapSource,
             pPixelFormat: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetResolution: fn(
+        GetResolution: fn (
             self: *const IWICBitmapSource,
             pDpiX: ?*f64,
             pDpiY: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CopyPalette: fn(
+        CopyPalette: fn (
             self: *const IWICBitmapSource,
             pIPalette: ?*IWICPalette,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CopyPixels: fn(
+        CopyPixels: fn (
             self: *const IWICBitmapSource,
             prc: ?*const WICRect,
             cbStride: u32,
@@ -1059,29 +1061,31 @@ pub const IWICBitmapSource = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapSource_GetSize(self: *const T, puiWidth: ?*u32, puiHeight: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapSource.VTable, self.vtable).GetSize(@ptrCast(*const IWICBitmapSource, self), puiWidth, puiHeight);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapSource_GetPixelFormat(self: *const T, pPixelFormat: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapSource.VTable, self.vtable).GetPixelFormat(@ptrCast(*const IWICBitmapSource, self), pPixelFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapSource_GetResolution(self: *const T, pDpiX: ?*f64, pDpiY: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapSource.VTable, self.vtable).GetResolution(@ptrCast(*const IWICBitmapSource, self), pDpiX, pDpiY);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapSource_CopyPalette(self: *const T, pIPalette: ?*IWICPalette) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapSource.VTable, self.vtable).CopyPalette(@ptrCast(*const IWICBitmapSource, self), pIPalette);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapSource_CopyPixels(self: *const T, prc: ?*const WICRect, cbStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapSource.VTable, self.vtable).CopyPixels(@ptrCast(*const IWICBitmapSource, self), prc, cbStride, cbBufferSize, pbBuffer);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapSource_GetSize(self: *const T, puiWidth: ?*u32, puiHeight: ?*u32) HRESULT {
+                return @ptrCast(*const IWICBitmapSource.VTable, self.vtable).GetSize(@ptrCast(*const IWICBitmapSource, self), puiWidth, puiHeight);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapSource_GetPixelFormat(self: *const T, pPixelFormat: ?*Guid) HRESULT {
+                return @ptrCast(*const IWICBitmapSource.VTable, self.vtable).GetPixelFormat(@ptrCast(*const IWICBitmapSource, self), pPixelFormat);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapSource_GetResolution(self: *const T, pDpiX: ?*f64, pDpiY: ?*f64) HRESULT {
+                return @ptrCast(*const IWICBitmapSource.VTable, self.vtable).GetResolution(@ptrCast(*const IWICBitmapSource, self), pDpiX, pDpiY);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapSource_CopyPalette(self: *const T, pIPalette: ?*IWICPalette) HRESULT {
+                return @ptrCast(*const IWICBitmapSource.VTable, self.vtable).CopyPalette(@ptrCast(*const IWICBitmapSource, self), pIPalette);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapSource_CopyPixels(self: *const T, prc: ?*const WICRect, cbStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8) HRESULT {
+                return @ptrCast(*const IWICBitmapSource.VTable, self.vtable).CopyPixels(@ptrCast(*const IWICBitmapSource, self), prc, cbStride, cbBufferSize, pbBuffer);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1091,7 +1095,7 @@ pub const IID_IWICFormatConverter = &IID_IWICFormatConverter_Value;
 pub const IWICFormatConverter = extern struct {
     pub const VTable = extern struct {
         base: IWICBitmapSource.VTable,
-        Initialize: fn(
+        Initialize: fn (
             self: *const IWICFormatConverter,
             pISource: ?*IWICBitmapSource,
             dstFormat: ?*Guid,
@@ -1100,7 +1104,7 @@ pub const IWICFormatConverter = extern struct {
             alphaThresholdPercent: f64,
             paletteTranslate: WICBitmapPaletteType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CanConvert: fn(
+        CanConvert: fn (
             self: *const IWICFormatConverter,
             srcPixelFormat: ?*Guid,
             dstPixelFormat: ?*Guid,
@@ -1108,17 +1112,19 @@ pub const IWICFormatConverter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICBitmapSource.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICFormatConverter_Initialize(self: *const T, pISource: ?*IWICBitmapSource, dstFormat: ?*Guid, dither: WICBitmapDitherType, pIPalette: ?*IWICPalette, alphaThresholdPercent: f64, paletteTranslate: WICBitmapPaletteType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICFormatConverter.VTable, self.vtable).Initialize(@ptrCast(*const IWICFormatConverter, self), pISource, dstFormat, dither, pIPalette, alphaThresholdPercent, paletteTranslate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICFormatConverter_CanConvert(self: *const T, srcPixelFormat: ?*Guid, dstPixelFormat: ?*Guid, pfCanConvert: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICFormatConverter.VTable, self.vtable).CanConvert(@ptrCast(*const IWICFormatConverter, self), srcPixelFormat, dstPixelFormat, pfCanConvert);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICBitmapSource.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICFormatConverter_Initialize(self: *const T, pISource: ?*IWICBitmapSource, dstFormat: ?*Guid, dither: WICBitmapDitherType, pIPalette: ?*IWICPalette, alphaThresholdPercent: f64, paletteTranslate: WICBitmapPaletteType) HRESULT {
+                return @ptrCast(*const IWICFormatConverter.VTable, self.vtable).Initialize(@ptrCast(*const IWICFormatConverter, self), pISource, dstFormat, dither, pIPalette, alphaThresholdPercent, paletteTranslate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICFormatConverter_CanConvert(self: *const T, srcPixelFormat: ?*Guid, dstPixelFormat: ?*Guid, pfCanConvert: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWICFormatConverter.VTable, self.vtable).CanConvert(@ptrCast(*const IWICFormatConverter, self), srcPixelFormat, dstPixelFormat, pfCanConvert);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1128,7 +1134,7 @@ pub const IID_IWICPlanarFormatConverter = &IID_IWICPlanarFormatConverter_Value;
 pub const IWICPlanarFormatConverter = extern struct {
     pub const VTable = extern struct {
         base: IWICBitmapSource.VTable,
-        Initialize: fn(
+        Initialize: fn (
             self: *const IWICPlanarFormatConverter,
             ppPlanes: [*]?*IWICBitmapSource,
             cPlanes: u32,
@@ -1138,7 +1144,7 @@ pub const IWICPlanarFormatConverter = extern struct {
             alphaThresholdPercent: f64,
             paletteTranslate: WICBitmapPaletteType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CanConvert: fn(
+        CanConvert: fn (
             self: *const IWICPlanarFormatConverter,
             pSrcPixelFormats: [*]const Guid,
             cSrcPlanes: u32,
@@ -1147,17 +1153,19 @@ pub const IWICPlanarFormatConverter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICBitmapSource.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPlanarFormatConverter_Initialize(self: *const T, ppPlanes: [*]?*IWICBitmapSource, cPlanes: u32, dstFormat: ?*Guid, dither: WICBitmapDitherType, pIPalette: ?*IWICPalette, alphaThresholdPercent: f64, paletteTranslate: WICBitmapPaletteType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPlanarFormatConverter.VTable, self.vtable).Initialize(@ptrCast(*const IWICPlanarFormatConverter, self), ppPlanes, cPlanes, dstFormat, dither, pIPalette, alphaThresholdPercent, paletteTranslate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPlanarFormatConverter_CanConvert(self: *const T, pSrcPixelFormats: [*]const Guid, cSrcPlanes: u32, dstPixelFormat: ?*Guid, pfCanConvert: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPlanarFormatConverter.VTable, self.vtable).CanConvert(@ptrCast(*const IWICPlanarFormatConverter, self), pSrcPixelFormats, cSrcPlanes, dstPixelFormat, pfCanConvert);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICBitmapSource.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPlanarFormatConverter_Initialize(self: *const T, ppPlanes: [*]?*IWICBitmapSource, cPlanes: u32, dstFormat: ?*Guid, dither: WICBitmapDitherType, pIPalette: ?*IWICPalette, alphaThresholdPercent: f64, paletteTranslate: WICBitmapPaletteType) HRESULT {
+                return @ptrCast(*const IWICPlanarFormatConverter.VTable, self.vtable).Initialize(@ptrCast(*const IWICPlanarFormatConverter, self), ppPlanes, cPlanes, dstFormat, dither, pIPalette, alphaThresholdPercent, paletteTranslate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPlanarFormatConverter_CanConvert(self: *const T, pSrcPixelFormats: [*]const Guid, cSrcPlanes: u32, dstPixelFormat: ?*Guid, pfCanConvert: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWICPlanarFormatConverter.VTable, self.vtable).CanConvert(@ptrCast(*const IWICPlanarFormatConverter, self), pSrcPixelFormats, cSrcPlanes, dstPixelFormat, pfCanConvert);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1167,7 +1175,7 @@ pub const IID_IWICBitmapScaler = &IID_IWICBitmapScaler_Value;
 pub const IWICBitmapScaler = extern struct {
     pub const VTable = extern struct {
         base: IWICBitmapSource.VTable,
-        Initialize: fn(
+        Initialize: fn (
             self: *const IWICBitmapScaler,
             pISource: ?*IWICBitmapSource,
             uiWidth: u32,
@@ -1176,13 +1184,15 @@ pub const IWICBitmapScaler = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICBitmapSource.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapScaler_Initialize(self: *const T, pISource: ?*IWICBitmapSource, uiWidth: u32, uiHeight: u32, mode: WICBitmapInterpolationMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapScaler.VTable, self.vtable).Initialize(@ptrCast(*const IWICBitmapScaler, self), pISource, uiWidth, uiHeight, mode);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICBitmapSource.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapScaler_Initialize(self: *const T, pISource: ?*IWICBitmapSource, uiWidth: u32, uiHeight: u32, mode: WICBitmapInterpolationMode) HRESULT {
+                return @ptrCast(*const IWICBitmapScaler.VTable, self.vtable).Initialize(@ptrCast(*const IWICBitmapScaler, self), pISource, uiWidth, uiHeight, mode);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1192,20 +1202,22 @@ pub const IID_IWICBitmapClipper = &IID_IWICBitmapClipper_Value;
 pub const IWICBitmapClipper = extern struct {
     pub const VTable = extern struct {
         base: IWICBitmapSource.VTable,
-        Initialize: fn(
+        Initialize: fn (
             self: *const IWICBitmapClipper,
             pISource: ?*IWICBitmapSource,
             prc: ?*const WICRect,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICBitmapSource.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapClipper_Initialize(self: *const T, pISource: ?*IWICBitmapSource, prc: ?*const WICRect) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapClipper.VTable, self.vtable).Initialize(@ptrCast(*const IWICBitmapClipper, self), pISource, prc);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICBitmapSource.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapClipper_Initialize(self: *const T, pISource: ?*IWICBitmapSource, prc: ?*const WICRect) HRESULT {
+                return @ptrCast(*const IWICBitmapClipper.VTable, self.vtable).Initialize(@ptrCast(*const IWICBitmapClipper, self), pISource, prc);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1215,20 +1227,22 @@ pub const IID_IWICBitmapFlipRotator = &IID_IWICBitmapFlipRotator_Value;
 pub const IWICBitmapFlipRotator = extern struct {
     pub const VTable = extern struct {
         base: IWICBitmapSource.VTable,
-        Initialize: fn(
+        Initialize: fn (
             self: *const IWICBitmapFlipRotator,
             pISource: ?*IWICBitmapSource,
             options: WICBitmapTransformOptions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICBitmapSource.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapFlipRotator_Initialize(self: *const T, pISource: ?*IWICBitmapSource, options: WICBitmapTransformOptions) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapFlipRotator.VTable, self.vtable).Initialize(@ptrCast(*const IWICBitmapFlipRotator, self), pISource, options);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICBitmapSource.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapFlipRotator_Initialize(self: *const T, pISource: ?*IWICBitmapSource, options: WICBitmapTransformOptions) HRESULT {
+                return @ptrCast(*const IWICBitmapFlipRotator.VTable, self.vtable).Initialize(@ptrCast(*const IWICBitmapFlipRotator, self), pISource, options);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1238,45 +1252,47 @@ pub const IID_IWICBitmapLock = &IID_IWICBitmapLock_Value;
 pub const IWICBitmapLock = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSize: fn(
+        GetSize: fn (
             self: *const IWICBitmapLock,
             puiWidth: ?*u32,
             puiHeight: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStride: fn(
+        GetStride: fn (
             self: *const IWICBitmapLock,
             pcbStride: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDataPointer: fn(
+        GetDataPointer: fn (
             self: *const IWICBitmapLock,
             pcbBufferSize: ?*u32,
             ppbData: [*]?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPixelFormat: fn(
+        GetPixelFormat: fn (
             self: *const IWICBitmapLock,
             pPixelFormat: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapLock_GetSize(self: *const T, puiWidth: ?*u32, puiHeight: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapLock.VTable, self.vtable).GetSize(@ptrCast(*const IWICBitmapLock, self), puiWidth, puiHeight);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapLock_GetStride(self: *const T, pcbStride: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapLock.VTable, self.vtable).GetStride(@ptrCast(*const IWICBitmapLock, self), pcbStride);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapLock_GetDataPointer(self: *const T, pcbBufferSize: ?*u32, ppbData: [*]?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapLock.VTable, self.vtable).GetDataPointer(@ptrCast(*const IWICBitmapLock, self), pcbBufferSize, ppbData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapLock_GetPixelFormat(self: *const T, pPixelFormat: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapLock.VTable, self.vtable).GetPixelFormat(@ptrCast(*const IWICBitmapLock, self), pPixelFormat);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapLock_GetSize(self: *const T, puiWidth: ?*u32, puiHeight: ?*u32) HRESULT {
+                return @ptrCast(*const IWICBitmapLock.VTable, self.vtable).GetSize(@ptrCast(*const IWICBitmapLock, self), puiWidth, puiHeight);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapLock_GetStride(self: *const T, pcbStride: ?*u32) HRESULT {
+                return @ptrCast(*const IWICBitmapLock.VTable, self.vtable).GetStride(@ptrCast(*const IWICBitmapLock, self), pcbStride);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapLock_GetDataPointer(self: *const T, pcbBufferSize: ?*u32, ppbData: [*]?*u8) HRESULT {
+                return @ptrCast(*const IWICBitmapLock.VTable, self.vtable).GetDataPointer(@ptrCast(*const IWICBitmapLock, self), pcbBufferSize, ppbData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapLock_GetPixelFormat(self: *const T, pPixelFormat: ?*Guid) HRESULT {
+                return @ptrCast(*const IWICBitmapLock.VTable, self.vtable).GetPixelFormat(@ptrCast(*const IWICBitmapLock, self), pPixelFormat);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1286,38 +1302,40 @@ pub const IID_IWICBitmap = &IID_IWICBitmap_Value;
 pub const IWICBitmap = extern struct {
     pub const VTable = extern struct {
         base: IWICBitmapSource.VTable,
-        Lock: fn(
+        Lock: fn (
             self: *const IWICBitmap,
             prcLock: ?*const WICRect,
             flags: u32,
             ppILock: ?*?*IWICBitmapLock,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPalette: fn(
+        SetPalette: fn (
             self: *const IWICBitmap,
             pIPalette: ?*IWICPalette,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetResolution: fn(
+        SetResolution: fn (
             self: *const IWICBitmap,
             dpiX: f64,
             dpiY: f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICBitmapSource.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmap_Lock(self: *const T, prcLock: ?*const WICRect, flags: u32, ppILock: ?*?*IWICBitmapLock) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmap.VTable, self.vtable).Lock(@ptrCast(*const IWICBitmap, self), prcLock, flags, ppILock);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmap_SetPalette(self: *const T, pIPalette: ?*IWICPalette) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmap.VTable, self.vtable).SetPalette(@ptrCast(*const IWICBitmap, self), pIPalette);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmap_SetResolution(self: *const T, dpiX: f64, dpiY: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmap.VTable, self.vtable).SetResolution(@ptrCast(*const IWICBitmap, self), dpiX, dpiY);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICBitmapSource.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmap_Lock(self: *const T, prcLock: ?*const WICRect, flags: u32, ppILock: ?*?*IWICBitmapLock) HRESULT {
+                return @ptrCast(*const IWICBitmap.VTable, self.vtable).Lock(@ptrCast(*const IWICBitmap, self), prcLock, flags, ppILock);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmap_SetPalette(self: *const T, pIPalette: ?*IWICPalette) HRESULT {
+                return @ptrCast(*const IWICBitmap.VTable, self.vtable).SetPalette(@ptrCast(*const IWICBitmap, self), pIPalette);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmap_SetResolution(self: *const T, dpiX: f64, dpiY: f64) HRESULT {
+                return @ptrCast(*const IWICBitmap.VTable, self.vtable).SetResolution(@ptrCast(*const IWICBitmap, self), dpiX, dpiY);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1327,62 +1345,64 @@ pub const IID_IWICColorContext = &IID_IWICColorContext_Value;
 pub const IWICColorContext = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        InitializeFromFilename: fn(
+        InitializeFromFilename: fn (
             self: *const IWICColorContext,
             wzFilename: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InitializeFromMemory: fn(
+        InitializeFromMemory: fn (
             self: *const IWICColorContext,
             pbBuffer: [*:0]const u8,
             cbBufferSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InitializeFromExifColorSpace: fn(
+        InitializeFromExifColorSpace: fn (
             self: *const IWICColorContext,
             value: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetType: fn(
+        GetType: fn (
             self: *const IWICColorContext,
             pType: ?*WICColorContextType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProfileBytes: fn(
+        GetProfileBytes: fn (
             self: *const IWICColorContext,
             cbBuffer: u32,
             pbBuffer: [*:0]u8,
             pcbActual: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetExifColorSpace: fn(
+        GetExifColorSpace: fn (
             self: *const IWICColorContext,
             pValue: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICColorContext_InitializeFromFilename(self: *const T, wzFilename: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICColorContext.VTable, self.vtable).InitializeFromFilename(@ptrCast(*const IWICColorContext, self), wzFilename);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICColorContext_InitializeFromMemory(self: *const T, pbBuffer: [*:0]const u8, cbBufferSize: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICColorContext.VTable, self.vtable).InitializeFromMemory(@ptrCast(*const IWICColorContext, self), pbBuffer, cbBufferSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICColorContext_InitializeFromExifColorSpace(self: *const T, value: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICColorContext.VTable, self.vtable).InitializeFromExifColorSpace(@ptrCast(*const IWICColorContext, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICColorContext_GetType(self: *const T, pType: ?*WICColorContextType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICColorContext.VTable, self.vtable).GetType(@ptrCast(*const IWICColorContext, self), pType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICColorContext_GetProfileBytes(self: *const T, cbBuffer: u32, pbBuffer: [*:0]u8, pcbActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICColorContext.VTable, self.vtable).GetProfileBytes(@ptrCast(*const IWICColorContext, self), cbBuffer, pbBuffer, pcbActual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICColorContext_GetExifColorSpace(self: *const T, pValue: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICColorContext.VTable, self.vtable).GetExifColorSpace(@ptrCast(*const IWICColorContext, self), pValue);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICColorContext_InitializeFromFilename(self: *const T, wzFilename: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IWICColorContext.VTable, self.vtable).InitializeFromFilename(@ptrCast(*const IWICColorContext, self), wzFilename);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICColorContext_InitializeFromMemory(self: *const T, pbBuffer: [*:0]const u8, cbBufferSize: u32) HRESULT {
+                return @ptrCast(*const IWICColorContext.VTable, self.vtable).InitializeFromMemory(@ptrCast(*const IWICColorContext, self), pbBuffer, cbBufferSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICColorContext_InitializeFromExifColorSpace(self: *const T, value: u32) HRESULT {
+                return @ptrCast(*const IWICColorContext.VTable, self.vtable).InitializeFromExifColorSpace(@ptrCast(*const IWICColorContext, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICColorContext_GetType(self: *const T, pType: ?*WICColorContextType) HRESULT {
+                return @ptrCast(*const IWICColorContext.VTable, self.vtable).GetType(@ptrCast(*const IWICColorContext, self), pType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICColorContext_GetProfileBytes(self: *const T, cbBuffer: u32, pbBuffer: [*:0]u8, pcbActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICColorContext.VTable, self.vtable).GetProfileBytes(@ptrCast(*const IWICColorContext, self), cbBuffer, pbBuffer, pcbActual);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICColorContext_GetExifColorSpace(self: *const T, pValue: ?*u32) HRESULT {
+                return @ptrCast(*const IWICColorContext.VTable, self.vtable).GetExifColorSpace(@ptrCast(*const IWICColorContext, self), pValue);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1392,7 +1412,7 @@ pub const IID_IWICColorTransform = &IID_IWICColorTransform_Value;
 pub const IWICColorTransform = extern struct {
     pub const VTable = extern struct {
         base: IWICBitmapSource.VTable,
-        Initialize: fn(
+        Initialize: fn (
             self: *const IWICColorTransform,
             pIBitmapSource: ?*IWICBitmapSource,
             pIContextSource: ?*IWICColorContext,
@@ -1401,13 +1421,15 @@ pub const IWICColorTransform = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICBitmapSource.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICColorTransform_Initialize(self: *const T, pIBitmapSource: ?*IWICBitmapSource, pIContextSource: ?*IWICColorContext, pIContextDest: ?*IWICColorContext, pixelFmtDest: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICColorTransform.VTable, self.vtable).Initialize(@ptrCast(*const IWICColorTransform, self), pIBitmapSource, pIContextSource, pIContextDest, pixelFmtDest);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICBitmapSource.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICColorTransform_Initialize(self: *const T, pIBitmapSource: ?*IWICBitmapSource, pIContextSource: ?*IWICColorContext, pIContextDest: ?*IWICColorContext, pixelFmtDest: ?*Guid) HRESULT {
+                return @ptrCast(*const IWICColorTransform.VTable, self.vtable).Initialize(@ptrCast(*const IWICColorTransform, self), pIBitmapSource, pIContextSource, pIContextDest, pixelFmtDest);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1417,26 +1439,28 @@ pub const IID_IWICFastMetadataEncoder = &IID_IWICFastMetadataEncoder_Value;
 pub const IWICFastMetadataEncoder = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Commit: fn(
+        Commit: fn (
             self: *const IWICFastMetadataEncoder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMetadataQueryWriter: fn(
+        GetMetadataQueryWriter: fn (
             self: *const IWICFastMetadataEncoder,
             ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICFastMetadataEncoder_Commit(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICFastMetadataEncoder.VTable, self.vtable).Commit(@ptrCast(*const IWICFastMetadataEncoder, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICFastMetadataEncoder_GetMetadataQueryWriter(self: *const T, ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICFastMetadataEncoder.VTable, self.vtable).GetMetadataQueryWriter(@ptrCast(*const IWICFastMetadataEncoder, self), ppIMetadataQueryWriter);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICFastMetadataEncoder_Commit(self: *const T) HRESULT {
+                return @ptrCast(*const IWICFastMetadataEncoder.VTable, self.vtable).Commit(@ptrCast(*const IWICFastMetadataEncoder, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICFastMetadataEncoder_GetMetadataQueryWriter(self: *const T, ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter) HRESULT {
+                return @ptrCast(*const IWICFastMetadataEncoder.VTable, self.vtable).GetMetadataQueryWriter(@ptrCast(*const IWICFastMetadataEncoder, self), ppIMetadataQueryWriter);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1446,21 +1470,21 @@ pub const IID_IWICStream = &IID_IWICStream_Value;
 pub const IWICStream = extern struct {
     pub const VTable = extern struct {
         base: IStream.VTable,
-        InitializeFromIStream: fn(
+        InitializeFromIStream: fn (
             self: *const IWICStream,
             pIStream: ?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InitializeFromFilename: fn(
+        InitializeFromFilename: fn (
             self: *const IWICStream,
             wzFileName: ?[*:0]const u16,
             dwDesiredAccess: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InitializeFromMemory: fn(
+        InitializeFromMemory: fn (
             self: *const IWICStream,
             pbBuffer: [*:0]u8,
             cbBufferSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InitializeFromIStreamRegion: fn(
+        InitializeFromIStreamRegion: fn (
             self: *const IWICStream,
             pIStream: ?*IStream,
             ulOffset: ULARGE_INTEGER,
@@ -1468,25 +1492,27 @@ pub const IWICStream = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IStream.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICStream_InitializeFromIStream(self: *const T, pIStream: ?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICStream.VTable, self.vtable).InitializeFromIStream(@ptrCast(*const IWICStream, self), pIStream);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICStream_InitializeFromFilename(self: *const T, wzFileName: ?[*:0]const u16, dwDesiredAccess: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICStream.VTable, self.vtable).InitializeFromFilename(@ptrCast(*const IWICStream, self), wzFileName, dwDesiredAccess);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICStream_InitializeFromMemory(self: *const T, pbBuffer: [*:0]u8, cbBufferSize: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICStream.VTable, self.vtable).InitializeFromMemory(@ptrCast(*const IWICStream, self), pbBuffer, cbBufferSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICStream_InitializeFromIStreamRegion(self: *const T, pIStream: ?*IStream, ulOffset: ULARGE_INTEGER, ulMaxSize: ULARGE_INTEGER) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICStream.VTable, self.vtable).InitializeFromIStreamRegion(@ptrCast(*const IWICStream, self), pIStream, ulOffset, ulMaxSize);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IStream.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICStream_InitializeFromIStream(self: *const T, pIStream: ?*IStream) HRESULT {
+                return @ptrCast(*const IWICStream.VTable, self.vtable).InitializeFromIStream(@ptrCast(*const IWICStream, self), pIStream);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICStream_InitializeFromFilename(self: *const T, wzFileName: ?[*:0]const u16, dwDesiredAccess: u32) HRESULT {
+                return @ptrCast(*const IWICStream.VTable, self.vtable).InitializeFromFilename(@ptrCast(*const IWICStream, self), wzFileName, dwDesiredAccess);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICStream_InitializeFromMemory(self: *const T, pbBuffer: [*:0]u8, cbBufferSize: u32) HRESULT {
+                return @ptrCast(*const IWICStream.VTable, self.vtable).InitializeFromMemory(@ptrCast(*const IWICStream, self), pbBuffer, cbBufferSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICStream_InitializeFromIStreamRegion(self: *const T, pIStream: ?*IStream, ulOffset: ULARGE_INTEGER, ulMaxSize: ULARGE_INTEGER) HRESULT {
+                return @ptrCast(*const IWICStream.VTable, self.vtable).InitializeFromIStreamRegion(@ptrCast(*const IWICStream, self), pIStream, ulOffset, ulMaxSize);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1496,7 +1522,7 @@ pub const IID_IWICEnumMetadataItem = &IID_IWICEnumMetadataItem_Value;
 pub const IWICEnumMetadataItem = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
+        Next: fn (
             self: *const IWICEnumMetadataItem,
             celt: u32,
             rgeltSchema: [*]PROPVARIANT,
@@ -1504,38 +1530,40 @@ pub const IWICEnumMetadataItem = extern struct {
             rgeltValue: [*]PROPVARIANT,
             pceltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
+        Skip: fn (
             self: *const IWICEnumMetadataItem,
             celt: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
+        Reset: fn (
             self: *const IWICEnumMetadataItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
+        Clone: fn (
             self: *const IWICEnumMetadataItem,
             ppIEnumMetadataItem: ?*?*IWICEnumMetadataItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICEnumMetadataItem_Next(self: *const T, celt: u32, rgeltSchema: [*]PROPVARIANT, rgeltId: [*]PROPVARIANT, rgeltValue: [*]PROPVARIANT, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICEnumMetadataItem.VTable, self.vtable).Next(@ptrCast(*const IWICEnumMetadataItem, self), celt, rgeltSchema, rgeltId, rgeltValue, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICEnumMetadataItem_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICEnumMetadataItem.VTable, self.vtable).Skip(@ptrCast(*const IWICEnumMetadataItem, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICEnumMetadataItem_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICEnumMetadataItem.VTable, self.vtable).Reset(@ptrCast(*const IWICEnumMetadataItem, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICEnumMetadataItem_Clone(self: *const T, ppIEnumMetadataItem: ?*?*IWICEnumMetadataItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICEnumMetadataItem.VTable, self.vtable).Clone(@ptrCast(*const IWICEnumMetadataItem, self), ppIEnumMetadataItem);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICEnumMetadataItem_Next(self: *const T, celt: u32, rgeltSchema: [*]PROPVARIANT, rgeltId: [*]PROPVARIANT, rgeltValue: [*]PROPVARIANT, pceltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IWICEnumMetadataItem.VTable, self.vtable).Next(@ptrCast(*const IWICEnumMetadataItem, self), celt, rgeltSchema, rgeltId, rgeltValue, pceltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICEnumMetadataItem_Skip(self: *const T, celt: u32) HRESULT {
+                return @ptrCast(*const IWICEnumMetadataItem.VTable, self.vtable).Skip(@ptrCast(*const IWICEnumMetadataItem, self), celt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICEnumMetadataItem_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IWICEnumMetadataItem.VTable, self.vtable).Reset(@ptrCast(*const IWICEnumMetadataItem, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICEnumMetadataItem_Clone(self: *const T, ppIEnumMetadataItem: ?*?*IWICEnumMetadataItem) HRESULT {
+                return @ptrCast(*const IWICEnumMetadataItem.VTable, self.vtable).Clone(@ptrCast(*const IWICEnumMetadataItem, self), ppIEnumMetadataItem);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1545,46 +1573,48 @@ pub const IID_IWICMetadataQueryReader = &IID_IWICMetadataQueryReader_Value;
 pub const IWICMetadataQueryReader = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetContainerFormat: fn(
+        GetContainerFormat: fn (
             self: *const IWICMetadataQueryReader,
             pguidContainerFormat: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLocation: fn(
+        GetLocation: fn (
             self: *const IWICMetadataQueryReader,
             cchMaxLength: u32,
             wzNamespace: [*:0]u16,
             pcchActualLength: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMetadataByName: fn(
+        GetMetadataByName: fn (
             self: *const IWICMetadataQueryReader,
             wzName: ?[*:0]const u16,
             pvarValue: ?*PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEnumerator: fn(
+        GetEnumerator: fn (
             self: *const IWICMetadataQueryReader,
             ppIEnumString: ?*?*IEnumString,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataQueryReader_GetContainerFormat(self: *const T, pguidContainerFormat: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataQueryReader.VTable, self.vtable).GetContainerFormat(@ptrCast(*const IWICMetadataQueryReader, self), pguidContainerFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataQueryReader_GetLocation(self: *const T, cchMaxLength: u32, wzNamespace: [*:0]u16, pcchActualLength: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataQueryReader.VTable, self.vtable).GetLocation(@ptrCast(*const IWICMetadataQueryReader, self), cchMaxLength, wzNamespace, pcchActualLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataQueryReader_GetMetadataByName(self: *const T, wzName: ?[*:0]const u16, pvarValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataQueryReader.VTable, self.vtable).GetMetadataByName(@ptrCast(*const IWICMetadataQueryReader, self), wzName, pvarValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataQueryReader_GetEnumerator(self: *const T, ppIEnumString: ?*?*IEnumString) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataQueryReader.VTable, self.vtable).GetEnumerator(@ptrCast(*const IWICMetadataQueryReader, self), ppIEnumString);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataQueryReader_GetContainerFormat(self: *const T, pguidContainerFormat: ?*Guid) HRESULT {
+                return @ptrCast(*const IWICMetadataQueryReader.VTable, self.vtable).GetContainerFormat(@ptrCast(*const IWICMetadataQueryReader, self), pguidContainerFormat);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataQueryReader_GetLocation(self: *const T, cchMaxLength: u32, wzNamespace: [*:0]u16, pcchActualLength: ?*u32) HRESULT {
+                return @ptrCast(*const IWICMetadataQueryReader.VTable, self.vtable).GetLocation(@ptrCast(*const IWICMetadataQueryReader, self), cchMaxLength, wzNamespace, pcchActualLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataQueryReader_GetMetadataByName(self: *const T, wzName: ?[*:0]const u16, pvarValue: ?*PROPVARIANT) HRESULT {
+                return @ptrCast(*const IWICMetadataQueryReader.VTable, self.vtable).GetMetadataByName(@ptrCast(*const IWICMetadataQueryReader, self), wzName, pvarValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataQueryReader_GetEnumerator(self: *const T, ppIEnumString: ?*?*IEnumString) HRESULT {
+                return @ptrCast(*const IWICMetadataQueryReader.VTable, self.vtable).GetEnumerator(@ptrCast(*const IWICMetadataQueryReader, self), ppIEnumString);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1594,28 +1624,30 @@ pub const IID_IWICMetadataQueryWriter = &IID_IWICMetadataQueryWriter_Value;
 pub const IWICMetadataQueryWriter = extern struct {
     pub const VTable = extern struct {
         base: IWICMetadataQueryReader.VTable,
-        SetMetadataByName: fn(
+        SetMetadataByName: fn (
             self: *const IWICMetadataQueryWriter,
             wzName: ?[*:0]const u16,
             pvarValue: ?*const PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveMetadataByName: fn(
+        RemoveMetadataByName: fn (
             self: *const IWICMetadataQueryWriter,
             wzName: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICMetadataQueryReader.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataQueryWriter_SetMetadataByName(self: *const T, wzName: ?[*:0]const u16, pvarValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataQueryWriter.VTable, self.vtable).SetMetadataByName(@ptrCast(*const IWICMetadataQueryWriter, self), wzName, pvarValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataQueryWriter_RemoveMetadataByName(self: *const T, wzName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataQueryWriter.VTable, self.vtable).RemoveMetadataByName(@ptrCast(*const IWICMetadataQueryWriter, self), wzName);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICMetadataQueryReader.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataQueryWriter_SetMetadataByName(self: *const T, wzName: ?[*:0]const u16, pvarValue: ?*const PROPVARIANT) HRESULT {
+                return @ptrCast(*const IWICMetadataQueryWriter.VTable, self.vtable).SetMetadataByName(@ptrCast(*const IWICMetadataQueryWriter, self), wzName, pvarValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataQueryWriter_RemoveMetadataByName(self: *const T, wzName: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IWICMetadataQueryWriter.VTable, self.vtable).RemoveMetadataByName(@ptrCast(*const IWICMetadataQueryWriter, self), wzName);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1624,93 +1656,95 @@ pub const IID_IWICBitmapEncoder = &IID_IWICBitmapEncoder_Value;
 pub const IWICBitmapEncoder = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
+        Initialize: fn (
             self: *const IWICBitmapEncoder,
             pIStream: ?*IStream,
             cacheOption: WICBitmapEncoderCacheOption,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetContainerFormat: fn(
+        GetContainerFormat: fn (
             self: *const IWICBitmapEncoder,
             pguidContainerFormat: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEncoderInfo: fn(
+        GetEncoderInfo: fn (
             self: *const IWICBitmapEncoder,
             ppIEncoderInfo: ?*?*IWICBitmapEncoderInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetColorContexts: fn(
+        SetColorContexts: fn (
             self: *const IWICBitmapEncoder,
             cCount: u32,
             ppIColorContext: [*]?*IWICColorContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPalette: fn(
+        SetPalette: fn (
             self: *const IWICBitmapEncoder,
             pIPalette: ?*IWICPalette,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetThumbnail: fn(
+        SetThumbnail: fn (
             self: *const IWICBitmapEncoder,
             pIThumbnail: ?*IWICBitmapSource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPreview: fn(
+        SetPreview: fn (
             self: *const IWICBitmapEncoder,
             pIPreview: ?*IWICBitmapSource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateNewFrame: fn(
+        CreateNewFrame: fn (
             self: *const IWICBitmapEncoder,
             ppIFrameEncode: ?*?*IWICBitmapFrameEncode,
             ppIEncoderOptions: ?*?*IPropertyBag2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Commit: fn(
+        Commit: fn (
             self: *const IWICBitmapEncoder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMetadataQueryWriter: fn(
+        GetMetadataQueryWriter: fn (
             self: *const IWICBitmapEncoder,
             ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapEncoder_Initialize(self: *const T, pIStream: ?*IStream, cacheOption: WICBitmapEncoderCacheOption) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapEncoder.VTable, self.vtable).Initialize(@ptrCast(*const IWICBitmapEncoder, self), pIStream, cacheOption);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapEncoder_GetContainerFormat(self: *const T, pguidContainerFormat: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapEncoder.VTable, self.vtable).GetContainerFormat(@ptrCast(*const IWICBitmapEncoder, self), pguidContainerFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapEncoder_GetEncoderInfo(self: *const T, ppIEncoderInfo: ?*?*IWICBitmapEncoderInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapEncoder.VTable, self.vtable).GetEncoderInfo(@ptrCast(*const IWICBitmapEncoder, self), ppIEncoderInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapEncoder_SetColorContexts(self: *const T, cCount: u32, ppIColorContext: [*]?*IWICColorContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapEncoder.VTable, self.vtable).SetColorContexts(@ptrCast(*const IWICBitmapEncoder, self), cCount, ppIColorContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapEncoder_SetPalette(self: *const T, pIPalette: ?*IWICPalette) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapEncoder.VTable, self.vtable).SetPalette(@ptrCast(*const IWICBitmapEncoder, self), pIPalette);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapEncoder_SetThumbnail(self: *const T, pIThumbnail: ?*IWICBitmapSource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapEncoder.VTable, self.vtable).SetThumbnail(@ptrCast(*const IWICBitmapEncoder, self), pIThumbnail);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapEncoder_SetPreview(self: *const T, pIPreview: ?*IWICBitmapSource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapEncoder.VTable, self.vtable).SetPreview(@ptrCast(*const IWICBitmapEncoder, self), pIPreview);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapEncoder_CreateNewFrame(self: *const T, ppIFrameEncode: ?*?*IWICBitmapFrameEncode, ppIEncoderOptions: ?*?*IPropertyBag2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapEncoder.VTable, self.vtable).CreateNewFrame(@ptrCast(*const IWICBitmapEncoder, self), ppIFrameEncode, ppIEncoderOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapEncoder_Commit(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapEncoder.VTable, self.vtable).Commit(@ptrCast(*const IWICBitmapEncoder, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapEncoder_GetMetadataQueryWriter(self: *const T, ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapEncoder.VTable, self.vtable).GetMetadataQueryWriter(@ptrCast(*const IWICBitmapEncoder, self), ppIMetadataQueryWriter);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapEncoder_Initialize(self: *const T, pIStream: ?*IStream, cacheOption: WICBitmapEncoderCacheOption) HRESULT {
+                return @ptrCast(*const IWICBitmapEncoder.VTable, self.vtable).Initialize(@ptrCast(*const IWICBitmapEncoder, self), pIStream, cacheOption);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapEncoder_GetContainerFormat(self: *const T, pguidContainerFormat: ?*Guid) HRESULT {
+                return @ptrCast(*const IWICBitmapEncoder.VTable, self.vtable).GetContainerFormat(@ptrCast(*const IWICBitmapEncoder, self), pguidContainerFormat);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapEncoder_GetEncoderInfo(self: *const T, ppIEncoderInfo: ?*?*IWICBitmapEncoderInfo) HRESULT {
+                return @ptrCast(*const IWICBitmapEncoder.VTable, self.vtable).GetEncoderInfo(@ptrCast(*const IWICBitmapEncoder, self), ppIEncoderInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapEncoder_SetColorContexts(self: *const T, cCount: u32, ppIColorContext: [*]?*IWICColorContext) HRESULT {
+                return @ptrCast(*const IWICBitmapEncoder.VTable, self.vtable).SetColorContexts(@ptrCast(*const IWICBitmapEncoder, self), cCount, ppIColorContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapEncoder_SetPalette(self: *const T, pIPalette: ?*IWICPalette) HRESULT {
+                return @ptrCast(*const IWICBitmapEncoder.VTable, self.vtable).SetPalette(@ptrCast(*const IWICBitmapEncoder, self), pIPalette);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapEncoder_SetThumbnail(self: *const T, pIThumbnail: ?*IWICBitmapSource) HRESULT {
+                return @ptrCast(*const IWICBitmapEncoder.VTable, self.vtable).SetThumbnail(@ptrCast(*const IWICBitmapEncoder, self), pIThumbnail);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapEncoder_SetPreview(self: *const T, pIPreview: ?*IWICBitmapSource) HRESULT {
+                return @ptrCast(*const IWICBitmapEncoder.VTable, self.vtable).SetPreview(@ptrCast(*const IWICBitmapEncoder, self), pIPreview);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapEncoder_CreateNewFrame(self: *const T, ppIFrameEncode: ?*?*IWICBitmapFrameEncode, ppIEncoderOptions: ?*?*IPropertyBag2) HRESULT {
+                return @ptrCast(*const IWICBitmapEncoder.VTable, self.vtable).CreateNewFrame(@ptrCast(*const IWICBitmapEncoder, self), ppIFrameEncode, ppIEncoderOptions);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapEncoder_Commit(self: *const T) HRESULT {
+                return @ptrCast(*const IWICBitmapEncoder.VTable, self.vtable).Commit(@ptrCast(*const IWICBitmapEncoder, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapEncoder_GetMetadataQueryWriter(self: *const T, ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter) HRESULT {
+                return @ptrCast(*const IWICBitmapEncoder.VTable, self.vtable).GetMetadataQueryWriter(@ptrCast(*const IWICBitmapEncoder, self), ppIMetadataQueryWriter);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1720,105 +1754,107 @@ pub const IID_IWICBitmapFrameEncode = &IID_IWICBitmapFrameEncode_Value;
 pub const IWICBitmapFrameEncode = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
+        Initialize: fn (
             self: *const IWICBitmapFrameEncode,
             pIEncoderOptions: ?*IPropertyBag2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSize: fn(
+        SetSize: fn (
             self: *const IWICBitmapFrameEncode,
             uiWidth: u32,
             uiHeight: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetResolution: fn(
+        SetResolution: fn (
             self: *const IWICBitmapFrameEncode,
             dpiX: f64,
             dpiY: f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPixelFormat: fn(
+        SetPixelFormat: fn (
             self: *const IWICBitmapFrameEncode,
             pPixelFormat: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetColorContexts: fn(
+        SetColorContexts: fn (
             self: *const IWICBitmapFrameEncode,
             cCount: u32,
             ppIColorContext: [*]?*IWICColorContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPalette: fn(
+        SetPalette: fn (
             self: *const IWICBitmapFrameEncode,
             pIPalette: ?*IWICPalette,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetThumbnail: fn(
+        SetThumbnail: fn (
             self: *const IWICBitmapFrameEncode,
             pIThumbnail: ?*IWICBitmapSource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WritePixels: fn(
+        WritePixels: fn (
             self: *const IWICBitmapFrameEncode,
             lineCount: u32,
             cbStride: u32,
             cbBufferSize: u32,
             pbPixels: [*:0]u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WriteSource: fn(
+        WriteSource: fn (
             self: *const IWICBitmapFrameEncode,
             pIBitmapSource: ?*IWICBitmapSource,
             prc: ?*WICRect,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Commit: fn(
+        Commit: fn (
             self: *const IWICBitmapFrameEncode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMetadataQueryWriter: fn(
+        GetMetadataQueryWriter: fn (
             self: *const IWICBitmapFrameEncode,
             ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapFrameEncode_Initialize(self: *const T, pIEncoderOptions: ?*IPropertyBag2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).Initialize(@ptrCast(*const IWICBitmapFrameEncode, self), pIEncoderOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapFrameEncode_SetSize(self: *const T, uiWidth: u32, uiHeight: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).SetSize(@ptrCast(*const IWICBitmapFrameEncode, self), uiWidth, uiHeight);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapFrameEncode_SetResolution(self: *const T, dpiX: f64, dpiY: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).SetResolution(@ptrCast(*const IWICBitmapFrameEncode, self), dpiX, dpiY);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapFrameEncode_SetPixelFormat(self: *const T, pPixelFormat: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).SetPixelFormat(@ptrCast(*const IWICBitmapFrameEncode, self), pPixelFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapFrameEncode_SetColorContexts(self: *const T, cCount: u32, ppIColorContext: [*]?*IWICColorContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).SetColorContexts(@ptrCast(*const IWICBitmapFrameEncode, self), cCount, ppIColorContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapFrameEncode_SetPalette(self: *const T, pIPalette: ?*IWICPalette) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).SetPalette(@ptrCast(*const IWICBitmapFrameEncode, self), pIPalette);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapFrameEncode_SetThumbnail(self: *const T, pIThumbnail: ?*IWICBitmapSource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).SetThumbnail(@ptrCast(*const IWICBitmapFrameEncode, self), pIThumbnail);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapFrameEncode_WritePixels(self: *const T, lineCount: u32, cbStride: u32, cbBufferSize: u32, pbPixels: [*:0]u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).WritePixels(@ptrCast(*const IWICBitmapFrameEncode, self), lineCount, cbStride, cbBufferSize, pbPixels);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapFrameEncode_WriteSource(self: *const T, pIBitmapSource: ?*IWICBitmapSource, prc: ?*WICRect) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).WriteSource(@ptrCast(*const IWICBitmapFrameEncode, self), pIBitmapSource, prc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapFrameEncode_Commit(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).Commit(@ptrCast(*const IWICBitmapFrameEncode, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapFrameEncode_GetMetadataQueryWriter(self: *const T, ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).GetMetadataQueryWriter(@ptrCast(*const IWICBitmapFrameEncode, self), ppIMetadataQueryWriter);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapFrameEncode_Initialize(self: *const T, pIEncoderOptions: ?*IPropertyBag2) HRESULT {
+                return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).Initialize(@ptrCast(*const IWICBitmapFrameEncode, self), pIEncoderOptions);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapFrameEncode_SetSize(self: *const T, uiWidth: u32, uiHeight: u32) HRESULT {
+                return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).SetSize(@ptrCast(*const IWICBitmapFrameEncode, self), uiWidth, uiHeight);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapFrameEncode_SetResolution(self: *const T, dpiX: f64, dpiY: f64) HRESULT {
+                return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).SetResolution(@ptrCast(*const IWICBitmapFrameEncode, self), dpiX, dpiY);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapFrameEncode_SetPixelFormat(self: *const T, pPixelFormat: ?*Guid) HRESULT {
+                return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).SetPixelFormat(@ptrCast(*const IWICBitmapFrameEncode, self), pPixelFormat);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapFrameEncode_SetColorContexts(self: *const T, cCount: u32, ppIColorContext: [*]?*IWICColorContext) HRESULT {
+                return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).SetColorContexts(@ptrCast(*const IWICBitmapFrameEncode, self), cCount, ppIColorContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapFrameEncode_SetPalette(self: *const T, pIPalette: ?*IWICPalette) HRESULT {
+                return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).SetPalette(@ptrCast(*const IWICBitmapFrameEncode, self), pIPalette);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapFrameEncode_SetThumbnail(self: *const T, pIThumbnail: ?*IWICBitmapSource) HRESULT {
+                return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).SetThumbnail(@ptrCast(*const IWICBitmapFrameEncode, self), pIThumbnail);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapFrameEncode_WritePixels(self: *const T, lineCount: u32, cbStride: u32, cbBufferSize: u32, pbPixels: [*:0]u8) HRESULT {
+                return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).WritePixels(@ptrCast(*const IWICBitmapFrameEncode, self), lineCount, cbStride, cbBufferSize, pbPixels);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapFrameEncode_WriteSource(self: *const T, pIBitmapSource: ?*IWICBitmapSource, prc: ?*WICRect) HRESULT {
+                return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).WriteSource(@ptrCast(*const IWICBitmapFrameEncode, self), pIBitmapSource, prc);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapFrameEncode_Commit(self: *const T) HRESULT {
+                return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).Commit(@ptrCast(*const IWICBitmapFrameEncode, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapFrameEncode_GetMetadataQueryWriter(self: *const T, ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter) HRESULT {
+                return @ptrCast(*const IWICBitmapFrameEncode.VTable, self.vtable).GetMetadataQueryWriter(@ptrCast(*const IWICBitmapFrameEncode, self), ppIMetadataQueryWriter);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1828,13 +1864,13 @@ pub const IID_IWICPlanarBitmapFrameEncode = &IID_IWICPlanarBitmapFrameEncode_Val
 pub const IWICPlanarBitmapFrameEncode = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        WritePixels: fn(
+        WritePixels: fn (
             self: *const IWICPlanarBitmapFrameEncode,
             lineCount: u32,
             pPlanes: [*]WICBitmapPlane,
             cPlanes: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WriteSource: fn(
+        WriteSource: fn (
             self: *const IWICPlanarBitmapFrameEncode,
             ppPlanes: [*]?*IWICBitmapSource,
             cPlanes: u32,
@@ -1842,17 +1878,19 @@ pub const IWICPlanarBitmapFrameEncode = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPlanarBitmapFrameEncode_WritePixels(self: *const T, lineCount: u32, pPlanes: [*]WICBitmapPlane, cPlanes: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPlanarBitmapFrameEncode.VTable, self.vtable).WritePixels(@ptrCast(*const IWICPlanarBitmapFrameEncode, self), lineCount, pPlanes, cPlanes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPlanarBitmapFrameEncode_WriteSource(self: *const T, ppPlanes: [*]?*IWICBitmapSource, cPlanes: u32, prcSource: ?*WICRect) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPlanarBitmapFrameEncode.VTable, self.vtable).WriteSource(@ptrCast(*const IWICPlanarBitmapFrameEncode, self), ppPlanes, cPlanes, prcSource);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPlanarBitmapFrameEncode_WritePixels(self: *const T, lineCount: u32, pPlanes: [*]WICBitmapPlane, cPlanes: u32) HRESULT {
+                return @ptrCast(*const IWICPlanarBitmapFrameEncode.VTable, self.vtable).WritePixels(@ptrCast(*const IWICPlanarBitmapFrameEncode, self), lineCount, pPlanes, cPlanes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPlanarBitmapFrameEncode_WriteSource(self: *const T, ppPlanes: [*]?*IWICBitmapSource, cPlanes: u32, prcSource: ?*WICRect) HRESULT {
+                return @ptrCast(*const IWICPlanarBitmapFrameEncode.VTable, self.vtable).WriteSource(@ptrCast(*const IWICPlanarBitmapFrameEncode, self), ppPlanes, cPlanes, prcSource);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1862,104 +1900,106 @@ pub const IID_IWICBitmapDecoder = &IID_IWICBitmapDecoder_Value;
 pub const IWICBitmapDecoder = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        QueryCapability: fn(
+        QueryCapability: fn (
             self: *const IWICBitmapDecoder,
             pIStream: ?*IStream,
             pdwCapability: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Initialize: fn(
+        Initialize: fn (
             self: *const IWICBitmapDecoder,
             pIStream: ?*IStream,
             cacheOptions: WICDecodeOptions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetContainerFormat: fn(
+        GetContainerFormat: fn (
             self: *const IWICBitmapDecoder,
             pguidContainerFormat: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDecoderInfo: fn(
+        GetDecoderInfo: fn (
             self: *const IWICBitmapDecoder,
             ppIDecoderInfo: ?*?*IWICBitmapDecoderInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CopyPalette: fn(
+        CopyPalette: fn (
             self: *const IWICBitmapDecoder,
             pIPalette: ?*IWICPalette,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMetadataQueryReader: fn(
+        GetMetadataQueryReader: fn (
             self: *const IWICBitmapDecoder,
             ppIMetadataQueryReader: ?*?*IWICMetadataQueryReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPreview: fn(
+        GetPreview: fn (
             self: *const IWICBitmapDecoder,
             ppIBitmapSource: ?*?*IWICBitmapSource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetColorContexts: fn(
+        GetColorContexts: fn (
             self: *const IWICBitmapDecoder,
             cCount: u32,
             ppIColorContexts: [*]?*IWICColorContext,
             pcActualCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetThumbnail: fn(
+        GetThumbnail: fn (
             self: *const IWICBitmapDecoder,
             ppIThumbnail: ?*?*IWICBitmapSource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFrameCount: fn(
+        GetFrameCount: fn (
             self: *const IWICBitmapDecoder,
             pCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFrame: fn(
+        GetFrame: fn (
             self: *const IWICBitmapDecoder,
             index: u32,
             ppIBitmapFrame: ?*?*IWICBitmapFrameDecode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapDecoder_QueryCapability(self: *const T, pIStream: ?*IStream, pdwCapability: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).QueryCapability(@ptrCast(*const IWICBitmapDecoder, self), pIStream, pdwCapability);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapDecoder_Initialize(self: *const T, pIStream: ?*IStream, cacheOptions: WICDecodeOptions) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).Initialize(@ptrCast(*const IWICBitmapDecoder, self), pIStream, cacheOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapDecoder_GetContainerFormat(self: *const T, pguidContainerFormat: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).GetContainerFormat(@ptrCast(*const IWICBitmapDecoder, self), pguidContainerFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapDecoder_GetDecoderInfo(self: *const T, ppIDecoderInfo: ?*?*IWICBitmapDecoderInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).GetDecoderInfo(@ptrCast(*const IWICBitmapDecoder, self), ppIDecoderInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapDecoder_CopyPalette(self: *const T, pIPalette: ?*IWICPalette) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).CopyPalette(@ptrCast(*const IWICBitmapDecoder, self), pIPalette);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapDecoder_GetMetadataQueryReader(self: *const T, ppIMetadataQueryReader: ?*?*IWICMetadataQueryReader) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).GetMetadataQueryReader(@ptrCast(*const IWICBitmapDecoder, self), ppIMetadataQueryReader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapDecoder_GetPreview(self: *const T, ppIBitmapSource: ?*?*IWICBitmapSource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).GetPreview(@ptrCast(*const IWICBitmapDecoder, self), ppIBitmapSource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapDecoder_GetColorContexts(self: *const T, cCount: u32, ppIColorContexts: [*]?*IWICColorContext, pcActualCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).GetColorContexts(@ptrCast(*const IWICBitmapDecoder, self), cCount, ppIColorContexts, pcActualCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapDecoder_GetThumbnail(self: *const T, ppIThumbnail: ?*?*IWICBitmapSource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).GetThumbnail(@ptrCast(*const IWICBitmapDecoder, self), ppIThumbnail);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapDecoder_GetFrameCount(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).GetFrameCount(@ptrCast(*const IWICBitmapDecoder, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapDecoder_GetFrame(self: *const T, index: u32, ppIBitmapFrame: ?*?*IWICBitmapFrameDecode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).GetFrame(@ptrCast(*const IWICBitmapDecoder, self), index, ppIBitmapFrame);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapDecoder_QueryCapability(self: *const T, pIStream: ?*IStream, pdwCapability: ?*u32) HRESULT {
+                return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).QueryCapability(@ptrCast(*const IWICBitmapDecoder, self), pIStream, pdwCapability);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapDecoder_Initialize(self: *const T, pIStream: ?*IStream, cacheOptions: WICDecodeOptions) HRESULT {
+                return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).Initialize(@ptrCast(*const IWICBitmapDecoder, self), pIStream, cacheOptions);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapDecoder_GetContainerFormat(self: *const T, pguidContainerFormat: ?*Guid) HRESULT {
+                return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).GetContainerFormat(@ptrCast(*const IWICBitmapDecoder, self), pguidContainerFormat);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapDecoder_GetDecoderInfo(self: *const T, ppIDecoderInfo: ?*?*IWICBitmapDecoderInfo) HRESULT {
+                return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).GetDecoderInfo(@ptrCast(*const IWICBitmapDecoder, self), ppIDecoderInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapDecoder_CopyPalette(self: *const T, pIPalette: ?*IWICPalette) HRESULT {
+                return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).CopyPalette(@ptrCast(*const IWICBitmapDecoder, self), pIPalette);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapDecoder_GetMetadataQueryReader(self: *const T, ppIMetadataQueryReader: ?*?*IWICMetadataQueryReader) HRESULT {
+                return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).GetMetadataQueryReader(@ptrCast(*const IWICBitmapDecoder, self), ppIMetadataQueryReader);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapDecoder_GetPreview(self: *const T, ppIBitmapSource: ?*?*IWICBitmapSource) HRESULT {
+                return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).GetPreview(@ptrCast(*const IWICBitmapDecoder, self), ppIBitmapSource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapDecoder_GetColorContexts(self: *const T, cCount: u32, ppIColorContexts: [*]?*IWICColorContext, pcActualCount: ?*u32) HRESULT {
+                return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).GetColorContexts(@ptrCast(*const IWICBitmapDecoder, self), cCount, ppIColorContexts, pcActualCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapDecoder_GetThumbnail(self: *const T, ppIThumbnail: ?*?*IWICBitmapSource) HRESULT {
+                return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).GetThumbnail(@ptrCast(*const IWICBitmapDecoder, self), ppIThumbnail);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapDecoder_GetFrameCount(self: *const T, pCount: ?*u32) HRESULT {
+                return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).GetFrameCount(@ptrCast(*const IWICBitmapDecoder, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapDecoder_GetFrame(self: *const T, index: u32, ppIBitmapFrame: ?*?*IWICBitmapFrameDecode) HRESULT {
+                return @ptrCast(*const IWICBitmapDecoder.VTable, self.vtable).GetFrame(@ptrCast(*const IWICBitmapDecoder, self), index, ppIBitmapFrame);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1969,7 +2009,7 @@ pub const IID_IWICBitmapSourceTransform = &IID_IWICBitmapSourceTransform_Value;
 pub const IWICBitmapSourceTransform = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CopyPixels: fn(
+        CopyPixels: fn (
             self: *const IWICBitmapSourceTransform,
             prc: ?*const WICRect,
             uiWidth: u32,
@@ -1980,41 +2020,43 @@ pub const IWICBitmapSourceTransform = extern struct {
             cbBufferSize: u32,
             pbBuffer: [*:0]u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetClosestSize: fn(
+        GetClosestSize: fn (
             self: *const IWICBitmapSourceTransform,
             puiWidth: ?*u32,
             puiHeight: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetClosestPixelFormat: fn(
+        GetClosestPixelFormat: fn (
             self: *const IWICBitmapSourceTransform,
             pguidDstFormat: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DoesSupportTransform: fn(
+        DoesSupportTransform: fn (
             self: *const IWICBitmapSourceTransform,
             dstTransform: WICBitmapTransformOptions,
             pfIsSupported: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapSourceTransform_CopyPixels(self: *const T, prc: ?*const WICRect, uiWidth: u32, uiHeight: u32, pguidDstFormat: ?*Guid, dstTransform: WICBitmapTransformOptions, nStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapSourceTransform.VTable, self.vtable).CopyPixels(@ptrCast(*const IWICBitmapSourceTransform, self), prc, uiWidth, uiHeight, pguidDstFormat, dstTransform, nStride, cbBufferSize, pbBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapSourceTransform_GetClosestSize(self: *const T, puiWidth: ?*u32, puiHeight: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapSourceTransform.VTable, self.vtable).GetClosestSize(@ptrCast(*const IWICBitmapSourceTransform, self), puiWidth, puiHeight);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapSourceTransform_GetClosestPixelFormat(self: *const T, pguidDstFormat: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapSourceTransform.VTable, self.vtable).GetClosestPixelFormat(@ptrCast(*const IWICBitmapSourceTransform, self), pguidDstFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapSourceTransform_DoesSupportTransform(self: *const T, dstTransform: WICBitmapTransformOptions, pfIsSupported: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapSourceTransform.VTable, self.vtable).DoesSupportTransform(@ptrCast(*const IWICBitmapSourceTransform, self), dstTransform, pfIsSupported);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapSourceTransform_CopyPixels(self: *const T, prc: ?*const WICRect, uiWidth: u32, uiHeight: u32, pguidDstFormat: ?*Guid, dstTransform: WICBitmapTransformOptions, nStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8) HRESULT {
+                return @ptrCast(*const IWICBitmapSourceTransform.VTable, self.vtable).CopyPixels(@ptrCast(*const IWICBitmapSourceTransform, self), prc, uiWidth, uiHeight, pguidDstFormat, dstTransform, nStride, cbBufferSize, pbBuffer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapSourceTransform_GetClosestSize(self: *const T, puiWidth: ?*u32, puiHeight: ?*u32) HRESULT {
+                return @ptrCast(*const IWICBitmapSourceTransform.VTable, self.vtable).GetClosestSize(@ptrCast(*const IWICBitmapSourceTransform, self), puiWidth, puiHeight);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapSourceTransform_GetClosestPixelFormat(self: *const T, pguidDstFormat: ?*Guid) HRESULT {
+                return @ptrCast(*const IWICBitmapSourceTransform.VTable, self.vtable).GetClosestPixelFormat(@ptrCast(*const IWICBitmapSourceTransform, self), pguidDstFormat);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapSourceTransform_DoesSupportTransform(self: *const T, dstTransform: WICBitmapTransformOptions, pfIsSupported: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWICBitmapSourceTransform.VTable, self.vtable).DoesSupportTransform(@ptrCast(*const IWICBitmapSourceTransform, self), dstTransform, pfIsSupported);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2024,7 +2066,7 @@ pub const IID_IWICPlanarBitmapSourceTransform = &IID_IWICPlanarBitmapSourceTrans
 pub const IWICPlanarBitmapSourceTransform = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        DoesSupportTransform: fn(
+        DoesSupportTransform: fn (
             self: *const IWICPlanarBitmapSourceTransform,
             puiWidth: ?*u32,
             puiHeight: ?*u32,
@@ -2035,7 +2077,7 @@ pub const IWICPlanarBitmapSourceTransform = extern struct {
             cPlanes: u32,
             pfIsSupported: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CopyPixels: fn(
+        CopyPixels: fn (
             self: *const IWICPlanarBitmapSourceTransform,
             prcSource: ?*const WICRect,
             uiWidth: u32,
@@ -2047,17 +2089,19 @@ pub const IWICPlanarBitmapSourceTransform = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPlanarBitmapSourceTransform_DoesSupportTransform(self: *const T, puiWidth: ?*u32, puiHeight: ?*u32, dstTransform: WICBitmapTransformOptions, dstPlanarOptions: WICPlanarOptions, pguidDstFormats: [*]const Guid, pPlaneDescriptions: [*]WICBitmapPlaneDescription, cPlanes: u32, pfIsSupported: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPlanarBitmapSourceTransform.VTable, self.vtable).DoesSupportTransform(@ptrCast(*const IWICPlanarBitmapSourceTransform, self), puiWidth, puiHeight, dstTransform, dstPlanarOptions, pguidDstFormats, pPlaneDescriptions, cPlanes, pfIsSupported);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPlanarBitmapSourceTransform_CopyPixels(self: *const T, prcSource: ?*const WICRect, uiWidth: u32, uiHeight: u32, dstTransform: WICBitmapTransformOptions, dstPlanarOptions: WICPlanarOptions, pDstPlanes: [*]const WICBitmapPlane, cPlanes: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPlanarBitmapSourceTransform.VTable, self.vtable).CopyPixels(@ptrCast(*const IWICPlanarBitmapSourceTransform, self), prcSource, uiWidth, uiHeight, dstTransform, dstPlanarOptions, pDstPlanes, cPlanes);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPlanarBitmapSourceTransform_DoesSupportTransform(self: *const T, puiWidth: ?*u32, puiHeight: ?*u32, dstTransform: WICBitmapTransformOptions, dstPlanarOptions: WICPlanarOptions, pguidDstFormats: [*]const Guid, pPlaneDescriptions: [*]WICBitmapPlaneDescription, cPlanes: u32, pfIsSupported: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWICPlanarBitmapSourceTransform.VTable, self.vtable).DoesSupportTransform(@ptrCast(*const IWICPlanarBitmapSourceTransform, self), puiWidth, puiHeight, dstTransform, dstPlanarOptions, pguidDstFormats, pPlaneDescriptions, cPlanes, pfIsSupported);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPlanarBitmapSourceTransform_CopyPixels(self: *const T, prcSource: ?*const WICRect, uiWidth: u32, uiHeight: u32, dstTransform: WICBitmapTransformOptions, dstPlanarOptions: WICPlanarOptions, pDstPlanes: [*]const WICBitmapPlane, cPlanes: u32) HRESULT {
+                return @ptrCast(*const IWICPlanarBitmapSourceTransform.VTable, self.vtable).CopyPixels(@ptrCast(*const IWICPlanarBitmapSourceTransform, self), prcSource, uiWidth, uiHeight, dstTransform, dstPlanarOptions, pDstPlanes, cPlanes);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2067,37 +2111,39 @@ pub const IID_IWICBitmapFrameDecode = &IID_IWICBitmapFrameDecode_Value;
 pub const IWICBitmapFrameDecode = extern struct {
     pub const VTable = extern struct {
         base: IWICBitmapSource.VTable,
-        GetMetadataQueryReader: fn(
+        GetMetadataQueryReader: fn (
             self: *const IWICBitmapFrameDecode,
             ppIMetadataQueryReader: ?*?*IWICMetadataQueryReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetColorContexts: fn(
+        GetColorContexts: fn (
             self: *const IWICBitmapFrameDecode,
             cCount: u32,
             ppIColorContexts: [*]?*IWICColorContext,
             pcActualCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetThumbnail: fn(
+        GetThumbnail: fn (
             self: *const IWICBitmapFrameDecode,
             ppIThumbnail: ?*?*IWICBitmapSource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICBitmapSource.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapFrameDecode_GetMetadataQueryReader(self: *const T, ppIMetadataQueryReader: ?*?*IWICMetadataQueryReader) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapFrameDecode.VTable, self.vtable).GetMetadataQueryReader(@ptrCast(*const IWICBitmapFrameDecode, self), ppIMetadataQueryReader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapFrameDecode_GetColorContexts(self: *const T, cCount: u32, ppIColorContexts: [*]?*IWICColorContext, pcActualCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapFrameDecode.VTable, self.vtable).GetColorContexts(@ptrCast(*const IWICBitmapFrameDecode, self), cCount, ppIColorContexts, pcActualCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapFrameDecode_GetThumbnail(self: *const T, ppIThumbnail: ?*?*IWICBitmapSource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapFrameDecode.VTable, self.vtable).GetThumbnail(@ptrCast(*const IWICBitmapFrameDecode, self), ppIThumbnail);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICBitmapSource.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapFrameDecode_GetMetadataQueryReader(self: *const T, ppIMetadataQueryReader: ?*?*IWICMetadataQueryReader) HRESULT {
+                return @ptrCast(*const IWICBitmapFrameDecode.VTable, self.vtable).GetMetadataQueryReader(@ptrCast(*const IWICBitmapFrameDecode, self), ppIMetadataQueryReader);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapFrameDecode_GetColorContexts(self: *const T, cCount: u32, ppIColorContexts: [*]?*IWICColorContext, pcActualCount: ?*u32) HRESULT {
+                return @ptrCast(*const IWICBitmapFrameDecode.VTable, self.vtable).GetColorContexts(@ptrCast(*const IWICBitmapFrameDecode, self), cCount, ppIColorContexts, pcActualCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapFrameDecode_GetThumbnail(self: *const T, ppIThumbnail: ?*?*IWICBitmapSource) HRESULT {
+                return @ptrCast(*const IWICBitmapFrameDecode.VTable, self.vtable).GetThumbnail(@ptrCast(*const IWICBitmapFrameDecode, self), ppIThumbnail);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2107,35 +2153,37 @@ pub const IID_IWICProgressiveLevelControl = &IID_IWICProgressiveLevelControl_Val
 pub const IWICProgressiveLevelControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetLevelCount: fn(
+        GetLevelCount: fn (
             self: *const IWICProgressiveLevelControl,
             pcLevels: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentLevel: fn(
+        GetCurrentLevel: fn (
             self: *const IWICProgressiveLevelControl,
             pnLevel: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCurrentLevel: fn(
+        SetCurrentLevel: fn (
             self: *const IWICProgressiveLevelControl,
             nLevel: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICProgressiveLevelControl_GetLevelCount(self: *const T, pcLevels: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICProgressiveLevelControl.VTable, self.vtable).GetLevelCount(@ptrCast(*const IWICProgressiveLevelControl, self), pcLevels);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICProgressiveLevelControl_GetCurrentLevel(self: *const T, pnLevel: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICProgressiveLevelControl.VTable, self.vtable).GetCurrentLevel(@ptrCast(*const IWICProgressiveLevelControl, self), pnLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICProgressiveLevelControl_SetCurrentLevel(self: *const T, nLevel: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICProgressiveLevelControl.VTable, self.vtable).SetCurrentLevel(@ptrCast(*const IWICProgressiveLevelControl, self), nLevel);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICProgressiveLevelControl_GetLevelCount(self: *const T, pcLevels: ?*u32) HRESULT {
+                return @ptrCast(*const IWICProgressiveLevelControl.VTable, self.vtable).GetLevelCount(@ptrCast(*const IWICProgressiveLevelControl, self), pcLevels);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICProgressiveLevelControl_GetCurrentLevel(self: *const T, pnLevel: ?*u32) HRESULT {
+                return @ptrCast(*const IWICProgressiveLevelControl.VTable, self.vtable).GetCurrentLevel(@ptrCast(*const IWICProgressiveLevelControl, self), pnLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICProgressiveLevelControl_SetCurrentLevel(self: *const T, nLevel: u32) HRESULT {
+                return @ptrCast(*const IWICProgressiveLevelControl.VTable, self.vtable).SetCurrentLevel(@ptrCast(*const IWICProgressiveLevelControl, self), nLevel);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2145,7 +2193,7 @@ pub const IID_IWICProgressCallback = &IID_IWICProgressCallback_Value;
 pub const IWICProgressCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Notify: fn(
+        Notify: fn (
             self: *const IWICProgressCallback,
             uFrameNum: u32,
             operation: WICProgressOperation,
@@ -2153,17 +2201,19 @@ pub const IWICProgressCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICProgressCallback_Notify(self: *const T, uFrameNum: u32, operation: WICProgressOperation, dblProgress: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICProgressCallback.VTable, self.vtable).Notify(@ptrCast(*const IWICProgressCallback, self), uFrameNum, operation, dblProgress);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICProgressCallback_Notify(self: *const T, uFrameNum: u32, operation: WICProgressOperation, dblProgress: f64) HRESULT {
+                return @ptrCast(*const IWICProgressCallback.VTable, self.vtable).Notify(@ptrCast(*const IWICProgressCallback, self), uFrameNum, operation, dblProgress);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PFNProgressNotification = fn(
+pub const PFNProgressNotification = fn (
     pvData: ?*anyopaque,
     uFrameNum: u32,
     operation: WICProgressOperation,
@@ -2176,7 +2226,7 @@ pub const IID_IWICBitmapCodecProgressNotification = &IID_IWICBitmapCodecProgress
 pub const IWICBitmapCodecProgressNotification = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RegisterProgressNotification: fn(
+        RegisterProgressNotification: fn (
             self: *const IWICBitmapCodecProgressNotification,
             pfnProgressNotification: ?PFNProgressNotification,
             pvData: ?*anyopaque,
@@ -2184,13 +2234,15 @@ pub const IWICBitmapCodecProgressNotification = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapCodecProgressNotification_RegisterProgressNotification(self: *const T, pfnProgressNotification: ?PFNProgressNotification, pvData: ?*anyopaque, dwProgressFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapCodecProgressNotification.VTable, self.vtable).RegisterProgressNotification(@ptrCast(*const IWICBitmapCodecProgressNotification, self), pfnProgressNotification, pvData, dwProgressFlags);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapCodecProgressNotification_RegisterProgressNotification(self: *const T, pfnProgressNotification: ?PFNProgressNotification, pvData: ?*anyopaque, dwProgressFlags: u32) HRESULT {
+                return @ptrCast(*const IWICBitmapCodecProgressNotification.VTable, self.vtable).RegisterProgressNotification(@ptrCast(*const IWICBitmapCodecProgressNotification, self), pfnProgressNotification, pvData, dwProgressFlags);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2200,41 +2252,41 @@ pub const IID_IWICComponentInfo = &IID_IWICComponentInfo_Value;
 pub const IWICComponentInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetComponentType: fn(
+        GetComponentType: fn (
             self: *const IWICComponentInfo,
             pType: ?*WICComponentType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCLSID: fn(
+        GetCLSID: fn (
             self: *const IWICComponentInfo,
             pclsid: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSigningStatus: fn(
+        GetSigningStatus: fn (
             self: *const IWICComponentInfo,
             pStatus: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAuthor: fn(
+        GetAuthor: fn (
             self: *const IWICComponentInfo,
             cchAuthor: u32,
             wzAuthor: [*:0]u16,
             pcchActual: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVendorGUID: fn(
+        GetVendorGUID: fn (
             self: *const IWICComponentInfo,
             pguidVendor: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVersion: fn(
+        GetVersion: fn (
             self: *const IWICComponentInfo,
             cchVersion: u32,
             wzVersion: [*:0]u16,
             pcchActual: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSpecVersion: fn(
+        GetSpecVersion: fn (
             self: *const IWICComponentInfo,
             cchSpecVersion: u32,
             wzSpecVersion: [*:0]u16,
             pcchActual: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFriendlyName: fn(
+        GetFriendlyName: fn (
             self: *const IWICComponentInfo,
             cchFriendlyName: u32,
             wzFriendlyName: [*:0]u16,
@@ -2242,41 +2294,43 @@ pub const IWICComponentInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICComponentInfo_GetComponentType(self: *const T, pType: ?*WICComponentType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICComponentInfo.VTable, self.vtable).GetComponentType(@ptrCast(*const IWICComponentInfo, self), pType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICComponentInfo_GetCLSID(self: *const T, pclsid: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICComponentInfo.VTable, self.vtable).GetCLSID(@ptrCast(*const IWICComponentInfo, self), pclsid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICComponentInfo_GetSigningStatus(self: *const T, pStatus: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICComponentInfo.VTable, self.vtable).GetSigningStatus(@ptrCast(*const IWICComponentInfo, self), pStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICComponentInfo_GetAuthor(self: *const T, cchAuthor: u32, wzAuthor: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICComponentInfo.VTable, self.vtable).GetAuthor(@ptrCast(*const IWICComponentInfo, self), cchAuthor, wzAuthor, pcchActual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICComponentInfo_GetVendorGUID(self: *const T, pguidVendor: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICComponentInfo.VTable, self.vtable).GetVendorGUID(@ptrCast(*const IWICComponentInfo, self), pguidVendor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICComponentInfo_GetVersion(self: *const T, cchVersion: u32, wzVersion: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICComponentInfo.VTable, self.vtable).GetVersion(@ptrCast(*const IWICComponentInfo, self), cchVersion, wzVersion, pcchActual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICComponentInfo_GetSpecVersion(self: *const T, cchSpecVersion: u32, wzSpecVersion: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICComponentInfo.VTable, self.vtable).GetSpecVersion(@ptrCast(*const IWICComponentInfo, self), cchSpecVersion, wzSpecVersion, pcchActual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICComponentInfo_GetFriendlyName(self: *const T, cchFriendlyName: u32, wzFriendlyName: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICComponentInfo.VTable, self.vtable).GetFriendlyName(@ptrCast(*const IWICComponentInfo, self), cchFriendlyName, wzFriendlyName, pcchActual);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICComponentInfo_GetComponentType(self: *const T, pType: ?*WICComponentType) HRESULT {
+                return @ptrCast(*const IWICComponentInfo.VTable, self.vtable).GetComponentType(@ptrCast(*const IWICComponentInfo, self), pType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICComponentInfo_GetCLSID(self: *const T, pclsid: ?*Guid) HRESULT {
+                return @ptrCast(*const IWICComponentInfo.VTable, self.vtable).GetCLSID(@ptrCast(*const IWICComponentInfo, self), pclsid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICComponentInfo_GetSigningStatus(self: *const T, pStatus: ?*u32) HRESULT {
+                return @ptrCast(*const IWICComponentInfo.VTable, self.vtable).GetSigningStatus(@ptrCast(*const IWICComponentInfo, self), pStatus);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICComponentInfo_GetAuthor(self: *const T, cchAuthor: u32, wzAuthor: [*:0]u16, pcchActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICComponentInfo.VTable, self.vtable).GetAuthor(@ptrCast(*const IWICComponentInfo, self), cchAuthor, wzAuthor, pcchActual);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICComponentInfo_GetVendorGUID(self: *const T, pguidVendor: ?*Guid) HRESULT {
+                return @ptrCast(*const IWICComponentInfo.VTable, self.vtable).GetVendorGUID(@ptrCast(*const IWICComponentInfo, self), pguidVendor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICComponentInfo_GetVersion(self: *const T, cchVersion: u32, wzVersion: [*:0]u16, pcchActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICComponentInfo.VTable, self.vtable).GetVersion(@ptrCast(*const IWICComponentInfo, self), cchVersion, wzVersion, pcchActual);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICComponentInfo_GetSpecVersion(self: *const T, cchSpecVersion: u32, wzSpecVersion: [*:0]u16, pcchActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICComponentInfo.VTable, self.vtable).GetSpecVersion(@ptrCast(*const IWICComponentInfo, self), cchSpecVersion, wzSpecVersion, pcchActual);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICComponentInfo_GetFriendlyName(self: *const T, cchFriendlyName: u32, wzFriendlyName: [*:0]u16, pcchActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICComponentInfo.VTable, self.vtable).GetFriendlyName(@ptrCast(*const IWICComponentInfo, self), cchFriendlyName, wzFriendlyName, pcchActual);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2286,29 +2340,31 @@ pub const IID_IWICFormatConverterInfo = &IID_IWICFormatConverterInfo_Value;
 pub const IWICFormatConverterInfo = extern struct {
     pub const VTable = extern struct {
         base: IWICComponentInfo.VTable,
-        GetPixelFormats: fn(
+        GetPixelFormats: fn (
             self: *const IWICFormatConverterInfo,
             cFormats: u32,
             pPixelFormatGUIDs: [*]Guid,
             pcActual: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateInstance: fn(
+        CreateInstance: fn (
             self: *const IWICFormatConverterInfo,
             ppIConverter: ?*?*IWICFormatConverter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICComponentInfo.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICFormatConverterInfo_GetPixelFormats(self: *const T, cFormats: u32, pPixelFormatGUIDs: [*]Guid, pcActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICFormatConverterInfo.VTable, self.vtable).GetPixelFormats(@ptrCast(*const IWICFormatConverterInfo, self), cFormats, pPixelFormatGUIDs, pcActual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICFormatConverterInfo_CreateInstance(self: *const T, ppIConverter: ?*?*IWICFormatConverter) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICFormatConverterInfo.VTable, self.vtable).CreateInstance(@ptrCast(*const IWICFormatConverterInfo, self), ppIConverter);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICComponentInfo.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICFormatConverterInfo_GetPixelFormats(self: *const T, cFormats: u32, pPixelFormatGUIDs: [*]Guid, pcActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICFormatConverterInfo.VTable, self.vtable).GetPixelFormats(@ptrCast(*const IWICFormatConverterInfo, self), cFormats, pPixelFormatGUIDs, pcActual);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICFormatConverterInfo_CreateInstance(self: *const T, ppIConverter: ?*?*IWICFormatConverter) HRESULT {
+                return @ptrCast(*const IWICFormatConverterInfo.VTable, self.vtable).CreateInstance(@ptrCast(*const IWICFormatConverterInfo, self), ppIConverter);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2318,120 +2374,122 @@ pub const IID_IWICBitmapCodecInfo = &IID_IWICBitmapCodecInfo_Value;
 pub const IWICBitmapCodecInfo = extern struct {
     pub const VTable = extern struct {
         base: IWICComponentInfo.VTable,
-        GetContainerFormat: fn(
+        GetContainerFormat: fn (
             self: *const IWICBitmapCodecInfo,
             pguidContainerFormat: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPixelFormats: fn(
+        GetPixelFormats: fn (
             self: *const IWICBitmapCodecInfo,
             cFormats: u32,
             pguidPixelFormats: [*]Guid,
             pcActual: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetColorManagementVersion: fn(
+        GetColorManagementVersion: fn (
             self: *const IWICBitmapCodecInfo,
             cchColorManagementVersion: u32,
             wzColorManagementVersion: [*:0]u16,
             pcchActual: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeviceManufacturer: fn(
+        GetDeviceManufacturer: fn (
             self: *const IWICBitmapCodecInfo,
             cchDeviceManufacturer: u32,
             wzDeviceManufacturer: [*:0]u16,
             pcchActual: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeviceModels: fn(
+        GetDeviceModels: fn (
             self: *const IWICBitmapCodecInfo,
             cchDeviceModels: u32,
             wzDeviceModels: [*:0]u16,
             pcchActual: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMimeTypes: fn(
+        GetMimeTypes: fn (
             self: *const IWICBitmapCodecInfo,
             cchMimeTypes: u32,
             wzMimeTypes: [*:0]u16,
             pcchActual: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFileExtensions: fn(
+        GetFileExtensions: fn (
             self: *const IWICBitmapCodecInfo,
             cchFileExtensions: u32,
             wzFileExtensions: [*:0]u16,
             pcchActual: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DoesSupportAnimation: fn(
+        DoesSupportAnimation: fn (
             self: *const IWICBitmapCodecInfo,
             pfSupportAnimation: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DoesSupportChromakey: fn(
+        DoesSupportChromakey: fn (
             self: *const IWICBitmapCodecInfo,
             pfSupportChromakey: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DoesSupportLossless: fn(
+        DoesSupportLossless: fn (
             self: *const IWICBitmapCodecInfo,
             pfSupportLossless: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DoesSupportMultiframe: fn(
+        DoesSupportMultiframe: fn (
             self: *const IWICBitmapCodecInfo,
             pfSupportMultiframe: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MatchesMimeType: fn(
+        MatchesMimeType: fn (
             self: *const IWICBitmapCodecInfo,
             wzMimeType: ?[*:0]const u16,
             pfMatches: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICComponentInfo.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapCodecInfo_GetContainerFormat(self: *const T, pguidContainerFormat: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).GetContainerFormat(@ptrCast(*const IWICBitmapCodecInfo, self), pguidContainerFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapCodecInfo_GetPixelFormats(self: *const T, cFormats: u32, pguidPixelFormats: [*]Guid, pcActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).GetPixelFormats(@ptrCast(*const IWICBitmapCodecInfo, self), cFormats, pguidPixelFormats, pcActual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapCodecInfo_GetColorManagementVersion(self: *const T, cchColorManagementVersion: u32, wzColorManagementVersion: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).GetColorManagementVersion(@ptrCast(*const IWICBitmapCodecInfo, self), cchColorManagementVersion, wzColorManagementVersion, pcchActual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapCodecInfo_GetDeviceManufacturer(self: *const T, cchDeviceManufacturer: u32, wzDeviceManufacturer: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).GetDeviceManufacturer(@ptrCast(*const IWICBitmapCodecInfo, self), cchDeviceManufacturer, wzDeviceManufacturer, pcchActual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapCodecInfo_GetDeviceModels(self: *const T, cchDeviceModels: u32, wzDeviceModels: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).GetDeviceModels(@ptrCast(*const IWICBitmapCodecInfo, self), cchDeviceModels, wzDeviceModels, pcchActual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapCodecInfo_GetMimeTypes(self: *const T, cchMimeTypes: u32, wzMimeTypes: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).GetMimeTypes(@ptrCast(*const IWICBitmapCodecInfo, self), cchMimeTypes, wzMimeTypes, pcchActual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapCodecInfo_GetFileExtensions(self: *const T, cchFileExtensions: u32, wzFileExtensions: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).GetFileExtensions(@ptrCast(*const IWICBitmapCodecInfo, self), cchFileExtensions, wzFileExtensions, pcchActual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapCodecInfo_DoesSupportAnimation(self: *const T, pfSupportAnimation: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).DoesSupportAnimation(@ptrCast(*const IWICBitmapCodecInfo, self), pfSupportAnimation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapCodecInfo_DoesSupportChromakey(self: *const T, pfSupportChromakey: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).DoesSupportChromakey(@ptrCast(*const IWICBitmapCodecInfo, self), pfSupportChromakey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapCodecInfo_DoesSupportLossless(self: *const T, pfSupportLossless: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).DoesSupportLossless(@ptrCast(*const IWICBitmapCodecInfo, self), pfSupportLossless);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapCodecInfo_DoesSupportMultiframe(self: *const T, pfSupportMultiframe: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).DoesSupportMultiframe(@ptrCast(*const IWICBitmapCodecInfo, self), pfSupportMultiframe);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapCodecInfo_MatchesMimeType(self: *const T, wzMimeType: ?[*:0]const u16, pfMatches: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).MatchesMimeType(@ptrCast(*const IWICBitmapCodecInfo, self), wzMimeType, pfMatches);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICComponentInfo.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapCodecInfo_GetContainerFormat(self: *const T, pguidContainerFormat: ?*Guid) HRESULT {
+                return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).GetContainerFormat(@ptrCast(*const IWICBitmapCodecInfo, self), pguidContainerFormat);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapCodecInfo_GetPixelFormats(self: *const T, cFormats: u32, pguidPixelFormats: [*]Guid, pcActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).GetPixelFormats(@ptrCast(*const IWICBitmapCodecInfo, self), cFormats, pguidPixelFormats, pcActual);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapCodecInfo_GetColorManagementVersion(self: *const T, cchColorManagementVersion: u32, wzColorManagementVersion: [*:0]u16, pcchActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).GetColorManagementVersion(@ptrCast(*const IWICBitmapCodecInfo, self), cchColorManagementVersion, wzColorManagementVersion, pcchActual);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapCodecInfo_GetDeviceManufacturer(self: *const T, cchDeviceManufacturer: u32, wzDeviceManufacturer: [*:0]u16, pcchActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).GetDeviceManufacturer(@ptrCast(*const IWICBitmapCodecInfo, self), cchDeviceManufacturer, wzDeviceManufacturer, pcchActual);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapCodecInfo_GetDeviceModels(self: *const T, cchDeviceModels: u32, wzDeviceModels: [*:0]u16, pcchActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).GetDeviceModels(@ptrCast(*const IWICBitmapCodecInfo, self), cchDeviceModels, wzDeviceModels, pcchActual);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapCodecInfo_GetMimeTypes(self: *const T, cchMimeTypes: u32, wzMimeTypes: [*:0]u16, pcchActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).GetMimeTypes(@ptrCast(*const IWICBitmapCodecInfo, self), cchMimeTypes, wzMimeTypes, pcchActual);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapCodecInfo_GetFileExtensions(self: *const T, cchFileExtensions: u32, wzFileExtensions: [*:0]u16, pcchActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).GetFileExtensions(@ptrCast(*const IWICBitmapCodecInfo, self), cchFileExtensions, wzFileExtensions, pcchActual);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapCodecInfo_DoesSupportAnimation(self: *const T, pfSupportAnimation: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).DoesSupportAnimation(@ptrCast(*const IWICBitmapCodecInfo, self), pfSupportAnimation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapCodecInfo_DoesSupportChromakey(self: *const T, pfSupportChromakey: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).DoesSupportChromakey(@ptrCast(*const IWICBitmapCodecInfo, self), pfSupportChromakey);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapCodecInfo_DoesSupportLossless(self: *const T, pfSupportLossless: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).DoesSupportLossless(@ptrCast(*const IWICBitmapCodecInfo, self), pfSupportLossless);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapCodecInfo_DoesSupportMultiframe(self: *const T, pfSupportMultiframe: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).DoesSupportMultiframe(@ptrCast(*const IWICBitmapCodecInfo, self), pfSupportMultiframe);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapCodecInfo_MatchesMimeType(self: *const T, wzMimeType: ?[*:0]const u16, pfMatches: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWICBitmapCodecInfo.VTable, self.vtable).MatchesMimeType(@ptrCast(*const IWICBitmapCodecInfo, self), wzMimeType, pfMatches);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2441,19 +2499,21 @@ pub const IID_IWICBitmapEncoderInfo = &IID_IWICBitmapEncoderInfo_Value;
 pub const IWICBitmapEncoderInfo = extern struct {
     pub const VTable = extern struct {
         base: IWICBitmapCodecInfo.VTable,
-        CreateInstance: fn(
+        CreateInstance: fn (
             self: *const IWICBitmapEncoderInfo,
             ppIBitmapEncoder: ?*?*IWICBitmapEncoder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICBitmapCodecInfo.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapEncoderInfo_CreateInstance(self: *const T, ppIBitmapEncoder: ?*?*IWICBitmapEncoder) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapEncoderInfo.VTable, self.vtable).CreateInstance(@ptrCast(*const IWICBitmapEncoderInfo, self), ppIBitmapEncoder);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICBitmapCodecInfo.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapEncoderInfo_CreateInstance(self: *const T, ppIBitmapEncoder: ?*?*IWICBitmapEncoder) HRESULT {
+                return @ptrCast(*const IWICBitmapEncoderInfo.VTable, self.vtable).CreateInstance(@ptrCast(*const IWICBitmapEncoderInfo, self), ppIBitmapEncoder);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2463,7 +2523,7 @@ pub const IID_IWICBitmapDecoderInfo = &IID_IWICBitmapDecoderInfo_Value;
 pub const IWICBitmapDecoderInfo = extern struct {
     pub const VTable = extern struct {
         base: IWICBitmapCodecInfo.VTable,
-        GetPatterns: fn(
+        GetPatterns: fn (
             self: *const IWICBitmapDecoderInfo,
             cbSizePatterns: u32,
             // TODO: what to do with BytesParamIndex 0?
@@ -2471,32 +2531,34 @@ pub const IWICBitmapDecoderInfo = extern struct {
             pcPatterns: ?*u32,
             pcbPatternsActual: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MatchesPattern: fn(
+        MatchesPattern: fn (
             self: *const IWICBitmapDecoderInfo,
             pIStream: ?*IStream,
             pfMatches: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateInstance: fn(
+        CreateInstance: fn (
             self: *const IWICBitmapDecoderInfo,
             ppIBitmapDecoder: ?*?*IWICBitmapDecoder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICBitmapCodecInfo.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapDecoderInfo_GetPatterns(self: *const T, cbSizePatterns: u32, pPatterns: ?*WICBitmapPattern, pcPatterns: ?*u32, pcbPatternsActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapDecoderInfo.VTable, self.vtable).GetPatterns(@ptrCast(*const IWICBitmapDecoderInfo, self), cbSizePatterns, pPatterns, pcPatterns, pcbPatternsActual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapDecoderInfo_MatchesPattern(self: *const T, pIStream: ?*IStream, pfMatches: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapDecoderInfo.VTable, self.vtable).MatchesPattern(@ptrCast(*const IWICBitmapDecoderInfo, self), pIStream, pfMatches);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapDecoderInfo_CreateInstance(self: *const T, ppIBitmapDecoder: ?*?*IWICBitmapDecoder) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICBitmapDecoderInfo.VTable, self.vtable).CreateInstance(@ptrCast(*const IWICBitmapDecoderInfo, self), ppIBitmapDecoder);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICBitmapCodecInfo.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapDecoderInfo_GetPatterns(self: *const T, cbSizePatterns: u32, pPatterns: ?*WICBitmapPattern, pcPatterns: ?*u32, pcbPatternsActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICBitmapDecoderInfo.VTable, self.vtable).GetPatterns(@ptrCast(*const IWICBitmapDecoderInfo, self), cbSizePatterns, pPatterns, pcPatterns, pcbPatternsActual);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapDecoderInfo_MatchesPattern(self: *const T, pIStream: ?*IStream, pfMatches: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWICBitmapDecoderInfo.VTable, self.vtable).MatchesPattern(@ptrCast(*const IWICBitmapDecoderInfo, self), pIStream, pfMatches);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICBitmapDecoderInfo_CreateInstance(self: *const T, ppIBitmapDecoder: ?*?*IWICBitmapDecoder) HRESULT {
+                return @ptrCast(*const IWICBitmapDecoderInfo.VTable, self.vtable).CreateInstance(@ptrCast(*const IWICBitmapDecoderInfo, self), ppIBitmapDecoder);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2506,23 +2568,23 @@ pub const IID_IWICPixelFormatInfo = &IID_IWICPixelFormatInfo_Value;
 pub const IWICPixelFormatInfo = extern struct {
     pub const VTable = extern struct {
         base: IWICComponentInfo.VTable,
-        GetFormatGUID: fn(
+        GetFormatGUID: fn (
             self: *const IWICPixelFormatInfo,
             pFormat: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetColorContext: fn(
+        GetColorContext: fn (
             self: *const IWICPixelFormatInfo,
             ppIColorContext: ?*?*IWICColorContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBitsPerPixel: fn(
+        GetBitsPerPixel: fn (
             self: *const IWICPixelFormatInfo,
             puiBitsPerPixel: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetChannelCount: fn(
+        GetChannelCount: fn (
             self: *const IWICPixelFormatInfo,
             puiChannelCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetChannelMask: fn(
+        GetChannelMask: fn (
             self: *const IWICPixelFormatInfo,
             uiChannelIndex: u32,
             cbMaskBuffer: u32,
@@ -2531,29 +2593,31 @@ pub const IWICPixelFormatInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICComponentInfo.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPixelFormatInfo_GetFormatGUID(self: *const T, pFormat: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPixelFormatInfo.VTable, self.vtable).GetFormatGUID(@ptrCast(*const IWICPixelFormatInfo, self), pFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPixelFormatInfo_GetColorContext(self: *const T, ppIColorContext: ?*?*IWICColorContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPixelFormatInfo.VTable, self.vtable).GetColorContext(@ptrCast(*const IWICPixelFormatInfo, self), ppIColorContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPixelFormatInfo_GetBitsPerPixel(self: *const T, puiBitsPerPixel: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPixelFormatInfo.VTable, self.vtable).GetBitsPerPixel(@ptrCast(*const IWICPixelFormatInfo, self), puiBitsPerPixel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPixelFormatInfo_GetChannelCount(self: *const T, puiChannelCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPixelFormatInfo.VTable, self.vtable).GetChannelCount(@ptrCast(*const IWICPixelFormatInfo, self), puiChannelCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPixelFormatInfo_GetChannelMask(self: *const T, uiChannelIndex: u32, cbMaskBuffer: u32, pbMaskBuffer: [*:0]u8, pcbActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPixelFormatInfo.VTable, self.vtable).GetChannelMask(@ptrCast(*const IWICPixelFormatInfo, self), uiChannelIndex, cbMaskBuffer, pbMaskBuffer, pcbActual);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICComponentInfo.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPixelFormatInfo_GetFormatGUID(self: *const T, pFormat: ?*Guid) HRESULT {
+                return @ptrCast(*const IWICPixelFormatInfo.VTable, self.vtable).GetFormatGUID(@ptrCast(*const IWICPixelFormatInfo, self), pFormat);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPixelFormatInfo_GetColorContext(self: *const T, ppIColorContext: ?*?*IWICColorContext) HRESULT {
+                return @ptrCast(*const IWICPixelFormatInfo.VTable, self.vtable).GetColorContext(@ptrCast(*const IWICPixelFormatInfo, self), ppIColorContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPixelFormatInfo_GetBitsPerPixel(self: *const T, puiBitsPerPixel: ?*u32) HRESULT {
+                return @ptrCast(*const IWICPixelFormatInfo.VTable, self.vtable).GetBitsPerPixel(@ptrCast(*const IWICPixelFormatInfo, self), puiBitsPerPixel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPixelFormatInfo_GetChannelCount(self: *const T, puiChannelCount: ?*u32) HRESULT {
+                return @ptrCast(*const IWICPixelFormatInfo.VTable, self.vtable).GetChannelCount(@ptrCast(*const IWICPixelFormatInfo, self), puiChannelCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPixelFormatInfo_GetChannelMask(self: *const T, uiChannelIndex: u32, cbMaskBuffer: u32, pbMaskBuffer: [*:0]u8, pcbActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICPixelFormatInfo.VTable, self.vtable).GetChannelMask(@ptrCast(*const IWICPixelFormatInfo, self), uiChannelIndex, cbMaskBuffer, pbMaskBuffer, pcbActual);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2563,27 +2627,29 @@ pub const IID_IWICPixelFormatInfo2 = &IID_IWICPixelFormatInfo2_Value;
 pub const IWICPixelFormatInfo2 = extern struct {
     pub const VTable = extern struct {
         base: IWICPixelFormatInfo.VTable,
-        SupportsTransparency: fn(
+        SupportsTransparency: fn (
             self: *const IWICPixelFormatInfo2,
             pfSupportsTransparency: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNumericRepresentation: fn(
+        GetNumericRepresentation: fn (
             self: *const IWICPixelFormatInfo2,
             pNumericRepresentation: ?*WICPixelFormatNumericRepresentation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICPixelFormatInfo.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPixelFormatInfo2_SupportsTransparency(self: *const T, pfSupportsTransparency: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPixelFormatInfo2.VTable, self.vtable).SupportsTransparency(@ptrCast(*const IWICPixelFormatInfo2, self), pfSupportsTransparency);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPixelFormatInfo2_GetNumericRepresentation(self: *const T, pNumericRepresentation: ?*WICPixelFormatNumericRepresentation) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPixelFormatInfo2.VTable, self.vtable).GetNumericRepresentation(@ptrCast(*const IWICPixelFormatInfo2, self), pNumericRepresentation);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICPixelFormatInfo.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPixelFormatInfo2_SupportsTransparency(self: *const T, pfSupportsTransparency: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWICPixelFormatInfo2.VTable, self.vtable).SupportsTransparency(@ptrCast(*const IWICPixelFormatInfo2, self), pfSupportsTransparency);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPixelFormatInfo2_GetNumericRepresentation(self: *const T, pNumericRepresentation: ?*WICPixelFormatNumericRepresentation) HRESULT {
+                return @ptrCast(*const IWICPixelFormatInfo2.VTable, self.vtable).GetNumericRepresentation(@ptrCast(*const IWICPixelFormatInfo2, self), pNumericRepresentation);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2593,7 +2659,7 @@ pub const IID_IWICImagingFactory = &IID_IWICImagingFactory_Value;
 pub const IWICImagingFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateDecoderFromFilename: fn(
+        CreateDecoderFromFilename: fn (
             self: *const IWICImagingFactory,
             wzFilename: ?[*:0]const u16,
             pguidVendor: ?*const Guid,
@@ -2601,70 +2667,70 @@ pub const IWICImagingFactory = extern struct {
             metadataOptions: WICDecodeOptions,
             ppIDecoder: ?*?*IWICBitmapDecoder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateDecoderFromStream: fn(
+        CreateDecoderFromStream: fn (
             self: *const IWICImagingFactory,
             pIStream: ?*IStream,
             pguidVendor: ?*const Guid,
             metadataOptions: WICDecodeOptions,
             ppIDecoder: ?*?*IWICBitmapDecoder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateDecoderFromFileHandle: fn(
+        CreateDecoderFromFileHandle: fn (
             self: *const IWICImagingFactory,
             hFile: usize,
             pguidVendor: ?*const Guid,
             metadataOptions: WICDecodeOptions,
             ppIDecoder: ?*?*IWICBitmapDecoder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateComponentInfo: fn(
+        CreateComponentInfo: fn (
             self: *const IWICImagingFactory,
             clsidComponent: ?*const Guid,
             ppIInfo: ?*?*IWICComponentInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateDecoder: fn(
+        CreateDecoder: fn (
             self: *const IWICImagingFactory,
             guidContainerFormat: ?*const Guid,
             pguidVendor: ?*const Guid,
             ppIDecoder: ?*?*IWICBitmapDecoder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateEncoder: fn(
+        CreateEncoder: fn (
             self: *const IWICImagingFactory,
             guidContainerFormat: ?*const Guid,
             pguidVendor: ?*const Guid,
             ppIEncoder: ?*?*IWICBitmapEncoder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreatePalette: fn(
+        CreatePalette: fn (
             self: *const IWICImagingFactory,
             ppIPalette: ?*?*IWICPalette,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateFormatConverter: fn(
+        CreateFormatConverter: fn (
             self: *const IWICImagingFactory,
             ppIFormatConverter: ?*?*IWICFormatConverter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateBitmapScaler: fn(
+        CreateBitmapScaler: fn (
             self: *const IWICImagingFactory,
             ppIBitmapScaler: ?*?*IWICBitmapScaler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateBitmapClipper: fn(
+        CreateBitmapClipper: fn (
             self: *const IWICImagingFactory,
             ppIBitmapClipper: ?*?*IWICBitmapClipper,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateBitmapFlipRotator: fn(
+        CreateBitmapFlipRotator: fn (
             self: *const IWICImagingFactory,
             ppIBitmapFlipRotator: ?*?*IWICBitmapFlipRotator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateStream: fn(
+        CreateStream: fn (
             self: *const IWICImagingFactory,
             ppIWICStream: ?*?*IWICStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateColorContext: fn(
+        CreateColorContext: fn (
             self: *const IWICImagingFactory,
             ppIWICColorContext: ?*?*IWICColorContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateColorTransformer: fn(
+        CreateColorTransformer: fn (
             self: *const IWICImagingFactory,
             ppIWICColorTransform: ?*?*IWICColorTransform,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateBitmap: fn(
+        CreateBitmap: fn (
             self: *const IWICImagingFactory,
             uiWidth: u32,
             uiHeight: u32,
@@ -2672,13 +2738,13 @@ pub const IWICImagingFactory = extern struct {
             option: WICBitmapCreateCacheOption,
             ppIBitmap: ?*?*IWICBitmap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateBitmapFromSource: fn(
+        CreateBitmapFromSource: fn (
             self: *const IWICImagingFactory,
             pIBitmapSource: ?*IWICBitmapSource,
             option: WICBitmapCreateCacheOption,
             ppIBitmap: ?*?*IWICBitmap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateBitmapFromSourceRect: fn(
+        CreateBitmapFromSourceRect: fn (
             self: *const IWICImagingFactory,
             pIBitmapSource: ?*IWICBitmapSource,
             x: u32,
@@ -2687,7 +2753,7 @@ pub const IWICImagingFactory = extern struct {
             height: u32,
             ppIBitmap: ?*?*IWICBitmap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateBitmapFromMemory: fn(
+        CreateBitmapFromMemory: fn (
             self: *const IWICImagingFactory,
             uiWidth: u32,
             uiHeight: u32,
@@ -2697,41 +2763,41 @@ pub const IWICImagingFactory = extern struct {
             pbBuffer: [*:0]u8,
             ppIBitmap: ?*?*IWICBitmap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateBitmapFromHBITMAP: fn(
+        CreateBitmapFromHBITMAP: fn (
             self: *const IWICImagingFactory,
             hBitmap: ?HBITMAP,
             hPalette: ?HPALETTE,
             options: WICBitmapAlphaChannelOption,
             ppIBitmap: ?*?*IWICBitmap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateBitmapFromHICON: fn(
+        CreateBitmapFromHICON: fn (
             self: *const IWICImagingFactory,
             hIcon: ?HICON,
             ppIBitmap: ?*?*IWICBitmap,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateComponentEnumerator: fn(
+        CreateComponentEnumerator: fn (
             self: *const IWICImagingFactory,
             componentTypes: u32,
             options: u32,
             ppIEnumUnknown: ?*?*IEnumUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateFastMetadataEncoderFromDecoder: fn(
+        CreateFastMetadataEncoderFromDecoder: fn (
             self: *const IWICImagingFactory,
             pIDecoder: ?*IWICBitmapDecoder,
             ppIFastEncoder: ?*?*IWICFastMetadataEncoder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateFastMetadataEncoderFromFrameDecode: fn(
+        CreateFastMetadataEncoderFromFrameDecode: fn (
             self: *const IWICImagingFactory,
             pIFrameDecoder: ?*IWICBitmapFrameDecode,
             ppIFastEncoder: ?*?*IWICFastMetadataEncoder,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateQueryWriter: fn(
+        CreateQueryWriter: fn (
             self: *const IWICImagingFactory,
             guidMetadataFormat: ?*const Guid,
             pguidVendor: ?*const Guid,
             ppIQueryWriter: ?*?*IWICMetadataQueryWriter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateQueryWriterFromReader: fn(
+        CreateQueryWriterFromReader: fn (
             self: *const IWICImagingFactory,
             pIQueryReader: ?*IWICMetadataQueryReader,
             pguidVendor: ?*const Guid,
@@ -2739,109 +2805,111 @@ pub const IWICImagingFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateDecoderFromFilename(self: *const T, wzFilename: ?[*:0]const u16, pguidVendor: ?*const Guid, dwDesiredAccess: u32, metadataOptions: WICDecodeOptions, ppIDecoder: ?*?*IWICBitmapDecoder) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateDecoderFromFilename(@ptrCast(*const IWICImagingFactory, self), wzFilename, pguidVendor, dwDesiredAccess, metadataOptions, ppIDecoder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateDecoderFromStream(self: *const T, pIStream: ?*IStream, pguidVendor: ?*const Guid, metadataOptions: WICDecodeOptions, ppIDecoder: ?*?*IWICBitmapDecoder) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateDecoderFromStream(@ptrCast(*const IWICImagingFactory, self), pIStream, pguidVendor, metadataOptions, ppIDecoder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateDecoderFromFileHandle(self: *const T, hFile: usize, pguidVendor: ?*const Guid, metadataOptions: WICDecodeOptions, ppIDecoder: ?*?*IWICBitmapDecoder) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateDecoderFromFileHandle(@ptrCast(*const IWICImagingFactory, self), hFile, pguidVendor, metadataOptions, ppIDecoder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateComponentInfo(self: *const T, clsidComponent: ?*const Guid, ppIInfo: ?*?*IWICComponentInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateComponentInfo(@ptrCast(*const IWICImagingFactory, self), clsidComponent, ppIInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateDecoder(self: *const T, guidContainerFormat: ?*const Guid, pguidVendor: ?*const Guid, ppIDecoder: ?*?*IWICBitmapDecoder) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateDecoder(@ptrCast(*const IWICImagingFactory, self), guidContainerFormat, pguidVendor, ppIDecoder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateEncoder(self: *const T, guidContainerFormat: ?*const Guid, pguidVendor: ?*const Guid, ppIEncoder: ?*?*IWICBitmapEncoder) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateEncoder(@ptrCast(*const IWICImagingFactory, self), guidContainerFormat, pguidVendor, ppIEncoder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreatePalette(self: *const T, ppIPalette: ?*?*IWICPalette) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreatePalette(@ptrCast(*const IWICImagingFactory, self), ppIPalette);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateFormatConverter(self: *const T, ppIFormatConverter: ?*?*IWICFormatConverter) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateFormatConverter(@ptrCast(*const IWICImagingFactory, self), ppIFormatConverter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateBitmapScaler(self: *const T, ppIBitmapScaler: ?*?*IWICBitmapScaler) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateBitmapScaler(@ptrCast(*const IWICImagingFactory, self), ppIBitmapScaler);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateBitmapClipper(self: *const T, ppIBitmapClipper: ?*?*IWICBitmapClipper) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateBitmapClipper(@ptrCast(*const IWICImagingFactory, self), ppIBitmapClipper);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateBitmapFlipRotator(self: *const T, ppIBitmapFlipRotator: ?*?*IWICBitmapFlipRotator) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateBitmapFlipRotator(@ptrCast(*const IWICImagingFactory, self), ppIBitmapFlipRotator);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateStream(self: *const T, ppIWICStream: ?*?*IWICStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateStream(@ptrCast(*const IWICImagingFactory, self), ppIWICStream);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateColorContext(self: *const T, ppIWICColorContext: ?*?*IWICColorContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateColorContext(@ptrCast(*const IWICImagingFactory, self), ppIWICColorContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateColorTransformer(self: *const T, ppIWICColorTransform: ?*?*IWICColorTransform) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateColorTransformer(@ptrCast(*const IWICImagingFactory, self), ppIWICColorTransform);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateBitmap(self: *const T, uiWidth: u32, uiHeight: u32, pixelFormat: ?*Guid, option: WICBitmapCreateCacheOption, ppIBitmap: ?*?*IWICBitmap) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateBitmap(@ptrCast(*const IWICImagingFactory, self), uiWidth, uiHeight, pixelFormat, option, ppIBitmap);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateBitmapFromSource(self: *const T, pIBitmapSource: ?*IWICBitmapSource, option: WICBitmapCreateCacheOption, ppIBitmap: ?*?*IWICBitmap) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateBitmapFromSource(@ptrCast(*const IWICImagingFactory, self), pIBitmapSource, option, ppIBitmap);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateBitmapFromSourceRect(self: *const T, pIBitmapSource: ?*IWICBitmapSource, x: u32, y: u32, width: u32, height: u32, ppIBitmap: ?*?*IWICBitmap) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateBitmapFromSourceRect(@ptrCast(*const IWICImagingFactory, self), pIBitmapSource, x, y, width, height, ppIBitmap);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateBitmapFromMemory(self: *const T, uiWidth: u32, uiHeight: u32, pixelFormat: ?*Guid, cbStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8, ppIBitmap: ?*?*IWICBitmap) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateBitmapFromMemory(@ptrCast(*const IWICImagingFactory, self), uiWidth, uiHeight, pixelFormat, cbStride, cbBufferSize, pbBuffer, ppIBitmap);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateBitmapFromHBITMAP(self: *const T, hBitmap: ?HBITMAP, hPalette: ?HPALETTE, options: WICBitmapAlphaChannelOption, ppIBitmap: ?*?*IWICBitmap) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateBitmapFromHBITMAP(@ptrCast(*const IWICImagingFactory, self), hBitmap, hPalette, options, ppIBitmap);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateBitmapFromHICON(self: *const T, hIcon: ?HICON, ppIBitmap: ?*?*IWICBitmap) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateBitmapFromHICON(@ptrCast(*const IWICImagingFactory, self), hIcon, ppIBitmap);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateComponentEnumerator(self: *const T, componentTypes: u32, options: u32, ppIEnumUnknown: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateComponentEnumerator(@ptrCast(*const IWICImagingFactory, self), componentTypes, options, ppIEnumUnknown);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateFastMetadataEncoderFromDecoder(self: *const T, pIDecoder: ?*IWICBitmapDecoder, ppIFastEncoder: ?*?*IWICFastMetadataEncoder) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateFastMetadataEncoderFromDecoder(@ptrCast(*const IWICImagingFactory, self), pIDecoder, ppIFastEncoder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateFastMetadataEncoderFromFrameDecode(self: *const T, pIFrameDecoder: ?*IWICBitmapFrameDecode, ppIFastEncoder: ?*?*IWICFastMetadataEncoder) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateFastMetadataEncoderFromFrameDecode(@ptrCast(*const IWICImagingFactory, self), pIFrameDecoder, ppIFastEncoder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateQueryWriter(self: *const T, guidMetadataFormat: ?*const Guid, pguidVendor: ?*const Guid, ppIQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateQueryWriter(@ptrCast(*const IWICImagingFactory, self), guidMetadataFormat, pguidVendor, ppIQueryWriter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory_CreateQueryWriterFromReader(self: *const T, pIQueryReader: ?*IWICMetadataQueryReader, pguidVendor: ?*const Guid, ppIQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateQueryWriterFromReader(@ptrCast(*const IWICImagingFactory, self), pIQueryReader, pguidVendor, ppIQueryWriter);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateDecoderFromFilename(self: *const T, wzFilename: ?[*:0]const u16, pguidVendor: ?*const Guid, dwDesiredAccess: u32, metadataOptions: WICDecodeOptions, ppIDecoder: ?*?*IWICBitmapDecoder) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateDecoderFromFilename(@ptrCast(*const IWICImagingFactory, self), wzFilename, pguidVendor, dwDesiredAccess, metadataOptions, ppIDecoder);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateDecoderFromStream(self: *const T, pIStream: ?*IStream, pguidVendor: ?*const Guid, metadataOptions: WICDecodeOptions, ppIDecoder: ?*?*IWICBitmapDecoder) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateDecoderFromStream(@ptrCast(*const IWICImagingFactory, self), pIStream, pguidVendor, metadataOptions, ppIDecoder);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateDecoderFromFileHandle(self: *const T, hFile: usize, pguidVendor: ?*const Guid, metadataOptions: WICDecodeOptions, ppIDecoder: ?*?*IWICBitmapDecoder) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateDecoderFromFileHandle(@ptrCast(*const IWICImagingFactory, self), hFile, pguidVendor, metadataOptions, ppIDecoder);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateComponentInfo(self: *const T, clsidComponent: ?*const Guid, ppIInfo: ?*?*IWICComponentInfo) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateComponentInfo(@ptrCast(*const IWICImagingFactory, self), clsidComponent, ppIInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateDecoder(self: *const T, guidContainerFormat: ?*const Guid, pguidVendor: ?*const Guid, ppIDecoder: ?*?*IWICBitmapDecoder) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateDecoder(@ptrCast(*const IWICImagingFactory, self), guidContainerFormat, pguidVendor, ppIDecoder);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateEncoder(self: *const T, guidContainerFormat: ?*const Guid, pguidVendor: ?*const Guid, ppIEncoder: ?*?*IWICBitmapEncoder) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateEncoder(@ptrCast(*const IWICImagingFactory, self), guidContainerFormat, pguidVendor, ppIEncoder);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreatePalette(self: *const T, ppIPalette: ?*?*IWICPalette) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreatePalette(@ptrCast(*const IWICImagingFactory, self), ppIPalette);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateFormatConverter(self: *const T, ppIFormatConverter: ?*?*IWICFormatConverter) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateFormatConverter(@ptrCast(*const IWICImagingFactory, self), ppIFormatConverter);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateBitmapScaler(self: *const T, ppIBitmapScaler: ?*?*IWICBitmapScaler) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateBitmapScaler(@ptrCast(*const IWICImagingFactory, self), ppIBitmapScaler);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateBitmapClipper(self: *const T, ppIBitmapClipper: ?*?*IWICBitmapClipper) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateBitmapClipper(@ptrCast(*const IWICImagingFactory, self), ppIBitmapClipper);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateBitmapFlipRotator(self: *const T, ppIBitmapFlipRotator: ?*?*IWICBitmapFlipRotator) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateBitmapFlipRotator(@ptrCast(*const IWICImagingFactory, self), ppIBitmapFlipRotator);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateStream(self: *const T, ppIWICStream: ?*?*IWICStream) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateStream(@ptrCast(*const IWICImagingFactory, self), ppIWICStream);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateColorContext(self: *const T, ppIWICColorContext: ?*?*IWICColorContext) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateColorContext(@ptrCast(*const IWICImagingFactory, self), ppIWICColorContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateColorTransformer(self: *const T, ppIWICColorTransform: ?*?*IWICColorTransform) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateColorTransformer(@ptrCast(*const IWICImagingFactory, self), ppIWICColorTransform);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateBitmap(self: *const T, uiWidth: u32, uiHeight: u32, pixelFormat: ?*Guid, option: WICBitmapCreateCacheOption, ppIBitmap: ?*?*IWICBitmap) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateBitmap(@ptrCast(*const IWICImagingFactory, self), uiWidth, uiHeight, pixelFormat, option, ppIBitmap);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateBitmapFromSource(self: *const T, pIBitmapSource: ?*IWICBitmapSource, option: WICBitmapCreateCacheOption, ppIBitmap: ?*?*IWICBitmap) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateBitmapFromSource(@ptrCast(*const IWICImagingFactory, self), pIBitmapSource, option, ppIBitmap);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateBitmapFromSourceRect(self: *const T, pIBitmapSource: ?*IWICBitmapSource, x: u32, y: u32, width: u32, height: u32, ppIBitmap: ?*?*IWICBitmap) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateBitmapFromSourceRect(@ptrCast(*const IWICImagingFactory, self), pIBitmapSource, x, y, width, height, ppIBitmap);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateBitmapFromMemory(self: *const T, uiWidth: u32, uiHeight: u32, pixelFormat: ?*Guid, cbStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8, ppIBitmap: ?*?*IWICBitmap) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateBitmapFromMemory(@ptrCast(*const IWICImagingFactory, self), uiWidth, uiHeight, pixelFormat, cbStride, cbBufferSize, pbBuffer, ppIBitmap);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateBitmapFromHBITMAP(self: *const T, hBitmap: ?HBITMAP, hPalette: ?HPALETTE, options: WICBitmapAlphaChannelOption, ppIBitmap: ?*?*IWICBitmap) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateBitmapFromHBITMAP(@ptrCast(*const IWICImagingFactory, self), hBitmap, hPalette, options, ppIBitmap);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateBitmapFromHICON(self: *const T, hIcon: ?HICON, ppIBitmap: ?*?*IWICBitmap) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateBitmapFromHICON(@ptrCast(*const IWICImagingFactory, self), hIcon, ppIBitmap);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateComponentEnumerator(self: *const T, componentTypes: u32, options: u32, ppIEnumUnknown: ?*?*IEnumUnknown) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateComponentEnumerator(@ptrCast(*const IWICImagingFactory, self), componentTypes, options, ppIEnumUnknown);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateFastMetadataEncoderFromDecoder(self: *const T, pIDecoder: ?*IWICBitmapDecoder, ppIFastEncoder: ?*?*IWICFastMetadataEncoder) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateFastMetadataEncoderFromDecoder(@ptrCast(*const IWICImagingFactory, self), pIDecoder, ppIFastEncoder);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateFastMetadataEncoderFromFrameDecode(self: *const T, pIFrameDecoder: ?*IWICBitmapFrameDecode, ppIFastEncoder: ?*?*IWICFastMetadataEncoder) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateFastMetadataEncoderFromFrameDecode(@ptrCast(*const IWICImagingFactory, self), pIFrameDecoder, ppIFastEncoder);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateQueryWriter(self: *const T, guidMetadataFormat: ?*const Guid, pguidVendor: ?*const Guid, ppIQueryWriter: ?*?*IWICMetadataQueryWriter) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateQueryWriter(@ptrCast(*const IWICImagingFactory, self), guidMetadataFormat, pguidVendor, ppIQueryWriter);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory_CreateQueryWriterFromReader(self: *const T, pIQueryReader: ?*IWICMetadataQueryReader, pguidVendor: ?*const Guid, ppIQueryWriter: ?*?*IWICMetadataQueryWriter) HRESULT {
+                return @ptrCast(*const IWICImagingFactory.VTable, self.vtable).CreateQueryWriterFromReader(@ptrCast(*const IWICImagingFactory, self), pIQueryReader, pguidVendor, ppIQueryWriter);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3010,19 +3078,21 @@ pub const IID_IWICDevelopRawNotificationCallback = &IID_IWICDevelopRawNotificati
 pub const IWICDevelopRawNotificationCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Notify: fn(
+        Notify: fn (
             self: *const IWICDevelopRawNotificationCallback,
             NotificationMask: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRawNotificationCallback_Notify(self: *const T, NotificationMask: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRawNotificationCallback.VTable, self.vtable).Notify(@ptrCast(*const IWICDevelopRawNotificationCallback, self), NotificationMask);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRawNotificationCallback_Notify(self: *const T, NotificationMask: u32) HRESULT {
+                return @ptrCast(*const IWICDevelopRawNotificationCallback.VTable, self.vtable).Notify(@ptrCast(*const IWICDevelopRawNotificationCallback, self), NotificationMask);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3032,278 +3102,280 @@ pub const IID_IWICDevelopRaw = &IID_IWICDevelopRaw_Value;
 pub const IWICDevelopRaw = extern struct {
     pub const VTable = extern struct {
         base: IWICBitmapFrameDecode.VTable,
-        QueryRawCapabilitiesInfo: fn(
+        QueryRawCapabilitiesInfo: fn (
             self: *const IWICDevelopRaw,
             pInfo: ?*WICRawCapabilitiesInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        LoadParameterSet: fn(
+        LoadParameterSet: fn (
             self: *const IWICDevelopRaw,
             ParameterSet: WICRawParameterSet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentParameterSet: fn(
+        GetCurrentParameterSet: fn (
             self: *const IWICDevelopRaw,
             ppCurrentParameterSet: ?*?*IPropertyBag2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetExposureCompensation: fn(
+        SetExposureCompensation: fn (
             self: *const IWICDevelopRaw,
             ev: f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetExposureCompensation: fn(
+        GetExposureCompensation: fn (
             self: *const IWICDevelopRaw,
             pEV: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetWhitePointRGB: fn(
+        SetWhitePointRGB: fn (
             self: *const IWICDevelopRaw,
             Red: u32,
             Green: u32,
             Blue: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetWhitePointRGB: fn(
+        GetWhitePointRGB: fn (
             self: *const IWICDevelopRaw,
             pRed: ?*u32,
             pGreen: ?*u32,
             pBlue: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNamedWhitePoint: fn(
+        SetNamedWhitePoint: fn (
             self: *const IWICDevelopRaw,
             WhitePoint: WICNamedWhitePoint,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNamedWhitePoint: fn(
+        GetNamedWhitePoint: fn (
             self: *const IWICDevelopRaw,
             pWhitePoint: ?*WICNamedWhitePoint,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetWhitePointKelvin: fn(
+        SetWhitePointKelvin: fn (
             self: *const IWICDevelopRaw,
             WhitePointKelvin: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetWhitePointKelvin: fn(
+        GetWhitePointKelvin: fn (
             self: *const IWICDevelopRaw,
             pWhitePointKelvin: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetKelvinRangeInfo: fn(
+        GetKelvinRangeInfo: fn (
             self: *const IWICDevelopRaw,
             pMinKelvinTemp: ?*u32,
             pMaxKelvinTemp: ?*u32,
             pKelvinTempStepValue: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetContrast: fn(
+        SetContrast: fn (
             self: *const IWICDevelopRaw,
             Contrast: f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetContrast: fn(
+        GetContrast: fn (
             self: *const IWICDevelopRaw,
             pContrast: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetGamma: fn(
+        SetGamma: fn (
             self: *const IWICDevelopRaw,
             Gamma: f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetGamma: fn(
+        GetGamma: fn (
             self: *const IWICDevelopRaw,
             pGamma: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSharpness: fn(
+        SetSharpness: fn (
             self: *const IWICDevelopRaw,
             Sharpness: f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSharpness: fn(
+        GetSharpness: fn (
             self: *const IWICDevelopRaw,
             pSharpness: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSaturation: fn(
+        SetSaturation: fn (
             self: *const IWICDevelopRaw,
             Saturation: f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSaturation: fn(
+        GetSaturation: fn (
             self: *const IWICDevelopRaw,
             pSaturation: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetTint: fn(
+        SetTint: fn (
             self: *const IWICDevelopRaw,
             Tint: f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTint: fn(
+        GetTint: fn (
             self: *const IWICDevelopRaw,
             pTint: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNoiseReduction: fn(
+        SetNoiseReduction: fn (
             self: *const IWICDevelopRaw,
             NoiseReduction: f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNoiseReduction: fn(
+        GetNoiseReduction: fn (
             self: *const IWICDevelopRaw,
             pNoiseReduction: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDestinationColorContext: fn(
+        SetDestinationColorContext: fn (
             self: *const IWICDevelopRaw,
             pColorContext: ?*IWICColorContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetToneCurve: fn(
+        SetToneCurve: fn (
             self: *const IWICDevelopRaw,
             cbToneCurveSize: u32,
             // TODO: what to do with BytesParamIndex 0?
             pToneCurve: ?*const WICRawToneCurve,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetToneCurve: fn(
+        GetToneCurve: fn (
             self: *const IWICDevelopRaw,
             cbToneCurveBufferSize: u32,
             // TODO: what to do with BytesParamIndex 0?
             pToneCurve: ?*WICRawToneCurve,
             pcbActualToneCurveBufferSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetRotation: fn(
+        SetRotation: fn (
             self: *const IWICDevelopRaw,
             Rotation: f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRotation: fn(
+        GetRotation: fn (
             self: *const IWICDevelopRaw,
             pRotation: ?*f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetRenderMode: fn(
+        SetRenderMode: fn (
             self: *const IWICDevelopRaw,
             RenderMode: WICRawRenderMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRenderMode: fn(
+        GetRenderMode: fn (
             self: *const IWICDevelopRaw,
             pRenderMode: ?*WICRawRenderMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNotificationCallback: fn(
+        SetNotificationCallback: fn (
             self: *const IWICDevelopRaw,
             pCallback: ?*IWICDevelopRawNotificationCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICBitmapFrameDecode.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_QueryRawCapabilitiesInfo(self: *const T, pInfo: ?*WICRawCapabilitiesInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).QueryRawCapabilitiesInfo(@ptrCast(*const IWICDevelopRaw, self), pInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_LoadParameterSet(self: *const T, ParameterSet: WICRawParameterSet) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).LoadParameterSet(@ptrCast(*const IWICDevelopRaw, self), ParameterSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_GetCurrentParameterSet(self: *const T, ppCurrentParameterSet: ?*?*IPropertyBag2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetCurrentParameterSet(@ptrCast(*const IWICDevelopRaw, self), ppCurrentParameterSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_SetExposureCompensation(self: *const T, ev: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetExposureCompensation(@ptrCast(*const IWICDevelopRaw, self), ev);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_GetExposureCompensation(self: *const T, pEV: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetExposureCompensation(@ptrCast(*const IWICDevelopRaw, self), pEV);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_SetWhitePointRGB(self: *const T, Red: u32, Green: u32, Blue: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetWhitePointRGB(@ptrCast(*const IWICDevelopRaw, self), Red, Green, Blue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_GetWhitePointRGB(self: *const T, pRed: ?*u32, pGreen: ?*u32, pBlue: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetWhitePointRGB(@ptrCast(*const IWICDevelopRaw, self), pRed, pGreen, pBlue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_SetNamedWhitePoint(self: *const T, WhitePoint: WICNamedWhitePoint) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetNamedWhitePoint(@ptrCast(*const IWICDevelopRaw, self), WhitePoint);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_GetNamedWhitePoint(self: *const T, pWhitePoint: ?*WICNamedWhitePoint) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetNamedWhitePoint(@ptrCast(*const IWICDevelopRaw, self), pWhitePoint);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_SetWhitePointKelvin(self: *const T, WhitePointKelvin: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetWhitePointKelvin(@ptrCast(*const IWICDevelopRaw, self), WhitePointKelvin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_GetWhitePointKelvin(self: *const T, pWhitePointKelvin: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetWhitePointKelvin(@ptrCast(*const IWICDevelopRaw, self), pWhitePointKelvin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_GetKelvinRangeInfo(self: *const T, pMinKelvinTemp: ?*u32, pMaxKelvinTemp: ?*u32, pKelvinTempStepValue: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetKelvinRangeInfo(@ptrCast(*const IWICDevelopRaw, self), pMinKelvinTemp, pMaxKelvinTemp, pKelvinTempStepValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_SetContrast(self: *const T, Contrast: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetContrast(@ptrCast(*const IWICDevelopRaw, self), Contrast);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_GetContrast(self: *const T, pContrast: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetContrast(@ptrCast(*const IWICDevelopRaw, self), pContrast);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_SetGamma(self: *const T, Gamma: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetGamma(@ptrCast(*const IWICDevelopRaw, self), Gamma);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_GetGamma(self: *const T, pGamma: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetGamma(@ptrCast(*const IWICDevelopRaw, self), pGamma);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_SetSharpness(self: *const T, Sharpness: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetSharpness(@ptrCast(*const IWICDevelopRaw, self), Sharpness);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_GetSharpness(self: *const T, pSharpness: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetSharpness(@ptrCast(*const IWICDevelopRaw, self), pSharpness);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_SetSaturation(self: *const T, Saturation: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetSaturation(@ptrCast(*const IWICDevelopRaw, self), Saturation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_GetSaturation(self: *const T, pSaturation: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetSaturation(@ptrCast(*const IWICDevelopRaw, self), pSaturation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_SetTint(self: *const T, Tint: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetTint(@ptrCast(*const IWICDevelopRaw, self), Tint);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_GetTint(self: *const T, pTint: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetTint(@ptrCast(*const IWICDevelopRaw, self), pTint);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_SetNoiseReduction(self: *const T, NoiseReduction: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetNoiseReduction(@ptrCast(*const IWICDevelopRaw, self), NoiseReduction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_GetNoiseReduction(self: *const T, pNoiseReduction: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetNoiseReduction(@ptrCast(*const IWICDevelopRaw, self), pNoiseReduction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_SetDestinationColorContext(self: *const T, pColorContext: ?*IWICColorContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetDestinationColorContext(@ptrCast(*const IWICDevelopRaw, self), pColorContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_SetToneCurve(self: *const T, cbToneCurveSize: u32, pToneCurve: ?*const WICRawToneCurve) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetToneCurve(@ptrCast(*const IWICDevelopRaw, self), cbToneCurveSize, pToneCurve);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_GetToneCurve(self: *const T, cbToneCurveBufferSize: u32, pToneCurve: ?*WICRawToneCurve, pcbActualToneCurveBufferSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetToneCurve(@ptrCast(*const IWICDevelopRaw, self), cbToneCurveBufferSize, pToneCurve, pcbActualToneCurveBufferSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_SetRotation(self: *const T, Rotation: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetRotation(@ptrCast(*const IWICDevelopRaw, self), Rotation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_GetRotation(self: *const T, pRotation: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetRotation(@ptrCast(*const IWICDevelopRaw, self), pRotation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_SetRenderMode(self: *const T, RenderMode: WICRawRenderMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetRenderMode(@ptrCast(*const IWICDevelopRaw, self), RenderMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_GetRenderMode(self: *const T, pRenderMode: ?*WICRawRenderMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetRenderMode(@ptrCast(*const IWICDevelopRaw, self), pRenderMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDevelopRaw_SetNotificationCallback(self: *const T, pCallback: ?*IWICDevelopRawNotificationCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetNotificationCallback(@ptrCast(*const IWICDevelopRaw, self), pCallback);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICBitmapFrameDecode.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_QueryRawCapabilitiesInfo(self: *const T, pInfo: ?*WICRawCapabilitiesInfo) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).QueryRawCapabilitiesInfo(@ptrCast(*const IWICDevelopRaw, self), pInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_LoadParameterSet(self: *const T, ParameterSet: WICRawParameterSet) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).LoadParameterSet(@ptrCast(*const IWICDevelopRaw, self), ParameterSet);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_GetCurrentParameterSet(self: *const T, ppCurrentParameterSet: ?*?*IPropertyBag2) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetCurrentParameterSet(@ptrCast(*const IWICDevelopRaw, self), ppCurrentParameterSet);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_SetExposureCompensation(self: *const T, ev: f64) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetExposureCompensation(@ptrCast(*const IWICDevelopRaw, self), ev);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_GetExposureCompensation(self: *const T, pEV: ?*f64) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetExposureCompensation(@ptrCast(*const IWICDevelopRaw, self), pEV);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_SetWhitePointRGB(self: *const T, Red: u32, Green: u32, Blue: u32) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetWhitePointRGB(@ptrCast(*const IWICDevelopRaw, self), Red, Green, Blue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_GetWhitePointRGB(self: *const T, pRed: ?*u32, pGreen: ?*u32, pBlue: ?*u32) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetWhitePointRGB(@ptrCast(*const IWICDevelopRaw, self), pRed, pGreen, pBlue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_SetNamedWhitePoint(self: *const T, WhitePoint: WICNamedWhitePoint) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetNamedWhitePoint(@ptrCast(*const IWICDevelopRaw, self), WhitePoint);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_GetNamedWhitePoint(self: *const T, pWhitePoint: ?*WICNamedWhitePoint) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetNamedWhitePoint(@ptrCast(*const IWICDevelopRaw, self), pWhitePoint);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_SetWhitePointKelvin(self: *const T, WhitePointKelvin: u32) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetWhitePointKelvin(@ptrCast(*const IWICDevelopRaw, self), WhitePointKelvin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_GetWhitePointKelvin(self: *const T, pWhitePointKelvin: ?*u32) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetWhitePointKelvin(@ptrCast(*const IWICDevelopRaw, self), pWhitePointKelvin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_GetKelvinRangeInfo(self: *const T, pMinKelvinTemp: ?*u32, pMaxKelvinTemp: ?*u32, pKelvinTempStepValue: ?*u32) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetKelvinRangeInfo(@ptrCast(*const IWICDevelopRaw, self), pMinKelvinTemp, pMaxKelvinTemp, pKelvinTempStepValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_SetContrast(self: *const T, Contrast: f64) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetContrast(@ptrCast(*const IWICDevelopRaw, self), Contrast);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_GetContrast(self: *const T, pContrast: ?*f64) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetContrast(@ptrCast(*const IWICDevelopRaw, self), pContrast);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_SetGamma(self: *const T, Gamma: f64) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetGamma(@ptrCast(*const IWICDevelopRaw, self), Gamma);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_GetGamma(self: *const T, pGamma: ?*f64) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetGamma(@ptrCast(*const IWICDevelopRaw, self), pGamma);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_SetSharpness(self: *const T, Sharpness: f64) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetSharpness(@ptrCast(*const IWICDevelopRaw, self), Sharpness);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_GetSharpness(self: *const T, pSharpness: ?*f64) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetSharpness(@ptrCast(*const IWICDevelopRaw, self), pSharpness);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_SetSaturation(self: *const T, Saturation: f64) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetSaturation(@ptrCast(*const IWICDevelopRaw, self), Saturation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_GetSaturation(self: *const T, pSaturation: ?*f64) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetSaturation(@ptrCast(*const IWICDevelopRaw, self), pSaturation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_SetTint(self: *const T, Tint: f64) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetTint(@ptrCast(*const IWICDevelopRaw, self), Tint);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_GetTint(self: *const T, pTint: ?*f64) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetTint(@ptrCast(*const IWICDevelopRaw, self), pTint);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_SetNoiseReduction(self: *const T, NoiseReduction: f64) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetNoiseReduction(@ptrCast(*const IWICDevelopRaw, self), NoiseReduction);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_GetNoiseReduction(self: *const T, pNoiseReduction: ?*f64) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetNoiseReduction(@ptrCast(*const IWICDevelopRaw, self), pNoiseReduction);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_SetDestinationColorContext(self: *const T, pColorContext: ?*IWICColorContext) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetDestinationColorContext(@ptrCast(*const IWICDevelopRaw, self), pColorContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_SetToneCurve(self: *const T, cbToneCurveSize: u32, pToneCurve: ?*const WICRawToneCurve) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetToneCurve(@ptrCast(*const IWICDevelopRaw, self), cbToneCurveSize, pToneCurve);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_GetToneCurve(self: *const T, cbToneCurveBufferSize: u32, pToneCurve: ?*WICRawToneCurve, pcbActualToneCurveBufferSize: ?*u32) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetToneCurve(@ptrCast(*const IWICDevelopRaw, self), cbToneCurveBufferSize, pToneCurve, pcbActualToneCurveBufferSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_SetRotation(self: *const T, Rotation: f64) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetRotation(@ptrCast(*const IWICDevelopRaw, self), Rotation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_GetRotation(self: *const T, pRotation: ?*f64) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetRotation(@ptrCast(*const IWICDevelopRaw, self), pRotation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_SetRenderMode(self: *const T, RenderMode: WICRawRenderMode) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetRenderMode(@ptrCast(*const IWICDevelopRaw, self), RenderMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_GetRenderMode(self: *const T, pRenderMode: ?*WICRawRenderMode) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).GetRenderMode(@ptrCast(*const IWICDevelopRaw, self), pRenderMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDevelopRaw_SetNotificationCallback(self: *const T, pCallback: ?*IWICDevelopRawNotificationCallback) HRESULT {
+                return @ptrCast(*const IWICDevelopRaw.VTable, self.vtable).SetNotificationCallback(@ptrCast(*const IWICDevelopRaw, self), pCallback);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3352,11 +3424,11 @@ pub const IID_IWICDdsDecoder = &IID_IWICDdsDecoder_Value;
 pub const IWICDdsDecoder = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetParameters: fn(
+        GetParameters: fn (
             self: *const IWICDdsDecoder,
             pParameters: ?*WICDdsParameters,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFrame: fn(
+        GetFrame: fn (
             self: *const IWICDdsDecoder,
             arrayIndex: u32,
             mipLevel: u32,
@@ -3365,17 +3437,19 @@ pub const IWICDdsDecoder = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDdsDecoder_GetParameters(self: *const T, pParameters: ?*WICDdsParameters) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDdsDecoder.VTable, self.vtable).GetParameters(@ptrCast(*const IWICDdsDecoder, self), pParameters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDdsDecoder_GetFrame(self: *const T, arrayIndex: u32, mipLevel: u32, sliceIndex: u32, ppIBitmapFrame: ?*?*IWICBitmapFrameDecode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDdsDecoder.VTable, self.vtable).GetFrame(@ptrCast(*const IWICDdsDecoder, self), arrayIndex, mipLevel, sliceIndex, ppIBitmapFrame);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDdsDecoder_GetParameters(self: *const T, pParameters: ?*WICDdsParameters) HRESULT {
+                return @ptrCast(*const IWICDdsDecoder.VTable, self.vtable).GetParameters(@ptrCast(*const IWICDdsDecoder, self), pParameters);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDdsDecoder_GetFrame(self: *const T, arrayIndex: u32, mipLevel: u32, sliceIndex: u32, ppIBitmapFrame: ?*?*IWICBitmapFrameDecode) HRESULT {
+                return @ptrCast(*const IWICDdsDecoder.VTable, self.vtable).GetFrame(@ptrCast(*const IWICDdsDecoder, self), arrayIndex, mipLevel, sliceIndex, ppIBitmapFrame);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3385,15 +3459,15 @@ pub const IID_IWICDdsEncoder = &IID_IWICDdsEncoder_Value;
 pub const IWICDdsEncoder = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetParameters: fn(
+        SetParameters: fn (
             self: *const IWICDdsEncoder,
             pParameters: ?*WICDdsParameters,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetParameters: fn(
+        GetParameters: fn (
             self: *const IWICDdsEncoder,
             pParameters: ?*WICDdsParameters,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateNewFrame: fn(
+        CreateNewFrame: fn (
             self: *const IWICDdsEncoder,
             ppIFrameEncode: ?*?*IWICBitmapFrameEncode,
             pArrayIndex: ?*u32,
@@ -3402,21 +3476,23 @@ pub const IWICDdsEncoder = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDdsEncoder_SetParameters(self: *const T, pParameters: ?*WICDdsParameters) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDdsEncoder.VTable, self.vtable).SetParameters(@ptrCast(*const IWICDdsEncoder, self), pParameters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDdsEncoder_GetParameters(self: *const T, pParameters: ?*WICDdsParameters) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDdsEncoder.VTable, self.vtable).GetParameters(@ptrCast(*const IWICDdsEncoder, self), pParameters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDdsEncoder_CreateNewFrame(self: *const T, ppIFrameEncode: ?*?*IWICBitmapFrameEncode, pArrayIndex: ?*u32, pMipLevel: ?*u32, pSliceIndex: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDdsEncoder.VTable, self.vtable).CreateNewFrame(@ptrCast(*const IWICDdsEncoder, self), ppIFrameEncode, pArrayIndex, pMipLevel, pSliceIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDdsEncoder_SetParameters(self: *const T, pParameters: ?*WICDdsParameters) HRESULT {
+                return @ptrCast(*const IWICDdsEncoder.VTable, self.vtable).SetParameters(@ptrCast(*const IWICDdsEncoder, self), pParameters);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDdsEncoder_GetParameters(self: *const T, pParameters: ?*WICDdsParameters) HRESULT {
+                return @ptrCast(*const IWICDdsEncoder.VTable, self.vtable).GetParameters(@ptrCast(*const IWICDdsEncoder, self), pParameters);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDdsEncoder_CreateNewFrame(self: *const T, ppIFrameEncode: ?*?*IWICBitmapFrameEncode, pArrayIndex: ?*u32, pMipLevel: ?*u32, pSliceIndex: ?*u32) HRESULT {
+                return @ptrCast(*const IWICDdsEncoder.VTable, self.vtable).CreateNewFrame(@ptrCast(*const IWICDdsEncoder, self), ppIFrameEncode, pArrayIndex, pMipLevel, pSliceIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3433,16 +3509,16 @@ pub const IID_IWICDdsFrameDecode = &IID_IWICDdsFrameDecode_Value;
 pub const IWICDdsFrameDecode = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSizeInBlocks: fn(
+        GetSizeInBlocks: fn (
             self: *const IWICDdsFrameDecode,
             pWidthInBlocks: ?*u32,
             pHeightInBlocks: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFormatInfo: fn(
+        GetFormatInfo: fn (
             self: *const IWICDdsFrameDecode,
             pFormatInfo: ?*WICDdsFormatInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CopyBlocks: fn(
+        CopyBlocks: fn (
             self: *const IWICDdsFrameDecode,
             prcBoundsInBlocks: ?*const WICRect,
             cbStride: u32,
@@ -3451,21 +3527,23 @@ pub const IWICDdsFrameDecode = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDdsFrameDecode_GetSizeInBlocks(self: *const T, pWidthInBlocks: ?*u32, pHeightInBlocks: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDdsFrameDecode.VTable, self.vtable).GetSizeInBlocks(@ptrCast(*const IWICDdsFrameDecode, self), pWidthInBlocks, pHeightInBlocks);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDdsFrameDecode_GetFormatInfo(self: *const T, pFormatInfo: ?*WICDdsFormatInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDdsFrameDecode.VTable, self.vtable).GetFormatInfo(@ptrCast(*const IWICDdsFrameDecode, self), pFormatInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICDdsFrameDecode_CopyBlocks(self: *const T, prcBoundsInBlocks: ?*const WICRect, cbStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICDdsFrameDecode.VTable, self.vtable).CopyBlocks(@ptrCast(*const IWICDdsFrameDecode, self), prcBoundsInBlocks, cbStride, cbBufferSize, pbBuffer);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDdsFrameDecode_GetSizeInBlocks(self: *const T, pWidthInBlocks: ?*u32, pHeightInBlocks: ?*u32) HRESULT {
+                return @ptrCast(*const IWICDdsFrameDecode.VTable, self.vtable).GetSizeInBlocks(@ptrCast(*const IWICDdsFrameDecode, self), pWidthInBlocks, pHeightInBlocks);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDdsFrameDecode_GetFormatInfo(self: *const T, pFormatInfo: ?*WICDdsFormatInfo) HRESULT {
+                return @ptrCast(*const IWICDdsFrameDecode.VTable, self.vtable).GetFormatInfo(@ptrCast(*const IWICDdsFrameDecode, self), pFormatInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICDdsFrameDecode_CopyBlocks(self: *const T, prcBoundsInBlocks: ?*const WICRect, cbStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8) HRESULT {
+                return @ptrCast(*const IWICDdsFrameDecode.VTable, self.vtable).CopyBlocks(@ptrCast(*const IWICDdsFrameDecode, self), prcBoundsInBlocks, cbStride, cbBufferSize, pbBuffer);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3475,46 +3553,46 @@ pub const IID_IWICJpegFrameDecode = &IID_IWICJpegFrameDecode_Value;
 pub const IWICJpegFrameDecode = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        DoesSupportIndexing: fn(
+        DoesSupportIndexing: fn (
             self: *const IWICJpegFrameDecode,
             pfIndexingSupported: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetIndexing: fn(
+        SetIndexing: fn (
             self: *const IWICJpegFrameDecode,
             options: WICJpegIndexingOptions,
             horizontalIntervalSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ClearIndexing: fn(
+        ClearIndexing: fn (
             self: *const IWICJpegFrameDecode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAcHuffmanTable: fn(
+        GetAcHuffmanTable: fn (
             self: *const IWICJpegFrameDecode,
             scanIndex: u32,
             tableIndex: u32,
             pAcHuffmanTable: ?*DXGI_JPEG_AC_HUFFMAN_TABLE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDcHuffmanTable: fn(
+        GetDcHuffmanTable: fn (
             self: *const IWICJpegFrameDecode,
             scanIndex: u32,
             tableIndex: u32,
             pDcHuffmanTable: ?*DXGI_JPEG_DC_HUFFMAN_TABLE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetQuantizationTable: fn(
+        GetQuantizationTable: fn (
             self: *const IWICJpegFrameDecode,
             scanIndex: u32,
             tableIndex: u32,
             pQuantizationTable: ?*DXGI_JPEG_QUANTIZATION_TABLE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFrameHeader: fn(
+        GetFrameHeader: fn (
             self: *const IWICJpegFrameDecode,
             pFrameHeader: ?*WICJpegFrameHeader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScanHeader: fn(
+        GetScanHeader: fn (
             self: *const IWICJpegFrameDecode,
             scanIndex: u32,
             pScanHeader: ?*WICJpegScanHeader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CopyScan: fn(
+        CopyScan: fn (
             self: *const IWICJpegFrameDecode,
             scanIndex: u32,
             scanOffset: u32,
@@ -3522,7 +3600,7 @@ pub const IWICJpegFrameDecode = extern struct {
             pbScanData: [*:0]u8,
             pcbScanDataActual: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CopyMinimalStream: fn(
+        CopyMinimalStream: fn (
             self: *const IWICJpegFrameDecode,
             streamOffset: u32,
             cbStreamData: u32,
@@ -3531,49 +3609,51 @@ pub const IWICJpegFrameDecode = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICJpegFrameDecode_DoesSupportIndexing(self: *const T, pfIndexingSupported: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICJpegFrameDecode.VTable, self.vtable).DoesSupportIndexing(@ptrCast(*const IWICJpegFrameDecode, self), pfIndexingSupported);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICJpegFrameDecode_SetIndexing(self: *const T, options: WICJpegIndexingOptions, horizontalIntervalSize: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICJpegFrameDecode.VTable, self.vtable).SetIndexing(@ptrCast(*const IWICJpegFrameDecode, self), options, horizontalIntervalSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICJpegFrameDecode_ClearIndexing(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICJpegFrameDecode.VTable, self.vtable).ClearIndexing(@ptrCast(*const IWICJpegFrameDecode, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICJpegFrameDecode_GetAcHuffmanTable(self: *const T, scanIndex: u32, tableIndex: u32, pAcHuffmanTable: ?*DXGI_JPEG_AC_HUFFMAN_TABLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICJpegFrameDecode.VTable, self.vtable).GetAcHuffmanTable(@ptrCast(*const IWICJpegFrameDecode, self), scanIndex, tableIndex, pAcHuffmanTable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICJpegFrameDecode_GetDcHuffmanTable(self: *const T, scanIndex: u32, tableIndex: u32, pDcHuffmanTable: ?*DXGI_JPEG_DC_HUFFMAN_TABLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICJpegFrameDecode.VTable, self.vtable).GetDcHuffmanTable(@ptrCast(*const IWICJpegFrameDecode, self), scanIndex, tableIndex, pDcHuffmanTable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICJpegFrameDecode_GetQuantizationTable(self: *const T, scanIndex: u32, tableIndex: u32, pQuantizationTable: ?*DXGI_JPEG_QUANTIZATION_TABLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICJpegFrameDecode.VTable, self.vtable).GetQuantizationTable(@ptrCast(*const IWICJpegFrameDecode, self), scanIndex, tableIndex, pQuantizationTable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICJpegFrameDecode_GetFrameHeader(self: *const T, pFrameHeader: ?*WICJpegFrameHeader) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICJpegFrameDecode.VTable, self.vtable).GetFrameHeader(@ptrCast(*const IWICJpegFrameDecode, self), pFrameHeader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICJpegFrameDecode_GetScanHeader(self: *const T, scanIndex: u32, pScanHeader: ?*WICJpegScanHeader) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICJpegFrameDecode.VTable, self.vtable).GetScanHeader(@ptrCast(*const IWICJpegFrameDecode, self), scanIndex, pScanHeader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICJpegFrameDecode_CopyScan(self: *const T, scanIndex: u32, scanOffset: u32, cbScanData: u32, pbScanData: [*:0]u8, pcbScanDataActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICJpegFrameDecode.VTable, self.vtable).CopyScan(@ptrCast(*const IWICJpegFrameDecode, self), scanIndex, scanOffset, cbScanData, pbScanData, pcbScanDataActual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICJpegFrameDecode_CopyMinimalStream(self: *const T, streamOffset: u32, cbStreamData: u32, pbStreamData: [*:0]u8, pcbStreamDataActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICJpegFrameDecode.VTable, self.vtable).CopyMinimalStream(@ptrCast(*const IWICJpegFrameDecode, self), streamOffset, cbStreamData, pbStreamData, pcbStreamDataActual);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICJpegFrameDecode_DoesSupportIndexing(self: *const T, pfIndexingSupported: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWICJpegFrameDecode.VTable, self.vtable).DoesSupportIndexing(@ptrCast(*const IWICJpegFrameDecode, self), pfIndexingSupported);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICJpegFrameDecode_SetIndexing(self: *const T, options: WICJpegIndexingOptions, horizontalIntervalSize: u32) HRESULT {
+                return @ptrCast(*const IWICJpegFrameDecode.VTable, self.vtable).SetIndexing(@ptrCast(*const IWICJpegFrameDecode, self), options, horizontalIntervalSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICJpegFrameDecode_ClearIndexing(self: *const T) HRESULT {
+                return @ptrCast(*const IWICJpegFrameDecode.VTable, self.vtable).ClearIndexing(@ptrCast(*const IWICJpegFrameDecode, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICJpegFrameDecode_GetAcHuffmanTable(self: *const T, scanIndex: u32, tableIndex: u32, pAcHuffmanTable: ?*DXGI_JPEG_AC_HUFFMAN_TABLE) HRESULT {
+                return @ptrCast(*const IWICJpegFrameDecode.VTable, self.vtable).GetAcHuffmanTable(@ptrCast(*const IWICJpegFrameDecode, self), scanIndex, tableIndex, pAcHuffmanTable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICJpegFrameDecode_GetDcHuffmanTable(self: *const T, scanIndex: u32, tableIndex: u32, pDcHuffmanTable: ?*DXGI_JPEG_DC_HUFFMAN_TABLE) HRESULT {
+                return @ptrCast(*const IWICJpegFrameDecode.VTable, self.vtable).GetDcHuffmanTable(@ptrCast(*const IWICJpegFrameDecode, self), scanIndex, tableIndex, pDcHuffmanTable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICJpegFrameDecode_GetQuantizationTable(self: *const T, scanIndex: u32, tableIndex: u32, pQuantizationTable: ?*DXGI_JPEG_QUANTIZATION_TABLE) HRESULT {
+                return @ptrCast(*const IWICJpegFrameDecode.VTable, self.vtable).GetQuantizationTable(@ptrCast(*const IWICJpegFrameDecode, self), scanIndex, tableIndex, pQuantizationTable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICJpegFrameDecode_GetFrameHeader(self: *const T, pFrameHeader: ?*WICJpegFrameHeader) HRESULT {
+                return @ptrCast(*const IWICJpegFrameDecode.VTable, self.vtable).GetFrameHeader(@ptrCast(*const IWICJpegFrameDecode, self), pFrameHeader);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICJpegFrameDecode_GetScanHeader(self: *const T, scanIndex: u32, pScanHeader: ?*WICJpegScanHeader) HRESULT {
+                return @ptrCast(*const IWICJpegFrameDecode.VTable, self.vtable).GetScanHeader(@ptrCast(*const IWICJpegFrameDecode, self), scanIndex, pScanHeader);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICJpegFrameDecode_CopyScan(self: *const T, scanIndex: u32, scanOffset: u32, cbScanData: u32, pbScanData: [*:0]u8, pcbScanDataActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICJpegFrameDecode.VTable, self.vtable).CopyScan(@ptrCast(*const IWICJpegFrameDecode, self), scanIndex, scanOffset, cbScanData, pbScanData, pcbScanDataActual);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICJpegFrameDecode_CopyMinimalStream(self: *const T, streamOffset: u32, cbStreamData: u32, pbStreamData: [*:0]u8, pcbStreamDataActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICJpegFrameDecode.VTable, self.vtable).CopyMinimalStream(@ptrCast(*const IWICJpegFrameDecode, self), streamOffset, cbStreamData, pbStreamData, pcbStreamDataActual);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3583,50 +3663,52 @@ pub const IID_IWICJpegFrameEncode = &IID_IWICJpegFrameEncode_Value;
 pub const IWICJpegFrameEncode = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetAcHuffmanTable: fn(
+        GetAcHuffmanTable: fn (
             self: *const IWICJpegFrameEncode,
             scanIndex: u32,
             tableIndex: u32,
             pAcHuffmanTable: ?*DXGI_JPEG_AC_HUFFMAN_TABLE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDcHuffmanTable: fn(
+        GetDcHuffmanTable: fn (
             self: *const IWICJpegFrameEncode,
             scanIndex: u32,
             tableIndex: u32,
             pDcHuffmanTable: ?*DXGI_JPEG_DC_HUFFMAN_TABLE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetQuantizationTable: fn(
+        GetQuantizationTable: fn (
             self: *const IWICJpegFrameEncode,
             scanIndex: u32,
             tableIndex: u32,
             pQuantizationTable: ?*DXGI_JPEG_QUANTIZATION_TABLE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WriteScan: fn(
+        WriteScan: fn (
             self: *const IWICJpegFrameEncode,
             cbScanData: u32,
             pbScanData: [*:0]const u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICJpegFrameEncode_GetAcHuffmanTable(self: *const T, scanIndex: u32, tableIndex: u32, pAcHuffmanTable: ?*DXGI_JPEG_AC_HUFFMAN_TABLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICJpegFrameEncode.VTable, self.vtable).GetAcHuffmanTable(@ptrCast(*const IWICJpegFrameEncode, self), scanIndex, tableIndex, pAcHuffmanTable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICJpegFrameEncode_GetDcHuffmanTable(self: *const T, scanIndex: u32, tableIndex: u32, pDcHuffmanTable: ?*DXGI_JPEG_DC_HUFFMAN_TABLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICJpegFrameEncode.VTable, self.vtable).GetDcHuffmanTable(@ptrCast(*const IWICJpegFrameEncode, self), scanIndex, tableIndex, pDcHuffmanTable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICJpegFrameEncode_GetQuantizationTable(self: *const T, scanIndex: u32, tableIndex: u32, pQuantizationTable: ?*DXGI_JPEG_QUANTIZATION_TABLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICJpegFrameEncode.VTable, self.vtable).GetQuantizationTable(@ptrCast(*const IWICJpegFrameEncode, self), scanIndex, tableIndex, pQuantizationTable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICJpegFrameEncode_WriteScan(self: *const T, cbScanData: u32, pbScanData: [*:0]const u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICJpegFrameEncode.VTable, self.vtable).WriteScan(@ptrCast(*const IWICJpegFrameEncode, self), cbScanData, pbScanData);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICJpegFrameEncode_GetAcHuffmanTable(self: *const T, scanIndex: u32, tableIndex: u32, pAcHuffmanTable: ?*DXGI_JPEG_AC_HUFFMAN_TABLE) HRESULT {
+                return @ptrCast(*const IWICJpegFrameEncode.VTable, self.vtable).GetAcHuffmanTable(@ptrCast(*const IWICJpegFrameEncode, self), scanIndex, tableIndex, pAcHuffmanTable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICJpegFrameEncode_GetDcHuffmanTable(self: *const T, scanIndex: u32, tableIndex: u32, pDcHuffmanTable: ?*DXGI_JPEG_DC_HUFFMAN_TABLE) HRESULT {
+                return @ptrCast(*const IWICJpegFrameEncode.VTable, self.vtable).GetDcHuffmanTable(@ptrCast(*const IWICJpegFrameEncode, self), scanIndex, tableIndex, pDcHuffmanTable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICJpegFrameEncode_GetQuantizationTable(self: *const T, scanIndex: u32, tableIndex: u32, pQuantizationTable: ?*DXGI_JPEG_QUANTIZATION_TABLE) HRESULT {
+                return @ptrCast(*const IWICJpegFrameEncode.VTable, self.vtable).GetQuantizationTable(@ptrCast(*const IWICJpegFrameEncode, self), scanIndex, tableIndex, pQuantizationTable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICJpegFrameEncode_WriteScan(self: *const T, cbScanData: u32, pbScanData: [*:0]const u8) HRESULT {
+                return @ptrCast(*const IWICJpegFrameEncode.VTable, self.vtable).WriteScan(@ptrCast(*const IWICJpegFrameEncode, self), cbScanData, pbScanData);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3664,44 +3746,46 @@ pub const IID_IWICMetadataBlockReader = &IID_IWICMetadataBlockReader_Value;
 pub const IWICMetadataBlockReader = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetContainerFormat: fn(
+        GetContainerFormat: fn (
             self: *const IWICMetadataBlockReader,
             pguidContainerFormat: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCount: fn(
+        GetCount: fn (
             self: *const IWICMetadataBlockReader,
             pcCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetReaderByIndex: fn(
+        GetReaderByIndex: fn (
             self: *const IWICMetadataBlockReader,
             nIndex: u32,
             ppIMetadataReader: ?*?*IWICMetadataReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEnumerator: fn(
+        GetEnumerator: fn (
             self: *const IWICMetadataBlockReader,
             ppIEnumMetadata: ?*?*IEnumUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataBlockReader_GetContainerFormat(self: *const T, pguidContainerFormat: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataBlockReader.VTable, self.vtable).GetContainerFormat(@ptrCast(*const IWICMetadataBlockReader, self), pguidContainerFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataBlockReader_GetCount(self: *const T, pcCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataBlockReader.VTable, self.vtable).GetCount(@ptrCast(*const IWICMetadataBlockReader, self), pcCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataBlockReader_GetReaderByIndex(self: *const T, nIndex: u32, ppIMetadataReader: ?*?*IWICMetadataReader) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataBlockReader.VTable, self.vtable).GetReaderByIndex(@ptrCast(*const IWICMetadataBlockReader, self), nIndex, ppIMetadataReader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataBlockReader_GetEnumerator(self: *const T, ppIEnumMetadata: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataBlockReader.VTable, self.vtable).GetEnumerator(@ptrCast(*const IWICMetadataBlockReader, self), ppIEnumMetadata);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataBlockReader_GetContainerFormat(self: *const T, pguidContainerFormat: ?*Guid) HRESULT {
+                return @ptrCast(*const IWICMetadataBlockReader.VTable, self.vtable).GetContainerFormat(@ptrCast(*const IWICMetadataBlockReader, self), pguidContainerFormat);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataBlockReader_GetCount(self: *const T, pcCount: ?*u32) HRESULT {
+                return @ptrCast(*const IWICMetadataBlockReader.VTable, self.vtable).GetCount(@ptrCast(*const IWICMetadataBlockReader, self), pcCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataBlockReader_GetReaderByIndex(self: *const T, nIndex: u32, ppIMetadataReader: ?*?*IWICMetadataReader) HRESULT {
+                return @ptrCast(*const IWICMetadataBlockReader.VTable, self.vtable).GetReaderByIndex(@ptrCast(*const IWICMetadataBlockReader, self), nIndex, ppIMetadataReader);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataBlockReader_GetEnumerator(self: *const T, ppIEnumMetadata: ?*?*IEnumUnknown) HRESULT {
+                return @ptrCast(*const IWICMetadataBlockReader.VTable, self.vtable).GetEnumerator(@ptrCast(*const IWICMetadataBlockReader, self), ppIEnumMetadata);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3711,53 +3795,55 @@ pub const IID_IWICMetadataBlockWriter = &IID_IWICMetadataBlockWriter_Value;
 pub const IWICMetadataBlockWriter = extern struct {
     pub const VTable = extern struct {
         base: IWICMetadataBlockReader.VTable,
-        InitializeFromBlockReader: fn(
+        InitializeFromBlockReader: fn (
             self: *const IWICMetadataBlockWriter,
             pIMDBlockReader: ?*IWICMetadataBlockReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetWriterByIndex: fn(
+        GetWriterByIndex: fn (
             self: *const IWICMetadataBlockWriter,
             nIndex: u32,
             ppIMetadataWriter: ?*?*IWICMetadataWriter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddWriter: fn(
+        AddWriter: fn (
             self: *const IWICMetadataBlockWriter,
             pIMetadataWriter: ?*IWICMetadataWriter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetWriterByIndex: fn(
+        SetWriterByIndex: fn (
             self: *const IWICMetadataBlockWriter,
             nIndex: u32,
             pIMetadataWriter: ?*IWICMetadataWriter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveWriterByIndex: fn(
+        RemoveWriterByIndex: fn (
             self: *const IWICMetadataBlockWriter,
             nIndex: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICMetadataBlockReader.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataBlockWriter_InitializeFromBlockReader(self: *const T, pIMDBlockReader: ?*IWICMetadataBlockReader) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataBlockWriter.VTable, self.vtable).InitializeFromBlockReader(@ptrCast(*const IWICMetadataBlockWriter, self), pIMDBlockReader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataBlockWriter_GetWriterByIndex(self: *const T, nIndex: u32, ppIMetadataWriter: ?*?*IWICMetadataWriter) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataBlockWriter.VTable, self.vtable).GetWriterByIndex(@ptrCast(*const IWICMetadataBlockWriter, self), nIndex, ppIMetadataWriter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataBlockWriter_AddWriter(self: *const T, pIMetadataWriter: ?*IWICMetadataWriter) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataBlockWriter.VTable, self.vtable).AddWriter(@ptrCast(*const IWICMetadataBlockWriter, self), pIMetadataWriter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataBlockWriter_SetWriterByIndex(self: *const T, nIndex: u32, pIMetadataWriter: ?*IWICMetadataWriter) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataBlockWriter.VTable, self.vtable).SetWriterByIndex(@ptrCast(*const IWICMetadataBlockWriter, self), nIndex, pIMetadataWriter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataBlockWriter_RemoveWriterByIndex(self: *const T, nIndex: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataBlockWriter.VTable, self.vtable).RemoveWriterByIndex(@ptrCast(*const IWICMetadataBlockWriter, self), nIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICMetadataBlockReader.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataBlockWriter_InitializeFromBlockReader(self: *const T, pIMDBlockReader: ?*IWICMetadataBlockReader) HRESULT {
+                return @ptrCast(*const IWICMetadataBlockWriter.VTable, self.vtable).InitializeFromBlockReader(@ptrCast(*const IWICMetadataBlockWriter, self), pIMDBlockReader);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataBlockWriter_GetWriterByIndex(self: *const T, nIndex: u32, ppIMetadataWriter: ?*?*IWICMetadataWriter) HRESULT {
+                return @ptrCast(*const IWICMetadataBlockWriter.VTable, self.vtable).GetWriterByIndex(@ptrCast(*const IWICMetadataBlockWriter, self), nIndex, ppIMetadataWriter);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataBlockWriter_AddWriter(self: *const T, pIMetadataWriter: ?*IWICMetadataWriter) HRESULT {
+                return @ptrCast(*const IWICMetadataBlockWriter.VTable, self.vtable).AddWriter(@ptrCast(*const IWICMetadataBlockWriter, self), pIMetadataWriter);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataBlockWriter_SetWriterByIndex(self: *const T, nIndex: u32, pIMetadataWriter: ?*IWICMetadataWriter) HRESULT {
+                return @ptrCast(*const IWICMetadataBlockWriter.VTable, self.vtable).SetWriterByIndex(@ptrCast(*const IWICMetadataBlockWriter, self), nIndex, pIMetadataWriter);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataBlockWriter_RemoveWriterByIndex(self: *const T, nIndex: u32) HRESULT {
+                return @ptrCast(*const IWICMetadataBlockWriter.VTable, self.vtable).RemoveWriterByIndex(@ptrCast(*const IWICMetadataBlockWriter, self), nIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3767,64 +3853,66 @@ pub const IID_IWICMetadataReader = &IID_IWICMetadataReader_Value;
 pub const IWICMetadataReader = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetMetadataFormat: fn(
+        GetMetadataFormat: fn (
             self: *const IWICMetadataReader,
             pguidMetadataFormat: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMetadataHandlerInfo: fn(
+        GetMetadataHandlerInfo: fn (
             self: *const IWICMetadataReader,
             ppIHandler: ?*?*IWICMetadataHandlerInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCount: fn(
+        GetCount: fn (
             self: *const IWICMetadataReader,
             pcCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetValueByIndex: fn(
+        GetValueByIndex: fn (
             self: *const IWICMetadataReader,
             nIndex: u32,
             pvarSchema: ?*PROPVARIANT,
             pvarId: ?*PROPVARIANT,
             pvarValue: ?*PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetValue: fn(
+        GetValue: fn (
             self: *const IWICMetadataReader,
             pvarSchema: ?*const PROPVARIANT,
             pvarId: ?*const PROPVARIANT,
             pvarValue: ?*PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEnumerator: fn(
+        GetEnumerator: fn (
             self: *const IWICMetadataReader,
             ppIEnumMetadata: ?*?*IWICEnumMetadataItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataReader_GetMetadataFormat(self: *const T, pguidMetadataFormat: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataReader.VTable, self.vtable).GetMetadataFormat(@ptrCast(*const IWICMetadataReader, self), pguidMetadataFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataReader_GetMetadataHandlerInfo(self: *const T, ppIHandler: ?*?*IWICMetadataHandlerInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataReader.VTable, self.vtable).GetMetadataHandlerInfo(@ptrCast(*const IWICMetadataReader, self), ppIHandler);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataReader_GetCount(self: *const T, pcCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataReader.VTable, self.vtable).GetCount(@ptrCast(*const IWICMetadataReader, self), pcCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataReader_GetValueByIndex(self: *const T, nIndex: u32, pvarSchema: ?*PROPVARIANT, pvarId: ?*PROPVARIANT, pvarValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataReader.VTable, self.vtable).GetValueByIndex(@ptrCast(*const IWICMetadataReader, self), nIndex, pvarSchema, pvarId, pvarValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataReader_GetValue(self: *const T, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT, pvarValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataReader.VTable, self.vtable).GetValue(@ptrCast(*const IWICMetadataReader, self), pvarSchema, pvarId, pvarValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataReader_GetEnumerator(self: *const T, ppIEnumMetadata: ?*?*IWICEnumMetadataItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataReader.VTable, self.vtable).GetEnumerator(@ptrCast(*const IWICMetadataReader, self), ppIEnumMetadata);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataReader_GetMetadataFormat(self: *const T, pguidMetadataFormat: ?*Guid) HRESULT {
+                return @ptrCast(*const IWICMetadataReader.VTable, self.vtable).GetMetadataFormat(@ptrCast(*const IWICMetadataReader, self), pguidMetadataFormat);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataReader_GetMetadataHandlerInfo(self: *const T, ppIHandler: ?*?*IWICMetadataHandlerInfo) HRESULT {
+                return @ptrCast(*const IWICMetadataReader.VTable, self.vtable).GetMetadataHandlerInfo(@ptrCast(*const IWICMetadataReader, self), ppIHandler);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataReader_GetCount(self: *const T, pcCount: ?*u32) HRESULT {
+                return @ptrCast(*const IWICMetadataReader.VTable, self.vtable).GetCount(@ptrCast(*const IWICMetadataReader, self), pcCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataReader_GetValueByIndex(self: *const T, nIndex: u32, pvarSchema: ?*PROPVARIANT, pvarId: ?*PROPVARIANT, pvarValue: ?*PROPVARIANT) HRESULT {
+                return @ptrCast(*const IWICMetadataReader.VTable, self.vtable).GetValueByIndex(@ptrCast(*const IWICMetadataReader, self), nIndex, pvarSchema, pvarId, pvarValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataReader_GetValue(self: *const T, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT, pvarValue: ?*PROPVARIANT) HRESULT {
+                return @ptrCast(*const IWICMetadataReader.VTable, self.vtable).GetValue(@ptrCast(*const IWICMetadataReader, self), pvarSchema, pvarId, pvarValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataReader_GetEnumerator(self: *const T, ppIEnumMetadata: ?*?*IWICEnumMetadataItem) HRESULT {
+                return @ptrCast(*const IWICMetadataReader.VTable, self.vtable).GetEnumerator(@ptrCast(*const IWICMetadataReader, self), ppIEnumMetadata);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3834,49 +3922,51 @@ pub const IID_IWICMetadataWriter = &IID_IWICMetadataWriter_Value;
 pub const IWICMetadataWriter = extern struct {
     pub const VTable = extern struct {
         base: IWICMetadataReader.VTable,
-        SetValue: fn(
+        SetValue: fn (
             self: *const IWICMetadataWriter,
             pvarSchema: ?*const PROPVARIANT,
             pvarId: ?*const PROPVARIANT,
             pvarValue: ?*const PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetValueByIndex: fn(
+        SetValueByIndex: fn (
             self: *const IWICMetadataWriter,
             nIndex: u32,
             pvarSchema: ?*const PROPVARIANT,
             pvarId: ?*const PROPVARIANT,
             pvarValue: ?*const PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveValue: fn(
+        RemoveValue: fn (
             self: *const IWICMetadataWriter,
             pvarSchema: ?*const PROPVARIANT,
             pvarId: ?*const PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveValueByIndex: fn(
+        RemoveValueByIndex: fn (
             self: *const IWICMetadataWriter,
             nIndex: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICMetadataReader.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataWriter_SetValue(self: *const T, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT, pvarValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataWriter.VTable, self.vtable).SetValue(@ptrCast(*const IWICMetadataWriter, self), pvarSchema, pvarId, pvarValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataWriter_SetValueByIndex(self: *const T, nIndex: u32, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT, pvarValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataWriter.VTable, self.vtable).SetValueByIndex(@ptrCast(*const IWICMetadataWriter, self), nIndex, pvarSchema, pvarId, pvarValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataWriter_RemoveValue(self: *const T, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataWriter.VTable, self.vtable).RemoveValue(@ptrCast(*const IWICMetadataWriter, self), pvarSchema, pvarId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataWriter_RemoveValueByIndex(self: *const T, nIndex: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataWriter.VTable, self.vtable).RemoveValueByIndex(@ptrCast(*const IWICMetadataWriter, self), nIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICMetadataReader.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataWriter_SetValue(self: *const T, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT, pvarValue: ?*const PROPVARIANT) HRESULT {
+                return @ptrCast(*const IWICMetadataWriter.VTable, self.vtable).SetValue(@ptrCast(*const IWICMetadataWriter, self), pvarSchema, pvarId, pvarValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataWriter_SetValueByIndex(self: *const T, nIndex: u32, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT, pvarValue: ?*const PROPVARIANT) HRESULT {
+                return @ptrCast(*const IWICMetadataWriter.VTable, self.vtable).SetValueByIndex(@ptrCast(*const IWICMetadataWriter, self), nIndex, pvarSchema, pvarId, pvarValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataWriter_RemoveValue(self: *const T, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT) HRESULT {
+                return @ptrCast(*const IWICMetadataWriter.VTable, self.vtable).RemoveValue(@ptrCast(*const IWICMetadataWriter, self), pvarSchema, pvarId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataWriter_RemoveValueByIndex(self: *const T, nIndex: u32) HRESULT {
+                return @ptrCast(*const IWICMetadataWriter.VTable, self.vtable).RemoveValueByIndex(@ptrCast(*const IWICMetadataWriter, self), nIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3886,42 +3976,44 @@ pub const IID_IWICStreamProvider = &IID_IWICStreamProvider_Value;
 pub const IWICStreamProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetStream: fn(
+        GetStream: fn (
             self: *const IWICStreamProvider,
             ppIStream: ?*?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPersistOptions: fn(
+        GetPersistOptions: fn (
             self: *const IWICStreamProvider,
             pdwPersistOptions: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPreferredVendorGUID: fn(
+        GetPreferredVendorGUID: fn (
             self: *const IWICStreamProvider,
             pguidPreferredVendor: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RefreshStream: fn(
+        RefreshStream: fn (
             self: *const IWICStreamProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICStreamProvider_GetStream(self: *const T, ppIStream: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICStreamProvider.VTable, self.vtable).GetStream(@ptrCast(*const IWICStreamProvider, self), ppIStream);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICStreamProvider_GetPersistOptions(self: *const T, pdwPersistOptions: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICStreamProvider.VTable, self.vtable).GetPersistOptions(@ptrCast(*const IWICStreamProvider, self), pdwPersistOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICStreamProvider_GetPreferredVendorGUID(self: *const T, pguidPreferredVendor: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICStreamProvider.VTable, self.vtable).GetPreferredVendorGUID(@ptrCast(*const IWICStreamProvider, self), pguidPreferredVendor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICStreamProvider_RefreshStream(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICStreamProvider.VTable, self.vtable).RefreshStream(@ptrCast(*const IWICStreamProvider, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICStreamProvider_GetStream(self: *const T, ppIStream: ?*?*IStream) HRESULT {
+                return @ptrCast(*const IWICStreamProvider.VTable, self.vtable).GetStream(@ptrCast(*const IWICStreamProvider, self), ppIStream);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICStreamProvider_GetPersistOptions(self: *const T, pdwPersistOptions: ?*u32) HRESULT {
+                return @ptrCast(*const IWICStreamProvider.VTable, self.vtable).GetPersistOptions(@ptrCast(*const IWICStreamProvider, self), pdwPersistOptions);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICStreamProvider_GetPreferredVendorGUID(self: *const T, pguidPreferredVendor: ?*Guid) HRESULT {
+                return @ptrCast(*const IWICStreamProvider.VTable, self.vtable).GetPreferredVendorGUID(@ptrCast(*const IWICStreamProvider, self), pguidPreferredVendor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICStreamProvider_RefreshStream(self: *const T) HRESULT {
+                return @ptrCast(*const IWICStreamProvider.VTable, self.vtable).RefreshStream(@ptrCast(*const IWICStreamProvider, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3931,13 +4023,13 @@ pub const IID_IWICPersistStream = &IID_IWICPersistStream_Value;
 pub const IWICPersistStream = extern struct {
     pub const VTable = extern struct {
         base: IPersistStream.VTable,
-        LoadEx: fn(
+        LoadEx: fn (
             self: *const IWICPersistStream,
             pIStream: ?*IStream,
             pguidPreferredVendor: ?*const Guid,
             dwPersistOptions: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SaveEx: fn(
+        SaveEx: fn (
             self: *const IWICPersistStream,
             pIStream: ?*IStream,
             dwPersistOptions: u32,
@@ -3945,17 +4037,19 @@ pub const IWICPersistStream = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPersistStream.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPersistStream_LoadEx(self: *const T, pIStream: ?*IStream, pguidPreferredVendor: ?*const Guid, dwPersistOptions: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPersistStream.VTable, self.vtable).LoadEx(@ptrCast(*const IWICPersistStream, self), pIStream, pguidPreferredVendor, dwPersistOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICPersistStream_SaveEx(self: *const T, pIStream: ?*IStream, dwPersistOptions: u32, fClearDirty: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICPersistStream.VTable, self.vtable).SaveEx(@ptrCast(*const IWICPersistStream, self), pIStream, dwPersistOptions, fClearDirty);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPersistStream.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPersistStream_LoadEx(self: *const T, pIStream: ?*IStream, pguidPreferredVendor: ?*const Guid, dwPersistOptions: u32) HRESULT {
+                return @ptrCast(*const IWICPersistStream.VTable, self.vtable).LoadEx(@ptrCast(*const IWICPersistStream, self), pIStream, pguidPreferredVendor, dwPersistOptions);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICPersistStream_SaveEx(self: *const T, pIStream: ?*IStream, dwPersistOptions: u32, fClearDirty: BOOL) HRESULT {
+                return @ptrCast(*const IWICPersistStream.VTable, self.vtable).SaveEx(@ptrCast(*const IWICPersistStream, self), pIStream, dwPersistOptions, fClearDirty);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3965,73 +4059,75 @@ pub const IID_IWICMetadataHandlerInfo = &IID_IWICMetadataHandlerInfo_Value;
 pub const IWICMetadataHandlerInfo = extern struct {
     pub const VTable = extern struct {
         base: IWICComponentInfo.VTable,
-        GetMetadataFormat: fn(
+        GetMetadataFormat: fn (
             self: *const IWICMetadataHandlerInfo,
             pguidMetadataFormat: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetContainerFormats: fn(
+        GetContainerFormats: fn (
             self: *const IWICMetadataHandlerInfo,
             cContainerFormats: u32,
             pguidContainerFormats: [*]Guid,
             pcchActual: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeviceManufacturer: fn(
+        GetDeviceManufacturer: fn (
             self: *const IWICMetadataHandlerInfo,
             cchDeviceManufacturer: u32,
             wzDeviceManufacturer: [*:0]u16,
             pcchActual: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeviceModels: fn(
+        GetDeviceModels: fn (
             self: *const IWICMetadataHandlerInfo,
             cchDeviceModels: u32,
             wzDeviceModels: [*:0]u16,
             pcchActual: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DoesRequireFullStream: fn(
+        DoesRequireFullStream: fn (
             self: *const IWICMetadataHandlerInfo,
             pfRequiresFullStream: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DoesSupportPadding: fn(
+        DoesSupportPadding: fn (
             self: *const IWICMetadataHandlerInfo,
             pfSupportsPadding: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DoesRequireFixedSize: fn(
+        DoesRequireFixedSize: fn (
             self: *const IWICMetadataHandlerInfo,
             pfFixedSize: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICComponentInfo.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataHandlerInfo_GetMetadataFormat(self: *const T, pguidMetadataFormat: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataHandlerInfo.VTable, self.vtable).GetMetadataFormat(@ptrCast(*const IWICMetadataHandlerInfo, self), pguidMetadataFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataHandlerInfo_GetContainerFormats(self: *const T, cContainerFormats: u32, pguidContainerFormats: [*]Guid, pcchActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataHandlerInfo.VTable, self.vtable).GetContainerFormats(@ptrCast(*const IWICMetadataHandlerInfo, self), cContainerFormats, pguidContainerFormats, pcchActual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataHandlerInfo_GetDeviceManufacturer(self: *const T, cchDeviceManufacturer: u32, wzDeviceManufacturer: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataHandlerInfo.VTable, self.vtable).GetDeviceManufacturer(@ptrCast(*const IWICMetadataHandlerInfo, self), cchDeviceManufacturer, wzDeviceManufacturer, pcchActual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataHandlerInfo_GetDeviceModels(self: *const T, cchDeviceModels: u32, wzDeviceModels: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataHandlerInfo.VTable, self.vtable).GetDeviceModels(@ptrCast(*const IWICMetadataHandlerInfo, self), cchDeviceModels, wzDeviceModels, pcchActual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataHandlerInfo_DoesRequireFullStream(self: *const T, pfRequiresFullStream: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataHandlerInfo.VTable, self.vtable).DoesRequireFullStream(@ptrCast(*const IWICMetadataHandlerInfo, self), pfRequiresFullStream);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataHandlerInfo_DoesSupportPadding(self: *const T, pfSupportsPadding: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataHandlerInfo.VTable, self.vtable).DoesSupportPadding(@ptrCast(*const IWICMetadataHandlerInfo, self), pfSupportsPadding);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataHandlerInfo_DoesRequireFixedSize(self: *const T, pfFixedSize: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataHandlerInfo.VTable, self.vtable).DoesRequireFixedSize(@ptrCast(*const IWICMetadataHandlerInfo, self), pfFixedSize);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICComponentInfo.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataHandlerInfo_GetMetadataFormat(self: *const T, pguidMetadataFormat: ?*Guid) HRESULT {
+                return @ptrCast(*const IWICMetadataHandlerInfo.VTable, self.vtable).GetMetadataFormat(@ptrCast(*const IWICMetadataHandlerInfo, self), pguidMetadataFormat);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataHandlerInfo_GetContainerFormats(self: *const T, cContainerFormats: u32, pguidContainerFormats: [*]Guid, pcchActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICMetadataHandlerInfo.VTable, self.vtable).GetContainerFormats(@ptrCast(*const IWICMetadataHandlerInfo, self), cContainerFormats, pguidContainerFormats, pcchActual);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataHandlerInfo_GetDeviceManufacturer(self: *const T, cchDeviceManufacturer: u32, wzDeviceManufacturer: [*:0]u16, pcchActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICMetadataHandlerInfo.VTable, self.vtable).GetDeviceManufacturer(@ptrCast(*const IWICMetadataHandlerInfo, self), cchDeviceManufacturer, wzDeviceManufacturer, pcchActual);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataHandlerInfo_GetDeviceModels(self: *const T, cchDeviceModels: u32, wzDeviceModels: [*:0]u16, pcchActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICMetadataHandlerInfo.VTable, self.vtable).GetDeviceModels(@ptrCast(*const IWICMetadataHandlerInfo, self), cchDeviceModels, wzDeviceModels, pcchActual);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataHandlerInfo_DoesRequireFullStream(self: *const T, pfRequiresFullStream: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWICMetadataHandlerInfo.VTable, self.vtable).DoesRequireFullStream(@ptrCast(*const IWICMetadataHandlerInfo, self), pfRequiresFullStream);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataHandlerInfo_DoesSupportPadding(self: *const T, pfSupportsPadding: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWICMetadataHandlerInfo.VTable, self.vtable).DoesSupportPadding(@ptrCast(*const IWICMetadataHandlerInfo, self), pfSupportsPadding);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataHandlerInfo_DoesRequireFixedSize(self: *const T, pfFixedSize: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWICMetadataHandlerInfo.VTable, self.vtable).DoesRequireFixedSize(@ptrCast(*const IWICMetadataHandlerInfo, self), pfFixedSize);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4049,7 +4145,7 @@ pub const IID_IWICMetadataReaderInfo = &IID_IWICMetadataReaderInfo_Value;
 pub const IWICMetadataReaderInfo = extern struct {
     pub const VTable = extern struct {
         base: IWICMetadataHandlerInfo.VTable,
-        GetPatterns: fn(
+        GetPatterns: fn (
             self: *const IWICMetadataReaderInfo,
             guidContainerFormat: ?*const Guid,
             cbSize: u32,
@@ -4058,33 +4154,35 @@ pub const IWICMetadataReaderInfo = extern struct {
             pcCount: ?*u32,
             pcbActual: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MatchesPattern: fn(
+        MatchesPattern: fn (
             self: *const IWICMetadataReaderInfo,
             guidContainerFormat: ?*const Guid,
             pIStream: ?*IStream,
             pfMatches: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateInstance: fn(
+        CreateInstance: fn (
             self: *const IWICMetadataReaderInfo,
             ppIReader: ?*?*IWICMetadataReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICMetadataHandlerInfo.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataReaderInfo_GetPatterns(self: *const T, guidContainerFormat: ?*const Guid, cbSize: u32, pPattern: ?*WICMetadataPattern, pcCount: ?*u32, pcbActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataReaderInfo.VTable, self.vtable).GetPatterns(@ptrCast(*const IWICMetadataReaderInfo, self), guidContainerFormat, cbSize, pPattern, pcCount, pcbActual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataReaderInfo_MatchesPattern(self: *const T, guidContainerFormat: ?*const Guid, pIStream: ?*IStream, pfMatches: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataReaderInfo.VTable, self.vtable).MatchesPattern(@ptrCast(*const IWICMetadataReaderInfo, self), guidContainerFormat, pIStream, pfMatches);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataReaderInfo_CreateInstance(self: *const T, ppIReader: ?*?*IWICMetadataReader) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataReaderInfo.VTable, self.vtable).CreateInstance(@ptrCast(*const IWICMetadataReaderInfo, self), ppIReader);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICMetadataHandlerInfo.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataReaderInfo_GetPatterns(self: *const T, guidContainerFormat: ?*const Guid, cbSize: u32, pPattern: ?*WICMetadataPattern, pcCount: ?*u32, pcbActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICMetadataReaderInfo.VTable, self.vtable).GetPatterns(@ptrCast(*const IWICMetadataReaderInfo, self), guidContainerFormat, cbSize, pPattern, pcCount, pcbActual);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataReaderInfo_MatchesPattern(self: *const T, guidContainerFormat: ?*const Guid, pIStream: ?*IStream, pfMatches: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWICMetadataReaderInfo.VTable, self.vtable).MatchesPattern(@ptrCast(*const IWICMetadataReaderInfo, self), guidContainerFormat, pIStream, pfMatches);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataReaderInfo_CreateInstance(self: *const T, ppIReader: ?*?*IWICMetadataReader) HRESULT {
+                return @ptrCast(*const IWICMetadataReaderInfo.VTable, self.vtable).CreateInstance(@ptrCast(*const IWICMetadataReaderInfo, self), ppIReader);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4101,7 +4199,7 @@ pub const IID_IWICMetadataWriterInfo = &IID_IWICMetadataWriterInfo_Value;
 pub const IWICMetadataWriterInfo = extern struct {
     pub const VTable = extern struct {
         base: IWICMetadataHandlerInfo.VTable,
-        GetHeader: fn(
+        GetHeader: fn (
             self: *const IWICMetadataWriterInfo,
             guidContainerFormat: ?*const Guid,
             cbSize: u32,
@@ -4109,23 +4207,25 @@ pub const IWICMetadataWriterInfo = extern struct {
             pHeader: ?*WICMetadataHeader,
             pcbActual: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateInstance: fn(
+        CreateInstance: fn (
             self: *const IWICMetadataWriterInfo,
             ppIWriter: ?*?*IWICMetadataWriter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICMetadataHandlerInfo.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataWriterInfo_GetHeader(self: *const T, guidContainerFormat: ?*const Guid, cbSize: u32, pHeader: ?*WICMetadataHeader, pcbActual: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataWriterInfo.VTable, self.vtable).GetHeader(@ptrCast(*const IWICMetadataWriterInfo, self), guidContainerFormat, cbSize, pHeader, pcbActual);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICMetadataWriterInfo_CreateInstance(self: *const T, ppIWriter: ?*?*IWICMetadataWriter) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICMetadataWriterInfo.VTable, self.vtable).CreateInstance(@ptrCast(*const IWICMetadataWriterInfo, self), ppIWriter);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICMetadataHandlerInfo.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataWriterInfo_GetHeader(self: *const T, guidContainerFormat: ?*const Guid, cbSize: u32, pHeader: ?*WICMetadataHeader, pcbActual: ?*u32) HRESULT {
+                return @ptrCast(*const IWICMetadataWriterInfo.VTable, self.vtable).GetHeader(@ptrCast(*const IWICMetadataWriterInfo, self), guidContainerFormat, cbSize, pHeader, pcbActual);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICMetadataWriterInfo_CreateInstance(self: *const T, ppIWriter: ?*?*IWICMetadataWriter) HRESULT {
+                return @ptrCast(*const IWICMetadataWriterInfo.VTable, self.vtable).CreateInstance(@ptrCast(*const IWICMetadataWriterInfo, self), ppIWriter);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4135,7 +4235,7 @@ pub const IID_IWICComponentFactory = &IID_IWICComponentFactory_Value;
 pub const IWICComponentFactory = extern struct {
     pub const VTable = extern struct {
         base: IWICImagingFactory.VTable,
-        CreateMetadataReader: fn(
+        CreateMetadataReader: fn (
             self: *const IWICComponentFactory,
             guidMetadataFormat: ?*const Guid,
             pguidVendor: ?*const Guid,
@@ -4143,7 +4243,7 @@ pub const IWICComponentFactory = extern struct {
             pIStream: ?*IStream,
             ppIReader: ?*?*IWICMetadataReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateMetadataReaderFromContainer: fn(
+        CreateMetadataReaderFromContainer: fn (
             self: *const IWICComponentFactory,
             guidContainerFormat: ?*const Guid,
             pguidVendor: ?*const Guid,
@@ -4151,30 +4251,30 @@ pub const IWICComponentFactory = extern struct {
             pIStream: ?*IStream,
             ppIReader: ?*?*IWICMetadataReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateMetadataWriter: fn(
+        CreateMetadataWriter: fn (
             self: *const IWICComponentFactory,
             guidMetadataFormat: ?*const Guid,
             pguidVendor: ?*const Guid,
             dwMetadataOptions: u32,
             ppIWriter: ?*?*IWICMetadataWriter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateMetadataWriterFromReader: fn(
+        CreateMetadataWriterFromReader: fn (
             self: *const IWICComponentFactory,
             pIReader: ?*IWICMetadataReader,
             pguidVendor: ?*const Guid,
             ppIWriter: ?*?*IWICMetadataWriter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateQueryReaderFromBlockReader: fn(
+        CreateQueryReaderFromBlockReader: fn (
             self: *const IWICComponentFactory,
             pIBlockReader: ?*IWICMetadataBlockReader,
             ppIQueryReader: ?*?*IWICMetadataQueryReader,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateQueryWriterFromBlockWriter: fn(
+        CreateQueryWriterFromBlockWriter: fn (
             self: *const IWICComponentFactory,
             pIBlockWriter: ?*IWICMetadataBlockWriter,
             ppIQueryWriter: ?*?*IWICMetadataQueryWriter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateEncoderPropertyBag: fn(
+        CreateEncoderPropertyBag: fn (
             self: *const IWICComponentFactory,
             ppropOptions: [*]PROPBAG2,
             cCount: u32,
@@ -4182,40 +4282,41 @@ pub const IWICComponentFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICImagingFactory.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICComponentFactory_CreateMetadataReader(self: *const T, guidMetadataFormat: ?*const Guid, pguidVendor: ?*const Guid, dwOptions: u32, pIStream: ?*IStream, ppIReader: ?*?*IWICMetadataReader) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICComponentFactory.VTable, self.vtable).CreateMetadataReader(@ptrCast(*const IWICComponentFactory, self), guidMetadataFormat, pguidVendor, dwOptions, pIStream, ppIReader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICComponentFactory_CreateMetadataReaderFromContainer(self: *const T, guidContainerFormat: ?*const Guid, pguidVendor: ?*const Guid, dwOptions: u32, pIStream: ?*IStream, ppIReader: ?*?*IWICMetadataReader) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICComponentFactory.VTable, self.vtable).CreateMetadataReaderFromContainer(@ptrCast(*const IWICComponentFactory, self), guidContainerFormat, pguidVendor, dwOptions, pIStream, ppIReader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICComponentFactory_CreateMetadataWriter(self: *const T, guidMetadataFormat: ?*const Guid, pguidVendor: ?*const Guid, dwMetadataOptions: u32, ppIWriter: ?*?*IWICMetadataWriter) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICComponentFactory.VTable, self.vtable).CreateMetadataWriter(@ptrCast(*const IWICComponentFactory, self), guidMetadataFormat, pguidVendor, dwMetadataOptions, ppIWriter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICComponentFactory_CreateMetadataWriterFromReader(self: *const T, pIReader: ?*IWICMetadataReader, pguidVendor: ?*const Guid, ppIWriter: ?*?*IWICMetadataWriter) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICComponentFactory.VTable, self.vtable).CreateMetadataWriterFromReader(@ptrCast(*const IWICComponentFactory, self), pIReader, pguidVendor, ppIWriter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICComponentFactory_CreateQueryReaderFromBlockReader(self: *const T, pIBlockReader: ?*IWICMetadataBlockReader, ppIQueryReader: ?*?*IWICMetadataQueryReader) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICComponentFactory.VTable, self.vtable).CreateQueryReaderFromBlockReader(@ptrCast(*const IWICComponentFactory, self), pIBlockReader, ppIQueryReader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICComponentFactory_CreateQueryWriterFromBlockWriter(self: *const T, pIBlockWriter: ?*IWICMetadataBlockWriter, ppIQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICComponentFactory.VTable, self.vtable).CreateQueryWriterFromBlockWriter(@ptrCast(*const IWICComponentFactory, self), pIBlockWriter, ppIQueryWriter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICComponentFactory_CreateEncoderPropertyBag(self: *const T, ppropOptions: [*]PROPBAG2, cCount: u32, ppIPropertyBag: ?*?*IPropertyBag2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICComponentFactory.VTable, self.vtable).CreateEncoderPropertyBag(@ptrCast(*const IWICComponentFactory, self), ppropOptions, cCount, ppIPropertyBag);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICImagingFactory.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICComponentFactory_CreateMetadataReader(self: *const T, guidMetadataFormat: ?*const Guid, pguidVendor: ?*const Guid, dwOptions: u32, pIStream: ?*IStream, ppIReader: ?*?*IWICMetadataReader) HRESULT {
+                return @ptrCast(*const IWICComponentFactory.VTable, self.vtable).CreateMetadataReader(@ptrCast(*const IWICComponentFactory, self), guidMetadataFormat, pguidVendor, dwOptions, pIStream, ppIReader);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICComponentFactory_CreateMetadataReaderFromContainer(self: *const T, guidContainerFormat: ?*const Guid, pguidVendor: ?*const Guid, dwOptions: u32, pIStream: ?*IStream, ppIReader: ?*?*IWICMetadataReader) HRESULT {
+                return @ptrCast(*const IWICComponentFactory.VTable, self.vtable).CreateMetadataReaderFromContainer(@ptrCast(*const IWICComponentFactory, self), guidContainerFormat, pguidVendor, dwOptions, pIStream, ppIReader);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICComponentFactory_CreateMetadataWriter(self: *const T, guidMetadataFormat: ?*const Guid, pguidVendor: ?*const Guid, dwMetadataOptions: u32, ppIWriter: ?*?*IWICMetadataWriter) HRESULT {
+                return @ptrCast(*const IWICComponentFactory.VTable, self.vtable).CreateMetadataWriter(@ptrCast(*const IWICComponentFactory, self), guidMetadataFormat, pguidVendor, dwMetadataOptions, ppIWriter);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICComponentFactory_CreateMetadataWriterFromReader(self: *const T, pIReader: ?*IWICMetadataReader, pguidVendor: ?*const Guid, ppIWriter: ?*?*IWICMetadataWriter) HRESULT {
+                return @ptrCast(*const IWICComponentFactory.VTable, self.vtable).CreateMetadataWriterFromReader(@ptrCast(*const IWICComponentFactory, self), pIReader, pguidVendor, ppIWriter);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICComponentFactory_CreateQueryReaderFromBlockReader(self: *const T, pIBlockReader: ?*IWICMetadataBlockReader, ppIQueryReader: ?*?*IWICMetadataQueryReader) HRESULT {
+                return @ptrCast(*const IWICComponentFactory.VTable, self.vtable).CreateQueryReaderFromBlockReader(@ptrCast(*const IWICComponentFactory, self), pIBlockReader, ppIQueryReader);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICComponentFactory_CreateQueryWriterFromBlockWriter(self: *const T, pIBlockWriter: ?*IWICMetadataBlockWriter, ppIQueryWriter: ?*?*IWICMetadataQueryWriter) HRESULT {
+                return @ptrCast(*const IWICComponentFactory.VTable, self.vtable).CreateQueryWriterFromBlockWriter(@ptrCast(*const IWICComponentFactory, self), pIBlockWriter, ppIQueryWriter);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICComponentFactory_CreateEncoderPropertyBag(self: *const T, ppropOptions: [*]PROPBAG2, cCount: u32, ppIPropertyBag: ?*?*IPropertyBag2) HRESULT {
+                return @ptrCast(*const IWICComponentFactory.VTable, self.vtable).CreateEncoderPropertyBag(@ptrCast(*const IWICComponentFactory, self), ppropOptions, cCount, ppIPropertyBag);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (9)
@@ -4296,19 +4397,14 @@ pub extern "windowscodecs" fn WICGetMetadataContentSize(
     pcbSize: ?*ULARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (22)
@@ -4338,11 +4434,11 @@ const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFNProgressNotification")) { _ = PFNProgressNotification; }
+    if (@hasDecl(@This(), "PFNProgressNotification")) {
+        _ = PFNProgressNotification;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

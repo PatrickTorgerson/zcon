@@ -561,29 +561,31 @@ pub const IID_ID3DBlob = &IID_ID3DBlob_Value;
 pub const ID3DBlob = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetBufferPointer: fn(
+        GetBufferPointer: fn (
             self: *const ID3DBlob,
         ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-        GetBufferSize: fn(
+        GetBufferSize: fn (
             self: *const ID3DBlob,
         ) callconv(@import("std").os.windows.WINAPI) usize,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3DBlob_GetBufferPointer(self: *const T) callconv(.Inline) ?*anyopaque {
-            return @ptrCast(*const ID3DBlob.VTable, self.vtable).GetBufferPointer(@ptrCast(*const ID3DBlob, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3DBlob_GetBufferSize(self: *const T) callconv(.Inline) usize {
-            return @ptrCast(*const ID3DBlob.VTable, self.vtable).GetBufferSize(@ptrCast(*const ID3DBlob, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ID3DBlob_GetBufferPointer(self: *const T) ?*anyopaque {
+                return @ptrCast(*const ID3DBlob.VTable, self.vtable).GetBufferPointer(@ptrCast(*const ID3DBlob, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ID3DBlob_GetBufferSize(self: *const T) usize {
+                return @ptrCast(*const ID3DBlob.VTable, self.vtable).GetBufferSize(@ptrCast(*const ID3DBlob, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PFN_DESTRUCTION_CALLBACK = fn(
+pub const PFN_DESTRUCTION_CALLBACK = fn (
     pData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -593,29 +595,31 @@ pub const IID_ID3DDestructionNotifier = &IID_ID3DDestructionNotifier_Value;
 pub const ID3DDestructionNotifier = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RegisterDestructionCallback: fn(
+        RegisterDestructionCallback: fn (
             self: *const ID3DDestructionNotifier,
             callbackFn: ?PFN_DESTRUCTION_CALLBACK,
             pData: ?*anyopaque,
             pCallbackID: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnregisterDestructionCallback: fn(
+        UnregisterDestructionCallback: fn (
             self: *const ID3DDestructionNotifier,
             callbackID: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3DDestructionNotifier_RegisterDestructionCallback(self: *const T, callbackFn: ?PFN_DESTRUCTION_CALLBACK, pData: ?*anyopaque, pCallbackID: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3DDestructionNotifier.VTable, self.vtable).RegisterDestructionCallback(@ptrCast(*const ID3DDestructionNotifier, self), callbackFn, pData, pCallbackID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3DDestructionNotifier_UnregisterDestructionCallback(self: *const T, callbackID: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3DDestructionNotifier.VTable, self.vtable).UnregisterDestructionCallback(@ptrCast(*const ID3DDestructionNotifier, self), callbackID);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ID3DDestructionNotifier_RegisterDestructionCallback(self: *const T, callbackFn: ?PFN_DESTRUCTION_CALLBACK, pData: ?*anyopaque, pCallbackID: ?*u32) HRESULT {
+                return @ptrCast(*const ID3DDestructionNotifier.VTable, self.vtable).RegisterDestructionCallback(@ptrCast(*const ID3DDestructionNotifier, self), callbackFn, pData, pCallbackID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ID3DDestructionNotifier_UnregisterDestructionCallback(self: *const T, callbackID: u32) HRESULT {
+                return @ptrCast(*const ID3DDestructionNotifier.VTable, self.vtable).UnregisterDestructionCallback(@ptrCast(*const ID3DDestructionNotifier, self), callbackID);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -634,7 +638,7 @@ pub const D3D_INCLUDE_FORCE_DWORD = D3D_INCLUDE_TYPE._INCLUDE_FORCE_DWORD;
 
 pub const ID3DInclude = extern struct {
     pub const VTable = extern struct {
-        Open: fn(
+        Open: fn (
             self: *const ID3DInclude,
             IncludeType: D3D_INCLUDE_TYPE,
             pFileName: ?[*:0]const u8,
@@ -642,22 +646,24 @@ pub const ID3DInclude = extern struct {
             ppData: ?*?*anyopaque,
             pBytes: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
+        Close: fn (
             self: *const ID3DInclude,
             pData: ?*const anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3DInclude_Open(self: *const T, IncludeType: D3D_INCLUDE_TYPE, pFileName: ?[*:0]const u8, pParentData: ?*const anyopaque, ppData: ?*?*anyopaque, pBytes: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3DInclude.VTable, self.vtable).Open(@ptrCast(*const ID3DInclude, self), IncludeType, pFileName, pParentData, ppData, pBytes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3DInclude_Close(self: *const T, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID3DInclude.VTable, self.vtable).Close(@ptrCast(*const ID3DInclude, self), pData);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ID3DInclude_Open(self: *const T, IncludeType: D3D_INCLUDE_TYPE, pFileName: ?[*:0]const u8, pParentData: ?*const anyopaque, ppData: ?*?*anyopaque, pBytes: ?*u32) HRESULT {
+                return @ptrCast(*const ID3DInclude.VTable, self.vtable).Open(@ptrCast(*const ID3DInclude, self), IncludeType, pFileName, pParentData, ppData, pBytes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ID3DInclude_Close(self: *const T, pData: ?*const anyopaque) HRESULT {
+                return @ptrCast(*const ID3DInclude.VTable, self.vtable).Close(@ptrCast(*const ID3DInclude, self), pData);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1389,7 +1395,6 @@ pub const D3DMATRIX = extern struct {
     },
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
 //--------------------------------------------------------------------------------
@@ -1399,13 +1404,9 @@ pub const D3DMATRIX = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
@@ -1417,11 +1418,11 @@ const PSTR = @import("../foundation.zig").PSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFN_DESTRUCTION_CALLBACK")) { _ = PFN_DESTRUCTION_CALLBACK; }
+    if (@hasDecl(@This(), "PFN_DESTRUCTION_CALLBACK")) {
+        _ = PFN_DESTRUCTION_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

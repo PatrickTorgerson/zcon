@@ -396,13 +396,12 @@ pub const DHCPCAPI_CLASSID = extern struct {
     nBytesData: u32,
 };
 
-
-pub const LPDHCP_CONTROL = fn(
+pub const LPDHCP_CONTROL = fn (
     dwControlCode: u32,
     lpReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPDHCP_NEWPKT = fn(
+pub const LPDHCP_NEWPKT = fn (
     Packet: ?*?*u8,
     PacketSize: ?*u32,
     IpAddress: u32,
@@ -411,7 +410,7 @@ pub const LPDHCP_NEWPKT = fn(
     ProcessIt: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPDHCP_DROP_SEND = fn(
+pub const LPDHCP_DROP_SEND = fn (
     Packet: ?*?*u8,
     PacketSize: ?*u32,
     ControlCode: u32,
@@ -420,7 +419,7 @@ pub const LPDHCP_DROP_SEND = fn(
     PktContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPDHCP_PROB = fn(
+pub const LPDHCP_PROB = fn (
     Packet: ?*u8,
     PacketSize: u32,
     ControlCode: u32,
@@ -430,7 +429,7 @@ pub const LPDHCP_PROB = fn(
     PktContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPDHCP_GIVE_ADDRESS = fn(
+pub const LPDHCP_GIVE_ADDRESS = fn (
     Packet: ?*u8,
     PacketSize: u32,
     ControlCode: u32,
@@ -442,7 +441,7 @@ pub const LPDHCP_GIVE_ADDRESS = fn(
     PktContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPDHCP_HANDLE_OPTIONS = fn(
+pub const LPDHCP_HANDLE_OPTIONS = fn (
     Packet: ?*u8,
     PacketSize: u32,
     Reserved: ?*anyopaque,
@@ -450,7 +449,7 @@ pub const LPDHCP_HANDLE_OPTIONS = fn(
     ServerOptions: ?*DHCP_SERVER_OPTIONS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPDHCP_DELETE_CLIENT = fn(
+pub const LPDHCP_DELETE_CLIENT = fn (
     IpAddress: u32,
     HwAddress: ?*u8,
     HwAddressLength: u32,
@@ -471,7 +470,7 @@ pub const DHCP_CALLOUT_TABLE = extern struct {
     DhcpReservedHook: ?*anyopaque,
 };
 
-pub const LPDHCP_ENTRY_POINT_FUNC = fn(
+pub const LPDHCP_ENTRY_POINT_FUNC = fn (
     ChainDlls: ?PWSTR,
     CalloutVersion: u32,
     CalloutTbl: ?*DHCP_CALLOUT_TABLE,
@@ -1767,8 +1766,7 @@ pub const DHCP_FAILOVER_STATISTICS = extern struct {
     ThisAddrInUse: u32,
 };
 
-
-pub const DHCP_SERVER_OPTIONS = switch(@import("../zig.zig").arch) {
+pub const DHCP_SERVER_OPTIONS = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         MessageType: ?*u8,
         SubnetMask: ?*u32,
@@ -1834,8 +1832,7 @@ pub extern "dhcpcsvc6" fn Dhcpv6CApiInitialize(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "dhcpcsvc6" fn Dhcpv6CApiCleanup(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "dhcpcsvc6" fn Dhcpv6CApiCleanup() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dhcpcsvc6" fn Dhcpv6RequestParams(
@@ -1878,8 +1875,7 @@ pub extern "dhcpcsvc" fn DhcpCApiInitialize(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "dhcpcsvc" fn DhcpCApiCleanup(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "dhcpcsvc" fn DhcpCApiCleanup() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "dhcpcsvc" fn DhcpRequestParams(
@@ -1921,8 +1917,7 @@ pub extern "dhcpcsvc" fn DhcpDeRegisterParamChange(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "dhcpcsvc" fn DhcpRemoveDNSRegistrations(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "dhcpcsvc" fn DhcpRemoveDNSRegistrations() callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "dhcpcsvc" fn DhcpGetOriginalSubnetMask(
     sAdapterName: ?[*:0]const u16,
@@ -2709,12 +2704,10 @@ pub extern "dhcpsapi" fn DhcpEnumOptionValuesV6(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "dhcpsapi" fn DhcpDsInit(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "dhcpsapi" fn DhcpDsInit() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
-pub extern "dhcpsapi" fn DhcpDsCleanup(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "dhcpsapi" fn DhcpDsCleanup() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "dhcpsapi" fn DhcpSetThreadOptions(
@@ -3468,19 +3461,14 @@ pub extern "dhcpsapi" fn DhcpV4EnumPoliciesEx(
     ElementsTotal: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
@@ -3492,18 +3480,32 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "LPDHCP_CONTROL")) { _ = LPDHCP_CONTROL; }
-    if (@hasDecl(@This(), "LPDHCP_NEWPKT")) { _ = LPDHCP_NEWPKT; }
-    if (@hasDecl(@This(), "LPDHCP_DROP_SEND")) { _ = LPDHCP_DROP_SEND; }
-    if (@hasDecl(@This(), "LPDHCP_PROB")) { _ = LPDHCP_PROB; }
-    if (@hasDecl(@This(), "LPDHCP_GIVE_ADDRESS")) { _ = LPDHCP_GIVE_ADDRESS; }
-    if (@hasDecl(@This(), "LPDHCP_HANDLE_OPTIONS")) { _ = LPDHCP_HANDLE_OPTIONS; }
-    if (@hasDecl(@This(), "LPDHCP_DELETE_CLIENT")) { _ = LPDHCP_DELETE_CLIENT; }
-    if (@hasDecl(@This(), "LPDHCP_ENTRY_POINT_FUNC")) { _ = LPDHCP_ENTRY_POINT_FUNC; }
+    if (@hasDecl(@This(), "LPDHCP_CONTROL")) {
+        _ = LPDHCP_CONTROL;
+    }
+    if (@hasDecl(@This(), "LPDHCP_NEWPKT")) {
+        _ = LPDHCP_NEWPKT;
+    }
+    if (@hasDecl(@This(), "LPDHCP_DROP_SEND")) {
+        _ = LPDHCP_DROP_SEND;
+    }
+    if (@hasDecl(@This(), "LPDHCP_PROB")) {
+        _ = LPDHCP_PROB;
+    }
+    if (@hasDecl(@This(), "LPDHCP_GIVE_ADDRESS")) {
+        _ = LPDHCP_GIVE_ADDRESS;
+    }
+    if (@hasDecl(@This(), "LPDHCP_HANDLE_OPTIONS")) {
+        _ = LPDHCP_HANDLE_OPTIONS;
+    }
+    if (@hasDecl(@This(), "LPDHCP_DELETE_CLIENT")) {
+        _ = LPDHCP_DELETE_CLIENT;
+    }
+    if (@hasDecl(@This(), "LPDHCP_ENTRY_POINT_FUNC")) {
+        _ = LPDHCP_ENTRY_POINT_FUNC;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

@@ -11,7 +11,7 @@ pub const IID_IDisplayDeviceInterop = &IID_IDisplayDeviceInterop_Value;
 pub const IDisplayDeviceInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateSharedHandle: fn(
+        CreateSharedHandle: fn (
             self: *const IDisplayDeviceInterop,
             pObject: ?*IInspectable,
             pSecurityAttributes: ?*const SECURITY_ATTRIBUTES,
@@ -19,7 +19,7 @@ pub const IDisplayDeviceInterop = extern struct {
             Name: ?HSTRING,
             pHandle: ?*?HANDLE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OpenSharedHandle: fn(
+        OpenSharedHandle: fn (
             self: *const IDisplayDeviceInterop,
             NTHandle: ?HANDLE,
             riid: Guid,
@@ -27,17 +27,19 @@ pub const IDisplayDeviceInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDisplayDeviceInterop_CreateSharedHandle(self: *const T, pObject: ?*IInspectable, pSecurityAttributes: ?*const SECURITY_ATTRIBUTES, Access: u32, Name: ?HSTRING, pHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDisplayDeviceInterop.VTable, self.vtable).CreateSharedHandle(@ptrCast(*const IDisplayDeviceInterop, self), pObject, pSecurityAttributes, Access, Name, pHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDisplayDeviceInterop_OpenSharedHandle(self: *const T, NTHandle: ?HANDLE, riid: Guid, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDisplayDeviceInterop.VTable, self.vtable).OpenSharedHandle(@ptrCast(*const IDisplayDeviceInterop, self), NTHandle, riid, ppvObj);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDisplayDeviceInterop_CreateSharedHandle(self: *const T, pObject: ?*IInspectable, pSecurityAttributes: ?*const SECURITY_ATTRIBUTES, Access: u32, Name: ?HSTRING, pHandle: ?*?HANDLE) HRESULT {
+                return @ptrCast(*const IDisplayDeviceInterop.VTable, self.vtable).CreateSharedHandle(@ptrCast(*const IDisplayDeviceInterop, self), pObject, pSecurityAttributes, Access, Name, pHandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDisplayDeviceInterop_OpenSharedHandle(self: *const T, NTHandle: ?HANDLE, riid: Guid, ppvObj: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IDisplayDeviceInterop.VTable, self.vtable).OpenSharedHandle(@ptrCast(*const IDisplayDeviceInterop, self), NTHandle, riid, ppvObj);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -46,30 +48,31 @@ pub const IID_IDisplayPathInterop = &IID_IDisplayPathInterop_Value;
 pub const IDisplayPathInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateSourcePresentationHandle: fn(
+        CreateSourcePresentationHandle: fn (
             self: *const IDisplayPathInterop,
             pValue: ?*?HANDLE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSourceId: fn(
+        GetSourceId: fn (
             self: *const IDisplayPathInterop,
             pSourceId: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDisplayPathInterop_CreateSourcePresentationHandle(self: *const T, pValue: ?*?HANDLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDisplayPathInterop.VTable, self.vtable).CreateSourcePresentationHandle(@ptrCast(*const IDisplayPathInterop, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDisplayPathInterop_GetSourceId(self: *const T, pSourceId: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDisplayPathInterop.VTable, self.vtable).GetSourceId(@ptrCast(*const IDisplayPathInterop, self), pSourceId);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDisplayPathInterop_CreateSourcePresentationHandle(self: *const T, pValue: ?*?HANDLE) HRESULT {
+                return @ptrCast(*const IDisplayPathInterop.VTable, self.vtable).CreateSourcePresentationHandle(@ptrCast(*const IDisplayPathInterop, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDisplayPathInterop_GetSourceId(self: *const T, pSourceId: ?*u32) HRESULT {
+                return @ptrCast(*const IDisplayPathInterop.VTable, self.vtable).GetSourceId(@ptrCast(*const IDisplayPathInterop, self), pSourceId);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -80,13 +83,9 @@ pub const IDisplayPathInterop = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
@@ -100,9 +99,7 @@ const IUnknown = @import("../../system/com.zig").IUnknown;
 const SECURITY_ATTRIBUTES = @import("../../security.zig").SECURITY_ATTRIBUTES;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

@@ -212,7 +212,7 @@ pub const EVT_SUBSCRIBE_NOTIFY_ACTION = enum(i32) {
 pub const EvtSubscribeActionError = EVT_SUBSCRIBE_NOTIFY_ACTION.Error;
 pub const EvtSubscribeActionDeliver = EVT_SUBSCRIBE_NOTIFY_ACTION.Deliver;
 
-pub const EVT_SUBSCRIBE_CALLBACK = fn(
+pub const EVT_SUBSCRIBE_CALLBACK = fn (
     Action: EVT_SUBSCRIBE_NOTIFY_ACTION,
     UserContext: ?*anyopaque,
     Event: isize,
@@ -554,7 +554,6 @@ pub const EVENTSFORLOGFILE = extern struct {
 pub const EVENTLOG_FULL_INFORMATION = extern struct {
     dwFull: u32,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (55)
@@ -999,7 +998,6 @@ pub extern "advapi32" fn GetEventLogInformation(
     pcbBytesNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (7)
 //--------------------------------------------------------------------------------
@@ -1024,13 +1022,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const ReportEvent = thismodule.ReportEventW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const ClearEventLog = *opaque{};
-        pub const BackupEventLog = *opaque{};
-        pub const OpenEventLog = *opaque{};
-        pub const RegisterEventSource = *opaque{};
-        pub const OpenBackupEventLog = *opaque{};
-        pub const ReadEventLog = *opaque{};
-        pub const ReportEvent = *opaque{};
+        pub const ClearEventLog = *opaque {};
+        pub const BackupEventLog = *opaque {};
+        pub const OpenEventLog = *opaque {};
+        pub const RegisterEventSource = *opaque {};
+        pub const OpenBackupEventLog = *opaque {};
+        pub const ReadEventLog = *opaque {};
+        pub const ReportEvent = *opaque {};
     } else struct {
         pub const ClearEventLog = @compileError("'ClearEventLog' requires that UNICODE be set to true or false in the root module");
         pub const BackupEventLog = @compileError("'BackupEventLog' requires that UNICODE be set to true or false in the root module");
@@ -1055,11 +1053,11 @@ const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "EVT_SUBSCRIBE_CALLBACK")) { _ = EVT_SUBSCRIBE_CALLBACK; }
+    if (@hasDecl(@This(), "EVT_SUBSCRIBE_CALLBACK")) {
+        _ = EVT_SUBSCRIBE_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

@@ -67,15 +67,15 @@ pub const CCAB = extern struct {
     szCabPath: [256]CHAR,
 };
 
-pub const PFNFCIALLOC = fn(
+pub const PFNFCIALLOC = fn (
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const PFNFCIFREE = fn(
+pub const PFNFCIFREE = fn (
     memory: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNFCIOPEN = fn(
+pub const PFNFCIOPEN = fn (
     pszFile: ?PSTR,
     oflag: i32,
     pmode: i32,
@@ -83,7 +83,7 @@ pub const PFNFCIOPEN = fn(
     pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
-pub const PFNFCIREAD = fn(
+pub const PFNFCIREAD = fn (
     hf: isize,
     memory: ?*anyopaque,
     cb: u32,
@@ -91,7 +91,7 @@ pub const PFNFCIREAD = fn(
     pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFNFCIWRITE = fn(
+pub const PFNFCIWRITE = fn (
     hf: isize,
     memory: ?*anyopaque,
     cb: u32,
@@ -99,13 +99,13 @@ pub const PFNFCIWRITE = fn(
     pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFNFCICLOSE = fn(
+pub const PFNFCICLOSE = fn (
     hf: isize,
     err: ?*i32,
     pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PFNFCISEEK = fn(
+pub const PFNFCISEEK = fn (
     hf: isize,
     dist: i32,
     seektype: i32,
@@ -113,19 +113,19 @@ pub const PFNFCISEEK = fn(
     pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PFNFCIDELETE = fn(
+pub const PFNFCIDELETE = fn (
     pszFile: ?PSTR,
     err: ?*i32,
     pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PFNFCIGETNEXTCABINET = fn(
+pub const PFNFCIGETNEXTCABINET = fn (
     pccab: ?*CCAB,
     cbPrevCab: u32,
     pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFNFCIFILEPLACED = fn(
+pub const PFNFCIFILEPLACED = fn (
     pccab: ?*CCAB,
     pszFile: ?PSTR,
     cbFile: i32,
@@ -133,7 +133,7 @@ pub const PFNFCIFILEPLACED = fn(
     pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PFNFCIGETOPENINFO = fn(
+pub const PFNFCIGETOPENINFO = fn (
     pszName: ?PSTR,
     pdate: ?*u16,
     ptime: ?*u16,
@@ -142,14 +142,14 @@ pub const PFNFCIGETOPENINFO = fn(
     pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
-pub const PFNFCISTATUS = fn(
+pub const PFNFCISTATUS = fn (
     typeStatus: u32,
     cb1: u32,
     cb2: u32,
     pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PFNFCIGETTEMPFILE = fn(
+pub const PFNFCIGETTEMPFILE = fn (
     // TODO: what to do with BytesParamIndex 1?
     pszTempName: ?PSTR,
     cbTempName: i32,
@@ -231,45 +231,45 @@ pub const FDIDECRYPT = extern struct {
     },
 };
 
-pub const PFNALLOC = fn(
+pub const PFNALLOC = fn (
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const PFNFREE = fn(
+pub const PFNFREE = fn (
     pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNOPEN = fn(
+pub const PFNOPEN = fn (
     pszFile: ?PSTR,
     oflag: i32,
     pmode: i32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
-pub const PFNREAD = fn(
+pub const PFNREAD = fn (
     hf: isize,
     // TODO: what to do with BytesParamIndex 2?
     pv: ?*anyopaque,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFNWRITE = fn(
+pub const PFNWRITE = fn (
     hf: isize,
     // TODO: what to do with BytesParamIndex 2?
     pv: ?*anyopaque,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFNCLOSE = fn(
+pub const PFNCLOSE = fn (
     hf: isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PFNSEEK = fn(
+pub const PFNSEEK = fn (
     hf: isize,
     dist: i32,
     seektype: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PFNFDIDECRYPT = fn(
+pub const PFNFDIDECRYPT = fn (
     pfdid: ?*FDIDECRYPT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -304,14 +304,12 @@ pub const fdintCLOSE_FILE_INFO = FDINOTIFICATIONTYPE.CLOSE_FILE_INFO;
 pub const fdintNEXT_CABINET = FDINOTIFICATIONTYPE.NEXT_CABINET;
 pub const fdintENUMERATE = FDINOTIFICATIONTYPE.ENUMERATE;
 
-pub const PFNFDINOTIFY = fn(
+pub const PFNFDINOTIFY = fn (
     fdint: FDINOTIFICATIONTYPE,
     pfdin: ?*FDINOTIFICATION,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
-
-
-pub const FDISPILLFILE = switch(@import("../zig.zig").arch) {
+pub const FDISPILLFILE = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         ach: [2]CHAR,
         cbFile: i32,
@@ -411,19 +409,14 @@ pub extern "cabinet" fn FDITruncateCabinet(
     iFolderToDelete: u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (3)
@@ -434,32 +427,74 @@ const PSTR = @import("../foundation.zig").PSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFNFCIALLOC")) { _ = PFNFCIALLOC; }
-    if (@hasDecl(@This(), "PFNFCIFREE")) { _ = PFNFCIFREE; }
-    if (@hasDecl(@This(), "PFNFCIOPEN")) { _ = PFNFCIOPEN; }
-    if (@hasDecl(@This(), "PFNFCIREAD")) { _ = PFNFCIREAD; }
-    if (@hasDecl(@This(), "PFNFCIWRITE")) { _ = PFNFCIWRITE; }
-    if (@hasDecl(@This(), "PFNFCICLOSE")) { _ = PFNFCICLOSE; }
-    if (@hasDecl(@This(), "PFNFCISEEK")) { _ = PFNFCISEEK; }
-    if (@hasDecl(@This(), "PFNFCIDELETE")) { _ = PFNFCIDELETE; }
-    if (@hasDecl(@This(), "PFNFCIGETNEXTCABINET")) { _ = PFNFCIGETNEXTCABINET; }
-    if (@hasDecl(@This(), "PFNFCIFILEPLACED")) { _ = PFNFCIFILEPLACED; }
-    if (@hasDecl(@This(), "PFNFCIGETOPENINFO")) { _ = PFNFCIGETOPENINFO; }
-    if (@hasDecl(@This(), "PFNFCISTATUS")) { _ = PFNFCISTATUS; }
-    if (@hasDecl(@This(), "PFNFCIGETTEMPFILE")) { _ = PFNFCIGETTEMPFILE; }
-    if (@hasDecl(@This(), "PFNALLOC")) { _ = PFNALLOC; }
-    if (@hasDecl(@This(), "PFNFREE")) { _ = PFNFREE; }
-    if (@hasDecl(@This(), "PFNOPEN")) { _ = PFNOPEN; }
-    if (@hasDecl(@This(), "PFNREAD")) { _ = PFNREAD; }
-    if (@hasDecl(@This(), "PFNWRITE")) { _ = PFNWRITE; }
-    if (@hasDecl(@This(), "PFNCLOSE")) { _ = PFNCLOSE; }
-    if (@hasDecl(@This(), "PFNSEEK")) { _ = PFNSEEK; }
-    if (@hasDecl(@This(), "PFNFDIDECRYPT")) { _ = PFNFDIDECRYPT; }
-    if (@hasDecl(@This(), "PFNFDINOTIFY")) { _ = PFNFDINOTIFY; }
+    if (@hasDecl(@This(), "PFNFCIALLOC")) {
+        _ = PFNFCIALLOC;
+    }
+    if (@hasDecl(@This(), "PFNFCIFREE")) {
+        _ = PFNFCIFREE;
+    }
+    if (@hasDecl(@This(), "PFNFCIOPEN")) {
+        _ = PFNFCIOPEN;
+    }
+    if (@hasDecl(@This(), "PFNFCIREAD")) {
+        _ = PFNFCIREAD;
+    }
+    if (@hasDecl(@This(), "PFNFCIWRITE")) {
+        _ = PFNFCIWRITE;
+    }
+    if (@hasDecl(@This(), "PFNFCICLOSE")) {
+        _ = PFNFCICLOSE;
+    }
+    if (@hasDecl(@This(), "PFNFCISEEK")) {
+        _ = PFNFCISEEK;
+    }
+    if (@hasDecl(@This(), "PFNFCIDELETE")) {
+        _ = PFNFCIDELETE;
+    }
+    if (@hasDecl(@This(), "PFNFCIGETNEXTCABINET")) {
+        _ = PFNFCIGETNEXTCABINET;
+    }
+    if (@hasDecl(@This(), "PFNFCIFILEPLACED")) {
+        _ = PFNFCIFILEPLACED;
+    }
+    if (@hasDecl(@This(), "PFNFCIGETOPENINFO")) {
+        _ = PFNFCIGETOPENINFO;
+    }
+    if (@hasDecl(@This(), "PFNFCISTATUS")) {
+        _ = PFNFCISTATUS;
+    }
+    if (@hasDecl(@This(), "PFNFCIGETTEMPFILE")) {
+        _ = PFNFCIGETTEMPFILE;
+    }
+    if (@hasDecl(@This(), "PFNALLOC")) {
+        _ = PFNALLOC;
+    }
+    if (@hasDecl(@This(), "PFNFREE")) {
+        _ = PFNFREE;
+    }
+    if (@hasDecl(@This(), "PFNOPEN")) {
+        _ = PFNOPEN;
+    }
+    if (@hasDecl(@This(), "PFNREAD")) {
+        _ = PFNREAD;
+    }
+    if (@hasDecl(@This(), "PFNWRITE")) {
+        _ = PFNWRITE;
+    }
+    if (@hasDecl(@This(), "PFNCLOSE")) {
+        _ = PFNCLOSE;
+    }
+    if (@hasDecl(@This(), "PFNSEEK")) {
+        _ = PFNSEEK;
+    }
+    if (@hasDecl(@This(), "PFNFDIDECRYPT")) {
+        _ = PFNFDIDECRYPT;
+    }
+    if (@hasDecl(@This(), "PFNFDINOTIFY")) {
+        _ = PFNFDINOTIFY;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

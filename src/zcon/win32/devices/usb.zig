@@ -1436,7 +1436,7 @@ pub const URB = extern struct {
     },
 };
 
-pub const USB_IDLE_CALLBACK = fn(
+pub const USB_IDLE_CALLBACK = fn (
     Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -2010,7 +2010,6 @@ pub const USBSCAN_TIMEOUT = extern struct {
     TimeoutEvent: u32,
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (34)
 //--------------------------------------------------------------------------------
@@ -2268,19 +2267,14 @@ pub extern "winusb" fn WinUsb_StopTrackingForTimeSync(
     StopTrackingInfo: ?*USB_STOP_TRACKING_FOR_TIME_SYNC_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
@@ -2294,11 +2288,11 @@ const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "USB_IDLE_CALLBACK")) { _ = USB_IDLE_CALLBACK; }
+    if (@hasDecl(@This(), "USB_IDLE_CALLBACK")) {
+        _ = USB_IDLE_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

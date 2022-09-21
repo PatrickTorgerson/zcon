@@ -139,16 +139,7 @@ pub const VER_FLAGS = enum(u32) {
         SUITENAME: u1 = 0,
         PRODUCT_TYPE: u1 = 0,
     }) VER_FLAGS {
-        return @intToEnum(VER_FLAGS,
-              (if (o.MINORVERSION == 1) @enumToInt(VER_FLAGS.MINORVERSION) else 0)
-            | (if (o.MAJORVERSION == 1) @enumToInt(VER_FLAGS.MAJORVERSION) else 0)
-            | (if (o.BUILDNUMBER == 1) @enumToInt(VER_FLAGS.BUILDNUMBER) else 0)
-            | (if (o.PLATFORMID == 1) @enumToInt(VER_FLAGS.PLATFORMID) else 0)
-            | (if (o.SERVICEPACKMINOR == 1) @enumToInt(VER_FLAGS.SERVICEPACKMINOR) else 0)
-            | (if (o.SERVICEPACKMAJOR == 1) @enumToInt(VER_FLAGS.SERVICEPACKMAJOR) else 0)
-            | (if (o.SUITENAME == 1) @enumToInt(VER_FLAGS.SUITENAME) else 0)
-            | (if (o.PRODUCT_TYPE == 1) @enumToInt(VER_FLAGS.PRODUCT_TYPE) else 0)
-        );
+        return @intToEnum(VER_FLAGS, (if (o.MINORVERSION == 1) @enumToInt(VER_FLAGS.MINORVERSION) else 0) | (if (o.MAJORVERSION == 1) @enumToInt(VER_FLAGS.MAJORVERSION) else 0) | (if (o.BUILDNUMBER == 1) @enumToInt(VER_FLAGS.BUILDNUMBER) else 0) | (if (o.PLATFORMID == 1) @enumToInt(VER_FLAGS.PLATFORMID) else 0) | (if (o.SERVICEPACKMINOR == 1) @enumToInt(VER_FLAGS.SERVICEPACKMINOR) else 0) | (if (o.SERVICEPACKMAJOR == 1) @enumToInt(VER_FLAGS.SERVICEPACKMAJOR) else 0) | (if (o.SUITENAME == 1) @enumToInt(VER_FLAGS.SUITENAME) else 0) | (if (o.PRODUCT_TYPE == 1) @enumToInt(VER_FLAGS.PRODUCT_TYPE) else 0));
     }
 };
 pub const VER_MINORVERSION = VER_FLAGS.MINORVERSION;
@@ -848,16 +839,15 @@ pub const DEPPolicyOptIn = DEP_SYSTEM_POLICY_TYPE.PolicyOptIn;
 pub const DEPPolicyOptOut = DEP_SYSTEM_POLICY_TYPE.PolicyOptOut;
 pub const DEPTotalPolicyCount = DEP_SYSTEM_POLICY_TYPE.TotalPolicyCount;
 
-pub const PGET_SYSTEM_WOW64_DIRECTORY_A = fn(
+pub const PGET_SYSTEM_WOW64_DIRECTORY_A = fn (
     lpBuffer: ?[*:0]u8,
     uSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PGET_SYSTEM_WOW64_DIRECTORY_W = fn(
+pub const PGET_SYSTEM_WOW64_DIRECTORY_W = fn (
     lpBuffer: ?[*:0]u16,
     uSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (62)
@@ -897,8 +887,7 @@ pub extern "kernel32" fn GetSystemLeapSecondInformation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetVersion(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "kernel32" fn GetVersion() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn SetLocalTime(
@@ -906,12 +895,10 @@ pub extern "kernel32" fn SetLocalTime(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetTickCount(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "kernel32" fn GetTickCount() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetTickCount64(
-) callconv(@import("std").os.windows.WINAPI) u64;
+pub extern "kernel32" fn GetTickCount64() callconv(@import("std").os.windows.WINAPI) u64;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn GetSystemTimeAdjustment(
@@ -1208,8 +1195,7 @@ pub extern "kernel32" fn GlobalMemoryStatus(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetSystemDEPPolicy(
-) callconv(@import("std").os.windows.WINAPI) DEP_SYSTEM_POLICY_TYPE;
+pub extern "kernel32" fn GetSystemDEPPolicy() callconv(@import("std").os.windows.WINAPI) DEP_SYSTEM_POLICY_TYPE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetFirmwareType(
@@ -1229,7 +1215,6 @@ pub extern "kernel32" fn VerifyVersionInfoW(
     dwTypeMask: VER_FLAGS,
     dwlConditionMask: u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (13)
@@ -1267,19 +1252,19 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const VerifyVersionInfo = thismodule.VerifyVersionInfoW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const OSVERSIONINFO = *opaque{};
-        pub const OSVERSIONINFOEX = *opaque{};
-        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = *opaque{};
-        pub const GetSystemDirectory = *opaque{};
-        pub const GetWindowsDirectory = *opaque{};
-        pub const GetSystemWindowsDirectory = *opaque{};
-        pub const GetComputerNameEx = *opaque{};
-        pub const SetComputerNameEx = *opaque{};
-        pub const GetVersionEx = *opaque{};
-        pub const SetComputerName = *opaque{};
-        pub const GetSystemWow64Directory = *opaque{};
-        pub const GetSystemWow64Directory2 = *opaque{};
-        pub const VerifyVersionInfo = *opaque{};
+        pub const OSVERSIONINFO = *opaque {};
+        pub const OSVERSIONINFOEX = *opaque {};
+        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = *opaque {};
+        pub const GetSystemDirectory = *opaque {};
+        pub const GetWindowsDirectory = *opaque {};
+        pub const GetSystemWindowsDirectory = *opaque {};
+        pub const GetComputerNameEx = *opaque {};
+        pub const SetComputerNameEx = *opaque {};
+        pub const GetVersionEx = *opaque {};
+        pub const SetComputerName = *opaque {};
+        pub const GetSystemWow64Directory = *opaque {};
+        pub const GetSystemWow64Directory2 = *opaque {};
+        pub const VerifyVersionInfo = *opaque {};
     } else struct {
         pub const OSVERSIONINFO = @compileError("'OSVERSIONINFO' requires that UNICODE be set to true or false in the root module");
         pub const OSVERSIONINFOEX = @compileError("'OSVERSIONINFOEX' requires that UNICODE be set to true or false in the root module");
@@ -1312,12 +1297,14 @@ const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PGET_SYSTEM_WOW64_DIRECTORY_A")) { _ = PGET_SYSTEM_WOW64_DIRECTORY_A; }
-    if (@hasDecl(@This(), "PGET_SYSTEM_WOW64_DIRECTORY_W")) { _ = PGET_SYSTEM_WOW64_DIRECTORY_W; }
+    if (@hasDecl(@This(), "PGET_SYSTEM_WOW64_DIRECTORY_A")) {
+        _ = PGET_SYSTEM_WOW64_DIRECTORY_A;
+    }
+    if (@hasDecl(@This(), "PGET_SYSTEM_WOW64_DIRECTORY_W")) {
+        _ = PGET_SYSTEM_WOW64_DIRECTORY_W;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

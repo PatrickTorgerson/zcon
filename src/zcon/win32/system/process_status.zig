@@ -116,18 +116,17 @@ pub const ENUM_PAGE_FILE_INFORMATION = extern struct {
     PeakUsage: usize,
 };
 
-pub const PENUM_PAGE_FILE_CALLBACKW = fn(
+pub const PENUM_PAGE_FILE_CALLBACKW = fn (
     pContext: ?*anyopaque,
     pPageFileInfo: ?*ENUM_PAGE_FILE_INFORMATION,
     lpFilename: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PENUM_PAGE_FILE_CALLBACKA = fn(
+pub const PENUM_PAGE_FILE_CALLBACKA = fn (
     pContext: ?*anyopaque,
     pPageFileInfo: ?*ENUM_PAGE_FILE_INFORMATION,
     lpFilename: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (27)
@@ -305,7 +304,6 @@ pub extern "kernel32" fn K32GetProcessImageFileNameW(
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (8)
 //--------------------------------------------------------------------------------
@@ -332,14 +330,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const K32GetProcessImageFileName = thismodule.K32GetProcessImageFileNameW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const PENUM_PAGE_FILE_CALLBACK = *opaque{};
-        pub const K32GetModuleBaseName = *opaque{};
-        pub const K32GetModuleFileNameEx = *opaque{};
-        pub const K32GetMappedFileName = *opaque{};
-        pub const K32GetDeviceDriverBaseName = *opaque{};
-        pub const K32GetDeviceDriverFileName = *opaque{};
-        pub const K32EnumPageFiles = *opaque{};
-        pub const K32GetProcessImageFileName = *opaque{};
+        pub const PENUM_PAGE_FILE_CALLBACK = *opaque {};
+        pub const K32GetModuleBaseName = *opaque {};
+        pub const K32GetModuleFileNameEx = *opaque {};
+        pub const K32GetMappedFileName = *opaque {};
+        pub const K32GetDeviceDriverBaseName = *opaque {};
+        pub const K32GetDeviceDriverFileName = *opaque {};
+        pub const K32EnumPageFiles = *opaque {};
+        pub const K32GetProcessImageFileName = *opaque {};
     } else struct {
         pub const PENUM_PAGE_FILE_CALLBACK = @compileError("'PENUM_PAGE_FILE_CALLBACK' requires that UNICODE be set to true or false in the root module");
         pub const K32GetModuleBaseName = @compileError("'K32GetModuleBaseName' requires that UNICODE be set to true or false in the root module");
@@ -362,12 +360,14 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PENUM_PAGE_FILE_CALLBACKW")) { _ = PENUM_PAGE_FILE_CALLBACKW; }
-    if (@hasDecl(@This(), "PENUM_PAGE_FILE_CALLBACKA")) { _ = PENUM_PAGE_FILE_CALLBACKA; }
+    if (@hasDecl(@This(), "PENUM_PAGE_FILE_CALLBACKW")) {
+        _ = PENUM_PAGE_FILE_CALLBACKW;
+    }
+    if (@hasDecl(@This(), "PENUM_PAGE_FILE_CALLBACKA")) {
+        _ = PENUM_PAGE_FILE_CALLBACKA;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

@@ -473,231 +473,233 @@ pub const IID_IOfflineFilesEvents = &IID_IOfflineFilesEvents_Value;
 pub const IOfflineFilesEvents = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CacheMoved: fn(
+        CacheMoved: fn (
             self: *const IOfflineFilesEvents,
             pszOldPath: ?[*:0]const u16,
             pszNewPath: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CacheIsFull: fn(
+        CacheIsFull: fn (
             self: *const IOfflineFilesEvents,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CacheIsCorrupted: fn(
+        CacheIsCorrupted: fn (
             self: *const IOfflineFilesEvents,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Enabled: fn(
+        Enabled: fn (
             self: *const IOfflineFilesEvents,
             bEnabled: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EncryptionChanged: fn(
+        EncryptionChanged: fn (
             self: *const IOfflineFilesEvents,
             bWasEncrypted: BOOL,
             bWasPartial: BOOL,
             bIsEncrypted: BOOL,
             bIsPartial: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SyncBegin: fn(
+        SyncBegin: fn (
             self: *const IOfflineFilesEvents,
             rSyncId: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SyncFileResult: fn(
+        SyncFileResult: fn (
             self: *const IOfflineFilesEvents,
             rSyncId: ?*const Guid,
             pszFile: ?[*:0]const u16,
             hrResult: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SyncConflictRecAdded: fn(
+        SyncConflictRecAdded: fn (
             self: *const IOfflineFilesEvents,
             pszConflictPath: ?[*:0]const u16,
             pftConflictDateTime: ?*const FILETIME,
             ConflictSyncState: OFFLINEFILES_SYNC_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SyncConflictRecUpdated: fn(
+        SyncConflictRecUpdated: fn (
             self: *const IOfflineFilesEvents,
             pszConflictPath: ?[*:0]const u16,
             pftConflictDateTime: ?*const FILETIME,
             ConflictSyncState: OFFLINEFILES_SYNC_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SyncConflictRecRemoved: fn(
+        SyncConflictRecRemoved: fn (
             self: *const IOfflineFilesEvents,
             pszConflictPath: ?[*:0]const u16,
             pftConflictDateTime: ?*const FILETIME,
             ConflictSyncState: OFFLINEFILES_SYNC_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SyncEnd: fn(
+        SyncEnd: fn (
             self: *const IOfflineFilesEvents,
             rSyncId: ?*const Guid,
             hrResult: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        NetTransportArrived: fn(
+        NetTransportArrived: fn (
             self: *const IOfflineFilesEvents,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        NoNetTransports: fn(
+        NoNetTransports: fn (
             self: *const IOfflineFilesEvents,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ItemDisconnected: fn(
-            self: *const IOfflineFilesEvents,
-            pszPath: ?[*:0]const u16,
-            ItemType: OFFLINEFILES_ITEM_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ItemReconnected: fn(
+        ItemDisconnected: fn (
             self: *const IOfflineFilesEvents,
             pszPath: ?[*:0]const u16,
             ItemType: OFFLINEFILES_ITEM_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ItemAvailableOffline: fn(
+        ItemReconnected: fn (
             self: *const IOfflineFilesEvents,
             pszPath: ?[*:0]const u16,
             ItemType: OFFLINEFILES_ITEM_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ItemNotAvailableOffline: fn(
+        ItemAvailableOffline: fn (
             self: *const IOfflineFilesEvents,
             pszPath: ?[*:0]const u16,
             ItemType: OFFLINEFILES_ITEM_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ItemPinned: fn(
+        ItemNotAvailableOffline: fn (
             self: *const IOfflineFilesEvents,
             pszPath: ?[*:0]const u16,
             ItemType: OFFLINEFILES_ITEM_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ItemNotPinned: fn(
+        ItemPinned: fn (
             self: *const IOfflineFilesEvents,
             pszPath: ?[*:0]const u16,
             ItemType: OFFLINEFILES_ITEM_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ItemModified: fn(
+        ItemNotPinned: fn (
+            self: *const IOfflineFilesEvents,
+            pszPath: ?[*:0]const u16,
+            ItemType: OFFLINEFILES_ITEM_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ItemModified: fn (
             self: *const IOfflineFilesEvents,
             pszPath: ?[*:0]const u16,
             ItemType: OFFLINEFILES_ITEM_TYPE,
             bModifiedData: BOOL,
             bModifiedAttributes: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ItemAddedToCache: fn(
+        ItemAddedToCache: fn (
             self: *const IOfflineFilesEvents,
             pszPath: ?[*:0]const u16,
             ItemType: OFFLINEFILES_ITEM_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ItemDeletedFromCache: fn(
+        ItemDeletedFromCache: fn (
             self: *const IOfflineFilesEvents,
             pszPath: ?[*:0]const u16,
             ItemType: OFFLINEFILES_ITEM_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ItemRenamed: fn(
+        ItemRenamed: fn (
             self: *const IOfflineFilesEvents,
             pszOldPath: ?[*:0]const u16,
             pszNewPath: ?[*:0]const u16,
             ItemType: OFFLINEFILES_ITEM_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DataLost: fn(
+        DataLost: fn (
             self: *const IOfflineFilesEvents,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Ping: fn(
+        Ping: fn (
             self: *const IOfflineFilesEvents,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_CacheMoved(self: *const T, pszOldPath: ?[*:0]const u16, pszNewPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).CacheMoved(@ptrCast(*const IOfflineFilesEvents, self), pszOldPath, pszNewPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_CacheIsFull(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).CacheIsFull(@ptrCast(*const IOfflineFilesEvents, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_CacheIsCorrupted(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).CacheIsCorrupted(@ptrCast(*const IOfflineFilesEvents, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_Enabled(self: *const T, bEnabled: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).Enabled(@ptrCast(*const IOfflineFilesEvents, self), bEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_EncryptionChanged(self: *const T, bWasEncrypted: BOOL, bWasPartial: BOOL, bIsEncrypted: BOOL, bIsPartial: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).EncryptionChanged(@ptrCast(*const IOfflineFilesEvents, self), bWasEncrypted, bWasPartial, bIsEncrypted, bIsPartial);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_SyncBegin(self: *const T, rSyncId: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).SyncBegin(@ptrCast(*const IOfflineFilesEvents, self), rSyncId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_SyncFileResult(self: *const T, rSyncId: ?*const Guid, pszFile: ?[*:0]const u16, hrResult: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).SyncFileResult(@ptrCast(*const IOfflineFilesEvents, self), rSyncId, pszFile, hrResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_SyncConflictRecAdded(self: *const T, pszConflictPath: ?[*:0]const u16, pftConflictDateTime: ?*const FILETIME, ConflictSyncState: OFFLINEFILES_SYNC_STATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).SyncConflictRecAdded(@ptrCast(*const IOfflineFilesEvents, self), pszConflictPath, pftConflictDateTime, ConflictSyncState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_SyncConflictRecUpdated(self: *const T, pszConflictPath: ?[*:0]const u16, pftConflictDateTime: ?*const FILETIME, ConflictSyncState: OFFLINEFILES_SYNC_STATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).SyncConflictRecUpdated(@ptrCast(*const IOfflineFilesEvents, self), pszConflictPath, pftConflictDateTime, ConflictSyncState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_SyncConflictRecRemoved(self: *const T, pszConflictPath: ?[*:0]const u16, pftConflictDateTime: ?*const FILETIME, ConflictSyncState: OFFLINEFILES_SYNC_STATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).SyncConflictRecRemoved(@ptrCast(*const IOfflineFilesEvents, self), pszConflictPath, pftConflictDateTime, ConflictSyncState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_SyncEnd(self: *const T, rSyncId: ?*const Guid, hrResult: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).SyncEnd(@ptrCast(*const IOfflineFilesEvents, self), rSyncId, hrResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_NetTransportArrived(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).NetTransportArrived(@ptrCast(*const IOfflineFilesEvents, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_NoNetTransports(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).NoNetTransports(@ptrCast(*const IOfflineFilesEvents, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_ItemDisconnected(self: *const T, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).ItemDisconnected(@ptrCast(*const IOfflineFilesEvents, self), pszPath, ItemType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_ItemReconnected(self: *const T, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).ItemReconnected(@ptrCast(*const IOfflineFilesEvents, self), pszPath, ItemType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_ItemAvailableOffline(self: *const T, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).ItemAvailableOffline(@ptrCast(*const IOfflineFilesEvents, self), pszPath, ItemType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_ItemNotAvailableOffline(self: *const T, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).ItemNotAvailableOffline(@ptrCast(*const IOfflineFilesEvents, self), pszPath, ItemType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_ItemPinned(self: *const T, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).ItemPinned(@ptrCast(*const IOfflineFilesEvents, self), pszPath, ItemType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_ItemNotPinned(self: *const T, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).ItemNotPinned(@ptrCast(*const IOfflineFilesEvents, self), pszPath, ItemType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_ItemModified(self: *const T, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE, bModifiedData: BOOL, bModifiedAttributes: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).ItemModified(@ptrCast(*const IOfflineFilesEvents, self), pszPath, ItemType, bModifiedData, bModifiedAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_ItemAddedToCache(self: *const T, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).ItemAddedToCache(@ptrCast(*const IOfflineFilesEvents, self), pszPath, ItemType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_ItemDeletedFromCache(self: *const T, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).ItemDeletedFromCache(@ptrCast(*const IOfflineFilesEvents, self), pszPath, ItemType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_ItemRenamed(self: *const T, pszOldPath: ?[*:0]const u16, pszNewPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).ItemRenamed(@ptrCast(*const IOfflineFilesEvents, self), pszOldPath, pszNewPath, ItemType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_DataLost(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).DataLost(@ptrCast(*const IOfflineFilesEvents, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents_Ping(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).Ping(@ptrCast(*const IOfflineFilesEvents, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_CacheMoved(self: *const T, pszOldPath: ?[*:0]const u16, pszNewPath: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).CacheMoved(@ptrCast(*const IOfflineFilesEvents, self), pszOldPath, pszNewPath);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_CacheIsFull(self: *const T) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).CacheIsFull(@ptrCast(*const IOfflineFilesEvents, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_CacheIsCorrupted(self: *const T) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).CacheIsCorrupted(@ptrCast(*const IOfflineFilesEvents, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_Enabled(self: *const T, bEnabled: BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).Enabled(@ptrCast(*const IOfflineFilesEvents, self), bEnabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_EncryptionChanged(self: *const T, bWasEncrypted: BOOL, bWasPartial: BOOL, bIsEncrypted: BOOL, bIsPartial: BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).EncryptionChanged(@ptrCast(*const IOfflineFilesEvents, self), bWasEncrypted, bWasPartial, bIsEncrypted, bIsPartial);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_SyncBegin(self: *const T, rSyncId: ?*const Guid) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).SyncBegin(@ptrCast(*const IOfflineFilesEvents, self), rSyncId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_SyncFileResult(self: *const T, rSyncId: ?*const Guid, pszFile: ?[*:0]const u16, hrResult: HRESULT) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).SyncFileResult(@ptrCast(*const IOfflineFilesEvents, self), rSyncId, pszFile, hrResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_SyncConflictRecAdded(self: *const T, pszConflictPath: ?[*:0]const u16, pftConflictDateTime: ?*const FILETIME, ConflictSyncState: OFFLINEFILES_SYNC_STATE) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).SyncConflictRecAdded(@ptrCast(*const IOfflineFilesEvents, self), pszConflictPath, pftConflictDateTime, ConflictSyncState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_SyncConflictRecUpdated(self: *const T, pszConflictPath: ?[*:0]const u16, pftConflictDateTime: ?*const FILETIME, ConflictSyncState: OFFLINEFILES_SYNC_STATE) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).SyncConflictRecUpdated(@ptrCast(*const IOfflineFilesEvents, self), pszConflictPath, pftConflictDateTime, ConflictSyncState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_SyncConflictRecRemoved(self: *const T, pszConflictPath: ?[*:0]const u16, pftConflictDateTime: ?*const FILETIME, ConflictSyncState: OFFLINEFILES_SYNC_STATE) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).SyncConflictRecRemoved(@ptrCast(*const IOfflineFilesEvents, self), pszConflictPath, pftConflictDateTime, ConflictSyncState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_SyncEnd(self: *const T, rSyncId: ?*const Guid, hrResult: HRESULT) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).SyncEnd(@ptrCast(*const IOfflineFilesEvents, self), rSyncId, hrResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_NetTransportArrived(self: *const T) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).NetTransportArrived(@ptrCast(*const IOfflineFilesEvents, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_NoNetTransports(self: *const T) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).NoNetTransports(@ptrCast(*const IOfflineFilesEvents, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_ItemDisconnected(self: *const T, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).ItemDisconnected(@ptrCast(*const IOfflineFilesEvents, self), pszPath, ItemType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_ItemReconnected(self: *const T, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).ItemReconnected(@ptrCast(*const IOfflineFilesEvents, self), pszPath, ItemType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_ItemAvailableOffline(self: *const T, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).ItemAvailableOffline(@ptrCast(*const IOfflineFilesEvents, self), pszPath, ItemType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_ItemNotAvailableOffline(self: *const T, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).ItemNotAvailableOffline(@ptrCast(*const IOfflineFilesEvents, self), pszPath, ItemType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_ItemPinned(self: *const T, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).ItemPinned(@ptrCast(*const IOfflineFilesEvents, self), pszPath, ItemType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_ItemNotPinned(self: *const T, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).ItemNotPinned(@ptrCast(*const IOfflineFilesEvents, self), pszPath, ItemType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_ItemModified(self: *const T, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE, bModifiedData: BOOL, bModifiedAttributes: BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).ItemModified(@ptrCast(*const IOfflineFilesEvents, self), pszPath, ItemType, bModifiedData, bModifiedAttributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_ItemAddedToCache(self: *const T, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).ItemAddedToCache(@ptrCast(*const IOfflineFilesEvents, self), pszPath, ItemType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_ItemDeletedFromCache(self: *const T, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).ItemDeletedFromCache(@ptrCast(*const IOfflineFilesEvents, self), pszPath, ItemType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_ItemRenamed(self: *const T, pszOldPath: ?[*:0]const u16, pszNewPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).ItemRenamed(@ptrCast(*const IOfflineFilesEvents, self), pszOldPath, pszNewPath, ItemType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_DataLost(self: *const T) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).DataLost(@ptrCast(*const IOfflineFilesEvents, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents_Ping(self: *const T) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents.VTable, self.vtable).Ping(@ptrCast(*const IOfflineFilesEvents, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -707,76 +709,78 @@ pub const IID_IOfflineFilesEvents2 = &IID_IOfflineFilesEvents2_Value;
 pub const IOfflineFilesEvents2 = extern struct {
     pub const VTable = extern struct {
         base: IOfflineFilesEvents.VTable,
-        ItemReconnectBegin: fn(
+        ItemReconnectBegin: fn (
             self: *const IOfflineFilesEvents2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ItemReconnectEnd: fn(
+        ItemReconnectEnd: fn (
             self: *const IOfflineFilesEvents2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CacheEvictBegin: fn(
+        CacheEvictBegin: fn (
             self: *const IOfflineFilesEvents2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CacheEvictEnd: fn(
+        CacheEvictEnd: fn (
             self: *const IOfflineFilesEvents2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BackgroundSyncBegin: fn(
-            self: *const IOfflineFilesEvents2,
-            dwSyncControlFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BackgroundSyncEnd: fn(
+        BackgroundSyncBegin: fn (
             self: *const IOfflineFilesEvents2,
             dwSyncControlFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PolicyChangeDetected: fn(
+        BackgroundSyncEnd: fn (
+            self: *const IOfflineFilesEvents2,
+            dwSyncControlFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PolicyChangeDetected: fn (
             self: *const IOfflineFilesEvents2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PreferenceChangeDetected: fn(
+        PreferenceChangeDetected: fn (
             self: *const IOfflineFilesEvents2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SettingsChangesApplied: fn(
+        SettingsChangesApplied: fn (
             self: *const IOfflineFilesEvents2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOfflineFilesEvents.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents2_ItemReconnectBegin(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents2.VTable, self.vtable).ItemReconnectBegin(@ptrCast(*const IOfflineFilesEvents2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents2_ItemReconnectEnd(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents2.VTable, self.vtable).ItemReconnectEnd(@ptrCast(*const IOfflineFilesEvents2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents2_CacheEvictBegin(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents2.VTable, self.vtable).CacheEvictBegin(@ptrCast(*const IOfflineFilesEvents2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents2_CacheEvictEnd(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents2.VTable, self.vtable).CacheEvictEnd(@ptrCast(*const IOfflineFilesEvents2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents2_BackgroundSyncBegin(self: *const T, dwSyncControlFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents2.VTable, self.vtable).BackgroundSyncBegin(@ptrCast(*const IOfflineFilesEvents2, self), dwSyncControlFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents2_BackgroundSyncEnd(self: *const T, dwSyncControlFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents2.VTable, self.vtable).BackgroundSyncEnd(@ptrCast(*const IOfflineFilesEvents2, self), dwSyncControlFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents2_PolicyChangeDetected(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents2.VTable, self.vtable).PolicyChangeDetected(@ptrCast(*const IOfflineFilesEvents2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents2_PreferenceChangeDetected(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents2.VTable, self.vtable).PreferenceChangeDetected(@ptrCast(*const IOfflineFilesEvents2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents2_SettingsChangesApplied(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents2.VTable, self.vtable).SettingsChangesApplied(@ptrCast(*const IOfflineFilesEvents2, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IOfflineFilesEvents.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents2_ItemReconnectBegin(self: *const T) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents2.VTable, self.vtable).ItemReconnectBegin(@ptrCast(*const IOfflineFilesEvents2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents2_ItemReconnectEnd(self: *const T) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents2.VTable, self.vtable).ItemReconnectEnd(@ptrCast(*const IOfflineFilesEvents2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents2_CacheEvictBegin(self: *const T) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents2.VTable, self.vtable).CacheEvictBegin(@ptrCast(*const IOfflineFilesEvents2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents2_CacheEvictEnd(self: *const T) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents2.VTable, self.vtable).CacheEvictEnd(@ptrCast(*const IOfflineFilesEvents2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents2_BackgroundSyncBegin(self: *const T, dwSyncControlFlags: u32) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents2.VTable, self.vtable).BackgroundSyncBegin(@ptrCast(*const IOfflineFilesEvents2, self), dwSyncControlFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents2_BackgroundSyncEnd(self: *const T, dwSyncControlFlags: u32) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents2.VTable, self.vtable).BackgroundSyncEnd(@ptrCast(*const IOfflineFilesEvents2, self), dwSyncControlFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents2_PolicyChangeDetected(self: *const T) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents2.VTable, self.vtable).PolicyChangeDetected(@ptrCast(*const IOfflineFilesEvents2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents2_PreferenceChangeDetected(self: *const T) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents2.VTable, self.vtable).PreferenceChangeDetected(@ptrCast(*const IOfflineFilesEvents2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents2_SettingsChangesApplied(self: *const T) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents2.VTable, self.vtable).SettingsChangesApplied(@ptrCast(*const IOfflineFilesEvents2, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -786,7 +790,7 @@ pub const IID_IOfflineFilesEvents3 = &IID_IOfflineFilesEvents3_Value;
 pub const IOfflineFilesEvents3 = extern struct {
     pub const VTable = extern struct {
         base: IOfflineFilesEvents2.VTable,
-        TransparentCacheItemNotify: fn(
+        TransparentCacheItemNotify: fn (
             self: *const IOfflineFilesEvents3,
             pszPath: ?[*:0]const u16,
             EventType: OFFLINEFILES_EVENTS,
@@ -795,32 +799,34 @@ pub const IOfflineFilesEvents3 = extern struct {
             bModifiedAttributes: BOOL,
             pzsOldPath: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PrefetchFileBegin: fn(
+        PrefetchFileBegin: fn (
             self: *const IOfflineFilesEvents3,
             pszPath: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PrefetchFileEnd: fn(
+        PrefetchFileEnd: fn (
             self: *const IOfflineFilesEvents3,
             pszPath: ?[*:0]const u16,
             hrResult: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOfflineFilesEvents2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents3_TransparentCacheItemNotify(self: *const T, pszPath: ?[*:0]const u16, EventType: OFFLINEFILES_EVENTS, ItemType: OFFLINEFILES_ITEM_TYPE, bModifiedData: BOOL, bModifiedAttributes: BOOL, pzsOldPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents3.VTable, self.vtable).TransparentCacheItemNotify(@ptrCast(*const IOfflineFilesEvents3, self), pszPath, EventType, ItemType, bModifiedData, bModifiedAttributes, pzsOldPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents3_PrefetchFileBegin(self: *const T, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents3.VTable, self.vtable).PrefetchFileBegin(@ptrCast(*const IOfflineFilesEvents3, self), pszPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents3_PrefetchFileEnd(self: *const T, pszPath: ?[*:0]const u16, hrResult: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents3.VTable, self.vtable).PrefetchFileEnd(@ptrCast(*const IOfflineFilesEvents3, self), pszPath, hrResult);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IOfflineFilesEvents2.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents3_TransparentCacheItemNotify(self: *const T, pszPath: ?[*:0]const u16, EventType: OFFLINEFILES_EVENTS, ItemType: OFFLINEFILES_ITEM_TYPE, bModifiedData: BOOL, bModifiedAttributes: BOOL, pzsOldPath: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents3.VTable, self.vtable).TransparentCacheItemNotify(@ptrCast(*const IOfflineFilesEvents3, self), pszPath, EventType, ItemType, bModifiedData, bModifiedAttributes, pzsOldPath);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents3_PrefetchFileBegin(self: *const T, pszPath: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents3.VTable, self.vtable).PrefetchFileBegin(@ptrCast(*const IOfflineFilesEvents3, self), pszPath);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents3_PrefetchFileEnd(self: *const T, pszPath: ?[*:0]const u16, hrResult: HRESULT) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents3.VTable, self.vtable).PrefetchFileEnd(@ptrCast(*const IOfflineFilesEvents3, self), pszPath, hrResult);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -829,10 +835,10 @@ pub const IID_IOfflineFilesEvents4 = &IID_IOfflineFilesEvents4_Value;
 pub const IOfflineFilesEvents4 = extern struct {
     pub const VTable = extern struct {
         base: IOfflineFilesEvents3.VTable,
-        PrefetchCloseHandleBegin: fn(
+        PrefetchCloseHandleBegin: fn (
             self: *const IOfflineFilesEvents4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PrefetchCloseHandleEnd: fn(
+        PrefetchCloseHandleEnd: fn (
             self: *const IOfflineFilesEvents4,
             dwClosedHandleCount: u32,
             dwOpenHandleCount: u32,
@@ -840,17 +846,19 @@ pub const IOfflineFilesEvents4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOfflineFilesEvents3.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents4_PrefetchCloseHandleBegin(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents4.VTable, self.vtable).PrefetchCloseHandleBegin(@ptrCast(*const IOfflineFilesEvents4, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEvents4_PrefetchCloseHandleEnd(self: *const T, dwClosedHandleCount: u32, dwOpenHandleCount: u32, hrResult: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEvents4.VTable, self.vtable).PrefetchCloseHandleEnd(@ptrCast(*const IOfflineFilesEvents4, self), dwClosedHandleCount, dwOpenHandleCount, hrResult);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IOfflineFilesEvents3.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents4_PrefetchCloseHandleBegin(self: *const T) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents4.VTable, self.vtable).PrefetchCloseHandleBegin(@ptrCast(*const IOfflineFilesEvents4, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEvents4_PrefetchCloseHandleEnd(self: *const T, dwClosedHandleCount: u32, dwOpenHandleCount: u32, hrResult: HRESULT) HRESULT {
+                return @ptrCast(*const IOfflineFilesEvents4.VTable, self.vtable).PrefetchCloseHandleEnd(@ptrCast(*const IOfflineFilesEvents4, self), dwClosedHandleCount, dwOpenHandleCount, hrResult);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -860,18 +868,18 @@ pub const IID_IOfflineFilesEventsFilter = &IID_IOfflineFilesEventsFilter_Value;
 pub const IOfflineFilesEventsFilter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPathFilter: fn(
+        GetPathFilter: fn (
             self: *const IOfflineFilesEventsFilter,
             ppszFilter: ?*?PWSTR,
             pMatch: ?*OFFLINEFILES_PATHFILTER_MATCH,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetIncludedEvents: fn(
+        GetIncludedEvents: fn (
             self: *const IOfflineFilesEventsFilter,
             cElements: u32,
             prgEvents: [*]OFFLINEFILES_EVENTS,
             pcEvents: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetExcludedEvents: fn(
+        GetExcludedEvents: fn (
             self: *const IOfflineFilesEventsFilter,
             cElements: u32,
             prgEvents: [*]OFFLINEFILES_EVENTS,
@@ -879,21 +887,23 @@ pub const IOfflineFilesEventsFilter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEventsFilter_GetPathFilter(self: *const T, ppszFilter: ?*?PWSTR, pMatch: ?*OFFLINEFILES_PATHFILTER_MATCH) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEventsFilter.VTable, self.vtable).GetPathFilter(@ptrCast(*const IOfflineFilesEventsFilter, self), ppszFilter, pMatch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEventsFilter_GetIncludedEvents(self: *const T, cElements: u32, prgEvents: [*]OFFLINEFILES_EVENTS, pcEvents: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEventsFilter.VTable, self.vtable).GetIncludedEvents(@ptrCast(*const IOfflineFilesEventsFilter, self), cElements, prgEvents, pcEvents);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesEventsFilter_GetExcludedEvents(self: *const T, cElements: u32, prgEvents: [*]OFFLINEFILES_EVENTS, pcEvents: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesEventsFilter.VTable, self.vtable).GetExcludedEvents(@ptrCast(*const IOfflineFilesEventsFilter, self), cElements, prgEvents, pcEvents);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEventsFilter_GetPathFilter(self: *const T, ppszFilter: ?*?PWSTR, pMatch: ?*OFFLINEFILES_PATHFILTER_MATCH) HRESULT {
+                return @ptrCast(*const IOfflineFilesEventsFilter.VTable, self.vtable).GetPathFilter(@ptrCast(*const IOfflineFilesEventsFilter, self), ppszFilter, pMatch);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEventsFilter_GetIncludedEvents(self: *const T, cElements: u32, prgEvents: [*]OFFLINEFILES_EVENTS, pcEvents: ?*u32) HRESULT {
+                return @ptrCast(*const IOfflineFilesEventsFilter.VTable, self.vtable).GetIncludedEvents(@ptrCast(*const IOfflineFilesEventsFilter, self), cElements, prgEvents, pcEvents);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesEventsFilter_GetExcludedEvents(self: *const T, cElements: u32, prgEvents: [*]OFFLINEFILES_EVENTS, pcEvents: ?*u32) HRESULT {
+                return @ptrCast(*const IOfflineFilesEventsFilter.VTable, self.vtable).GetExcludedEvents(@ptrCast(*const IOfflineFilesEventsFilter, self), cElements, prgEvents, pcEvents);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -903,27 +913,29 @@ pub const IID_IOfflineFilesErrorInfo = &IID_IOfflineFilesErrorInfo_Value;
 pub const IOfflineFilesErrorInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetRawData: fn(
+        GetRawData: fn (
             self: *const IOfflineFilesErrorInfo,
             ppBlob: ?*?*BYTE_BLOB,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDescription: fn(
+        GetDescription: fn (
             self: *const IOfflineFilesErrorInfo,
             ppszDescription: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesErrorInfo_GetRawData(self: *const T, ppBlob: ?*?*BYTE_BLOB) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesErrorInfo.VTable, self.vtable).GetRawData(@ptrCast(*const IOfflineFilesErrorInfo, self), ppBlob);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesErrorInfo_GetDescription(self: *const T, ppszDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesErrorInfo.VTable, self.vtable).GetDescription(@ptrCast(*const IOfflineFilesErrorInfo, self), ppszDescription);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesErrorInfo_GetRawData(self: *const T, ppBlob: ?*?*BYTE_BLOB) HRESULT {
+                return @ptrCast(*const IOfflineFilesErrorInfo.VTable, self.vtable).GetRawData(@ptrCast(*const IOfflineFilesErrorInfo, self), ppBlob);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesErrorInfo_GetDescription(self: *const T, ppszDescription: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IOfflineFilesErrorInfo.VTable, self.vtable).GetDescription(@ptrCast(*const IOfflineFilesErrorInfo, self), ppszDescription);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -933,36 +945,38 @@ pub const IID_IOfflineFilesSyncErrorItemInfo = &IID_IOfflineFilesSyncErrorItemIn
 pub const IOfflineFilesSyncErrorItemInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFileAttributes: fn(
+        GetFileAttributes: fn (
             self: *const IOfflineFilesSyncErrorItemInfo,
             pdwAttributes: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFileTimes: fn(
+        GetFileTimes: fn (
             self: *const IOfflineFilesSyncErrorItemInfo,
             pftLastWrite: ?*FILETIME,
             pftChange: ?*FILETIME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFileSize: fn(
+        GetFileSize: fn (
             self: *const IOfflineFilesSyncErrorItemInfo,
             pSize: ?*LARGE_INTEGER,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSyncErrorItemInfo_GetFileAttributes(self: *const T, pdwAttributes: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSyncErrorItemInfo.VTable, self.vtable).GetFileAttributes(@ptrCast(*const IOfflineFilesSyncErrorItemInfo, self), pdwAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSyncErrorItemInfo_GetFileTimes(self: *const T, pftLastWrite: ?*FILETIME, pftChange: ?*FILETIME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSyncErrorItemInfo.VTable, self.vtable).GetFileTimes(@ptrCast(*const IOfflineFilesSyncErrorItemInfo, self), pftLastWrite, pftChange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSyncErrorItemInfo_GetFileSize(self: *const T, pSize: ?*LARGE_INTEGER) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSyncErrorItemInfo.VTable, self.vtable).GetFileSize(@ptrCast(*const IOfflineFilesSyncErrorItemInfo, self), pSize);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSyncErrorItemInfo_GetFileAttributes(self: *const T, pdwAttributes: ?*u32) HRESULT {
+                return @ptrCast(*const IOfflineFilesSyncErrorItemInfo.VTable, self.vtable).GetFileAttributes(@ptrCast(*const IOfflineFilesSyncErrorItemInfo, self), pdwAttributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSyncErrorItemInfo_GetFileTimes(self: *const T, pftLastWrite: ?*FILETIME, pftChange: ?*FILETIME) HRESULT {
+                return @ptrCast(*const IOfflineFilesSyncErrorItemInfo.VTable, self.vtable).GetFileTimes(@ptrCast(*const IOfflineFilesSyncErrorItemInfo, self), pftLastWrite, pftChange);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSyncErrorItemInfo_GetFileSize(self: *const T, pSize: ?*LARGE_INTEGER) HRESULT {
+                return @ptrCast(*const IOfflineFilesSyncErrorItemInfo.VTable, self.vtable).GetFileSize(@ptrCast(*const IOfflineFilesSyncErrorItemInfo, self), pSize);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -972,71 +986,73 @@ pub const IID_IOfflineFilesSyncErrorInfo = &IID_IOfflineFilesSyncErrorInfo_Value
 pub const IOfflineFilesSyncErrorInfo = extern struct {
     pub const VTable = extern struct {
         base: IOfflineFilesErrorInfo.VTable,
-        GetSyncOperation: fn(
+        GetSyncOperation: fn (
             self: *const IOfflineFilesSyncErrorInfo,
             pSyncOp: ?*OFFLINEFILES_SYNC_OPERATION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetItemChangeFlags: fn(
+        GetItemChangeFlags: fn (
             self: *const IOfflineFilesSyncErrorInfo,
             pdwItemChangeFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InfoEnumerated: fn(
+        InfoEnumerated: fn (
             self: *const IOfflineFilesSyncErrorInfo,
             pbLocalEnumerated: ?*BOOL,
             pbRemoteEnumerated: ?*BOOL,
             pbOriginalEnumerated: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InfoAvailable: fn(
+        InfoAvailable: fn (
             self: *const IOfflineFilesSyncErrorInfo,
             pbLocalInfo: ?*BOOL,
             pbRemoteInfo: ?*BOOL,
             pbOriginalInfo: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLocalInfo: fn(
+        GetLocalInfo: fn (
             self: *const IOfflineFilesSyncErrorInfo,
             ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRemoteInfo: fn(
+        GetRemoteInfo: fn (
             self: *const IOfflineFilesSyncErrorInfo,
             ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOriginalInfo: fn(
+        GetOriginalInfo: fn (
             self: *const IOfflineFilesSyncErrorInfo,
             ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOfflineFilesErrorInfo.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSyncErrorInfo_GetSyncOperation(self: *const T, pSyncOp: ?*OFFLINEFILES_SYNC_OPERATION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSyncErrorInfo.VTable, self.vtable).GetSyncOperation(@ptrCast(*const IOfflineFilesSyncErrorInfo, self), pSyncOp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSyncErrorInfo_GetItemChangeFlags(self: *const T, pdwItemChangeFlags: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSyncErrorInfo.VTable, self.vtable).GetItemChangeFlags(@ptrCast(*const IOfflineFilesSyncErrorInfo, self), pdwItemChangeFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSyncErrorInfo_InfoEnumerated(self: *const T, pbLocalEnumerated: ?*BOOL, pbRemoteEnumerated: ?*BOOL, pbOriginalEnumerated: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSyncErrorInfo.VTable, self.vtable).InfoEnumerated(@ptrCast(*const IOfflineFilesSyncErrorInfo, self), pbLocalEnumerated, pbRemoteEnumerated, pbOriginalEnumerated);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSyncErrorInfo_InfoAvailable(self: *const T, pbLocalInfo: ?*BOOL, pbRemoteInfo: ?*BOOL, pbOriginalInfo: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSyncErrorInfo.VTable, self.vtable).InfoAvailable(@ptrCast(*const IOfflineFilesSyncErrorInfo, self), pbLocalInfo, pbRemoteInfo, pbOriginalInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSyncErrorInfo_GetLocalInfo(self: *const T, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSyncErrorInfo.VTable, self.vtable).GetLocalInfo(@ptrCast(*const IOfflineFilesSyncErrorInfo, self), ppInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSyncErrorInfo_GetRemoteInfo(self: *const T, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSyncErrorInfo.VTable, self.vtable).GetRemoteInfo(@ptrCast(*const IOfflineFilesSyncErrorInfo, self), ppInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSyncErrorInfo_GetOriginalInfo(self: *const T, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSyncErrorInfo.VTable, self.vtable).GetOriginalInfo(@ptrCast(*const IOfflineFilesSyncErrorInfo, self), ppInfo);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IOfflineFilesErrorInfo.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSyncErrorInfo_GetSyncOperation(self: *const T, pSyncOp: ?*OFFLINEFILES_SYNC_OPERATION) HRESULT {
+                return @ptrCast(*const IOfflineFilesSyncErrorInfo.VTable, self.vtable).GetSyncOperation(@ptrCast(*const IOfflineFilesSyncErrorInfo, self), pSyncOp);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSyncErrorInfo_GetItemChangeFlags(self: *const T, pdwItemChangeFlags: ?*u32) HRESULT {
+                return @ptrCast(*const IOfflineFilesSyncErrorInfo.VTable, self.vtable).GetItemChangeFlags(@ptrCast(*const IOfflineFilesSyncErrorInfo, self), pdwItemChangeFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSyncErrorInfo_InfoEnumerated(self: *const T, pbLocalEnumerated: ?*BOOL, pbRemoteEnumerated: ?*BOOL, pbOriginalEnumerated: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesSyncErrorInfo.VTable, self.vtable).InfoEnumerated(@ptrCast(*const IOfflineFilesSyncErrorInfo, self), pbLocalEnumerated, pbRemoteEnumerated, pbOriginalEnumerated);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSyncErrorInfo_InfoAvailable(self: *const T, pbLocalInfo: ?*BOOL, pbRemoteInfo: ?*BOOL, pbOriginalInfo: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesSyncErrorInfo.VTable, self.vtable).InfoAvailable(@ptrCast(*const IOfflineFilesSyncErrorInfo, self), pbLocalInfo, pbRemoteInfo, pbOriginalInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSyncErrorInfo_GetLocalInfo(self: *const T, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) HRESULT {
+                return @ptrCast(*const IOfflineFilesSyncErrorInfo.VTable, self.vtable).GetLocalInfo(@ptrCast(*const IOfflineFilesSyncErrorInfo, self), ppInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSyncErrorInfo_GetRemoteInfo(self: *const T, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) HRESULT {
+                return @ptrCast(*const IOfflineFilesSyncErrorInfo.VTable, self.vtable).GetRemoteInfo(@ptrCast(*const IOfflineFilesSyncErrorInfo, self), ppInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSyncErrorInfo_GetOriginalInfo(self: *const T, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) HRESULT {
+                return @ptrCast(*const IOfflineFilesSyncErrorInfo.VTable, self.vtable).GetOriginalInfo(@ptrCast(*const IOfflineFilesSyncErrorInfo, self), ppInfo);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1046,35 +1062,37 @@ pub const IID_IOfflineFilesProgress = &IID_IOfflineFilesProgress_Value;
 pub const IOfflineFilesProgress = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Begin: fn(
+        Begin: fn (
             self: *const IOfflineFilesProgress,
             pbAbort: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        QueryAbort: fn(
+        QueryAbort: fn (
             self: *const IOfflineFilesProgress,
             pbAbort: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        End: fn(
+        End: fn (
             self: *const IOfflineFilesProgress,
             hrResult: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesProgress_Begin(self: *const T, pbAbort: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesProgress.VTable, self.vtable).Begin(@ptrCast(*const IOfflineFilesProgress, self), pbAbort);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesProgress_QueryAbort(self: *const T, pbAbort: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesProgress.VTable, self.vtable).QueryAbort(@ptrCast(*const IOfflineFilesProgress, self), pbAbort);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesProgress_End(self: *const T, hrResult: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesProgress.VTable, self.vtable).End(@ptrCast(*const IOfflineFilesProgress, self), hrResult);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesProgress_Begin(self: *const T, pbAbort: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesProgress.VTable, self.vtable).Begin(@ptrCast(*const IOfflineFilesProgress, self), pbAbort);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesProgress_QueryAbort(self: *const T, pbAbort: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesProgress.VTable, self.vtable).QueryAbort(@ptrCast(*const IOfflineFilesProgress, self), pbAbort);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesProgress_End(self: *const T, hrResult: HRESULT) HRESULT {
+                return @ptrCast(*const IOfflineFilesProgress.VTable, self.vtable).End(@ptrCast(*const IOfflineFilesProgress, self), hrResult);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1084,12 +1102,12 @@ pub const IID_IOfflineFilesSimpleProgress = &IID_IOfflineFilesSimpleProgress_Val
 pub const IOfflineFilesSimpleProgress = extern struct {
     pub const VTable = extern struct {
         base: IOfflineFilesProgress.VTable,
-        ItemBegin: fn(
+        ItemBegin: fn (
             self: *const IOfflineFilesSimpleProgress,
             pszFile: ?[*:0]const u16,
             pResponse: ?*OFFLINEFILES_OP_RESPONSE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ItemResult: fn(
+        ItemResult: fn (
             self: *const IOfflineFilesSimpleProgress,
             pszFile: ?[*:0]const u16,
             hrResult: HRESULT,
@@ -1097,17 +1115,19 @@ pub const IOfflineFilesSimpleProgress = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOfflineFilesProgress.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSimpleProgress_ItemBegin(self: *const T, pszFile: ?[*:0]const u16, pResponse: ?*OFFLINEFILES_OP_RESPONSE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSimpleProgress.VTable, self.vtable).ItemBegin(@ptrCast(*const IOfflineFilesSimpleProgress, self), pszFile, pResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSimpleProgress_ItemResult(self: *const T, pszFile: ?[*:0]const u16, hrResult: HRESULT, pResponse: ?*OFFLINEFILES_OP_RESPONSE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSimpleProgress.VTable, self.vtable).ItemResult(@ptrCast(*const IOfflineFilesSimpleProgress, self), pszFile, hrResult, pResponse);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IOfflineFilesProgress.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSimpleProgress_ItemBegin(self: *const T, pszFile: ?[*:0]const u16, pResponse: ?*OFFLINEFILES_OP_RESPONSE) HRESULT {
+                return @ptrCast(*const IOfflineFilesSimpleProgress.VTable, self.vtable).ItemBegin(@ptrCast(*const IOfflineFilesSimpleProgress, self), pszFile, pResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSimpleProgress_ItemResult(self: *const T, pszFile: ?[*:0]const u16, hrResult: HRESULT, pResponse: ?*OFFLINEFILES_OP_RESPONSE) HRESULT {
+                return @ptrCast(*const IOfflineFilesSimpleProgress.VTable, self.vtable).ItemResult(@ptrCast(*const IOfflineFilesSimpleProgress, self), pszFile, hrResult, pResponse);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1117,12 +1137,12 @@ pub const IID_IOfflineFilesSyncProgress = &IID_IOfflineFilesSyncProgress_Value;
 pub const IOfflineFilesSyncProgress = extern struct {
     pub const VTable = extern struct {
         base: IOfflineFilesProgress.VTable,
-        SyncItemBegin: fn(
+        SyncItemBegin: fn (
             self: *const IOfflineFilesSyncProgress,
             pszFile: ?[*:0]const u16,
             pResponse: ?*OFFLINEFILES_OP_RESPONSE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SyncItemResult: fn(
+        SyncItemResult: fn (
             self: *const IOfflineFilesSyncProgress,
             pszFile: ?[*:0]const u16,
             hrResult: HRESULT,
@@ -1131,17 +1151,19 @@ pub const IOfflineFilesSyncProgress = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOfflineFilesProgress.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSyncProgress_SyncItemBegin(self: *const T, pszFile: ?[*:0]const u16, pResponse: ?*OFFLINEFILES_OP_RESPONSE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSyncProgress.VTable, self.vtable).SyncItemBegin(@ptrCast(*const IOfflineFilesSyncProgress, self), pszFile, pResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSyncProgress_SyncItemResult(self: *const T, pszFile: ?[*:0]const u16, hrResult: HRESULT, pErrorInfo: ?*IOfflineFilesSyncErrorInfo, pResponse: ?*OFFLINEFILES_OP_RESPONSE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSyncProgress.VTable, self.vtable).SyncItemResult(@ptrCast(*const IOfflineFilesSyncProgress, self), pszFile, hrResult, pErrorInfo, pResponse);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IOfflineFilesProgress.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSyncProgress_SyncItemBegin(self: *const T, pszFile: ?[*:0]const u16, pResponse: ?*OFFLINEFILES_OP_RESPONSE) HRESULT {
+                return @ptrCast(*const IOfflineFilesSyncProgress.VTable, self.vtable).SyncItemBegin(@ptrCast(*const IOfflineFilesSyncProgress, self), pszFile, pResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSyncProgress_SyncItemResult(self: *const T, pszFile: ?[*:0]const u16, hrResult: HRESULT, pErrorInfo: ?*IOfflineFilesSyncErrorInfo, pResponse: ?*OFFLINEFILES_OP_RESPONSE) HRESULT {
+                return @ptrCast(*const IOfflineFilesSyncProgress.VTable, self.vtable).SyncItemResult(@ptrCast(*const IOfflineFilesSyncProgress, self), pszFile, hrResult, pErrorInfo, pResponse);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1151,7 +1173,7 @@ pub const IID_IOfflineFilesSyncConflictHandler = &IID_IOfflineFilesSyncConflictH
 pub const IOfflineFilesSyncConflictHandler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ResolveConflict: fn(
+        ResolveConflict: fn (
             self: *const IOfflineFilesSyncConflictHandler,
             pszPath: ?[*:0]const u16,
             fStateKnown: u32,
@@ -1162,13 +1184,15 @@ pub const IOfflineFilesSyncConflictHandler = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSyncConflictHandler_ResolveConflict(self: *const T, pszPath: ?[*:0]const u16, fStateKnown: u32, state: OFFLINEFILES_SYNC_STATE, fChangeDetails: u32, pConflictResolution: ?*OFFLINEFILES_SYNC_CONFLICT_RESOLVE, ppszNewName: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSyncConflictHandler.VTable, self.vtable).ResolveConflict(@ptrCast(*const IOfflineFilesSyncConflictHandler, self), pszPath, fStateKnown, state, fChangeDetails, pConflictResolution, ppszNewName);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSyncConflictHandler_ResolveConflict(self: *const T, pszPath: ?[*:0]const u16, fStateKnown: u32, state: OFFLINEFILES_SYNC_STATE, fChangeDetails: u32, pConflictResolution: ?*OFFLINEFILES_SYNC_CONFLICT_RESOLVE, ppszNewName: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IOfflineFilesSyncConflictHandler.VTable, self.vtable).ResolveConflict(@ptrCast(*const IOfflineFilesSyncConflictHandler, self), pszPath, fStateKnown, state, fChangeDetails, pConflictResolution, ppszNewName);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1178,40 +1202,42 @@ pub const IID_IOfflineFilesItemFilter = &IID_IOfflineFilesItemFilter_Value;
 pub const IOfflineFilesItemFilter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFilterFlags: fn(
+        GetFilterFlags: fn (
             self: *const IOfflineFilesItemFilter,
             pullFlags: ?*u64,
             pullMask: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTimeFilter: fn(
+        GetTimeFilter: fn (
             self: *const IOfflineFilesItemFilter,
             pftTime: ?*FILETIME,
             pbEvalTimeOfDay: ?*BOOL,
             pTimeType: ?*OFFLINEFILES_ITEM_TIME,
             pCompare: ?*OFFLINEFILES_COMPARE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPatternFilter: fn(
+        GetPatternFilter: fn (
             self: *const IOfflineFilesItemFilter,
             pszPattern: [*:0]u16,
             cchPattern: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesItemFilter_GetFilterFlags(self: *const T, pullFlags: ?*u64, pullMask: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesItemFilter.VTable, self.vtable).GetFilterFlags(@ptrCast(*const IOfflineFilesItemFilter, self), pullFlags, pullMask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesItemFilter_GetTimeFilter(self: *const T, pftTime: ?*FILETIME, pbEvalTimeOfDay: ?*BOOL, pTimeType: ?*OFFLINEFILES_ITEM_TIME, pCompare: ?*OFFLINEFILES_COMPARE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesItemFilter.VTable, self.vtable).GetTimeFilter(@ptrCast(*const IOfflineFilesItemFilter, self), pftTime, pbEvalTimeOfDay, pTimeType, pCompare);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesItemFilter_GetPatternFilter(self: *const T, pszPattern: [*:0]u16, cchPattern: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesItemFilter.VTable, self.vtable).GetPatternFilter(@ptrCast(*const IOfflineFilesItemFilter, self), pszPattern, cchPattern);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesItemFilter_GetFilterFlags(self: *const T, pullFlags: ?*u64, pullMask: ?*u64) HRESULT {
+                return @ptrCast(*const IOfflineFilesItemFilter.VTable, self.vtable).GetFilterFlags(@ptrCast(*const IOfflineFilesItemFilter, self), pullFlags, pullMask);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesItemFilter_GetTimeFilter(self: *const T, pftTime: ?*FILETIME, pbEvalTimeOfDay: ?*BOOL, pTimeType: ?*OFFLINEFILES_ITEM_TIME, pCompare: ?*OFFLINEFILES_COMPARE) HRESULT {
+                return @ptrCast(*const IOfflineFilesItemFilter.VTable, self.vtable).GetTimeFilter(@ptrCast(*const IOfflineFilesItemFilter, self), pftTime, pbEvalTimeOfDay, pTimeType, pCompare);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesItemFilter_GetPatternFilter(self: *const T, pszPattern: [*:0]u16, cchPattern: u32) HRESULT {
+                return @ptrCast(*const IOfflineFilesItemFilter.VTable, self.vtable).GetPatternFilter(@ptrCast(*const IOfflineFilesItemFilter, self), pszPattern, cchPattern);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1221,51 +1247,53 @@ pub const IID_IOfflineFilesItem = &IID_IOfflineFilesItem_Value;
 pub const IOfflineFilesItem = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetItemType: fn(
+        GetItemType: fn (
             self: *const IOfflineFilesItem,
             pItemType: ?*OFFLINEFILES_ITEM_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPath: fn(
+        GetPath: fn (
             self: *const IOfflineFilesItem,
             ppszPath: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetParentItem: fn(
+        GetParentItem: fn (
             self: *const IOfflineFilesItem,
             ppItem: ?*?*IOfflineFilesItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const IOfflineFilesItem,
             dwQueryFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsMarkedForDeletion: fn(
+        IsMarkedForDeletion: fn (
             self: *const IOfflineFilesItem,
             pbMarkedForDeletion: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesItem_GetItemType(self: *const T, pItemType: ?*OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesItem.VTable, self.vtable).GetItemType(@ptrCast(*const IOfflineFilesItem, self), pItemType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesItem_GetPath(self: *const T, ppszPath: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesItem.VTable, self.vtable).GetPath(@ptrCast(*const IOfflineFilesItem, self), ppszPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesItem_GetParentItem(self: *const T, ppItem: ?*?*IOfflineFilesItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesItem.VTable, self.vtable).GetParentItem(@ptrCast(*const IOfflineFilesItem, self), ppItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesItem_Refresh(self: *const T, dwQueryFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesItem.VTable, self.vtable).Refresh(@ptrCast(*const IOfflineFilesItem, self), dwQueryFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesItem_IsMarkedForDeletion(self: *const T, pbMarkedForDeletion: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesItem.VTable, self.vtable).IsMarkedForDeletion(@ptrCast(*const IOfflineFilesItem, self), pbMarkedForDeletion);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesItem_GetItemType(self: *const T, pItemType: ?*OFFLINEFILES_ITEM_TYPE) HRESULT {
+                return @ptrCast(*const IOfflineFilesItem.VTable, self.vtable).GetItemType(@ptrCast(*const IOfflineFilesItem, self), pItemType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesItem_GetPath(self: *const T, ppszPath: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IOfflineFilesItem.VTable, self.vtable).GetPath(@ptrCast(*const IOfflineFilesItem, self), ppszPath);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesItem_GetParentItem(self: *const T, ppItem: ?*?*IOfflineFilesItem) HRESULT {
+                return @ptrCast(*const IOfflineFilesItem.VTable, self.vtable).GetParentItem(@ptrCast(*const IOfflineFilesItem, self), ppItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesItem_Refresh(self: *const T, dwQueryFlags: u32) HRESULT {
+                return @ptrCast(*const IOfflineFilesItem.VTable, self.vtable).Refresh(@ptrCast(*const IOfflineFilesItem, self), dwQueryFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesItem_IsMarkedForDeletion(self: *const T, pbMarkedForDeletion: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesItem.VTable, self.vtable).IsMarkedForDeletion(@ptrCast(*const IOfflineFilesItem, self), pbMarkedForDeletion);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1277,9 +1305,11 @@ pub const IOfflineFilesServerItem = extern struct {
         base: IOfflineFilesItem.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOfflineFilesItem.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IOfflineFilesItem.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1291,9 +1321,11 @@ pub const IOfflineFilesShareItem = extern struct {
         base: IOfflineFilesItem.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOfflineFilesItem.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IOfflineFilesItem.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1305,9 +1337,11 @@ pub const IOfflineFilesDirectoryItem = extern struct {
         base: IOfflineFilesItem.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOfflineFilesItem.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IOfflineFilesItem.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1317,27 +1351,29 @@ pub const IID_IOfflineFilesFileItem = &IID_IOfflineFilesFileItem_Value;
 pub const IOfflineFilesFileItem = extern struct {
     pub const VTable = extern struct {
         base: IOfflineFilesItem.VTable,
-        IsSparse: fn(
+        IsSparse: fn (
             self: *const IOfflineFilesFileItem,
             pbIsSparse: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsEncrypted: fn(
+        IsEncrypted: fn (
             self: *const IOfflineFilesFileItem,
             pbIsEncrypted: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOfflineFilesItem.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesFileItem_IsSparse(self: *const T, pbIsSparse: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesFileItem.VTable, self.vtable).IsSparse(@ptrCast(*const IOfflineFilesFileItem, self), pbIsSparse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesFileItem_IsEncrypted(self: *const T, pbIsEncrypted: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesFileItem.VTable, self.vtable).IsEncrypted(@ptrCast(*const IOfflineFilesFileItem, self), pbIsEncrypted);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IOfflineFilesItem.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesFileItem_IsSparse(self: *const T, pbIsSparse: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesFileItem.VTable, self.vtable).IsSparse(@ptrCast(*const IOfflineFilesFileItem, self), pbIsSparse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesFileItem_IsEncrypted(self: *const T, pbIsEncrypted: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesFileItem.VTable, self.vtable).IsEncrypted(@ptrCast(*const IOfflineFilesFileItem, self), pbIsEncrypted);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1347,44 +1383,46 @@ pub const IID_IEnumOfflineFilesItems = &IID_IEnumOfflineFilesItems_Value;
 pub const IEnumOfflineFilesItems = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
+        Next: fn (
             self: *const IEnumOfflineFilesItems,
             celt: u32,
             rgelt: [*]?*IOfflineFilesItem,
             pceltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
+        Skip: fn (
             self: *const IEnumOfflineFilesItems,
             celt: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
+        Reset: fn (
             self: *const IEnumOfflineFilesItems,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
+        Clone: fn (
             self: *const IEnumOfflineFilesItems,
             ppenum: ?*?*IEnumOfflineFilesItems,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOfflineFilesItems_Next(self: *const T, celt: u32, rgelt: [*]?*IOfflineFilesItem, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumOfflineFilesItems.VTable, self.vtable).Next(@ptrCast(*const IEnumOfflineFilesItems, self), celt, rgelt, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOfflineFilesItems_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumOfflineFilesItems.VTable, self.vtable).Skip(@ptrCast(*const IEnumOfflineFilesItems, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOfflineFilesItems_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumOfflineFilesItems.VTable, self.vtable).Reset(@ptrCast(*const IEnumOfflineFilesItems, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOfflineFilesItems_Clone(self: *const T, ppenum: ?*?*IEnumOfflineFilesItems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumOfflineFilesItems.VTable, self.vtable).Clone(@ptrCast(*const IEnumOfflineFilesItems, self), ppenum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumOfflineFilesItems_Next(self: *const T, celt: u32, rgelt: [*]?*IOfflineFilesItem, pceltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumOfflineFilesItems.VTable, self.vtable).Next(@ptrCast(*const IEnumOfflineFilesItems, self), celt, rgelt, pceltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumOfflineFilesItems_Skip(self: *const T, celt: u32) HRESULT {
+                return @ptrCast(*const IEnumOfflineFilesItems.VTable, self.vtable).Skip(@ptrCast(*const IEnumOfflineFilesItems, self), celt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumOfflineFilesItems_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumOfflineFilesItems.VTable, self.vtable).Reset(@ptrCast(*const IEnumOfflineFilesItems, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumOfflineFilesItems_Clone(self: *const T, ppenum: ?*?*IEnumOfflineFilesItems) HRESULT {
+                return @ptrCast(*const IEnumOfflineFilesItems.VTable, self.vtable).Clone(@ptrCast(*const IEnumOfflineFilesItems, self), ppenum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1394,12 +1432,12 @@ pub const IID_IOfflineFilesItemContainer = &IID_IOfflineFilesItemContainer_Value
 pub const IOfflineFilesItemContainer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        EnumItems: fn(
+        EnumItems: fn (
             self: *const IOfflineFilesItemContainer,
             dwQueryFlags: u32,
             ppenum: ?*?*IEnumOfflineFilesItems,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumItemsEx: fn(
+        EnumItemsEx: fn (
             self: *const IOfflineFilesItemContainer,
             pIncludeFileFilter: ?*IOfflineFilesItemFilter,
             pIncludeDirFilter: ?*IOfflineFilesItemFilter,
@@ -1411,17 +1449,19 @@ pub const IOfflineFilesItemContainer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesItemContainer_EnumItems(self: *const T, dwQueryFlags: u32, ppenum: ?*?*IEnumOfflineFilesItems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesItemContainer.VTable, self.vtable).EnumItems(@ptrCast(*const IOfflineFilesItemContainer, self), dwQueryFlags, ppenum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesItemContainer_EnumItemsEx(self: *const T, pIncludeFileFilter: ?*IOfflineFilesItemFilter, pIncludeDirFilter: ?*IOfflineFilesItemFilter, pExcludeFileFilter: ?*IOfflineFilesItemFilter, pExcludeDirFilter: ?*IOfflineFilesItemFilter, dwEnumFlags: u32, dwQueryFlags: u32, ppenum: ?*?*IEnumOfflineFilesItems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesItemContainer.VTable, self.vtable).EnumItemsEx(@ptrCast(*const IOfflineFilesItemContainer, self), pIncludeFileFilter, pIncludeDirFilter, pExcludeFileFilter, pExcludeDirFilter, dwEnumFlags, dwQueryFlags, ppenum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesItemContainer_EnumItems(self: *const T, dwQueryFlags: u32, ppenum: ?*?*IEnumOfflineFilesItems) HRESULT {
+                return @ptrCast(*const IOfflineFilesItemContainer.VTable, self.vtable).EnumItems(@ptrCast(*const IOfflineFilesItemContainer, self), dwQueryFlags, ppenum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesItemContainer_EnumItemsEx(self: *const T, pIncludeFileFilter: ?*IOfflineFilesItemFilter, pIncludeDirFilter: ?*IOfflineFilesItemFilter, pExcludeFileFilter: ?*IOfflineFilesItemFilter, pExcludeDirFilter: ?*IOfflineFilesItemFilter, dwEnumFlags: u32, dwQueryFlags: u32, ppenum: ?*?*IEnumOfflineFilesItems) HRESULT {
+                return @ptrCast(*const IOfflineFilesItemContainer.VTable, self.vtable).EnumItemsEx(@ptrCast(*const IOfflineFilesItemContainer, self), pIncludeFileFilter, pIncludeDirFilter, pExcludeFileFilter, pExcludeDirFilter, dwEnumFlags, dwQueryFlags, ppenum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1431,59 +1471,61 @@ pub const IID_IOfflineFilesChangeInfo = &IID_IOfflineFilesChangeInfo_Value;
 pub const IOfflineFilesChangeInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsDirty: fn(
+        IsDirty: fn (
             self: *const IOfflineFilesChangeInfo,
             pbDirty: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsDeletedOffline: fn(
+        IsDeletedOffline: fn (
             self: *const IOfflineFilesChangeInfo,
             pbDeletedOffline: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsCreatedOffline: fn(
+        IsCreatedOffline: fn (
             self: *const IOfflineFilesChangeInfo,
             pbCreatedOffline: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsLocallyModifiedData: fn(
+        IsLocallyModifiedData: fn (
             self: *const IOfflineFilesChangeInfo,
             pbLocallyModifiedData: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsLocallyModifiedAttributes: fn(
+        IsLocallyModifiedAttributes: fn (
             self: *const IOfflineFilesChangeInfo,
             pbLocallyModifiedAttributes: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsLocallyModifiedTime: fn(
+        IsLocallyModifiedTime: fn (
             self: *const IOfflineFilesChangeInfo,
             pbLocallyModifiedTime: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesChangeInfo_IsDirty(self: *const T, pbDirty: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesChangeInfo.VTable, self.vtable).IsDirty(@ptrCast(*const IOfflineFilesChangeInfo, self), pbDirty);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesChangeInfo_IsDeletedOffline(self: *const T, pbDeletedOffline: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesChangeInfo.VTable, self.vtable).IsDeletedOffline(@ptrCast(*const IOfflineFilesChangeInfo, self), pbDeletedOffline);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesChangeInfo_IsCreatedOffline(self: *const T, pbCreatedOffline: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesChangeInfo.VTable, self.vtable).IsCreatedOffline(@ptrCast(*const IOfflineFilesChangeInfo, self), pbCreatedOffline);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesChangeInfo_IsLocallyModifiedData(self: *const T, pbLocallyModifiedData: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesChangeInfo.VTable, self.vtable).IsLocallyModifiedData(@ptrCast(*const IOfflineFilesChangeInfo, self), pbLocallyModifiedData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesChangeInfo_IsLocallyModifiedAttributes(self: *const T, pbLocallyModifiedAttributes: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesChangeInfo.VTable, self.vtable).IsLocallyModifiedAttributes(@ptrCast(*const IOfflineFilesChangeInfo, self), pbLocallyModifiedAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesChangeInfo_IsLocallyModifiedTime(self: *const T, pbLocallyModifiedTime: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesChangeInfo.VTable, self.vtable).IsLocallyModifiedTime(@ptrCast(*const IOfflineFilesChangeInfo, self), pbLocallyModifiedTime);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesChangeInfo_IsDirty(self: *const T, pbDirty: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesChangeInfo.VTable, self.vtable).IsDirty(@ptrCast(*const IOfflineFilesChangeInfo, self), pbDirty);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesChangeInfo_IsDeletedOffline(self: *const T, pbDeletedOffline: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesChangeInfo.VTable, self.vtable).IsDeletedOffline(@ptrCast(*const IOfflineFilesChangeInfo, self), pbDeletedOffline);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesChangeInfo_IsCreatedOffline(self: *const T, pbCreatedOffline: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesChangeInfo.VTable, self.vtable).IsCreatedOffline(@ptrCast(*const IOfflineFilesChangeInfo, self), pbCreatedOffline);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesChangeInfo_IsLocallyModifiedData(self: *const T, pbLocallyModifiedData: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesChangeInfo.VTable, self.vtable).IsLocallyModifiedData(@ptrCast(*const IOfflineFilesChangeInfo, self), pbLocallyModifiedData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesChangeInfo_IsLocallyModifiedAttributes(self: *const T, pbLocallyModifiedAttributes: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesChangeInfo.VTable, self.vtable).IsLocallyModifiedAttributes(@ptrCast(*const IOfflineFilesChangeInfo, self), pbLocallyModifiedAttributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesChangeInfo_IsLocallyModifiedTime(self: *const T, pbLocallyModifiedTime: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesChangeInfo.VTable, self.vtable).IsLocallyModifiedTime(@ptrCast(*const IOfflineFilesChangeInfo, self), pbLocallyModifiedTime);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1493,27 +1535,29 @@ pub const IID_IOfflineFilesDirtyInfo = &IID_IOfflineFilesDirtyInfo_Value;
 pub const IOfflineFilesDirtyInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        LocalDirtyByteCount: fn(
+        LocalDirtyByteCount: fn (
             self: *const IOfflineFilesDirtyInfo,
             pDirtyByteCount: ?*LARGE_INTEGER,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoteDirtyByteCount: fn(
+        RemoteDirtyByteCount: fn (
             self: *const IOfflineFilesDirtyInfo,
             pDirtyByteCount: ?*LARGE_INTEGER,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesDirtyInfo_LocalDirtyByteCount(self: *const T, pDirtyByteCount: ?*LARGE_INTEGER) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesDirtyInfo.VTable, self.vtable).LocalDirtyByteCount(@ptrCast(*const IOfflineFilesDirtyInfo, self), pDirtyByteCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesDirtyInfo_RemoteDirtyByteCount(self: *const T, pDirtyByteCount: ?*LARGE_INTEGER) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesDirtyInfo.VTable, self.vtable).RemoteDirtyByteCount(@ptrCast(*const IOfflineFilesDirtyInfo, self), pDirtyByteCount);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesDirtyInfo_LocalDirtyByteCount(self: *const T, pDirtyByteCount: ?*LARGE_INTEGER) HRESULT {
+                return @ptrCast(*const IOfflineFilesDirtyInfo.VTable, self.vtable).LocalDirtyByteCount(@ptrCast(*const IOfflineFilesDirtyInfo, self), pDirtyByteCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesDirtyInfo_RemoteDirtyByteCount(self: *const T, pDirtyByteCount: ?*LARGE_INTEGER) HRESULT {
+                return @ptrCast(*const IOfflineFilesDirtyInfo.VTable, self.vtable).RemoteDirtyByteCount(@ptrCast(*const IOfflineFilesDirtyInfo, self), pDirtyByteCount);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1523,12 +1567,12 @@ pub const IID_IOfflineFilesFileSysInfo = &IID_IOfflineFilesFileSysInfo_Value;
 pub const IOfflineFilesFileSysInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetAttributes: fn(
+        GetAttributes: fn (
             self: *const IOfflineFilesFileSysInfo,
             copy: OFFLINEFILES_ITEM_COPY,
             pdwAttributes: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTimes: fn(
+        GetTimes: fn (
             self: *const IOfflineFilesFileSysInfo,
             copy: OFFLINEFILES_ITEM_COPY,
             pftCreationTime: ?*FILETIME,
@@ -1536,28 +1580,30 @@ pub const IOfflineFilesFileSysInfo = extern struct {
             pftChangeTime: ?*FILETIME,
             pftLastAccessTime: ?*FILETIME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFileSize: fn(
+        GetFileSize: fn (
             self: *const IOfflineFilesFileSysInfo,
             copy: OFFLINEFILES_ITEM_COPY,
             pSize: ?*LARGE_INTEGER,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesFileSysInfo_GetAttributes(self: *const T, copy: OFFLINEFILES_ITEM_COPY, pdwAttributes: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesFileSysInfo.VTable, self.vtable).GetAttributes(@ptrCast(*const IOfflineFilesFileSysInfo, self), copy, pdwAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesFileSysInfo_GetTimes(self: *const T, copy: OFFLINEFILES_ITEM_COPY, pftCreationTime: ?*FILETIME, pftLastWriteTime: ?*FILETIME, pftChangeTime: ?*FILETIME, pftLastAccessTime: ?*FILETIME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesFileSysInfo.VTable, self.vtable).GetTimes(@ptrCast(*const IOfflineFilesFileSysInfo, self), copy, pftCreationTime, pftLastWriteTime, pftChangeTime, pftLastAccessTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesFileSysInfo_GetFileSize(self: *const T, copy: OFFLINEFILES_ITEM_COPY, pSize: ?*LARGE_INTEGER) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesFileSysInfo.VTable, self.vtable).GetFileSize(@ptrCast(*const IOfflineFilesFileSysInfo, self), copy, pSize);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesFileSysInfo_GetAttributes(self: *const T, copy: OFFLINEFILES_ITEM_COPY, pdwAttributes: ?*u32) HRESULT {
+                return @ptrCast(*const IOfflineFilesFileSysInfo.VTable, self.vtable).GetAttributes(@ptrCast(*const IOfflineFilesFileSysInfo, self), copy, pdwAttributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesFileSysInfo_GetTimes(self: *const T, copy: OFFLINEFILES_ITEM_COPY, pftCreationTime: ?*FILETIME, pftLastWriteTime: ?*FILETIME, pftChangeTime: ?*FILETIME, pftLastAccessTime: ?*FILETIME) HRESULT {
+                return @ptrCast(*const IOfflineFilesFileSysInfo.VTable, self.vtable).GetTimes(@ptrCast(*const IOfflineFilesFileSysInfo, self), copy, pftCreationTime, pftLastWriteTime, pftChangeTime, pftLastAccessTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesFileSysInfo_GetFileSize(self: *const T, copy: OFFLINEFILES_ITEM_COPY, pSize: ?*LARGE_INTEGER) HRESULT {
+                return @ptrCast(*const IOfflineFilesFileSysInfo.VTable, self.vtable).GetFileSize(@ptrCast(*const IOfflineFilesFileSysInfo, self), copy, pSize);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1567,55 +1613,57 @@ pub const IID_IOfflineFilesPinInfo = &IID_IOfflineFilesPinInfo_Value;
 pub const IOfflineFilesPinInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsPinned: fn(
+        IsPinned: fn (
             self: *const IOfflineFilesPinInfo,
             pbPinned: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsPinnedForUser: fn(
+        IsPinnedForUser: fn (
             self: *const IOfflineFilesPinInfo,
             pbPinnedForUser: ?*BOOL,
             pbInherit: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsPinnedForUserByPolicy: fn(
+        IsPinnedForUserByPolicy: fn (
             self: *const IOfflineFilesPinInfo,
             pbPinnedForUser: ?*BOOL,
             pbInherit: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsPinnedForComputer: fn(
+        IsPinnedForComputer: fn (
             self: *const IOfflineFilesPinInfo,
             pbPinnedForComputer: ?*BOOL,
             pbInherit: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsPinnedForFolderRedirection: fn(
+        IsPinnedForFolderRedirection: fn (
             self: *const IOfflineFilesPinInfo,
             pbPinnedForFolderRedirection: ?*BOOL,
             pbInherit: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesPinInfo_IsPinned(self: *const T, pbPinned: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesPinInfo.VTable, self.vtable).IsPinned(@ptrCast(*const IOfflineFilesPinInfo, self), pbPinned);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesPinInfo_IsPinnedForUser(self: *const T, pbPinnedForUser: ?*BOOL, pbInherit: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesPinInfo.VTable, self.vtable).IsPinnedForUser(@ptrCast(*const IOfflineFilesPinInfo, self), pbPinnedForUser, pbInherit);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesPinInfo_IsPinnedForUserByPolicy(self: *const T, pbPinnedForUser: ?*BOOL, pbInherit: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesPinInfo.VTable, self.vtable).IsPinnedForUserByPolicy(@ptrCast(*const IOfflineFilesPinInfo, self), pbPinnedForUser, pbInherit);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesPinInfo_IsPinnedForComputer(self: *const T, pbPinnedForComputer: ?*BOOL, pbInherit: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesPinInfo.VTable, self.vtable).IsPinnedForComputer(@ptrCast(*const IOfflineFilesPinInfo, self), pbPinnedForComputer, pbInherit);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesPinInfo_IsPinnedForFolderRedirection(self: *const T, pbPinnedForFolderRedirection: ?*BOOL, pbInherit: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesPinInfo.VTable, self.vtable).IsPinnedForFolderRedirection(@ptrCast(*const IOfflineFilesPinInfo, self), pbPinnedForFolderRedirection, pbInherit);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesPinInfo_IsPinned(self: *const T, pbPinned: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesPinInfo.VTable, self.vtable).IsPinned(@ptrCast(*const IOfflineFilesPinInfo, self), pbPinned);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesPinInfo_IsPinnedForUser(self: *const T, pbPinnedForUser: ?*BOOL, pbInherit: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesPinInfo.VTable, self.vtable).IsPinnedForUser(@ptrCast(*const IOfflineFilesPinInfo, self), pbPinnedForUser, pbInherit);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesPinInfo_IsPinnedForUserByPolicy(self: *const T, pbPinnedForUser: ?*BOOL, pbInherit: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesPinInfo.VTable, self.vtable).IsPinnedForUserByPolicy(@ptrCast(*const IOfflineFilesPinInfo, self), pbPinnedForUser, pbInherit);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesPinInfo_IsPinnedForComputer(self: *const T, pbPinnedForComputer: ?*BOOL, pbInherit: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesPinInfo.VTable, self.vtable).IsPinnedForComputer(@ptrCast(*const IOfflineFilesPinInfo, self), pbPinnedForComputer, pbInherit);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesPinInfo_IsPinnedForFolderRedirection(self: *const T, pbPinnedForFolderRedirection: ?*BOOL, pbInherit: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesPinInfo.VTable, self.vtable).IsPinnedForFolderRedirection(@ptrCast(*const IOfflineFilesPinInfo, self), pbPinnedForFolderRedirection, pbInherit);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1625,19 +1673,21 @@ pub const IID_IOfflineFilesPinInfo2 = &IID_IOfflineFilesPinInfo2_Value;
 pub const IOfflineFilesPinInfo2 = extern struct {
     pub const VTable = extern struct {
         base: IOfflineFilesPinInfo.VTable,
-        IsPartlyPinned: fn(
+        IsPartlyPinned: fn (
             self: *const IOfflineFilesPinInfo2,
             pbPartlyPinned: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOfflineFilesPinInfo.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesPinInfo2_IsPartlyPinned(self: *const T, pbPartlyPinned: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesPinInfo2.VTable, self.vtable).IsPartlyPinned(@ptrCast(*const IOfflineFilesPinInfo2, self), pbPartlyPinned);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IOfflineFilesPinInfo.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesPinInfo2_IsPartlyPinned(self: *const T, pbPartlyPinned: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesPinInfo2.VTable, self.vtable).IsPartlyPinned(@ptrCast(*const IOfflineFilesPinInfo2, self), pbPartlyPinned);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1647,19 +1697,21 @@ pub const IID_IOfflineFilesTransparentCacheInfo = &IID_IOfflineFilesTransparentC
 pub const IOfflineFilesTransparentCacheInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsTransparentlyCached: fn(
+        IsTransparentlyCached: fn (
             self: *const IOfflineFilesTransparentCacheInfo,
             pbTransparentlyCached: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesTransparentCacheInfo_IsTransparentlyCached(self: *const T, pbTransparentlyCached: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesTransparentCacheInfo.VTable, self.vtable).IsTransparentlyCached(@ptrCast(*const IOfflineFilesTransparentCacheInfo, self), pbTransparentlyCached);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesTransparentCacheInfo_IsTransparentlyCached(self: *const T, pbTransparentlyCached: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesTransparentCacheInfo.VTable, self.vtable).IsTransparentlyCached(@ptrCast(*const IOfflineFilesTransparentCacheInfo, self), pbTransparentlyCached);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1669,19 +1721,21 @@ pub const IID_IOfflineFilesGhostInfo = &IID_IOfflineFilesGhostInfo_Value;
 pub const IOfflineFilesGhostInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsGhosted: fn(
+        IsGhosted: fn (
             self: *const IOfflineFilesGhostInfo,
             pbGhosted: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesGhostInfo_IsGhosted(self: *const T, pbGhosted: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesGhostInfo.VTable, self.vtable).IsGhosted(@ptrCast(*const IOfflineFilesGhostInfo, self), pbGhosted);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesGhostInfo_IsGhosted(self: *const T, pbGhosted: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesGhostInfo.VTable, self.vtable).IsGhosted(@ptrCast(*const IOfflineFilesGhostInfo, self), pbGhosted);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1691,23 +1745,23 @@ pub const IID_IOfflineFilesConnectionInfo = &IID_IOfflineFilesConnectionInfo_Val
 pub const IOfflineFilesConnectionInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetConnectState: fn(
+        GetConnectState: fn (
             self: *const IOfflineFilesConnectionInfo,
             pConnectState: ?*OFFLINEFILES_CONNECT_STATE,
             pOfflineReason: ?*OFFLINEFILES_OFFLINE_REASON,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetConnectState: fn(
+        SetConnectState: fn (
             self: *const IOfflineFilesConnectionInfo,
             hwndParent: ?HWND,
             dwFlags: u32,
             ConnectState: OFFLINEFILES_CONNECT_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TransitionOnline: fn(
+        TransitionOnline: fn (
             self: *const IOfflineFilesConnectionInfo,
             hwndParent: ?HWND,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TransitionOffline: fn(
+        TransitionOffline: fn (
             self: *const IOfflineFilesConnectionInfo,
             hwndParent: ?HWND,
             dwFlags: u32,
@@ -1716,25 +1770,27 @@ pub const IOfflineFilesConnectionInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesConnectionInfo_GetConnectState(self: *const T, pConnectState: ?*OFFLINEFILES_CONNECT_STATE, pOfflineReason: ?*OFFLINEFILES_OFFLINE_REASON) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesConnectionInfo.VTable, self.vtable).GetConnectState(@ptrCast(*const IOfflineFilesConnectionInfo, self), pConnectState, pOfflineReason);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesConnectionInfo_SetConnectState(self: *const T, hwndParent: ?HWND, dwFlags: u32, ConnectState: OFFLINEFILES_CONNECT_STATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesConnectionInfo.VTable, self.vtable).SetConnectState(@ptrCast(*const IOfflineFilesConnectionInfo, self), hwndParent, dwFlags, ConnectState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesConnectionInfo_TransitionOnline(self: *const T, hwndParent: ?HWND, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesConnectionInfo.VTable, self.vtable).TransitionOnline(@ptrCast(*const IOfflineFilesConnectionInfo, self), hwndParent, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesConnectionInfo_TransitionOffline(self: *const T, hwndParent: ?HWND, dwFlags: u32, bForceOpenFilesClosed: BOOL, pbOpenFilesPreventedTransition: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesConnectionInfo.VTable, self.vtable).TransitionOffline(@ptrCast(*const IOfflineFilesConnectionInfo, self), hwndParent, dwFlags, bForceOpenFilesClosed, pbOpenFilesPreventedTransition);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesConnectionInfo_GetConnectState(self: *const T, pConnectState: ?*OFFLINEFILES_CONNECT_STATE, pOfflineReason: ?*OFFLINEFILES_OFFLINE_REASON) HRESULT {
+                return @ptrCast(*const IOfflineFilesConnectionInfo.VTable, self.vtable).GetConnectState(@ptrCast(*const IOfflineFilesConnectionInfo, self), pConnectState, pOfflineReason);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesConnectionInfo_SetConnectState(self: *const T, hwndParent: ?HWND, dwFlags: u32, ConnectState: OFFLINEFILES_CONNECT_STATE) HRESULT {
+                return @ptrCast(*const IOfflineFilesConnectionInfo.VTable, self.vtable).SetConnectState(@ptrCast(*const IOfflineFilesConnectionInfo, self), hwndParent, dwFlags, ConnectState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesConnectionInfo_TransitionOnline(self: *const T, hwndParent: ?HWND, dwFlags: u32) HRESULT {
+                return @ptrCast(*const IOfflineFilesConnectionInfo.VTable, self.vtable).TransitionOnline(@ptrCast(*const IOfflineFilesConnectionInfo, self), hwndParent, dwFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesConnectionInfo_TransitionOffline(self: *const T, hwndParent: ?HWND, dwFlags: u32, bForceOpenFilesClosed: BOOL, pbOpenFilesPreventedTransition: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesConnectionInfo.VTable, self.vtable).TransitionOffline(@ptrCast(*const IOfflineFilesConnectionInfo, self), hwndParent, dwFlags, bForceOpenFilesClosed, pbOpenFilesPreventedTransition);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1744,35 +1800,37 @@ pub const IID_IOfflineFilesShareInfo = &IID_IOfflineFilesShareInfo_Value;
 pub const IOfflineFilesShareInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetShareItem: fn(
+        GetShareItem: fn (
             self: *const IOfflineFilesShareInfo,
             ppShareItem: ?*?*IOfflineFilesShareItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetShareCachingMode: fn(
+        GetShareCachingMode: fn (
             self: *const IOfflineFilesShareInfo,
             pCachingMode: ?*OFFLINEFILES_CACHING_MODE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsShareDfsJunction: fn(
+        IsShareDfsJunction: fn (
             self: *const IOfflineFilesShareInfo,
             pbIsDfsJunction: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesShareInfo_GetShareItem(self: *const T, ppShareItem: ?*?*IOfflineFilesShareItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesShareInfo.VTable, self.vtable).GetShareItem(@ptrCast(*const IOfflineFilesShareInfo, self), ppShareItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesShareInfo_GetShareCachingMode(self: *const T, pCachingMode: ?*OFFLINEFILES_CACHING_MODE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesShareInfo.VTable, self.vtable).GetShareCachingMode(@ptrCast(*const IOfflineFilesShareInfo, self), pCachingMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesShareInfo_IsShareDfsJunction(self: *const T, pbIsDfsJunction: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesShareInfo.VTable, self.vtable).IsShareDfsJunction(@ptrCast(*const IOfflineFilesShareInfo, self), pbIsDfsJunction);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesShareInfo_GetShareItem(self: *const T, ppShareItem: ?*?*IOfflineFilesShareItem) HRESULT {
+                return @ptrCast(*const IOfflineFilesShareInfo.VTable, self.vtable).GetShareItem(@ptrCast(*const IOfflineFilesShareInfo, self), ppShareItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesShareInfo_GetShareCachingMode(self: *const T, pCachingMode: ?*OFFLINEFILES_CACHING_MODE) HRESULT {
+                return @ptrCast(*const IOfflineFilesShareInfo.VTable, self.vtable).GetShareCachingMode(@ptrCast(*const IOfflineFilesShareInfo, self), pCachingMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesShareInfo_IsShareDfsJunction(self: *const T, pbIsDfsJunction: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesShareInfo.VTable, self.vtable).IsShareDfsJunction(@ptrCast(*const IOfflineFilesShareInfo, self), pbIsDfsJunction);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1782,19 +1840,21 @@ pub const IID_IOfflineFilesSuspend = &IID_IOfflineFilesSuspend_Value;
 pub const IOfflineFilesSuspend = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SuspendRoot: fn(
+        SuspendRoot: fn (
             self: *const IOfflineFilesSuspend,
             bSuspend: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSuspend_SuspendRoot(self: *const T, bSuspend: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSuspend.VTable, self.vtable).SuspendRoot(@ptrCast(*const IOfflineFilesSuspend, self), bSuspend);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSuspend_SuspendRoot(self: *const T, bSuspend: BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesSuspend.VTable, self.vtable).SuspendRoot(@ptrCast(*const IOfflineFilesSuspend, self), bSuspend);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1804,20 +1864,22 @@ pub const IID_IOfflineFilesSuspendInfo = &IID_IOfflineFilesSuspendInfo_Value;
 pub const IOfflineFilesSuspendInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsSuspended: fn(
+        IsSuspended: fn (
             self: *const IOfflineFilesSuspendInfo,
             pbSuspended: ?*BOOL,
             pbSuspendedRoot: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSuspendInfo_IsSuspended(self: *const T, pbSuspended: ?*BOOL, pbSuspendedRoot: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSuspendInfo.VTable, self.vtable).IsSuspended(@ptrCast(*const IOfflineFilesSuspendInfo, self), pbSuspended, pbSuspendedRoot);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSuspendInfo_IsSuspended(self: *const T, pbSuspended: ?*BOOL, pbSuspendedRoot: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesSuspendInfo.VTable, self.vtable).IsSuspended(@ptrCast(*const IOfflineFilesSuspendInfo, self), pbSuspended, pbSuspendedRoot);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1827,87 +1889,89 @@ pub const IID_IOfflineFilesSetting = &IID_IOfflineFilesSetting_Value;
 pub const IOfflineFilesSetting = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetName: fn(
+        GetName: fn (
             self: *const IOfflineFilesSetting,
             ppszName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetValueType: fn(
+        GetValueType: fn (
             self: *const IOfflineFilesSetting,
             pType: ?*OFFLINEFILES_SETTING_VALUE_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPreference: fn(
+        GetPreference: fn (
             self: *const IOfflineFilesSetting,
             pvarValue: ?*VARIANT,
             dwScope: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPreferenceScope: fn(
+        GetPreferenceScope: fn (
             self: *const IOfflineFilesSetting,
             pdwScope: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPreference: fn(
+        SetPreference: fn (
             self: *const IOfflineFilesSetting,
             pvarValue: ?*const VARIANT,
             dwScope: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeletePreference: fn(
+        DeletePreference: fn (
             self: *const IOfflineFilesSetting,
             dwScope: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPolicy: fn(
+        GetPolicy: fn (
             self: *const IOfflineFilesSetting,
             pvarValue: ?*VARIANT,
             dwScope: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPolicyScope: fn(
+        GetPolicyScope: fn (
             self: *const IOfflineFilesSetting,
             pdwScope: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetValue: fn(
+        GetValue: fn (
             self: *const IOfflineFilesSetting,
             pvarValue: ?*VARIANT,
             pbSetByPolicy: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSetting_GetName(self: *const T, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSetting.VTable, self.vtable).GetName(@ptrCast(*const IOfflineFilesSetting, self), ppszName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSetting_GetValueType(self: *const T, pType: ?*OFFLINEFILES_SETTING_VALUE_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSetting.VTable, self.vtable).GetValueType(@ptrCast(*const IOfflineFilesSetting, self), pType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSetting_GetPreference(self: *const T, pvarValue: ?*VARIANT, dwScope: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSetting.VTable, self.vtable).GetPreference(@ptrCast(*const IOfflineFilesSetting, self), pvarValue, dwScope);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSetting_GetPreferenceScope(self: *const T, pdwScope: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSetting.VTable, self.vtable).GetPreferenceScope(@ptrCast(*const IOfflineFilesSetting, self), pdwScope);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSetting_SetPreference(self: *const T, pvarValue: ?*const VARIANT, dwScope: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSetting.VTable, self.vtable).SetPreference(@ptrCast(*const IOfflineFilesSetting, self), pvarValue, dwScope);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSetting_DeletePreference(self: *const T, dwScope: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSetting.VTable, self.vtable).DeletePreference(@ptrCast(*const IOfflineFilesSetting, self), dwScope);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSetting_GetPolicy(self: *const T, pvarValue: ?*VARIANT, dwScope: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSetting.VTable, self.vtable).GetPolicy(@ptrCast(*const IOfflineFilesSetting, self), pvarValue, dwScope);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSetting_GetPolicyScope(self: *const T, pdwScope: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSetting.VTable, self.vtable).GetPolicyScope(@ptrCast(*const IOfflineFilesSetting, self), pdwScope);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesSetting_GetValue(self: *const T, pvarValue: ?*VARIANT, pbSetByPolicy: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesSetting.VTable, self.vtable).GetValue(@ptrCast(*const IOfflineFilesSetting, self), pvarValue, pbSetByPolicy);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSetting_GetName(self: *const T, ppszName: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IOfflineFilesSetting.VTable, self.vtable).GetName(@ptrCast(*const IOfflineFilesSetting, self), ppszName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSetting_GetValueType(self: *const T, pType: ?*OFFLINEFILES_SETTING_VALUE_TYPE) HRESULT {
+                return @ptrCast(*const IOfflineFilesSetting.VTable, self.vtable).GetValueType(@ptrCast(*const IOfflineFilesSetting, self), pType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSetting_GetPreference(self: *const T, pvarValue: ?*VARIANT, dwScope: u32) HRESULT {
+                return @ptrCast(*const IOfflineFilesSetting.VTable, self.vtable).GetPreference(@ptrCast(*const IOfflineFilesSetting, self), pvarValue, dwScope);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSetting_GetPreferenceScope(self: *const T, pdwScope: ?*u32) HRESULT {
+                return @ptrCast(*const IOfflineFilesSetting.VTable, self.vtable).GetPreferenceScope(@ptrCast(*const IOfflineFilesSetting, self), pdwScope);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSetting_SetPreference(self: *const T, pvarValue: ?*const VARIANT, dwScope: u32) HRESULT {
+                return @ptrCast(*const IOfflineFilesSetting.VTable, self.vtable).SetPreference(@ptrCast(*const IOfflineFilesSetting, self), pvarValue, dwScope);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSetting_DeletePreference(self: *const T, dwScope: u32) HRESULT {
+                return @ptrCast(*const IOfflineFilesSetting.VTable, self.vtable).DeletePreference(@ptrCast(*const IOfflineFilesSetting, self), dwScope);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSetting_GetPolicy(self: *const T, pvarValue: ?*VARIANT, dwScope: u32) HRESULT {
+                return @ptrCast(*const IOfflineFilesSetting.VTable, self.vtable).GetPolicy(@ptrCast(*const IOfflineFilesSetting, self), pvarValue, dwScope);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSetting_GetPolicyScope(self: *const T, pdwScope: ?*u32) HRESULT {
+                return @ptrCast(*const IOfflineFilesSetting.VTable, self.vtable).GetPolicyScope(@ptrCast(*const IOfflineFilesSetting, self), pdwScope);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesSetting_GetValue(self: *const T, pvarValue: ?*VARIANT, pbSetByPolicy: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesSetting.VTable, self.vtable).GetValue(@ptrCast(*const IOfflineFilesSetting, self), pvarValue, pbSetByPolicy);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1917,44 +1981,46 @@ pub const IID_IEnumOfflineFilesSettings = &IID_IEnumOfflineFilesSettings_Value;
 pub const IEnumOfflineFilesSettings = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
+        Next: fn (
             self: *const IEnumOfflineFilesSettings,
             celt: u32,
             rgelt: [*]?*IOfflineFilesSetting,
             pceltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
+        Skip: fn (
             self: *const IEnumOfflineFilesSettings,
             celt: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
+        Reset: fn (
             self: *const IEnumOfflineFilesSettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
+        Clone: fn (
             self: *const IEnumOfflineFilesSettings,
             ppenum: ?*?*IEnumOfflineFilesSettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOfflineFilesSettings_Next(self: *const T, celt: u32, rgelt: [*]?*IOfflineFilesSetting, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumOfflineFilesSettings.VTable, self.vtable).Next(@ptrCast(*const IEnumOfflineFilesSettings, self), celt, rgelt, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOfflineFilesSettings_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumOfflineFilesSettings.VTable, self.vtable).Skip(@ptrCast(*const IEnumOfflineFilesSettings, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOfflineFilesSettings_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumOfflineFilesSettings.VTable, self.vtable).Reset(@ptrCast(*const IEnumOfflineFilesSettings, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumOfflineFilesSettings_Clone(self: *const T, ppenum: ?*?*IEnumOfflineFilesSettings) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumOfflineFilesSettings.VTable, self.vtable).Clone(@ptrCast(*const IEnumOfflineFilesSettings, self), ppenum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumOfflineFilesSettings_Next(self: *const T, celt: u32, rgelt: [*]?*IOfflineFilesSetting, pceltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumOfflineFilesSettings.VTable, self.vtable).Next(@ptrCast(*const IEnumOfflineFilesSettings, self), celt, rgelt, pceltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumOfflineFilesSettings_Skip(self: *const T, celt: u32) HRESULT {
+                return @ptrCast(*const IEnumOfflineFilesSettings.VTable, self.vtable).Skip(@ptrCast(*const IEnumOfflineFilesSettings, self), celt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumOfflineFilesSettings_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumOfflineFilesSettings.VTable, self.vtable).Reset(@ptrCast(*const IEnumOfflineFilesSettings, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumOfflineFilesSettings_Clone(self: *const T, ppenum: ?*?*IEnumOfflineFilesSettings) HRESULT {
+                return @ptrCast(*const IEnumOfflineFilesSettings.VTable, self.vtable).Clone(@ptrCast(*const IEnumOfflineFilesSettings, self), ppenum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1964,7 +2030,7 @@ pub const IID_IOfflineFilesCache = &IID_IOfflineFilesCache_Value;
 pub const IOfflineFilesCache = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Synchronize: fn(
+        Synchronize: fn (
             self: *const IOfflineFilesCache,
             hwndParent: ?HWND,
             rgpszPaths: [*]?PWSTR,
@@ -1975,7 +2041,7 @@ pub const IOfflineFilesCache = extern struct {
             pIProgress: ?*IOfflineFilesSyncProgress,
             pSyncId: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteItems: fn(
+        DeleteItems: fn (
             self: *const IOfflineFilesCache,
             rgpszPaths: [*]?PWSTR,
             cPaths: u32,
@@ -1983,7 +2049,7 @@ pub const IOfflineFilesCache = extern struct {
             bAsync: BOOL,
             pIProgress: ?*IOfflineFilesSimpleProgress,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteItemsForUser: fn(
+        DeleteItemsForUser: fn (
             self: *const IOfflineFilesCache,
             pszUser: ?[*:0]const u16,
             rgpszPaths: [*]?PWSTR,
@@ -1992,7 +2058,7 @@ pub const IOfflineFilesCache = extern struct {
             bAsync: BOOL,
             pIProgress: ?*IOfflineFilesSimpleProgress,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Pin: fn(
+        Pin: fn (
             self: *const IOfflineFilesCache,
             hwndParent: ?HWND,
             rgpszPaths: [*]?PWSTR,
@@ -2002,7 +2068,7 @@ pub const IOfflineFilesCache = extern struct {
             dwPinControlFlags: u32,
             pIProgress: ?*IOfflineFilesSyncProgress,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Unpin: fn(
+        Unpin: fn (
             self: *const IOfflineFilesCache,
             hwndParent: ?HWND,
             rgpszPaths: [*]?PWSTR,
@@ -2012,12 +2078,12 @@ pub const IOfflineFilesCache = extern struct {
             dwPinControlFlags: u32,
             pIProgress: ?*IOfflineFilesSyncProgress,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEncryptionStatus: fn(
+        GetEncryptionStatus: fn (
             self: *const IOfflineFilesCache,
             pbEncrypted: ?*BOOL,
             pbPartial: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Encrypt: fn(
+        Encrypt: fn (
             self: *const IOfflineFilesCache,
             hwndParent: ?HWND,
             bEncrypt: BOOL,
@@ -2025,13 +2091,13 @@ pub const IOfflineFilesCache = extern struct {
             bAsync: BOOL,
             pIProgress: ?*IOfflineFilesSyncProgress,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindItem: fn(
+        FindItem: fn (
             self: *const IOfflineFilesCache,
             pszPath: ?[*:0]const u16,
             dwQueryFlags: u32,
             ppItem: ?*?*IOfflineFilesItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindItemEx: fn(
+        FindItemEx: fn (
             self: *const IOfflineFilesCache,
             pszPath: ?[*:0]const u16,
             pIncludeFileFilter: ?*IOfflineFilesItemFilter,
@@ -2041,17 +2107,17 @@ pub const IOfflineFilesCache = extern struct {
             dwQueryFlags: u32,
             ppItem: ?*?*IOfflineFilesItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RenameItem: fn(
+        RenameItem: fn (
             self: *const IOfflineFilesCache,
             pszPathOriginal: ?[*:0]const u16,
             pszPathNew: ?[*:0]const u16,
             bReplaceIfExists: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLocation: fn(
+        GetLocation: fn (
             self: *const IOfflineFilesCache,
             ppszPath: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDiskSpaceInformation: fn(
+        GetDiskSpaceInformation: fn (
             self: *const IOfflineFilesCache,
             pcbVolumeTotal: ?*u64,
             pcbLimit: ?*u64,
@@ -2059,26 +2125,26 @@ pub const IOfflineFilesCache = extern struct {
             pcbUnpinnedLimit: ?*u64,
             pcbUnpinnedUsed: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDiskSpaceLimits: fn(
+        SetDiskSpaceLimits: fn (
             self: *const IOfflineFilesCache,
             cbLimit: u64,
             cbUnpinnedLimit: u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessAdminPinPolicy: fn(
+        ProcessAdminPinPolicy: fn (
             self: *const IOfflineFilesCache,
             pPinProgress: ?*IOfflineFilesSyncProgress,
             pUnpinProgress: ?*IOfflineFilesSyncProgress,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSettingObject: fn(
+        GetSettingObject: fn (
             self: *const IOfflineFilesCache,
             pszSettingName: ?[*:0]const u16,
             ppSetting: ?*?*IOfflineFilesSetting,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumSettingObjects: fn(
+        EnumSettingObjects: fn (
             self: *const IOfflineFilesCache,
             ppEnum: ?*?*IEnumOfflineFilesSettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsPathCacheable: fn(
+        IsPathCacheable: fn (
             self: *const IOfflineFilesCache,
             pszPath: ?[*:0]const u16,
             pbCacheable: ?*BOOL,
@@ -2086,77 +2152,79 @@ pub const IOfflineFilesCache = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_Synchronize(self: *const T, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bAsync: BOOL, dwSyncControl: u32, pISyncConflictHandler: ?*IOfflineFilesSyncConflictHandler, pIProgress: ?*IOfflineFilesSyncProgress, pSyncId: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).Synchronize(@ptrCast(*const IOfflineFilesCache, self), hwndParent, rgpszPaths, cPaths, bAsync, dwSyncControl, pISyncConflictHandler, pIProgress, pSyncId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_DeleteItems(self: *const T, rgpszPaths: [*]?PWSTR, cPaths: u32, dwFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSimpleProgress) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).DeleteItems(@ptrCast(*const IOfflineFilesCache, self), rgpszPaths, cPaths, dwFlags, bAsync, pIProgress);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_DeleteItemsForUser(self: *const T, pszUser: ?[*:0]const u16, rgpszPaths: [*]?PWSTR, cPaths: u32, dwFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSimpleProgress) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).DeleteItemsForUser(@ptrCast(*const IOfflineFilesCache, self), pszUser, rgpszPaths, cPaths, dwFlags, bAsync, pIProgress);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_Pin(self: *const T, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bDeep: BOOL, bAsync: BOOL, dwPinControlFlags: u32, pIProgress: ?*IOfflineFilesSyncProgress) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).Pin(@ptrCast(*const IOfflineFilesCache, self), hwndParent, rgpszPaths, cPaths, bDeep, bAsync, dwPinControlFlags, pIProgress);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_Unpin(self: *const T, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bDeep: BOOL, bAsync: BOOL, dwPinControlFlags: u32, pIProgress: ?*IOfflineFilesSyncProgress) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).Unpin(@ptrCast(*const IOfflineFilesCache, self), hwndParent, rgpszPaths, cPaths, bDeep, bAsync, dwPinControlFlags, pIProgress);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_GetEncryptionStatus(self: *const T, pbEncrypted: ?*BOOL, pbPartial: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).GetEncryptionStatus(@ptrCast(*const IOfflineFilesCache, self), pbEncrypted, pbPartial);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_Encrypt(self: *const T, hwndParent: ?HWND, bEncrypt: BOOL, dwEncryptionControlFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSyncProgress) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).Encrypt(@ptrCast(*const IOfflineFilesCache, self), hwndParent, bEncrypt, dwEncryptionControlFlags, bAsync, pIProgress);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_FindItem(self: *const T, pszPath: ?[*:0]const u16, dwQueryFlags: u32, ppItem: ?*?*IOfflineFilesItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).FindItem(@ptrCast(*const IOfflineFilesCache, self), pszPath, dwQueryFlags, ppItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_FindItemEx(self: *const T, pszPath: ?[*:0]const u16, pIncludeFileFilter: ?*IOfflineFilesItemFilter, pIncludeDirFilter: ?*IOfflineFilesItemFilter, pExcludeFileFilter: ?*IOfflineFilesItemFilter, pExcludeDirFilter: ?*IOfflineFilesItemFilter, dwQueryFlags: u32, ppItem: ?*?*IOfflineFilesItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).FindItemEx(@ptrCast(*const IOfflineFilesCache, self), pszPath, pIncludeFileFilter, pIncludeDirFilter, pExcludeFileFilter, pExcludeDirFilter, dwQueryFlags, ppItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_RenameItem(self: *const T, pszPathOriginal: ?[*:0]const u16, pszPathNew: ?[*:0]const u16, bReplaceIfExists: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).RenameItem(@ptrCast(*const IOfflineFilesCache, self), pszPathOriginal, pszPathNew, bReplaceIfExists);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_GetLocation(self: *const T, ppszPath: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).GetLocation(@ptrCast(*const IOfflineFilesCache, self), ppszPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_GetDiskSpaceInformation(self: *const T, pcbVolumeTotal: ?*u64, pcbLimit: ?*u64, pcbUsed: ?*u64, pcbUnpinnedLimit: ?*u64, pcbUnpinnedUsed: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).GetDiskSpaceInformation(@ptrCast(*const IOfflineFilesCache, self), pcbVolumeTotal, pcbLimit, pcbUsed, pcbUnpinnedLimit, pcbUnpinnedUsed);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_SetDiskSpaceLimits(self: *const T, cbLimit: u64, cbUnpinnedLimit: u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).SetDiskSpaceLimits(@ptrCast(*const IOfflineFilesCache, self), cbLimit, cbUnpinnedLimit);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_ProcessAdminPinPolicy(self: *const T, pPinProgress: ?*IOfflineFilesSyncProgress, pUnpinProgress: ?*IOfflineFilesSyncProgress) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).ProcessAdminPinPolicy(@ptrCast(*const IOfflineFilesCache, self), pPinProgress, pUnpinProgress);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_GetSettingObject(self: *const T, pszSettingName: ?[*:0]const u16, ppSetting: ?*?*IOfflineFilesSetting) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).GetSettingObject(@ptrCast(*const IOfflineFilesCache, self), pszSettingName, ppSetting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_EnumSettingObjects(self: *const T, ppEnum: ?*?*IEnumOfflineFilesSettings) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).EnumSettingObjects(@ptrCast(*const IOfflineFilesCache, self), ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache_IsPathCacheable(self: *const T, pszPath: ?[*:0]const u16, pbCacheable: ?*BOOL, pShareCachingMode: ?*OFFLINEFILES_CACHING_MODE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).IsPathCacheable(@ptrCast(*const IOfflineFilesCache, self), pszPath, pbCacheable, pShareCachingMode);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesCache_Synchronize(self: *const T, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bAsync: BOOL, dwSyncControl: u32, pISyncConflictHandler: ?*IOfflineFilesSyncConflictHandler, pIProgress: ?*IOfflineFilesSyncProgress, pSyncId: ?*Guid) HRESULT {
+                return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).Synchronize(@ptrCast(*const IOfflineFilesCache, self), hwndParent, rgpszPaths, cPaths, bAsync, dwSyncControl, pISyncConflictHandler, pIProgress, pSyncId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesCache_DeleteItems(self: *const T, rgpszPaths: [*]?PWSTR, cPaths: u32, dwFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSimpleProgress) HRESULT {
+                return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).DeleteItems(@ptrCast(*const IOfflineFilesCache, self), rgpszPaths, cPaths, dwFlags, bAsync, pIProgress);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesCache_DeleteItemsForUser(self: *const T, pszUser: ?[*:0]const u16, rgpszPaths: [*]?PWSTR, cPaths: u32, dwFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSimpleProgress) HRESULT {
+                return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).DeleteItemsForUser(@ptrCast(*const IOfflineFilesCache, self), pszUser, rgpszPaths, cPaths, dwFlags, bAsync, pIProgress);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesCache_Pin(self: *const T, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bDeep: BOOL, bAsync: BOOL, dwPinControlFlags: u32, pIProgress: ?*IOfflineFilesSyncProgress) HRESULT {
+                return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).Pin(@ptrCast(*const IOfflineFilesCache, self), hwndParent, rgpszPaths, cPaths, bDeep, bAsync, dwPinControlFlags, pIProgress);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesCache_Unpin(self: *const T, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bDeep: BOOL, bAsync: BOOL, dwPinControlFlags: u32, pIProgress: ?*IOfflineFilesSyncProgress) HRESULT {
+                return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).Unpin(@ptrCast(*const IOfflineFilesCache, self), hwndParent, rgpszPaths, cPaths, bDeep, bAsync, dwPinControlFlags, pIProgress);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesCache_GetEncryptionStatus(self: *const T, pbEncrypted: ?*BOOL, pbPartial: ?*BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).GetEncryptionStatus(@ptrCast(*const IOfflineFilesCache, self), pbEncrypted, pbPartial);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesCache_Encrypt(self: *const T, hwndParent: ?HWND, bEncrypt: BOOL, dwEncryptionControlFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSyncProgress) HRESULT {
+                return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).Encrypt(@ptrCast(*const IOfflineFilesCache, self), hwndParent, bEncrypt, dwEncryptionControlFlags, bAsync, pIProgress);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesCache_FindItem(self: *const T, pszPath: ?[*:0]const u16, dwQueryFlags: u32, ppItem: ?*?*IOfflineFilesItem) HRESULT {
+                return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).FindItem(@ptrCast(*const IOfflineFilesCache, self), pszPath, dwQueryFlags, ppItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesCache_FindItemEx(self: *const T, pszPath: ?[*:0]const u16, pIncludeFileFilter: ?*IOfflineFilesItemFilter, pIncludeDirFilter: ?*IOfflineFilesItemFilter, pExcludeFileFilter: ?*IOfflineFilesItemFilter, pExcludeDirFilter: ?*IOfflineFilesItemFilter, dwQueryFlags: u32, ppItem: ?*?*IOfflineFilesItem) HRESULT {
+                return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).FindItemEx(@ptrCast(*const IOfflineFilesCache, self), pszPath, pIncludeFileFilter, pIncludeDirFilter, pExcludeFileFilter, pExcludeDirFilter, dwQueryFlags, ppItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesCache_RenameItem(self: *const T, pszPathOriginal: ?[*:0]const u16, pszPathNew: ?[*:0]const u16, bReplaceIfExists: BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).RenameItem(@ptrCast(*const IOfflineFilesCache, self), pszPathOriginal, pszPathNew, bReplaceIfExists);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesCache_GetLocation(self: *const T, ppszPath: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).GetLocation(@ptrCast(*const IOfflineFilesCache, self), ppszPath);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesCache_GetDiskSpaceInformation(self: *const T, pcbVolumeTotal: ?*u64, pcbLimit: ?*u64, pcbUsed: ?*u64, pcbUnpinnedLimit: ?*u64, pcbUnpinnedUsed: ?*u64) HRESULT {
+                return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).GetDiskSpaceInformation(@ptrCast(*const IOfflineFilesCache, self), pcbVolumeTotal, pcbLimit, pcbUsed, pcbUnpinnedLimit, pcbUnpinnedUsed);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesCache_SetDiskSpaceLimits(self: *const T, cbLimit: u64, cbUnpinnedLimit: u64) HRESULT {
+                return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).SetDiskSpaceLimits(@ptrCast(*const IOfflineFilesCache, self), cbLimit, cbUnpinnedLimit);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesCache_ProcessAdminPinPolicy(self: *const T, pPinProgress: ?*IOfflineFilesSyncProgress, pUnpinProgress: ?*IOfflineFilesSyncProgress) HRESULT {
+                return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).ProcessAdminPinPolicy(@ptrCast(*const IOfflineFilesCache, self), pPinProgress, pUnpinProgress);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesCache_GetSettingObject(self: *const T, pszSettingName: ?[*:0]const u16, ppSetting: ?*?*IOfflineFilesSetting) HRESULT {
+                return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).GetSettingObject(@ptrCast(*const IOfflineFilesCache, self), pszSettingName, ppSetting);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesCache_EnumSettingObjects(self: *const T, ppEnum: ?*?*IEnumOfflineFilesSettings) HRESULT {
+                return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).EnumSettingObjects(@ptrCast(*const IOfflineFilesCache, self), ppEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesCache_IsPathCacheable(self: *const T, pszPath: ?[*:0]const u16, pbCacheable: ?*BOOL, pShareCachingMode: ?*OFFLINEFILES_CACHING_MODE) HRESULT {
+                return @ptrCast(*const IOfflineFilesCache.VTable, self.vtable).IsPathCacheable(@ptrCast(*const IOfflineFilesCache, self), pszPath, pbCacheable, pShareCachingMode);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2166,7 +2234,7 @@ pub const IID_IOfflineFilesCache2 = &IID_IOfflineFilesCache2_Value;
 pub const IOfflineFilesCache2 = extern struct {
     pub const VTable = extern struct {
         base: IOfflineFilesCache.VTable,
-        RenameItemEx: fn(
+        RenameItemEx: fn (
             self: *const IOfflineFilesCache2,
             pszPathOriginal: ?[*:0]const u16,
             pszPathNew: ?[*:0]const u16,
@@ -2174,16 +2242,17 @@ pub const IOfflineFilesCache2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IOfflineFilesCache.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOfflineFilesCache2_RenameItemEx(self: *const T, pszPathOriginal: ?[*:0]const u16, pszPathNew: ?[*:0]const u16, bReplaceIfExists: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOfflineFilesCache2.VTable, self.vtable).RenameItemEx(@ptrCast(*const IOfflineFilesCache2, self), pszPathOriginal, pszPathNew, bReplaceIfExists);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IOfflineFilesCache.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOfflineFilesCache2_RenameItemEx(self: *const T, pszPathOriginal: ?[*:0]const u16, pszPathNew: ?[*:0]const u16, bReplaceIfExists: BOOL) HRESULT {
+                return @ptrCast(*const IOfflineFilesCache2.VTable, self.vtable).RenameItemEx(@ptrCast(*const IOfflineFilesCache2, self), pszPathOriginal, pszPathNew, bReplaceIfExists);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (4)
@@ -2195,8 +2264,7 @@ pub extern "cscapi" fn OfflineFilesEnable(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "cscapi" fn OfflineFilesStart(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "cscapi" fn OfflineFilesStart() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "cscapi" fn OfflineFilesQueryStatus(
@@ -2211,19 +2279,14 @@ pub extern "cscapi" fn OfflineFilesQueryStatusEx(
     pbAvailable: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (10)
@@ -2240,9 +2303,7 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

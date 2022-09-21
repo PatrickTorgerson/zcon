@@ -959,7 +959,7 @@ pub const alljoyn_manifestarray = extern struct {
     xmls: ?*?*i8,
 };
 
-pub const alljoyn_applicationstatelistener_state_ptr = fn(
+pub const alljoyn_applicationstatelistener_state_ptr = fn (
     busName: ?*i8,
     publicKey: ?*i8,
     applicationState: alljoyn_applicationstate,
@@ -970,24 +970,24 @@ pub const alljoyn_applicationstatelistener_callbacks = extern struct {
     state: ?alljoyn_applicationstatelistener_state_ptr,
 };
 
-pub const alljoyn_keystorelistener_loadrequest_ptr = fn(
+pub const alljoyn_keystorelistener_loadrequest_ptr = fn (
     context: ?*const anyopaque,
     listener: alljoyn_keystorelistener,
     keyStore: alljoyn_keystore,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
-pub const alljoyn_keystorelistener_storerequest_ptr = fn(
+pub const alljoyn_keystorelistener_storerequest_ptr = fn (
     context: ?*const anyopaque,
     listener: alljoyn_keystorelistener,
     keyStore: alljoyn_keystore,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
-pub const alljoyn_keystorelistener_acquireexclusivelock_ptr = fn(
+pub const alljoyn_keystorelistener_acquireexclusivelock_ptr = fn (
     context: ?*const anyopaque,
     listener: alljoyn_keystorelistener,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
-pub const alljoyn_keystorelistener_releaseexclusivelock_ptr = fn(
+pub const alljoyn_keystorelistener_releaseexclusivelock_ptr = fn (
     context: ?*const anyopaque,
     listener: alljoyn_keystorelistener,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -1017,7 +1017,7 @@ pub const ALLJOYN_MESSAGE_METHOD_RET = alljoyn_messagetype.METHOD_RET;
 pub const ALLJOYN_MESSAGE_ERROR = alljoyn_messagetype.ERROR;
 pub const ALLJOYN_MESSAGE_SIGNAL = alljoyn_messagetype.SIGNAL;
 
-pub const alljoyn_authlistener_requestcredentials_ptr = fn(
+pub const alljoyn_authlistener_requestcredentials_ptr = fn (
     context: ?*const anyopaque,
     authMechanism: ?[*:0]const u8,
     peerName: ?[*:0]const u8,
@@ -1027,7 +1027,7 @@ pub const alljoyn_authlistener_requestcredentials_ptr = fn(
     credentials: alljoyn_credentials,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const alljoyn_authlistener_requestcredentialsasync_ptr = fn(
+pub const alljoyn_authlistener_requestcredentialsasync_ptr = fn (
     context: ?*const anyopaque,
     listener: alljoyn_authlistener,
     authMechanism: ?[*:0]const u8,
@@ -1038,14 +1038,14 @@ pub const alljoyn_authlistener_requestcredentialsasync_ptr = fn(
     authContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
-pub const alljoyn_authlistener_verifycredentials_ptr = fn(
+pub const alljoyn_authlistener_verifycredentials_ptr = fn (
     context: ?*const anyopaque,
     authMechanism: ?[*:0]const u8,
     peerName: ?[*:0]const u8,
     credentials: alljoyn_credentials,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const alljoyn_authlistener_verifycredentialsasync_ptr = fn(
+pub const alljoyn_authlistener_verifycredentialsasync_ptr = fn (
     context: ?*const anyopaque,
     listener: alljoyn_authlistener,
     authMechanism: ?[*:0]const u8,
@@ -1054,13 +1054,13 @@ pub const alljoyn_authlistener_verifycredentialsasync_ptr = fn(
     authContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
-pub const alljoyn_authlistener_securityviolation_ptr = fn(
+pub const alljoyn_authlistener_securityviolation_ptr = fn (
     context: ?*const anyopaque,
     status: QStatus,
     msg: alljoyn_message,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_authlistener_authenticationcomplete_ptr = fn(
+pub const alljoyn_authlistener_authenticationcomplete_ptr = fn (
     context: ?*const anyopaque,
     authMechanism: ?[*:0]const u8,
     peerName: ?[*:0]const u8,
@@ -1081,45 +1081,45 @@ pub const alljoyn_authlistenerasync_callbacks = extern struct {
     authentication_complete: ?alljoyn_authlistener_authenticationcomplete_ptr,
 };
 
-pub const alljoyn_buslistener_listener_registered_ptr = fn(
+pub const alljoyn_buslistener_listener_registered_ptr = fn (
     context: ?*const anyopaque,
     bus: alljoyn_busattachment,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_buslistener_listener_unregistered_ptr = fn(
+pub const alljoyn_buslistener_listener_unregistered_ptr = fn (
     context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_buslistener_found_advertised_name_ptr = fn(
-    context: ?*const anyopaque,
-    name: ?[*:0]const u8,
-    transport: u16,
-    namePrefix: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const alljoyn_buslistener_lost_advertised_name_ptr = fn(
+pub const alljoyn_buslistener_found_advertised_name_ptr = fn (
     context: ?*const anyopaque,
     name: ?[*:0]const u8,
     transport: u16,
     namePrefix: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_buslistener_name_owner_changed_ptr = fn(
+pub const alljoyn_buslistener_lost_advertised_name_ptr = fn (
+    context: ?*const anyopaque,
+    name: ?[*:0]const u8,
+    transport: u16,
+    namePrefix: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const alljoyn_buslistener_name_owner_changed_ptr = fn (
     context: ?*const anyopaque,
     busName: ?[*:0]const u8,
     previousOwner: ?[*:0]const u8,
     newOwner: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_buslistener_bus_stopping_ptr = fn(
+pub const alljoyn_buslistener_bus_stopping_ptr = fn (
     context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_buslistener_bus_disconnected_ptr = fn(
+pub const alljoyn_buslistener_bus_disconnected_ptr = fn (
     context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_buslistener_bus_prop_changed_ptr = fn(
+pub const alljoyn_buslistener_bus_prop_changed_ptr = fn (
     context: ?*const anyopaque,
     prop_name: ?[*:0]const u8,
     prop_value: alljoyn_msgarg,
@@ -1155,7 +1155,7 @@ pub const alljoyn_interfacedescription_member = extern struct {
     internal_member: ?*const anyopaque,
 };
 
-pub const alljoyn_interfacedescription_translation_callback_ptr = fn(
+pub const alljoyn_interfacedescription_translation_callback_ptr = fn (
     sourceLanguage: ?[*:0]const u8,
     targetLanguage: ?[*:0]const u8,
     sourceText: ?[*:0]const u8,
@@ -1168,38 +1168,38 @@ pub const alljoyn_interfacedescription_property = extern struct {
     internal_property: ?*const anyopaque,
 };
 
-pub const alljoyn_messagereceiver_methodhandler_ptr = fn(
+pub const alljoyn_messagereceiver_methodhandler_ptr = fn (
     bus: alljoyn_busobject,
     member: ?*const alljoyn_interfacedescription_member,
     message: alljoyn_message,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_messagereceiver_replyhandler_ptr = fn(
+pub const alljoyn_messagereceiver_replyhandler_ptr = fn (
     message: alljoyn_message,
     context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_messagereceiver_signalhandler_ptr = fn(
+pub const alljoyn_messagereceiver_signalhandler_ptr = fn (
     member: ?*const alljoyn_interfacedescription_member,
     srcPath: ?[*:0]const u8,
     message: alljoyn_message,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_busobject_prop_get_ptr = fn(
+pub const alljoyn_busobject_prop_get_ptr = fn (
     context: ?*const anyopaque,
     ifcName: ?[*:0]const u8,
     propName: ?[*:0]const u8,
     val: alljoyn_msgarg,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
-pub const alljoyn_busobject_prop_set_ptr = fn(
+pub const alljoyn_busobject_prop_set_ptr = fn (
     context: ?*const anyopaque,
     ifcName: ?[*:0]const u8,
     propName: ?[*:0]const u8,
     val: alljoyn_msgarg,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
-pub const alljoyn_busobject_object_registration_ptr = fn(
+pub const alljoyn_busobject_object_registration_ptr = fn (
     context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1215,33 +1215,33 @@ pub const alljoyn_busobject_methodentry = extern struct {
     method_handler: ?alljoyn_messagereceiver_methodhandler_ptr,
 };
 
-pub const alljoyn_proxybusobject_listener_introspectcb_ptr = fn(
+pub const alljoyn_proxybusobject_listener_introspectcb_ptr = fn (
     status: QStatus,
     obj: alljoyn_proxybusobject,
     context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_proxybusobject_listener_getpropertycb_ptr = fn(
+pub const alljoyn_proxybusobject_listener_getpropertycb_ptr = fn (
     status: QStatus,
     obj: alljoyn_proxybusobject,
     value: alljoyn_msgarg,
     context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_proxybusobject_listener_getallpropertiescb_ptr = fn(
+pub const alljoyn_proxybusobject_listener_getallpropertiescb_ptr = fn (
     status: QStatus,
     obj: alljoyn_proxybusobject,
     values: alljoyn_msgarg,
     context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_proxybusobject_listener_setpropertycb_ptr = fn(
+pub const alljoyn_proxybusobject_listener_setpropertycb_ptr = fn (
     status: QStatus,
     obj: alljoyn_proxybusobject,
     context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_proxybusobject_listener_propertieschanged_ptr = fn(
+pub const alljoyn_proxybusobject_listener_propertieschanged_ptr = fn (
     obj: alljoyn_proxybusobject,
     ifaceName: ?[*:0]const u8,
     changed: alljoyn_msgarg,
@@ -1249,19 +1249,19 @@ pub const alljoyn_proxybusobject_listener_propertieschanged_ptr = fn(
     context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_permissionconfigurationlistener_factoryreset_ptr = fn(
+pub const alljoyn_permissionconfigurationlistener_factoryreset_ptr = fn (
     context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
-pub const alljoyn_permissionconfigurationlistener_policychanged_ptr = fn(
+pub const alljoyn_permissionconfigurationlistener_policychanged_ptr = fn (
     context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_permissionconfigurationlistener_startmanagement_ptr = fn(
+pub const alljoyn_permissionconfigurationlistener_startmanagement_ptr = fn (
     context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_permissionconfigurationlistener_endmanagement_ptr = fn(
+pub const alljoyn_permissionconfigurationlistener_endmanagement_ptr = fn (
     context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1287,19 +1287,19 @@ pub const ALLJOYN_SESSIONLOST_REMOVED_BY_BINDER = alljoyn_sessionlostreason.REMO
 pub const ALLJOYN_SESSIONLOST_LINK_TIMEOUT = alljoyn_sessionlostreason.LINK_TIMEOUT;
 pub const ALLJOYN_SESSIONLOST_REASON_OTHER = alljoyn_sessionlostreason.REASON_OTHER;
 
-pub const alljoyn_sessionlistener_sessionlost_ptr = fn(
+pub const alljoyn_sessionlistener_sessionlost_ptr = fn (
     context: ?*const anyopaque,
     sessionId: u32,
     reason: alljoyn_sessionlostreason,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_sessionlistener_sessionmemberadded_ptr = fn(
+pub const alljoyn_sessionlistener_sessionmemberadded_ptr = fn (
     context: ?*const anyopaque,
     sessionId: u32,
     uniqueName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_sessionlistener_sessionmemberremoved_ptr = fn(
+pub const alljoyn_sessionlistener_sessionmemberremoved_ptr = fn (
     context: ?*const anyopaque,
     sessionId: u32,
     uniqueName: ?[*:0]const u8,
@@ -1311,14 +1311,14 @@ pub const alljoyn_sessionlistener_callbacks = extern struct {
     session_member_removed: ?alljoyn_sessionlistener_sessionmemberremoved_ptr,
 };
 
-pub const alljoyn_sessionportlistener_acceptsessionjoiner_ptr = fn(
+pub const alljoyn_sessionportlistener_acceptsessionjoiner_ptr = fn (
     context: ?*const anyopaque,
     sessionPort: u16,
     joiner: ?[*:0]const u8,
     opts: alljoyn_sessionopts,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const alljoyn_sessionportlistener_sessionjoined_ptr = fn(
+pub const alljoyn_sessionportlistener_sessionjoined_ptr = fn (
     context: ?*const anyopaque,
     sessionPort: u16,
     id: u32,
@@ -1330,7 +1330,7 @@ pub const alljoyn_sessionportlistener_callbacks = extern struct {
     session_joined: ?alljoyn_sessionportlistener_sessionjoined_ptr,
 };
 
-pub const alljoyn_about_announced_ptr = fn(
+pub const alljoyn_about_announced_ptr = fn (
     context: ?*const anyopaque,
     busName: ?[*:0]const u8,
     version: u16,
@@ -1343,14 +1343,14 @@ pub const alljoyn_aboutlistener_callback = extern struct {
     about_listener_announced: ?alljoyn_about_announced_ptr,
 };
 
-pub const alljoyn_busattachment_joinsessioncb_ptr = fn(
+pub const alljoyn_busattachment_joinsessioncb_ptr = fn (
     status: QStatus,
     sessionId: u32,
     opts: alljoyn_sessionopts,
     context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_busattachment_setlinktimeoutcb_ptr = fn(
+pub const alljoyn_busattachment_setlinktimeoutcb_ptr = fn (
     status: QStatus,
     timeout: u32,
     context: ?*anyopaque,
@@ -1364,13 +1364,13 @@ pub const _alljoyn_abouticonproxy_handle = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const alljoyn_aboutdatalistener_getaboutdata_ptr = fn(
+pub const alljoyn_aboutdatalistener_getaboutdata_ptr = fn (
     context: ?*const anyopaque,
     msgArg: alljoyn_msgarg,
     language: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
-pub const alljoyn_aboutdatalistener_getannouncedaboutdata_ptr = fn(
+pub const alljoyn_aboutdatalistener_getannouncedaboutdata_ptr = fn (
     context: ?*const anyopaque,
     msgArg: alljoyn_msgarg,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
@@ -1380,13 +1380,13 @@ pub const alljoyn_aboutdatalistener_callbacks = extern struct {
     about_datalistener_getannouncedaboutdata: ?alljoyn_aboutdatalistener_getannouncedaboutdata_ptr,
 };
 
-pub const alljoyn_autopinger_destination_lost_ptr = fn(
+pub const alljoyn_autopinger_destination_lost_ptr = fn (
     context: ?*const anyopaque,
     group: ?[*:0]const u8,
     destination: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_autopinger_destination_found_ptr = fn(
+pub const alljoyn_autopinger_destination_found_ptr = fn (
     context: ?*const anyopaque,
     group: ?[*:0]const u8,
     destination: ?[*:0]const u8,
@@ -1397,12 +1397,12 @@ pub const alljoyn_pinglistener_callback = extern struct {
     destination_lost: ?alljoyn_autopinger_destination_lost_ptr,
 };
 
-pub const alljoyn_observer_object_discovered_ptr = fn(
+pub const alljoyn_observer_object_discovered_ptr = fn (
     context: ?*const anyopaque,
     proxyref: alljoyn_proxybusobject_ref,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const alljoyn_observer_object_lost_ptr = fn(
+pub const alljoyn_observer_object_lost_ptr = fn (
     context: ?*const anyopaque,
     proxyref: alljoyn_proxybusobject_ref,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -1470,7 +1470,6 @@ pub const alljoyn_sessionopts = isize;
 
 pub const alljoyn_sessionportlistener = isize;
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (547)
 //--------------------------------------------------------------------------------
@@ -1529,8 +1528,7 @@ pub extern "msajapi" fn AllJoynAcceptBusConnection(
     abortEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "msajapi" fn alljoyn_unity_deferred_callbacks_process(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "msajapi" fn alljoyn_unity_deferred_callbacks_process() callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "msajapi" fn alljoyn_unity_set_deferred_callback_mainthread_only(
     mainthread_only: i32,
@@ -1540,8 +1538,7 @@ pub extern "msajapi" fn QCC_StatusText(
     status: QStatus,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
-pub extern "msajapi" fn alljoyn_msgarg_create(
-) callconv(@import("std").os.windows.WINAPI) alljoyn_msgarg;
+pub extern "msajapi" fn alljoyn_msgarg_create() callconv(@import("std").os.windows.WINAPI) alljoyn_msgarg;
 
 pub extern "msajapi" fn alljoyn_msgarg_create_and_set(
     signature: ?[*:0]const u8,
@@ -1960,8 +1957,7 @@ pub extern "msajapi" fn alljoyn_msgarg_getmember(
     index: usize,
 ) callconv(@import("std").os.windows.WINAPI) alljoyn_msgarg;
 
-pub extern "msajapi" fn alljoyn_aboutdata_create_empty(
-) callconv(@import("std").os.windows.WINAPI) alljoyn_aboutdata;
+pub extern "msajapi" fn alljoyn_aboutdata_create_empty() callconv(@import("std").os.windows.WINAPI) alljoyn_aboutdata;
 
 pub extern "msajapi" fn alljoyn_aboutdata_create(
     defaultLanguage: ?[*:0]const u8,
@@ -2194,8 +2190,7 @@ pub extern "msajapi" fn alljoyn_aboutdata_getfieldsignature(
     fieldName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
-pub extern "msajapi" fn alljoyn_abouticon_create(
-) callconv(@import("std").os.windows.WINAPI) ?*_alljoyn_abouticon_handle;
+pub extern "msajapi" fn alljoyn_abouticon_create() callconv(@import("std").os.windows.WINAPI) ?*_alljoyn_abouticon_handle;
 
 pub extern "msajapi" fn alljoyn_abouticon_destroy(
     icon: ?*_alljoyn_abouticon_handle,
@@ -2236,8 +2231,7 @@ pub extern "msajapi" fn alljoyn_abouticon_setcontent_frommsgarg(
     arg: alljoyn_msgarg,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
-pub extern "msajapi" fn alljoyn_permissionconfigurator_getdefaultclaimcapabilities(
-) callconv(@import("std").os.windows.WINAPI) u16;
+pub extern "msajapi" fn alljoyn_permissionconfigurator_getdefaultclaimcapabilities() callconv(@import("std").os.windows.WINAPI) u16;
 
 pub extern "msajapi" fn alljoyn_permissionconfigurator_getapplicationstate(
     configurator: alljoyn_permissionconfigurator,
@@ -2669,8 +2663,7 @@ pub extern "msajapi" fn alljoyn_authlistener_setsharedsecret(
     sharedSecretSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
-pub extern "msajapi" fn alljoyn_credentials_create(
-) callconv(@import("std").os.windows.WINAPI) alljoyn_credentials;
+pub extern "msajapi" fn alljoyn_credentials_create() callconv(@import("std").os.windows.WINAPI) alljoyn_credentials;
 
 pub extern "msajapi" fn alljoyn_credentials_destroy(
     cred: alljoyn_credentials,
@@ -3906,8 +3899,7 @@ pub extern "msajapi" fn alljoyn_busattachment_setdaemondebug(
     level: u32,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
-pub extern "msajapi" fn alljoyn_busattachment_gettimestamp(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "msajapi" fn alljoyn_busattachment_gettimestamp() callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "msajapi" fn alljoyn_busattachment_ping(
     bus: alljoyn_busattachment,
@@ -4032,8 +4024,7 @@ pub extern "msajapi" fn alljoyn_aboutobj_unannounce(
     obj: alljoyn_aboutobj,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
-pub extern "msajapi" fn alljoyn_aboutobjectdescription_create(
-) callconv(@import("std").os.windows.WINAPI) alljoyn_aboutobjectdescription;
+pub extern "msajapi" fn alljoyn_aboutobjectdescription_create() callconv(@import("std").os.windows.WINAPI) alljoyn_aboutobjectdescription;
 
 pub extern "msajapi" fn alljoyn_aboutobjectdescription_create_full(
     arg: alljoyn_msgarg,
@@ -4175,30 +4166,23 @@ pub extern "msajapi" fn alljoyn_autopinger_removedestination(
     removeall: i32,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
-pub extern "msajapi" fn alljoyn_getversion(
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+pub extern "msajapi" fn alljoyn_getversion() callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
-pub extern "msajapi" fn alljoyn_getbuildinfo(
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+pub extern "msajapi" fn alljoyn_getbuildinfo() callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
-pub extern "msajapi" fn alljoyn_getnumericversion(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "msajapi" fn alljoyn_getnumericversion() callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "msajapi" fn alljoyn_init(
-) callconv(@import("std").os.windows.WINAPI) QStatus;
+pub extern "msajapi" fn alljoyn_init() callconv(@import("std").os.windows.WINAPI) QStatus;
 
-pub extern "msajapi" fn alljoyn_shutdown(
-) callconv(@import("std").os.windows.WINAPI) QStatus;
+pub extern "msajapi" fn alljoyn_shutdown() callconv(@import("std").os.windows.WINAPI) QStatus;
 
-pub extern "msajapi" fn alljoyn_routerinit(
-) callconv(@import("std").os.windows.WINAPI) QStatus;
+pub extern "msajapi" fn alljoyn_routerinit() callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub extern "msajapi" fn alljoyn_routerinitwithconfig(
     configXml: ?*i8,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
-pub extern "msajapi" fn alljoyn_routershutdown(
-) callconv(@import("std").os.windows.WINAPI) QStatus;
+pub extern "msajapi" fn alljoyn_routershutdown() callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub extern "msajapi" fn alljoyn_proxybusobject_ref_create(
     proxy: alljoyn_proxybusobject,
@@ -4270,8 +4254,7 @@ pub extern "msajapi" fn alljoyn_passwordmanager_setcredentials(
     password: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
-pub extern "msajapi" fn alljoyn_securityapplicationproxy_getpermissionmanagementsessionport(
-) callconv(@import("std").os.windows.WINAPI) u16;
+pub extern "msajapi" fn alljoyn_securityapplicationproxy_getpermissionmanagementsessionport() callconv(@import("std").os.windows.WINAPI) u16;
 
 pub extern "msajapi" fn alljoyn_securityapplicationproxy_create(
     bus: alljoyn_busattachment,
@@ -4404,19 +4387,14 @@ pub extern "msajapi" fn alljoyn_securityapplicationproxy_setmanifestsignature(
     signedManifestXml: ?*?*i8,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
@@ -4429,59 +4407,155 @@ const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "alljoyn_applicationstatelistener_state_ptr")) { _ = alljoyn_applicationstatelistener_state_ptr; }
-    if (@hasDecl(@This(), "alljoyn_keystorelistener_loadrequest_ptr")) { _ = alljoyn_keystorelistener_loadrequest_ptr; }
-    if (@hasDecl(@This(), "alljoyn_keystorelistener_storerequest_ptr")) { _ = alljoyn_keystorelistener_storerequest_ptr; }
-    if (@hasDecl(@This(), "alljoyn_keystorelistener_acquireexclusivelock_ptr")) { _ = alljoyn_keystorelistener_acquireexclusivelock_ptr; }
-    if (@hasDecl(@This(), "alljoyn_keystorelistener_releaseexclusivelock_ptr")) { _ = alljoyn_keystorelistener_releaseexclusivelock_ptr; }
-    if (@hasDecl(@This(), "alljoyn_authlistener_requestcredentials_ptr")) { _ = alljoyn_authlistener_requestcredentials_ptr; }
-    if (@hasDecl(@This(), "alljoyn_authlistener_requestcredentialsasync_ptr")) { _ = alljoyn_authlistener_requestcredentialsasync_ptr; }
-    if (@hasDecl(@This(), "alljoyn_authlistener_verifycredentials_ptr")) { _ = alljoyn_authlistener_verifycredentials_ptr; }
-    if (@hasDecl(@This(), "alljoyn_authlistener_verifycredentialsasync_ptr")) { _ = alljoyn_authlistener_verifycredentialsasync_ptr; }
-    if (@hasDecl(@This(), "alljoyn_authlistener_securityviolation_ptr")) { _ = alljoyn_authlistener_securityviolation_ptr; }
-    if (@hasDecl(@This(), "alljoyn_authlistener_authenticationcomplete_ptr")) { _ = alljoyn_authlistener_authenticationcomplete_ptr; }
-    if (@hasDecl(@This(), "alljoyn_buslistener_listener_registered_ptr")) { _ = alljoyn_buslistener_listener_registered_ptr; }
-    if (@hasDecl(@This(), "alljoyn_buslistener_listener_unregistered_ptr")) { _ = alljoyn_buslistener_listener_unregistered_ptr; }
-    if (@hasDecl(@This(), "alljoyn_buslistener_found_advertised_name_ptr")) { _ = alljoyn_buslistener_found_advertised_name_ptr; }
-    if (@hasDecl(@This(), "alljoyn_buslistener_lost_advertised_name_ptr")) { _ = alljoyn_buslistener_lost_advertised_name_ptr; }
-    if (@hasDecl(@This(), "alljoyn_buslistener_name_owner_changed_ptr")) { _ = alljoyn_buslistener_name_owner_changed_ptr; }
-    if (@hasDecl(@This(), "alljoyn_buslistener_bus_stopping_ptr")) { _ = alljoyn_buslistener_bus_stopping_ptr; }
-    if (@hasDecl(@This(), "alljoyn_buslistener_bus_disconnected_ptr")) { _ = alljoyn_buslistener_bus_disconnected_ptr; }
-    if (@hasDecl(@This(), "alljoyn_buslistener_bus_prop_changed_ptr")) { _ = alljoyn_buslistener_bus_prop_changed_ptr; }
-    if (@hasDecl(@This(), "alljoyn_interfacedescription_translation_callback_ptr")) { _ = alljoyn_interfacedescription_translation_callback_ptr; }
-    if (@hasDecl(@This(), "alljoyn_messagereceiver_methodhandler_ptr")) { _ = alljoyn_messagereceiver_methodhandler_ptr; }
-    if (@hasDecl(@This(), "alljoyn_messagereceiver_replyhandler_ptr")) { _ = alljoyn_messagereceiver_replyhandler_ptr; }
-    if (@hasDecl(@This(), "alljoyn_messagereceiver_signalhandler_ptr")) { _ = alljoyn_messagereceiver_signalhandler_ptr; }
-    if (@hasDecl(@This(), "alljoyn_busobject_prop_get_ptr")) { _ = alljoyn_busobject_prop_get_ptr; }
-    if (@hasDecl(@This(), "alljoyn_busobject_prop_set_ptr")) { _ = alljoyn_busobject_prop_set_ptr; }
-    if (@hasDecl(@This(), "alljoyn_busobject_object_registration_ptr")) { _ = alljoyn_busobject_object_registration_ptr; }
-    if (@hasDecl(@This(), "alljoyn_proxybusobject_listener_introspectcb_ptr")) { _ = alljoyn_proxybusobject_listener_introspectcb_ptr; }
-    if (@hasDecl(@This(), "alljoyn_proxybusobject_listener_getpropertycb_ptr")) { _ = alljoyn_proxybusobject_listener_getpropertycb_ptr; }
-    if (@hasDecl(@This(), "alljoyn_proxybusobject_listener_getallpropertiescb_ptr")) { _ = alljoyn_proxybusobject_listener_getallpropertiescb_ptr; }
-    if (@hasDecl(@This(), "alljoyn_proxybusobject_listener_setpropertycb_ptr")) { _ = alljoyn_proxybusobject_listener_setpropertycb_ptr; }
-    if (@hasDecl(@This(), "alljoyn_proxybusobject_listener_propertieschanged_ptr")) { _ = alljoyn_proxybusobject_listener_propertieschanged_ptr; }
-    if (@hasDecl(@This(), "alljoyn_permissionconfigurationlistener_factoryreset_ptr")) { _ = alljoyn_permissionconfigurationlistener_factoryreset_ptr; }
-    if (@hasDecl(@This(), "alljoyn_permissionconfigurationlistener_policychanged_ptr")) { _ = alljoyn_permissionconfigurationlistener_policychanged_ptr; }
-    if (@hasDecl(@This(), "alljoyn_permissionconfigurationlistener_startmanagement_ptr")) { _ = alljoyn_permissionconfigurationlistener_startmanagement_ptr; }
-    if (@hasDecl(@This(), "alljoyn_permissionconfigurationlistener_endmanagement_ptr")) { _ = alljoyn_permissionconfigurationlistener_endmanagement_ptr; }
-    if (@hasDecl(@This(), "alljoyn_sessionlistener_sessionlost_ptr")) { _ = alljoyn_sessionlistener_sessionlost_ptr; }
-    if (@hasDecl(@This(), "alljoyn_sessionlistener_sessionmemberadded_ptr")) { _ = alljoyn_sessionlistener_sessionmemberadded_ptr; }
-    if (@hasDecl(@This(), "alljoyn_sessionlistener_sessionmemberremoved_ptr")) { _ = alljoyn_sessionlistener_sessionmemberremoved_ptr; }
-    if (@hasDecl(@This(), "alljoyn_sessionportlistener_acceptsessionjoiner_ptr")) { _ = alljoyn_sessionportlistener_acceptsessionjoiner_ptr; }
-    if (@hasDecl(@This(), "alljoyn_sessionportlistener_sessionjoined_ptr")) { _ = alljoyn_sessionportlistener_sessionjoined_ptr; }
-    if (@hasDecl(@This(), "alljoyn_about_announced_ptr")) { _ = alljoyn_about_announced_ptr; }
-    if (@hasDecl(@This(), "alljoyn_busattachment_joinsessioncb_ptr")) { _ = alljoyn_busattachment_joinsessioncb_ptr; }
-    if (@hasDecl(@This(), "alljoyn_busattachment_setlinktimeoutcb_ptr")) { _ = alljoyn_busattachment_setlinktimeoutcb_ptr; }
-    if (@hasDecl(@This(), "alljoyn_aboutdatalistener_getaboutdata_ptr")) { _ = alljoyn_aboutdatalistener_getaboutdata_ptr; }
-    if (@hasDecl(@This(), "alljoyn_aboutdatalistener_getannouncedaboutdata_ptr")) { _ = alljoyn_aboutdatalistener_getannouncedaboutdata_ptr; }
-    if (@hasDecl(@This(), "alljoyn_autopinger_destination_lost_ptr")) { _ = alljoyn_autopinger_destination_lost_ptr; }
-    if (@hasDecl(@This(), "alljoyn_autopinger_destination_found_ptr")) { _ = alljoyn_autopinger_destination_found_ptr; }
-    if (@hasDecl(@This(), "alljoyn_observer_object_discovered_ptr")) { _ = alljoyn_observer_object_discovered_ptr; }
-    if (@hasDecl(@This(), "alljoyn_observer_object_lost_ptr")) { _ = alljoyn_observer_object_lost_ptr; }
+    if (@hasDecl(@This(), "alljoyn_applicationstatelistener_state_ptr")) {
+        _ = alljoyn_applicationstatelistener_state_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_keystorelistener_loadrequest_ptr")) {
+        _ = alljoyn_keystorelistener_loadrequest_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_keystorelistener_storerequest_ptr")) {
+        _ = alljoyn_keystorelistener_storerequest_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_keystorelistener_acquireexclusivelock_ptr")) {
+        _ = alljoyn_keystorelistener_acquireexclusivelock_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_keystorelistener_releaseexclusivelock_ptr")) {
+        _ = alljoyn_keystorelistener_releaseexclusivelock_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_authlistener_requestcredentials_ptr")) {
+        _ = alljoyn_authlistener_requestcredentials_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_authlistener_requestcredentialsasync_ptr")) {
+        _ = alljoyn_authlistener_requestcredentialsasync_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_authlistener_verifycredentials_ptr")) {
+        _ = alljoyn_authlistener_verifycredentials_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_authlistener_verifycredentialsasync_ptr")) {
+        _ = alljoyn_authlistener_verifycredentialsasync_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_authlistener_securityviolation_ptr")) {
+        _ = alljoyn_authlistener_securityviolation_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_authlistener_authenticationcomplete_ptr")) {
+        _ = alljoyn_authlistener_authenticationcomplete_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_buslistener_listener_registered_ptr")) {
+        _ = alljoyn_buslistener_listener_registered_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_buslistener_listener_unregistered_ptr")) {
+        _ = alljoyn_buslistener_listener_unregistered_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_buslistener_found_advertised_name_ptr")) {
+        _ = alljoyn_buslistener_found_advertised_name_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_buslistener_lost_advertised_name_ptr")) {
+        _ = alljoyn_buslistener_lost_advertised_name_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_buslistener_name_owner_changed_ptr")) {
+        _ = alljoyn_buslistener_name_owner_changed_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_buslistener_bus_stopping_ptr")) {
+        _ = alljoyn_buslistener_bus_stopping_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_buslistener_bus_disconnected_ptr")) {
+        _ = alljoyn_buslistener_bus_disconnected_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_buslistener_bus_prop_changed_ptr")) {
+        _ = alljoyn_buslistener_bus_prop_changed_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_interfacedescription_translation_callback_ptr")) {
+        _ = alljoyn_interfacedescription_translation_callback_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_messagereceiver_methodhandler_ptr")) {
+        _ = alljoyn_messagereceiver_methodhandler_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_messagereceiver_replyhandler_ptr")) {
+        _ = alljoyn_messagereceiver_replyhandler_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_messagereceiver_signalhandler_ptr")) {
+        _ = alljoyn_messagereceiver_signalhandler_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_busobject_prop_get_ptr")) {
+        _ = alljoyn_busobject_prop_get_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_busobject_prop_set_ptr")) {
+        _ = alljoyn_busobject_prop_set_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_busobject_object_registration_ptr")) {
+        _ = alljoyn_busobject_object_registration_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_proxybusobject_listener_introspectcb_ptr")) {
+        _ = alljoyn_proxybusobject_listener_introspectcb_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_proxybusobject_listener_getpropertycb_ptr")) {
+        _ = alljoyn_proxybusobject_listener_getpropertycb_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_proxybusobject_listener_getallpropertiescb_ptr")) {
+        _ = alljoyn_proxybusobject_listener_getallpropertiescb_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_proxybusobject_listener_setpropertycb_ptr")) {
+        _ = alljoyn_proxybusobject_listener_setpropertycb_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_proxybusobject_listener_propertieschanged_ptr")) {
+        _ = alljoyn_proxybusobject_listener_propertieschanged_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_permissionconfigurationlistener_factoryreset_ptr")) {
+        _ = alljoyn_permissionconfigurationlistener_factoryreset_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_permissionconfigurationlistener_policychanged_ptr")) {
+        _ = alljoyn_permissionconfigurationlistener_policychanged_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_permissionconfigurationlistener_startmanagement_ptr")) {
+        _ = alljoyn_permissionconfigurationlistener_startmanagement_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_permissionconfigurationlistener_endmanagement_ptr")) {
+        _ = alljoyn_permissionconfigurationlistener_endmanagement_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_sessionlistener_sessionlost_ptr")) {
+        _ = alljoyn_sessionlistener_sessionlost_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_sessionlistener_sessionmemberadded_ptr")) {
+        _ = alljoyn_sessionlistener_sessionmemberadded_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_sessionlistener_sessionmemberremoved_ptr")) {
+        _ = alljoyn_sessionlistener_sessionmemberremoved_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_sessionportlistener_acceptsessionjoiner_ptr")) {
+        _ = alljoyn_sessionportlistener_acceptsessionjoiner_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_sessionportlistener_sessionjoined_ptr")) {
+        _ = alljoyn_sessionportlistener_sessionjoined_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_about_announced_ptr")) {
+        _ = alljoyn_about_announced_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_busattachment_joinsessioncb_ptr")) {
+        _ = alljoyn_busattachment_joinsessioncb_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_busattachment_setlinktimeoutcb_ptr")) {
+        _ = alljoyn_busattachment_setlinktimeoutcb_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_aboutdatalistener_getaboutdata_ptr")) {
+        _ = alljoyn_aboutdatalistener_getaboutdata_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_aboutdatalistener_getannouncedaboutdata_ptr")) {
+        _ = alljoyn_aboutdatalistener_getannouncedaboutdata_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_autopinger_destination_lost_ptr")) {
+        _ = alljoyn_autopinger_destination_lost_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_autopinger_destination_found_ptr")) {
+        _ = alljoyn_autopinger_destination_found_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_observer_object_discovered_ptr")) {
+        _ = alljoyn_observer_object_discovered_ptr;
+    }
+    if (@hasDecl(@This(), "alljoyn_observer_object_lost_ptr")) {
+        _ = alljoyn_observer_object_lost_ptr;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

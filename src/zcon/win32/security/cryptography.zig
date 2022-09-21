@@ -1525,14 +1525,7 @@ pub const BCRYPT_OPERATION = enum(u32) {
         SIGNATURE_OPERATION: u1 = 0,
         RNG_OPERATION: u1 = 0,
     }) BCRYPT_OPERATION {
-        return @intToEnum(BCRYPT_OPERATION,
-              (if (o.CIPHER_OPERATION == 1) @enumToInt(BCRYPT_OPERATION.CIPHER_OPERATION) else 0)
-            | (if (o.HASH_OPERATION == 1) @enumToInt(BCRYPT_OPERATION.HASH_OPERATION) else 0)
-            | (if (o.ASYMMETRIC_ENCRYPTION_OPERATION == 1) @enumToInt(BCRYPT_OPERATION.ASYMMETRIC_ENCRYPTION_OPERATION) else 0)
-            | (if (o.SECRET_AGREEMENT_OPERATION == 1) @enumToInt(BCRYPT_OPERATION.SECRET_AGREEMENT_OPERATION) else 0)
-            | (if (o.SIGNATURE_OPERATION == 1) @enumToInt(BCRYPT_OPERATION.SIGNATURE_OPERATION) else 0)
-            | (if (o.RNG_OPERATION == 1) @enumToInt(BCRYPT_OPERATION.RNG_OPERATION) else 0)
-        );
+        return @intToEnum(BCRYPT_OPERATION, (if (o.CIPHER_OPERATION == 1) @enumToInt(BCRYPT_OPERATION.CIPHER_OPERATION) else 0) | (if (o.HASH_OPERATION == 1) @enumToInt(BCRYPT_OPERATION.HASH_OPERATION) else 0) | (if (o.ASYMMETRIC_ENCRYPTION_OPERATION == 1) @enumToInt(BCRYPT_OPERATION.ASYMMETRIC_ENCRYPTION_OPERATION) else 0) | (if (o.SECRET_AGREEMENT_OPERATION == 1) @enumToInt(BCRYPT_OPERATION.SECRET_AGREEMENT_OPERATION) else 0) | (if (o.SIGNATURE_OPERATION == 1) @enumToInt(BCRYPT_OPERATION.SIGNATURE_OPERATION) else 0) | (if (o.RNG_OPERATION == 1) @enumToInt(BCRYPT_OPERATION.RNG_OPERATION) else 0));
     }
 };
 pub const BCRYPT_CIPHER_OPERATION = BCRYPT_OPERATION.CIPHER_OPERATION;
@@ -1556,13 +1549,7 @@ pub const NCRYPT_OPERATION = enum(u32) {
         SECRET_AGREEMENT_OPERATION: u1 = 0,
         SIGNATURE_OPERATION: u1 = 0,
     }) NCRYPT_OPERATION {
-        return @intToEnum(NCRYPT_OPERATION,
-              (if (o.CIPHER_OPERATION == 1) @enumToInt(NCRYPT_OPERATION.CIPHER_OPERATION) else 0)
-            | (if (o.HASH_OPERATION == 1) @enumToInt(NCRYPT_OPERATION.HASH_OPERATION) else 0)
-            | (if (o.ASYMMETRIC_ENCRYPTION_OPERATION == 1) @enumToInt(NCRYPT_OPERATION.ASYMMETRIC_ENCRYPTION_OPERATION) else 0)
-            | (if (o.SECRET_AGREEMENT_OPERATION == 1) @enumToInt(NCRYPT_OPERATION.SECRET_AGREEMENT_OPERATION) else 0)
-            | (if (o.SIGNATURE_OPERATION == 1) @enumToInt(NCRYPT_OPERATION.SIGNATURE_OPERATION) else 0)
-        );
+        return @intToEnum(NCRYPT_OPERATION, (if (o.CIPHER_OPERATION == 1) @enumToInt(NCRYPT_OPERATION.CIPHER_OPERATION) else 0) | (if (o.HASH_OPERATION == 1) @enumToInt(NCRYPT_OPERATION.HASH_OPERATION) else 0) | (if (o.ASYMMETRIC_ENCRYPTION_OPERATION == 1) @enumToInt(NCRYPT_OPERATION.ASYMMETRIC_ENCRYPTION_OPERATION) else 0) | (if (o.SECRET_AGREEMENT_OPERATION == 1) @enumToInt(NCRYPT_OPERATION.SECRET_AGREEMENT_OPERATION) else 0) | (if (o.SIGNATURE_OPERATION == 1) @enumToInt(NCRYPT_OPERATION.SIGNATURE_OPERATION) else 0));
     }
 };
 pub const NCRYPT_CIPHER_OPERATION = NCRYPT_OPERATION.CIPHER_OPERATION;
@@ -1649,40 +1636,7 @@ pub const CERT_FIND_FLAGS = enum(u32) {
         OR_ENHKEY_USAGE_FLAG: u1 = 0,
         VALID_ENHKEY_USAGE_FLAG: u1 = 0,
     }) CERT_FIND_FLAGS {
-        return @intToEnum(CERT_FIND_FLAGS,
-              (if (o.ANY == 1) @enumToInt(CERT_FIND_FLAGS.ANY) else 0)
-            | (if (o.CERT_ID == 1) @enumToInt(CERT_FIND_FLAGS.CERT_ID) else 0)
-            | (if (o.CTL_USAGE == 1) @enumToInt(CERT_FIND_FLAGS.CTL_USAGE) else 0)
-            | (if (o.EXISTING == 1) @enumToInt(CERT_FIND_FLAGS.EXISTING) else 0)
-            | (if (o.HASH == 1) @enumToInt(CERT_FIND_FLAGS.HASH) else 0)
-            | (if (o.HAS_PRIVATE_KEY == 1) @enumToInt(CERT_FIND_FLAGS.HAS_PRIVATE_KEY) else 0)
-            | (if (o.ISSUER_ATTR == 1) @enumToInt(CERT_FIND_FLAGS.ISSUER_ATTR) else 0)
-            | (if (o.ISSUER_NAME == 1) @enumToInt(CERT_FIND_FLAGS.ISSUER_NAME) else 0)
-            | (if (o.ISSUER_OF == 1) @enumToInt(CERT_FIND_FLAGS.ISSUER_OF) else 0)
-            | (if (o.ISSUER_STR == 1) @enumToInt(CERT_FIND_FLAGS.ISSUER_STR) else 0)
-            | (if (o.KEY_IDENTIFIER == 1) @enumToInt(CERT_FIND_FLAGS.KEY_IDENTIFIER) else 0)
-            | (if (o.KEY_SPEC == 1) @enumToInt(CERT_FIND_FLAGS.KEY_SPEC) else 0)
-            | (if (o.MD5_HASH == 1) @enumToInt(CERT_FIND_FLAGS.MD5_HASH) else 0)
-            | (if (o.PROPERTY == 1) @enumToInt(CERT_FIND_FLAGS.PROPERTY) else 0)
-            | (if (o.PUBLIC_KEY == 1) @enumToInt(CERT_FIND_FLAGS.PUBLIC_KEY) else 0)
-            | (if (o.SIGNATURE_HASH == 1) @enumToInt(CERT_FIND_FLAGS.SIGNATURE_HASH) else 0)
-            | (if (o.SUBJECT_ATTR == 1) @enumToInt(CERT_FIND_FLAGS.SUBJECT_ATTR) else 0)
-            | (if (o.SUBJECT_CERT == 1) @enumToInt(CERT_FIND_FLAGS.SUBJECT_CERT) else 0)
-            | (if (o.SUBJECT_NAME == 1) @enumToInt(CERT_FIND_FLAGS.SUBJECT_NAME) else 0)
-            | (if (o.SUBJECT_STR == 1) @enumToInt(CERT_FIND_FLAGS.SUBJECT_STR) else 0)
-            | (if (o.CROSS_CERT_DIST_POINTS == 1) @enumToInt(CERT_FIND_FLAGS.CROSS_CERT_DIST_POINTS) else 0)
-            | (if (o.PUBKEY_MD5_HASH == 1) @enumToInt(CERT_FIND_FLAGS.PUBKEY_MD5_HASH) else 0)
-            | (if (o.SUBJECT_STR_A == 1) @enumToInt(CERT_FIND_FLAGS.SUBJECT_STR_A) else 0)
-            | (if (o.ISSUER_STR_A == 1) @enumToInt(CERT_FIND_FLAGS.ISSUER_STR_A) else 0)
-            | (if (o.SUBJECT_INFO_ACCESS == 1) @enumToInt(CERT_FIND_FLAGS.SUBJECT_INFO_ACCESS) else 0)
-            | (if (o.HASH_STR == 1) @enumToInt(CERT_FIND_FLAGS.HASH_STR) else 0)
-            | (if (o.OPTIONAL_ENHKEY_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.OPTIONAL_ENHKEY_USAGE_FLAG) else 0)
-            | (if (o.EXT_ONLY_ENHKEY_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.EXT_ONLY_ENHKEY_USAGE_FLAG) else 0)
-            | (if (o.PROP_ONLY_ENHKEY_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.PROP_ONLY_ENHKEY_USAGE_FLAG) else 0)
-            | (if (o.NO_ENHKEY_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.NO_ENHKEY_USAGE_FLAG) else 0)
-            | (if (o.OR_ENHKEY_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.OR_ENHKEY_USAGE_FLAG) else 0)
-            | (if (o.VALID_ENHKEY_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.VALID_ENHKEY_USAGE_FLAG) else 0)
-        );
+        return @intToEnum(CERT_FIND_FLAGS, (if (o.ANY == 1) @enumToInt(CERT_FIND_FLAGS.ANY) else 0) | (if (o.CERT_ID == 1) @enumToInt(CERT_FIND_FLAGS.CERT_ID) else 0) | (if (o.CTL_USAGE == 1) @enumToInt(CERT_FIND_FLAGS.CTL_USAGE) else 0) | (if (o.EXISTING == 1) @enumToInt(CERT_FIND_FLAGS.EXISTING) else 0) | (if (o.HASH == 1) @enumToInt(CERT_FIND_FLAGS.HASH) else 0) | (if (o.HAS_PRIVATE_KEY == 1) @enumToInt(CERT_FIND_FLAGS.HAS_PRIVATE_KEY) else 0) | (if (o.ISSUER_ATTR == 1) @enumToInt(CERT_FIND_FLAGS.ISSUER_ATTR) else 0) | (if (o.ISSUER_NAME == 1) @enumToInt(CERT_FIND_FLAGS.ISSUER_NAME) else 0) | (if (o.ISSUER_OF == 1) @enumToInt(CERT_FIND_FLAGS.ISSUER_OF) else 0) | (if (o.ISSUER_STR == 1) @enumToInt(CERT_FIND_FLAGS.ISSUER_STR) else 0) | (if (o.KEY_IDENTIFIER == 1) @enumToInt(CERT_FIND_FLAGS.KEY_IDENTIFIER) else 0) | (if (o.KEY_SPEC == 1) @enumToInt(CERT_FIND_FLAGS.KEY_SPEC) else 0) | (if (o.MD5_HASH == 1) @enumToInt(CERT_FIND_FLAGS.MD5_HASH) else 0) | (if (o.PROPERTY == 1) @enumToInt(CERT_FIND_FLAGS.PROPERTY) else 0) | (if (o.PUBLIC_KEY == 1) @enumToInt(CERT_FIND_FLAGS.PUBLIC_KEY) else 0) | (if (o.SIGNATURE_HASH == 1) @enumToInt(CERT_FIND_FLAGS.SIGNATURE_HASH) else 0) | (if (o.SUBJECT_ATTR == 1) @enumToInt(CERT_FIND_FLAGS.SUBJECT_ATTR) else 0) | (if (o.SUBJECT_CERT == 1) @enumToInt(CERT_FIND_FLAGS.SUBJECT_CERT) else 0) | (if (o.SUBJECT_NAME == 1) @enumToInt(CERT_FIND_FLAGS.SUBJECT_NAME) else 0) | (if (o.SUBJECT_STR == 1) @enumToInt(CERT_FIND_FLAGS.SUBJECT_STR) else 0) | (if (o.CROSS_CERT_DIST_POINTS == 1) @enumToInt(CERT_FIND_FLAGS.CROSS_CERT_DIST_POINTS) else 0) | (if (o.PUBKEY_MD5_HASH == 1) @enumToInt(CERT_FIND_FLAGS.PUBKEY_MD5_HASH) else 0) | (if (o.SUBJECT_STR_A == 1) @enumToInt(CERT_FIND_FLAGS.SUBJECT_STR_A) else 0) | (if (o.ISSUER_STR_A == 1) @enumToInt(CERT_FIND_FLAGS.ISSUER_STR_A) else 0) | (if (o.SUBJECT_INFO_ACCESS == 1) @enumToInt(CERT_FIND_FLAGS.SUBJECT_INFO_ACCESS) else 0) | (if (o.HASH_STR == 1) @enumToInt(CERT_FIND_FLAGS.HASH_STR) else 0) | (if (o.OPTIONAL_ENHKEY_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.OPTIONAL_ENHKEY_USAGE_FLAG) else 0) | (if (o.EXT_ONLY_ENHKEY_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.EXT_ONLY_ENHKEY_USAGE_FLAG) else 0) | (if (o.PROP_ONLY_ENHKEY_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.PROP_ONLY_ENHKEY_USAGE_FLAG) else 0) | (if (o.NO_ENHKEY_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.NO_ENHKEY_USAGE_FLAG) else 0) | (if (o.OR_ENHKEY_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.OR_ENHKEY_USAGE_FLAG) else 0) | (if (o.VALID_ENHKEY_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.VALID_ENHKEY_USAGE_FLAG) else 0));
     }
 };
 pub const CERT_FIND_ANY = CERT_FIND_FLAGS.ANY;
@@ -1945,18 +1899,7 @@ pub const NCRYPT_FLAGS = enum(u32) {
         NCRYPT_PERSIST_FLAG: u1 = 0,
         NCRYPT_PERSIST_ONLY_FLAG: u1 = 0,
     }) NCRYPT_FLAGS {
-        return @intToEnum(NCRYPT_FLAGS,
-              (if (o.BCRYPT_PAD_NONE == 1) @enumToInt(NCRYPT_FLAGS.BCRYPT_PAD_NONE) else 0)
-            | (if (o.BCRYPT_PAD_OAEP == 1) @enumToInt(NCRYPT_FLAGS.BCRYPT_PAD_OAEP) else 0)
-            | (if (o.BCRYPT_PAD_PKCS1 == 1) @enumToInt(NCRYPT_FLAGS.BCRYPT_PAD_PKCS1) else 0)
-            | (if (o.BCRYPT_PAD_PSS == 1) @enumToInt(NCRYPT_FLAGS.BCRYPT_PAD_PSS) else 0)
-            | (if (o.NCRYPT_SILENT_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_SILENT_FLAG) else 0)
-            | (if (o.NCRYPT_MACHINE_KEY_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_MACHINE_KEY_FLAG) else 0)
-            | (if (o.NCRYPT_OVERWRITE_KEY_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_OVERWRITE_KEY_FLAG) else 0)
-            | (if (o.NCRYPT_WRITE_KEY_TO_LEGACY_STORE_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_WRITE_KEY_TO_LEGACY_STORE_FLAG) else 0)
-            | (if (o.NCRYPT_PERSIST_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_PERSIST_FLAG) else 0)
-            | (if (o.NCRYPT_PERSIST_ONLY_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_PERSIST_ONLY_FLAG) else 0)
-        );
+        return @intToEnum(NCRYPT_FLAGS, (if (o.BCRYPT_PAD_NONE == 1) @enumToInt(NCRYPT_FLAGS.BCRYPT_PAD_NONE) else 0) | (if (o.BCRYPT_PAD_OAEP == 1) @enumToInt(NCRYPT_FLAGS.BCRYPT_PAD_OAEP) else 0) | (if (o.BCRYPT_PAD_PKCS1 == 1) @enumToInt(NCRYPT_FLAGS.BCRYPT_PAD_PKCS1) else 0) | (if (o.BCRYPT_PAD_PSS == 1) @enumToInt(NCRYPT_FLAGS.BCRYPT_PAD_PSS) else 0) | (if (o.NCRYPT_SILENT_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_SILENT_FLAG) else 0) | (if (o.NCRYPT_MACHINE_KEY_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_MACHINE_KEY_FLAG) else 0) | (if (o.NCRYPT_OVERWRITE_KEY_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_OVERWRITE_KEY_FLAG) else 0) | (if (o.NCRYPT_WRITE_KEY_TO_LEGACY_STORE_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_WRITE_KEY_TO_LEGACY_STORE_FLAG) else 0) | (if (o.NCRYPT_PERSIST_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_PERSIST_FLAG) else 0) | (if (o.NCRYPT_PERSIST_ONLY_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_PERSIST_ONLY_FLAG) else 0));
     }
 };
 pub const BCRYPT_PAD_NONE = NCRYPT_FLAGS.BCRYPT_PAD_NONE;
@@ -2017,10 +1960,7 @@ pub const CRYPT_IMPORT_PUBLIC_KEY_FLAGS = enum(u32) {
         SIGN_KEY_FLAG: u1 = 0,
         ENCRYPT_KEY_FLAG: u1 = 0,
     }) CRYPT_IMPORT_PUBLIC_KEY_FLAGS {
-        return @intToEnum(CRYPT_IMPORT_PUBLIC_KEY_FLAGS,
-              (if (o.SIGN_KEY_FLAG == 1) @enumToInt(CRYPT_IMPORT_PUBLIC_KEY_FLAGS.SIGN_KEY_FLAG) else 0)
-            | (if (o.ENCRYPT_KEY_FLAG == 1) @enumToInt(CRYPT_IMPORT_PUBLIC_KEY_FLAGS.ENCRYPT_KEY_FLAG) else 0)
-        );
+        return @intToEnum(CRYPT_IMPORT_PUBLIC_KEY_FLAGS, (if (o.SIGN_KEY_FLAG == 1) @enumToInt(CRYPT_IMPORT_PUBLIC_KEY_FLAGS.SIGN_KEY_FLAG) else 0) | (if (o.ENCRYPT_KEY_FLAG == 1) @enumToInt(CRYPT_IMPORT_PUBLIC_KEY_FLAGS.ENCRYPT_KEY_FLAG) else 0));
     }
 };
 pub const CRYPT_OID_INFO_PUBKEY_SIGN_KEY_FLAG = CRYPT_IMPORT_PUBLIC_KEY_FLAGS.SIGN_KEY_FLAG;
@@ -2049,13 +1989,7 @@ pub const CRYPT_ENCODE_OBJECT_FLAGS = enum(u32) {
         UNICODE_NAME_ENCODE_ENABLE_T61_UNICODE_FLAG: u1 = 0,
         UNICODE_NAME_ENCODE_ENABLE_UTF8_UNICODE_FLAG: u1 = 0,
     }) CRYPT_ENCODE_OBJECT_FLAGS {
-        return @intToEnum(CRYPT_ENCODE_OBJECT_FLAGS,
-              (if (o.ENCODE_ALLOC_FLAG == 1) @enumToInt(CRYPT_ENCODE_OBJECT_FLAGS.ENCODE_ALLOC_FLAG) else 0)
-            | (if (o.ENCODE_ENABLE_PUNYCODE_FLAG == 1) @enumToInt(CRYPT_ENCODE_OBJECT_FLAGS.ENCODE_ENABLE_PUNYCODE_FLAG) else 0)
-            | (if (o.UNICODE_NAME_ENCODE_DISABLE_CHECK_TYPE_FLAG == 1) @enumToInt(CRYPT_ENCODE_OBJECT_FLAGS.UNICODE_NAME_ENCODE_DISABLE_CHECK_TYPE_FLAG) else 0)
-            | (if (o.UNICODE_NAME_ENCODE_ENABLE_T61_UNICODE_FLAG == 1) @enumToInt(CRYPT_ENCODE_OBJECT_FLAGS.UNICODE_NAME_ENCODE_ENABLE_T61_UNICODE_FLAG) else 0)
-            | (if (o.UNICODE_NAME_ENCODE_ENABLE_UTF8_UNICODE_FLAG == 1) @enumToInt(CRYPT_ENCODE_OBJECT_FLAGS.UNICODE_NAME_ENCODE_ENABLE_UTF8_UNICODE_FLAG) else 0)
-        );
+        return @intToEnum(CRYPT_ENCODE_OBJECT_FLAGS, (if (o.ENCODE_ALLOC_FLAG == 1) @enumToInt(CRYPT_ENCODE_OBJECT_FLAGS.ENCODE_ALLOC_FLAG) else 0) | (if (o.ENCODE_ENABLE_PUNYCODE_FLAG == 1) @enumToInt(CRYPT_ENCODE_OBJECT_FLAGS.ENCODE_ENABLE_PUNYCODE_FLAG) else 0) | (if (o.UNICODE_NAME_ENCODE_DISABLE_CHECK_TYPE_FLAG == 1) @enumToInt(CRYPT_ENCODE_OBJECT_FLAGS.UNICODE_NAME_ENCODE_DISABLE_CHECK_TYPE_FLAG) else 0) | (if (o.UNICODE_NAME_ENCODE_ENABLE_T61_UNICODE_FLAG == 1) @enumToInt(CRYPT_ENCODE_OBJECT_FLAGS.UNICODE_NAME_ENCODE_ENABLE_T61_UNICODE_FLAG) else 0) | (if (o.UNICODE_NAME_ENCODE_ENABLE_UTF8_UNICODE_FLAG == 1) @enumToInt(CRYPT_ENCODE_OBJECT_FLAGS.UNICODE_NAME_ENCODE_ENABLE_UTF8_UNICODE_FLAG) else 0));
     }
 };
 pub const CRYPT_ENCODE_ALLOC_FLAG = CRYPT_ENCODE_OBJECT_FLAGS.ENCODE_ALLOC_FLAG;
@@ -2089,13 +2023,7 @@ pub const CRYPT_ACQUIRE_FLAGS = enum(u32) {
         SILENT_FLAG: u1 = 0,
         USE_PROV_INFO_FLAG: u1 = 0,
     }) CRYPT_ACQUIRE_FLAGS {
-        return @intToEnum(CRYPT_ACQUIRE_FLAGS,
-              (if (o.CACHE_FLAG == 1) @enumToInt(CRYPT_ACQUIRE_FLAGS.CACHE_FLAG) else 0)
-            | (if (o.COMPARE_KEY_FLAG == 1) @enumToInt(CRYPT_ACQUIRE_FLAGS.COMPARE_KEY_FLAG) else 0)
-            | (if (o.NO_HEALING == 1) @enumToInt(CRYPT_ACQUIRE_FLAGS.NO_HEALING) else 0)
-            | (if (o.SILENT_FLAG == 1) @enumToInt(CRYPT_ACQUIRE_FLAGS.SILENT_FLAG) else 0)
-            | (if (o.USE_PROV_INFO_FLAG == 1) @enumToInt(CRYPT_ACQUIRE_FLAGS.USE_PROV_INFO_FLAG) else 0)
-        );
+        return @intToEnum(CRYPT_ACQUIRE_FLAGS, (if (o.CACHE_FLAG == 1) @enumToInt(CRYPT_ACQUIRE_FLAGS.CACHE_FLAG) else 0) | (if (o.COMPARE_KEY_FLAG == 1) @enumToInt(CRYPT_ACQUIRE_FLAGS.COMPARE_KEY_FLAG) else 0) | (if (o.NO_HEALING == 1) @enumToInt(CRYPT_ACQUIRE_FLAGS.NO_HEALING) else 0) | (if (o.SILENT_FLAG == 1) @enumToInt(CRYPT_ACQUIRE_FLAGS.SILENT_FLAG) else 0) | (if (o.USE_PROV_INFO_FLAG == 1) @enumToInt(CRYPT_ACQUIRE_FLAGS.USE_PROV_INFO_FLAG) else 0));
     }
 };
 pub const CRYPT_ACQUIRE_CACHE_FLAG = CRYPT_ACQUIRE_FLAGS.CACHE_FLAG;
@@ -2116,12 +2044,7 @@ pub const CRYPT_GET_URL_FLAGS = enum(u32) {
         UNAUTH_ATTRIBUTE: u1 = 0,
         AUTH_ATTRIBUTE: u1 = 0,
     }) CRYPT_GET_URL_FLAGS {
-        return @intToEnum(CRYPT_GET_URL_FLAGS,
-              (if (o.PROPERTY == 1) @enumToInt(CRYPT_GET_URL_FLAGS.PROPERTY) else 0)
-            | (if (o.EXTENSION == 1) @enumToInt(CRYPT_GET_URL_FLAGS.EXTENSION) else 0)
-            | (if (o.UNAUTH_ATTRIBUTE == 1) @enumToInt(CRYPT_GET_URL_FLAGS.UNAUTH_ATTRIBUTE) else 0)
-            | (if (o.AUTH_ATTRIBUTE == 1) @enumToInt(CRYPT_GET_URL_FLAGS.AUTH_ATTRIBUTE) else 0)
-        );
+        return @intToEnum(CRYPT_GET_URL_FLAGS, (if (o.PROPERTY == 1) @enumToInt(CRYPT_GET_URL_FLAGS.PROPERTY) else 0) | (if (o.EXTENSION == 1) @enumToInt(CRYPT_GET_URL_FLAGS.EXTENSION) else 0) | (if (o.UNAUTH_ATTRIBUTE == 1) @enumToInt(CRYPT_GET_URL_FLAGS.UNAUTH_ATTRIBUTE) else 0) | (if (o.AUTH_ATTRIBUTE == 1) @enumToInt(CRYPT_GET_URL_FLAGS.AUTH_ATTRIBUTE) else 0));
     }
 };
 pub const CRYPT_GET_URL_FROM_PROPERTY = CRYPT_GET_URL_FLAGS.PROPERTY;
@@ -2163,14 +2086,7 @@ pub const CERT_FIND_CHAIN_IN_STORE_FLAGS = enum(u32) {
         LOCAL_MACHINE_FLAG: u1 = 0,
         NO_KEY_FLAG: u1 = 0,
     }) CERT_FIND_CHAIN_IN_STORE_FLAGS {
-        return @intToEnum(CERT_FIND_CHAIN_IN_STORE_FLAGS,
-              (if (o.COMPARE_KEY_FLAG == 1) @enumToInt(CERT_FIND_CHAIN_IN_STORE_FLAGS.COMPARE_KEY_FLAG) else 0)
-            | (if (o.COMPLEX_CHAIN_FLAG == 1) @enumToInt(CERT_FIND_CHAIN_IN_STORE_FLAGS.COMPLEX_CHAIN_FLAG) else 0)
-            | (if (o.CACHE_ONLY_FLAG == 1) @enumToInt(CERT_FIND_CHAIN_IN_STORE_FLAGS.CACHE_ONLY_FLAG) else 0)
-            | (if (o.CACHE_ONLY_URL_FLAG == 1) @enumToInt(CERT_FIND_CHAIN_IN_STORE_FLAGS.CACHE_ONLY_URL_FLAG) else 0)
-            | (if (o.LOCAL_MACHINE_FLAG == 1) @enumToInt(CERT_FIND_CHAIN_IN_STORE_FLAGS.LOCAL_MACHINE_FLAG) else 0)
-            | (if (o.NO_KEY_FLAG == 1) @enumToInt(CERT_FIND_CHAIN_IN_STORE_FLAGS.NO_KEY_FLAG) else 0)
-        );
+        return @intToEnum(CERT_FIND_CHAIN_IN_STORE_FLAGS, (if (o.COMPARE_KEY_FLAG == 1) @enumToInt(CERT_FIND_CHAIN_IN_STORE_FLAGS.COMPARE_KEY_FLAG) else 0) | (if (o.COMPLEX_CHAIN_FLAG == 1) @enumToInt(CERT_FIND_CHAIN_IN_STORE_FLAGS.COMPLEX_CHAIN_FLAG) else 0) | (if (o.CACHE_ONLY_FLAG == 1) @enumToInt(CERT_FIND_CHAIN_IN_STORE_FLAGS.CACHE_ONLY_FLAG) else 0) | (if (o.CACHE_ONLY_URL_FLAG == 1) @enumToInt(CERT_FIND_CHAIN_IN_STORE_FLAGS.CACHE_ONLY_URL_FLAG) else 0) | (if (o.LOCAL_MACHINE_FLAG == 1) @enumToInt(CERT_FIND_CHAIN_IN_STORE_FLAGS.LOCAL_MACHINE_FLAG) else 0) | (if (o.NO_KEY_FLAG == 1) @enumToInt(CERT_FIND_CHAIN_IN_STORE_FLAGS.NO_KEY_FLAG) else 0));
     }
 };
 pub const CERT_CHAIN_FIND_BY_ISSUER_COMPARE_KEY_FLAG = CERT_FIND_CHAIN_IN_STORE_FLAGS.COMPARE_KEY_FLAG;
@@ -2199,11 +2115,7 @@ pub const BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS = enum(u32) {
         PROV_DISPATCH: u1 = 0,
         HASH_REUSABLE_FLAG: u1 = 0,
     }) BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS {
-        return @intToEnum(BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS,
-              (if (o.ALG_HANDLE_HMAC_FLAG == 1) @enumToInt(BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS.ALG_HANDLE_HMAC_FLAG) else 0)
-            | (if (o.PROV_DISPATCH == 1) @enumToInt(BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS.PROV_DISPATCH) else 0)
-            | (if (o.HASH_REUSABLE_FLAG == 1) @enumToInt(BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS.HASH_REUSABLE_FLAG) else 0)
-        );
+        return @intToEnum(BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS, (if (o.ALG_HANDLE_HMAC_FLAG == 1) @enumToInt(BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS.ALG_HANDLE_HMAC_FLAG) else 0) | (if (o.PROV_DISPATCH == 1) @enumToInt(BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS.PROV_DISPATCH) else 0) | (if (o.HASH_REUSABLE_FLAG == 1) @enumToInt(BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS.HASH_REUSABLE_FLAG) else 0));
     }
 };
 pub const BCRYPT_ALG_HANDLE_HMAC_FLAG = BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS.ALG_HANDLE_HMAC_FLAG;
@@ -2329,23 +2241,7 @@ pub const CRYPT_KEY_FLAGS = enum(u32) {
         CRYPT_VOLATILE: u1 = 0,
         CRYPT_MACHINE_KEYSET: u1 = 0,
     }) CRYPT_KEY_FLAGS {
-        return @intToEnum(CRYPT_KEY_FLAGS,
-              (if (o.CRYPT_EXPORTABLE == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_EXPORTABLE) else 0)
-            | (if (o.CRYPT_USER_PROTECTED == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_USER_PROTECTED) else 0)
-            | (if (o.CRYPT_ARCHIVABLE == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_ARCHIVABLE) else 0)
-            | (if (o.CRYPT_CREATE_IV == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_CREATE_IV) else 0)
-            | (if (o.CRYPT_CREATE_SALT == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_CREATE_SALT) else 0)
-            | (if (o.CRYPT_DATA_KEY == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_DATA_KEY) else 0)
-            | (if (o.CRYPT_FORCE_KEY_PROTECTION_HIGH == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_FORCE_KEY_PROTECTION_HIGH) else 0)
-            | (if (o.CRYPT_KEK == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_KEK) else 0)
-            | (if (o.CRYPT_INITIATOR == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_INITIATOR) else 0)
-            | (if (o.CRYPT_NO_SALT == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_NO_SALT) else 0)
-            | (if (o.CRYPT_ONLINE == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_ONLINE) else 0)
-            | (if (o.CRYPT_SF == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_SF) else 0)
-            | (if (o.CRYPT_SGCKEY == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_SGCKEY) else 0)
-            | (if (o.CRYPT_VOLATILE == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_VOLATILE) else 0)
-            | (if (o.CRYPT_MACHINE_KEYSET == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_MACHINE_KEYSET) else 0)
-        );
+        return @intToEnum(CRYPT_KEY_FLAGS, (if (o.CRYPT_EXPORTABLE == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_EXPORTABLE) else 0) | (if (o.CRYPT_USER_PROTECTED == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_USER_PROTECTED) else 0) | (if (o.CRYPT_ARCHIVABLE == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_ARCHIVABLE) else 0) | (if (o.CRYPT_CREATE_IV == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_CREATE_IV) else 0) | (if (o.CRYPT_CREATE_SALT == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_CREATE_SALT) else 0) | (if (o.CRYPT_DATA_KEY == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_DATA_KEY) else 0) | (if (o.CRYPT_FORCE_KEY_PROTECTION_HIGH == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_FORCE_KEY_PROTECTION_HIGH) else 0) | (if (o.CRYPT_KEK == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_KEK) else 0) | (if (o.CRYPT_INITIATOR == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_INITIATOR) else 0) | (if (o.CRYPT_NO_SALT == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_NO_SALT) else 0) | (if (o.CRYPT_ONLINE == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_ONLINE) else 0) | (if (o.CRYPT_SF == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_SF) else 0) | (if (o.CRYPT_SGCKEY == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_SGCKEY) else 0) | (if (o.CRYPT_VOLATILE == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_VOLATILE) else 0) | (if (o.CRYPT_MACHINE_KEYSET == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_MACHINE_KEYSET) else 0));
     }
 };
 pub const CRYPT_EXPORTABLE = CRYPT_KEY_FLAGS.CRYPT_EXPORTABLE;
@@ -2428,10 +2324,7 @@ pub const CRYPT_DEFAULT_CONTEXT_FLAGS = enum(u32) {
         AUTO_RELEASE_FLAG: u1 = 0,
         PROCESS_FLAG: u1 = 0,
     }) CRYPT_DEFAULT_CONTEXT_FLAGS {
-        return @intToEnum(CRYPT_DEFAULT_CONTEXT_FLAGS,
-              (if (o.AUTO_RELEASE_FLAG == 1) @enumToInt(CRYPT_DEFAULT_CONTEXT_FLAGS.AUTO_RELEASE_FLAG) else 0)
-            | (if (o.PROCESS_FLAG == 1) @enumToInt(CRYPT_DEFAULT_CONTEXT_FLAGS.PROCESS_FLAG) else 0)
-        );
+        return @intToEnum(CRYPT_DEFAULT_CONTEXT_FLAGS, (if (o.AUTO_RELEASE_FLAG == 1) @enumToInt(CRYPT_DEFAULT_CONTEXT_FLAGS.AUTO_RELEASE_FLAG) else 0) | (if (o.PROCESS_FLAG == 1) @enumToInt(CRYPT_DEFAULT_CONTEXT_FLAGS.PROCESS_FLAG) else 0));
     }
 };
 pub const CRYPT_DEFAULT_CONTEXT_AUTO_RELEASE_FLAG = CRYPT_DEFAULT_CONTEXT_FLAGS.AUTO_RELEASE_FLAG;
@@ -2468,10 +2361,7 @@ pub const CERT_CREATE_SELFSIGN_FLAGS = enum(u32) {
         KEY_INFO: u1 = 0,
         SIGN: u1 = 0,
     }) CERT_CREATE_SELFSIGN_FLAGS {
-        return @intToEnum(CERT_CREATE_SELFSIGN_FLAGS,
-              (if (o.KEY_INFO == 1) @enumToInt(CERT_CREATE_SELFSIGN_FLAGS.KEY_INFO) else 0)
-            | (if (o.SIGN == 1) @enumToInt(CERT_CREATE_SELFSIGN_FLAGS.SIGN) else 0)
-        );
+        return @intToEnum(CERT_CREATE_SELFSIGN_FLAGS, (if (o.KEY_INFO == 1) @enumToInt(CERT_CREATE_SELFSIGN_FLAGS.KEY_INFO) else 0) | (if (o.SIGN == 1) @enumToInt(CERT_CREATE_SELFSIGN_FLAGS.SIGN) else 0));
     }
 };
 pub const CERT_CREATE_SELFSIGN_NO_KEY_INFO = CERT_CREATE_SELFSIGN_FLAGS.KEY_INFO;
@@ -2492,10 +2382,7 @@ pub const BCRYPT_RESOLVE_PROVIDERS_FLAGS = enum(u32) {
         FUNCTIONS: u1 = 0,
         PROVIDERS: u1 = 0,
     }) BCRYPT_RESOLVE_PROVIDERS_FLAGS {
-        return @intToEnum(BCRYPT_RESOLVE_PROVIDERS_FLAGS,
-              (if (o.FUNCTIONS == 1) @enumToInt(BCRYPT_RESOLVE_PROVIDERS_FLAGS.FUNCTIONS) else 0)
-            | (if (o.PROVIDERS == 1) @enumToInt(BCRYPT_RESOLVE_PROVIDERS_FLAGS.PROVIDERS) else 0)
-        );
+        return @intToEnum(BCRYPT_RESOLVE_PROVIDERS_FLAGS, (if (o.FUNCTIONS == 1) @enumToInt(BCRYPT_RESOLVE_PROVIDERS_FLAGS.FUNCTIONS) else 0) | (if (o.PROVIDERS == 1) @enumToInt(BCRYPT_RESOLVE_PROVIDERS_FLAGS.PROVIDERS) else 0));
     }
 };
 pub const CRYPT_ALL_FUNCTIONS = BCRYPT_RESOLVE_PROVIDERS_FLAGS.FUNCTIONS;
@@ -2535,10 +2422,7 @@ pub const CRYPT_IMAGE_REF_FLAGS = enum(u32) {
         MIN_DEPENDENCIES: u1 = 0,
         PROCESS_ISOLATE: u1 = 0,
     }) CRYPT_IMAGE_REF_FLAGS {
-        return @intToEnum(CRYPT_IMAGE_REF_FLAGS,
-              (if (o.MIN_DEPENDENCIES == 1) @enumToInt(CRYPT_IMAGE_REF_FLAGS.MIN_DEPENDENCIES) else 0)
-            | (if (o.PROCESS_ISOLATE == 1) @enumToInt(CRYPT_IMAGE_REF_FLAGS.PROCESS_ISOLATE) else 0)
-        );
+        return @intToEnum(CRYPT_IMAGE_REF_FLAGS, (if (o.MIN_DEPENDENCIES == 1) @enumToInt(CRYPT_IMAGE_REF_FLAGS.MIN_DEPENDENCIES) else 0) | (if (o.PROCESS_ISOLATE == 1) @enumToInt(CRYPT_IMAGE_REF_FLAGS.PROCESS_ISOLATE) else 0));
     }
 };
 pub const CRYPT_MIN_DEPENDENCIES = CRYPT_IMAGE_REF_FLAGS.MIN_DEPENDENCIES;
@@ -2573,11 +2457,7 @@ pub const CERT_ROOT_PROGRAM_FLAGS = enum(u32) {
         ORG: u1 = 0,
         SUBJECT_LOGO: u1 = 0,
     }) CERT_ROOT_PROGRAM_FLAGS {
-        return @intToEnum(CERT_ROOT_PROGRAM_FLAGS,
-              (if (o.LSC == 1) @enumToInt(CERT_ROOT_PROGRAM_FLAGS.LSC) else 0)
-            | (if (o.ORG == 1) @enumToInt(CERT_ROOT_PROGRAM_FLAGS.ORG) else 0)
-            | (if (o.SUBJECT_LOGO == 1) @enumToInt(CERT_ROOT_PROGRAM_FLAGS.SUBJECT_LOGO) else 0)
-        );
+        return @intToEnum(CERT_ROOT_PROGRAM_FLAGS, (if (o.LSC == 1) @enumToInt(CERT_ROOT_PROGRAM_FLAGS.LSC) else 0) | (if (o.ORG == 1) @enumToInt(CERT_ROOT_PROGRAM_FLAGS.ORG) else 0) | (if (o.SUBJECT_LOGO == 1) @enumToInt(CERT_ROOT_PROGRAM_FLAGS.SUBJECT_LOGO) else 0));
     }
 };
 pub const CERT_ROOT_PROGRAM_FLAG_LSC = CERT_ROOT_PROGRAM_FLAGS.LSC;
@@ -2632,13 +2512,7 @@ pub const CERT_STORE_PROV_FLAGS = enum(u32) {
         SYSTEM_STORE_FLAG: u1 = 0,
         LM_SYSTEM_STORE_FLAG: u1 = 0,
     }) CERT_STORE_PROV_FLAGS {
-        return @intToEnum(CERT_STORE_PROV_FLAGS,
-              (if (o.EXTERNAL_FLAG == 1) @enumToInt(CERT_STORE_PROV_FLAGS.EXTERNAL_FLAG) else 0)
-            | (if (o.DELETED_FLAG == 1) @enumToInt(CERT_STORE_PROV_FLAGS.DELETED_FLAG) else 0)
-            | (if (o.NO_PERSIST_FLAG == 1) @enumToInt(CERT_STORE_PROV_FLAGS.NO_PERSIST_FLAG) else 0)
-            | (if (o.SYSTEM_STORE_FLAG == 1) @enumToInt(CERT_STORE_PROV_FLAGS.SYSTEM_STORE_FLAG) else 0)
-            | (if (o.LM_SYSTEM_STORE_FLAG == 1) @enumToInt(CERT_STORE_PROV_FLAGS.LM_SYSTEM_STORE_FLAG) else 0)
-        );
+        return @intToEnum(CERT_STORE_PROV_FLAGS, (if (o.EXTERNAL_FLAG == 1) @enumToInt(CERT_STORE_PROV_FLAGS.EXTERNAL_FLAG) else 0) | (if (o.DELETED_FLAG == 1) @enumToInt(CERT_STORE_PROV_FLAGS.DELETED_FLAG) else 0) | (if (o.NO_PERSIST_FLAG == 1) @enumToInt(CERT_STORE_PROV_FLAGS.NO_PERSIST_FLAG) else 0) | (if (o.SYSTEM_STORE_FLAG == 1) @enumToInt(CERT_STORE_PROV_FLAGS.SYSTEM_STORE_FLAG) else 0) | (if (o.LM_SYSTEM_STORE_FLAG == 1) @enumToInt(CERT_STORE_PROV_FLAGS.LM_SYSTEM_STORE_FLAG) else 0));
     }
 };
 pub const CERT_STORE_PROV_EXTERNAL_FLAG = CERT_STORE_PROV_FLAGS.EXTERNAL_FLAG;
@@ -2662,10 +2536,7 @@ pub const CRYPT_CONTEXT_CONFIG_FLAGS = enum(u32) {
         EXCLUSIVE: u1 = 0,
         OVERRIDE: u1 = 0,
     }) CRYPT_CONTEXT_CONFIG_FLAGS {
-        return @intToEnum(CRYPT_CONTEXT_CONFIG_FLAGS,
-              (if (o.EXCLUSIVE == 1) @enumToInt(CRYPT_CONTEXT_CONFIG_FLAGS.EXCLUSIVE) else 0)
-            | (if (o.OVERRIDE == 1) @enumToInt(CRYPT_CONTEXT_CONFIG_FLAGS.OVERRIDE) else 0)
-        );
+        return @intToEnum(CRYPT_CONTEXT_CONFIG_FLAGS, (if (o.EXCLUSIVE == 1) @enumToInt(CRYPT_CONTEXT_CONFIG_FLAGS.EXCLUSIVE) else 0) | (if (o.OVERRIDE == 1) @enumToInt(CRYPT_CONTEXT_CONFIG_FLAGS.OVERRIDE) else 0));
     }
 };
 pub const CRYPT_EXCLUSIVE = CRYPT_CONTEXT_CONFIG_FLAGS.EXCLUSIVE;
@@ -2747,10 +2618,7 @@ pub const CERT_STRONG_SIGN_FLAGS = enum(u32) {
         CRL_CHECK: u1 = 0,
         OCSP_CHECK: u1 = 0,
     }) CERT_STRONG_SIGN_FLAGS {
-        return @intToEnum(CERT_STRONG_SIGN_FLAGS,
-              (if (o.CRL_CHECK == 1) @enumToInt(CERT_STRONG_SIGN_FLAGS.CRL_CHECK) else 0)
-            | (if (o.OCSP_CHECK == 1) @enumToInt(CERT_STRONG_SIGN_FLAGS.OCSP_CHECK) else 0)
-        );
+        return @intToEnum(CERT_STRONG_SIGN_FLAGS, (if (o.CRL_CHECK == 1) @enumToInt(CERT_STRONG_SIGN_FLAGS.CRL_CHECK) else 0) | (if (o.OCSP_CHECK == 1) @enumToInt(CERT_STRONG_SIGN_FLAGS.OCSP_CHECK) else 0));
     }
 };
 pub const CERT_STRONG_SIGN_ENABLE_CRL_CHECK = CERT_STRONG_SIGN_FLAGS.CRL_CHECK;
@@ -2788,11 +2656,7 @@ pub const CRYPT_XML_TRANSFORM_FLAGS = enum(u32) {
         ON_NODESET: u1 = 0,
         URI_QUERY_STRING: u1 = 0,
     }) CRYPT_XML_TRANSFORM_FLAGS {
-        return @intToEnum(CRYPT_XML_TRANSFORM_FLAGS,
-              (if (o.ON_STREAM == 1) @enumToInt(CRYPT_XML_TRANSFORM_FLAGS.ON_STREAM) else 0)
-            | (if (o.ON_NODESET == 1) @enumToInt(CRYPT_XML_TRANSFORM_FLAGS.ON_NODESET) else 0)
-            | (if (o.URI_QUERY_STRING == 1) @enumToInt(CRYPT_XML_TRANSFORM_FLAGS.URI_QUERY_STRING) else 0)
-        );
+        return @intToEnum(CRYPT_XML_TRANSFORM_FLAGS, (if (o.ON_STREAM == 1) @enumToInt(CRYPT_XML_TRANSFORM_FLAGS.ON_STREAM) else 0) | (if (o.ON_NODESET == 1) @enumToInt(CRYPT_XML_TRANSFORM_FLAGS.ON_NODESET) else 0) | (if (o.URI_QUERY_STRING == 1) @enumToInt(CRYPT_XML_TRANSFORM_FLAGS.URI_QUERY_STRING) else 0));
     }
 };
 pub const CRYPT_XML_TRANSFORM_ON_STREAM = CRYPT_XML_TRANSFORM_FLAGS.ON_STREAM;
@@ -2921,10 +2785,10 @@ pub const NCRYPT_SECRET_AGREEMENT_INTERFACE = NCRYPT_ALGORITHM_NAME_CLASS.SECRET
 pub const NCRYPT_SIGNATURE_INTERFACE = NCRYPT_ALGORITHM_NAME_CLASS.SIGNATURE_INTERFACE;
 
 // TODO: this type has a FreeFunc 'CryptCloseAsyncHandle', what can Zig do with this information?
-pub const HCRYPTASYNC = *opaque{};
+pub const HCRYPTASYNC = *opaque {};
 
 // TODO: this type has a FreeFunc 'CertFreeCertificateChainEngine', what can Zig do with this information?
-pub const HCERTCHAINENGINE = *opaque{};
+pub const HCERTCHAINENGINE = *opaque {};
 
 // TODO: this type has a FreeFunc 'BCryptCloseAlgorithmProvider', what can Zig do with this information?
 pub const BCRYPT_ALG_HANDLE = isize;
@@ -3372,11 +3236,11 @@ pub const CRYPT_PROVIDER_REFS = extern struct {
     rgpProviders: ?*?*CRYPT_PROVIDER_REF,
 };
 
-pub const PFN_NCRYPT_ALLOC = fn(
+pub const PFN_NCRYPT_ALLOC = fn (
     cbSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const PFN_NCRYPT_FREE = fn(
+pub const PFN_NCRYPT_FREE = fn (
     pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -3628,7 +3492,7 @@ pub const CRYPT_ENCRYPTED_PRIVATE_KEY_INFO = extern struct {
     EncryptedPrivateKey: CRYPTOAPI_BLOB,
 };
 
-pub const PCRYPT_DECRYPT_PRIVATE_KEY_FUNC = fn(
+pub const PCRYPT_DECRYPT_PRIVATE_KEY_FUNC = fn (
     Algorithm: CRYPT_ALGORITHM_IDENTIFIER,
     EncryptedPrivateKey: CRYPTOAPI_BLOB,
     // TODO: what to do with BytesParamIndex 3?
@@ -3637,7 +3501,7 @@ pub const PCRYPT_DECRYPT_PRIVATE_KEY_FUNC = fn(
     pVoidDecryptFunc: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC = fn(
+pub const PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC = fn (
     pAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
     pClearTextPrivateKey: ?*CRYPTOAPI_BLOB,
     // TODO: what to do with BytesParamIndex 3?
@@ -3646,7 +3510,7 @@ pub const PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC = fn(
     pVoidEncryptFunc: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PCRYPT_RESOLVE_HCRYPTPROV_FUNC = fn(
+pub const PCRYPT_RESOLVE_HCRYPTPROV_FUNC = fn (
     pPrivateKeyInfo: ?*CRYPT_PRIVATE_KEY_INFO,
     phCryptProv: ?*usize,
     pVoidResolveFunc: ?*anyopaque,
@@ -3777,11 +3641,11 @@ pub const CRYPT_CSP_PROVIDER = extern struct {
     Signature: CRYPT_BIT_BLOB,
 };
 
-pub const PFN_CRYPT_ALLOC = fn(
+pub const PFN_CRYPT_ALLOC = fn (
     cbSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const PFN_CRYPT_FREE = fn(
+pub const PFN_CRYPT_FREE = fn (
     pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -4371,7 +4235,7 @@ pub const CRYPT_OID_FUNC_ENTRY = extern struct {
     pvFuncAddr: ?*anyopaque,
 };
 
-pub const PFN_CRYPT_ENUM_OID_FUNC = fn(
+pub const PFN_CRYPT_ENUM_OID_FUNC = fn (
     dwEncodingType: u32,
     pszFuncName: ?[*:0]const u8,
     pszOID: ?[*:0]const u8,
@@ -4396,7 +4260,7 @@ pub const CRYPT_OID_INFO = extern struct {
     ExtraInfo: CRYPTOAPI_BLOB,
 };
 
-pub const PFN_CRYPT_ENUM_OID_INFO = fn(
+pub const PFN_CRYPT_ENUM_OID_INFO = fn (
     pInfo: ?*CRYPT_OID_INFO,
     pvArg: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -4559,7 +4423,7 @@ pub const CMSG_ENCRYPTED_ENCODE_INFO = extern struct {
     pvEncryptionAuxInfo: ?*anyopaque,
 };
 
-pub const PFN_CMSG_STREAM_OUTPUT = fn(
+pub const PFN_CMSG_STREAM_OUTPUT = fn (
     pvArg: ?*const anyopaque,
     // TODO: what to do with BytesParamIndex 2?
     pbData: ?*u8,
@@ -4705,15 +4569,15 @@ pub const CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA = extern struct {
     dwUnauthAttrIndex: u32,
 };
 
-pub const PFN_CMSG_ALLOC = fn(
+pub const PFN_CMSG_ALLOC = fn (
     cb: usize,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const PFN_CMSG_FREE = fn(
+pub const PFN_CMSG_FREE = fn (
     pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFN_CMSG_GEN_ENCRYPT_KEY = fn(
+pub const PFN_CMSG_GEN_ENCRYPT_KEY = fn (
     phCryptProv: ?*usize,
     paiEncrypt: ?*CRYPT_ALGORITHM_IDENTIFIER,
     pvEncryptAuxInfo: ?*anyopaque,
@@ -4724,7 +4588,7 @@ pub const PFN_CMSG_GEN_ENCRYPT_KEY = fn(
     pcbEncryptParameters: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CMSG_EXPORT_ENCRYPT_KEY = fn(
+pub const PFN_CMSG_EXPORT_ENCRYPT_KEY = fn (
     hCryptProv: usize,
     hEncryptKey: usize,
     pPublicKeyInfo: ?*CERT_PUBLIC_KEY_INFO,
@@ -4733,7 +4597,7 @@ pub const PFN_CMSG_EXPORT_ENCRYPT_KEY = fn(
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CMSG_IMPORT_ENCRYPT_KEY = fn(
+pub const PFN_CMSG_IMPORT_ENCRYPT_KEY = fn (
     hCryptProv: usize,
     dwKeySpec: u32,
     paiEncrypt: ?*CRYPT_ALGORITHM_IDENTIFIER,
@@ -4765,7 +4629,7 @@ pub const CMSG_CONTENT_ENCRYPT_INFO = extern struct {
     cbContentEncryptKey: u32,
 };
 
-pub const PFN_CMSG_GEN_CONTENT_ENCRYPT_KEY = fn(
+pub const PFN_CMSG_GEN_CONTENT_ENCRYPT_KEY = fn (
     pContentEncryptInfo: ?*CMSG_CONTENT_ENCRYPT_INFO,
     dwFlags: u32,
     pvReserved: ?*anyopaque,
@@ -4779,7 +4643,7 @@ pub const CMSG_KEY_TRANS_ENCRYPT_INFO = extern struct {
     dwFlags: u32,
 };
 
-pub const PFN_CMSG_EXPORT_KEY_TRANS = fn(
+pub const PFN_CMSG_EXPORT_KEY_TRANS = fn (
     pContentEncryptInfo: ?*CMSG_CONTENT_ENCRYPT_INFO,
     pKeyTransEncodeInfo: ?*CMSG_KEY_TRANS_RECIPIENT_ENCODE_INFO,
     pKeyTransEncryptInfo: ?*CMSG_KEY_TRANS_ENCRYPT_INFO,
@@ -4807,7 +4671,7 @@ pub const CMSG_KEY_AGREE_ENCRYPT_INFO = extern struct {
     dwFlags: u32,
 };
 
-pub const PFN_CMSG_EXPORT_KEY_AGREE = fn(
+pub const PFN_CMSG_EXPORT_KEY_AGREE = fn (
     pContentEncryptInfo: ?*CMSG_CONTENT_ENCRYPT_INFO,
     pKeyAgreeEncodeInfo: ?*CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO,
     pKeyAgreeEncryptInfo: ?*CMSG_KEY_AGREE_ENCRYPT_INFO,
@@ -4823,7 +4687,7 @@ pub const CMSG_MAIL_LIST_ENCRYPT_INFO = extern struct {
     dwFlags: u32,
 };
 
-pub const PFN_CMSG_EXPORT_MAIL_LIST = fn(
+pub const PFN_CMSG_EXPORT_MAIL_LIST = fn (
     pContentEncryptInfo: ?*CMSG_CONTENT_ENCRYPT_INFO,
     pMailListEncodeInfo: ?*CMSG_MAIL_LIST_RECIPIENT_ENCODE_INFO,
     pMailListEncryptInfo: ?*CMSG_MAIL_LIST_ENCRYPT_INFO,
@@ -4831,7 +4695,7 @@ pub const PFN_CMSG_EXPORT_MAIL_LIST = fn(
     pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CMSG_IMPORT_KEY_TRANS = fn(
+pub const PFN_CMSG_IMPORT_KEY_TRANS = fn (
     pContentEncryptionAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
     pKeyTransDecryptPara: ?*CMSG_CTRL_KEY_TRANS_DECRYPT_PARA,
     dwFlags: u32,
@@ -4839,7 +4703,7 @@ pub const PFN_CMSG_IMPORT_KEY_TRANS = fn(
     phContentEncryptKey: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CMSG_IMPORT_KEY_AGREE = fn(
+pub const PFN_CMSG_IMPORT_KEY_AGREE = fn (
     pContentEncryptionAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
     pKeyAgreeDecryptPara: ?*CMSG_CTRL_KEY_AGREE_DECRYPT_PARA,
     dwFlags: u32,
@@ -4847,7 +4711,7 @@ pub const PFN_CMSG_IMPORT_KEY_AGREE = fn(
     phContentEncryptKey: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CMSG_IMPORT_MAIL_LIST = fn(
+pub const PFN_CMSG_IMPORT_MAIL_LIST = fn (
     pContentEncryptionAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
     pMailListDecryptPara: ?*CMSG_CTRL_MAIL_LIST_DECRYPT_PARA,
     dwFlags: u32,
@@ -4867,21 +4731,21 @@ pub const CMSG_CNG_CONTENT_DECRYPT_INFO = extern struct {
     pbCNGContentEncryptKeyObject: ?*u8,
 };
 
-pub const PFN_CMSG_CNG_IMPORT_KEY_TRANS = fn(
+pub const PFN_CMSG_CNG_IMPORT_KEY_TRANS = fn (
     pCNGContentDecryptInfo: ?*CMSG_CNG_CONTENT_DECRYPT_INFO,
     pKeyTransDecryptPara: ?*CMSG_CTRL_KEY_TRANS_DECRYPT_PARA,
     dwFlags: u32,
     pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CMSG_CNG_IMPORT_KEY_AGREE = fn(
+pub const PFN_CMSG_CNG_IMPORT_KEY_AGREE = fn (
     pCNGContentDecryptInfo: ?*CMSG_CNG_CONTENT_DECRYPT_INFO,
     pKeyAgreeDecryptPara: ?*CMSG_CTRL_KEY_AGREE_DECRYPT_PARA,
     dwFlags: u32,
     pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CMSG_CNG_IMPORT_CONTENT_ENCRYPT_KEY = fn(
+pub const PFN_CMSG_CNG_IMPORT_CONTENT_ENCRYPT_KEY = fn (
     pCNGContentDecryptInfo: ?*CMSG_CNG_CONTENT_DECRYPT_INFO,
     dwFlags: u32,
     pvReserved: ?*anyopaque,
@@ -5007,7 +4871,7 @@ pub const CERT_STORE_PROV_INFO = extern struct {
     hStoreProvFuncAddr2: ?*anyopaque,
 };
 
-pub const PFN_CERT_DLL_OPEN_STORE_PROV_FUNC = fn(
+pub const PFN_CERT_DLL_OPEN_STORE_PROV_FUNC = fn (
     lpszStoreProvider: ?[*:0]const u8,
     dwEncodingType: CERT_QUERY_ENCODING_TYPE,
     hCryptProv: usize,
@@ -5017,31 +4881,31 @@ pub const PFN_CERT_DLL_OPEN_STORE_PROV_FUNC = fn(
     pStoreProvInfo: ?*CERT_STORE_PROV_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_CLOSE = fn(
+pub const PFN_CERT_STORE_PROV_CLOSE = fn (
     hStoreProv: ?*anyopaque,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFN_CERT_STORE_PROV_READ_CERT = fn(
+pub const PFN_CERT_STORE_PROV_READ_CERT = fn (
     hStoreProv: ?*anyopaque,
     pStoreCertContext: ?*const CERT_CONTEXT,
     dwFlags: u32,
     ppProvCertContext: ?*?*CERT_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_WRITE_CERT = fn(
+pub const PFN_CERT_STORE_PROV_WRITE_CERT = fn (
     hStoreProv: ?*anyopaque,
     pCertContext: ?*const CERT_CONTEXT,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_DELETE_CERT = fn(
+pub const PFN_CERT_STORE_PROV_DELETE_CERT = fn (
     hStoreProv: ?*anyopaque,
     pCertContext: ?*const CERT_CONTEXT,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_SET_CERT_PROPERTY = fn(
+pub const PFN_CERT_STORE_PROV_SET_CERT_PROPERTY = fn (
     hStoreProv: ?*anyopaque,
     pCertContext: ?*const CERT_CONTEXT,
     dwPropId: u32,
@@ -5049,26 +4913,26 @@ pub const PFN_CERT_STORE_PROV_SET_CERT_PROPERTY = fn(
     pvData: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_READ_CRL = fn(
+pub const PFN_CERT_STORE_PROV_READ_CRL = fn (
     hStoreProv: ?*anyopaque,
     pStoreCrlContext: ?*CRL_CONTEXT,
     dwFlags: u32,
     ppProvCrlContext: ?*?*CRL_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_WRITE_CRL = fn(
+pub const PFN_CERT_STORE_PROV_WRITE_CRL = fn (
     hStoreProv: ?*anyopaque,
     pCrlContext: ?*CRL_CONTEXT,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_DELETE_CRL = fn(
+pub const PFN_CERT_STORE_PROV_DELETE_CRL = fn (
     hStoreProv: ?*anyopaque,
     pCrlContext: ?*CRL_CONTEXT,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_SET_CRL_PROPERTY = fn(
+pub const PFN_CERT_STORE_PROV_SET_CRL_PROPERTY = fn (
     hStoreProv: ?*anyopaque,
     pCrlContext: ?*CRL_CONTEXT,
     dwPropId: u32,
@@ -5076,26 +4940,26 @@ pub const PFN_CERT_STORE_PROV_SET_CRL_PROPERTY = fn(
     pvData: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_READ_CTL = fn(
+pub const PFN_CERT_STORE_PROV_READ_CTL = fn (
     hStoreProv: ?*anyopaque,
     pStoreCtlContext: ?*CTL_CONTEXT,
     dwFlags: u32,
     ppProvCtlContext: ?*?*CTL_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_WRITE_CTL = fn(
+pub const PFN_CERT_STORE_PROV_WRITE_CTL = fn (
     hStoreProv: ?*anyopaque,
     pCtlContext: ?*CTL_CONTEXT,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_DELETE_CTL = fn(
+pub const PFN_CERT_STORE_PROV_DELETE_CTL = fn (
     hStoreProv: ?*anyopaque,
     pCtlContext: ?*CTL_CONTEXT,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_SET_CTL_PROPERTY = fn(
+pub const PFN_CERT_STORE_PROV_SET_CTL_PROPERTY = fn (
     hStoreProv: ?*anyopaque,
     pCtlContext: ?*CTL_CONTEXT,
     dwPropId: u32,
@@ -5103,7 +4967,7 @@ pub const PFN_CERT_STORE_PROV_SET_CTL_PROPERTY = fn(
     pvData: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_CONTROL = fn(
+pub const PFN_CERT_STORE_PROV_CONTROL = fn (
     hStoreProv: ?*anyopaque,
     dwFlags: u32,
     dwCtrlType: u32,
@@ -5118,7 +4982,7 @@ pub const CERT_STORE_PROV_FIND_INFO = extern struct {
     pvFindPara: ?*const anyopaque,
 };
 
-pub const PFN_CERT_STORE_PROV_FIND_CERT = fn(
+pub const PFN_CERT_STORE_PROV_FIND_CERT = fn (
     hStoreProv: ?*anyopaque,
     pFindInfo: ?*CERT_STORE_PROV_FIND_INFO,
     pPrevCertContext: ?*const CERT_CONTEXT,
@@ -5127,14 +4991,14 @@ pub const PFN_CERT_STORE_PROV_FIND_CERT = fn(
     ppProvCertContext: ?*?*CERT_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_FREE_FIND_CERT = fn(
+pub const PFN_CERT_STORE_PROV_FREE_FIND_CERT = fn (
     hStoreProv: ?*anyopaque,
     pCertContext: ?*const CERT_CONTEXT,
     pvStoreProvFindInfo: ?*anyopaque,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_GET_CERT_PROPERTY = fn(
+pub const PFN_CERT_STORE_PROV_GET_CERT_PROPERTY = fn (
     hStoreProv: ?*anyopaque,
     pCertContext: ?*const CERT_CONTEXT,
     dwPropId: u32,
@@ -5144,7 +5008,7 @@ pub const PFN_CERT_STORE_PROV_GET_CERT_PROPERTY = fn(
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_FIND_CRL = fn(
+pub const PFN_CERT_STORE_PROV_FIND_CRL = fn (
     hStoreProv: ?*anyopaque,
     pFindInfo: ?*CERT_STORE_PROV_FIND_INFO,
     pPrevCrlContext: ?*CRL_CONTEXT,
@@ -5153,14 +5017,14 @@ pub const PFN_CERT_STORE_PROV_FIND_CRL = fn(
     ppProvCrlContext: ?*?*CRL_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_FREE_FIND_CRL = fn(
+pub const PFN_CERT_STORE_PROV_FREE_FIND_CRL = fn (
     hStoreProv: ?*anyopaque,
     pCrlContext: ?*CRL_CONTEXT,
     pvStoreProvFindInfo: ?*anyopaque,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_GET_CRL_PROPERTY = fn(
+pub const PFN_CERT_STORE_PROV_GET_CRL_PROPERTY = fn (
     hStoreProv: ?*anyopaque,
     pCrlContext: ?*CRL_CONTEXT,
     dwPropId: u32,
@@ -5170,7 +5034,7 @@ pub const PFN_CERT_STORE_PROV_GET_CRL_PROPERTY = fn(
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_FIND_CTL = fn(
+pub const PFN_CERT_STORE_PROV_FIND_CTL = fn (
     hStoreProv: ?*anyopaque,
     pFindInfo: ?*CERT_STORE_PROV_FIND_INFO,
     pPrevCtlContext: ?*CTL_CONTEXT,
@@ -5179,14 +5043,14 @@ pub const PFN_CERT_STORE_PROV_FIND_CTL = fn(
     ppProvCtlContext: ?*?*CTL_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_FREE_FIND_CTL = fn(
+pub const PFN_CERT_STORE_PROV_FREE_FIND_CTL = fn (
     hStoreProv: ?*anyopaque,
     pCtlContext: ?*CTL_CONTEXT,
     pvStoreProvFindInfo: ?*anyopaque,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_STORE_PROV_GET_CTL_PROPERTY = fn(
+pub const PFN_CERT_STORE_PROV_GET_CTL_PROPERTY = fn (
     hStoreProv: ?*anyopaque,
     pCtlContext: ?*CTL_CONTEXT,
     dwPropId: u32,
@@ -5220,7 +5084,7 @@ pub const CTL_FIND_SUBJECT_PARA = extern struct {
     pvSubject: ?*anyopaque,
 };
 
-pub const PFN_CERT_CREATE_CONTEXT_SORT_FUNC = fn(
+pub const PFN_CERT_CREATE_CONTEXT_SORT_FUNC = fn (
     cbTotalEncoded: u32,
     cbRemainEncoded: u32,
     cEntry: u32,
@@ -5249,14 +5113,14 @@ pub const CERT_PHYSICAL_STORE_INFO = extern struct {
     dwPriority: u32,
 };
 
-pub const PFN_CERT_ENUM_SYSTEM_STORE_LOCATION = fn(
+pub const PFN_CERT_ENUM_SYSTEM_STORE_LOCATION = fn (
     pwszStoreLocation: ?[*:0]const u16,
     dwFlags: u32,
     pvReserved: ?*anyopaque,
     pvArg: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_ENUM_SYSTEM_STORE = fn(
+pub const PFN_CERT_ENUM_SYSTEM_STORE = fn (
     pvSystemStore: ?*const anyopaque,
     dwFlags: CERT_SYSTEM_STORE_FLAGS,
     pStoreInfo: ?*CERT_SYSTEM_STORE_INFO,
@@ -5264,7 +5128,7 @@ pub const PFN_CERT_ENUM_SYSTEM_STORE = fn(
     pvArg: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_ENUM_PHYSICAL_STORE = fn(
+pub const PFN_CERT_ENUM_PHYSICAL_STORE = fn (
     pvSystemStore: ?*const anyopaque,
     dwFlags: u32,
     pwszStoreName: ?[*:0]const u16,
@@ -5329,14 +5193,14 @@ pub const CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO = extern struct {
     dwWeakIndex: u32,
 };
 
-pub const PFN_CRYPT_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC = fn(
+pub const PFN_CRYPT_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC = fn (
     dwCertEncodingType: u32,
     pSignatureAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
     ppvDecodedSignPara: ?*?*anyopaque,
     ppwszCNGHashAlgid: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CRYPT_SIGN_AND_ENCODE_HASH_FUNC = fn(
+pub const PFN_CRYPT_SIGN_AND_ENCODE_HASH_FUNC = fn (
     hKey: usize,
     dwCertEncodingType: u32,
     pSignatureAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
@@ -5351,7 +5215,7 @@ pub const PFN_CRYPT_SIGN_AND_ENCODE_HASH_FUNC = fn(
     pcbSignature: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC = fn(
+pub const PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC = fn (
     dwCertEncodingType: u32,
     pPubKeyInfo: ?*CERT_PUBLIC_KEY_INFO,
     pSignatureAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
@@ -5371,7 +5235,7 @@ pub const CRYPT_DEFAULT_CONTEXT_MULTI_OID_PARA = extern struct {
     rgpszOID: ?*?PSTR,
 };
 
-pub const PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC = fn(
+pub const PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC = fn (
     hNCryptKey: usize,
     dwCertEncodingType: u32,
     pszPublicKeyObjId: ?PSTR,
@@ -5382,7 +5246,7 @@ pub const PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC = fn(
     pcbInfo: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC = fn(
+pub const PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC = fn (
     hBCryptKey: BCRYPT_KEY_HANDLE,
     dwCertEncodingType: u32,
     pszPublicKeyObjId: ?PSTR,
@@ -5393,7 +5257,7 @@ pub const PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC = fn(
     pcbInfo: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC = fn(
+pub const PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC = fn (
     dwCertEncodingType: u32,
     pInfo: ?*CERT_PUBLIC_KEY_INFO,
     dwFlags: u32,
@@ -5401,14 +5265,14 @@ pub const PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC = fn(
     phKey: ?*BCRYPT_KEY_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_IMPORT_PRIV_KEY_FUNC = fn(
+pub const PFN_IMPORT_PRIV_KEY_FUNC = fn (
     hCryptProv: usize,
     pPrivateKeyInfo: ?*CRYPT_PRIVATE_KEY_INFO,
     dwFlags: u32,
     pvAuxInfo: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_EXPORT_PRIV_KEY_FUNC = fn(
+pub const PFN_EXPORT_PRIV_KEY_FUNC = fn (
     hCryptProv: usize,
     dwKeySpec: u32,
     pszPrivateKeyObjId: ?PSTR,
@@ -5419,7 +5283,7 @@ pub const PFN_EXPORT_PRIV_KEY_FUNC = fn(
     pcbPrivateKeyInfo: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CRYPT_GET_SIGNER_CERTIFICATE = fn(
+pub const PFN_CRYPT_GET_SIGNER_CERTIFICATE = fn (
     pvGetArg: ?*anyopaque,
     dwCertEncodingType: u32,
     pSignerId: ?*CERT_INFO,
@@ -5502,7 +5366,7 @@ pub const CERT_CHAIN = extern struct {
     keyLocatorInfo: CRYPT_KEY_PROV_INFO,
 };
 
-pub const PFN_CRYPT_ASYNC_PARAM_FREE_FUNC = fn(
+pub const PFN_CRYPT_ASYNC_PARAM_FREE_FUNC = fn (
     pszParamOid: ?PSTR,
     pvParam: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -5530,7 +5394,7 @@ pub const CRYPT_PASSWORD_CREDENTIALSW = extern struct {
     pszPassword: ?PWSTR,
 };
 
-pub const PFN_FREE_ENCODED_OBJECT_FUNC = fn(
+pub const PFN_FREE_ENCODED_OBJECT_FUNC = fn (
     pszObjectOid: ?[*:0]const u8,
     pObject: ?*CRYPT_BLOB_ARRAY,
     pvFreeContext: ?*anyopaque,
@@ -5577,12 +5441,12 @@ pub const CRYPT_RETRIEVE_AUX_INFO = extern struct {
     ppErrorContentBlob: ?*?*CRYPTOAPI_BLOB,
 };
 
-pub const PFN_CRYPT_CANCEL_RETRIEVAL = fn(
+pub const PFN_CRYPT_CANCEL_RETRIEVAL = fn (
     dwFlags: u32,
     pvArg: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CRYPT_ASYNC_RETRIEVAL_COMPLETION_FUNC = fn(
+pub const PFN_CRYPT_ASYNC_RETRIEVAL_COMPLETION_FUNC = fn (
     pvCompletion: ?*anyopaque,
     dwCompletionCode: u32,
     pszUrl: ?[*:0]const u8,
@@ -5595,7 +5459,7 @@ pub const CRYPT_ASYNC_RETRIEVAL_COMPLETION = extern struct {
     pvCompletion: ?*anyopaque,
 };
 
-pub const PFN_CANCEL_ASYNC_RETRIEVAL_FUNC = fn(
+pub const PFN_CANCEL_ASYNC_RETRIEVAL_FUNC = fn (
     hAsyncRetrieve: ?HCRYPTASYNC,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -5626,7 +5490,7 @@ pub const CRYPT_GET_TIME_VALID_OBJECT_EXTRA_INFO = extern struct {
     pDeltaCrlIndicator: ?*CRYPTOAPI_BLOB,
 };
 
-pub const PFN_CRYPT_ENUM_KEYID_PROP = fn(
+pub const PFN_CRYPT_ENUM_KEYID_PROP = fn (
     pKeyIdentifier: ?*const CRYPTOAPI_BLOB,
     dwFlags: u32,
     pvReserved: ?*anyopaque,
@@ -5739,7 +5603,7 @@ pub const CRL_REVOCATION_INFO = extern struct {
     pCrlIssuerChain: ?*CERT_CHAIN_CONTEXT,
 };
 
-pub const PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK = fn(
+pub const PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK = fn (
     pCert: ?*const CERT_CONTEXT,
     pvFindArg: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -5851,7 +5715,7 @@ pub const CERT_SERVER_OCSP_RESPONSE_CONTEXT = extern struct {
     cbEncodedOcspResponse: u32,
 };
 
-pub const PFN_CERT_SERVER_OCSP_RESPONSE_UPDATE_CALLBACK = fn(
+pub const PFN_CERT_SERVER_OCSP_RESPONSE_UPDATE_CALLBACK = fn (
     pChainContext: ?*CERT_CHAIN_CONTEXT,
     pServerOcspResponseContext: ?*CERT_SERVER_OCSP_RESPONSE_CONTEXT,
     pNewCrlContext: ?*CRL_CONTEXT,
@@ -5937,13 +5801,13 @@ pub const CRYPT_TIMESTAMP_PARA = extern struct {
     rgExtension: ?*CERT_EXTENSION,
 };
 
-pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH = fn(
+pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH = fn (
     pContext: ?*anyopaque,
     rgIdentifierOrNameList: [*]?*CRYPTOAPI_BLOB,
     dwIdentifierOrNameListCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET = fn(
+pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET = fn (
     pPluginContext: ?*anyopaque,
     pIdentifier: ?*CRYPTOAPI_BLOB,
     dwNameType: u32,
@@ -5954,22 +5818,22 @@ pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET = fn(
     ppIdentifier: ?*?*CRYPTOAPI_BLOB,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE = fn(
+pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE = fn (
     dwReason: CRYPT_OBJECT_LOCATOR_RELEASE_REASON,
     pPluginContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD = fn(
+pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD = fn (
     pPluginContext: ?*anyopaque,
     pwszPassword: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE = fn(
+pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE = fn (
     pPluginContext: ?*anyopaque,
     pbData: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER = fn(
+pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER = fn (
     pPluginContext: ?*anyopaque,
     pIdentifier: ?*CRYPTOAPI_BLOB,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -5983,7 +5847,7 @@ pub const CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE = extern struct {
     pfnFreeIdentifier: ?PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER,
 };
 
-pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_INITIALIZE = fn(
+pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_INITIALIZE = fn (
     pfnFlush: ?PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH,
     pContext: ?*anyopaque,
     pdwExpectedObjectCount: ?*u32,
@@ -5991,7 +5855,7 @@ pub const PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_INITIALIZE = fn(
     ppPluginContext: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CERT_IS_WEAK_HASH = fn(
+pub const PFN_CERT_IS_WEAK_HASH = fn (
     dwHashUseType: u32,
     pwszCNGHashAlgid: ?[*:0]const u16,
     dwChainFlags: u32,
@@ -6007,7 +5871,7 @@ pub const CRYPTPROTECT_PROMPTSTRUCT = extern struct {
     szPrompt: ?[*:0]const u16,
 };
 
-pub const PFNCryptStreamOutputCallback = fn(
+pub const PFNCryptStreamOutputCallback = fn (
     pvCallbackCtxt: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 2?
     pbData: ?*const u8,
@@ -6020,7 +5884,7 @@ pub const NCRYPT_PROTECT_STREAM_INFO = extern struct {
     pvCallbackCtxt: ?*anyopaque,
 };
 
-pub const PFNCryptStreamOutputCallbackEx = fn(
+pub const PFNCryptStreamOutputCallbackEx = fn (
     pvCallbackCtxt: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 2?
     pbData: ?*const u8,
@@ -6075,14 +5939,14 @@ pub const CRYPT_XML_PROPERTY = extern struct {
     cbValue: u32,
 };
 
-pub const PFN_CRYPT_XML_WRITE_CALLBACK = fn(
+pub const PFN_CRYPT_XML_WRITE_CALLBACK = fn (
     pvCallbackState: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 2?
     pbData: ?*const u8,
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PFN_CRYPT_XML_DATA_PROVIDER_READ = fn(
+pub const PFN_CRYPT_XML_DATA_PROVIDER_READ = fn (
     pvCallbackState: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 2?
     pbData: ?*u8,
@@ -6090,7 +5954,7 @@ pub const PFN_CRYPT_XML_DATA_PROVIDER_READ = fn(
     pcbRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PFN_CRYPT_XML_DATA_PROVIDER_CLOSE = fn(
+pub const PFN_CRYPT_XML_DATA_PROVIDER_CLOSE = fn (
     pvCallbackState: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -6101,7 +5965,7 @@ pub const CRYPT_XML_DATA_PROVIDER = extern struct {
     pfnClose: ?PFN_CRYPT_XML_DATA_PROVIDER_CLOSE,
 };
 
-pub const PFN_CRYPT_XML_CREATE_TRANSFORM = fn(
+pub const PFN_CRYPT_XML_CREATE_TRANSFORM = fn (
     pTransform: ?*const CRYPT_XML_ALGORITHM,
     pProviderIn: ?*CRYPT_XML_DATA_PROVIDER,
     pProviderOut: ?*CRYPT_XML_DATA_PROVIDER,
@@ -6295,49 +6159,49 @@ pub const CRYPT_XML_ALGORITHM_INFO = extern struct {
     pvExtraInfo: ?*anyopaque,
 };
 
-pub const PFN_CRYPT_XML_ENUM_ALG_INFO = fn(
+pub const PFN_CRYPT_XML_ENUM_ALG_INFO = fn (
     pInfo: ?*const CRYPT_XML_ALGORITHM_INFO,
     pvArg: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const CryptXmlDllGetInterface = fn(
+pub const CryptXmlDllGetInterface = fn (
     dwFlags: u32,
     pMethod: ?*const CRYPT_XML_ALGORITHM_INFO,
     pInterface: ?*CRYPT_XML_CRYPTOGRAPHIC_INTERFACE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const CryptXmlDllEncodeAlgorithm = fn(
+pub const CryptXmlDllEncodeAlgorithm = fn (
     pAlgInfo: ?*const CRYPT_XML_ALGORITHM_INFO,
     dwCharset: CRYPT_XML_CHARSET,
     pvCallbackState: ?*anyopaque,
     pfnWrite: ?PFN_CRYPT_XML_WRITE_CALLBACK,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const CryptXmlDllCreateDigest = fn(
+pub const CryptXmlDllCreateDigest = fn (
     pDigestMethod: ?*const CRYPT_XML_ALGORITHM,
     pcbSize: ?*u32,
     phDigest: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const CryptXmlDllDigestData = fn(
+pub const CryptXmlDllDigestData = fn (
     hDigest: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 2?
     pbData: ?*const u8,
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const CryptXmlDllFinalizeDigest = fn(
+pub const CryptXmlDllFinalizeDigest = fn (
     hDigest: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 2?
     pbDigest: ?*u8,
     cbDigest: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const CryptXmlDllCloseDigest = fn(
+pub const CryptXmlDllCloseDigest = fn (
     hDigest: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const CryptXmlDllSignData = fn(
+pub const CryptXmlDllSignData = fn (
     pSignatureMethod: ?*const CRYPT_XML_ALGORITHM,
     hCryptProvOrNCryptKey: usize,
     dwKeySpec: u32,
@@ -6350,7 +6214,7 @@ pub const CryptXmlDllSignData = fn(
     pcbResult: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const CryptXmlDllVerifySignature = fn(
+pub const CryptXmlDllVerifySignature = fn (
     pSignatureMethod: ?*const CRYPT_XML_ALGORITHM,
     hKey: BCRYPT_KEY_HANDLE,
     // TODO: what to do with BytesParamIndex 3?
@@ -6361,7 +6225,7 @@ pub const CryptXmlDllVerifySignature = fn(
     cbSignature: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const CryptXmlDllGetAlgorithmInfo = fn(
+pub const CryptXmlDllGetAlgorithmInfo = fn (
     pXmlAlgorithm: ?*const CRYPT_XML_ALGORITHM,
     ppAlgInfo: ?*?*CRYPT_XML_ALGORITHM_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -6378,14 +6242,14 @@ pub const CRYPT_XML_CRYPTOGRAPHIC_INTERFACE = extern struct {
     fpCryptXmlGetAlgorithmInfo: ?CryptXmlDllGetAlgorithmInfo,
 };
 
-pub const CryptXmlDllEncodeKeyValue = fn(
+pub const CryptXmlDllEncodeKeyValue = fn (
     hKey: usize,
     dwCharset: CRYPT_XML_CHARSET,
     pvCallbackState: ?*anyopaque,
     pfnWrite: ?PFN_CRYPT_XML_WRITE_CALLBACK,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const CryptXmlDllCreateKey = fn(
+pub const CryptXmlDllCreateKey = fn (
     pEncoded: ?*const CRYPT_XML_BLOB,
     phKey: ?*BCRYPT_KEY_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -6526,118 +6390,120 @@ pub const ICertSrvSetupKeyInformation = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProviderName: fn(
+        get_ProviderName: fn (
             self: *const ICertSrvSetupKeyInformation,
             pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ProviderName: fn(
+        put_ProviderName: fn (
             self: *const ICertSrvSetupKeyInformation,
             bstrVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Length: fn(
+        get_Length: fn (
             self: *const ICertSrvSetupKeyInformation,
             pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Length: fn(
+        put_Length: fn (
             self: *const ICertSrvSetupKeyInformation,
             lVal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Existing: fn(
+        get_Existing: fn (
             self: *const ICertSrvSetupKeyInformation,
             pVal: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Existing: fn(
+        put_Existing: fn (
             self: *const ICertSrvSetupKeyInformation,
             bVal: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ContainerName: fn(
+        get_ContainerName: fn (
             self: *const ICertSrvSetupKeyInformation,
             pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ContainerName: fn(
+        put_ContainerName: fn (
             self: *const ICertSrvSetupKeyInformation,
             bstrVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HashAlgorithm: fn(
+        get_HashAlgorithm: fn (
             self: *const ICertSrvSetupKeyInformation,
             pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_HashAlgorithm: fn(
+        put_HashAlgorithm: fn (
             self: *const ICertSrvSetupKeyInformation,
             bstrVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExistingCACertificate: fn(
+        get_ExistingCACertificate: fn (
             self: *const ICertSrvSetupKeyInformation,
             pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ExistingCACertificate: fn(
+        put_ExistingCACertificate: fn (
             self: *const ICertSrvSetupKeyInformation,
             varVal: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_get_ProviderName(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).get_ProviderName(@ptrCast(*const ICertSrvSetupKeyInformation, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_put_ProviderName(self: *const T, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).put_ProviderName(@ptrCast(*const ICertSrvSetupKeyInformation, self), bstrVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_get_Length(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).get_Length(@ptrCast(*const ICertSrvSetupKeyInformation, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_put_Length(self: *const T, lVal: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).put_Length(@ptrCast(*const ICertSrvSetupKeyInformation, self), lVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_get_Existing(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).get_Existing(@ptrCast(*const ICertSrvSetupKeyInformation, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_put_Existing(self: *const T, bVal: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).put_Existing(@ptrCast(*const ICertSrvSetupKeyInformation, self), bVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_get_ContainerName(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).get_ContainerName(@ptrCast(*const ICertSrvSetupKeyInformation, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_put_ContainerName(self: *const T, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).put_ContainerName(@ptrCast(*const ICertSrvSetupKeyInformation, self), bstrVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_get_HashAlgorithm(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const ICertSrvSetupKeyInformation, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_put_HashAlgorithm(self: *const T, bstrVal: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const ICertSrvSetupKeyInformation, self), bstrVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_get_ExistingCACertificate(self: *const T, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).get_ExistingCACertificate(@ptrCast(*const ICertSrvSetupKeyInformation, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformation_put_ExistingCACertificate(self: *const T, varVal: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).put_ExistingCACertificate(@ptrCast(*const ICertSrvSetupKeyInformation, self), varVal);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetupKeyInformation_get_ProviderName(self: *const T, pVal: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).get_ProviderName(@ptrCast(*const ICertSrvSetupKeyInformation, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetupKeyInformation_put_ProviderName(self: *const T, bstrVal: ?BSTR) HRESULT {
+                return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).put_ProviderName(@ptrCast(*const ICertSrvSetupKeyInformation, self), bstrVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetupKeyInformation_get_Length(self: *const T, pVal: ?*i32) HRESULT {
+                return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).get_Length(@ptrCast(*const ICertSrvSetupKeyInformation, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetupKeyInformation_put_Length(self: *const T, lVal: i32) HRESULT {
+                return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).put_Length(@ptrCast(*const ICertSrvSetupKeyInformation, self), lVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetupKeyInformation_get_Existing(self: *const T, pVal: ?*i16) HRESULT {
+                return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).get_Existing(@ptrCast(*const ICertSrvSetupKeyInformation, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetupKeyInformation_put_Existing(self: *const T, bVal: i16) HRESULT {
+                return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).put_Existing(@ptrCast(*const ICertSrvSetupKeyInformation, self), bVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetupKeyInformation_get_ContainerName(self: *const T, pVal: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).get_ContainerName(@ptrCast(*const ICertSrvSetupKeyInformation, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetupKeyInformation_put_ContainerName(self: *const T, bstrVal: ?BSTR) HRESULT {
+                return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).put_ContainerName(@ptrCast(*const ICertSrvSetupKeyInformation, self), bstrVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetupKeyInformation_get_HashAlgorithm(self: *const T, pVal: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const ICertSrvSetupKeyInformation, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetupKeyInformation_put_HashAlgorithm(self: *const T, bstrVal: ?BSTR) HRESULT {
+                return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const ICertSrvSetupKeyInformation, self), bstrVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetupKeyInformation_get_ExistingCACertificate(self: *const T, pVal: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).get_ExistingCACertificate(@ptrCast(*const ICertSrvSetupKeyInformation, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetupKeyInformation_put_ExistingCACertificate(self: *const T, varVal: VARIANT) HRESULT {
+                return @ptrCast(*const ICertSrvSetupKeyInformation.VTable, self.vtable).put_ExistingCACertificate(@ptrCast(*const ICertSrvSetupKeyInformation, self), varVal);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6648,46 +6514,48 @@ pub const ICertSrvSetupKeyInformationCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ICertSrvSetupKeyInformationCollection,
             ppVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ICertSrvSetupKeyInformationCollection,
             Index: i32,
             pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ICertSrvSetupKeyInformationCollection,
             pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Add: fn(
+        Add: fn (
             self: *const ICertSrvSetupKeyInformationCollection,
             pIKeyInformation: ?*ICertSrvSetupKeyInformation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformationCollection_get__NewEnum(self: *const T, ppVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetupKeyInformationCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICertSrvSetupKeyInformationCollection, self), ppVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformationCollection_get_Item(self: *const T, Index: i32, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetupKeyInformationCollection.VTable, self.vtable).get_Item(@ptrCast(*const ICertSrvSetupKeyInformationCollection, self), Index, pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformationCollection_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetupKeyInformationCollection.VTable, self.vtable).get_Count(@ptrCast(*const ICertSrvSetupKeyInformationCollection, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetupKeyInformationCollection_Add(self: *const T, pIKeyInformation: ?*ICertSrvSetupKeyInformation) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetupKeyInformationCollection.VTable, self.vtable).Add(@ptrCast(*const ICertSrvSetupKeyInformationCollection, self), pIKeyInformation);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetupKeyInformationCollection_get__NewEnum(self: *const T, ppVal: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ICertSrvSetupKeyInformationCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICertSrvSetupKeyInformationCollection, self), ppVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetupKeyInformationCollection_get_Item(self: *const T, Index: i32, pVal: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ICertSrvSetupKeyInformationCollection.VTable, self.vtable).get_Item(@ptrCast(*const ICertSrvSetupKeyInformationCollection, self), Index, pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetupKeyInformationCollection_get_Count(self: *const T, pVal: ?*i32) HRESULT {
+                return @ptrCast(*const ICertSrvSetupKeyInformationCollection.VTable, self.vtable).get_Count(@ptrCast(*const ICertSrvSetupKeyInformationCollection, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetupKeyInformationCollection_Add(self: *const T, pIKeyInformation: ?*ICertSrvSetupKeyInformation) HRESULT {
+                return @ptrCast(*const ICertSrvSetupKeyInformationCollection.VTable, self.vtable).Add(@ptrCast(*const ICertSrvSetupKeyInformationCollection, self), pIKeyInformation);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6737,186 +6605,188 @@ pub const ICertSrvSetup = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CAErrorId: fn(
+        get_CAErrorId: fn (
             self: *const ICertSrvSetup,
             pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CAErrorString: fn(
+        get_CAErrorString: fn (
             self: *const ICertSrvSetup,
             pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InitializeDefaults: fn(
+        InitializeDefaults: fn (
             self: *const ICertSrvSetup,
             bServer: i16,
             bClient: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCASetupProperty: fn(
+        GetCASetupProperty: fn (
             self: *const ICertSrvSetup,
             propertyId: CASetupProperty,
             pPropertyValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCASetupProperty: fn(
+        SetCASetupProperty: fn (
             self: *const ICertSrvSetup,
             propertyId: CASetupProperty,
             pPropertyValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsPropertyEditable: fn(
+        IsPropertyEditable: fn (
             self: *const ICertSrvSetup,
             propertyId: CASetupProperty,
             pbEditable: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSupportedCATypes: fn(
+        GetSupportedCATypes: fn (
             self: *const ICertSrvSetup,
             pCATypes: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProviderNameList: fn(
+        GetProviderNameList: fn (
             self: *const ICertSrvSetup,
             pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetKeyLengthList: fn(
-            self: *const ICertSrvSetup,
-            bstrProviderName: ?BSTR,
-            pVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetHashAlgorithmList: fn(
+        GetKeyLengthList: fn (
             self: *const ICertSrvSetup,
             bstrProviderName: ?BSTR,
             pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPrivateKeyContainerList: fn(
+        GetHashAlgorithmList: fn (
             self: *const ICertSrvSetup,
             bstrProviderName: ?BSTR,
             pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetExistingCACertificates: fn(
+        GetPrivateKeyContainerList: fn (
+            self: *const ICertSrvSetup,
+            bstrProviderName: ?BSTR,
+            pVal: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetExistingCACertificates: fn (
             self: *const ICertSrvSetup,
             ppVal: ?*?*ICertSrvSetupKeyInformationCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CAImportPFX: fn(
+        CAImportPFX: fn (
             self: *const ICertSrvSetup,
             bstrFileName: ?BSTR,
             bstrPasswd: ?BSTR,
             bOverwriteExistingKey: i16,
             ppVal: ?*?*ICertSrvSetupKeyInformation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCADistinguishedName: fn(
+        SetCADistinguishedName: fn (
             self: *const ICertSrvSetup,
             bstrCADN: ?BSTR,
             bIgnoreUnicode: i16,
             bOverwriteExistingKey: i16,
             bOverwriteExistingCAInDS: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDatabaseInformation: fn(
+        SetDatabaseInformation: fn (
             self: *const ICertSrvSetup,
             bstrDBDirectory: ?BSTR,
             bstrLogDirectory: ?BSTR,
             bstrSharedFolder: ?BSTR,
             bForceOverwrite: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetParentCAInformation: fn(
+        SetParentCAInformation: fn (
             self: *const ICertSrvSetup,
             bstrCAConfiguration: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetWebCAInformation: fn(
+        SetWebCAInformation: fn (
             self: *const ICertSrvSetup,
             bstrCAConfiguration: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Install: fn(
+        Install: fn (
             self: *const ICertSrvSetup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PreUnInstall: fn(
+        PreUnInstall: fn (
             self: *const ICertSrvSetup,
             bClientOnly: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PostUnInstall: fn(
+        PostUnInstall: fn (
             self: *const ICertSrvSetup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_get_CAErrorId(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).get_CAErrorId(@ptrCast(*const ICertSrvSetup, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_get_CAErrorString(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).get_CAErrorString(@ptrCast(*const ICertSrvSetup, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_InitializeDefaults(self: *const T, bServer: i16, bClient: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).InitializeDefaults(@ptrCast(*const ICertSrvSetup, self), bServer, bClient);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_GetCASetupProperty(self: *const T, propertyId: CASetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetCASetupProperty(@ptrCast(*const ICertSrvSetup, self), propertyId, pPropertyValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_SetCASetupProperty(self: *const T, propertyId: CASetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).SetCASetupProperty(@ptrCast(*const ICertSrvSetup, self), propertyId, pPropertyValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_IsPropertyEditable(self: *const T, propertyId: CASetupProperty, pbEditable: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).IsPropertyEditable(@ptrCast(*const ICertSrvSetup, self), propertyId, pbEditable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_GetSupportedCATypes(self: *const T, pCATypes: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetSupportedCATypes(@ptrCast(*const ICertSrvSetup, self), pCATypes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_GetProviderNameList(self: *const T, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetProviderNameList(@ptrCast(*const ICertSrvSetup, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_GetKeyLengthList(self: *const T, bstrProviderName: ?BSTR, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetKeyLengthList(@ptrCast(*const ICertSrvSetup, self), bstrProviderName, pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_GetHashAlgorithmList(self: *const T, bstrProviderName: ?BSTR, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetHashAlgorithmList(@ptrCast(*const ICertSrvSetup, self), bstrProviderName, pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_GetPrivateKeyContainerList(self: *const T, bstrProviderName: ?BSTR, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetPrivateKeyContainerList(@ptrCast(*const ICertSrvSetup, self), bstrProviderName, pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_GetExistingCACertificates(self: *const T, ppVal: ?*?*ICertSrvSetupKeyInformationCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetExistingCACertificates(@ptrCast(*const ICertSrvSetup, self), ppVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_CAImportPFX(self: *const T, bstrFileName: ?BSTR, bstrPasswd: ?BSTR, bOverwriteExistingKey: i16, ppVal: ?*?*ICertSrvSetupKeyInformation) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).CAImportPFX(@ptrCast(*const ICertSrvSetup, self), bstrFileName, bstrPasswd, bOverwriteExistingKey, ppVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_SetCADistinguishedName(self: *const T, bstrCADN: ?BSTR, bIgnoreUnicode: i16, bOverwriteExistingKey: i16, bOverwriteExistingCAInDS: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).SetCADistinguishedName(@ptrCast(*const ICertSrvSetup, self), bstrCADN, bIgnoreUnicode, bOverwriteExistingKey, bOverwriteExistingCAInDS);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_SetDatabaseInformation(self: *const T, bstrDBDirectory: ?BSTR, bstrLogDirectory: ?BSTR, bstrSharedFolder: ?BSTR, bForceOverwrite: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).SetDatabaseInformation(@ptrCast(*const ICertSrvSetup, self), bstrDBDirectory, bstrLogDirectory, bstrSharedFolder, bForceOverwrite);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_SetParentCAInformation(self: *const T, bstrCAConfiguration: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).SetParentCAInformation(@ptrCast(*const ICertSrvSetup, self), bstrCAConfiguration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_SetWebCAInformation(self: *const T, bstrCAConfiguration: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).SetWebCAInformation(@ptrCast(*const ICertSrvSetup, self), bstrCAConfiguration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_Install(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).Install(@ptrCast(*const ICertSrvSetup, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_PreUnInstall(self: *const T, bClientOnly: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).PreUnInstall(@ptrCast(*const ICertSrvSetup, self), bClientOnly);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertSrvSetup_PostUnInstall(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).PostUnInstall(@ptrCast(*const ICertSrvSetup, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetup_get_CAErrorId(self: *const T, pVal: ?*i32) HRESULT {
+                return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).get_CAErrorId(@ptrCast(*const ICertSrvSetup, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetup_get_CAErrorString(self: *const T, pVal: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).get_CAErrorString(@ptrCast(*const ICertSrvSetup, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetup_InitializeDefaults(self: *const T, bServer: i16, bClient: i16) HRESULT {
+                return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).InitializeDefaults(@ptrCast(*const ICertSrvSetup, self), bServer, bClient);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetup_GetCASetupProperty(self: *const T, propertyId: CASetupProperty, pPropertyValue: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetCASetupProperty(@ptrCast(*const ICertSrvSetup, self), propertyId, pPropertyValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetup_SetCASetupProperty(self: *const T, propertyId: CASetupProperty, pPropertyValue: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).SetCASetupProperty(@ptrCast(*const ICertSrvSetup, self), propertyId, pPropertyValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetup_IsPropertyEditable(self: *const T, propertyId: CASetupProperty, pbEditable: ?*i16) HRESULT {
+                return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).IsPropertyEditable(@ptrCast(*const ICertSrvSetup, self), propertyId, pbEditable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetup_GetSupportedCATypes(self: *const T, pCATypes: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetSupportedCATypes(@ptrCast(*const ICertSrvSetup, self), pCATypes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetup_GetProviderNameList(self: *const T, pVal: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetProviderNameList(@ptrCast(*const ICertSrvSetup, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetup_GetKeyLengthList(self: *const T, bstrProviderName: ?BSTR, pVal: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetKeyLengthList(@ptrCast(*const ICertSrvSetup, self), bstrProviderName, pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetup_GetHashAlgorithmList(self: *const T, bstrProviderName: ?BSTR, pVal: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetHashAlgorithmList(@ptrCast(*const ICertSrvSetup, self), bstrProviderName, pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetup_GetPrivateKeyContainerList(self: *const T, bstrProviderName: ?BSTR, pVal: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetPrivateKeyContainerList(@ptrCast(*const ICertSrvSetup, self), bstrProviderName, pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetup_GetExistingCACertificates(self: *const T, ppVal: ?*?*ICertSrvSetupKeyInformationCollection) HRESULT {
+                return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).GetExistingCACertificates(@ptrCast(*const ICertSrvSetup, self), ppVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetup_CAImportPFX(self: *const T, bstrFileName: ?BSTR, bstrPasswd: ?BSTR, bOverwriteExistingKey: i16, ppVal: ?*?*ICertSrvSetupKeyInformation) HRESULT {
+                return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).CAImportPFX(@ptrCast(*const ICertSrvSetup, self), bstrFileName, bstrPasswd, bOverwriteExistingKey, ppVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetup_SetCADistinguishedName(self: *const T, bstrCADN: ?BSTR, bIgnoreUnicode: i16, bOverwriteExistingKey: i16, bOverwriteExistingCAInDS: i16) HRESULT {
+                return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).SetCADistinguishedName(@ptrCast(*const ICertSrvSetup, self), bstrCADN, bIgnoreUnicode, bOverwriteExistingKey, bOverwriteExistingCAInDS);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetup_SetDatabaseInformation(self: *const T, bstrDBDirectory: ?BSTR, bstrLogDirectory: ?BSTR, bstrSharedFolder: ?BSTR, bForceOverwrite: i16) HRESULT {
+                return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).SetDatabaseInformation(@ptrCast(*const ICertSrvSetup, self), bstrDBDirectory, bstrLogDirectory, bstrSharedFolder, bForceOverwrite);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetup_SetParentCAInformation(self: *const T, bstrCAConfiguration: ?BSTR) HRESULT {
+                return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).SetParentCAInformation(@ptrCast(*const ICertSrvSetup, self), bstrCAConfiguration);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetup_SetWebCAInformation(self: *const T, bstrCAConfiguration: ?BSTR) HRESULT {
+                return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).SetWebCAInformation(@ptrCast(*const ICertSrvSetup, self), bstrCAConfiguration);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetup_Install(self: *const T) HRESULT {
+                return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).Install(@ptrCast(*const ICertSrvSetup, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetup_PreUnInstall(self: *const T, bClientOnly: i16) HRESULT {
+                return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).PreUnInstall(@ptrCast(*const ICertSrvSetup, self), bClientOnly);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertSrvSetup_PostUnInstall(self: *const T) HRESULT {
+                return @ptrCast(*const ICertSrvSetup.VTable, self.vtable).PostUnInstall(@ptrCast(*const ICertSrvSetup, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6958,110 +6828,112 @@ pub const IMSCEPSetup = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MSCEPErrorId: fn(
+        get_MSCEPErrorId: fn (
             self: *const IMSCEPSetup,
             pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MSCEPErrorString: fn(
+        get_MSCEPErrorString: fn (
             self: *const IMSCEPSetup,
             pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InitializeDefaults: fn(
+        InitializeDefaults: fn (
             self: *const IMSCEPSetup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMSCEPSetupProperty: fn(
+        GetMSCEPSetupProperty: fn (
             self: *const IMSCEPSetup,
             propertyId: MSCEPSetupProperty,
             pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetMSCEPSetupProperty: fn(
+        SetMSCEPSetupProperty: fn (
             self: *const IMSCEPSetup,
             propertyId: MSCEPSetupProperty,
             pPropertyValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAccountInformation: fn(
+        SetAccountInformation: fn (
             self: *const IMSCEPSetup,
             bstrUserName: ?BSTR,
             bstrPassword: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsMSCEPStoreEmpty: fn(
+        IsMSCEPStoreEmpty: fn (
             self: *const IMSCEPSetup,
             pbEmpty: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProviderNameList: fn(
+        GetProviderNameList: fn (
             self: *const IMSCEPSetup,
             bExchange: i16,
             pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetKeyLengthList: fn(
+        GetKeyLengthList: fn (
             self: *const IMSCEPSetup,
             bExchange: i16,
             bstrProviderName: ?BSTR,
             pVal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Install: fn(
+        Install: fn (
             self: *const IMSCEPSetup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PreUnInstall: fn(
+        PreUnInstall: fn (
             self: *const IMSCEPSetup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PostUnInstall: fn(
+        PostUnInstall: fn (
             self: *const IMSCEPSetup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSCEPSetup_get_MSCEPErrorId(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).get_MSCEPErrorId(@ptrCast(*const IMSCEPSetup, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSCEPSetup_get_MSCEPErrorString(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).get_MSCEPErrorString(@ptrCast(*const IMSCEPSetup, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSCEPSetup_InitializeDefaults(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).InitializeDefaults(@ptrCast(*const IMSCEPSetup, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSCEPSetup_GetMSCEPSetupProperty(self: *const T, propertyId: MSCEPSetupProperty, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).GetMSCEPSetupProperty(@ptrCast(*const IMSCEPSetup, self), propertyId, pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSCEPSetup_SetMSCEPSetupProperty(self: *const T, propertyId: MSCEPSetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).SetMSCEPSetupProperty(@ptrCast(*const IMSCEPSetup, self), propertyId, pPropertyValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSCEPSetup_SetAccountInformation(self: *const T, bstrUserName: ?BSTR, bstrPassword: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).SetAccountInformation(@ptrCast(*const IMSCEPSetup, self), bstrUserName, bstrPassword);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSCEPSetup_IsMSCEPStoreEmpty(self: *const T, pbEmpty: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).IsMSCEPStoreEmpty(@ptrCast(*const IMSCEPSetup, self), pbEmpty);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSCEPSetup_GetProviderNameList(self: *const T, bExchange: i16, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).GetProviderNameList(@ptrCast(*const IMSCEPSetup, self), bExchange, pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSCEPSetup_GetKeyLengthList(self: *const T, bExchange: i16, bstrProviderName: ?BSTR, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).GetKeyLengthList(@ptrCast(*const IMSCEPSetup, self), bExchange, bstrProviderName, pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSCEPSetup_Install(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).Install(@ptrCast(*const IMSCEPSetup, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSCEPSetup_PreUnInstall(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).PreUnInstall(@ptrCast(*const IMSCEPSetup, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSCEPSetup_PostUnInstall(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).PostUnInstall(@ptrCast(*const IMSCEPSetup, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSCEPSetup_get_MSCEPErrorId(self: *const T, pVal: ?*i32) HRESULT {
+                return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).get_MSCEPErrorId(@ptrCast(*const IMSCEPSetup, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSCEPSetup_get_MSCEPErrorString(self: *const T, pVal: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).get_MSCEPErrorString(@ptrCast(*const IMSCEPSetup, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSCEPSetup_InitializeDefaults(self: *const T) HRESULT {
+                return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).InitializeDefaults(@ptrCast(*const IMSCEPSetup, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSCEPSetup_GetMSCEPSetupProperty(self: *const T, propertyId: MSCEPSetupProperty, pVal: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).GetMSCEPSetupProperty(@ptrCast(*const IMSCEPSetup, self), propertyId, pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSCEPSetup_SetMSCEPSetupProperty(self: *const T, propertyId: MSCEPSetupProperty, pPropertyValue: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).SetMSCEPSetupProperty(@ptrCast(*const IMSCEPSetup, self), propertyId, pPropertyValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSCEPSetup_SetAccountInformation(self: *const T, bstrUserName: ?BSTR, bstrPassword: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).SetAccountInformation(@ptrCast(*const IMSCEPSetup, self), bstrUserName, bstrPassword);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSCEPSetup_IsMSCEPStoreEmpty(self: *const T, pbEmpty: ?*i16) HRESULT {
+                return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).IsMSCEPStoreEmpty(@ptrCast(*const IMSCEPSetup, self), pbEmpty);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSCEPSetup_GetProviderNameList(self: *const T, bExchange: i16, pVal: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).GetProviderNameList(@ptrCast(*const IMSCEPSetup, self), bExchange, pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSCEPSetup_GetKeyLengthList(self: *const T, bExchange: i16, bstrProviderName: ?BSTR, pVal: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).GetKeyLengthList(@ptrCast(*const IMSCEPSetup, self), bExchange, bstrProviderName, pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSCEPSetup_Install(self: *const T) HRESULT {
+                return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).Install(@ptrCast(*const IMSCEPSetup, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSCEPSetup_PreUnInstall(self: *const T) HRESULT {
+                return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).PreUnInstall(@ptrCast(*const IMSCEPSetup, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSCEPSetup_PostUnInstall(self: *const T) HRESULT {
+                return @ptrCast(*const IMSCEPSetup.VTable, self.vtable).PostUnInstall(@ptrCast(*const IMSCEPSetup, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7089,69 +6961,71 @@ pub const ICertificateEnrollmentServerSetup = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ErrorString: fn(
+        get_ErrorString: fn (
             self: *const ICertificateEnrollmentServerSetup,
             pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InitializeInstallDefaults: fn(
+        InitializeInstallDefaults: fn (
             self: *const ICertificateEnrollmentServerSetup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProperty: fn(
-            self: *const ICertificateEnrollmentServerSetup,
-            propertyId: CESSetupProperty,
-            pPropertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProperty: fn(
+        GetProperty: fn (
             self: *const ICertificateEnrollmentServerSetup,
             propertyId: CESSetupProperty,
             pPropertyValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetApplicationPoolCredentials: fn(
+        SetProperty: fn (
+            self: *const ICertificateEnrollmentServerSetup,
+            propertyId: CESSetupProperty,
+            pPropertyValue: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetApplicationPoolCredentials: fn (
             self: *const ICertificateEnrollmentServerSetup,
             bstrUsername: ?BSTR,
             bstrPassword: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Install: fn(
+        Install: fn (
             self: *const ICertificateEnrollmentServerSetup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnInstall: fn(
+        UnInstall: fn (
             self: *const ICertificateEnrollmentServerSetup,
             pCAConfig: ?*VARIANT,
             pAuthentication: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentServerSetup_get_ErrorString(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).get_ErrorString(@ptrCast(*const ICertificateEnrollmentServerSetup, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentServerSetup_InitializeInstallDefaults(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).InitializeInstallDefaults(@ptrCast(*const ICertificateEnrollmentServerSetup, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentServerSetup_GetProperty(self: *const T, propertyId: CESSetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).GetProperty(@ptrCast(*const ICertificateEnrollmentServerSetup, self), propertyId, pPropertyValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentServerSetup_SetProperty(self: *const T, propertyId: CESSetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).SetProperty(@ptrCast(*const ICertificateEnrollmentServerSetup, self), propertyId, pPropertyValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentServerSetup_SetApplicationPoolCredentials(self: *const T, bstrUsername: ?BSTR, bstrPassword: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).SetApplicationPoolCredentials(@ptrCast(*const ICertificateEnrollmentServerSetup, self), bstrUsername, bstrPassword);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentServerSetup_Install(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).Install(@ptrCast(*const ICertificateEnrollmentServerSetup, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentServerSetup_UnInstall(self: *const T, pCAConfig: ?*VARIANT, pAuthentication: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).UnInstall(@ptrCast(*const ICertificateEnrollmentServerSetup, self), pCAConfig, pAuthentication);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertificateEnrollmentServerSetup_get_ErrorString(self: *const T, pVal: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).get_ErrorString(@ptrCast(*const ICertificateEnrollmentServerSetup, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertificateEnrollmentServerSetup_InitializeInstallDefaults(self: *const T) HRESULT {
+                return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).InitializeInstallDefaults(@ptrCast(*const ICertificateEnrollmentServerSetup, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertificateEnrollmentServerSetup_GetProperty(self: *const T, propertyId: CESSetupProperty, pPropertyValue: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).GetProperty(@ptrCast(*const ICertificateEnrollmentServerSetup, self), propertyId, pPropertyValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertificateEnrollmentServerSetup_SetProperty(self: *const T, propertyId: CESSetupProperty, pPropertyValue: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).SetProperty(@ptrCast(*const ICertificateEnrollmentServerSetup, self), propertyId, pPropertyValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertificateEnrollmentServerSetup_SetApplicationPoolCredentials(self: *const T, bstrUsername: ?BSTR, bstrPassword: ?BSTR) HRESULT {
+                return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).SetApplicationPoolCredentials(@ptrCast(*const ICertificateEnrollmentServerSetup, self), bstrUsername, bstrPassword);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertificateEnrollmentServerSetup_Install(self: *const T) HRESULT {
+                return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).Install(@ptrCast(*const ICertificateEnrollmentServerSetup, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertificateEnrollmentServerSetup_UnInstall(self: *const T, pCAConfig: ?*VARIANT, pAuthentication: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ICertificateEnrollmentServerSetup.VTable, self.vtable).UnInstall(@ptrCast(*const ICertificateEnrollmentServerSetup, self), pCAConfig, pAuthentication);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7173,62 +7047,63 @@ pub const ICertificateEnrollmentPolicyServerSetup = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ErrorString: fn(
+        get_ErrorString: fn (
             self: *const ICertificateEnrollmentPolicyServerSetup,
             pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InitializeInstallDefaults: fn(
+        InitializeInstallDefaults: fn (
             self: *const ICertificateEnrollmentPolicyServerSetup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProperty: fn(
-            self: *const ICertificateEnrollmentPolicyServerSetup,
-            propertyId: CEPSetupProperty,
-            pPropertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProperty: fn(
+        GetProperty: fn (
             self: *const ICertificateEnrollmentPolicyServerSetup,
             propertyId: CEPSetupProperty,
             pPropertyValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Install: fn(
+        SetProperty: fn (
+            self: *const ICertificateEnrollmentPolicyServerSetup,
+            propertyId: CEPSetupProperty,
+            pPropertyValue: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Install: fn (
             self: *const ICertificateEnrollmentPolicyServerSetup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnInstall: fn(
+        UnInstall: fn (
             self: *const ICertificateEnrollmentPolicyServerSetup,
             pAuthKeyBasedRenewal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentPolicyServerSetup_get_ErrorString(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertificateEnrollmentPolicyServerSetup.VTable, self.vtable).get_ErrorString(@ptrCast(*const ICertificateEnrollmentPolicyServerSetup, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentPolicyServerSetup_InitializeInstallDefaults(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertificateEnrollmentPolicyServerSetup.VTable, self.vtable).InitializeInstallDefaults(@ptrCast(*const ICertificateEnrollmentPolicyServerSetup, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentPolicyServerSetup_GetProperty(self: *const T, propertyId: CEPSetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertificateEnrollmentPolicyServerSetup.VTable, self.vtable).GetProperty(@ptrCast(*const ICertificateEnrollmentPolicyServerSetup, self), propertyId, pPropertyValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentPolicyServerSetup_SetProperty(self: *const T, propertyId: CEPSetupProperty, pPropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertificateEnrollmentPolicyServerSetup.VTable, self.vtable).SetProperty(@ptrCast(*const ICertificateEnrollmentPolicyServerSetup, self), propertyId, pPropertyValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentPolicyServerSetup_Install(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertificateEnrollmentPolicyServerSetup.VTable, self.vtable).Install(@ptrCast(*const ICertificateEnrollmentPolicyServerSetup, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICertificateEnrollmentPolicyServerSetup_UnInstall(self: *const T, pAuthKeyBasedRenewal: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICertificateEnrollmentPolicyServerSetup.VTable, self.vtable).UnInstall(@ptrCast(*const ICertificateEnrollmentPolicyServerSetup, self), pAuthKeyBasedRenewal);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertificateEnrollmentPolicyServerSetup_get_ErrorString(self: *const T, pVal: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ICertificateEnrollmentPolicyServerSetup.VTable, self.vtable).get_ErrorString(@ptrCast(*const ICertificateEnrollmentPolicyServerSetup, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertificateEnrollmentPolicyServerSetup_InitializeInstallDefaults(self: *const T) HRESULT {
+                return @ptrCast(*const ICertificateEnrollmentPolicyServerSetup.VTable, self.vtable).InitializeInstallDefaults(@ptrCast(*const ICertificateEnrollmentPolicyServerSetup, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertificateEnrollmentPolicyServerSetup_GetProperty(self: *const T, propertyId: CEPSetupProperty, pPropertyValue: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ICertificateEnrollmentPolicyServerSetup.VTable, self.vtable).GetProperty(@ptrCast(*const ICertificateEnrollmentPolicyServerSetup, self), propertyId, pPropertyValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertificateEnrollmentPolicyServerSetup_SetProperty(self: *const T, propertyId: CEPSetupProperty, pPropertyValue: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ICertificateEnrollmentPolicyServerSetup.VTable, self.vtable).SetProperty(@ptrCast(*const ICertificateEnrollmentPolicyServerSetup, self), propertyId, pPropertyValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertificateEnrollmentPolicyServerSetup_Install(self: *const T) HRESULT {
+                return @ptrCast(*const ICertificateEnrollmentPolicyServerSetup.VTable, self.vtable).Install(@ptrCast(*const ICertificateEnrollmentPolicyServerSetup, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICertificateEnrollmentPolicyServerSetup_UnInstall(self: *const T, pAuthKeyBasedRenewal: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ICertificateEnrollmentPolicyServerSetup.VTable, self.vtable).UnInstall(@ptrCast(*const ICertificateEnrollmentPolicyServerSetup, self), pAuthKeyBasedRenewal);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (397)
@@ -8137,7 +8012,9 @@ pub extern "ncrypt" fn NCryptFreeBuffer(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 // This function from dll 'ncrypt' is being skipped because it has some sort of issue
-pub fn NCryptOpenKey() void { @panic("this function is not working"); }
+pub fn NCryptOpenKey() void {
+    @panic("this function is not working");
+}
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptCreatePersistedKey(
@@ -8275,7 +8152,9 @@ pub extern "ncrypt" fn NCryptIsKeyHandle(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 // This function from dll 'ncrypt' is being skipped because it has some sort of issue
-pub fn NCryptTranslateHandle() void { @panic("this function is not working"); }
+pub fn NCryptTranslateHandle() void {
+    @panic("this function is not working");
+}
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptNotifyChangeKey(
@@ -9416,7 +9295,9 @@ pub extern "crypt32" fn CryptSignCertificate(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 // This function from dll 'CRYPT32' is being skipped because it has some sort of issue
-pub fn CryptSignAndEncodeCertificate() void { @panic("this function is not working"); }
+pub fn CryptSignAndEncodeCertificate() void {
+    @panic("this function is not working");
+}
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertVerifyTimeValidity(
@@ -10629,8 +10510,7 @@ pub extern "infocardapi" fn GetToken(
     phProofTokenCrypto: ?*?*INFORMATIONCARD_CRYPTO_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "infocardapi" fn ManageCardSpace(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "infocardapi" fn ManageCardSpace() callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "infocardapi" fn ImportInformationCard(
     fileName: ?[*:0]const u16,
@@ -10767,7 +10647,6 @@ pub extern "infocardapi" fn GetBrowserToken(
     ppToken: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (18)
 //--------------------------------------------------------------------------------
@@ -10814,24 +10693,24 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const CryptBinaryToString = thismodule.CryptBinaryToStringW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const CRYPT_PASSWORD_CREDENTIALS = *opaque{};
-        pub const CryptAcquireContext = *opaque{};
-        pub const CryptSignHash = *opaque{};
-        pub const CryptVerifySignature = *opaque{};
-        pub const CryptSetProvider = *opaque{};
-        pub const CryptSetProviderEx = *opaque{};
-        pub const CryptGetDefaultProvider = *opaque{};
-        pub const CryptEnumProviderTypes = *opaque{};
-        pub const CryptEnumProviders = *opaque{};
-        pub const CertRDNValueToStr = *opaque{};
-        pub const CertNameToStr = *opaque{};
-        pub const CertStrToName = *opaque{};
-        pub const CertGetNameString = *opaque{};
-        pub const CertOpenSystemStore = *opaque{};
-        pub const CertAddEncodedCertificateToSystemStore = *opaque{};
-        pub const CryptRetrieveObjectByUrl = *opaque{};
-        pub const CryptStringToBinary = *opaque{};
-        pub const CryptBinaryToString = *opaque{};
+        pub const CRYPT_PASSWORD_CREDENTIALS = *opaque {};
+        pub const CryptAcquireContext = *opaque {};
+        pub const CryptSignHash = *opaque {};
+        pub const CryptVerifySignature = *opaque {};
+        pub const CryptSetProvider = *opaque {};
+        pub const CryptSetProviderEx = *opaque {};
+        pub const CryptGetDefaultProvider = *opaque {};
+        pub const CryptEnumProviderTypes = *opaque {};
+        pub const CryptEnumProviders = *opaque {};
+        pub const CertRDNValueToStr = *opaque {};
+        pub const CertNameToStr = *opaque {};
+        pub const CertStrToName = *opaque {};
+        pub const CertGetNameString = *opaque {};
+        pub const CertOpenSystemStore = *opaque {};
+        pub const CertAddEncodedCertificateToSystemStore = *opaque {};
+        pub const CryptRetrieveObjectByUrl = *opaque {};
+        pub const CryptStringToBinary = *opaque {};
+        pub const CryptBinaryToString = *opaque {};
     } else struct {
         pub const CRYPT_PASSWORD_CREDENTIALS = @compileError("'CRYPT_PASSWORD_CREDENTIALS' requires that UNICODE be set to true or false in the root module");
         pub const CryptAcquireContext = @compileError("'CryptAcquireContext' requires that UNICODE be set to true or false in the root module");
@@ -10881,106 +10760,296 @@ const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFN_NCRYPT_ALLOC")) { _ = PFN_NCRYPT_ALLOC; }
-    if (@hasDecl(@This(), "PFN_NCRYPT_FREE")) { _ = PFN_NCRYPT_FREE; }
-    if (@hasDecl(@This(), "PCRYPT_DECRYPT_PRIVATE_KEY_FUNC")) { _ = PCRYPT_DECRYPT_PRIVATE_KEY_FUNC; }
-    if (@hasDecl(@This(), "PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC")) { _ = PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC; }
-    if (@hasDecl(@This(), "PCRYPT_RESOLVE_HCRYPTPROV_FUNC")) { _ = PCRYPT_RESOLVE_HCRYPTPROV_FUNC; }
-    if (@hasDecl(@This(), "PFN_CRYPT_ALLOC")) { _ = PFN_CRYPT_ALLOC; }
-    if (@hasDecl(@This(), "PFN_CRYPT_FREE")) { _ = PFN_CRYPT_FREE; }
-    if (@hasDecl(@This(), "PFN_CRYPT_ENUM_OID_FUNC")) { _ = PFN_CRYPT_ENUM_OID_FUNC; }
-    if (@hasDecl(@This(), "PFN_CRYPT_ENUM_OID_INFO")) { _ = PFN_CRYPT_ENUM_OID_INFO; }
-    if (@hasDecl(@This(), "PFN_CMSG_STREAM_OUTPUT")) { _ = PFN_CMSG_STREAM_OUTPUT; }
-    if (@hasDecl(@This(), "PFN_CMSG_ALLOC")) { _ = PFN_CMSG_ALLOC; }
-    if (@hasDecl(@This(), "PFN_CMSG_FREE")) { _ = PFN_CMSG_FREE; }
-    if (@hasDecl(@This(), "PFN_CMSG_GEN_ENCRYPT_KEY")) { _ = PFN_CMSG_GEN_ENCRYPT_KEY; }
-    if (@hasDecl(@This(), "PFN_CMSG_EXPORT_ENCRYPT_KEY")) { _ = PFN_CMSG_EXPORT_ENCRYPT_KEY; }
-    if (@hasDecl(@This(), "PFN_CMSG_IMPORT_ENCRYPT_KEY")) { _ = PFN_CMSG_IMPORT_ENCRYPT_KEY; }
-    if (@hasDecl(@This(), "PFN_CMSG_GEN_CONTENT_ENCRYPT_KEY")) { _ = PFN_CMSG_GEN_CONTENT_ENCRYPT_KEY; }
-    if (@hasDecl(@This(), "PFN_CMSG_EXPORT_KEY_TRANS")) { _ = PFN_CMSG_EXPORT_KEY_TRANS; }
-    if (@hasDecl(@This(), "PFN_CMSG_EXPORT_KEY_AGREE")) { _ = PFN_CMSG_EXPORT_KEY_AGREE; }
-    if (@hasDecl(@This(), "PFN_CMSG_EXPORT_MAIL_LIST")) { _ = PFN_CMSG_EXPORT_MAIL_LIST; }
-    if (@hasDecl(@This(), "PFN_CMSG_IMPORT_KEY_TRANS")) { _ = PFN_CMSG_IMPORT_KEY_TRANS; }
-    if (@hasDecl(@This(), "PFN_CMSG_IMPORT_KEY_AGREE")) { _ = PFN_CMSG_IMPORT_KEY_AGREE; }
-    if (@hasDecl(@This(), "PFN_CMSG_IMPORT_MAIL_LIST")) { _ = PFN_CMSG_IMPORT_MAIL_LIST; }
-    if (@hasDecl(@This(), "PFN_CMSG_CNG_IMPORT_KEY_TRANS")) { _ = PFN_CMSG_CNG_IMPORT_KEY_TRANS; }
-    if (@hasDecl(@This(), "PFN_CMSG_CNG_IMPORT_KEY_AGREE")) { _ = PFN_CMSG_CNG_IMPORT_KEY_AGREE; }
-    if (@hasDecl(@This(), "PFN_CMSG_CNG_IMPORT_CONTENT_ENCRYPT_KEY")) { _ = PFN_CMSG_CNG_IMPORT_CONTENT_ENCRYPT_KEY; }
-    if (@hasDecl(@This(), "PFN_CERT_DLL_OPEN_STORE_PROV_FUNC")) { _ = PFN_CERT_DLL_OPEN_STORE_PROV_FUNC; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_CLOSE")) { _ = PFN_CERT_STORE_PROV_CLOSE; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_READ_CERT")) { _ = PFN_CERT_STORE_PROV_READ_CERT; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_WRITE_CERT")) { _ = PFN_CERT_STORE_PROV_WRITE_CERT; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_DELETE_CERT")) { _ = PFN_CERT_STORE_PROV_DELETE_CERT; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_SET_CERT_PROPERTY")) { _ = PFN_CERT_STORE_PROV_SET_CERT_PROPERTY; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_READ_CRL")) { _ = PFN_CERT_STORE_PROV_READ_CRL; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_WRITE_CRL")) { _ = PFN_CERT_STORE_PROV_WRITE_CRL; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_DELETE_CRL")) { _ = PFN_CERT_STORE_PROV_DELETE_CRL; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_SET_CRL_PROPERTY")) { _ = PFN_CERT_STORE_PROV_SET_CRL_PROPERTY; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_READ_CTL")) { _ = PFN_CERT_STORE_PROV_READ_CTL; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_WRITE_CTL")) { _ = PFN_CERT_STORE_PROV_WRITE_CTL; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_DELETE_CTL")) { _ = PFN_CERT_STORE_PROV_DELETE_CTL; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_SET_CTL_PROPERTY")) { _ = PFN_CERT_STORE_PROV_SET_CTL_PROPERTY; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_CONTROL")) { _ = PFN_CERT_STORE_PROV_CONTROL; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_FIND_CERT")) { _ = PFN_CERT_STORE_PROV_FIND_CERT; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_FREE_FIND_CERT")) { _ = PFN_CERT_STORE_PROV_FREE_FIND_CERT; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_GET_CERT_PROPERTY")) { _ = PFN_CERT_STORE_PROV_GET_CERT_PROPERTY; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_FIND_CRL")) { _ = PFN_CERT_STORE_PROV_FIND_CRL; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_FREE_FIND_CRL")) { _ = PFN_CERT_STORE_PROV_FREE_FIND_CRL; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_GET_CRL_PROPERTY")) { _ = PFN_CERT_STORE_PROV_GET_CRL_PROPERTY; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_FIND_CTL")) { _ = PFN_CERT_STORE_PROV_FIND_CTL; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_FREE_FIND_CTL")) { _ = PFN_CERT_STORE_PROV_FREE_FIND_CTL; }
-    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_GET_CTL_PROPERTY")) { _ = PFN_CERT_STORE_PROV_GET_CTL_PROPERTY; }
-    if (@hasDecl(@This(), "PFN_CERT_CREATE_CONTEXT_SORT_FUNC")) { _ = PFN_CERT_CREATE_CONTEXT_SORT_FUNC; }
-    if (@hasDecl(@This(), "PFN_CERT_ENUM_SYSTEM_STORE_LOCATION")) { _ = PFN_CERT_ENUM_SYSTEM_STORE_LOCATION; }
-    if (@hasDecl(@This(), "PFN_CERT_ENUM_SYSTEM_STORE")) { _ = PFN_CERT_ENUM_SYSTEM_STORE; }
-    if (@hasDecl(@This(), "PFN_CERT_ENUM_PHYSICAL_STORE")) { _ = PFN_CERT_ENUM_PHYSICAL_STORE; }
-    if (@hasDecl(@This(), "PFN_CRYPT_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC")) { _ = PFN_CRYPT_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC; }
-    if (@hasDecl(@This(), "PFN_CRYPT_SIGN_AND_ENCODE_HASH_FUNC")) { _ = PFN_CRYPT_SIGN_AND_ENCODE_HASH_FUNC; }
-    if (@hasDecl(@This(), "PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC")) { _ = PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC; }
-    if (@hasDecl(@This(), "PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC")) { _ = PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC; }
-    if (@hasDecl(@This(), "PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC")) { _ = PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC; }
-    if (@hasDecl(@This(), "PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC")) { _ = PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC; }
-    if (@hasDecl(@This(), "PFN_IMPORT_PRIV_KEY_FUNC")) { _ = PFN_IMPORT_PRIV_KEY_FUNC; }
-    if (@hasDecl(@This(), "PFN_EXPORT_PRIV_KEY_FUNC")) { _ = PFN_EXPORT_PRIV_KEY_FUNC; }
-    if (@hasDecl(@This(), "PFN_CRYPT_GET_SIGNER_CERTIFICATE")) { _ = PFN_CRYPT_GET_SIGNER_CERTIFICATE; }
-    if (@hasDecl(@This(), "PFN_CRYPT_ASYNC_PARAM_FREE_FUNC")) { _ = PFN_CRYPT_ASYNC_PARAM_FREE_FUNC; }
-    if (@hasDecl(@This(), "PFN_FREE_ENCODED_OBJECT_FUNC")) { _ = PFN_FREE_ENCODED_OBJECT_FUNC; }
-    if (@hasDecl(@This(), "PFN_CRYPT_CANCEL_RETRIEVAL")) { _ = PFN_CRYPT_CANCEL_RETRIEVAL; }
-    if (@hasDecl(@This(), "PFN_CRYPT_ASYNC_RETRIEVAL_COMPLETION_FUNC")) { _ = PFN_CRYPT_ASYNC_RETRIEVAL_COMPLETION_FUNC; }
-    if (@hasDecl(@This(), "PFN_CANCEL_ASYNC_RETRIEVAL_FUNC")) { _ = PFN_CANCEL_ASYNC_RETRIEVAL_FUNC; }
-    if (@hasDecl(@This(), "PFN_CRYPT_ENUM_KEYID_PROP")) { _ = PFN_CRYPT_ENUM_KEYID_PROP; }
-    if (@hasDecl(@This(), "PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK")) { _ = PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK; }
-    if (@hasDecl(@This(), "PFN_CERT_SERVER_OCSP_RESPONSE_UPDATE_CALLBACK")) { _ = PFN_CERT_SERVER_OCSP_RESPONSE_UPDATE_CALLBACK; }
-    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH")) { _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH; }
-    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET")) { _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET; }
-    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE")) { _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE; }
-    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD")) { _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD; }
-    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE")) { _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE; }
-    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER")) { _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER; }
-    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_INITIALIZE")) { _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_INITIALIZE; }
-    if (@hasDecl(@This(), "PFN_CERT_IS_WEAK_HASH")) { _ = PFN_CERT_IS_WEAK_HASH; }
-    if (@hasDecl(@This(), "PFNCryptStreamOutputCallback")) { _ = PFNCryptStreamOutputCallback; }
-    if (@hasDecl(@This(), "PFNCryptStreamOutputCallbackEx")) { _ = PFNCryptStreamOutputCallbackEx; }
-    if (@hasDecl(@This(), "PFN_CRYPT_XML_WRITE_CALLBACK")) { _ = PFN_CRYPT_XML_WRITE_CALLBACK; }
-    if (@hasDecl(@This(), "PFN_CRYPT_XML_DATA_PROVIDER_READ")) { _ = PFN_CRYPT_XML_DATA_PROVIDER_READ; }
-    if (@hasDecl(@This(), "PFN_CRYPT_XML_DATA_PROVIDER_CLOSE")) { _ = PFN_CRYPT_XML_DATA_PROVIDER_CLOSE; }
-    if (@hasDecl(@This(), "PFN_CRYPT_XML_CREATE_TRANSFORM")) { _ = PFN_CRYPT_XML_CREATE_TRANSFORM; }
-    if (@hasDecl(@This(), "PFN_CRYPT_XML_ENUM_ALG_INFO")) { _ = PFN_CRYPT_XML_ENUM_ALG_INFO; }
-    if (@hasDecl(@This(), "CryptXmlDllGetInterface")) { _ = CryptXmlDllGetInterface; }
-    if (@hasDecl(@This(), "CryptXmlDllEncodeAlgorithm")) { _ = CryptXmlDllEncodeAlgorithm; }
-    if (@hasDecl(@This(), "CryptXmlDllCreateDigest")) { _ = CryptXmlDllCreateDigest; }
-    if (@hasDecl(@This(), "CryptXmlDllDigestData")) { _ = CryptXmlDllDigestData; }
-    if (@hasDecl(@This(), "CryptXmlDllFinalizeDigest")) { _ = CryptXmlDllFinalizeDigest; }
-    if (@hasDecl(@This(), "CryptXmlDllCloseDigest")) { _ = CryptXmlDllCloseDigest; }
-    if (@hasDecl(@This(), "CryptXmlDllSignData")) { _ = CryptXmlDllSignData; }
-    if (@hasDecl(@This(), "CryptXmlDllVerifySignature")) { _ = CryptXmlDllVerifySignature; }
-    if (@hasDecl(@This(), "CryptXmlDllGetAlgorithmInfo")) { _ = CryptXmlDllGetAlgorithmInfo; }
-    if (@hasDecl(@This(), "CryptXmlDllEncodeKeyValue")) { _ = CryptXmlDllEncodeKeyValue; }
-    if (@hasDecl(@This(), "CryptXmlDllCreateKey")) { _ = CryptXmlDllCreateKey; }
+    if (@hasDecl(@This(), "PFN_NCRYPT_ALLOC")) {
+        _ = PFN_NCRYPT_ALLOC;
+    }
+    if (@hasDecl(@This(), "PFN_NCRYPT_FREE")) {
+        _ = PFN_NCRYPT_FREE;
+    }
+    if (@hasDecl(@This(), "PCRYPT_DECRYPT_PRIVATE_KEY_FUNC")) {
+        _ = PCRYPT_DECRYPT_PRIVATE_KEY_FUNC;
+    }
+    if (@hasDecl(@This(), "PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC")) {
+        _ = PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC;
+    }
+    if (@hasDecl(@This(), "PCRYPT_RESOLVE_HCRYPTPROV_FUNC")) {
+        _ = PCRYPT_RESOLVE_HCRYPTPROV_FUNC;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_ALLOC")) {
+        _ = PFN_CRYPT_ALLOC;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_FREE")) {
+        _ = PFN_CRYPT_FREE;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_ENUM_OID_FUNC")) {
+        _ = PFN_CRYPT_ENUM_OID_FUNC;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_ENUM_OID_INFO")) {
+        _ = PFN_CRYPT_ENUM_OID_INFO;
+    }
+    if (@hasDecl(@This(), "PFN_CMSG_STREAM_OUTPUT")) {
+        _ = PFN_CMSG_STREAM_OUTPUT;
+    }
+    if (@hasDecl(@This(), "PFN_CMSG_ALLOC")) {
+        _ = PFN_CMSG_ALLOC;
+    }
+    if (@hasDecl(@This(), "PFN_CMSG_FREE")) {
+        _ = PFN_CMSG_FREE;
+    }
+    if (@hasDecl(@This(), "PFN_CMSG_GEN_ENCRYPT_KEY")) {
+        _ = PFN_CMSG_GEN_ENCRYPT_KEY;
+    }
+    if (@hasDecl(@This(), "PFN_CMSG_EXPORT_ENCRYPT_KEY")) {
+        _ = PFN_CMSG_EXPORT_ENCRYPT_KEY;
+    }
+    if (@hasDecl(@This(), "PFN_CMSG_IMPORT_ENCRYPT_KEY")) {
+        _ = PFN_CMSG_IMPORT_ENCRYPT_KEY;
+    }
+    if (@hasDecl(@This(), "PFN_CMSG_GEN_CONTENT_ENCRYPT_KEY")) {
+        _ = PFN_CMSG_GEN_CONTENT_ENCRYPT_KEY;
+    }
+    if (@hasDecl(@This(), "PFN_CMSG_EXPORT_KEY_TRANS")) {
+        _ = PFN_CMSG_EXPORT_KEY_TRANS;
+    }
+    if (@hasDecl(@This(), "PFN_CMSG_EXPORT_KEY_AGREE")) {
+        _ = PFN_CMSG_EXPORT_KEY_AGREE;
+    }
+    if (@hasDecl(@This(), "PFN_CMSG_EXPORT_MAIL_LIST")) {
+        _ = PFN_CMSG_EXPORT_MAIL_LIST;
+    }
+    if (@hasDecl(@This(), "PFN_CMSG_IMPORT_KEY_TRANS")) {
+        _ = PFN_CMSG_IMPORT_KEY_TRANS;
+    }
+    if (@hasDecl(@This(), "PFN_CMSG_IMPORT_KEY_AGREE")) {
+        _ = PFN_CMSG_IMPORT_KEY_AGREE;
+    }
+    if (@hasDecl(@This(), "PFN_CMSG_IMPORT_MAIL_LIST")) {
+        _ = PFN_CMSG_IMPORT_MAIL_LIST;
+    }
+    if (@hasDecl(@This(), "PFN_CMSG_CNG_IMPORT_KEY_TRANS")) {
+        _ = PFN_CMSG_CNG_IMPORT_KEY_TRANS;
+    }
+    if (@hasDecl(@This(), "PFN_CMSG_CNG_IMPORT_KEY_AGREE")) {
+        _ = PFN_CMSG_CNG_IMPORT_KEY_AGREE;
+    }
+    if (@hasDecl(@This(), "PFN_CMSG_CNG_IMPORT_CONTENT_ENCRYPT_KEY")) {
+        _ = PFN_CMSG_CNG_IMPORT_CONTENT_ENCRYPT_KEY;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_DLL_OPEN_STORE_PROV_FUNC")) {
+        _ = PFN_CERT_DLL_OPEN_STORE_PROV_FUNC;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_CLOSE")) {
+        _ = PFN_CERT_STORE_PROV_CLOSE;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_READ_CERT")) {
+        _ = PFN_CERT_STORE_PROV_READ_CERT;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_WRITE_CERT")) {
+        _ = PFN_CERT_STORE_PROV_WRITE_CERT;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_DELETE_CERT")) {
+        _ = PFN_CERT_STORE_PROV_DELETE_CERT;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_SET_CERT_PROPERTY")) {
+        _ = PFN_CERT_STORE_PROV_SET_CERT_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_READ_CRL")) {
+        _ = PFN_CERT_STORE_PROV_READ_CRL;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_WRITE_CRL")) {
+        _ = PFN_CERT_STORE_PROV_WRITE_CRL;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_DELETE_CRL")) {
+        _ = PFN_CERT_STORE_PROV_DELETE_CRL;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_SET_CRL_PROPERTY")) {
+        _ = PFN_CERT_STORE_PROV_SET_CRL_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_READ_CTL")) {
+        _ = PFN_CERT_STORE_PROV_READ_CTL;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_WRITE_CTL")) {
+        _ = PFN_CERT_STORE_PROV_WRITE_CTL;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_DELETE_CTL")) {
+        _ = PFN_CERT_STORE_PROV_DELETE_CTL;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_SET_CTL_PROPERTY")) {
+        _ = PFN_CERT_STORE_PROV_SET_CTL_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_CONTROL")) {
+        _ = PFN_CERT_STORE_PROV_CONTROL;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_FIND_CERT")) {
+        _ = PFN_CERT_STORE_PROV_FIND_CERT;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_FREE_FIND_CERT")) {
+        _ = PFN_CERT_STORE_PROV_FREE_FIND_CERT;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_GET_CERT_PROPERTY")) {
+        _ = PFN_CERT_STORE_PROV_GET_CERT_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_FIND_CRL")) {
+        _ = PFN_CERT_STORE_PROV_FIND_CRL;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_FREE_FIND_CRL")) {
+        _ = PFN_CERT_STORE_PROV_FREE_FIND_CRL;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_GET_CRL_PROPERTY")) {
+        _ = PFN_CERT_STORE_PROV_GET_CRL_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_FIND_CTL")) {
+        _ = PFN_CERT_STORE_PROV_FIND_CTL;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_FREE_FIND_CTL")) {
+        _ = PFN_CERT_STORE_PROV_FREE_FIND_CTL;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_GET_CTL_PROPERTY")) {
+        _ = PFN_CERT_STORE_PROV_GET_CTL_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_CREATE_CONTEXT_SORT_FUNC")) {
+        _ = PFN_CERT_CREATE_CONTEXT_SORT_FUNC;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_ENUM_SYSTEM_STORE_LOCATION")) {
+        _ = PFN_CERT_ENUM_SYSTEM_STORE_LOCATION;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_ENUM_SYSTEM_STORE")) {
+        _ = PFN_CERT_ENUM_SYSTEM_STORE;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_ENUM_PHYSICAL_STORE")) {
+        _ = PFN_CERT_ENUM_PHYSICAL_STORE;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC")) {
+        _ = PFN_CRYPT_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_SIGN_AND_ENCODE_HASH_FUNC")) {
+        _ = PFN_CRYPT_SIGN_AND_ENCODE_HASH_FUNC;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC")) {
+        _ = PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC")) {
+        _ = PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC")) {
+        _ = PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC;
+    }
+    if (@hasDecl(@This(), "PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC")) {
+        _ = PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC;
+    }
+    if (@hasDecl(@This(), "PFN_IMPORT_PRIV_KEY_FUNC")) {
+        _ = PFN_IMPORT_PRIV_KEY_FUNC;
+    }
+    if (@hasDecl(@This(), "PFN_EXPORT_PRIV_KEY_FUNC")) {
+        _ = PFN_EXPORT_PRIV_KEY_FUNC;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_GET_SIGNER_CERTIFICATE")) {
+        _ = PFN_CRYPT_GET_SIGNER_CERTIFICATE;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_ASYNC_PARAM_FREE_FUNC")) {
+        _ = PFN_CRYPT_ASYNC_PARAM_FREE_FUNC;
+    }
+    if (@hasDecl(@This(), "PFN_FREE_ENCODED_OBJECT_FUNC")) {
+        _ = PFN_FREE_ENCODED_OBJECT_FUNC;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_CANCEL_RETRIEVAL")) {
+        _ = PFN_CRYPT_CANCEL_RETRIEVAL;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_ASYNC_RETRIEVAL_COMPLETION_FUNC")) {
+        _ = PFN_CRYPT_ASYNC_RETRIEVAL_COMPLETION_FUNC;
+    }
+    if (@hasDecl(@This(), "PFN_CANCEL_ASYNC_RETRIEVAL_FUNC")) {
+        _ = PFN_CANCEL_ASYNC_RETRIEVAL_FUNC;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_ENUM_KEYID_PROP")) {
+        _ = PFN_CRYPT_ENUM_KEYID_PROP;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK")) {
+        _ = PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_SERVER_OCSP_RESPONSE_UPDATE_CALLBACK")) {
+        _ = PFN_CERT_SERVER_OCSP_RESPONSE_UPDATE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH")) {
+        _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET")) {
+        _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE")) {
+        _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD")) {
+        _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE")) {
+        _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER")) {
+        _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_INITIALIZE")) {
+        _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_INITIALIZE;
+    }
+    if (@hasDecl(@This(), "PFN_CERT_IS_WEAK_HASH")) {
+        _ = PFN_CERT_IS_WEAK_HASH;
+    }
+    if (@hasDecl(@This(), "PFNCryptStreamOutputCallback")) {
+        _ = PFNCryptStreamOutputCallback;
+    }
+    if (@hasDecl(@This(), "PFNCryptStreamOutputCallbackEx")) {
+        _ = PFNCryptStreamOutputCallbackEx;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_XML_WRITE_CALLBACK")) {
+        _ = PFN_CRYPT_XML_WRITE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_XML_DATA_PROVIDER_READ")) {
+        _ = PFN_CRYPT_XML_DATA_PROVIDER_READ;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_XML_DATA_PROVIDER_CLOSE")) {
+        _ = PFN_CRYPT_XML_DATA_PROVIDER_CLOSE;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_XML_CREATE_TRANSFORM")) {
+        _ = PFN_CRYPT_XML_CREATE_TRANSFORM;
+    }
+    if (@hasDecl(@This(), "PFN_CRYPT_XML_ENUM_ALG_INFO")) {
+        _ = PFN_CRYPT_XML_ENUM_ALG_INFO;
+    }
+    if (@hasDecl(@This(), "CryptXmlDllGetInterface")) {
+        _ = CryptXmlDllGetInterface;
+    }
+    if (@hasDecl(@This(), "CryptXmlDllEncodeAlgorithm")) {
+        _ = CryptXmlDllEncodeAlgorithm;
+    }
+    if (@hasDecl(@This(), "CryptXmlDllCreateDigest")) {
+        _ = CryptXmlDllCreateDigest;
+    }
+    if (@hasDecl(@This(), "CryptXmlDllDigestData")) {
+        _ = CryptXmlDllDigestData;
+    }
+    if (@hasDecl(@This(), "CryptXmlDllFinalizeDigest")) {
+        _ = CryptXmlDllFinalizeDigest;
+    }
+    if (@hasDecl(@This(), "CryptXmlDllCloseDigest")) {
+        _ = CryptXmlDllCloseDigest;
+    }
+    if (@hasDecl(@This(), "CryptXmlDllSignData")) {
+        _ = CryptXmlDllSignData;
+    }
+    if (@hasDecl(@This(), "CryptXmlDllVerifySignature")) {
+        _ = CryptXmlDllVerifySignature;
+    }
+    if (@hasDecl(@This(), "CryptXmlDllGetAlgorithmInfo")) {
+        _ = CryptXmlDllGetAlgorithmInfo;
+    }
+    if (@hasDecl(@This(), "CryptXmlDllEncodeKeyValue")) {
+        _ = CryptXmlDllEncodeKeyValue;
+    }
+    if (@hasDecl(@This(), "CryptXmlDllCreateKey")) {
+        _ = CryptXmlDllCreateKey;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

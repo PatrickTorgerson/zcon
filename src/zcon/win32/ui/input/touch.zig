@@ -25,15 +25,7 @@ pub const GESTURECONFIG_ID = enum(u32) {
         TWOFINGERTAP: u1 = 0,
         PRESSANDTAP: u1 = 0,
     }) GESTURECONFIG_ID {
-        return @intToEnum(GESTURECONFIG_ID,
-              (if (o.BEGIN == 1) @enumToInt(GESTURECONFIG_ID.BEGIN) else 0)
-            | (if (o.END == 1) @enumToInt(GESTURECONFIG_ID.END) else 0)
-            | (if (o.ZOOM == 1) @enumToInt(GESTURECONFIG_ID.ZOOM) else 0)
-            | (if (o.PAN == 1) @enumToInt(GESTURECONFIG_ID.PAN) else 0)
-            | (if (o.ROTATE == 1) @enumToInt(GESTURECONFIG_ID.ROTATE) else 0)
-            | (if (o.TWOFINGERTAP == 1) @enumToInt(GESTURECONFIG_ID.TWOFINGERTAP) else 0)
-            | (if (o.PRESSANDTAP == 1) @enumToInt(GESTURECONFIG_ID.PRESSANDTAP) else 0)
-        );
+        return @intToEnum(GESTURECONFIG_ID, (if (o.BEGIN == 1) @enumToInt(GESTURECONFIG_ID.BEGIN) else 0) | (if (o.END == 1) @enumToInt(GESTURECONFIG_ID.END) else 0) | (if (o.ZOOM == 1) @enumToInt(GESTURECONFIG_ID.ZOOM) else 0) | (if (o.PAN == 1) @enumToInt(GESTURECONFIG_ID.PAN) else 0) | (if (o.ROTATE == 1) @enumToInt(GESTURECONFIG_ID.ROTATE) else 0) | (if (o.TWOFINGERTAP == 1) @enumToInt(GESTURECONFIG_ID.TWOFINGERTAP) else 0) | (if (o.PRESSANDTAP == 1) @enumToInt(GESTURECONFIG_ID.PRESSANDTAP) else 0));
     }
 };
 pub const GID_BEGIN = GESTURECONFIG_ID.BEGIN;
@@ -65,16 +57,7 @@ pub const TOUCHEVENTF_FLAGS = enum(u32) {
         PEN: u1 = 0,
         PALM: u1 = 0,
     }) TOUCHEVENTF_FLAGS {
-        return @intToEnum(TOUCHEVENTF_FLAGS,
-              (if (o.MOVE == 1) @enumToInt(TOUCHEVENTF_FLAGS.MOVE) else 0)
-            | (if (o.DOWN == 1) @enumToInt(TOUCHEVENTF_FLAGS.DOWN) else 0)
-            | (if (o.UP == 1) @enumToInt(TOUCHEVENTF_FLAGS.UP) else 0)
-            | (if (o.INRANGE == 1) @enumToInt(TOUCHEVENTF_FLAGS.INRANGE) else 0)
-            | (if (o.PRIMARY == 1) @enumToInt(TOUCHEVENTF_FLAGS.PRIMARY) else 0)
-            | (if (o.NOCOALESCE == 1) @enumToInt(TOUCHEVENTF_FLAGS.NOCOALESCE) else 0)
-            | (if (o.PEN == 1) @enumToInt(TOUCHEVENTF_FLAGS.PEN) else 0)
-            | (if (o.PALM == 1) @enumToInt(TOUCHEVENTF_FLAGS.PALM) else 0)
-        );
+        return @intToEnum(TOUCHEVENTF_FLAGS, (if (o.MOVE == 1) @enumToInt(TOUCHEVENTF_FLAGS.MOVE) else 0) | (if (o.DOWN == 1) @enumToInt(TOUCHEVENTF_FLAGS.DOWN) else 0) | (if (o.UP == 1) @enumToInt(TOUCHEVENTF_FLAGS.UP) else 0) | (if (o.INRANGE == 1) @enumToInt(TOUCHEVENTF_FLAGS.INRANGE) else 0) | (if (o.PRIMARY == 1) @enumToInt(TOUCHEVENTF_FLAGS.PRIMARY) else 0) | (if (o.NOCOALESCE == 1) @enumToInt(TOUCHEVENTF_FLAGS.NOCOALESCE) else 0) | (if (o.PEN == 1) @enumToInt(TOUCHEVENTF_FLAGS.PEN) else 0) | (if (o.PALM == 1) @enumToInt(TOUCHEVENTF_FLAGS.PALM) else 0));
     }
 };
 pub const TOUCHEVENTF_MOVE = TOUCHEVENTF_FLAGS.MOVE;
@@ -96,11 +79,7 @@ pub const TOUCHINPUTMASKF_MASK = enum(u32) {
         EXTRAINFO: u1 = 0,
         CONTACTAREA: u1 = 0,
     }) TOUCHINPUTMASKF_MASK {
-        return @intToEnum(TOUCHINPUTMASKF_MASK,
-              (if (o.TIMEFROMSYSTEM == 1) @enumToInt(TOUCHINPUTMASKF_MASK.TIMEFROMSYSTEM) else 0)
-            | (if (o.EXTRAINFO == 1) @enumToInt(TOUCHINPUTMASKF_MASK.EXTRAINFO) else 0)
-            | (if (o.CONTACTAREA == 1) @enumToInt(TOUCHINPUTMASKF_MASK.CONTACTAREA) else 0)
-        );
+        return @intToEnum(TOUCHINPUTMASKF_MASK, (if (o.TIMEFROMSYSTEM == 1) @enumToInt(TOUCHINPUTMASKF_MASK.TIMEFROMSYSTEM) else 0) | (if (o.EXTRAINFO == 1) @enumToInt(TOUCHINPUTMASKF_MASK.EXTRAINFO) else 0) | (if (o.CONTACTAREA == 1) @enumToInt(TOUCHINPUTMASKF_MASK.CONTACTAREA) else 0));
     }
 };
 pub const TOUCHINPUTMASKF_TIMEFROMSYSTEM = TOUCHINPUTMASKF_MASK.TIMEFROMSYSTEM;
@@ -114,9 +93,9 @@ pub const REGISTER_TOUCH_WINDOW_FLAGS = enum(u32) {
 pub const TWF_FINETOUCH = REGISTER_TOUCH_WINDOW_FLAGS.FINETOUCH;
 pub const TWF_WANTPALM = REGISTER_TOUCH_WINDOW_FLAGS.WANTPALM;
 
-pub const HGESTUREINFO = *opaque{};
+pub const HGESTUREINFO = *opaque {};
 
-pub const HTOUCHINPUT = *opaque{};
+pub const HTOUCHINPUT = *opaque {};
 
 const CLSID_InertiaProcessor_Value = Guid.initString("abb27087-4ce0-4e58-a0cb-e24df96814be");
 pub const CLSID_InertiaProcessor = &CLSID_InertiaProcessor_Value;
@@ -145,12 +124,12 @@ pub const IID__IManipulationEvents = &IID__IManipulationEvents_Value;
 pub const _IManipulationEvents = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ManipulationStarted: fn(
+        ManipulationStarted: fn (
             self: *const _IManipulationEvents,
             x: f32,
             y: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ManipulationDelta: fn(
+        ManipulationDelta: fn (
             self: *const _IManipulationEvents,
             x: f32,
             y: f32,
@@ -165,7 +144,7 @@ pub const _IManipulationEvents = extern struct {
             cumulativeExpansion: f32,
             cumulativeRotation: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ManipulationCompleted: fn(
+        ManipulationCompleted: fn (
             self: *const _IManipulationEvents,
             x: f32,
             y: f32,
@@ -177,21 +156,23 @@ pub const _IManipulationEvents = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn _IManipulationEvents_ManipulationStarted(self: *const T, x: f32, y: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const _IManipulationEvents.VTable, self.vtable).ManipulationStarted(@ptrCast(*const _IManipulationEvents, self), x, y);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn _IManipulationEvents_ManipulationDelta(self: *const T, x: f32, y: f32, translationDeltaX: f32, translationDeltaY: f32, scaleDelta: f32, expansionDelta: f32, rotationDelta: f32, cumulativeTranslationX: f32, cumulativeTranslationY: f32, cumulativeScale: f32, cumulativeExpansion: f32, cumulativeRotation: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const _IManipulationEvents.VTable, self.vtable).ManipulationDelta(@ptrCast(*const _IManipulationEvents, self), x, y, translationDeltaX, translationDeltaY, scaleDelta, expansionDelta, rotationDelta, cumulativeTranslationX, cumulativeTranslationY, cumulativeScale, cumulativeExpansion, cumulativeRotation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn _IManipulationEvents_ManipulationCompleted(self: *const T, x: f32, y: f32, cumulativeTranslationX: f32, cumulativeTranslationY: f32, cumulativeScale: f32, cumulativeExpansion: f32, cumulativeRotation: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const _IManipulationEvents.VTable, self.vtable).ManipulationCompleted(@ptrCast(*const _IManipulationEvents, self), x, y, cumulativeTranslationX, cumulativeTranslationY, cumulativeScale, cumulativeExpansion, cumulativeRotation);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn _IManipulationEvents_ManipulationStarted(self: *const T, x: f32, y: f32) HRESULT {
+                return @ptrCast(*const _IManipulationEvents.VTable, self.vtable).ManipulationStarted(@ptrCast(*const _IManipulationEvents, self), x, y);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn _IManipulationEvents_ManipulationDelta(self: *const T, x: f32, y: f32, translationDeltaX: f32, translationDeltaY: f32, scaleDelta: f32, expansionDelta: f32, rotationDelta: f32, cumulativeTranslationX: f32, cumulativeTranslationY: f32, cumulativeScale: f32, cumulativeExpansion: f32, cumulativeRotation: f32) HRESULT {
+                return @ptrCast(*const _IManipulationEvents.VTable, self.vtable).ManipulationDelta(@ptrCast(*const _IManipulationEvents, self), x, y, translationDeltaX, translationDeltaY, scaleDelta, expansionDelta, rotationDelta, cumulativeTranslationX, cumulativeTranslationY, cumulativeScale, cumulativeExpansion, cumulativeRotation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn _IManipulationEvents_ManipulationCompleted(self: *const T, x: f32, y: f32, cumulativeTranslationX: f32, cumulativeTranslationY: f32, cumulativeScale: f32, cumulativeExpansion: f32, cumulativeRotation: f32) HRESULT {
+                return @ptrCast(*const _IManipulationEvents.VTable, self.vtable).ManipulationCompleted(@ptrCast(*const _IManipulationEvents, self), x, y, cumulativeTranslationX, cumulativeTranslationY, cumulativeScale, cumulativeExpansion, cumulativeRotation);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -202,445 +183,447 @@ pub const IInertiaProcessor = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InitialOriginX: fn(
+        get_InitialOriginX: fn (
             self: *const IInertiaProcessor,
             x: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_InitialOriginX: fn(
+        put_InitialOriginX: fn (
             self: *const IInertiaProcessor,
             x: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InitialOriginY: fn(
+        get_InitialOriginY: fn (
             self: *const IInertiaProcessor,
             y: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_InitialOriginY: fn(
+        put_InitialOriginY: fn (
             self: *const IInertiaProcessor,
             y: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InitialVelocityX: fn(
+        get_InitialVelocityX: fn (
             self: *const IInertiaProcessor,
             x: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_InitialVelocityX: fn(
+        put_InitialVelocityX: fn (
             self: *const IInertiaProcessor,
             x: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InitialVelocityY: fn(
+        get_InitialVelocityY: fn (
             self: *const IInertiaProcessor,
             y: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_InitialVelocityY: fn(
+        put_InitialVelocityY: fn (
             self: *const IInertiaProcessor,
             y: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InitialAngularVelocity: fn(
+        get_InitialAngularVelocity: fn (
             self: *const IInertiaProcessor,
             velocity: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_InitialAngularVelocity: fn(
+        put_InitialAngularVelocity: fn (
             self: *const IInertiaProcessor,
             velocity: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InitialExpansionVelocity: fn(
+        get_InitialExpansionVelocity: fn (
             self: *const IInertiaProcessor,
             velocity: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_InitialExpansionVelocity: fn(
+        put_InitialExpansionVelocity: fn (
             self: *const IInertiaProcessor,
             velocity: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InitialRadius: fn(
+        get_InitialRadius: fn (
             self: *const IInertiaProcessor,
             radius: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_InitialRadius: fn(
+        put_InitialRadius: fn (
             self: *const IInertiaProcessor,
             radius: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BoundaryLeft: fn(
+        get_BoundaryLeft: fn (
             self: *const IInertiaProcessor,
             left: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BoundaryLeft: fn(
+        put_BoundaryLeft: fn (
             self: *const IInertiaProcessor,
             left: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BoundaryTop: fn(
+        get_BoundaryTop: fn (
             self: *const IInertiaProcessor,
             top: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BoundaryTop: fn(
+        put_BoundaryTop: fn (
             self: *const IInertiaProcessor,
             top: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BoundaryRight: fn(
+        get_BoundaryRight: fn (
             self: *const IInertiaProcessor,
             right: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BoundaryRight: fn(
+        put_BoundaryRight: fn (
             self: *const IInertiaProcessor,
             right: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BoundaryBottom: fn(
+        get_BoundaryBottom: fn (
             self: *const IInertiaProcessor,
             bottom: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BoundaryBottom: fn(
+        put_BoundaryBottom: fn (
             self: *const IInertiaProcessor,
             bottom: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ElasticMarginLeft: fn(
+        get_ElasticMarginLeft: fn (
             self: *const IInertiaProcessor,
             left: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ElasticMarginLeft: fn(
+        put_ElasticMarginLeft: fn (
             self: *const IInertiaProcessor,
             left: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ElasticMarginTop: fn(
+        get_ElasticMarginTop: fn (
             self: *const IInertiaProcessor,
             top: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ElasticMarginTop: fn(
+        put_ElasticMarginTop: fn (
             self: *const IInertiaProcessor,
             top: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ElasticMarginRight: fn(
+        get_ElasticMarginRight: fn (
             self: *const IInertiaProcessor,
             right: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ElasticMarginRight: fn(
+        put_ElasticMarginRight: fn (
             self: *const IInertiaProcessor,
             right: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ElasticMarginBottom: fn(
+        get_ElasticMarginBottom: fn (
             self: *const IInertiaProcessor,
             bottom: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ElasticMarginBottom: fn(
+        put_ElasticMarginBottom: fn (
             self: *const IInertiaProcessor,
             bottom: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DesiredDisplacement: fn(
+        get_DesiredDisplacement: fn (
             self: *const IInertiaProcessor,
             displacement: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DesiredDisplacement: fn(
+        put_DesiredDisplacement: fn (
             self: *const IInertiaProcessor,
             displacement: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DesiredRotation: fn(
+        get_DesiredRotation: fn (
             self: *const IInertiaProcessor,
             rotation: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DesiredRotation: fn(
+        put_DesiredRotation: fn (
             self: *const IInertiaProcessor,
             rotation: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DesiredExpansion: fn(
+        get_DesiredExpansion: fn (
             self: *const IInertiaProcessor,
             expansion: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DesiredExpansion: fn(
+        put_DesiredExpansion: fn (
             self: *const IInertiaProcessor,
             expansion: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DesiredDeceleration: fn(
+        get_DesiredDeceleration: fn (
             self: *const IInertiaProcessor,
             deceleration: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DesiredDeceleration: fn(
+        put_DesiredDeceleration: fn (
             self: *const IInertiaProcessor,
             deceleration: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DesiredAngularDeceleration: fn(
+        get_DesiredAngularDeceleration: fn (
             self: *const IInertiaProcessor,
             deceleration: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DesiredAngularDeceleration: fn(
+        put_DesiredAngularDeceleration: fn (
             self: *const IInertiaProcessor,
             deceleration: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DesiredExpansionDeceleration: fn(
+        get_DesiredExpansionDeceleration: fn (
             self: *const IInertiaProcessor,
             deceleration: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DesiredExpansionDeceleration: fn(
+        put_DesiredExpansionDeceleration: fn (
             self: *const IInertiaProcessor,
             deceleration: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InitialTimestamp: fn(
+        get_InitialTimestamp: fn (
             self: *const IInertiaProcessor,
             timestamp: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_InitialTimestamp: fn(
+        put_InitialTimestamp: fn (
             self: *const IInertiaProcessor,
             timestamp: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
+        Reset: fn (
             self: *const IInertiaProcessor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Process: fn(
+        Process: fn (
             self: *const IInertiaProcessor,
             completed: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessTime: fn(
+        ProcessTime: fn (
             self: *const IInertiaProcessor,
             timestamp: u32,
             completed: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Complete: fn(
+        Complete: fn (
             self: *const IInertiaProcessor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CompleteTime: fn(
+        CompleteTime: fn (
             self: *const IInertiaProcessor,
             timestamp: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_InitialOriginX(self: *const T, x: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialOriginX(@ptrCast(*const IInertiaProcessor, self), x);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_InitialOriginX(self: *const T, x: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialOriginX(@ptrCast(*const IInertiaProcessor, self), x);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_InitialOriginY(self: *const T, y: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialOriginY(@ptrCast(*const IInertiaProcessor, self), y);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_InitialOriginY(self: *const T, y: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialOriginY(@ptrCast(*const IInertiaProcessor, self), y);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_InitialVelocityX(self: *const T, x: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialVelocityX(@ptrCast(*const IInertiaProcessor, self), x);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_InitialVelocityX(self: *const T, x: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialVelocityX(@ptrCast(*const IInertiaProcessor, self), x);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_InitialVelocityY(self: *const T, y: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialVelocityY(@ptrCast(*const IInertiaProcessor, self), y);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_InitialVelocityY(self: *const T, y: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialVelocityY(@ptrCast(*const IInertiaProcessor, self), y);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_InitialAngularVelocity(self: *const T, velocity: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialAngularVelocity(@ptrCast(*const IInertiaProcessor, self), velocity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_InitialAngularVelocity(self: *const T, velocity: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialAngularVelocity(@ptrCast(*const IInertiaProcessor, self), velocity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_InitialExpansionVelocity(self: *const T, velocity: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialExpansionVelocity(@ptrCast(*const IInertiaProcessor, self), velocity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_InitialExpansionVelocity(self: *const T, velocity: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialExpansionVelocity(@ptrCast(*const IInertiaProcessor, self), velocity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_InitialRadius(self: *const T, radius: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialRadius(@ptrCast(*const IInertiaProcessor, self), radius);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_InitialRadius(self: *const T, radius: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialRadius(@ptrCast(*const IInertiaProcessor, self), radius);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_BoundaryLeft(self: *const T, left: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_BoundaryLeft(@ptrCast(*const IInertiaProcessor, self), left);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_BoundaryLeft(self: *const T, left: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_BoundaryLeft(@ptrCast(*const IInertiaProcessor, self), left);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_BoundaryTop(self: *const T, top: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_BoundaryTop(@ptrCast(*const IInertiaProcessor, self), top);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_BoundaryTop(self: *const T, top: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_BoundaryTop(@ptrCast(*const IInertiaProcessor, self), top);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_BoundaryRight(self: *const T, right: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_BoundaryRight(@ptrCast(*const IInertiaProcessor, self), right);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_BoundaryRight(self: *const T, right: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_BoundaryRight(@ptrCast(*const IInertiaProcessor, self), right);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_BoundaryBottom(self: *const T, bottom: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_BoundaryBottom(@ptrCast(*const IInertiaProcessor, self), bottom);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_BoundaryBottom(self: *const T, bottom: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_BoundaryBottom(@ptrCast(*const IInertiaProcessor, self), bottom);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_ElasticMarginLeft(self: *const T, left: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_ElasticMarginLeft(@ptrCast(*const IInertiaProcessor, self), left);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_ElasticMarginLeft(self: *const T, left: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_ElasticMarginLeft(@ptrCast(*const IInertiaProcessor, self), left);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_ElasticMarginTop(self: *const T, top: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_ElasticMarginTop(@ptrCast(*const IInertiaProcessor, self), top);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_ElasticMarginTop(self: *const T, top: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_ElasticMarginTop(@ptrCast(*const IInertiaProcessor, self), top);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_ElasticMarginRight(self: *const T, right: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_ElasticMarginRight(@ptrCast(*const IInertiaProcessor, self), right);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_ElasticMarginRight(self: *const T, right: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_ElasticMarginRight(@ptrCast(*const IInertiaProcessor, self), right);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_ElasticMarginBottom(self: *const T, bottom: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_ElasticMarginBottom(@ptrCast(*const IInertiaProcessor, self), bottom);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_ElasticMarginBottom(self: *const T, bottom: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_ElasticMarginBottom(@ptrCast(*const IInertiaProcessor, self), bottom);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_DesiredDisplacement(self: *const T, displacement: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredDisplacement(@ptrCast(*const IInertiaProcessor, self), displacement);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_DesiredDisplacement(self: *const T, displacement: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredDisplacement(@ptrCast(*const IInertiaProcessor, self), displacement);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_DesiredRotation(self: *const T, rotation: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredRotation(@ptrCast(*const IInertiaProcessor, self), rotation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_DesiredRotation(self: *const T, rotation: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredRotation(@ptrCast(*const IInertiaProcessor, self), rotation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_DesiredExpansion(self: *const T, expansion: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredExpansion(@ptrCast(*const IInertiaProcessor, self), expansion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_DesiredExpansion(self: *const T, expansion: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredExpansion(@ptrCast(*const IInertiaProcessor, self), expansion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_DesiredDeceleration(self: *const T, deceleration: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_DesiredDeceleration(self: *const T, deceleration: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_DesiredAngularDeceleration(self: *const T, deceleration: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredAngularDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_DesiredAngularDeceleration(self: *const T, deceleration: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredAngularDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_DesiredExpansionDeceleration(self: *const T, deceleration: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredExpansionDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_DesiredExpansionDeceleration(self: *const T, deceleration: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredExpansionDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_get_InitialTimestamp(self: *const T, timestamp: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialTimestamp(@ptrCast(*const IInertiaProcessor, self), timestamp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_put_InitialTimestamp(self: *const T, timestamp: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialTimestamp(@ptrCast(*const IInertiaProcessor, self), timestamp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).Reset(@ptrCast(*const IInertiaProcessor, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_Process(self: *const T, completed: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).Process(@ptrCast(*const IInertiaProcessor, self), completed);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_ProcessTime(self: *const T, timestamp: u32, completed: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).ProcessTime(@ptrCast(*const IInertiaProcessor, self), timestamp, completed);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_Complete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).Complete(@ptrCast(*const IInertiaProcessor, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInertiaProcessor_CompleteTime(self: *const T, timestamp: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).CompleteTime(@ptrCast(*const IInertiaProcessor, self), timestamp);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_InitialOriginX(self: *const T, x: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialOriginX(@ptrCast(*const IInertiaProcessor, self), x);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_InitialOriginX(self: *const T, x: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialOriginX(@ptrCast(*const IInertiaProcessor, self), x);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_InitialOriginY(self: *const T, y: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialOriginY(@ptrCast(*const IInertiaProcessor, self), y);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_InitialOriginY(self: *const T, y: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialOriginY(@ptrCast(*const IInertiaProcessor, self), y);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_InitialVelocityX(self: *const T, x: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialVelocityX(@ptrCast(*const IInertiaProcessor, self), x);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_InitialVelocityX(self: *const T, x: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialVelocityX(@ptrCast(*const IInertiaProcessor, self), x);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_InitialVelocityY(self: *const T, y: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialVelocityY(@ptrCast(*const IInertiaProcessor, self), y);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_InitialVelocityY(self: *const T, y: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialVelocityY(@ptrCast(*const IInertiaProcessor, self), y);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_InitialAngularVelocity(self: *const T, velocity: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialAngularVelocity(@ptrCast(*const IInertiaProcessor, self), velocity);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_InitialAngularVelocity(self: *const T, velocity: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialAngularVelocity(@ptrCast(*const IInertiaProcessor, self), velocity);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_InitialExpansionVelocity(self: *const T, velocity: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialExpansionVelocity(@ptrCast(*const IInertiaProcessor, self), velocity);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_InitialExpansionVelocity(self: *const T, velocity: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialExpansionVelocity(@ptrCast(*const IInertiaProcessor, self), velocity);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_InitialRadius(self: *const T, radius: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialRadius(@ptrCast(*const IInertiaProcessor, self), radius);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_InitialRadius(self: *const T, radius: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialRadius(@ptrCast(*const IInertiaProcessor, self), radius);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_BoundaryLeft(self: *const T, left: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_BoundaryLeft(@ptrCast(*const IInertiaProcessor, self), left);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_BoundaryLeft(self: *const T, left: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_BoundaryLeft(@ptrCast(*const IInertiaProcessor, self), left);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_BoundaryTop(self: *const T, top: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_BoundaryTop(@ptrCast(*const IInertiaProcessor, self), top);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_BoundaryTop(self: *const T, top: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_BoundaryTop(@ptrCast(*const IInertiaProcessor, self), top);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_BoundaryRight(self: *const T, right: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_BoundaryRight(@ptrCast(*const IInertiaProcessor, self), right);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_BoundaryRight(self: *const T, right: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_BoundaryRight(@ptrCast(*const IInertiaProcessor, self), right);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_BoundaryBottom(self: *const T, bottom: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_BoundaryBottom(@ptrCast(*const IInertiaProcessor, self), bottom);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_BoundaryBottom(self: *const T, bottom: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_BoundaryBottom(@ptrCast(*const IInertiaProcessor, self), bottom);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_ElasticMarginLeft(self: *const T, left: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_ElasticMarginLeft(@ptrCast(*const IInertiaProcessor, self), left);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_ElasticMarginLeft(self: *const T, left: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_ElasticMarginLeft(@ptrCast(*const IInertiaProcessor, self), left);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_ElasticMarginTop(self: *const T, top: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_ElasticMarginTop(@ptrCast(*const IInertiaProcessor, self), top);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_ElasticMarginTop(self: *const T, top: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_ElasticMarginTop(@ptrCast(*const IInertiaProcessor, self), top);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_ElasticMarginRight(self: *const T, right: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_ElasticMarginRight(@ptrCast(*const IInertiaProcessor, self), right);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_ElasticMarginRight(self: *const T, right: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_ElasticMarginRight(@ptrCast(*const IInertiaProcessor, self), right);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_ElasticMarginBottom(self: *const T, bottom: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_ElasticMarginBottom(@ptrCast(*const IInertiaProcessor, self), bottom);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_ElasticMarginBottom(self: *const T, bottom: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_ElasticMarginBottom(@ptrCast(*const IInertiaProcessor, self), bottom);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_DesiredDisplacement(self: *const T, displacement: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredDisplacement(@ptrCast(*const IInertiaProcessor, self), displacement);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_DesiredDisplacement(self: *const T, displacement: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredDisplacement(@ptrCast(*const IInertiaProcessor, self), displacement);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_DesiredRotation(self: *const T, rotation: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredRotation(@ptrCast(*const IInertiaProcessor, self), rotation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_DesiredRotation(self: *const T, rotation: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredRotation(@ptrCast(*const IInertiaProcessor, self), rotation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_DesiredExpansion(self: *const T, expansion: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredExpansion(@ptrCast(*const IInertiaProcessor, self), expansion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_DesiredExpansion(self: *const T, expansion: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredExpansion(@ptrCast(*const IInertiaProcessor, self), expansion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_DesiredDeceleration(self: *const T, deceleration: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_DesiredDeceleration(self: *const T, deceleration: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_DesiredAngularDeceleration(self: *const T, deceleration: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredAngularDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_DesiredAngularDeceleration(self: *const T, deceleration: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredAngularDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_DesiredExpansionDeceleration(self: *const T, deceleration: ?*f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredExpansionDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_DesiredExpansionDeceleration(self: *const T, deceleration: f32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredExpansionDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_get_InitialTimestamp(self: *const T, timestamp: ?*u32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialTimestamp(@ptrCast(*const IInertiaProcessor, self), timestamp);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_put_InitialTimestamp(self: *const T, timestamp: u32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialTimestamp(@ptrCast(*const IInertiaProcessor, self), timestamp);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).Reset(@ptrCast(*const IInertiaProcessor, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_Process(self: *const T, completed: ?*BOOL) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).Process(@ptrCast(*const IInertiaProcessor, self), completed);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_ProcessTime(self: *const T, timestamp: u32, completed: ?*BOOL) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).ProcessTime(@ptrCast(*const IInertiaProcessor, self), timestamp, completed);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_Complete(self: *const T) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).Complete(@ptrCast(*const IInertiaProcessor, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInertiaProcessor_CompleteTime(self: *const T, timestamp: u32) HRESULT {
+                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).CompleteTime(@ptrCast(*const IInertiaProcessor, self), timestamp);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -651,202 +634,204 @@ pub const IManipulationProcessor = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportedManipulations: fn(
+        get_SupportedManipulations: fn (
             self: *const IManipulationProcessor,
             manipulations: ?*MANIPULATION_PROCESSOR_MANIPULATIONS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SupportedManipulations: fn(
+        put_SupportedManipulations: fn (
             self: *const IManipulationProcessor,
             manipulations: MANIPULATION_PROCESSOR_MANIPULATIONS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PivotPointX: fn(
+        get_PivotPointX: fn (
             self: *const IManipulationProcessor,
             pivotPointX: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PivotPointX: fn(
+        put_PivotPointX: fn (
             self: *const IManipulationProcessor,
             pivotPointX: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PivotPointY: fn(
+        get_PivotPointY: fn (
             self: *const IManipulationProcessor,
             pivotPointY: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PivotPointY: fn(
+        put_PivotPointY: fn (
             self: *const IManipulationProcessor,
             pivotPointY: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PivotRadius: fn(
+        get_PivotRadius: fn (
             self: *const IManipulationProcessor,
             pivotRadius: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PivotRadius: fn(
+        put_PivotRadius: fn (
             self: *const IManipulationProcessor,
             pivotRadius: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CompleteManipulation: fn(
+        CompleteManipulation: fn (
             self: *const IManipulationProcessor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessDown: fn(
-            self: *const IManipulationProcessor,
-            manipulatorId: u32,
-            x: f32,
-            y: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessMove: fn(
+        ProcessDown: fn (
             self: *const IManipulationProcessor,
             manipulatorId: u32,
             x: f32,
             y: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessUp: fn(
+        ProcessMove: fn (
             self: *const IManipulationProcessor,
             manipulatorId: u32,
             x: f32,
             y: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessDownWithTime: fn(
+        ProcessUp: fn (
             self: *const IManipulationProcessor,
             manipulatorId: u32,
             x: f32,
             y: f32,
-            timestamp: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessMoveWithTime: fn(
+        ProcessDownWithTime: fn (
             self: *const IManipulationProcessor,
             manipulatorId: u32,
             x: f32,
             y: f32,
             timestamp: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessUpWithTime: fn(
+        ProcessMoveWithTime: fn (
             self: *const IManipulationProcessor,
             manipulatorId: u32,
             x: f32,
             y: f32,
             timestamp: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVelocityX: fn(
+        ProcessUpWithTime: fn (
+            self: *const IManipulationProcessor,
+            manipulatorId: u32,
+            x: f32,
+            y: f32,
+            timestamp: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVelocityX: fn (
             self: *const IManipulationProcessor,
             velocityX: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVelocityY: fn(
+        GetVelocityY: fn (
             self: *const IManipulationProcessor,
             velocityY: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetExpansionVelocity: fn(
+        GetExpansionVelocity: fn (
             self: *const IManipulationProcessor,
             expansionVelocity: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAngularVelocity: fn(
+        GetAngularVelocity: fn (
             self: *const IManipulationProcessor,
             angularVelocity: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MinimumScaleRotateRadius: fn(
+        get_MinimumScaleRotateRadius: fn (
             self: *const IManipulationProcessor,
             minRadius: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MinimumScaleRotateRadius: fn(
+        put_MinimumScaleRotateRadius: fn (
             self: *const IManipulationProcessor,
             minRadius: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_get_SupportedManipulations(self: *const T, manipulations: ?*MANIPULATION_PROCESSOR_MANIPULATIONS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).get_SupportedManipulations(@ptrCast(*const IManipulationProcessor, self), manipulations);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_put_SupportedManipulations(self: *const T, manipulations: MANIPULATION_PROCESSOR_MANIPULATIONS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).put_SupportedManipulations(@ptrCast(*const IManipulationProcessor, self), manipulations);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_get_PivotPointX(self: *const T, pivotPointX: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).get_PivotPointX(@ptrCast(*const IManipulationProcessor, self), pivotPointX);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_put_PivotPointX(self: *const T, pivotPointX: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).put_PivotPointX(@ptrCast(*const IManipulationProcessor, self), pivotPointX);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_get_PivotPointY(self: *const T, pivotPointY: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).get_PivotPointY(@ptrCast(*const IManipulationProcessor, self), pivotPointY);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_put_PivotPointY(self: *const T, pivotPointY: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).put_PivotPointY(@ptrCast(*const IManipulationProcessor, self), pivotPointY);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_get_PivotRadius(self: *const T, pivotRadius: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).get_PivotRadius(@ptrCast(*const IManipulationProcessor, self), pivotRadius);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_put_PivotRadius(self: *const T, pivotRadius: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).put_PivotRadius(@ptrCast(*const IManipulationProcessor, self), pivotRadius);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_CompleteManipulation(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).CompleteManipulation(@ptrCast(*const IManipulationProcessor, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_ProcessDown(self: *const T, manipulatorId: u32, x: f32, y: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).ProcessDown(@ptrCast(*const IManipulationProcessor, self), manipulatorId, x, y);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_ProcessMove(self: *const T, manipulatorId: u32, x: f32, y: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).ProcessMove(@ptrCast(*const IManipulationProcessor, self), manipulatorId, x, y);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_ProcessUp(self: *const T, manipulatorId: u32, x: f32, y: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).ProcessUp(@ptrCast(*const IManipulationProcessor, self), manipulatorId, x, y);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_ProcessDownWithTime(self: *const T, manipulatorId: u32, x: f32, y: f32, timestamp: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).ProcessDownWithTime(@ptrCast(*const IManipulationProcessor, self), manipulatorId, x, y, timestamp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_ProcessMoveWithTime(self: *const T, manipulatorId: u32, x: f32, y: f32, timestamp: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).ProcessMoveWithTime(@ptrCast(*const IManipulationProcessor, self), manipulatorId, x, y, timestamp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_ProcessUpWithTime(self: *const T, manipulatorId: u32, x: f32, y: f32, timestamp: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).ProcessUpWithTime(@ptrCast(*const IManipulationProcessor, self), manipulatorId, x, y, timestamp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_GetVelocityX(self: *const T, velocityX: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).GetVelocityX(@ptrCast(*const IManipulationProcessor, self), velocityX);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_GetVelocityY(self: *const T, velocityY: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).GetVelocityY(@ptrCast(*const IManipulationProcessor, self), velocityY);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_GetExpansionVelocity(self: *const T, expansionVelocity: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).GetExpansionVelocity(@ptrCast(*const IManipulationProcessor, self), expansionVelocity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_GetAngularVelocity(self: *const T, angularVelocity: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).GetAngularVelocity(@ptrCast(*const IManipulationProcessor, self), angularVelocity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_get_MinimumScaleRotateRadius(self: *const T, minRadius: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).get_MinimumScaleRotateRadius(@ptrCast(*const IManipulationProcessor, self), minRadius);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IManipulationProcessor_put_MinimumScaleRotateRadius(self: *const T, minRadius: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).put_MinimumScaleRotateRadius(@ptrCast(*const IManipulationProcessor, self), minRadius);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_get_SupportedManipulations(self: *const T, manipulations: ?*MANIPULATION_PROCESSOR_MANIPULATIONS) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).get_SupportedManipulations(@ptrCast(*const IManipulationProcessor, self), manipulations);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_put_SupportedManipulations(self: *const T, manipulations: MANIPULATION_PROCESSOR_MANIPULATIONS) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).put_SupportedManipulations(@ptrCast(*const IManipulationProcessor, self), manipulations);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_get_PivotPointX(self: *const T, pivotPointX: ?*f32) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).get_PivotPointX(@ptrCast(*const IManipulationProcessor, self), pivotPointX);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_put_PivotPointX(self: *const T, pivotPointX: f32) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).put_PivotPointX(@ptrCast(*const IManipulationProcessor, self), pivotPointX);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_get_PivotPointY(self: *const T, pivotPointY: ?*f32) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).get_PivotPointY(@ptrCast(*const IManipulationProcessor, self), pivotPointY);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_put_PivotPointY(self: *const T, pivotPointY: f32) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).put_PivotPointY(@ptrCast(*const IManipulationProcessor, self), pivotPointY);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_get_PivotRadius(self: *const T, pivotRadius: ?*f32) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).get_PivotRadius(@ptrCast(*const IManipulationProcessor, self), pivotRadius);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_put_PivotRadius(self: *const T, pivotRadius: f32) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).put_PivotRadius(@ptrCast(*const IManipulationProcessor, self), pivotRadius);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_CompleteManipulation(self: *const T) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).CompleteManipulation(@ptrCast(*const IManipulationProcessor, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_ProcessDown(self: *const T, manipulatorId: u32, x: f32, y: f32) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).ProcessDown(@ptrCast(*const IManipulationProcessor, self), manipulatorId, x, y);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_ProcessMove(self: *const T, manipulatorId: u32, x: f32, y: f32) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).ProcessMove(@ptrCast(*const IManipulationProcessor, self), manipulatorId, x, y);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_ProcessUp(self: *const T, manipulatorId: u32, x: f32, y: f32) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).ProcessUp(@ptrCast(*const IManipulationProcessor, self), manipulatorId, x, y);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_ProcessDownWithTime(self: *const T, manipulatorId: u32, x: f32, y: f32, timestamp: u32) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).ProcessDownWithTime(@ptrCast(*const IManipulationProcessor, self), manipulatorId, x, y, timestamp);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_ProcessMoveWithTime(self: *const T, manipulatorId: u32, x: f32, y: f32, timestamp: u32) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).ProcessMoveWithTime(@ptrCast(*const IManipulationProcessor, self), manipulatorId, x, y, timestamp);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_ProcessUpWithTime(self: *const T, manipulatorId: u32, x: f32, y: f32, timestamp: u32) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).ProcessUpWithTime(@ptrCast(*const IManipulationProcessor, self), manipulatorId, x, y, timestamp);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_GetVelocityX(self: *const T, velocityX: ?*f32) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).GetVelocityX(@ptrCast(*const IManipulationProcessor, self), velocityX);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_GetVelocityY(self: *const T, velocityY: ?*f32) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).GetVelocityY(@ptrCast(*const IManipulationProcessor, self), velocityY);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_GetExpansionVelocity(self: *const T, expansionVelocity: ?*f32) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).GetExpansionVelocity(@ptrCast(*const IManipulationProcessor, self), expansionVelocity);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_GetAngularVelocity(self: *const T, angularVelocity: ?*f32) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).GetAngularVelocity(@ptrCast(*const IManipulationProcessor, self), angularVelocity);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_get_MinimumScaleRotateRadius(self: *const T, minRadius: ?*f32) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).get_MinimumScaleRotateRadius(@ptrCast(*const IManipulationProcessor, self), minRadius);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IManipulationProcessor_put_MinimumScaleRotateRadius(self: *const T, minRadius: f32) HRESULT {
+                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).put_MinimumScaleRotateRadius(@ptrCast(*const IManipulationProcessor, self), minRadius);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -888,7 +873,6 @@ pub const GESTURECONFIG = extern struct {
     dwWant: u32,
     dwBlock: u32,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
@@ -961,19 +945,14 @@ pub extern "user32" fn GetGestureConfig(
     cbSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
@@ -987,9 +966,7 @@ const IUnknown = @import("../../system/com.zig").IUnknown;
 const POINTS = @import("../../foundation.zig").POINTS;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

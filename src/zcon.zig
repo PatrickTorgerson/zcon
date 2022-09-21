@@ -21,8 +21,7 @@ pub const in = @import("zcon/input.zig");
 pub usingnamespace in;
 
 ///
-pub const Color = enum(u8)
-{
+pub const Color = enum(u8) {
     default = 0,
     black = 30,
     red,
@@ -34,47 +33,32 @@ pub const Color = enum(u8)
     white,
     _,
 
-    pub const Brightness = enum(u8)
-    { dim = 0, bright = 1 };
-    pub const Style = enum(u8)
-    { normal = 0, underline = 1 };
+    pub const Brightness = enum(u8) { dim = 0, bright = 1 };
+    pub const Style = enum(u8) { normal = 0, underline = 1 };
 
-    pub fn foreground(color: Color, bright: Brightness, underline: Style) Color
-    {
-        if(color == .default)
+    pub fn foreground(color: Color, bright: Brightness, underline: Style) Color {
+        if (color == .default)
             return color;
 
-        return @intToEnum(Color,
-            (@enumToInt(color)
-            + @enumToInt(bright) * 60)
-            | (@enumToInt(underline) << 7)
-        );
+        return @intToEnum(Color, (@enumToInt(color) + @enumToInt(bright) * 60) | (@enumToInt(underline) << 7));
     }
 
-    pub fn background(color: Color, bright: Brightness, underline: Style) Color
-    {
-        if(color == .default)
+    pub fn background(color: Color, bright: Brightness, underline: Style) Color {
+        if (color == .default)
             return color;
 
-        return @intToEnum(Color,
-            (@enumToInt(color) + 10
-            + @enumToInt(bright) * 60)
-            | (@enumToInt(underline) << 7)
-        );
+        return @intToEnum(Color, (@enumToInt(color) + 10 + @enumToInt(bright) * 60) | (@enumToInt(underline) << 7));
     }
 
-    pub fn underlined(color: Color) Color
-    {
+    pub fn underlined(color: Color) Color {
         return @intToEnum(Color, @enumToInt(color) | 0x80);
     }
 
-    pub fn is_underline(color: Color) bool
-    {
+    pub fn is_underline(color: Color) bool {
         return (@enumToInt(color) & 0x80) != 0;
     }
 
-    pub fn get_ansi_code(color: Color) u8
-    {
+    pub fn get_ansi_code(color: Color) u8 {
         return @enumToInt(color) & 0x7F;
     }
 };
@@ -113,169 +97,144 @@ pub const bright_cyan_bg = Color.background(.cyan, .bright, .normal);
 pub const bright_white_bg = Color.background(.white, .bright, .normal);
 
 ///
-pub fn set_color(color: Color) void
-{
+pub fn set_color(color: Color) void {
     const out = std.io.getStdOut().writer();
     write_color(out, color);
 }
 
 ///
-pub fn prev_color() void
-{
+pub fn prev_color() void {
     const out = std.io.getStdOut().writer();
     write_prev_color(out);
 }
 
 ///
-pub fn set_underline(u: bool) void
-{
+pub fn set_underline(u: bool) void {
     const out = std.io.getStdOut().writer();
     write_underline(out, u);
 }
 
 ///
-pub fn set_bright(b: bool) void
-{
+pub fn set_bright(b: bool) void {
     const out = std.io.getStdOut().writer();
     write_bright(out, b);
 }
 
 ///
-fn write_color(writer: anytype, color: Color) void
-{
+fn write_color(writer: anytype, color: Color) void {
     set_color_impl(writer, color);
     color_hist_push(color);
 }
 
 ///
-fn write_prev_color(writer: anytype) void
-{
+fn write_prev_color(writer: anytype) void {
     set_color_impl(writer, color_hist_pop());
 }
 
 ///
-pub fn write_underline(writer: anytype, u: bool) void
-{
+pub fn write_underline(writer: anytype, u: bool) void {
     const prev = color_hist_peek(-2);
     write_color(writer, @intToEnum(Color, @enumToInt(prev) & (@boolToInt(u) << 7)));
 }
 
 ///
-pub fn write_bright(writer: anytype, b: bool) void
-{
+pub fn write_bright(writer: anytype, b: bool) void {
     const prev = color_hist_peek(-2);
-    if(prev.get_ansi_code() < 90)
+    if (prev.get_ansi_code() < 90)
         write_color(writer, @intToEnum(Color, @enumToInt(prev) + 60 * @boolToInt(b)))
     else
         write_color(writer, @intToEnum(Color, @enumToInt(prev) - 60 * @boolToInt(!b)));
 }
 
 ///
-fn set_color_impl(writer: anytype, color: Color) void
-{
+fn set_color_impl(writer: anytype, color: Color) void {
     const code = color.get_ansi_code();
-    const u: u8 = if(color.is_underline()) 4 else 24;
-    writer.print("\x1b[{};{}m", .{u, code}) catch return;
+    const u: u8 = if (color.is_underline()) 4 else 24;
+    writer.print("\x1b[{};{}m", .{ u, code }) catch return;
 }
 
 ///
-pub fn set_margins(top: i16, bottom: i16) void
-{
+pub fn set_margins(top: i16, bottom: i16) void {
     const size = in.get_buffer_size() catch return;
-    print("\x1b[{};{}r", .{top, size.height - bottom});
+    print("\x1b[{};{}r", .{ top, size.height - bottom });
 }
 
 ///
-pub fn set_cursor(pos: in.Position) void
-{
-    print("\x1b[{};{}H", .{pos.y, pos.x});
+pub fn set_cursor(pos: in.Position) void {
+    print("\x1b[{};{}H", .{ pos.y, pos.x });
 }
 
 ///
-pub fn set_cursor_x(x: i16) void
-{
+pub fn set_cursor_x(x: i16) void {
     print("\x1b[{}G", .{x});
 }
 
 ///
-pub fn set_cursor_y(y: i16) void
-{
+pub fn set_cursor_y(y: i16) void {
     print("\x1b[{}d", .{y});
 }
 
 ///
-pub fn cursor_right(amt: i16) void
-{
+pub fn cursor_right(amt: i16) void {
     print("\x1b[{}C", .{amt});
 }
 
 ///
-pub fn cursor_left(amt: i16) void
-{
+pub fn cursor_left(amt: i16) void {
     print("\x1b[{}D", .{amt});
 }
 
 ///
-pub fn cursor_up(amt: i16) void
-{
+pub fn cursor_up(amt: i16) void {
     print("\x1b[{}A", .{amt});
 }
 
 ///
-pub fn cursor_down(amt: i16) void
-{
+pub fn cursor_down(amt: i16) void {
     print("\x1b[{}B", .{amt});
 }
 
 ///
-pub fn show_cursor(show: bool) void
-{
-    if(show)
+pub fn show_cursor(show: bool) void {
+    if (show)
         write("\x1b[?25h")
     else
         write("\x1b[?25l");
 }
 
 ///
-pub fn alternate_buffer() void
-{
+pub fn alternate_buffer() void {
     const out = std.io.getStdOut();
     out.writeAll("\x1b[?1049h") catch return;
 }
 
 ///
-pub fn main_buffer() void
-{
+pub fn main_buffer() void {
     const out = std.io.getStdOut();
     out.writeAll("\x1b[?1049l") catch return;
 }
 
 /// clears bufffer with current bg color
-pub fn clear_buffer() void
-{
+pub fn clear_buffer() void {
     const out = std.io.getStdOut();
     out.writeAll("\x1b[2J") catch return;
 }
 
 /// clears the row the cursor is on with current bg color
-pub fn clear_line() void
-{
+pub fn clear_line() void {
     const out = std.io.getStdOut();
     out.writeAll("\x1b[1M") catch return;
 }
 
 /// windows only
-pub fn enable_input_events() !void
-{
+pub fn enable_input_events() !void {
     const stdin = std.io.getStdIn();
     var mode: win32.CONSOLE_MODE = undefined;
-    mode = @intToEnum(win32.CONSOLE_MODE,
-        @enumToInt(win32.ENABLE_MOUSE_INPUT) |
+    mode = @intToEnum(win32.CONSOLE_MODE, @enumToInt(win32.ENABLE_MOUSE_INPUT) |
         @enumToInt(win32.ENABLE_WINDOW_INPUT) |
         @enumToInt(win32.ENABLE_INSERT_MODE) |
-        @enumToInt(win32.ENABLE_EXTENDED_FLAGS)
-    );
-    if(win32.SetConsoleMode(stdin.handle, mode) == 0)
+        @enumToInt(win32.ENABLE_EXTENDED_FLAGS));
+    if (win32.SetConsoleMode(stdin.handle, mode) == 0)
         return error.could_not_enable_input_events;
 }
 
@@ -285,8 +244,7 @@ pub fn backspace() void {
 }
 
 ///
-pub fn write(str: []const u8) void
-{
+pub fn write(str: []const u8) void {
     const out = std.io.getStdOut().writer();
 
     var indent_writer = IndentWriter.init(&indent_lvl, &trailing_newline, indent_str, out);
@@ -295,8 +253,7 @@ pub fn write(str: []const u8) void
 }
 
 ///
-pub fn print(comptime fmt: []const u8, args: anytype) void
-{
+pub fn print(comptime fmt: []const u8, args: anytype) void {
     const out = std.io.getStdOut().writer();
 
     var indent_writer = IndentWriter.init(&indent_lvl, &trailing_newline, indent_str, out);
@@ -317,8 +274,7 @@ pub fn print_at(pos: in.Position, comptime fmt: []const u8, args: anytype) void 
 }
 
 /// like print but newlines line up with starting column
-pub fn draw(pos: in.Position, comptime fmt: []const u8, args: anytype) void
-{
+pub fn draw(pos: in.Position, comptime fmt: []const u8, args: anytype) void {
     const out = std.io.getStdOut().writer();
 
     set_cursor(pos);
@@ -329,11 +285,10 @@ pub fn draw(pos: in.Position, comptime fmt: []const u8, args: anytype) void
 }
 
 /// leaves cursor pos at top left corner inside box
-pub fn draw_box(size: in.Size) void
-{
+pub fn draw_box(size: in.Size) void {
     const stdout = std.io.getStdOut();
     var csbi: win32.CONSOLE_SCREEN_BUFFER_INFO = undefined;
-    if(win32.GetConsoleScreenBufferInfo(stdout.handle, &csbi) == 0)
+    if (win32.GetConsoleScreenBufferInfo(stdout.handle, &csbi) == 0)
         return;
     const column = csbi.dwCursorPosition.X + 1;
     const out = MarginWriter.init(column, stdout.writer());
@@ -342,30 +297,27 @@ pub fn draw_box(size: in.Size) void
     defer out.writeAll("\x1b(B") catch {};
 
     var y: i16 = 0;
-    while(y < size.height) : (y += 1) {
-        if(y == 0) {
+    while (y < size.height) : (y += 1) {
+        if (y == 0) {
             out.writeByte('l') catch return;
             var x: i16 = 1;
-            while(x < size.width - 1) : (x += 1)
+            while (x < size.width - 1) : (x += 1)
                 out.writeByte('q') catch return;
             out.writeByte('k') catch return;
             out.writeByte('\n') catch return;
-        }
-        else if(y == size.height - 1) {
+        } else if (y == size.height - 1) {
             out.writeByte('m') catch return;
             var x: i16 = 1;
-            while(x < size.width - 1) : (x += 1)
+            while (x < size.width - 1) : (x += 1)
                 out.writeByte('q') catch return;
             out.writeByte('j') catch return;
             out.writeByte('\n') catch return;
-        }
-        else out.print("x\x1b[{}Cx\n", .{size.width-2}) catch return;
+        } else out.print("x\x1b[{}Cx\n", .{size.width - 2}) catch return;
     }
 }
 
 ///
-pub fn draw_box_at(pos: in.Position, size: in.Size) void
-{
+pub fn draw_box_at(pos: in.Position, size: in.Size) void {
     set_cursor(pos);
     draw_box(size);
 }
@@ -375,8 +327,7 @@ var indent_str: []const u8 = "  ";
 var trailing_newline: bool = false;
 
 ///
-pub const IndentWriter = struct
-{
+pub const IndentWriter = struct {
     pub const Error = anyerror;
     pub const Writer = std.io.Writer(IndentWriter, Error, IndentWriter.write);
 
@@ -385,29 +336,27 @@ pub const IndentWriter = struct
     output: GenericWriter,
     trailing_newline: *bool,
 
-    pub fn write(this: IndentWriter, bytes: []const u8) Error!usize
-    {
-        if(this.trailing_newline.*) {
+    pub fn write(this: IndentWriter, bytes: []const u8) Error!usize {
+        if (this.trailing_newline.*) {
             this.trailing_newline.* = false;
             try this.write_indent();
         }
 
         var i: usize = 0;
-        while(i < bytes.len) : (i += 1)
-        {
+        while (i < bytes.len) : (i += 1) {
             const start = i;
 
-            while(i < bytes.len and bytes[i] != '\n')
+            while (i < bytes.len and bytes[i] != '\n')
                 i += 1;
 
             try this.output.writeAll(bytes[start..i]);
 
-            if(i >= bytes.len)
+            if (i >= bytes.len)
                 return bytes.len;
 
             try this.output.writeByte('\n');
 
-            if(i + 1 >= bytes.len) {
+            if (i + 1 >= bytes.len) {
                 this.trailing_newline.* = true;
                 return bytes.len;
             }
@@ -418,61 +367,53 @@ pub const IndentWriter = struct
         return bytes.len;
     }
 
-    pub fn init(lvl: *i32, trailing: *bool, str: []const u8, out_writer: anytype) Writer
-    {
-        return .{
-            .context = IndentWriter{
-                .lvl = lvl,
-                .str = str,
-                .output = GenericWriter.init(&out_writer),
-                .trailing_newline = trailing,
+    pub fn init(lvl: *i32, trailing: *bool, str: []const u8, out_writer: anytype) Writer {
+        return .{ .context = IndentWriter{
+            .lvl = lvl,
+            .str = str,
+            .output = GenericWriter.init(&out_writer),
+            .trailing_newline = trailing,
         } };
     }
 
-    fn write_indent(this: IndentWriter) !void
-    {
+    fn write_indent(this: IndentWriter) !void {
         var l: usize = 0;
-        while(l < this.lvl.*) : (l += 1)
+        while (l < this.lvl.*) : (l += 1)
             try this.output.writeAll(this.str);
     }
 };
 
 ///
-pub fn indent(amt: i32) void
-{
+pub fn indent(amt: i32) void {
     indent_lvl += amt;
-    if(indent_lvl < 0)
+    if (indent_lvl < 0)
         indent_lvl = 0;
 }
 
 ///
-pub fn set_indent_str(comptime str: []const u8) void
-{
+pub fn set_indent_str(comptime str: []const u8) void {
     indent_str = str;
 }
 
 ///
-pub const MarginWriter = struct
-{
+pub const MarginWriter = struct {
     pub const Error = anyerror;
     pub const Writer = std.io.Writer(MarginWriter, Error, MarginWriter.write);
 
     output: GenericWriter,
     column: i16,
 
-    pub fn write(this: MarginWriter, bytes: []const u8) Error!usize
-    {
+    pub fn write(this: MarginWriter, bytes: []const u8) Error!usize {
         var i: usize = 0;
-        while(i < bytes.len) : (i += 1)
-        {
+        while (i < bytes.len) : (i += 1) {
             const start = i;
 
-            while(i < bytes.len and bytes[i] != '\n')
+            while (i < bytes.len and bytes[i] != '\n')
                 i += 1;
 
             try this.output.writeAll(bytes[start..i]);
 
-            if(i >= bytes.len)
+            if (i >= bytes.len)
                 return bytes.len;
 
             try this.output.writeByte('\n');
@@ -483,8 +424,7 @@ pub const MarginWriter = struct
         return bytes.len;
     }
 
-    pub fn init(column: i16, out_writer: anytype) Writer
-    {
+    pub fn init(column: i16, out_writer: anytype) Writer {
         return .{
             .context = .{
                 .output = GenericWriter.init(&out_writer),
@@ -501,51 +441,46 @@ var color_hist_next: usize = 0;
 var color_hist_available: usize = 0;
 
 ///
-fn color_hist_inc() void
-{
+fn color_hist_inc() void {
     color_hist_next += 1;
-    if(color_hist_next >= color_hist.len)
+    if (color_hist_next >= color_hist.len)
         color_hist_next = 0;
-    if(color_hist_available <= color_hist_capacity)
+    if (color_hist_available <= color_hist_capacity)
         color_hist_available += 1;
 }
 
 ///
-fn color_hist_dec() void
-{
-    if(color_hist_available == 0)
+fn color_hist_dec() void {
+    if (color_hist_available == 0)
         return;
     color_hist_available -= 1;
     color_hist_next -%= 1; // wrapping subtraction
-    if(color_hist_next >= color_hist.len)
+    if (color_hist_next >= color_hist.len)
         color_hist_next = color_hist.len - 1;
 }
 
 ///
-fn color_hist_push(color: Color) void
-{
+fn color_hist_push(color: Color) void {
     color_hist[color_hist_next] = color;
     color_hist_inc();
 }
 
 ///
-fn color_hist_pop() Color
-{
+fn color_hist_pop() Color {
     color_hist_dec();
     return color_hist_peek(-1);
 }
 
 ///
-fn color_hist_peek(amt: isize) Color
-{
-    if(amt + @intCast(isize, color_hist_available) < 0)
+fn color_hist_peek(amt: isize) Color {
+    if (amt + @intCast(isize, color_hist_available) < 0)
         return .default;
 
     var i: isize = @intCast(isize, color_hist_next) + amt;
 
-    if(i < 0)
+    if (i < 0)
         i += color_hist.len;
-    if(i >= color_hist.len)
+    if (i >= color_hist.len)
         i -= color_hist.len;
 
     return color_hist[@intCast(usize, i)];
@@ -555,151 +490,132 @@ fn color_hist_peek(amt: isize) Color
 
 ///
 const zcon_macros = MacroMap.init(.{
-    .{"def",  def_macro},
-    .{"prv",  macro_prv},
+    .{ "def", def_macro },
+    .{ "prv", macro_prv },
 
-    .{"red",  red_macro},
-    .{"grn",  grn_macro},
-    .{"blu",  blu_macro},
-    .{"mag",  mag_macro},
-    .{"cyn",  cyn_macro},
-    .{"yel",  yel_macro},
-    .{"wht",  wht_macro},
-    .{"blk",  blk_macro},
+    .{ "red", red_macro },
+    .{ "grn", grn_macro },
+    .{ "blu", blu_macro },
+    .{ "mag", mag_macro },
+    .{ "cyn", cyn_macro },
+    .{ "yel", yel_macro },
+    .{ "wht", wht_macro },
+    .{ "blk", blk_macro },
 
-    .{"bred",  red_macro},
-    .{"bgrn",  grn_macro},
-    .{"bblu",  blu_macro},
-    .{"bmag",  mag_macro},
-    .{"bcyn",  cyn_macro},
-    .{"byel",  yel_macro},
+    .{ "bred", red_macro },
+    .{ "bgrn", grn_macro },
+    .{ "bblu", blu_macro },
+    .{ "bmag", mag_macro },
+    .{ "bcyn", cyn_macro },
+    .{ "byel", yel_macro },
 
-    .{"gry",  gry_macro},
-    .{"dgry", dgry_macro},
+    .{ "gry", gry_macro },
+    .{ "dgry", dgry_macro },
 
-    .{"rule", rule_macro},
-    .{"box", box_macro},
+    .{ "rule", rule_macro },
+    .{ "box", box_macro },
 });
 
-fn def_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool
-{
+fn def_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool {
     _ = param_iter;
     write_color(writer, .default);
     return true;
 }
-fn macro_prv(writer: GenericWriter, param_iter: *ParamIterator) !bool
-{
+fn macro_prv(writer: GenericWriter, param_iter: *ParamIterator) !bool {
     _ = param_iter;
     write_prev_color(writer);
     return true;
 }
-fn red_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool
-{
+fn red_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool {
     _ = param_iter;
     write_color(writer, .red);
     return true;
 }
-fn grn_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool
-{
+fn grn_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool {
     _ = param_iter;
     write_color(writer, .green);
     return true;
 }
-fn blu_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool
-{
+fn blu_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool {
     _ = param_iter;
     write_color(writer, .blue);
     return true;
 }
-fn mag_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool
-{
+fn mag_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool {
     _ = param_iter;
     write_color(writer, .magenta);
     return true;
 }
-fn cyn_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool
-{
+fn cyn_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool {
     _ = param_iter;
     write_color(writer, .cyan);
     return true;
 }
-fn yel_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool
-{
+fn yel_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool {
     _ = param_iter;
     write_color(writer, .yellow);
     return true;
 }
-fn wht_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool
-{
+fn wht_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool {
     _ = param_iter;
     write_color(writer, bright_white);
     return true;
 }
-fn blk_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool
-{
+fn blk_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool {
     _ = param_iter;
     write_color(writer, .black);
     return true;
 }
-fn gry_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool
-{
+fn gry_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool {
     _ = param_iter;
     write_color(writer, white);
     return true;
 }
-fn dgry_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool
-{
+fn dgry_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool {
     _ = param_iter;
     write_color(writer, bright_black);
     return true;
 }
-fn bred_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool
-{
+fn bred_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool {
     _ = param_iter;
     write_color(writer, bright_red);
     return true;
 }
-fn bgrn_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool
-{
+fn bgrn_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool {
     _ = param_iter;
     write_color(writer, bright_green);
     return true;
 }
-fn bblu_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool
-{
+fn bblu_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool {
     _ = param_iter;
     write_color(writer, bright_blue);
     return true;
 }
-fn bmag_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool
-{
+fn bmag_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool {
     _ = param_iter;
     write_color(writer, bright_magenta);
     return true;
 }
-fn bcyn_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool
-{
+fn bcyn_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool {
     _ = param_iter;
     write_color(writer, bright_cyan);
     return true;
 }
-fn byel_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool
-{
+fn byel_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool {
     _ = param_iter;
     write_color(writer, bright_yellow);
     return true;
 }
 
-fn rule_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool
-{
+fn rule_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool {
     const lstr = param_iter.next();
 
-    if(lstr != null) {
+    if (lstr != null) {
         var l = try std.fmt.parseInt(i16, lstr.?, 10);
 
         try writer.writeAll("\x1b(0");
 
-        while(l > 0) : (l -= 1) {
+        while (l > 0) : (l -= 1) {
             try writer.writeByte('q');
         }
 
@@ -709,17 +625,16 @@ fn rule_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool
     return true;
 }
 
-fn box_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool
-{
+fn box_macro(writer: GenericWriter, param_iter: *ParamIterator) !bool {
     // rip
     _ = writer;
     const wstr = param_iter.next();
     const hstr = param_iter.next();
 
-    if(wstr != null and hstr != null) {
+    if (wstr != null and hstr != null) {
         const w = try std.fmt.parseInt(i16, wstr.?, 10);
         const h = try std.fmt.parseInt(i16, hstr.?, 10);
-        draw_box(.{.width = w, .height = h});
+        draw_box(.{ .width = w, .height = h });
     }
 
     return true;

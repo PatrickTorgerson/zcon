@@ -12,19 +12,21 @@ pub const IWindowsDevicesAllJoynBusAttachmentInterop = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Win32Handle: fn(
+        get_Win32Handle: fn (
             self: *const IWindowsDevicesAllJoynBusAttachmentInterop,
             value: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDevicesAllJoynBusAttachmentInterop_get_Win32Handle(self: *const T, value: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWindowsDevicesAllJoynBusAttachmentInterop.VTable, self.vtable).get_Win32Handle(@ptrCast(*const IWindowsDevicesAllJoynBusAttachmentInterop, self), value);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IInspectable.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWindowsDevicesAllJoynBusAttachmentInterop_get_Win32Handle(self: *const T, value: ?*u64) HRESULT {
+                return @ptrCast(*const IWindowsDevicesAllJoynBusAttachmentInterop.VTable, self.vtable).get_Win32Handle(@ptrCast(*const IWindowsDevicesAllJoynBusAttachmentInterop, self), value);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -33,7 +35,7 @@ pub const IID_IWindowsDevicesAllJoynBusAttachmentFactoryInterop = &IID_IWindowsD
 pub const IWindowsDevicesAllJoynBusAttachmentFactoryInterop = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        CreateFromWin32Handle: fn(
+        CreateFromWin32Handle: fn (
             self: *const IWindowsDevicesAllJoynBusAttachmentFactoryInterop,
             win32handle: u64,
             enableAboutData: u8,
@@ -42,13 +44,15 @@ pub const IWindowsDevicesAllJoynBusAttachmentFactoryInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDevicesAllJoynBusAttachmentFactoryInterop_CreateFromWin32Handle(self: *const T, win32handle: u64, enableAboutData: u8, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWindowsDevicesAllJoynBusAttachmentFactoryInterop.VTable, self.vtable).CreateFromWin32Handle(@ptrCast(*const IWindowsDevicesAllJoynBusAttachmentFactoryInterop, self), win32handle, enableAboutData, riid, ppv);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IInspectable.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWindowsDevicesAllJoynBusAttachmentFactoryInterop_CreateFromWin32Handle(self: *const T, win32handle: u64, enableAboutData: u8, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IWindowsDevicesAllJoynBusAttachmentFactoryInterop.VTable, self.vtable).CreateFromWin32Handle(@ptrCast(*const IWindowsDevicesAllJoynBusAttachmentFactoryInterop, self), win32handle, enableAboutData, riid, ppv);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -57,40 +61,42 @@ pub const IID_IWindowsDevicesAllJoynBusObjectInterop = &IID_IWindowsDevicesAllJo
 pub const IWindowsDevicesAllJoynBusObjectInterop = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        AddPropertyGetHandler: fn(
+        AddPropertyGetHandler: fn (
             self: *const IWindowsDevicesAllJoynBusObjectInterop,
             context: ?*anyopaque,
             interfaceName: ?HSTRING,
             callback: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddPropertySetHandler: fn(
+        AddPropertySetHandler: fn (
             self: *const IWindowsDevicesAllJoynBusObjectInterop,
             context: ?*anyopaque,
             interfaceName: ?HSTRING,
             callback: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Win32Handle: fn(
+        get_Win32Handle: fn (
             self: *const IWindowsDevicesAllJoynBusObjectInterop,
             value: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDevicesAllJoynBusObjectInterop_AddPropertyGetHandler(self: *const T, context: ?*anyopaque, interfaceName: ?HSTRING, callback: isize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWindowsDevicesAllJoynBusObjectInterop.VTable, self.vtable).AddPropertyGetHandler(@ptrCast(*const IWindowsDevicesAllJoynBusObjectInterop, self), context, interfaceName, callback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDevicesAllJoynBusObjectInterop_AddPropertySetHandler(self: *const T, context: ?*anyopaque, interfaceName: ?HSTRING, callback: isize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWindowsDevicesAllJoynBusObjectInterop.VTable, self.vtable).AddPropertySetHandler(@ptrCast(*const IWindowsDevicesAllJoynBusObjectInterop, self), context, interfaceName, callback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDevicesAllJoynBusObjectInterop_get_Win32Handle(self: *const T, value: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWindowsDevicesAllJoynBusObjectInterop.VTable, self.vtable).get_Win32Handle(@ptrCast(*const IWindowsDevicesAllJoynBusObjectInterop, self), value);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IInspectable.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWindowsDevicesAllJoynBusObjectInterop_AddPropertyGetHandler(self: *const T, context: ?*anyopaque, interfaceName: ?HSTRING, callback: isize) HRESULT {
+                return @ptrCast(*const IWindowsDevicesAllJoynBusObjectInterop.VTable, self.vtable).AddPropertyGetHandler(@ptrCast(*const IWindowsDevicesAllJoynBusObjectInterop, self), context, interfaceName, callback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWindowsDevicesAllJoynBusObjectInterop_AddPropertySetHandler(self: *const T, context: ?*anyopaque, interfaceName: ?HSTRING, callback: isize) HRESULT {
+                return @ptrCast(*const IWindowsDevicesAllJoynBusObjectInterop.VTable, self.vtable).AddPropertySetHandler(@ptrCast(*const IWindowsDevicesAllJoynBusObjectInterop, self), context, interfaceName, callback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWindowsDevicesAllJoynBusObjectInterop_get_Win32Handle(self: *const T, value: ?*u64) HRESULT {
+                return @ptrCast(*const IWindowsDevicesAllJoynBusObjectInterop.VTable, self.vtable).get_Win32Handle(@ptrCast(*const IWindowsDevicesAllJoynBusObjectInterop, self), value);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -99,7 +105,7 @@ pub const IID_IWindowsDevicesAllJoynBusObjectFactoryInterop = &IID_IWindowsDevic
 pub const IWindowsDevicesAllJoynBusObjectFactoryInterop = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        CreateFromWin32Handle: fn(
+        CreateFromWin32Handle: fn (
             self: *const IWindowsDevicesAllJoynBusObjectFactoryInterop,
             win32handle: u64,
             riid: ?*const Guid,
@@ -107,16 +113,17 @@ pub const IWindowsDevicesAllJoynBusObjectFactoryInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsDevicesAllJoynBusObjectFactoryInterop_CreateFromWin32Handle(self: *const T, win32handle: u64, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWindowsDevicesAllJoynBusObjectFactoryInterop.VTable, self.vtable).CreateFromWin32Handle(@ptrCast(*const IWindowsDevicesAllJoynBusObjectFactoryInterop, self), win32handle, riid, ppv);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IInspectable.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWindowsDevicesAllJoynBusObjectFactoryInterop_CreateFromWin32Handle(self: *const T, win32handle: u64, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IWindowsDevicesAllJoynBusObjectFactoryInterop.VTable, self.vtable).CreateFromWin32Handle(@ptrCast(*const IWindowsDevicesAllJoynBusObjectFactoryInterop, self), win32handle, riid, ppv);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -127,13 +134,9 @@ pub const IWindowsDevicesAllJoynBusObjectFactoryInterop = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
@@ -144,9 +147,7 @@ const HSTRING = @import("../../system/win_rt.zig").HSTRING;
 const IInspectable = @import("../../system/win_rt.zig").IInspectable;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

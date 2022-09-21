@@ -26,27 +26,25 @@ const Rect = struct {
     }
 
     fn intersect(this: Rect, p: zcon.Position) bool {
-        return
-            p.x >= this.left and p.x <= this.right and
+        return p.x >= this.left and p.x <= this.right and
             p.y >= this.top and p.y <= this.bottom;
     }
 
-    fn draw(this: Rect, color: zcon.Color) void
-    {
+    fn draw(this: Rect, color: zcon.Color) void {
         zcon.set_color(color);
 
         var x = this.left;
         var y = this.top;
 
-        zcon.set_cursor(.{.x = x, .y = y});
+        zcon.set_cursor(.{ .x = x, .y = y });
 
-        while(y <= this.bottom) {
-            while(x <= this.right) : (x += 1) {
+        while (y <= this.bottom) {
+            while (x <= this.right) : (x += 1) {
                 zcon.write(" ");
             }
             x = this.left;
             y += 1;
-            zcon.set_cursor(.{.x = x, .y = y});
+            zcon.set_cursor(.{ .x = x, .y = y });
         }
 
         zcon.set_color(.default);
@@ -61,7 +59,7 @@ const Swatch = struct {
 
 ///
 const pallete: [14]Swatch = blk: {
-    var p = [14]Swatch {
+    var p = [14]Swatch{
         .{ .bounds = .{}, .color = zcon.bright_white_bg },
         .{ .bounds = .{}, .color = zcon.bright_black_bg }, // grey
 
@@ -82,7 +80,6 @@ const pallete: [14]Swatch = blk: {
 
         .{ .bounds = .{}, .color = zcon.cyan_bg },
         .{ .bounds = .{}, .color = zcon.bright_cyan_bg },
-
     };
 
     const ydistance = 3;
@@ -93,12 +90,12 @@ const pallete: [14]Swatch = blk: {
 
     // set bounds
     var i: i16 = 0;
-    for(p) |*swatch| {
+    for (p) |*swatch| {
         const col1 = i % 2 == 0;
 
-        const left = if(col1) col1_left else col1_left + 6;
-        const right = if(col1) col1_right else col1_right + 6;
-        const top = (@divTrunc(i,2)*ydistance) + top_start;
+        const left = if (col1) col1_left else col1_left + 6;
+        const right = if (col1) col1_right else col1_right + 6;
+        const top = (@divTrunc(i, 2) * ydistance) + top_start;
         const bottom = top + height - 1;
 
         swatch.bounds.left = left;
@@ -113,10 +110,9 @@ const pallete: [14]Swatch = blk: {
 };
 
 ///
-fn sample_pallete(pos: zcon.Position) bool
-{
-    for(pallete) |swatch| {
-        if(swatch.bounds.intersect(pos)) {
+fn sample_pallete(pos: zcon.Position) bool {
+    for (pallete) |swatch| {
+        if (swatch.bounds.intersect(pos)) {
             paint_color = swatch.color;
             return true;
         }
@@ -125,17 +121,15 @@ fn sample_pallete(pos: zcon.Position) bool
 }
 
 ///
-fn draw_pallete() void
-{
-    for(pallete) |swatch| {
+fn draw_pallete() void {
+    for (pallete) |swatch| {
         swatch.bounds.draw(swatch.color);
     }
 }
 
 ///
-pub fn main() !void
-{
-   try zcon.enable_input_events();
+pub fn main() !void {
+    try zcon.enable_input_events();
     zcon.alternate_buffer();
     defer zcon.main_buffer();
     zcon.show_cursor(false);
@@ -146,20 +140,19 @@ pub fn main() !void
     var left_mouse_down: bool = false;
     var right_mouse_down: bool = false;
 
-    while(true) {
-        while(zcon.poll_input()) |input| {
-            switch(input) {
-
+    while (true) {
+        while (zcon.poll_input()) |input| {
+            switch (input) {
                 .key_pressed => |key| {
                     // escape to quit
-                    if(key.equals(.escape, .{}))
+                    if (key.equals(.escape, .{}))
                         return;
                     // ctrl+c to quit
-                    if(key.equals(.c, .{.ctrl}))
+                    if (key.equals(.c, .{.ctrl}))
                         return;
 
                     // space clearscreen
-                    if(key.equals(.space, .{})) {
+                    if (key.equals(.space, .{})) {
                         zcon.clear_buffer();
                         draw_pallete();
                     }
@@ -168,30 +161,31 @@ pub fn main() !void
                 .mouse_pressed => |button| {
                     _ = sample_pallete(button.pos);
 
-                    if(button.equals(.left, .{}))
+                    if (button.equals(.left, .{}))
                         left_mouse_down = true;
-                    if(button.equals(.right, .{}))
+                    if (button.equals(.right, .{}))
                         right_mouse_down = true;
                 },
 
                 .mouse_released => |button| {
-                    if(button.equals(.left, .{}))
+                    if (button.equals(.left, .{}))
                         left_mouse_down = false;
-                    if(button.equals(.right, .{}))
+                    if (button.equals(.right, .{}))
                         right_mouse_down = false;
                 },
 
                 .mouse_move => |pos| {
-                    if(pos.x <= pallete[1].bounds.right + 1)
+                    if (pos.x <= pallete[1].bounds.right + 1)
                         continue;
 
                     var color: zcon.Color = undefined;
 
-                    if(left_mouse_down)
+                    if (left_mouse_down)
                         color = paint_color
-                    else if(right_mouse_down)
+                    else if (right_mouse_down)
                         color = .default
-                    else continue;
+                    else
+                        continue;
 
                     zcon.set_color(color);
                     zcon.write_at(pos, " ");

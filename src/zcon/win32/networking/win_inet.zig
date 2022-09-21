@@ -946,15 +946,7 @@ pub const INTERNET_CONNECTION = enum(u32) {
         CONNECTION_PROXY: u1 = 0,
         RAS_INSTALLED: u1 = 0,
     }) INTERNET_CONNECTION {
-        return @intToEnum(INTERNET_CONNECTION,
-              (if (o.CONNECTION_CONFIGURED == 1) @enumToInt(INTERNET_CONNECTION.CONNECTION_CONFIGURED) else 0)
-            | (if (o.CONNECTION_LAN_ == 1) @enumToInt(INTERNET_CONNECTION.CONNECTION_LAN_) else 0)
-            | (if (o.CONNECTION_MODEM == 1) @enumToInt(INTERNET_CONNECTION.CONNECTION_MODEM) else 0)
-            | (if (o.CONNECTION_MODEM_BUSY == 1) @enumToInt(INTERNET_CONNECTION.CONNECTION_MODEM_BUSY) else 0)
-            | (if (o.CONNECTION_OFFLINE_ == 1) @enumToInt(INTERNET_CONNECTION.CONNECTION_OFFLINE_) else 0)
-            | (if (o.CONNECTION_PROXY == 1) @enumToInt(INTERNET_CONNECTION.CONNECTION_PROXY) else 0)
-            | (if (o.RAS_INSTALLED == 1) @enumToInt(INTERNET_CONNECTION.RAS_INSTALLED) else 0)
-        );
+        return @intToEnum(INTERNET_CONNECTION, (if (o.CONNECTION_CONFIGURED == 1) @enumToInt(INTERNET_CONNECTION.CONNECTION_CONFIGURED) else 0) | (if (o.CONNECTION_LAN_ == 1) @enumToInt(INTERNET_CONNECTION.CONNECTION_LAN_) else 0) | (if (o.CONNECTION_MODEM == 1) @enumToInt(INTERNET_CONNECTION.CONNECTION_MODEM) else 0) | (if (o.CONNECTION_MODEM_BUSY == 1) @enumToInt(INTERNET_CONNECTION.CONNECTION_MODEM_BUSY) else 0) | (if (o.CONNECTION_OFFLINE_ == 1) @enumToInt(INTERNET_CONNECTION.CONNECTION_OFFLINE_) else 0) | (if (o.CONNECTION_PROXY == 1) @enumToInt(INTERNET_CONNECTION.CONNECTION_PROXY) else 0) | (if (o.RAS_INSTALLED == 1) @enumToInt(INTERNET_CONNECTION.RAS_INSTALLED) else 0));
     }
 };
 pub const INTERNET_CONNECTION_CONFIGURED = INTERNET_CONNECTION.CONNECTION_CONFIGURED;
@@ -980,13 +972,7 @@ pub const HTTP_ADDREQ_FLAG = enum(u32) {
         COALESCE_WITH_SEMICOLON: u1 = 0,
         REPLACE: u1 = 0,
     }) HTTP_ADDREQ_FLAG {
-        return @intToEnum(HTTP_ADDREQ_FLAG,
-              (if (o.ADD == 1) @enumToInt(HTTP_ADDREQ_FLAG.ADD) else 0)
-            | (if (o.ADD_IF_NEW == 1) @enumToInt(HTTP_ADDREQ_FLAG.ADD_IF_NEW) else 0)
-            | (if (o.COALESCE == 1) @enumToInt(HTTP_ADDREQ_FLAG.COALESCE) else 0)
-            | (if (o.COALESCE_WITH_SEMICOLON == 1) @enumToInt(HTTP_ADDREQ_FLAG.COALESCE_WITH_SEMICOLON) else 0)
-            | (if (o.REPLACE == 1) @enumToInt(HTTP_ADDREQ_FLAG.REPLACE) else 0)
-        );
+        return @intToEnum(HTTP_ADDREQ_FLAG, (if (o.ADD == 1) @enumToInt(HTTP_ADDREQ_FLAG.ADD) else 0) | (if (o.ADD_IF_NEW == 1) @enumToInt(HTTP_ADDREQ_FLAG.ADD_IF_NEW) else 0) | (if (o.COALESCE == 1) @enumToInt(HTTP_ADDREQ_FLAG.COALESCE) else 0) | (if (o.COALESCE_WITH_SEMICOLON == 1) @enumToInt(HTTP_ADDREQ_FLAG.COALESCE_WITH_SEMICOLON) else 0) | (if (o.REPLACE == 1) @enumToInt(HTTP_ADDREQ_FLAG.REPLACE) else 0));
     }
 };
 pub const HTTP_ADDREQ_FLAG_ADD = HTTP_ADDREQ_FLAG.ADD;
@@ -1013,10 +999,7 @@ pub const PROXY_AUTO_DETECT_TYPE = enum(u32) {
         HCP: u1 = 0,
         NS_A: u1 = 0,
     }) PROXY_AUTO_DETECT_TYPE {
-        return @intToEnum(PROXY_AUTO_DETECT_TYPE,
-              (if (o.HCP == 1) @enumToInt(PROXY_AUTO_DETECT_TYPE.HCP) else 0)
-            | (if (o.NS_A == 1) @enumToInt(PROXY_AUTO_DETECT_TYPE.NS_A) else 0)
-        );
+        return @intToEnum(PROXY_AUTO_DETECT_TYPE, (if (o.HCP == 1) @enumToInt(PROXY_AUTO_DETECT_TYPE.HCP) else 0) | (if (o.NS_A == 1) @enumToInt(PROXY_AUTO_DETECT_TYPE.NS_A) else 0));
     }
 };
 pub const PROXY_AUTO_DETECT_TYPE_DHCP = PROXY_AUTO_DETECT_TYPE.HCP;
@@ -1299,7 +1282,7 @@ pub const INTERNET_BUFFERSW = extern struct {
     dwOffsetHigh: u32,
 };
 
-pub const LPINTERNET_STATUS_CALLBACK = fn(
+pub const LPINTERNET_STATUS_CALLBACK = fn (
     hInternet: ?*anyopaque,
     dwContext: usize,
     dwInternetStatus: u32,
@@ -1473,7 +1456,7 @@ pub const GOPHER_ATTRIBUTE_TYPE = extern struct {
     },
 };
 
-pub const GOPHER_ATTRIBUTE_ENUMERATOR = fn(
+pub const GOPHER_ATTRIBUTE_ENUMERATOR = fn (
     lpAttributeInfo: ?*GOPHER_ATTRIBUTE_TYPE,
     dwError: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -1488,7 +1471,7 @@ pub const INTERNET_COOKIE2 = extern struct {
     fExpiresSet: BOOL,
 };
 
-pub const PFN_AUTH_NOTIFY = fn(
+pub const PFN_AUTH_NOTIFY = fn (
     param0: usize,
     param1: u32,
     param2: ?*anyopaque,
@@ -1592,7 +1575,7 @@ pub const AutoProxyHelperFunctions = extern struct {
     lpVtbl: ?*const AutoProxyHelperVtbl,
 };
 
-pub const pfnInternetInitializeAutoProxyDll = fn(
+pub const pfnInternetInitializeAutoProxyDll = fn (
     dwVersion: u32,
     lpszDownloadedTempFile: ?PSTR,
     lpszMime: ?PSTR,
@@ -1600,12 +1583,12 @@ pub const pfnInternetInitializeAutoProxyDll = fn(
     lpAutoProxyScriptBuffer: ?*AUTO_PROXY_SCRIPT_BUFFER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const pfnInternetDeInitializeAutoProxyDll = fn(
+pub const pfnInternetDeInitializeAutoProxyDll = fn (
     lpszMime: ?PSTR,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const pfnInternetGetProxyInfo = fn(
+pub const pfnInternetGetProxyInfo = fn (
     lpszUrl: ?[*:0]const u8,
     dwUrlLength: u32,
     lpszUrlHostName: ?PSTR,
@@ -1621,7 +1604,7 @@ pub const WPAD_CACHE_DELETE = enum(i32) {
 pub const WPAD_CACHE_DELETE_CURRENT = WPAD_CACHE_DELETE.CURRENT;
 pub const WPAD_CACHE_DELETE_ALL = WPAD_CACHE_DELETE.ALL;
 
-pub const PFN_DIAL_HANDLER = fn(
+pub const PFN_DIAL_HANDLER = fn (
     param0: ?HWND,
     param1: ?[*:0]const u8,
     param2: u32,
@@ -1633,20 +1616,22 @@ pub const IID_IDialEventSink = &IID_IDialEventSink_Value;
 pub const IDialEventSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnEvent: fn(
+        OnEvent: fn (
             self: *const IDialEventSink,
             dwEvent: u32,
             dwStatus: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEventSink_OnEvent(self: *const T, dwEvent: u32, dwStatus: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDialEventSink.VTable, self.vtable).OnEvent(@ptrCast(*const IDialEventSink, self), dwEvent, dwStatus);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDialEventSink_OnEvent(self: *const T, dwEvent: u32, dwStatus: u32) HRESULT {
+                return @ptrCast(*const IDialEventSink.VTable, self.vtable).OnEvent(@ptrCast(*const IDialEventSink, self), dwEvent, dwStatus);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1655,69 +1640,71 @@ pub const IID_IDialEngine = &IID_IDialEngine_Value;
 pub const IDialEngine = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
+        Initialize: fn (
             self: *const IDialEngine,
             pwzConnectoid: ?[*:0]const u16,
             pIDES: ?*IDialEventSink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProperty: fn(
+        GetProperty: fn (
             self: *const IDialEngine,
             pwzProperty: ?[*:0]const u16,
             pwzValue: ?PWSTR,
             dwBufSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProperty: fn(
+        SetProperty: fn (
             self: *const IDialEngine,
             pwzProperty: ?[*:0]const u16,
             pwzValue: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Dial: fn(
+        Dial: fn (
             self: *const IDialEngine,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HangUp: fn(
+        HangUp: fn (
             self: *const IDialEngine,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetConnectedState: fn(
+        GetConnectedState: fn (
             self: *const IDialEngine,
             pdwState: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetConnectHandle: fn(
+        GetConnectHandle: fn (
             self: *const IDialEngine,
             pdwHandle: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEngine_Initialize(self: *const T, pwzConnectoid: ?[*:0]const u16, pIDES: ?*IDialEventSink) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDialEngine.VTable, self.vtable).Initialize(@ptrCast(*const IDialEngine, self), pwzConnectoid, pIDES);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEngine_GetProperty(self: *const T, pwzProperty: ?[*:0]const u16, pwzValue: ?PWSTR, dwBufSize: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDialEngine.VTable, self.vtable).GetProperty(@ptrCast(*const IDialEngine, self), pwzProperty, pwzValue, dwBufSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEngine_SetProperty(self: *const T, pwzProperty: ?[*:0]const u16, pwzValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDialEngine.VTable, self.vtable).SetProperty(@ptrCast(*const IDialEngine, self), pwzProperty, pwzValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEngine_Dial(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDialEngine.VTable, self.vtable).Dial(@ptrCast(*const IDialEngine, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEngine_HangUp(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDialEngine.VTable, self.vtable).HangUp(@ptrCast(*const IDialEngine, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEngine_GetConnectedState(self: *const T, pdwState: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDialEngine.VTable, self.vtable).GetConnectedState(@ptrCast(*const IDialEngine, self), pdwState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialEngine_GetConnectHandle(self: *const T, pdwHandle: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDialEngine.VTable, self.vtable).GetConnectHandle(@ptrCast(*const IDialEngine, self), pdwHandle);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDialEngine_Initialize(self: *const T, pwzConnectoid: ?[*:0]const u16, pIDES: ?*IDialEventSink) HRESULT {
+                return @ptrCast(*const IDialEngine.VTable, self.vtable).Initialize(@ptrCast(*const IDialEngine, self), pwzConnectoid, pIDES);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDialEngine_GetProperty(self: *const T, pwzProperty: ?[*:0]const u16, pwzValue: ?PWSTR, dwBufSize: u32) HRESULT {
+                return @ptrCast(*const IDialEngine.VTable, self.vtable).GetProperty(@ptrCast(*const IDialEngine, self), pwzProperty, pwzValue, dwBufSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDialEngine_SetProperty(self: *const T, pwzProperty: ?[*:0]const u16, pwzValue: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IDialEngine.VTable, self.vtable).SetProperty(@ptrCast(*const IDialEngine, self), pwzProperty, pwzValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDialEngine_Dial(self: *const T) HRESULT {
+                return @ptrCast(*const IDialEngine.VTable, self.vtable).Dial(@ptrCast(*const IDialEngine, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDialEngine_HangUp(self: *const T) HRESULT {
+                return @ptrCast(*const IDialEngine.VTable, self.vtable).HangUp(@ptrCast(*const IDialEngine, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDialEngine_GetConnectedState(self: *const T, pdwState: ?*u32) HRESULT {
+                return @ptrCast(*const IDialEngine.VTable, self.vtable).GetConnectedState(@ptrCast(*const IDialEngine, self), pdwState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDialEngine_GetConnectHandle(self: *const T, pdwHandle: ?*usize) HRESULT {
+                return @ptrCast(*const IDialEngine.VTable, self.vtable).GetConnectHandle(@ptrCast(*const IDialEngine, self), pdwHandle);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1726,28 +1713,30 @@ pub const IID_IDialBranding = &IID_IDialBranding_Value;
 pub const IDialBranding = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
+        Initialize: fn (
             self: *const IDialBranding,
             pwzConnectoid: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBitmap: fn(
+        GetBitmap: fn (
             self: *const IDialBranding,
             dwIndex: u32,
             phBitmap: ?*?HBITMAP,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialBranding_Initialize(self: *const T, pwzConnectoid: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDialBranding.VTable, self.vtable).Initialize(@ptrCast(*const IDialBranding, self), pwzConnectoid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDialBranding_GetBitmap(self: *const T, dwIndex: u32, phBitmap: ?*?HBITMAP) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDialBranding.VTable, self.vtable).GetBitmap(@ptrCast(*const IDialBranding, self), dwIndex, phBitmap);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDialBranding_Initialize(self: *const T, pwzConnectoid: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IDialBranding.VTable, self.vtable).Initialize(@ptrCast(*const IDialBranding, self), pwzConnectoid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDialBranding_GetBitmap(self: *const T, dwIndex: u32, phBitmap: ?*?HBITMAP) HRESULT {
+                return @ptrCast(*const IDialBranding.VTable, self.vtable).GetBitmap(@ptrCast(*const IDialBranding, self), dwIndex, phBitmap);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2062,7 +2051,7 @@ pub const WININET_PROXY_INFO_LIST = extern struct {
     pProxyInfo: ?*WININET_PROXY_INFO,
 };
 
-pub const CACHE_OPERATOR = fn(
+pub const CACHE_OPERATOR = fn (
     pcei: ?*INTERNET_CACHE_ENTRY_INFOA,
     pcbcei: ?*u32,
     pOpData: ?*anyopaque,
@@ -2142,14 +2131,14 @@ pub const HTTP_POLICY_EXTENSION_VERSION = enum(i32) {
 };
 pub const POLICY_EXTENSION_VERSION1 = HTTP_POLICY_EXTENSION_VERSION.@"1";
 
-pub const HTTP_POLICY_EXTENSION_INIT = fn(
+pub const HTTP_POLICY_EXTENSION_INIT = fn (
     Version: HTTP_POLICY_EXTENSION_VERSION,
     Type: HTTP_POLICY_EXTENSION_TYPE,
     pvData: ?*anyopaque,
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const HTTP_POLICY_EXTENSION_SHUTDOWN = fn(
+pub const HTTP_POLICY_EXTENSION_SHUTDOWN = fn (
     Type: HTTP_POLICY_EXTENSION_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2168,7 +2157,7 @@ pub const IID_IProofOfPossessionCookieInfoManager = &IID_IProofOfPossessionCooki
 pub const IProofOfPossessionCookieInfoManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCookieInfoForUri: fn(
+        GetCookieInfoForUri: fn (
             self: *const IProofOfPossessionCookieInfoManager,
             uri: ?[*:0]const u16,
             cookieInfoCount: ?*u32,
@@ -2176,13 +2165,15 @@ pub const IProofOfPossessionCookieInfoManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProofOfPossessionCookieInfoManager_GetCookieInfoForUri(self: *const T, uri: ?[*:0]const u16, cookieInfoCount: ?*u32, cookieInfo: [*]?*ProofOfPossessionCookieInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProofOfPossessionCookieInfoManager.VTable, self.vtable).GetCookieInfoForUri(@ptrCast(*const IProofOfPossessionCookieInfoManager, self), uri, cookieInfoCount, cookieInfo);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProofOfPossessionCookieInfoManager_GetCookieInfoForUri(self: *const T, uri: ?[*:0]const u16, cookieInfoCount: ?*u32, cookieInfo: [*]?*ProofOfPossessionCookieInfo) HRESULT {
+                return @ptrCast(*const IProofOfPossessionCookieInfoManager.VTable, self.vtable).GetCookieInfoForUri(@ptrCast(*const IProofOfPossessionCookieInfoManager, self), uri, cookieInfoCount, cookieInfo);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2191,7 +2182,7 @@ pub const IID_IProofOfPossessionCookieInfoManager2 = &IID_IProofOfPossessionCook
 pub const IProofOfPossessionCookieInfoManager2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCookieInfoWithUriForAccount: fn(
+        GetCookieInfoWithUriForAccount: fn (
             self: *const IProofOfPossessionCookieInfoManager2,
             webAccount: ?*IInspectable,
             uri: ?[*:0]const u16,
@@ -2200,16 +2191,17 @@ pub const IProofOfPossessionCookieInfoManager2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProofOfPossessionCookieInfoManager2_GetCookieInfoWithUriForAccount(self: *const T, webAccount: ?*IInspectable, uri: ?[*:0]const u16, cookieInfoCount: ?*u32, cookieInfo: [*]?*ProofOfPossessionCookieInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProofOfPossessionCookieInfoManager2.VTable, self.vtable).GetCookieInfoWithUriForAccount(@ptrCast(*const IProofOfPossessionCookieInfoManager2, self), webAccount, uri, cookieInfoCount, cookieInfo);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProofOfPossessionCookieInfoManager2_GetCookieInfoWithUriForAccount(self: *const T, webAccount: ?*IInspectable, uri: ?[*:0]const u16, cookieInfoCount: ?*u32, cookieInfo: [*]?*ProofOfPossessionCookieInfo) HRESULT {
+                return @ptrCast(*const IProofOfPossessionCookieInfoManager2.VTable, self.vtable).GetCookieInfoWithUriForAccount(@ptrCast(*const IProofOfPossessionCookieInfoManager2, self), webAccount, uri, cookieInfoCount, cookieInfo);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (296)
@@ -3646,8 +3638,7 @@ pub extern "wininet" fn InternetGetPerSiteCookieDecisionW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "wininet" fn InternetClearAllPerSiteCookieDecisions(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "wininet" fn InternetClearAllPerSiteCookieDecisions() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wininet" fn InternetEnumPerSiteCookieDecisionA(
@@ -4035,8 +4026,7 @@ pub extern "wininet" fn IncrementUrlCacheHeaderData(
     lpdwData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "wininet" fn LoadUrlCacheContent(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "wininet" fn LoadUrlCacheContent() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "wininet" fn AppCacheLookup(
     pwszUrl: ?[*:0]const u16,
@@ -4229,8 +4219,7 @@ pub extern "wininet" fn UrlCacheSetGlobalLimit(
     ullLimit: u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "wininet" fn UrlCacheReloadSettings(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "wininet" fn UrlCacheReloadSettings() callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "wininet" fn UrlCacheContainerSetEntryMaximumAge(
     pwszPrefix: ?[*:0]const u16,
@@ -4251,8 +4240,7 @@ pub extern "wininet" fn UrlCacheFindNextEntry(
     pCacheEntryInfo: ?*URLCACHE_ENTRY_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "wininet" fn UrlCacheServer(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "wininet" fn UrlCacheServer() callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "wininet" fn ReadGuidsForConnectedNetworks(
     pcNetworks: ?*u32,
@@ -4279,8 +4267,7 @@ pub extern "wininet" fn InternetGetProxyForUrl(
     pProxyInfoList: ?*WININET_PROXY_INFO_LIST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "wininet" fn DoConnectoidsExist(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "wininet" fn DoConnectoidsExist() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "wininet" fn GetDiskInfoA(
     pszPath: ?[*:0]const u8,
@@ -4301,8 +4288,7 @@ pub extern "wininet" fn PerformOperationOverUrlCacheA(
     pOperatorData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "wininet" fn IsProfilesEnabled(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "wininet" fn IsProfilesEnabled() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "wininet" fn InternalInternetGetCookie(
     lpszUrl: ?[*:0]const u8,
@@ -4395,7 +4381,6 @@ pub extern "wininet" fn InternetConvertUrlFromWireToWideChar(
     dwCodePageExtra: u32,
     ppwszConvertedUrl: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (81)
@@ -4569,87 +4554,87 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IsDomainLegalCookieDomain = thismodule.IsDomainLegalCookieDomainW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const INTERNET_PER_CONN_OPTION = *opaque{};
-        pub const INTERNET_PER_CONN_OPTION_LIST = *opaque{};
-        pub const URL_COMPONENTS = *opaque{};
-        pub const INTERNET_BUFFERS = *opaque{};
-        pub const GOPHER_FIND_DATA = *opaque{};
-        pub const INTERNET_CACHE_ENTRY_INFO = *opaque{};
-        pub const INTERNET_CACHE_GROUP_INFO = *opaque{};
-        pub const INTERNET_CACHE_CONFIG_PATH_ENTRY = *opaque{};
-        pub const INTERNET_CACHE_CONFIG_INFO = *opaque{};
-        pub const INTERNET_CACHE_CONTAINER_INFO = *opaque{};
-        pub const InternetCrackUrl = *opaque{};
-        pub const InternetCreateUrl = *opaque{};
-        pub const InternetCanonicalizeUrl = *opaque{};
-        pub const InternetCombineUrl = *opaque{};
-        pub const InternetOpen = *opaque{};
-        pub const InternetConnect = *opaque{};
-        pub const InternetOpenUrl = *opaque{};
-        pub const InternetReadFileEx = *opaque{};
-        pub const InternetFindNextFile = *opaque{};
-        pub const InternetQueryOption = *opaque{};
-        pub const InternetSetOption = *opaque{};
-        pub const InternetSetOptionEx = *opaque{};
-        pub const InternetGetLastResponseInfo = *opaque{};
-        pub const FtpFindFirstFile = *opaque{};
-        pub const FtpGetFile = *opaque{};
-        pub const FtpPutFile = *opaque{};
-        pub const FtpDeleteFile = *opaque{};
-        pub const FtpRenameFile = *opaque{};
-        pub const FtpOpenFile = *opaque{};
-        pub const FtpCreateDirectory = *opaque{};
-        pub const FtpRemoveDirectory = *opaque{};
-        pub const FtpSetCurrentDirectory = *opaque{};
-        pub const FtpGetCurrentDirectory = *opaque{};
-        pub const FtpCommand = *opaque{};
-        pub const GopherCreateLocator = *opaque{};
-        pub const GopherGetLocatorType = *opaque{};
-        pub const GopherFindFirstFile = *opaque{};
-        pub const GopherOpenFile = *opaque{};
-        pub const GopherGetAttribute = *opaque{};
-        pub const HttpOpenRequest = *opaque{};
-        pub const HttpAddRequestHeaders = *opaque{};
-        pub const HttpSendRequest = *opaque{};
-        pub const HttpSendRequestEx = *opaque{};
-        pub const HttpEndRequest = *opaque{};
-        pub const HttpQueryInfo = *opaque{};
-        pub const InternetSetCookie = *opaque{};
-        pub const InternetGetCookie = *opaque{};
-        pub const InternetSetCookieEx = *opaque{};
-        pub const InternetGetCookieEx = *opaque{};
-        pub const InternetCheckConnection = *opaque{};
-        pub const CreateUrlCacheEntry = *opaque{};
-        pub const CommitUrlCacheEntry = *opaque{};
-        pub const RetrieveUrlCacheEntryFile = *opaque{};
-        pub const RetrieveUrlCacheEntryStream = *opaque{};
-        pub const GetUrlCacheEntryInfo = *opaque{};
-        pub const GetUrlCacheGroupAttribute = *opaque{};
-        pub const SetUrlCacheGroupAttribute = *opaque{};
-        pub const GetUrlCacheEntryInfoEx = *opaque{};
-        pub const SetUrlCacheEntryInfo = *opaque{};
-        pub const FindFirstUrlCacheEntryEx = *opaque{};
-        pub const FindNextUrlCacheEntryEx = *opaque{};
-        pub const FindFirstUrlCacheEntry = *opaque{};
-        pub const FindNextUrlCacheEntry = *opaque{};
-        pub const InternetSetPerSiteCookieDecision = *opaque{};
-        pub const InternetGetPerSiteCookieDecision = *opaque{};
-        pub const InternetEnumPerSiteCookieDecision = *opaque{};
-        pub const InternetAlgIdToString = *opaque{};
-        pub const InternetSecurityProtocolToString = *opaque{};
-        pub const InternetWriteFileEx = *opaque{};
-        pub const HttpCheckDavCompliance = *opaque{};
-        pub const IsUrlCacheEntryExpired = *opaque{};
-        pub const CreateUrlCacheContainer = *opaque{};
-        pub const DeleteUrlCacheContainer = *opaque{};
-        pub const FindFirstUrlCacheContainer = *opaque{};
-        pub const FindNextUrlCacheContainer = *opaque{};
-        pub const FreeUrlCacheSpace = *opaque{};
-        pub const GetUrlCacheConfigInfo = *opaque{};
-        pub const SetUrlCacheConfigInfo = *opaque{};
-        pub const ImportCookieFile = *opaque{};
-        pub const ExportCookieFile = *opaque{};
-        pub const IsDomainLegalCookieDomain = *opaque{};
+        pub const INTERNET_PER_CONN_OPTION = *opaque {};
+        pub const INTERNET_PER_CONN_OPTION_LIST = *opaque {};
+        pub const URL_COMPONENTS = *opaque {};
+        pub const INTERNET_BUFFERS = *opaque {};
+        pub const GOPHER_FIND_DATA = *opaque {};
+        pub const INTERNET_CACHE_ENTRY_INFO = *opaque {};
+        pub const INTERNET_CACHE_GROUP_INFO = *opaque {};
+        pub const INTERNET_CACHE_CONFIG_PATH_ENTRY = *opaque {};
+        pub const INTERNET_CACHE_CONFIG_INFO = *opaque {};
+        pub const INTERNET_CACHE_CONTAINER_INFO = *opaque {};
+        pub const InternetCrackUrl = *opaque {};
+        pub const InternetCreateUrl = *opaque {};
+        pub const InternetCanonicalizeUrl = *opaque {};
+        pub const InternetCombineUrl = *opaque {};
+        pub const InternetOpen = *opaque {};
+        pub const InternetConnect = *opaque {};
+        pub const InternetOpenUrl = *opaque {};
+        pub const InternetReadFileEx = *opaque {};
+        pub const InternetFindNextFile = *opaque {};
+        pub const InternetQueryOption = *opaque {};
+        pub const InternetSetOption = *opaque {};
+        pub const InternetSetOptionEx = *opaque {};
+        pub const InternetGetLastResponseInfo = *opaque {};
+        pub const FtpFindFirstFile = *opaque {};
+        pub const FtpGetFile = *opaque {};
+        pub const FtpPutFile = *opaque {};
+        pub const FtpDeleteFile = *opaque {};
+        pub const FtpRenameFile = *opaque {};
+        pub const FtpOpenFile = *opaque {};
+        pub const FtpCreateDirectory = *opaque {};
+        pub const FtpRemoveDirectory = *opaque {};
+        pub const FtpSetCurrentDirectory = *opaque {};
+        pub const FtpGetCurrentDirectory = *opaque {};
+        pub const FtpCommand = *opaque {};
+        pub const GopherCreateLocator = *opaque {};
+        pub const GopherGetLocatorType = *opaque {};
+        pub const GopherFindFirstFile = *opaque {};
+        pub const GopherOpenFile = *opaque {};
+        pub const GopherGetAttribute = *opaque {};
+        pub const HttpOpenRequest = *opaque {};
+        pub const HttpAddRequestHeaders = *opaque {};
+        pub const HttpSendRequest = *opaque {};
+        pub const HttpSendRequestEx = *opaque {};
+        pub const HttpEndRequest = *opaque {};
+        pub const HttpQueryInfo = *opaque {};
+        pub const InternetSetCookie = *opaque {};
+        pub const InternetGetCookie = *opaque {};
+        pub const InternetSetCookieEx = *opaque {};
+        pub const InternetGetCookieEx = *opaque {};
+        pub const InternetCheckConnection = *opaque {};
+        pub const CreateUrlCacheEntry = *opaque {};
+        pub const CommitUrlCacheEntry = *opaque {};
+        pub const RetrieveUrlCacheEntryFile = *opaque {};
+        pub const RetrieveUrlCacheEntryStream = *opaque {};
+        pub const GetUrlCacheEntryInfo = *opaque {};
+        pub const GetUrlCacheGroupAttribute = *opaque {};
+        pub const SetUrlCacheGroupAttribute = *opaque {};
+        pub const GetUrlCacheEntryInfoEx = *opaque {};
+        pub const SetUrlCacheEntryInfo = *opaque {};
+        pub const FindFirstUrlCacheEntryEx = *opaque {};
+        pub const FindNextUrlCacheEntryEx = *opaque {};
+        pub const FindFirstUrlCacheEntry = *opaque {};
+        pub const FindNextUrlCacheEntry = *opaque {};
+        pub const InternetSetPerSiteCookieDecision = *opaque {};
+        pub const InternetGetPerSiteCookieDecision = *opaque {};
+        pub const InternetEnumPerSiteCookieDecision = *opaque {};
+        pub const InternetAlgIdToString = *opaque {};
+        pub const InternetSecurityProtocolToString = *opaque {};
+        pub const InternetWriteFileEx = *opaque {};
+        pub const HttpCheckDavCompliance = *opaque {};
+        pub const IsUrlCacheEntryExpired = *opaque {};
+        pub const CreateUrlCacheContainer = *opaque {};
+        pub const DeleteUrlCacheContainer = *opaque {};
+        pub const FindFirstUrlCacheContainer = *opaque {};
+        pub const FindNextUrlCacheContainer = *opaque {};
+        pub const FreeUrlCacheSpace = *opaque {};
+        pub const GetUrlCacheConfigInfo = *opaque {};
+        pub const SetUrlCacheConfigInfo = *opaque {};
+        pub const ImportCookieFile = *opaque {};
+        pub const ExportCookieFile = *opaque {};
+        pub const IsDomainLegalCookieDomain = *opaque {};
     } else struct {
         pub const INTERNET_PER_CONN_OPTION = @compileError("'INTERNET_PER_CONN_OPTION' requires that UNICODE be set to true or false in the root module");
         pub const INTERNET_PER_CONN_OPTION_LIST = @compileError("'INTERNET_PER_CONN_OPTION_LIST' requires that UNICODE be set to true or false in the root module");
@@ -4763,20 +4748,38 @@ const WIN_HTTP_CREATE_URL_FLAGS = @import("../networking/win_http.zig").WIN_HTTP
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "LPINTERNET_STATUS_CALLBACK")) { _ = LPINTERNET_STATUS_CALLBACK; }
-    if (@hasDecl(@This(), "GOPHER_ATTRIBUTE_ENUMERATOR")) { _ = GOPHER_ATTRIBUTE_ENUMERATOR; }
-    if (@hasDecl(@This(), "PFN_AUTH_NOTIFY")) { _ = PFN_AUTH_NOTIFY; }
-    if (@hasDecl(@This(), "pfnInternetInitializeAutoProxyDll")) { _ = pfnInternetInitializeAutoProxyDll; }
-    if (@hasDecl(@This(), "pfnInternetDeInitializeAutoProxyDll")) { _ = pfnInternetDeInitializeAutoProxyDll; }
-    if (@hasDecl(@This(), "pfnInternetGetProxyInfo")) { _ = pfnInternetGetProxyInfo; }
-    if (@hasDecl(@This(), "PFN_DIAL_HANDLER")) { _ = PFN_DIAL_HANDLER; }
-    if (@hasDecl(@This(), "CACHE_OPERATOR")) { _ = CACHE_OPERATOR; }
-    if (@hasDecl(@This(), "HTTP_POLICY_EXTENSION_INIT")) { _ = HTTP_POLICY_EXTENSION_INIT; }
-    if (@hasDecl(@This(), "HTTP_POLICY_EXTENSION_SHUTDOWN")) { _ = HTTP_POLICY_EXTENSION_SHUTDOWN; }
+    if (@hasDecl(@This(), "LPINTERNET_STATUS_CALLBACK")) {
+        _ = LPINTERNET_STATUS_CALLBACK;
+    }
+    if (@hasDecl(@This(), "GOPHER_ATTRIBUTE_ENUMERATOR")) {
+        _ = GOPHER_ATTRIBUTE_ENUMERATOR;
+    }
+    if (@hasDecl(@This(), "PFN_AUTH_NOTIFY")) {
+        _ = PFN_AUTH_NOTIFY;
+    }
+    if (@hasDecl(@This(), "pfnInternetInitializeAutoProxyDll")) {
+        _ = pfnInternetInitializeAutoProxyDll;
+    }
+    if (@hasDecl(@This(), "pfnInternetDeInitializeAutoProxyDll")) {
+        _ = pfnInternetDeInitializeAutoProxyDll;
+    }
+    if (@hasDecl(@This(), "pfnInternetGetProxyInfo")) {
+        _ = pfnInternetGetProxyInfo;
+    }
+    if (@hasDecl(@This(), "PFN_DIAL_HANDLER")) {
+        _ = PFN_DIAL_HANDLER;
+    }
+    if (@hasDecl(@This(), "CACHE_OPERATOR")) {
+        _ = CACHE_OPERATOR;
+    }
+    if (@hasDecl(@This(), "HTTP_POLICY_EXTENSION_INIT")) {
+        _ = HTTP_POLICY_EXTENSION_INIT;
+    }
+    if (@hasDecl(@This(), "HTTP_POLICY_EXTENSION_SHUTDOWN")) {
+        _ = HTTP_POLICY_EXTENSION_SHUTDOWN;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

@@ -50,7 +50,7 @@ pub const D3D_COMPRESS_SHADER_KEEP_ALL_PARTS = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
-pub const pD3DCompile = fn(
+pub const pD3DCompile = fn (
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     pFileName: ?[*:0]const u8,
@@ -64,7 +64,7 @@ pub const pD3DCompile = fn(
     ppErrorMsgs: ?*?*ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const pD3DPreprocess = fn(
+pub const pD3DPreprocess = fn (
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     pFileName: ?[*:0]const u8,
@@ -74,7 +74,7 @@ pub const pD3DPreprocess = fn(
     ppErrorMsgs: ?*?*ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const pD3DDisassemble = fn(
+pub const pD3DDisassemble = fn (
     // TODO: what to do with BytesParamIndex 1?
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
@@ -139,7 +139,6 @@ pub const D3D_SHADER_DATA = extern struct {
     pBytecode: ?*const anyopaque,
     BytecodeLength: usize,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (25)
@@ -362,19 +361,14 @@ pub extern "d3dcompiler_47" fn D3DDisassemble10Effect(
     ppDisassembly: ?*?*ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (12)
@@ -394,13 +388,17 @@ const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "pD3DCompile")) { _ = pD3DCompile; }
-    if (@hasDecl(@This(), "pD3DPreprocess")) { _ = pD3DPreprocess; }
-    if (@hasDecl(@This(), "pD3DDisassemble")) { _ = pD3DDisassemble; }
+    if (@hasDecl(@This(), "pD3DCompile")) {
+        _ = pD3DCompile;
+    }
+    if (@hasDecl(@This(), "pD3DPreprocess")) {
+        _ = pD3DPreprocess;
+    }
+    if (@hasDecl(@This(), "pD3DDisassemble")) {
+        _ = pD3DDisassemble;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

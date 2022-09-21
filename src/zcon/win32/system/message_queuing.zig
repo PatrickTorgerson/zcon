@@ -906,7 +906,7 @@ pub const IID_IMSMQQuery = &IID_IMSMQQuery_Value;
 pub const IMSMQQuery = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        LookupQueue: fn(
+        LookupQueue: fn (
             self: *const IMSMQQuery,
             QueueGuid: ?*VARIANT,
             ServiceTypeGuid: ?*VARIANT,
@@ -921,13 +921,15 @@ pub const IMSMQQuery = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQuery_LookupQueue(self: *const T, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQuery.VTable, self.vtable).LookupQueue(@ptrCast(*const IMSMQQuery, self), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQuery_LookupQueue(self: *const T, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos) HRESULT {
+                return @ptrCast(*const IMSMQQuery.VTable, self.vtable).LookupQueue(@ptrCast(*const IMSMQQuery, self), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -937,275 +939,277 @@ pub const IMSMQQueueInfo = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QueueGuid: fn(
+        get_QueueGuid: fn (
             self: *const IMSMQQueueInfo,
             pbstrGuidQueue: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ServiceTypeGuid: fn(
+        get_ServiceTypeGuid: fn (
             self: *const IMSMQQueueInfo,
             pbstrGuidServiceType: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ServiceTypeGuid: fn(
+        put_ServiceTypeGuid: fn (
             self: *const IMSMQQueueInfo,
             bstrGuidServiceType: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Label: fn(
+        get_Label: fn (
             self: *const IMSMQQueueInfo,
             pbstrLabel: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Label: fn(
+        put_Label: fn (
             self: *const IMSMQQueueInfo,
             bstrLabel: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PathName: fn(
+        get_PathName: fn (
             self: *const IMSMQQueueInfo,
             pbstrPathName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PathName: fn(
+        put_PathName: fn (
             self: *const IMSMQQueueInfo,
             bstrPathName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FormatName: fn(
+        get_FormatName: fn (
             self: *const IMSMQQueueInfo,
             pbstrFormatName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FormatName: fn(
+        put_FormatName: fn (
             self: *const IMSMQQueueInfo,
             bstrFormatName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsTransactional: fn(
+        get_IsTransactional: fn (
             self: *const IMSMQQueueInfo,
             pisTransactional: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivLevel: fn(
+        get_PrivLevel: fn (
             self: *const IMSMQQueueInfo,
             plPrivLevel: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PrivLevel: fn(
+        put_PrivLevel: fn (
             self: *const IMSMQQueueInfo,
             lPrivLevel: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Journal: fn(
+        get_Journal: fn (
             self: *const IMSMQQueueInfo,
             plJournal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Journal: fn(
+        put_Journal: fn (
             self: *const IMSMQQueueInfo,
             lJournal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Quota: fn(
+        get_Quota: fn (
             self: *const IMSMQQueueInfo,
             plQuota: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Quota: fn(
+        put_Quota: fn (
             self: *const IMSMQQueueInfo,
             lQuota: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BasePriority: fn(
+        get_BasePriority: fn (
             self: *const IMSMQQueueInfo,
             plBasePriority: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BasePriority: fn(
+        put_BasePriority: fn (
             self: *const IMSMQQueueInfo,
             lBasePriority: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CreateTime: fn(
+        get_CreateTime: fn (
             self: *const IMSMQQueueInfo,
             pvarCreateTime: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ModifyTime: fn(
+        get_ModifyTime: fn (
             self: *const IMSMQQueueInfo,
             pvarModifyTime: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Authenticate: fn(
+        get_Authenticate: fn (
             self: *const IMSMQQueueInfo,
             plAuthenticate: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Authenticate: fn(
+        put_Authenticate: fn (
             self: *const IMSMQQueueInfo,
             lAuthenticate: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_JournalQuota: fn(
+        get_JournalQuota: fn (
             self: *const IMSMQQueueInfo,
             plJournalQuota: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_JournalQuota: fn(
+        put_JournalQuota: fn (
             self: *const IMSMQQueueInfo,
             lJournalQuota: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsWorldReadable: fn(
+        get_IsWorldReadable: fn (
             self: *const IMSMQQueueInfo,
             pisWorldReadable: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Create: fn(
+        Create: fn (
             self: *const IMSMQQueueInfo,
             IsTransactional: ?*VARIANT,
             IsWorldReadable: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
+        Delete: fn (
             self: *const IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Open: fn(
+        Open: fn (
             self: *const IMSMQQueueInfo,
             Access: i32,
             ShareMode: i32,
             ppq: ?*?*IMSMQQueue,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Update: fn(
+        Update: fn (
             self: *const IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_get_QueueGuid(self: *const T, pbstrGuidQueue: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_QueueGuid(@ptrCast(*const IMSMQQueueInfo, self), pbstrGuidQueue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_get_ServiceTypeGuid(self: *const T, pbstrGuidServiceType: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo, self), pbstrGuidServiceType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_put_ServiceTypeGuid(self: *const T, bstrGuidServiceType: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo, self), bstrGuidServiceType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_get_Label(self: *const T, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQQueueInfo, self), pbstrLabel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_put_Label(self: *const T, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQQueueInfo, self), bstrLabel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_get_PathName(self: *const T, pbstrPathName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_PathName(@ptrCast(*const IMSMQQueueInfo, self), pbstrPathName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_put_PathName(self: *const T, bstrPathName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_PathName(@ptrCast(*const IMSMQQueueInfo, self), bstrPathName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_get_FormatName(self: *const T, pbstrFormatName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_FormatName(@ptrCast(*const IMSMQQueueInfo, self), pbstrFormatName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_put_FormatName(self: *const T, bstrFormatName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_FormatName(@ptrCast(*const IMSMQQueueInfo, self), bstrFormatName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_get_IsTransactional(self: *const T, pisTransactional: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_IsTransactional(@ptrCast(*const IMSMQQueueInfo, self), pisTransactional);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQQueueInfo, self), plPrivLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_put_PrivLevel(self: *const T, lPrivLevel: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQQueueInfo, self), lPrivLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_get_Journal(self: *const T, plJournal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQQueueInfo, self), plJournal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_put_Journal(self: *const T, lJournal: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQQueueInfo, self), lJournal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_get_Quota(self: *const T, plQuota: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_Quota(@ptrCast(*const IMSMQQueueInfo, self), plQuota);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_put_Quota(self: *const T, lQuota: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_Quota(@ptrCast(*const IMSMQQueueInfo, self), lQuota);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_get_BasePriority(self: *const T, plBasePriority: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_BasePriority(@ptrCast(*const IMSMQQueueInfo, self), plBasePriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_put_BasePriority(self: *const T, lBasePriority: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_BasePriority(@ptrCast(*const IMSMQQueueInfo, self), lBasePriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_get_CreateTime(self: *const T, pvarCreateTime: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_CreateTime(@ptrCast(*const IMSMQQueueInfo, self), pvarCreateTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_get_ModifyTime(self: *const T, pvarModifyTime: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_ModifyTime(@ptrCast(*const IMSMQQueueInfo, self), pvarModifyTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_get_Authenticate(self: *const T, plAuthenticate: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_Authenticate(@ptrCast(*const IMSMQQueueInfo, self), plAuthenticate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_put_Authenticate(self: *const T, lAuthenticate: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_Authenticate(@ptrCast(*const IMSMQQueueInfo, self), lAuthenticate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_get_JournalQuota(self: *const T, plJournalQuota: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_JournalQuota(@ptrCast(*const IMSMQQueueInfo, self), plJournalQuota);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_put_JournalQuota(self: *const T, lJournalQuota: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_JournalQuota(@ptrCast(*const IMSMQQueueInfo, self), lJournalQuota);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_get_IsWorldReadable(self: *const T, pisWorldReadable: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_IsWorldReadable(@ptrCast(*const IMSMQQueueInfo, self), pisWorldReadable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_Create(self: *const T, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).Create(@ptrCast(*const IMSMQQueueInfo, self), IsTransactional, IsWorldReadable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_Delete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).Delete(@ptrCast(*const IMSMQQueueInfo, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_Open(self: *const T, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).Open(@ptrCast(*const IMSMQQueueInfo, self), Access, ShareMode, ppq);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).Refresh(@ptrCast(*const IMSMQQueueInfo, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo_Update(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).Update(@ptrCast(*const IMSMQQueueInfo, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_get_QueueGuid(self: *const T, pbstrGuidQueue: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_QueueGuid(@ptrCast(*const IMSMQQueueInfo, self), pbstrGuidQueue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_get_ServiceTypeGuid(self: *const T, pbstrGuidServiceType: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo, self), pbstrGuidServiceType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_put_ServiceTypeGuid(self: *const T, bstrGuidServiceType: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo, self), bstrGuidServiceType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_get_Label(self: *const T, pbstrLabel: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQQueueInfo, self), pbstrLabel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_put_Label(self: *const T, bstrLabel: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQQueueInfo, self), bstrLabel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_get_PathName(self: *const T, pbstrPathName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_PathName(@ptrCast(*const IMSMQQueueInfo, self), pbstrPathName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_put_PathName(self: *const T, bstrPathName: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_PathName(@ptrCast(*const IMSMQQueueInfo, self), bstrPathName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_get_FormatName(self: *const T, pbstrFormatName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_FormatName(@ptrCast(*const IMSMQQueueInfo, self), pbstrFormatName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_put_FormatName(self: *const T, bstrFormatName: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_FormatName(@ptrCast(*const IMSMQQueueInfo, self), bstrFormatName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_get_IsTransactional(self: *const T, pisTransactional: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_IsTransactional(@ptrCast(*const IMSMQQueueInfo, self), pisTransactional);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQQueueInfo, self), plPrivLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_put_PrivLevel(self: *const T, lPrivLevel: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQQueueInfo, self), lPrivLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_get_Journal(self: *const T, plJournal: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQQueueInfo, self), plJournal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_put_Journal(self: *const T, lJournal: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQQueueInfo, self), lJournal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_get_Quota(self: *const T, plQuota: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_Quota(@ptrCast(*const IMSMQQueueInfo, self), plQuota);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_put_Quota(self: *const T, lQuota: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_Quota(@ptrCast(*const IMSMQQueueInfo, self), lQuota);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_get_BasePriority(self: *const T, plBasePriority: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_BasePriority(@ptrCast(*const IMSMQQueueInfo, self), plBasePriority);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_put_BasePriority(self: *const T, lBasePriority: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_BasePriority(@ptrCast(*const IMSMQQueueInfo, self), lBasePriority);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_get_CreateTime(self: *const T, pvarCreateTime: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_CreateTime(@ptrCast(*const IMSMQQueueInfo, self), pvarCreateTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_get_ModifyTime(self: *const T, pvarModifyTime: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_ModifyTime(@ptrCast(*const IMSMQQueueInfo, self), pvarModifyTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_get_Authenticate(self: *const T, plAuthenticate: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_Authenticate(@ptrCast(*const IMSMQQueueInfo, self), plAuthenticate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_put_Authenticate(self: *const T, lAuthenticate: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_Authenticate(@ptrCast(*const IMSMQQueueInfo, self), lAuthenticate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_get_JournalQuota(self: *const T, plJournalQuota: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_JournalQuota(@ptrCast(*const IMSMQQueueInfo, self), plJournalQuota);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_put_JournalQuota(self: *const T, lJournalQuota: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_JournalQuota(@ptrCast(*const IMSMQQueueInfo, self), lJournalQuota);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_get_IsWorldReadable(self: *const T, pisWorldReadable: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_IsWorldReadable(@ptrCast(*const IMSMQQueueInfo, self), pisWorldReadable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_Create(self: *const T, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).Create(@ptrCast(*const IMSMQQueueInfo, self), IsTransactional, IsWorldReadable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_Delete(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).Delete(@ptrCast(*const IMSMQQueueInfo, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_Open(self: *const T, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).Open(@ptrCast(*const IMSMQQueueInfo, self), Access, ShareMode, ppq);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).Refresh(@ptrCast(*const IMSMQQueueInfo, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo_Update(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).Update(@ptrCast(*const IMSMQQueueInfo, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1215,311 +1219,313 @@ pub const IMSMQQueueInfo2 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QueueGuid: fn(
+        get_QueueGuid: fn (
             self: *const IMSMQQueueInfo2,
             pbstrGuidQueue: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ServiceTypeGuid: fn(
+        get_ServiceTypeGuid: fn (
             self: *const IMSMQQueueInfo2,
             pbstrGuidServiceType: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ServiceTypeGuid: fn(
+        put_ServiceTypeGuid: fn (
             self: *const IMSMQQueueInfo2,
             bstrGuidServiceType: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Label: fn(
+        get_Label: fn (
             self: *const IMSMQQueueInfo2,
             pbstrLabel: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Label: fn(
+        put_Label: fn (
             self: *const IMSMQQueueInfo2,
             bstrLabel: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PathName: fn(
+        get_PathName: fn (
             self: *const IMSMQQueueInfo2,
             pbstrPathName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PathName: fn(
+        put_PathName: fn (
             self: *const IMSMQQueueInfo2,
             bstrPathName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FormatName: fn(
+        get_FormatName: fn (
             self: *const IMSMQQueueInfo2,
             pbstrFormatName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FormatName: fn(
+        put_FormatName: fn (
             self: *const IMSMQQueueInfo2,
             bstrFormatName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsTransactional: fn(
+        get_IsTransactional: fn (
             self: *const IMSMQQueueInfo2,
             pisTransactional: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivLevel: fn(
+        get_PrivLevel: fn (
             self: *const IMSMQQueueInfo2,
             plPrivLevel: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PrivLevel: fn(
+        put_PrivLevel: fn (
             self: *const IMSMQQueueInfo2,
             lPrivLevel: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Journal: fn(
+        get_Journal: fn (
             self: *const IMSMQQueueInfo2,
             plJournal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Journal: fn(
+        put_Journal: fn (
             self: *const IMSMQQueueInfo2,
             lJournal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Quota: fn(
+        get_Quota: fn (
             self: *const IMSMQQueueInfo2,
             plQuota: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Quota: fn(
+        put_Quota: fn (
             self: *const IMSMQQueueInfo2,
             lQuota: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BasePriority: fn(
+        get_BasePriority: fn (
             self: *const IMSMQQueueInfo2,
             plBasePriority: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BasePriority: fn(
+        put_BasePriority: fn (
             self: *const IMSMQQueueInfo2,
             lBasePriority: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CreateTime: fn(
+        get_CreateTime: fn (
             self: *const IMSMQQueueInfo2,
             pvarCreateTime: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ModifyTime: fn(
+        get_ModifyTime: fn (
             self: *const IMSMQQueueInfo2,
             pvarModifyTime: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Authenticate: fn(
+        get_Authenticate: fn (
             self: *const IMSMQQueueInfo2,
             plAuthenticate: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Authenticate: fn(
+        put_Authenticate: fn (
             self: *const IMSMQQueueInfo2,
             lAuthenticate: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_JournalQuota: fn(
+        get_JournalQuota: fn (
             self: *const IMSMQQueueInfo2,
             plJournalQuota: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_JournalQuota: fn(
+        put_JournalQuota: fn (
             self: *const IMSMQQueueInfo2,
             lJournalQuota: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsWorldReadable: fn(
+        get_IsWorldReadable: fn (
             self: *const IMSMQQueueInfo2,
             pisWorldReadable: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Create: fn(
+        Create: fn (
             self: *const IMSMQQueueInfo2,
             IsTransactional: ?*VARIANT,
             IsWorldReadable: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
+        Delete: fn (
             self: *const IMSMQQueueInfo2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Open: fn(
+        Open: fn (
             self: *const IMSMQQueueInfo2,
             Access: i32,
             ShareMode: i32,
             ppq: ?*?*IMSMQQueue2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const IMSMQQueueInfo2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Update: fn(
+        Update: fn (
             self: *const IMSMQQueueInfo2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PathNameDNS: fn(
+        get_PathNameDNS: fn (
             self: *const IMSMQQueueInfo2,
             pbstrPathNameDNS: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQQueueInfo2,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Security: fn(
+        get_Security: fn (
             self: *const IMSMQQueueInfo2,
             pvarSecurity: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Security: fn(
+        put_Security: fn (
             self: *const IMSMQQueueInfo2,
             varSecurity: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_get_QueueGuid(self: *const T, pbstrGuidQueue: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_QueueGuid(@ptrCast(*const IMSMQQueueInfo2, self), pbstrGuidQueue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_get_ServiceTypeGuid(self: *const T, pbstrGuidServiceType: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo2, self), pbstrGuidServiceType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_put_ServiceTypeGuid(self: *const T, bstrGuidServiceType: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo2, self), bstrGuidServiceType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_get_Label(self: *const T, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQQueueInfo2, self), pbstrLabel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_put_Label(self: *const T, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQQueueInfo2, self), bstrLabel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_get_PathName(self: *const T, pbstrPathName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_PathName(@ptrCast(*const IMSMQQueueInfo2, self), pbstrPathName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_put_PathName(self: *const T, bstrPathName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_PathName(@ptrCast(*const IMSMQQueueInfo2, self), bstrPathName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_get_FormatName(self: *const T, pbstrFormatName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_FormatName(@ptrCast(*const IMSMQQueueInfo2, self), pbstrFormatName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_put_FormatName(self: *const T, bstrFormatName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_FormatName(@ptrCast(*const IMSMQQueueInfo2, self), bstrFormatName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_get_IsTransactional(self: *const T, pisTransactional: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_IsTransactional(@ptrCast(*const IMSMQQueueInfo2, self), pisTransactional);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQQueueInfo2, self), plPrivLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_put_PrivLevel(self: *const T, lPrivLevel: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQQueueInfo2, self), lPrivLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_get_Journal(self: *const T, plJournal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQQueueInfo2, self), plJournal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_put_Journal(self: *const T, lJournal: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQQueueInfo2, self), lJournal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_get_Quota(self: *const T, plQuota: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_Quota(@ptrCast(*const IMSMQQueueInfo2, self), plQuota);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_put_Quota(self: *const T, lQuota: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_Quota(@ptrCast(*const IMSMQQueueInfo2, self), lQuota);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_get_BasePriority(self: *const T, plBasePriority: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_BasePriority(@ptrCast(*const IMSMQQueueInfo2, self), plBasePriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_put_BasePriority(self: *const T, lBasePriority: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_BasePriority(@ptrCast(*const IMSMQQueueInfo2, self), lBasePriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_get_CreateTime(self: *const T, pvarCreateTime: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_CreateTime(@ptrCast(*const IMSMQQueueInfo2, self), pvarCreateTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_get_ModifyTime(self: *const T, pvarModifyTime: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_ModifyTime(@ptrCast(*const IMSMQQueueInfo2, self), pvarModifyTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_get_Authenticate(self: *const T, plAuthenticate: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_Authenticate(@ptrCast(*const IMSMQQueueInfo2, self), plAuthenticate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_put_Authenticate(self: *const T, lAuthenticate: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_Authenticate(@ptrCast(*const IMSMQQueueInfo2, self), lAuthenticate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_get_JournalQuota(self: *const T, plJournalQuota: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_JournalQuota(@ptrCast(*const IMSMQQueueInfo2, self), plJournalQuota);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_put_JournalQuota(self: *const T, lJournalQuota: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_JournalQuota(@ptrCast(*const IMSMQQueueInfo2, self), lJournalQuota);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_get_IsWorldReadable(self: *const T, pisWorldReadable: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_IsWorldReadable(@ptrCast(*const IMSMQQueueInfo2, self), pisWorldReadable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_Create(self: *const T, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).Create(@ptrCast(*const IMSMQQueueInfo2, self), IsTransactional, IsWorldReadable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_Delete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).Delete(@ptrCast(*const IMSMQQueueInfo2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_Open(self: *const T, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).Open(@ptrCast(*const IMSMQQueueInfo2, self), Access, ShareMode, ppq);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).Refresh(@ptrCast(*const IMSMQQueueInfo2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_Update(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).Update(@ptrCast(*const IMSMQQueueInfo2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_get_PathNameDNS(self: *const T, pbstrPathNameDNS: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_PathNameDNS(@ptrCast(*const IMSMQQueueInfo2, self), pbstrPathNameDNS);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueueInfo2, self), ppcolProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_get_Security(self: *const T, pvarSecurity: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_Security(@ptrCast(*const IMSMQQueueInfo2, self), pvarSecurity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo2_put_Security(self: *const T, varSecurity: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_Security(@ptrCast(*const IMSMQQueueInfo2, self), varSecurity);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_get_QueueGuid(self: *const T, pbstrGuidQueue: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_QueueGuid(@ptrCast(*const IMSMQQueueInfo2, self), pbstrGuidQueue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_get_ServiceTypeGuid(self: *const T, pbstrGuidServiceType: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo2, self), pbstrGuidServiceType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_put_ServiceTypeGuid(self: *const T, bstrGuidServiceType: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo2, self), bstrGuidServiceType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_get_Label(self: *const T, pbstrLabel: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQQueueInfo2, self), pbstrLabel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_put_Label(self: *const T, bstrLabel: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQQueueInfo2, self), bstrLabel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_get_PathName(self: *const T, pbstrPathName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_PathName(@ptrCast(*const IMSMQQueueInfo2, self), pbstrPathName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_put_PathName(self: *const T, bstrPathName: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_PathName(@ptrCast(*const IMSMQQueueInfo2, self), bstrPathName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_get_FormatName(self: *const T, pbstrFormatName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_FormatName(@ptrCast(*const IMSMQQueueInfo2, self), pbstrFormatName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_put_FormatName(self: *const T, bstrFormatName: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_FormatName(@ptrCast(*const IMSMQQueueInfo2, self), bstrFormatName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_get_IsTransactional(self: *const T, pisTransactional: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_IsTransactional(@ptrCast(*const IMSMQQueueInfo2, self), pisTransactional);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQQueueInfo2, self), plPrivLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_put_PrivLevel(self: *const T, lPrivLevel: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQQueueInfo2, self), lPrivLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_get_Journal(self: *const T, plJournal: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQQueueInfo2, self), plJournal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_put_Journal(self: *const T, lJournal: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQQueueInfo2, self), lJournal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_get_Quota(self: *const T, plQuota: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_Quota(@ptrCast(*const IMSMQQueueInfo2, self), plQuota);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_put_Quota(self: *const T, lQuota: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_Quota(@ptrCast(*const IMSMQQueueInfo2, self), lQuota);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_get_BasePriority(self: *const T, plBasePriority: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_BasePriority(@ptrCast(*const IMSMQQueueInfo2, self), plBasePriority);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_put_BasePriority(self: *const T, lBasePriority: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_BasePriority(@ptrCast(*const IMSMQQueueInfo2, self), lBasePriority);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_get_CreateTime(self: *const T, pvarCreateTime: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_CreateTime(@ptrCast(*const IMSMQQueueInfo2, self), pvarCreateTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_get_ModifyTime(self: *const T, pvarModifyTime: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_ModifyTime(@ptrCast(*const IMSMQQueueInfo2, self), pvarModifyTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_get_Authenticate(self: *const T, plAuthenticate: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_Authenticate(@ptrCast(*const IMSMQQueueInfo2, self), plAuthenticate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_put_Authenticate(self: *const T, lAuthenticate: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_Authenticate(@ptrCast(*const IMSMQQueueInfo2, self), lAuthenticate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_get_JournalQuota(self: *const T, plJournalQuota: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_JournalQuota(@ptrCast(*const IMSMQQueueInfo2, self), plJournalQuota);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_put_JournalQuota(self: *const T, lJournalQuota: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_JournalQuota(@ptrCast(*const IMSMQQueueInfo2, self), lJournalQuota);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_get_IsWorldReadable(self: *const T, pisWorldReadable: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_IsWorldReadable(@ptrCast(*const IMSMQQueueInfo2, self), pisWorldReadable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_Create(self: *const T, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).Create(@ptrCast(*const IMSMQQueueInfo2, self), IsTransactional, IsWorldReadable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_Delete(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).Delete(@ptrCast(*const IMSMQQueueInfo2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_Open(self: *const T, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue2) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).Open(@ptrCast(*const IMSMQQueueInfo2, self), Access, ShareMode, ppq);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).Refresh(@ptrCast(*const IMSMQQueueInfo2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_Update(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).Update(@ptrCast(*const IMSMQQueueInfo2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_get_PathNameDNS(self: *const T, pbstrPathNameDNS: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_PathNameDNS(@ptrCast(*const IMSMQQueueInfo2, self), pbstrPathNameDNS);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueueInfo2, self), ppcolProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_get_Security(self: *const T, pvarSecurity: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_Security(@ptrCast(*const IMSMQQueueInfo2, self), pvarSecurity);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo2_put_Security(self: *const T, varSecurity: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_Security(@ptrCast(*const IMSMQQueueInfo2, self), varSecurity);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1529,356 +1535,358 @@ pub const IMSMQQueueInfo3 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QueueGuid: fn(
+        get_QueueGuid: fn (
             self: *const IMSMQQueueInfo3,
             pbstrGuidQueue: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ServiceTypeGuid: fn(
+        get_ServiceTypeGuid: fn (
             self: *const IMSMQQueueInfo3,
             pbstrGuidServiceType: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ServiceTypeGuid: fn(
+        put_ServiceTypeGuid: fn (
             self: *const IMSMQQueueInfo3,
             bstrGuidServiceType: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Label: fn(
+        get_Label: fn (
             self: *const IMSMQQueueInfo3,
             pbstrLabel: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Label: fn(
+        put_Label: fn (
             self: *const IMSMQQueueInfo3,
             bstrLabel: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PathName: fn(
+        get_PathName: fn (
             self: *const IMSMQQueueInfo3,
             pbstrPathName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PathName: fn(
+        put_PathName: fn (
             self: *const IMSMQQueueInfo3,
             bstrPathName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FormatName: fn(
+        get_FormatName: fn (
             self: *const IMSMQQueueInfo3,
             pbstrFormatName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FormatName: fn(
+        put_FormatName: fn (
             self: *const IMSMQQueueInfo3,
             bstrFormatName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsTransactional: fn(
+        get_IsTransactional: fn (
             self: *const IMSMQQueueInfo3,
             pisTransactional: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivLevel: fn(
+        get_PrivLevel: fn (
             self: *const IMSMQQueueInfo3,
             plPrivLevel: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PrivLevel: fn(
+        put_PrivLevel: fn (
             self: *const IMSMQQueueInfo3,
             lPrivLevel: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Journal: fn(
+        get_Journal: fn (
             self: *const IMSMQQueueInfo3,
             plJournal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Journal: fn(
+        put_Journal: fn (
             self: *const IMSMQQueueInfo3,
             lJournal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Quota: fn(
+        get_Quota: fn (
             self: *const IMSMQQueueInfo3,
             plQuota: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Quota: fn(
+        put_Quota: fn (
             self: *const IMSMQQueueInfo3,
             lQuota: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BasePriority: fn(
+        get_BasePriority: fn (
             self: *const IMSMQQueueInfo3,
             plBasePriority: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BasePriority: fn(
+        put_BasePriority: fn (
             self: *const IMSMQQueueInfo3,
             lBasePriority: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CreateTime: fn(
+        get_CreateTime: fn (
             self: *const IMSMQQueueInfo3,
             pvarCreateTime: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ModifyTime: fn(
+        get_ModifyTime: fn (
             self: *const IMSMQQueueInfo3,
             pvarModifyTime: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Authenticate: fn(
+        get_Authenticate: fn (
             self: *const IMSMQQueueInfo3,
             plAuthenticate: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Authenticate: fn(
+        put_Authenticate: fn (
             self: *const IMSMQQueueInfo3,
             lAuthenticate: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_JournalQuota: fn(
+        get_JournalQuota: fn (
             self: *const IMSMQQueueInfo3,
             plJournalQuota: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_JournalQuota: fn(
+        put_JournalQuota: fn (
             self: *const IMSMQQueueInfo3,
             lJournalQuota: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsWorldReadable: fn(
+        get_IsWorldReadable: fn (
             self: *const IMSMQQueueInfo3,
             pisWorldReadable: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Create: fn(
+        Create: fn (
             self: *const IMSMQQueueInfo3,
             IsTransactional: ?*VARIANT,
             IsWorldReadable: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
+        Delete: fn (
             self: *const IMSMQQueueInfo3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Open: fn(
+        Open: fn (
             self: *const IMSMQQueueInfo3,
             Access: i32,
             ShareMode: i32,
             ppq: ?*?*IMSMQQueue3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const IMSMQQueueInfo3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Update: fn(
+        Update: fn (
             self: *const IMSMQQueueInfo3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PathNameDNS: fn(
+        get_PathNameDNS: fn (
             self: *const IMSMQQueueInfo3,
             pbstrPathNameDNS: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQQueueInfo3,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Security: fn(
+        get_Security: fn (
             self: *const IMSMQQueueInfo3,
             pvarSecurity: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Security: fn(
+        put_Security: fn (
             self: *const IMSMQQueueInfo3,
             varSecurity: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsTransactional2: fn(
+        get_IsTransactional2: fn (
             self: *const IMSMQQueueInfo3,
             pisTransactional: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsWorldReadable2: fn(
+        get_IsWorldReadable2: fn (
             self: *const IMSMQQueueInfo3,
             pisWorldReadable: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MulticastAddress: fn(
+        get_MulticastAddress: fn (
             self: *const IMSMQQueueInfo3,
             pbstrMulticastAddress: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MulticastAddress: fn(
+        put_MulticastAddress: fn (
             self: *const IMSMQQueueInfo3,
             bstrMulticastAddress: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ADsPath: fn(
+        get_ADsPath: fn (
             self: *const IMSMQQueueInfo3,
             pbstrADsPath: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_QueueGuid(self: *const T, pbstrGuidQueue: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_QueueGuid(@ptrCast(*const IMSMQQueueInfo3, self), pbstrGuidQueue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_ServiceTypeGuid(self: *const T, pbstrGuidServiceType: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo3, self), pbstrGuidServiceType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_put_ServiceTypeGuid(self: *const T, bstrGuidServiceType: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo3, self), bstrGuidServiceType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_Label(self: *const T, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQQueueInfo3, self), pbstrLabel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_put_Label(self: *const T, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQQueueInfo3, self), bstrLabel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_PathName(self: *const T, pbstrPathName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_PathName(@ptrCast(*const IMSMQQueueInfo3, self), pbstrPathName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_put_PathName(self: *const T, bstrPathName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_PathName(@ptrCast(*const IMSMQQueueInfo3, self), bstrPathName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_FormatName(self: *const T, pbstrFormatName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_FormatName(@ptrCast(*const IMSMQQueueInfo3, self), pbstrFormatName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_put_FormatName(self: *const T, bstrFormatName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_FormatName(@ptrCast(*const IMSMQQueueInfo3, self), bstrFormatName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_IsTransactional(self: *const T, pisTransactional: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_IsTransactional(@ptrCast(*const IMSMQQueueInfo3, self), pisTransactional);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQQueueInfo3, self), plPrivLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_put_PrivLevel(self: *const T, lPrivLevel: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQQueueInfo3, self), lPrivLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_Journal(self: *const T, plJournal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQQueueInfo3, self), plJournal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_put_Journal(self: *const T, lJournal: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQQueueInfo3, self), lJournal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_Quota(self: *const T, plQuota: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_Quota(@ptrCast(*const IMSMQQueueInfo3, self), plQuota);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_put_Quota(self: *const T, lQuota: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_Quota(@ptrCast(*const IMSMQQueueInfo3, self), lQuota);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_BasePriority(self: *const T, plBasePriority: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_BasePriority(@ptrCast(*const IMSMQQueueInfo3, self), plBasePriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_put_BasePriority(self: *const T, lBasePriority: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_BasePriority(@ptrCast(*const IMSMQQueueInfo3, self), lBasePriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_CreateTime(self: *const T, pvarCreateTime: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_CreateTime(@ptrCast(*const IMSMQQueueInfo3, self), pvarCreateTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_ModifyTime(self: *const T, pvarModifyTime: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_ModifyTime(@ptrCast(*const IMSMQQueueInfo3, self), pvarModifyTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_Authenticate(self: *const T, plAuthenticate: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_Authenticate(@ptrCast(*const IMSMQQueueInfo3, self), plAuthenticate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_put_Authenticate(self: *const T, lAuthenticate: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_Authenticate(@ptrCast(*const IMSMQQueueInfo3, self), lAuthenticate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_JournalQuota(self: *const T, plJournalQuota: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_JournalQuota(@ptrCast(*const IMSMQQueueInfo3, self), plJournalQuota);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_put_JournalQuota(self: *const T, lJournalQuota: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_JournalQuota(@ptrCast(*const IMSMQQueueInfo3, self), lJournalQuota);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_IsWorldReadable(self: *const T, pisWorldReadable: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_IsWorldReadable(@ptrCast(*const IMSMQQueueInfo3, self), pisWorldReadable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_Create(self: *const T, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).Create(@ptrCast(*const IMSMQQueueInfo3, self), IsTransactional, IsWorldReadable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_Delete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).Delete(@ptrCast(*const IMSMQQueueInfo3, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_Open(self: *const T, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).Open(@ptrCast(*const IMSMQQueueInfo3, self), Access, ShareMode, ppq);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).Refresh(@ptrCast(*const IMSMQQueueInfo3, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_Update(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).Update(@ptrCast(*const IMSMQQueueInfo3, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_PathNameDNS(self: *const T, pbstrPathNameDNS: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_PathNameDNS(@ptrCast(*const IMSMQQueueInfo3, self), pbstrPathNameDNS);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueueInfo3, self), ppcolProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_Security(self: *const T, pvarSecurity: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_Security(@ptrCast(*const IMSMQQueueInfo3, self), pvarSecurity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_put_Security(self: *const T, varSecurity: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_Security(@ptrCast(*const IMSMQQueueInfo3, self), varSecurity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_IsTransactional2(self: *const T, pisTransactional: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_IsTransactional2(@ptrCast(*const IMSMQQueueInfo3, self), pisTransactional);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_IsWorldReadable2(self: *const T, pisWorldReadable: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_IsWorldReadable2(@ptrCast(*const IMSMQQueueInfo3, self), pisWorldReadable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_MulticastAddress(self: *const T, pbstrMulticastAddress: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_MulticastAddress(@ptrCast(*const IMSMQQueueInfo3, self), pbstrMulticastAddress);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_put_MulticastAddress(self: *const T, bstrMulticastAddress: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_MulticastAddress(@ptrCast(*const IMSMQQueueInfo3, self), bstrMulticastAddress);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo3_get_ADsPath(self: *const T, pbstrADsPath: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_ADsPath(@ptrCast(*const IMSMQQueueInfo3, self), pbstrADsPath);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_QueueGuid(self: *const T, pbstrGuidQueue: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_QueueGuid(@ptrCast(*const IMSMQQueueInfo3, self), pbstrGuidQueue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_ServiceTypeGuid(self: *const T, pbstrGuidServiceType: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo3, self), pbstrGuidServiceType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_put_ServiceTypeGuid(self: *const T, bstrGuidServiceType: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo3, self), bstrGuidServiceType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_Label(self: *const T, pbstrLabel: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQQueueInfo3, self), pbstrLabel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_put_Label(self: *const T, bstrLabel: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQQueueInfo3, self), bstrLabel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_PathName(self: *const T, pbstrPathName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_PathName(@ptrCast(*const IMSMQQueueInfo3, self), pbstrPathName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_put_PathName(self: *const T, bstrPathName: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_PathName(@ptrCast(*const IMSMQQueueInfo3, self), bstrPathName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_FormatName(self: *const T, pbstrFormatName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_FormatName(@ptrCast(*const IMSMQQueueInfo3, self), pbstrFormatName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_put_FormatName(self: *const T, bstrFormatName: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_FormatName(@ptrCast(*const IMSMQQueueInfo3, self), bstrFormatName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_IsTransactional(self: *const T, pisTransactional: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_IsTransactional(@ptrCast(*const IMSMQQueueInfo3, self), pisTransactional);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQQueueInfo3, self), plPrivLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_put_PrivLevel(self: *const T, lPrivLevel: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQQueueInfo3, self), lPrivLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_Journal(self: *const T, plJournal: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQQueueInfo3, self), plJournal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_put_Journal(self: *const T, lJournal: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQQueueInfo3, self), lJournal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_Quota(self: *const T, plQuota: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_Quota(@ptrCast(*const IMSMQQueueInfo3, self), plQuota);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_put_Quota(self: *const T, lQuota: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_Quota(@ptrCast(*const IMSMQQueueInfo3, self), lQuota);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_BasePriority(self: *const T, plBasePriority: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_BasePriority(@ptrCast(*const IMSMQQueueInfo3, self), plBasePriority);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_put_BasePriority(self: *const T, lBasePriority: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_BasePriority(@ptrCast(*const IMSMQQueueInfo3, self), lBasePriority);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_CreateTime(self: *const T, pvarCreateTime: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_CreateTime(@ptrCast(*const IMSMQQueueInfo3, self), pvarCreateTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_ModifyTime(self: *const T, pvarModifyTime: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_ModifyTime(@ptrCast(*const IMSMQQueueInfo3, self), pvarModifyTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_Authenticate(self: *const T, plAuthenticate: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_Authenticate(@ptrCast(*const IMSMQQueueInfo3, self), plAuthenticate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_put_Authenticate(self: *const T, lAuthenticate: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_Authenticate(@ptrCast(*const IMSMQQueueInfo3, self), lAuthenticate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_JournalQuota(self: *const T, plJournalQuota: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_JournalQuota(@ptrCast(*const IMSMQQueueInfo3, self), plJournalQuota);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_put_JournalQuota(self: *const T, lJournalQuota: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_JournalQuota(@ptrCast(*const IMSMQQueueInfo3, self), lJournalQuota);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_IsWorldReadable(self: *const T, pisWorldReadable: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_IsWorldReadable(@ptrCast(*const IMSMQQueueInfo3, self), pisWorldReadable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_Create(self: *const T, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).Create(@ptrCast(*const IMSMQQueueInfo3, self), IsTransactional, IsWorldReadable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_Delete(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).Delete(@ptrCast(*const IMSMQQueueInfo3, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_Open(self: *const T, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue3) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).Open(@ptrCast(*const IMSMQQueueInfo3, self), Access, ShareMode, ppq);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).Refresh(@ptrCast(*const IMSMQQueueInfo3, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_Update(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).Update(@ptrCast(*const IMSMQQueueInfo3, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_PathNameDNS(self: *const T, pbstrPathNameDNS: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_PathNameDNS(@ptrCast(*const IMSMQQueueInfo3, self), pbstrPathNameDNS);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueueInfo3, self), ppcolProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_Security(self: *const T, pvarSecurity: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_Security(@ptrCast(*const IMSMQQueueInfo3, self), pvarSecurity);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_put_Security(self: *const T, varSecurity: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_Security(@ptrCast(*const IMSMQQueueInfo3, self), varSecurity);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_IsTransactional2(self: *const T, pisTransactional: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_IsTransactional2(@ptrCast(*const IMSMQQueueInfo3, self), pisTransactional);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_IsWorldReadable2(self: *const T, pisWorldReadable: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_IsWorldReadable2(@ptrCast(*const IMSMQQueueInfo3, self), pisWorldReadable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_MulticastAddress(self: *const T, pbstrMulticastAddress: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_MulticastAddress(@ptrCast(*const IMSMQQueueInfo3, self), pbstrMulticastAddress);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_put_MulticastAddress(self: *const T, bstrMulticastAddress: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_MulticastAddress(@ptrCast(*const IMSMQQueueInfo3, self), bstrMulticastAddress);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo3_get_ADsPath(self: *const T, pbstrADsPath: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_ADsPath(@ptrCast(*const IMSMQQueueInfo3, self), pbstrADsPath);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1888,356 +1896,358 @@ pub const IMSMQQueueInfo4 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QueueGuid: fn(
+        get_QueueGuid: fn (
             self: *const IMSMQQueueInfo4,
             pbstrGuidQueue: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ServiceTypeGuid: fn(
+        get_ServiceTypeGuid: fn (
             self: *const IMSMQQueueInfo4,
             pbstrGuidServiceType: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ServiceTypeGuid: fn(
+        put_ServiceTypeGuid: fn (
             self: *const IMSMQQueueInfo4,
             bstrGuidServiceType: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Label: fn(
+        get_Label: fn (
             self: *const IMSMQQueueInfo4,
             pbstrLabel: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Label: fn(
+        put_Label: fn (
             self: *const IMSMQQueueInfo4,
             bstrLabel: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PathName: fn(
+        get_PathName: fn (
             self: *const IMSMQQueueInfo4,
             pbstrPathName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PathName: fn(
+        put_PathName: fn (
             self: *const IMSMQQueueInfo4,
             bstrPathName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FormatName: fn(
+        get_FormatName: fn (
             self: *const IMSMQQueueInfo4,
             pbstrFormatName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FormatName: fn(
+        put_FormatName: fn (
             self: *const IMSMQQueueInfo4,
             bstrFormatName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsTransactional: fn(
+        get_IsTransactional: fn (
             self: *const IMSMQQueueInfo4,
             pisTransactional: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivLevel: fn(
+        get_PrivLevel: fn (
             self: *const IMSMQQueueInfo4,
             plPrivLevel: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PrivLevel: fn(
+        put_PrivLevel: fn (
             self: *const IMSMQQueueInfo4,
             lPrivLevel: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Journal: fn(
+        get_Journal: fn (
             self: *const IMSMQQueueInfo4,
             plJournal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Journal: fn(
+        put_Journal: fn (
             self: *const IMSMQQueueInfo4,
             lJournal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Quota: fn(
+        get_Quota: fn (
             self: *const IMSMQQueueInfo4,
             plQuota: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Quota: fn(
+        put_Quota: fn (
             self: *const IMSMQQueueInfo4,
             lQuota: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BasePriority: fn(
+        get_BasePriority: fn (
             self: *const IMSMQQueueInfo4,
             plBasePriority: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BasePriority: fn(
+        put_BasePriority: fn (
             self: *const IMSMQQueueInfo4,
             lBasePriority: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CreateTime: fn(
+        get_CreateTime: fn (
             self: *const IMSMQQueueInfo4,
             pvarCreateTime: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ModifyTime: fn(
+        get_ModifyTime: fn (
             self: *const IMSMQQueueInfo4,
             pvarModifyTime: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Authenticate: fn(
+        get_Authenticate: fn (
             self: *const IMSMQQueueInfo4,
             plAuthenticate: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Authenticate: fn(
+        put_Authenticate: fn (
             self: *const IMSMQQueueInfo4,
             lAuthenticate: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_JournalQuota: fn(
+        get_JournalQuota: fn (
             self: *const IMSMQQueueInfo4,
             plJournalQuota: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_JournalQuota: fn(
+        put_JournalQuota: fn (
             self: *const IMSMQQueueInfo4,
             lJournalQuota: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsWorldReadable: fn(
+        get_IsWorldReadable: fn (
             self: *const IMSMQQueueInfo4,
             pisWorldReadable: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Create: fn(
+        Create: fn (
             self: *const IMSMQQueueInfo4,
             IsTransactional: ?*VARIANT,
             IsWorldReadable: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
+        Delete: fn (
             self: *const IMSMQQueueInfo4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Open: fn(
+        Open: fn (
             self: *const IMSMQQueueInfo4,
             Access: i32,
             ShareMode: i32,
             ppq: ?*?*IMSMQQueue4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const IMSMQQueueInfo4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Update: fn(
+        Update: fn (
             self: *const IMSMQQueueInfo4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PathNameDNS: fn(
+        get_PathNameDNS: fn (
             self: *const IMSMQQueueInfo4,
             pbstrPathNameDNS: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQQueueInfo4,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Security: fn(
+        get_Security: fn (
             self: *const IMSMQQueueInfo4,
             pvarSecurity: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Security: fn(
+        put_Security: fn (
             self: *const IMSMQQueueInfo4,
             varSecurity: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsTransactional2: fn(
+        get_IsTransactional2: fn (
             self: *const IMSMQQueueInfo4,
             pisTransactional: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsWorldReadable2: fn(
+        get_IsWorldReadable2: fn (
             self: *const IMSMQQueueInfo4,
             pisWorldReadable: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MulticastAddress: fn(
+        get_MulticastAddress: fn (
             self: *const IMSMQQueueInfo4,
             pbstrMulticastAddress: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MulticastAddress: fn(
+        put_MulticastAddress: fn (
             self: *const IMSMQQueueInfo4,
             bstrMulticastAddress: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ADsPath: fn(
+        get_ADsPath: fn (
             self: *const IMSMQQueueInfo4,
             pbstrADsPath: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_QueueGuid(self: *const T, pbstrGuidQueue: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_QueueGuid(@ptrCast(*const IMSMQQueueInfo4, self), pbstrGuidQueue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_ServiceTypeGuid(self: *const T, pbstrGuidServiceType: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo4, self), pbstrGuidServiceType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_put_ServiceTypeGuid(self: *const T, bstrGuidServiceType: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo4, self), bstrGuidServiceType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_Label(self: *const T, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQQueueInfo4, self), pbstrLabel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_put_Label(self: *const T, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQQueueInfo4, self), bstrLabel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_PathName(self: *const T, pbstrPathName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_PathName(@ptrCast(*const IMSMQQueueInfo4, self), pbstrPathName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_put_PathName(self: *const T, bstrPathName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_PathName(@ptrCast(*const IMSMQQueueInfo4, self), bstrPathName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_FormatName(self: *const T, pbstrFormatName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_FormatName(@ptrCast(*const IMSMQQueueInfo4, self), pbstrFormatName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_put_FormatName(self: *const T, bstrFormatName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_FormatName(@ptrCast(*const IMSMQQueueInfo4, self), bstrFormatName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_IsTransactional(self: *const T, pisTransactional: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_IsTransactional(@ptrCast(*const IMSMQQueueInfo4, self), pisTransactional);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQQueueInfo4, self), plPrivLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_put_PrivLevel(self: *const T, lPrivLevel: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQQueueInfo4, self), lPrivLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_Journal(self: *const T, plJournal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQQueueInfo4, self), plJournal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_put_Journal(self: *const T, lJournal: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQQueueInfo4, self), lJournal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_Quota(self: *const T, plQuota: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_Quota(@ptrCast(*const IMSMQQueueInfo4, self), plQuota);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_put_Quota(self: *const T, lQuota: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_Quota(@ptrCast(*const IMSMQQueueInfo4, self), lQuota);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_BasePriority(self: *const T, plBasePriority: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_BasePriority(@ptrCast(*const IMSMQQueueInfo4, self), plBasePriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_put_BasePriority(self: *const T, lBasePriority: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_BasePriority(@ptrCast(*const IMSMQQueueInfo4, self), lBasePriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_CreateTime(self: *const T, pvarCreateTime: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_CreateTime(@ptrCast(*const IMSMQQueueInfo4, self), pvarCreateTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_ModifyTime(self: *const T, pvarModifyTime: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_ModifyTime(@ptrCast(*const IMSMQQueueInfo4, self), pvarModifyTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_Authenticate(self: *const T, plAuthenticate: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_Authenticate(@ptrCast(*const IMSMQQueueInfo4, self), plAuthenticate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_put_Authenticate(self: *const T, lAuthenticate: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_Authenticate(@ptrCast(*const IMSMQQueueInfo4, self), lAuthenticate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_JournalQuota(self: *const T, plJournalQuota: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_JournalQuota(@ptrCast(*const IMSMQQueueInfo4, self), plJournalQuota);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_put_JournalQuota(self: *const T, lJournalQuota: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_JournalQuota(@ptrCast(*const IMSMQQueueInfo4, self), lJournalQuota);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_IsWorldReadable(self: *const T, pisWorldReadable: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_IsWorldReadable(@ptrCast(*const IMSMQQueueInfo4, self), pisWorldReadable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_Create(self: *const T, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).Create(@ptrCast(*const IMSMQQueueInfo4, self), IsTransactional, IsWorldReadable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_Delete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).Delete(@ptrCast(*const IMSMQQueueInfo4, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_Open(self: *const T, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).Open(@ptrCast(*const IMSMQQueueInfo4, self), Access, ShareMode, ppq);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).Refresh(@ptrCast(*const IMSMQQueueInfo4, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_Update(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).Update(@ptrCast(*const IMSMQQueueInfo4, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_PathNameDNS(self: *const T, pbstrPathNameDNS: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_PathNameDNS(@ptrCast(*const IMSMQQueueInfo4, self), pbstrPathNameDNS);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueueInfo4, self), ppcolProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_Security(self: *const T, pvarSecurity: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_Security(@ptrCast(*const IMSMQQueueInfo4, self), pvarSecurity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_put_Security(self: *const T, varSecurity: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_Security(@ptrCast(*const IMSMQQueueInfo4, self), varSecurity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_IsTransactional2(self: *const T, pisTransactional: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_IsTransactional2(@ptrCast(*const IMSMQQueueInfo4, self), pisTransactional);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_IsWorldReadable2(self: *const T, pisWorldReadable: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_IsWorldReadable2(@ptrCast(*const IMSMQQueueInfo4, self), pisWorldReadable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_MulticastAddress(self: *const T, pbstrMulticastAddress: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_MulticastAddress(@ptrCast(*const IMSMQQueueInfo4, self), pbstrMulticastAddress);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_put_MulticastAddress(self: *const T, bstrMulticastAddress: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_MulticastAddress(@ptrCast(*const IMSMQQueueInfo4, self), bstrMulticastAddress);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfo4_get_ADsPath(self: *const T, pbstrADsPath: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_ADsPath(@ptrCast(*const IMSMQQueueInfo4, self), pbstrADsPath);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_QueueGuid(self: *const T, pbstrGuidQueue: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_QueueGuid(@ptrCast(*const IMSMQQueueInfo4, self), pbstrGuidQueue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_ServiceTypeGuid(self: *const T, pbstrGuidServiceType: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo4, self), pbstrGuidServiceType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_put_ServiceTypeGuid(self: *const T, bstrGuidServiceType: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo4, self), bstrGuidServiceType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_Label(self: *const T, pbstrLabel: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQQueueInfo4, self), pbstrLabel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_put_Label(self: *const T, bstrLabel: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQQueueInfo4, self), bstrLabel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_PathName(self: *const T, pbstrPathName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_PathName(@ptrCast(*const IMSMQQueueInfo4, self), pbstrPathName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_put_PathName(self: *const T, bstrPathName: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_PathName(@ptrCast(*const IMSMQQueueInfo4, self), bstrPathName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_FormatName(self: *const T, pbstrFormatName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_FormatName(@ptrCast(*const IMSMQQueueInfo4, self), pbstrFormatName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_put_FormatName(self: *const T, bstrFormatName: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_FormatName(@ptrCast(*const IMSMQQueueInfo4, self), bstrFormatName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_IsTransactional(self: *const T, pisTransactional: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_IsTransactional(@ptrCast(*const IMSMQQueueInfo4, self), pisTransactional);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQQueueInfo4, self), plPrivLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_put_PrivLevel(self: *const T, lPrivLevel: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQQueueInfo4, self), lPrivLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_Journal(self: *const T, plJournal: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQQueueInfo4, self), plJournal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_put_Journal(self: *const T, lJournal: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQQueueInfo4, self), lJournal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_Quota(self: *const T, plQuota: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_Quota(@ptrCast(*const IMSMQQueueInfo4, self), plQuota);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_put_Quota(self: *const T, lQuota: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_Quota(@ptrCast(*const IMSMQQueueInfo4, self), lQuota);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_BasePriority(self: *const T, plBasePriority: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_BasePriority(@ptrCast(*const IMSMQQueueInfo4, self), plBasePriority);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_put_BasePriority(self: *const T, lBasePriority: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_BasePriority(@ptrCast(*const IMSMQQueueInfo4, self), lBasePriority);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_CreateTime(self: *const T, pvarCreateTime: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_CreateTime(@ptrCast(*const IMSMQQueueInfo4, self), pvarCreateTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_ModifyTime(self: *const T, pvarModifyTime: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_ModifyTime(@ptrCast(*const IMSMQQueueInfo4, self), pvarModifyTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_Authenticate(self: *const T, plAuthenticate: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_Authenticate(@ptrCast(*const IMSMQQueueInfo4, self), plAuthenticate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_put_Authenticate(self: *const T, lAuthenticate: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_Authenticate(@ptrCast(*const IMSMQQueueInfo4, self), lAuthenticate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_JournalQuota(self: *const T, plJournalQuota: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_JournalQuota(@ptrCast(*const IMSMQQueueInfo4, self), plJournalQuota);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_put_JournalQuota(self: *const T, lJournalQuota: i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_JournalQuota(@ptrCast(*const IMSMQQueueInfo4, self), lJournalQuota);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_IsWorldReadable(self: *const T, pisWorldReadable: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_IsWorldReadable(@ptrCast(*const IMSMQQueueInfo4, self), pisWorldReadable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_Create(self: *const T, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).Create(@ptrCast(*const IMSMQQueueInfo4, self), IsTransactional, IsWorldReadable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_Delete(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).Delete(@ptrCast(*const IMSMQQueueInfo4, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_Open(self: *const T, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue4) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).Open(@ptrCast(*const IMSMQQueueInfo4, self), Access, ShareMode, ppq);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).Refresh(@ptrCast(*const IMSMQQueueInfo4, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_Update(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).Update(@ptrCast(*const IMSMQQueueInfo4, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_PathNameDNS(self: *const T, pbstrPathNameDNS: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_PathNameDNS(@ptrCast(*const IMSMQQueueInfo4, self), pbstrPathNameDNS);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueueInfo4, self), ppcolProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_Security(self: *const T, pvarSecurity: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_Security(@ptrCast(*const IMSMQQueueInfo4, self), pvarSecurity);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_put_Security(self: *const T, varSecurity: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_Security(@ptrCast(*const IMSMQQueueInfo4, self), varSecurity);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_IsTransactional2(self: *const T, pisTransactional: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_IsTransactional2(@ptrCast(*const IMSMQQueueInfo4, self), pisTransactional);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_IsWorldReadable2(self: *const T, pisWorldReadable: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_IsWorldReadable2(@ptrCast(*const IMSMQQueueInfo4, self), pisWorldReadable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_MulticastAddress(self: *const T, pbstrMulticastAddress: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_MulticastAddress(@ptrCast(*const IMSMQQueueInfo4, self), pbstrMulticastAddress);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_put_MulticastAddress(self: *const T, bstrMulticastAddress: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_MulticastAddress(@ptrCast(*const IMSMQQueueInfo4, self), bstrMulticastAddress);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfo4_get_ADsPath(self: *const T, pbstrADsPath: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_ADsPath(@ptrCast(*const IMSMQQueueInfo4, self), pbstrADsPath);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2247,34 +2257,34 @@ pub const IMSMQQueue = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Access: fn(
+        get_Access: fn (
             self: *const IMSMQQueue,
             plAccess: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ShareMode: fn(
+        get_ShareMode: fn (
             self: *const IMSMQQueue,
             plShareMode: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QueueInfo: fn(
+        get_QueueInfo: fn (
             self: *const IMSMQQueue,
             ppqinfo: ?*?*IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: fn(
+        get_Handle: fn (
             self: *const IMSMQQueue,
             plHandle: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsOpen: fn(
+        get_IsOpen: fn (
             self: *const IMSMQQueue,
             pisOpen: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
+        Close: fn (
             self: *const IMSMQQueue,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Receive: fn(
+        Receive: fn (
             self: *const IMSMQQueue,
             Transaction: ?*VARIANT,
             WantDestinationQueue: ?*VARIANT,
@@ -2282,23 +2292,23 @@ pub const IMSMQQueue = extern struct {
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Peek: fn(
+        Peek: fn (
             self: *const IMSMQQueue,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnableNotification: fn(
+        EnableNotification: fn (
             self: *const IMSMQQueue,
             Event: ?*IMSMQEvent,
             Cursor: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
+        Reset: fn (
             self: *const IMSMQQueue,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReceiveCurrent: fn(
+        ReceiveCurrent: fn (
             self: *const IMSMQQueue,
             Transaction: ?*VARIANT,
             WantDestinationQueue: ?*VARIANT,
@@ -2306,14 +2316,14 @@ pub const IMSMQQueue = extern struct {
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekNext: fn(
+        PeekNext: fn (
             self: *const IMSMQQueue,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekCurrent: fn(
+        PeekCurrent: fn (
             self: *const IMSMQQueue,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
@@ -2322,61 +2332,63 @@ pub const IMSMQQueue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue_get_Access(self: *const T, plAccess: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue.VTable, self.vtable).get_Access(@ptrCast(*const IMSMQQueue, self), plAccess);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue_get_ShareMode(self: *const T, plShareMode: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue.VTable, self.vtable).get_ShareMode(@ptrCast(*const IMSMQQueue, self), plShareMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue_get_QueueInfo(self: *const T, ppqinfo: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue.VTable, self.vtable).get_QueueInfo(@ptrCast(*const IMSMQQueue, self), ppqinfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue_get_Handle(self: *const T, plHandle: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue.VTable, self.vtable).get_Handle(@ptrCast(*const IMSMQQueue, self), plHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue_get_IsOpen(self: *const T, pisOpen: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue.VTable, self.vtable).get_IsOpen(@ptrCast(*const IMSMQQueue, self), pisOpen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue.VTable, self.vtable).Close(@ptrCast(*const IMSMQQueue, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue_Receive(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue.VTable, self.vtable).Receive(@ptrCast(*const IMSMQQueue, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue_Peek(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue.VTable, self.vtable).Peek(@ptrCast(*const IMSMQQueue, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue_EnableNotification(self: *const T, Event: ?*IMSMQEvent, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue.VTable, self.vtable).EnableNotification(@ptrCast(*const IMSMQQueue, self), Event, Cursor, ReceiveTimeout);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueue, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue_ReceiveCurrent(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue.VTable, self.vtable).ReceiveCurrent(@ptrCast(*const IMSMQQueue, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue_PeekNext(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue.VTable, self.vtable).PeekNext(@ptrCast(*const IMSMQQueue, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue_PeekCurrent(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue.VTable, self.vtable).PeekCurrent(@ptrCast(*const IMSMQQueue, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue_get_Access(self: *const T, plAccess: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).get_Access(@ptrCast(*const IMSMQQueue, self), plAccess);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue_get_ShareMode(self: *const T, plShareMode: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).get_ShareMode(@ptrCast(*const IMSMQQueue, self), plShareMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue_get_QueueInfo(self: *const T, ppqinfo: ?*?*IMSMQQueueInfo) HRESULT {
+                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).get_QueueInfo(@ptrCast(*const IMSMQQueue, self), ppqinfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue_get_Handle(self: *const T, plHandle: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).get_Handle(@ptrCast(*const IMSMQQueue, self), plHandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue_get_IsOpen(self: *const T, pisOpen: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).get_IsOpen(@ptrCast(*const IMSMQQueue, self), pisOpen);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue_Close(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).Close(@ptrCast(*const IMSMQQueue, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue_Receive(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
+                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).Receive(@ptrCast(*const IMSMQQueue, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue_Peek(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
+                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).Peek(@ptrCast(*const IMSMQQueue, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue_EnableNotification(self: *const T, Event: ?*IMSMQEvent, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).EnableNotification(@ptrCast(*const IMSMQQueue, self), Event, Cursor, ReceiveTimeout);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueue, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue_ReceiveCurrent(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
+                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).ReceiveCurrent(@ptrCast(*const IMSMQQueue, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue_PeekNext(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
+                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).PeekNext(@ptrCast(*const IMSMQQueue, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue_PeekCurrent(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
+                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).PeekCurrent(@ptrCast(*const IMSMQQueue, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2386,34 +2398,34 @@ pub const IMSMQQueue2 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Access: fn(
+        get_Access: fn (
             self: *const IMSMQQueue2,
             plAccess: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ShareMode: fn(
+        get_ShareMode: fn (
             self: *const IMSMQQueue2,
             plShareMode: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QueueInfo: fn(
+        get_QueueInfo: fn (
             self: *const IMSMQQueue2,
             ppqinfo: ?*?*IMSMQQueueInfo2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: fn(
+        get_Handle: fn (
             self: *const IMSMQQueue2,
             plHandle: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsOpen: fn(
+        get_IsOpen: fn (
             self: *const IMSMQQueue2,
             pisOpen: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
+        Close: fn (
             self: *const IMSMQQueue2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Receive_v1: fn(
+        Receive_v1: fn (
             self: *const IMSMQQueue2,
             Transaction: ?*VARIANT,
             WantDestinationQueue: ?*VARIANT,
@@ -2421,62 +2433,45 @@ pub const IMSMQQueue2 = extern struct {
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Peek_v1: fn(
+        Peek_v1: fn (
             self: *const IMSMQQueue2,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnableNotification: fn(
+        EnableNotification: fn (
             self: *const IMSMQQueue2,
             Event: ?*IMSMQEvent2,
             Cursor: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
+        Reset: fn (
             self: *const IMSMQQueue2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReceiveCurrent_v1: fn(
-            self: *const IMSMQQueue2,
-            Transaction: ?*VARIANT,
-            WantDestinationQueue: ?*VARIANT,
-            WantBody: ?*VARIANT,
-            ReceiveTimeout: ?*VARIANT,
-            ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekNext_v1: fn(
-            self: *const IMSMQQueue2,
-            WantDestinationQueue: ?*VARIANT,
-            WantBody: ?*VARIANT,
-            ReceiveTimeout: ?*VARIANT,
-            ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekCurrent_v1: fn(
-            self: *const IMSMQQueue2,
-            WantDestinationQueue: ?*VARIANT,
-            WantBody: ?*VARIANT,
-            ReceiveTimeout: ?*VARIANT,
-            ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Receive: fn(
+        ReceiveCurrent_v1: fn (
             self: *const IMSMQQueue2,
             Transaction: ?*VARIANT,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
-            WantConnectorType: ?*VARIANT,
-            ppmsg: ?*?*IMSMQMessage2,
+            ppmsg: ?*?*IMSMQMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Peek: fn(
+        PeekNext_v1: fn (
             self: *const IMSMQQueue2,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
-            WantConnectorType: ?*VARIANT,
-            ppmsg: ?*?*IMSMQMessage2,
+            ppmsg: ?*?*IMSMQMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReceiveCurrent: fn(
+        PeekCurrent_v1: fn (
+            self: *const IMSMQQueue2,
+            WantDestinationQueue: ?*VARIANT,
+            WantBody: ?*VARIANT,
+            ReceiveTimeout: ?*VARIANT,
+            ppmsg: ?*?*IMSMQMessage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Receive: fn (
             self: *const IMSMQQueue2,
             Transaction: ?*VARIANT,
             WantDestinationQueue: ?*VARIANT,
@@ -2485,7 +2480,7 @@ pub const IMSMQQueue2 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekNext: fn(
+        Peek: fn (
             self: *const IMSMQQueue2,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
@@ -2493,7 +2488,24 @@ pub const IMSMQQueue2 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekCurrent: fn(
+        ReceiveCurrent: fn (
+            self: *const IMSMQQueue2,
+            Transaction: ?*VARIANT,
+            WantDestinationQueue: ?*VARIANT,
+            WantBody: ?*VARIANT,
+            ReceiveTimeout: ?*VARIANT,
+            WantConnectorType: ?*VARIANT,
+            ppmsg: ?*?*IMSMQMessage2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PeekNext: fn (
+            self: *const IMSMQQueue2,
+            WantDestinationQueue: ?*VARIANT,
+            WantBody: ?*VARIANT,
+            ReceiveTimeout: ?*VARIANT,
+            WantConnectorType: ?*VARIANT,
+            ppmsg: ?*?*IMSMQMessage2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PeekCurrent: fn (
             self: *const IMSMQQueue2,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
@@ -2502,91 +2514,93 @@ pub const IMSMQQueue2 = extern struct {
             ppmsg: ?*?*IMSMQMessage2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQQueue2,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue2_get_Access(self: *const T, plAccess: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).get_Access(@ptrCast(*const IMSMQQueue2, self), plAccess);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue2_get_ShareMode(self: *const T, plShareMode: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).get_ShareMode(@ptrCast(*const IMSMQQueue2, self), plShareMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue2_get_QueueInfo(self: *const T, ppqinfo: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).get_QueueInfo(@ptrCast(*const IMSMQQueue2, self), ppqinfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue2_get_Handle(self: *const T, plHandle: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).get_Handle(@ptrCast(*const IMSMQQueue2, self), plHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue2_get_IsOpen(self: *const T, pisOpen: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).get_IsOpen(@ptrCast(*const IMSMQQueue2, self), pisOpen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue2_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).Close(@ptrCast(*const IMSMQQueue2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue2_Receive_v1(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).Receive_v1(@ptrCast(*const IMSMQQueue2, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue2_Peek_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).Peek_v1(@ptrCast(*const IMSMQQueue2, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue2_EnableNotification(self: *const T, Event: ?*IMSMQEvent2, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).EnableNotification(@ptrCast(*const IMSMQQueue2, self), Event, Cursor, ReceiveTimeout);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue2_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueue2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue2_ReceiveCurrent_v1(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).ReceiveCurrent_v1(@ptrCast(*const IMSMQQueue2, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue2_PeekNext_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).PeekNext_v1(@ptrCast(*const IMSMQQueue2, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue2_PeekCurrent_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).PeekCurrent_v1(@ptrCast(*const IMSMQQueue2, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue2_Receive(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).Receive(@ptrCast(*const IMSMQQueue2, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue2_Peek(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).Peek(@ptrCast(*const IMSMQQueue2, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue2_ReceiveCurrent(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).ReceiveCurrent(@ptrCast(*const IMSMQQueue2, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue2_PeekNext(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).PeekNext(@ptrCast(*const IMSMQQueue2, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue2_PeekCurrent(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).PeekCurrent(@ptrCast(*const IMSMQQueue2, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueue2, self), ppcolProperties);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue2_get_Access(self: *const T, plAccess: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).get_Access(@ptrCast(*const IMSMQQueue2, self), plAccess);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue2_get_ShareMode(self: *const T, plShareMode: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).get_ShareMode(@ptrCast(*const IMSMQQueue2, self), plShareMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue2_get_QueueInfo(self: *const T, ppqinfo: ?*?*IMSMQQueueInfo2) HRESULT {
+                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).get_QueueInfo(@ptrCast(*const IMSMQQueue2, self), ppqinfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue2_get_Handle(self: *const T, plHandle: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).get_Handle(@ptrCast(*const IMSMQQueue2, self), plHandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue2_get_IsOpen(self: *const T, pisOpen: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).get_IsOpen(@ptrCast(*const IMSMQQueue2, self), pisOpen);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue2_Close(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).Close(@ptrCast(*const IMSMQQueue2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue2_Receive_v1(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
+                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).Receive_v1(@ptrCast(*const IMSMQQueue2, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue2_Peek_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
+                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).Peek_v1(@ptrCast(*const IMSMQQueue2, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue2_EnableNotification(self: *const T, Event: ?*IMSMQEvent2, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).EnableNotification(@ptrCast(*const IMSMQQueue2, self), Event, Cursor, ReceiveTimeout);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue2_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueue2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue2_ReceiveCurrent_v1(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
+                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).ReceiveCurrent_v1(@ptrCast(*const IMSMQQueue2, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue2_PeekNext_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
+                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).PeekNext_v1(@ptrCast(*const IMSMQQueue2, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue2_PeekCurrent_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
+                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).PeekCurrent_v1(@ptrCast(*const IMSMQQueue2, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue2_Receive(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) HRESULT {
+                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).Receive(@ptrCast(*const IMSMQQueue2, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue2_Peek(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) HRESULT {
+                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).Peek(@ptrCast(*const IMSMQQueue2, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue2_ReceiveCurrent(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) HRESULT {
+                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).ReceiveCurrent(@ptrCast(*const IMSMQQueue2, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue2_PeekNext(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) HRESULT {
+                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).PeekNext(@ptrCast(*const IMSMQQueue2, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue2_PeekCurrent(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) HRESULT {
+                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).PeekCurrent(@ptrCast(*const IMSMQQueue2, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueue2, self), ppcolProperties);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2596,34 +2610,34 @@ pub const IMSMQQueue3 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Access: fn(
+        get_Access: fn (
             self: *const IMSMQQueue3,
             plAccess: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ShareMode: fn(
+        get_ShareMode: fn (
             self: *const IMSMQQueue3,
             plShareMode: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QueueInfo: fn(
+        get_QueueInfo: fn (
             self: *const IMSMQQueue3,
             ppqinfo: ?*?*IMSMQQueueInfo3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: fn(
+        get_Handle: fn (
             self: *const IMSMQQueue3,
             plHandle: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsOpen: fn(
+        get_IsOpen: fn (
             self: *const IMSMQQueue3,
             pisOpen: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
+        Close: fn (
             self: *const IMSMQQueue3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Receive_v1: fn(
+        Receive_v1: fn (
             self: *const IMSMQQueue3,
             Transaction: ?*VARIANT,
             WantDestinationQueue: ?*VARIANT,
@@ -2631,62 +2645,45 @@ pub const IMSMQQueue3 = extern struct {
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Peek_v1: fn(
+        Peek_v1: fn (
             self: *const IMSMQQueue3,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnableNotification: fn(
+        EnableNotification: fn (
             self: *const IMSMQQueue3,
             Event: ?*IMSMQEvent3,
             Cursor: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
+        Reset: fn (
             self: *const IMSMQQueue3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReceiveCurrent_v1: fn(
-            self: *const IMSMQQueue3,
-            Transaction: ?*VARIANT,
-            WantDestinationQueue: ?*VARIANT,
-            WantBody: ?*VARIANT,
-            ReceiveTimeout: ?*VARIANT,
-            ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekNext_v1: fn(
-            self: *const IMSMQQueue3,
-            WantDestinationQueue: ?*VARIANT,
-            WantBody: ?*VARIANT,
-            ReceiveTimeout: ?*VARIANT,
-            ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekCurrent_v1: fn(
-            self: *const IMSMQQueue3,
-            WantDestinationQueue: ?*VARIANT,
-            WantBody: ?*VARIANT,
-            ReceiveTimeout: ?*VARIANT,
-            ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Receive: fn(
+        ReceiveCurrent_v1: fn (
             self: *const IMSMQQueue3,
             Transaction: ?*VARIANT,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
-            WantConnectorType: ?*VARIANT,
-            ppmsg: ?*?*IMSMQMessage3,
+            ppmsg: ?*?*IMSMQMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Peek: fn(
+        PeekNext_v1: fn (
             self: *const IMSMQQueue3,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
-            WantConnectorType: ?*VARIANT,
-            ppmsg: ?*?*IMSMQMessage3,
+            ppmsg: ?*?*IMSMQMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReceiveCurrent: fn(
+        PeekCurrent_v1: fn (
+            self: *const IMSMQQueue3,
+            WantDestinationQueue: ?*VARIANT,
+            WantBody: ?*VARIANT,
+            ReceiveTimeout: ?*VARIANT,
+            ppmsg: ?*?*IMSMQMessage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Receive: fn (
             self: *const IMSMQQueue3,
             Transaction: ?*VARIANT,
             WantDestinationQueue: ?*VARIANT,
@@ -2695,7 +2692,7 @@ pub const IMSMQQueue3 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekNext: fn(
+        Peek: fn (
             self: *const IMSMQQueue3,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
@@ -2703,7 +2700,24 @@ pub const IMSMQQueue3 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekCurrent: fn(
+        ReceiveCurrent: fn (
+            self: *const IMSMQQueue3,
+            Transaction: ?*VARIANT,
+            WantDestinationQueue: ?*VARIANT,
+            WantBody: ?*VARIANT,
+            ReceiveTimeout: ?*VARIANT,
+            WantConnectorType: ?*VARIANT,
+            ppmsg: ?*?*IMSMQMessage3,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PeekNext: fn (
+            self: *const IMSMQQueue3,
+            WantDestinationQueue: ?*VARIANT,
+            WantBody: ?*VARIANT,
+            ReceiveTimeout: ?*VARIANT,
+            WantConnectorType: ?*VARIANT,
+            ppmsg: ?*?*IMSMQMessage3,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PeekCurrent: fn (
             self: *const IMSMQQueue3,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
@@ -2712,16 +2726,16 @@ pub const IMSMQQueue3 = extern struct {
             ppmsg: ?*?*IMSMQMessage3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQQueue3,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle2: fn(
+        get_Handle2: fn (
             self: *const IMSMQQueue3,
             pvarHandle: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReceiveByLookupId: fn(
+        ReceiveByLookupId: fn (
             self: *const IMSMQQueue3,
             LookupId: VARIANT,
             Transaction: ?*VARIANT,
@@ -2730,7 +2744,7 @@ pub const IMSMQQueue3 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReceiveNextByLookupId: fn(
+        ReceiveNextByLookupId: fn (
             self: *const IMSMQQueue3,
             LookupId: VARIANT,
             Transaction: ?*VARIANT,
@@ -2739,7 +2753,7 @@ pub const IMSMQQueue3 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReceivePreviousByLookupId: fn(
+        ReceivePreviousByLookupId: fn (
             self: *const IMSMQQueue3,
             LookupId: VARIANT,
             Transaction: ?*VARIANT,
@@ -2748,7 +2762,7 @@ pub const IMSMQQueue3 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReceiveFirstByLookupId: fn(
+        ReceiveFirstByLookupId: fn (
             self: *const IMSMQQueue3,
             Transaction: ?*VARIANT,
             WantDestinationQueue: ?*VARIANT,
@@ -2756,7 +2770,7 @@ pub const IMSMQQueue3 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReceiveLastByLookupId: fn(
+        ReceiveLastByLookupId: fn (
             self: *const IMSMQQueue3,
             Transaction: ?*VARIANT,
             WantDestinationQueue: ?*VARIANT,
@@ -2764,7 +2778,7 @@ pub const IMSMQQueue3 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekByLookupId: fn(
+        PeekByLookupId: fn (
             self: *const IMSMQQueue3,
             LookupId: VARIANT,
             WantDestinationQueue: ?*VARIANT,
@@ -2772,7 +2786,7 @@ pub const IMSMQQueue3 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekNextByLookupId: fn(
+        PeekNextByLookupId: fn (
             self: *const IMSMQQueue3,
             LookupId: VARIANT,
             WantDestinationQueue: ?*VARIANT,
@@ -2780,7 +2794,7 @@ pub const IMSMQQueue3 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekPreviousByLookupId: fn(
+        PeekPreviousByLookupId: fn (
             self: *const IMSMQQueue3,
             LookupId: VARIANT,
             WantDestinationQueue: ?*VARIANT,
@@ -2788,161 +2802,163 @@ pub const IMSMQQueue3 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekFirstByLookupId: fn(
+        PeekFirstByLookupId: fn (
             self: *const IMSMQQueue3,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekLastByLookupId: fn(
+        PeekLastByLookupId: fn (
             self: *const IMSMQQueue3,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Purge: fn(
+        Purge: fn (
             self: *const IMSMQQueue3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsOpen2: fn(
+        get_IsOpen2: fn (
             self: *const IMSMQQueue3,
             pisOpen: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_get_Access(self: *const T, plAccess: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_Access(@ptrCast(*const IMSMQQueue3, self), plAccess);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_get_ShareMode(self: *const T, plShareMode: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_ShareMode(@ptrCast(*const IMSMQQueue3, self), plShareMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_get_QueueInfo(self: *const T, ppqinfo: ?*?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_QueueInfo(@ptrCast(*const IMSMQQueue3, self), ppqinfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_get_Handle(self: *const T, plHandle: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_Handle(@ptrCast(*const IMSMQQueue3, self), plHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_get_IsOpen(self: *const T, pisOpen: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_IsOpen(@ptrCast(*const IMSMQQueue3, self), pisOpen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Close(@ptrCast(*const IMSMQQueue3, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_Receive_v1(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Receive_v1(@ptrCast(*const IMSMQQueue3, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_Peek_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Peek_v1(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_EnableNotification(self: *const T, Event: ?*IMSMQEvent3, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).EnableNotification(@ptrCast(*const IMSMQQueue3, self), Event, Cursor, ReceiveTimeout);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueue3, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_ReceiveCurrent_v1(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceiveCurrent_v1(@ptrCast(*const IMSMQQueue3, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_PeekNext_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekNext_v1(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_PeekCurrent_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekCurrent_v1(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_Receive(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Receive(@ptrCast(*const IMSMQQueue3, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_Peek(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Peek(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_ReceiveCurrent(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceiveCurrent(@ptrCast(*const IMSMQQueue3, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_PeekNext(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekNext(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_PeekCurrent(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekCurrent(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueue3, self), ppcolProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_get_Handle2(self: *const T, pvarHandle: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_Handle2(@ptrCast(*const IMSMQQueue3, self), pvarHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_ReceiveByLookupId(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceiveByLookupId(@ptrCast(*const IMSMQQueue3, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_ReceiveNextByLookupId(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceiveNextByLookupId(@ptrCast(*const IMSMQQueue3, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_ReceivePreviousByLookupId(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceivePreviousByLookupId(@ptrCast(*const IMSMQQueue3, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_ReceiveFirstByLookupId(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceiveFirstByLookupId(@ptrCast(*const IMSMQQueue3, self), Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_ReceiveLastByLookupId(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceiveLastByLookupId(@ptrCast(*const IMSMQQueue3, self), Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_PeekByLookupId(self: *const T, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekByLookupId(@ptrCast(*const IMSMQQueue3, self), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_PeekNextByLookupId(self: *const T, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekNextByLookupId(@ptrCast(*const IMSMQQueue3, self), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_PeekPreviousByLookupId(self: *const T, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekPreviousByLookupId(@ptrCast(*const IMSMQQueue3, self), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_PeekFirstByLookupId(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekFirstByLookupId(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_PeekLastByLookupId(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekLastByLookupId(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_Purge(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Purge(@ptrCast(*const IMSMQQueue3, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue3_get_IsOpen2(self: *const T, pisOpen: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_IsOpen2(@ptrCast(*const IMSMQQueue3, self), pisOpen);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_get_Access(self: *const T, plAccess: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_Access(@ptrCast(*const IMSMQQueue3, self), plAccess);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_get_ShareMode(self: *const T, plShareMode: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_ShareMode(@ptrCast(*const IMSMQQueue3, self), plShareMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_get_QueueInfo(self: *const T, ppqinfo: ?*?*IMSMQQueueInfo3) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_QueueInfo(@ptrCast(*const IMSMQQueue3, self), ppqinfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_get_Handle(self: *const T, plHandle: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_Handle(@ptrCast(*const IMSMQQueue3, self), plHandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_get_IsOpen(self: *const T, pisOpen: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_IsOpen(@ptrCast(*const IMSMQQueue3, self), pisOpen);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_Close(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Close(@ptrCast(*const IMSMQQueue3, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_Receive_v1(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Receive_v1(@ptrCast(*const IMSMQQueue3, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_Peek_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Peek_v1(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_EnableNotification(self: *const T, Event: ?*IMSMQEvent3, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).EnableNotification(@ptrCast(*const IMSMQQueue3, self), Event, Cursor, ReceiveTimeout);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueue3, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_ReceiveCurrent_v1(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceiveCurrent_v1(@ptrCast(*const IMSMQQueue3, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_PeekNext_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekNext_v1(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_PeekCurrent_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekCurrent_v1(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_Receive(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Receive(@ptrCast(*const IMSMQQueue3, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_Peek(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Peek(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_ReceiveCurrent(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceiveCurrent(@ptrCast(*const IMSMQQueue3, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_PeekNext(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekNext(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_PeekCurrent(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekCurrent(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueue3, self), ppcolProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_get_Handle2(self: *const T, pvarHandle: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_Handle2(@ptrCast(*const IMSMQQueue3, self), pvarHandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_ReceiveByLookupId(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceiveByLookupId(@ptrCast(*const IMSMQQueue3, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_ReceiveNextByLookupId(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceiveNextByLookupId(@ptrCast(*const IMSMQQueue3, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_ReceivePreviousByLookupId(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceivePreviousByLookupId(@ptrCast(*const IMSMQQueue3, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_ReceiveFirstByLookupId(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceiveFirstByLookupId(@ptrCast(*const IMSMQQueue3, self), Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_ReceiveLastByLookupId(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceiveLastByLookupId(@ptrCast(*const IMSMQQueue3, self), Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_PeekByLookupId(self: *const T, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekByLookupId(@ptrCast(*const IMSMQQueue3, self), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_PeekNextByLookupId(self: *const T, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekNextByLookupId(@ptrCast(*const IMSMQQueue3, self), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_PeekPreviousByLookupId(self: *const T, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekPreviousByLookupId(@ptrCast(*const IMSMQQueue3, self), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_PeekFirstByLookupId(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekFirstByLookupId(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_PeekLastByLookupId(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekLastByLookupId(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_Purge(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Purge(@ptrCast(*const IMSMQQueue3, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue3_get_IsOpen2(self: *const T, pisOpen: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_IsOpen2(@ptrCast(*const IMSMQQueue3, self), pisOpen);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2952,34 +2968,34 @@ pub const IMSMQQueue4 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Access: fn(
+        get_Access: fn (
             self: *const IMSMQQueue4,
             plAccess: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ShareMode: fn(
+        get_ShareMode: fn (
             self: *const IMSMQQueue4,
             plShareMode: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QueueInfo: fn(
+        get_QueueInfo: fn (
             self: *const IMSMQQueue4,
             ppqinfo: ?*?*IMSMQQueueInfo4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: fn(
+        get_Handle: fn (
             self: *const IMSMQQueue4,
             plHandle: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsOpen: fn(
+        get_IsOpen: fn (
             self: *const IMSMQQueue4,
             pisOpen: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
+        Close: fn (
             self: *const IMSMQQueue4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Receive_v1: fn(
+        Receive_v1: fn (
             self: *const IMSMQQueue4,
             Transaction: ?*VARIANT,
             WantDestinationQueue: ?*VARIANT,
@@ -2987,62 +3003,45 @@ pub const IMSMQQueue4 = extern struct {
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Peek_v1: fn(
+        Peek_v1: fn (
             self: *const IMSMQQueue4,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnableNotification: fn(
+        EnableNotification: fn (
             self: *const IMSMQQueue4,
             Event: ?*IMSMQEvent3,
             Cursor: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
+        Reset: fn (
             self: *const IMSMQQueue4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReceiveCurrent_v1: fn(
-            self: *const IMSMQQueue4,
-            Transaction: ?*VARIANT,
-            WantDestinationQueue: ?*VARIANT,
-            WantBody: ?*VARIANT,
-            ReceiveTimeout: ?*VARIANT,
-            ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekNext_v1: fn(
-            self: *const IMSMQQueue4,
-            WantDestinationQueue: ?*VARIANT,
-            WantBody: ?*VARIANT,
-            ReceiveTimeout: ?*VARIANT,
-            ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekCurrent_v1: fn(
-            self: *const IMSMQQueue4,
-            WantDestinationQueue: ?*VARIANT,
-            WantBody: ?*VARIANT,
-            ReceiveTimeout: ?*VARIANT,
-            ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Receive: fn(
+        ReceiveCurrent_v1: fn (
             self: *const IMSMQQueue4,
             Transaction: ?*VARIANT,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
-            WantConnectorType: ?*VARIANT,
-            ppmsg: ?*?*IMSMQMessage4,
+            ppmsg: ?*?*IMSMQMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Peek: fn(
+        PeekNext_v1: fn (
             self: *const IMSMQQueue4,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
-            WantConnectorType: ?*VARIANT,
-            ppmsg: ?*?*IMSMQMessage4,
+            ppmsg: ?*?*IMSMQMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReceiveCurrent: fn(
+        PeekCurrent_v1: fn (
+            self: *const IMSMQQueue4,
+            WantDestinationQueue: ?*VARIANT,
+            WantBody: ?*VARIANT,
+            ReceiveTimeout: ?*VARIANT,
+            ppmsg: ?*?*IMSMQMessage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Receive: fn (
             self: *const IMSMQQueue4,
             Transaction: ?*VARIANT,
             WantDestinationQueue: ?*VARIANT,
@@ -3051,7 +3050,7 @@ pub const IMSMQQueue4 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekNext: fn(
+        Peek: fn (
             self: *const IMSMQQueue4,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
@@ -3059,7 +3058,24 @@ pub const IMSMQQueue4 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekCurrent: fn(
+        ReceiveCurrent: fn (
+            self: *const IMSMQQueue4,
+            Transaction: ?*VARIANT,
+            WantDestinationQueue: ?*VARIANT,
+            WantBody: ?*VARIANT,
+            ReceiveTimeout: ?*VARIANT,
+            WantConnectorType: ?*VARIANT,
+            ppmsg: ?*?*IMSMQMessage4,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PeekNext: fn (
+            self: *const IMSMQQueue4,
+            WantDestinationQueue: ?*VARIANT,
+            WantBody: ?*VARIANT,
+            ReceiveTimeout: ?*VARIANT,
+            WantConnectorType: ?*VARIANT,
+            ppmsg: ?*?*IMSMQMessage4,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PeekCurrent: fn (
             self: *const IMSMQQueue4,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
@@ -3068,16 +3084,16 @@ pub const IMSMQQueue4 = extern struct {
             ppmsg: ?*?*IMSMQMessage4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQQueue4,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle2: fn(
+        get_Handle2: fn (
             self: *const IMSMQQueue4,
             pvarHandle: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReceiveByLookupId: fn(
+        ReceiveByLookupId: fn (
             self: *const IMSMQQueue4,
             LookupId: VARIANT,
             Transaction: ?*VARIANT,
@@ -3086,7 +3102,7 @@ pub const IMSMQQueue4 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReceiveNextByLookupId: fn(
+        ReceiveNextByLookupId: fn (
             self: *const IMSMQQueue4,
             LookupId: VARIANT,
             Transaction: ?*VARIANT,
@@ -3095,7 +3111,7 @@ pub const IMSMQQueue4 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReceivePreviousByLookupId: fn(
+        ReceivePreviousByLookupId: fn (
             self: *const IMSMQQueue4,
             LookupId: VARIANT,
             Transaction: ?*VARIANT,
@@ -3104,7 +3120,7 @@ pub const IMSMQQueue4 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReceiveFirstByLookupId: fn(
+        ReceiveFirstByLookupId: fn (
             self: *const IMSMQQueue4,
             Transaction: ?*VARIANT,
             WantDestinationQueue: ?*VARIANT,
@@ -3112,7 +3128,7 @@ pub const IMSMQQueue4 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReceiveLastByLookupId: fn(
+        ReceiveLastByLookupId: fn (
             self: *const IMSMQQueue4,
             Transaction: ?*VARIANT,
             WantDestinationQueue: ?*VARIANT,
@@ -3120,7 +3136,7 @@ pub const IMSMQQueue4 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekByLookupId: fn(
+        PeekByLookupId: fn (
             self: *const IMSMQQueue4,
             LookupId: VARIANT,
             WantDestinationQueue: ?*VARIANT,
@@ -3128,7 +3144,7 @@ pub const IMSMQQueue4 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekNextByLookupId: fn(
+        PeekNextByLookupId: fn (
             self: *const IMSMQQueue4,
             LookupId: VARIANT,
             WantDestinationQueue: ?*VARIANT,
@@ -3136,7 +3152,7 @@ pub const IMSMQQueue4 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekPreviousByLookupId: fn(
+        PeekPreviousByLookupId: fn (
             self: *const IMSMQQueue4,
             LookupId: VARIANT,
             WantDestinationQueue: ?*VARIANT,
@@ -3144,29 +3160,29 @@ pub const IMSMQQueue4 = extern struct {
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekFirstByLookupId: fn(
+        PeekFirstByLookupId: fn (
             self: *const IMSMQQueue4,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PeekLastByLookupId: fn(
+        PeekLastByLookupId: fn (
             self: *const IMSMQQueue4,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Purge: fn(
+        Purge: fn (
             self: *const IMSMQQueue4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsOpen2: fn(
+        get_IsOpen2: fn (
             self: *const IMSMQQueue4,
             pisOpen: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReceiveByLookupIdAllowPeek: fn(
+        ReceiveByLookupIdAllowPeek: fn (
             self: *const IMSMQQueue4,
             LookupId: VARIANT,
             Transaction: ?*VARIANT,
@@ -3177,141 +3193,143 @@ pub const IMSMQQueue4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_get_Access(self: *const T, plAccess: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_Access(@ptrCast(*const IMSMQQueue4, self), plAccess);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_get_ShareMode(self: *const T, plShareMode: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_ShareMode(@ptrCast(*const IMSMQQueue4, self), plShareMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_get_QueueInfo(self: *const T, ppqinfo: ?*?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_QueueInfo(@ptrCast(*const IMSMQQueue4, self), ppqinfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_get_Handle(self: *const T, plHandle: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_Handle(@ptrCast(*const IMSMQQueue4, self), plHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_get_IsOpen(self: *const T, pisOpen: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_IsOpen(@ptrCast(*const IMSMQQueue4, self), pisOpen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Close(@ptrCast(*const IMSMQQueue4, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_Receive_v1(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Receive_v1(@ptrCast(*const IMSMQQueue4, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_Peek_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Peek_v1(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_EnableNotification(self: *const T, Event: ?*IMSMQEvent3, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).EnableNotification(@ptrCast(*const IMSMQQueue4, self), Event, Cursor, ReceiveTimeout);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueue4, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_ReceiveCurrent_v1(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveCurrent_v1(@ptrCast(*const IMSMQQueue4, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_PeekNext_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekNext_v1(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_PeekCurrent_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekCurrent_v1(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_Receive(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Receive(@ptrCast(*const IMSMQQueue4, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_Peek(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Peek(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_ReceiveCurrent(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveCurrent(@ptrCast(*const IMSMQQueue4, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_PeekNext(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekNext(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_PeekCurrent(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekCurrent(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueue4, self), ppcolProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_get_Handle2(self: *const T, pvarHandle: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_Handle2(@ptrCast(*const IMSMQQueue4, self), pvarHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_ReceiveByLookupId(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveByLookupId(@ptrCast(*const IMSMQQueue4, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_ReceiveNextByLookupId(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveNextByLookupId(@ptrCast(*const IMSMQQueue4, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_ReceivePreviousByLookupId(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceivePreviousByLookupId(@ptrCast(*const IMSMQQueue4, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_ReceiveFirstByLookupId(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveFirstByLookupId(@ptrCast(*const IMSMQQueue4, self), Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_ReceiveLastByLookupId(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveLastByLookupId(@ptrCast(*const IMSMQQueue4, self), Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_PeekByLookupId(self: *const T, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekByLookupId(@ptrCast(*const IMSMQQueue4, self), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_PeekNextByLookupId(self: *const T, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekNextByLookupId(@ptrCast(*const IMSMQQueue4, self), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_PeekPreviousByLookupId(self: *const T, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekPreviousByLookupId(@ptrCast(*const IMSMQQueue4, self), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_PeekFirstByLookupId(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekFirstByLookupId(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_PeekLastByLookupId(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekLastByLookupId(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_Purge(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Purge(@ptrCast(*const IMSMQQueue4, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_get_IsOpen2(self: *const T, pisOpen: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_IsOpen2(@ptrCast(*const IMSMQQueue4, self), pisOpen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueue4_ReceiveByLookupIdAllowPeek(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveByLookupIdAllowPeek(@ptrCast(*const IMSMQQueue4, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_get_Access(self: *const T, plAccess: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_Access(@ptrCast(*const IMSMQQueue4, self), plAccess);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_get_ShareMode(self: *const T, plShareMode: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_ShareMode(@ptrCast(*const IMSMQQueue4, self), plShareMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_get_QueueInfo(self: *const T, ppqinfo: ?*?*IMSMQQueueInfo4) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_QueueInfo(@ptrCast(*const IMSMQQueue4, self), ppqinfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_get_Handle(self: *const T, plHandle: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_Handle(@ptrCast(*const IMSMQQueue4, self), plHandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_get_IsOpen(self: *const T, pisOpen: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_IsOpen(@ptrCast(*const IMSMQQueue4, self), pisOpen);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_Close(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Close(@ptrCast(*const IMSMQQueue4, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_Receive_v1(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Receive_v1(@ptrCast(*const IMSMQQueue4, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_Peek_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Peek_v1(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_EnableNotification(self: *const T, Event: ?*IMSMQEvent3, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).EnableNotification(@ptrCast(*const IMSMQQueue4, self), Event, Cursor, ReceiveTimeout);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueue4, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_ReceiveCurrent_v1(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveCurrent_v1(@ptrCast(*const IMSMQQueue4, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_PeekNext_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekNext_v1(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_PeekCurrent_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekCurrent_v1(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_Receive(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Receive(@ptrCast(*const IMSMQQueue4, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_Peek(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Peek(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_ReceiveCurrent(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveCurrent(@ptrCast(*const IMSMQQueue4, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_PeekNext(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekNext(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_PeekCurrent(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekCurrent(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueue4, self), ppcolProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_get_Handle2(self: *const T, pvarHandle: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_Handle2(@ptrCast(*const IMSMQQueue4, self), pvarHandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_ReceiveByLookupId(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveByLookupId(@ptrCast(*const IMSMQQueue4, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_ReceiveNextByLookupId(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveNextByLookupId(@ptrCast(*const IMSMQQueue4, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_ReceivePreviousByLookupId(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceivePreviousByLookupId(@ptrCast(*const IMSMQQueue4, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_ReceiveFirstByLookupId(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveFirstByLookupId(@ptrCast(*const IMSMQQueue4, self), Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_ReceiveLastByLookupId(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveLastByLookupId(@ptrCast(*const IMSMQQueue4, self), Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_PeekByLookupId(self: *const T, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekByLookupId(@ptrCast(*const IMSMQQueue4, self), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_PeekNextByLookupId(self: *const T, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekNextByLookupId(@ptrCast(*const IMSMQQueue4, self), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_PeekPreviousByLookupId(self: *const T, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekPreviousByLookupId(@ptrCast(*const IMSMQQueue4, self), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_PeekFirstByLookupId(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekFirstByLookupId(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_PeekLastByLookupId(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekLastByLookupId(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_Purge(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Purge(@ptrCast(*const IMSMQQueue4, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_get_IsOpen2(self: *const T, pisOpen: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_IsOpen2(@ptrCast(*const IMSMQQueue4, self), pisOpen);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueue4_ReceiveByLookupIdAllowPeek(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
+                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveByLookupIdAllowPeek(@ptrCast(*const IMSMQQueue4, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3321,447 +3339,449 @@ pub const IMSMQMessage = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Class: fn(
+        get_Class: fn (
             self: *const IMSMQMessage,
             plClass: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivLevel: fn(
+        get_PrivLevel: fn (
             self: *const IMSMQMessage,
             plPrivLevel: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PrivLevel: fn(
+        put_PrivLevel: fn (
             self: *const IMSMQMessage,
             lPrivLevel: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AuthLevel: fn(
+        get_AuthLevel: fn (
             self: *const IMSMQMessage,
             plAuthLevel: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AuthLevel: fn(
+        put_AuthLevel: fn (
             self: *const IMSMQMessage,
             lAuthLevel: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsAuthenticated: fn(
+        get_IsAuthenticated: fn (
             self: *const IMSMQMessage,
             pisAuthenticated: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Delivery: fn(
+        get_Delivery: fn (
             self: *const IMSMQMessage,
             plDelivery: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Delivery: fn(
+        put_Delivery: fn (
             self: *const IMSMQMessage,
             lDelivery: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Trace: fn(
+        get_Trace: fn (
             self: *const IMSMQMessage,
             plTrace: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Trace: fn(
+        put_Trace: fn (
             self: *const IMSMQMessage,
             lTrace: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Priority: fn(
+        get_Priority: fn (
             self: *const IMSMQMessage,
             plPriority: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Priority: fn(
+        put_Priority: fn (
             self: *const IMSMQMessage,
             lPriority: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Journal: fn(
+        get_Journal: fn (
             self: *const IMSMQMessage,
             plJournal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Journal: fn(
+        put_Journal: fn (
             self: *const IMSMQMessage,
             lJournal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResponseQueueInfo: fn(
+        get_ResponseQueueInfo: fn (
             self: *const IMSMQMessage,
             ppqinfoResponse: ?*?*IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_ResponseQueueInfo: fn(
+        putref_ResponseQueueInfo: fn (
             self: *const IMSMQMessage,
             pqinfoResponse: ?*IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AppSpecific: fn(
+        get_AppSpecific: fn (
             self: *const IMSMQMessage,
             plAppSpecific: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AppSpecific: fn(
+        put_AppSpecific: fn (
             self: *const IMSMQMessage,
             lAppSpecific: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SourceMachineGuid: fn(
+        get_SourceMachineGuid: fn (
             self: *const IMSMQMessage,
             pbstrGuidSrcMachine: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BodyLength: fn(
+        get_BodyLength: fn (
             self: *const IMSMQMessage,
             pcbBody: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Body: fn(
+        get_Body: fn (
             self: *const IMSMQMessage,
             pvarBody: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Body: fn(
+        put_Body: fn (
             self: *const IMSMQMessage,
             varBody: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AdminQueueInfo: fn(
+        get_AdminQueueInfo: fn (
             self: *const IMSMQMessage,
             ppqinfoAdmin: ?*?*IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_AdminQueueInfo: fn(
+        putref_AdminQueueInfo: fn (
             self: *const IMSMQMessage,
             pqinfoAdmin: ?*IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: fn(
+        get_Id: fn (
             self: *const IMSMQMessage,
             pvarMsgId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CorrelationId: fn(
+        get_CorrelationId: fn (
             self: *const IMSMQMessage,
             pvarMsgId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_CorrelationId: fn(
+        put_CorrelationId: fn (
             self: *const IMSMQMessage,
             varMsgId: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Ack: fn(
+        get_Ack: fn (
             self: *const IMSMQMessage,
             plAck: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Ack: fn(
+        put_Ack: fn (
             self: *const IMSMQMessage,
             lAck: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Label: fn(
+        get_Label: fn (
             self: *const IMSMQMessage,
             pbstrLabel: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Label: fn(
+        put_Label: fn (
             self: *const IMSMQMessage,
             bstrLabel: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaxTimeToReachQueue: fn(
+        get_MaxTimeToReachQueue: fn (
             self: *const IMSMQMessage,
             plMaxTimeToReachQueue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MaxTimeToReachQueue: fn(
+        put_MaxTimeToReachQueue: fn (
             self: *const IMSMQMessage,
             lMaxTimeToReachQueue: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaxTimeToReceive: fn(
+        get_MaxTimeToReceive: fn (
             self: *const IMSMQMessage,
             plMaxTimeToReceive: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MaxTimeToReceive: fn(
+        put_MaxTimeToReceive: fn (
             self: *const IMSMQMessage,
             lMaxTimeToReceive: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HashAlgorithm: fn(
+        get_HashAlgorithm: fn (
             self: *const IMSMQMessage,
             plHashAlg: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_HashAlgorithm: fn(
+        put_HashAlgorithm: fn (
             self: *const IMSMQMessage,
             lHashAlg: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EncryptAlgorithm: fn(
+        get_EncryptAlgorithm: fn (
             self: *const IMSMQMessage,
             plEncryptAlg: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EncryptAlgorithm: fn(
+        put_EncryptAlgorithm: fn (
             self: *const IMSMQMessage,
             lEncryptAlg: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SentTime: fn(
+        get_SentTime: fn (
             self: *const IMSMQMessage,
             pvarSentTime: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ArrivedTime: fn(
+        get_ArrivedTime: fn (
             self: *const IMSMQMessage,
             plArrivedTime: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DestinationQueueInfo: fn(
+        get_DestinationQueueInfo: fn (
             self: *const IMSMQMessage,
             ppqinfoDest: ?*?*IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SenderCertificate: fn(
+        get_SenderCertificate: fn (
             self: *const IMSMQMessage,
             pvarSenderCert: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SenderCertificate: fn(
+        put_SenderCertificate: fn (
             self: *const IMSMQMessage,
             varSenderCert: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SenderId: fn(
+        get_SenderId: fn (
             self: *const IMSMQMessage,
             pvarSenderId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SenderIdType: fn(
+        get_SenderIdType: fn (
             self: *const IMSMQMessage,
             plSenderIdType: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SenderIdType: fn(
+        put_SenderIdType: fn (
             self: *const IMSMQMessage,
             lSenderIdType: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Send: fn(
+        Send: fn (
             self: *const IMSMQMessage,
             DestinationQueue: ?*IMSMQQueue,
             Transaction: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AttachCurrentSecurityContext: fn(
+        AttachCurrentSecurityContext: fn (
             self: *const IMSMQMessage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_Class(self: *const T, plClass: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Class(@ptrCast(*const IMSMQMessage, self), plClass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQMessage, self), plPrivLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_put_PrivLevel(self: *const T, lPrivLevel: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQMessage, self), lPrivLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_AuthLevel(self: *const T, plAuthLevel: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_AuthLevel(@ptrCast(*const IMSMQMessage, self), plAuthLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_put_AuthLevel(self: *const T, lAuthLevel: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_AuthLevel(@ptrCast(*const IMSMQMessage, self), lAuthLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_IsAuthenticated(self: *const T, pisAuthenticated: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_IsAuthenticated(@ptrCast(*const IMSMQMessage, self), pisAuthenticated);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_Delivery(self: *const T, plDelivery: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Delivery(@ptrCast(*const IMSMQMessage, self), plDelivery);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_put_Delivery(self: *const T, lDelivery: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Delivery(@ptrCast(*const IMSMQMessage, self), lDelivery);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_Trace(self: *const T, plTrace: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Trace(@ptrCast(*const IMSMQMessage, self), plTrace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_put_Trace(self: *const T, lTrace: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Trace(@ptrCast(*const IMSMQMessage, self), lTrace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_Priority(self: *const T, plPriority: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Priority(@ptrCast(*const IMSMQMessage, self), plPriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_put_Priority(self: *const T, lPriority: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Priority(@ptrCast(*const IMSMQMessage, self), lPriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_Journal(self: *const T, plJournal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQMessage, self), plJournal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_put_Journal(self: *const T, lJournal: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQMessage, self), lJournal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_ResponseQueueInfo(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_ResponseQueueInfo(@ptrCast(*const IMSMQMessage, self), ppqinfoResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_putref_ResponseQueueInfo(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).putref_ResponseQueueInfo(@ptrCast(*const IMSMQMessage, self), pqinfoResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_AppSpecific(self: *const T, plAppSpecific: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_AppSpecific(@ptrCast(*const IMSMQMessage, self), plAppSpecific);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_put_AppSpecific(self: *const T, lAppSpecific: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_AppSpecific(@ptrCast(*const IMSMQMessage, self), lAppSpecific);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_SourceMachineGuid(self: *const T, pbstrGuidSrcMachine: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_SourceMachineGuid(@ptrCast(*const IMSMQMessage, self), pbstrGuidSrcMachine);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_BodyLength(self: *const T, pcbBody: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_BodyLength(@ptrCast(*const IMSMQMessage, self), pcbBody);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_Body(self: *const T, pvarBody: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Body(@ptrCast(*const IMSMQMessage, self), pvarBody);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_put_Body(self: *const T, varBody: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Body(@ptrCast(*const IMSMQMessage, self), varBody);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_AdminQueueInfo(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_AdminQueueInfo(@ptrCast(*const IMSMQMessage, self), ppqinfoAdmin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_putref_AdminQueueInfo(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).putref_AdminQueueInfo(@ptrCast(*const IMSMQMessage, self), pqinfoAdmin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_Id(self: *const T, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Id(@ptrCast(*const IMSMQMessage, self), pvarMsgId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_CorrelationId(self: *const T, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_CorrelationId(@ptrCast(*const IMSMQMessage, self), pvarMsgId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_put_CorrelationId(self: *const T, varMsgId: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_CorrelationId(@ptrCast(*const IMSMQMessage, self), varMsgId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_Ack(self: *const T, plAck: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Ack(@ptrCast(*const IMSMQMessage, self), plAck);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_put_Ack(self: *const T, lAck: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Ack(@ptrCast(*const IMSMQMessage, self), lAck);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_Label(self: *const T, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQMessage, self), pbstrLabel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_put_Label(self: *const T, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQMessage, self), bstrLabel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_MaxTimeToReachQueue(self: *const T, plMaxTimeToReachQueue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage, self), plMaxTimeToReachQueue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_put_MaxTimeToReachQueue(self: *const T, lMaxTimeToReachQueue: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage, self), lMaxTimeToReachQueue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_MaxTimeToReceive(self: *const T, plMaxTimeToReceive: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_MaxTimeToReceive(@ptrCast(*const IMSMQMessage, self), plMaxTimeToReceive);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_put_MaxTimeToReceive(self: *const T, lMaxTimeToReceive: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_MaxTimeToReceive(@ptrCast(*const IMSMQMessage, self), lMaxTimeToReceive);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_HashAlgorithm(self: *const T, plHashAlg: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const IMSMQMessage, self), plHashAlg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_put_HashAlgorithm(self: *const T, lHashAlg: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const IMSMQMessage, self), lHashAlg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_EncryptAlgorithm(self: *const T, plEncryptAlg: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_EncryptAlgorithm(@ptrCast(*const IMSMQMessage, self), plEncryptAlg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_put_EncryptAlgorithm(self: *const T, lEncryptAlg: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_EncryptAlgorithm(@ptrCast(*const IMSMQMessage, self), lEncryptAlg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_SentTime(self: *const T, pvarSentTime: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_SentTime(@ptrCast(*const IMSMQMessage, self), pvarSentTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_ArrivedTime(self: *const T, plArrivedTime: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_ArrivedTime(@ptrCast(*const IMSMQMessage, self), plArrivedTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_DestinationQueueInfo(self: *const T, ppqinfoDest: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_DestinationQueueInfo(@ptrCast(*const IMSMQMessage, self), ppqinfoDest);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_SenderCertificate(self: *const T, pvarSenderCert: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_SenderCertificate(@ptrCast(*const IMSMQMessage, self), pvarSenderCert);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_put_SenderCertificate(self: *const T, varSenderCert: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_SenderCertificate(@ptrCast(*const IMSMQMessage, self), varSenderCert);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_SenderId(self: *const T, pvarSenderId: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_SenderId(@ptrCast(*const IMSMQMessage, self), pvarSenderId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_get_SenderIdType(self: *const T, plSenderIdType: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_SenderIdType(@ptrCast(*const IMSMQMessage, self), plSenderIdType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_put_SenderIdType(self: *const T, lSenderIdType: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_SenderIdType(@ptrCast(*const IMSMQMessage, self), lSenderIdType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_Send(self: *const T, DestinationQueue: ?*IMSMQQueue, Transaction: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).Send(@ptrCast(*const IMSMQMessage, self), DestinationQueue, Transaction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage_AttachCurrentSecurityContext(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage.VTable, self.vtable).AttachCurrentSecurityContext(@ptrCast(*const IMSMQMessage, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_Class(self: *const T, plClass: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Class(@ptrCast(*const IMSMQMessage, self), plClass);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQMessage, self), plPrivLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_put_PrivLevel(self: *const T, lPrivLevel: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQMessage, self), lPrivLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_AuthLevel(self: *const T, plAuthLevel: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_AuthLevel(@ptrCast(*const IMSMQMessage, self), plAuthLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_put_AuthLevel(self: *const T, lAuthLevel: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_AuthLevel(@ptrCast(*const IMSMQMessage, self), lAuthLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_IsAuthenticated(self: *const T, pisAuthenticated: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_IsAuthenticated(@ptrCast(*const IMSMQMessage, self), pisAuthenticated);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_Delivery(self: *const T, plDelivery: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Delivery(@ptrCast(*const IMSMQMessage, self), plDelivery);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_put_Delivery(self: *const T, lDelivery: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Delivery(@ptrCast(*const IMSMQMessage, self), lDelivery);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_Trace(self: *const T, plTrace: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Trace(@ptrCast(*const IMSMQMessage, self), plTrace);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_put_Trace(self: *const T, lTrace: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Trace(@ptrCast(*const IMSMQMessage, self), lTrace);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_Priority(self: *const T, plPriority: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Priority(@ptrCast(*const IMSMQMessage, self), plPriority);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_put_Priority(self: *const T, lPriority: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Priority(@ptrCast(*const IMSMQMessage, self), lPriority);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_Journal(self: *const T, plJournal: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQMessage, self), plJournal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_put_Journal(self: *const T, lJournal: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQMessage, self), lJournal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_ResponseQueueInfo(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_ResponseQueueInfo(@ptrCast(*const IMSMQMessage, self), ppqinfoResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_putref_ResponseQueueInfo(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).putref_ResponseQueueInfo(@ptrCast(*const IMSMQMessage, self), pqinfoResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_AppSpecific(self: *const T, plAppSpecific: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_AppSpecific(@ptrCast(*const IMSMQMessage, self), plAppSpecific);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_put_AppSpecific(self: *const T, lAppSpecific: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_AppSpecific(@ptrCast(*const IMSMQMessage, self), lAppSpecific);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_SourceMachineGuid(self: *const T, pbstrGuidSrcMachine: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_SourceMachineGuid(@ptrCast(*const IMSMQMessage, self), pbstrGuidSrcMachine);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_BodyLength(self: *const T, pcbBody: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_BodyLength(@ptrCast(*const IMSMQMessage, self), pcbBody);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_Body(self: *const T, pvarBody: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Body(@ptrCast(*const IMSMQMessage, self), pvarBody);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_put_Body(self: *const T, varBody: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Body(@ptrCast(*const IMSMQMessage, self), varBody);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_AdminQueueInfo(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_AdminQueueInfo(@ptrCast(*const IMSMQMessage, self), ppqinfoAdmin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_putref_AdminQueueInfo(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).putref_AdminQueueInfo(@ptrCast(*const IMSMQMessage, self), pqinfoAdmin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_Id(self: *const T, pvarMsgId: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Id(@ptrCast(*const IMSMQMessage, self), pvarMsgId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_CorrelationId(self: *const T, pvarMsgId: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_CorrelationId(@ptrCast(*const IMSMQMessage, self), pvarMsgId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_put_CorrelationId(self: *const T, varMsgId: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_CorrelationId(@ptrCast(*const IMSMQMessage, self), varMsgId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_Ack(self: *const T, plAck: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Ack(@ptrCast(*const IMSMQMessage, self), plAck);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_put_Ack(self: *const T, lAck: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Ack(@ptrCast(*const IMSMQMessage, self), lAck);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_Label(self: *const T, pbstrLabel: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQMessage, self), pbstrLabel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_put_Label(self: *const T, bstrLabel: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQMessage, self), bstrLabel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_MaxTimeToReachQueue(self: *const T, plMaxTimeToReachQueue: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage, self), plMaxTimeToReachQueue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_put_MaxTimeToReachQueue(self: *const T, lMaxTimeToReachQueue: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage, self), lMaxTimeToReachQueue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_MaxTimeToReceive(self: *const T, plMaxTimeToReceive: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_MaxTimeToReceive(@ptrCast(*const IMSMQMessage, self), plMaxTimeToReceive);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_put_MaxTimeToReceive(self: *const T, lMaxTimeToReceive: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_MaxTimeToReceive(@ptrCast(*const IMSMQMessage, self), lMaxTimeToReceive);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_HashAlgorithm(self: *const T, plHashAlg: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const IMSMQMessage, self), plHashAlg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_put_HashAlgorithm(self: *const T, lHashAlg: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const IMSMQMessage, self), lHashAlg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_EncryptAlgorithm(self: *const T, plEncryptAlg: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_EncryptAlgorithm(@ptrCast(*const IMSMQMessage, self), plEncryptAlg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_put_EncryptAlgorithm(self: *const T, lEncryptAlg: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_EncryptAlgorithm(@ptrCast(*const IMSMQMessage, self), lEncryptAlg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_SentTime(self: *const T, pvarSentTime: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_SentTime(@ptrCast(*const IMSMQMessage, self), pvarSentTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_ArrivedTime(self: *const T, plArrivedTime: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_ArrivedTime(@ptrCast(*const IMSMQMessage, self), plArrivedTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_DestinationQueueInfo(self: *const T, ppqinfoDest: ?*?*IMSMQQueueInfo) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_DestinationQueueInfo(@ptrCast(*const IMSMQMessage, self), ppqinfoDest);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_SenderCertificate(self: *const T, pvarSenderCert: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_SenderCertificate(@ptrCast(*const IMSMQMessage, self), pvarSenderCert);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_put_SenderCertificate(self: *const T, varSenderCert: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_SenderCertificate(@ptrCast(*const IMSMQMessage, self), varSenderCert);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_SenderId(self: *const T, pvarSenderId: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_SenderId(@ptrCast(*const IMSMQMessage, self), pvarSenderId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_get_SenderIdType(self: *const T, plSenderIdType: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_SenderIdType(@ptrCast(*const IMSMQMessage, self), plSenderIdType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_put_SenderIdType(self: *const T, lSenderIdType: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_SenderIdType(@ptrCast(*const IMSMQMessage, self), lSenderIdType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_Send(self: *const T, DestinationQueue: ?*IMSMQQueue, Transaction: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).Send(@ptrCast(*const IMSMQMessage, self), DestinationQueue, Transaction);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage_AttachCurrentSecurityContext(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).AttachCurrentSecurityContext(@ptrCast(*const IMSMQMessage, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3770,26 +3790,28 @@ pub const IID_IMSMQQueueInfos = &IID_IMSMQQueueInfos_Value;
 pub const IMSMQQueueInfos = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Reset: fn(
+        Reset: fn (
             self: *const IMSMQQueueInfos,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Next: fn(
+        Next: fn (
             self: *const IMSMQQueueInfos,
             ppqinfoNext: ?*?*IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfos_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfos.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueueInfos, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfos_Next(self: *const T, ppqinfoNext: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfos.VTable, self.vtable).Next(@ptrCast(*const IMSMQQueueInfos, self), ppqinfoNext);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfos_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfos.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueueInfos, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfos_Next(self: *const T, ppqinfoNext: ?*?*IMSMQQueueInfo) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfos.VTable, self.vtable).Next(@ptrCast(*const IMSMQQueueInfos, self), ppqinfoNext);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3798,35 +3820,37 @@ pub const IID_IMSMQQueueInfos2 = &IID_IMSMQQueueInfos2_Value;
 pub const IMSMQQueueInfos2 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Reset: fn(
+        Reset: fn (
             self: *const IMSMQQueueInfos2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Next: fn(
+        Next: fn (
             self: *const IMSMQQueueInfos2,
             ppqinfoNext: ?*?*IMSMQQueueInfo2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQQueueInfos2,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfos2_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfos2.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueueInfos2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfos2_Next(self: *const T, ppqinfoNext: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfos2.VTable, self.vtable).Next(@ptrCast(*const IMSMQQueueInfos2, self), ppqinfoNext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfos2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfos2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueueInfos2, self), ppcolProperties);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfos2_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfos2.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueueInfos2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfos2_Next(self: *const T, ppqinfoNext: ?*?*IMSMQQueueInfo2) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfos2.VTable, self.vtable).Next(@ptrCast(*const IMSMQQueueInfos2, self), ppqinfoNext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfos2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfos2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueueInfos2, self), ppcolProperties);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3835,35 +3859,37 @@ pub const IID_IMSMQQueueInfos3 = &IID_IMSMQQueueInfos3_Value;
 pub const IMSMQQueueInfos3 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Reset: fn(
+        Reset: fn (
             self: *const IMSMQQueueInfos3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Next: fn(
+        Next: fn (
             self: *const IMSMQQueueInfos3,
             ppqinfoNext: ?*?*IMSMQQueueInfo3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQQueueInfos3,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfos3_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfos3.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueueInfos3, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfos3_Next(self: *const T, ppqinfoNext: ?*?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfos3.VTable, self.vtable).Next(@ptrCast(*const IMSMQQueueInfos3, self), ppqinfoNext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfos3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfos3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueueInfos3, self), ppcolProperties);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfos3_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfos3.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueueInfos3, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfos3_Next(self: *const T, ppqinfoNext: ?*?*IMSMQQueueInfo3) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfos3.VTable, self.vtable).Next(@ptrCast(*const IMSMQQueueInfos3, self), ppqinfoNext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfos3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfos3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueueInfos3, self), ppcolProperties);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3872,35 +3898,37 @@ pub const IID_IMSMQQueueInfos4 = &IID_IMSMQQueueInfos4_Value;
 pub const IMSMQQueueInfos4 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Reset: fn(
+        Reset: fn (
             self: *const IMSMQQueueInfos4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Next: fn(
+        Next: fn (
             self: *const IMSMQQueueInfos4,
             ppqinfoNext: ?*?*IMSMQQueueInfo4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQQueueInfos4,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfos4_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfos4.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueueInfos4, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfos4_Next(self: *const T, ppqinfoNext: ?*?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfos4.VTable, self.vtable).Next(@ptrCast(*const IMSMQQueueInfos4, self), ppqinfoNext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueInfos4_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueInfos4.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueueInfos4, self), ppcolProperties);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfos4_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfos4.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueueInfos4, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfos4_Next(self: *const T, ppqinfoNext: ?*?*IMSMQQueueInfo4) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfos4.VTable, self.vtable).Next(@ptrCast(*const IMSMQQueueInfos4, self), ppqinfoNext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueInfos4_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQQueueInfos4.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueueInfos4, self), ppcolProperties);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3911,9 +3939,11 @@ pub const IMSMQEvent = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3923,19 +3953,21 @@ pub const IMSMQEvent2 = extern struct {
     pub const VTable = extern struct {
         base: IMSMQEvent.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQEvent2,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IMSMQEvent.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQEvent2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQEvent2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQEvent2, self), ppcolProperties);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IMSMQEvent.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQEvent2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQEvent2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQEvent2, self), ppcolProperties);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3946,9 +3978,11 @@ pub const IMSMQEvent3 = extern struct {
         base: IMSMQEvent2.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IMSMQEvent2.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IMSMQEvent2.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3958,38 +3992,40 @@ pub const IMSMQTransaction = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Transaction: fn(
+        get_Transaction: fn (
             self: *const IMSMQTransaction,
             plTransaction: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Commit: fn(
+        Commit: fn (
             self: *const IMSMQTransaction,
             fRetaining: ?*VARIANT,
             grfTC: ?*VARIANT,
             grfRM: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Abort: fn(
+        Abort: fn (
             self: *const IMSMQTransaction,
             fRetaining: ?*VARIANT,
             fAsync: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQTransaction_get_Transaction(self: *const T, plTransaction: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQTransaction.VTable, self.vtable).get_Transaction(@ptrCast(*const IMSMQTransaction, self), plTransaction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQTransaction_Commit(self: *const T, fRetaining: ?*VARIANT, grfTC: ?*VARIANT, grfRM: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQTransaction.VTable, self.vtable).Commit(@ptrCast(*const IMSMQTransaction, self), fRetaining, grfTC, grfRM);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQTransaction_Abort(self: *const T, fRetaining: ?*VARIANT, fAsync: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQTransaction.VTable, self.vtable).Abort(@ptrCast(*const IMSMQTransaction, self), fRetaining, fAsync);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQTransaction_get_Transaction(self: *const T, plTransaction: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQTransaction.VTable, self.vtable).get_Transaction(@ptrCast(*const IMSMQTransaction, self), plTransaction);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQTransaction_Commit(self: *const T, fRetaining: ?*VARIANT, grfTC: ?*VARIANT, grfRM: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQTransaction.VTable, self.vtable).Commit(@ptrCast(*const IMSMQTransaction, self), fRetaining, grfTC, grfRM);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQTransaction_Abort(self: *const T, fRetaining: ?*VARIANT, fAsync: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQTransaction.VTable, self.vtable).Abort(@ptrCast(*const IMSMQTransaction, self), fRetaining, fAsync);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3998,19 +4034,21 @@ pub const IID_IMSMQCoordinatedTransactionDispenser = &IID_IMSMQCoordinatedTransa
 pub const IMSMQCoordinatedTransactionDispenser = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        BeginTransaction: fn(
+        BeginTransaction: fn (
             self: *const IMSMQCoordinatedTransactionDispenser,
             ptransaction: ?*?*IMSMQTransaction,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQCoordinatedTransactionDispenser_BeginTransaction(self: *const T, ptransaction: ?*?*IMSMQTransaction) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQCoordinatedTransactionDispenser.VTable, self.vtable).BeginTransaction(@ptrCast(*const IMSMQCoordinatedTransactionDispenser, self), ptransaction);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQCoordinatedTransactionDispenser_BeginTransaction(self: *const T, ptransaction: ?*?*IMSMQTransaction) HRESULT {
+                return @ptrCast(*const IMSMQCoordinatedTransactionDispenser.VTable, self.vtable).BeginTransaction(@ptrCast(*const IMSMQCoordinatedTransactionDispenser, self), ptransaction);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4019,19 +4057,21 @@ pub const IID_IMSMQTransactionDispenser = &IID_IMSMQTransactionDispenser_Value;
 pub const IMSMQTransactionDispenser = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        BeginTransaction: fn(
+        BeginTransaction: fn (
             self: *const IMSMQTransactionDispenser,
             ptransaction: ?*?*IMSMQTransaction,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQTransactionDispenser_BeginTransaction(self: *const T, ptransaction: ?*?*IMSMQTransaction) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQTransactionDispenser.VTable, self.vtable).BeginTransaction(@ptrCast(*const IMSMQTransactionDispenser, self), ptransaction);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQTransactionDispenser_BeginTransaction(self: *const T, ptransaction: ?*?*IMSMQTransaction) HRESULT {
+                return @ptrCast(*const IMSMQTransactionDispenser.VTable, self.vtable).BeginTransaction(@ptrCast(*const IMSMQTransactionDispenser, self), ptransaction);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4040,7 +4080,7 @@ pub const IID_IMSMQQuery2 = &IID_IMSMQQuery2_Value;
 pub const IMSMQQuery2 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        LookupQueue: fn(
+        LookupQueue: fn (
             self: *const IMSMQQuery2,
             QueueGuid: ?*VARIANT,
             ServiceTypeGuid: ?*VARIANT,
@@ -4054,23 +4094,25 @@ pub const IMSMQQuery2 = extern struct {
             ppqinfos: ?*?*IMSMQQueueInfos2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQQuery2,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQuery2_LookupQueue(self: *const T, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQuery2.VTable, self.vtable).LookupQueue(@ptrCast(*const IMSMQQuery2, self), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQuery2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQuery2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQuery2, self), ppcolProperties);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQuery2_LookupQueue(self: *const T, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos2) HRESULT {
+                return @ptrCast(*const IMSMQQuery2.VTable, self.vtable).LookupQueue(@ptrCast(*const IMSMQQuery2, self), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQuery2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQQuery2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQuery2, self), ppcolProperties);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4079,7 +4121,7 @@ pub const IID_IMSMQQuery3 = &IID_IMSMQQuery3_Value;
 pub const IMSMQQuery3 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        LookupQueue_v2: fn(
+        LookupQueue_v2: fn (
             self: *const IMSMQQuery3,
             QueueGuid: ?*VARIANT,
             ServiceTypeGuid: ?*VARIANT,
@@ -4093,11 +4135,11 @@ pub const IMSMQQuery3 = extern struct {
             ppqinfos: ?*?*IMSMQQueueInfos3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQQuery3,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        LookupQueue: fn(
+        LookupQueue: fn (
             self: *const IMSMQQuery3,
             QueueGuid: ?*VARIANT,
             ServiceTypeGuid: ?*VARIANT,
@@ -4114,21 +4156,23 @@ pub const IMSMQQuery3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQuery3_LookupQueue_v2(self: *const T, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQuery3.VTable, self.vtable).LookupQueue_v2(@ptrCast(*const IMSMQQuery3, self), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQuery3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQuery3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQuery3, self), ppcolProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQuery3_LookupQueue(self: *const T, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, MulticastAddress: ?*VARIANT, RelMulticastAddress: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQuery3.VTable, self.vtable).LookupQueue(@ptrCast(*const IMSMQQuery3, self), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, MulticastAddress, RelMulticastAddress, ppqinfos);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQuery3_LookupQueue_v2(self: *const T, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos3) HRESULT {
+                return @ptrCast(*const IMSMQQuery3.VTable, self.vtable).LookupQueue_v2(@ptrCast(*const IMSMQQuery3, self), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQuery3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQQuery3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQuery3, self), ppcolProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQuery3_LookupQueue(self: *const T, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, MulticastAddress: ?*VARIANT, RelMulticastAddress: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos3) HRESULT {
+                return @ptrCast(*const IMSMQQuery3.VTable, self.vtable).LookupQueue(@ptrCast(*const IMSMQQuery3, self), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, MulticastAddress, RelMulticastAddress, ppqinfos);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4137,7 +4181,7 @@ pub const IID_IMSMQQuery4 = &IID_IMSMQQuery4_Value;
 pub const IMSMQQuery4 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        LookupQueue_v2: fn(
+        LookupQueue_v2: fn (
             self: *const IMSMQQuery4,
             QueueGuid: ?*VARIANT,
             ServiceTypeGuid: ?*VARIANT,
@@ -4151,11 +4195,11 @@ pub const IMSMQQuery4 = extern struct {
             ppqinfos: ?*?*IMSMQQueueInfos4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQQuery4,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        LookupQueue: fn(
+        LookupQueue: fn (
             self: *const IMSMQQuery4,
             QueueGuid: ?*VARIANT,
             ServiceTypeGuid: ?*VARIANT,
@@ -4172,21 +4216,23 @@ pub const IMSMQQuery4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQuery4_LookupQueue_v2(self: *const T, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQuery4.VTable, self.vtable).LookupQueue_v2(@ptrCast(*const IMSMQQuery4, self), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQuery4_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQuery4.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQuery4, self), ppcolProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQuery4_LookupQueue(self: *const T, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, MulticastAddress: ?*VARIANT, RelMulticastAddress: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQuery4.VTable, self.vtable).LookupQueue(@ptrCast(*const IMSMQQuery4, self), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, MulticastAddress, RelMulticastAddress, ppqinfos);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQuery4_LookupQueue_v2(self: *const T, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos4) HRESULT {
+                return @ptrCast(*const IMSMQQuery4.VTable, self.vtable).LookupQueue_v2(@ptrCast(*const IMSMQQuery4, self), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQuery4_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQQuery4.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQuery4, self), ppcolProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQuery4_LookupQueue(self: *const T, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, MulticastAddress: ?*VARIANT, RelMulticastAddress: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos4) HRESULT {
+                return @ptrCast(*const IMSMQQuery4.VTable, self.vtable).LookupQueue(@ptrCast(*const IMSMQQuery4, self), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, MulticastAddress, RelMulticastAddress, ppqinfos);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4196,679 +4242,681 @@ pub const IMSMQMessage2 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Class: fn(
+        get_Class: fn (
             self: *const IMSMQMessage2,
             plClass: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivLevel: fn(
+        get_PrivLevel: fn (
             self: *const IMSMQMessage2,
             plPrivLevel: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PrivLevel: fn(
+        put_PrivLevel: fn (
             self: *const IMSMQMessage2,
             lPrivLevel: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AuthLevel: fn(
+        get_AuthLevel: fn (
             self: *const IMSMQMessage2,
             plAuthLevel: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AuthLevel: fn(
+        put_AuthLevel: fn (
             self: *const IMSMQMessage2,
             lAuthLevel: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsAuthenticated: fn(
+        get_IsAuthenticated: fn (
             self: *const IMSMQMessage2,
             pisAuthenticated: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Delivery: fn(
+        get_Delivery: fn (
             self: *const IMSMQMessage2,
             plDelivery: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Delivery: fn(
+        put_Delivery: fn (
             self: *const IMSMQMessage2,
             lDelivery: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Trace: fn(
+        get_Trace: fn (
             self: *const IMSMQMessage2,
             plTrace: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Trace: fn(
+        put_Trace: fn (
             self: *const IMSMQMessage2,
             lTrace: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Priority: fn(
+        get_Priority: fn (
             self: *const IMSMQMessage2,
             plPriority: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Priority: fn(
+        put_Priority: fn (
             self: *const IMSMQMessage2,
             lPriority: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Journal: fn(
+        get_Journal: fn (
             self: *const IMSMQMessage2,
             plJournal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Journal: fn(
+        put_Journal: fn (
             self: *const IMSMQMessage2,
             lJournal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResponseQueueInfo_v1: fn(
+        get_ResponseQueueInfo_v1: fn (
             self: *const IMSMQMessage2,
             ppqinfoResponse: ?*?*IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_ResponseQueueInfo_v1: fn(
+        putref_ResponseQueueInfo_v1: fn (
             self: *const IMSMQMessage2,
             pqinfoResponse: ?*IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AppSpecific: fn(
+        get_AppSpecific: fn (
             self: *const IMSMQMessage2,
             plAppSpecific: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AppSpecific: fn(
+        put_AppSpecific: fn (
             self: *const IMSMQMessage2,
             lAppSpecific: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SourceMachineGuid: fn(
+        get_SourceMachineGuid: fn (
             self: *const IMSMQMessage2,
             pbstrGuidSrcMachine: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BodyLength: fn(
+        get_BodyLength: fn (
             self: *const IMSMQMessage2,
             pcbBody: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Body: fn(
+        get_Body: fn (
             self: *const IMSMQMessage2,
             pvarBody: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Body: fn(
+        put_Body: fn (
             self: *const IMSMQMessage2,
             varBody: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AdminQueueInfo_v1: fn(
+        get_AdminQueueInfo_v1: fn (
             self: *const IMSMQMessage2,
             ppqinfoAdmin: ?*?*IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_AdminQueueInfo_v1: fn(
+        putref_AdminQueueInfo_v1: fn (
             self: *const IMSMQMessage2,
             pqinfoAdmin: ?*IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: fn(
+        get_Id: fn (
             self: *const IMSMQMessage2,
             pvarMsgId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CorrelationId: fn(
+        get_CorrelationId: fn (
             self: *const IMSMQMessage2,
             pvarMsgId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_CorrelationId: fn(
+        put_CorrelationId: fn (
             self: *const IMSMQMessage2,
             varMsgId: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Ack: fn(
+        get_Ack: fn (
             self: *const IMSMQMessage2,
             plAck: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Ack: fn(
+        put_Ack: fn (
             self: *const IMSMQMessage2,
             lAck: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Label: fn(
+        get_Label: fn (
             self: *const IMSMQMessage2,
             pbstrLabel: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Label: fn(
+        put_Label: fn (
             self: *const IMSMQMessage2,
             bstrLabel: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaxTimeToReachQueue: fn(
+        get_MaxTimeToReachQueue: fn (
             self: *const IMSMQMessage2,
             plMaxTimeToReachQueue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MaxTimeToReachQueue: fn(
+        put_MaxTimeToReachQueue: fn (
             self: *const IMSMQMessage2,
             lMaxTimeToReachQueue: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaxTimeToReceive: fn(
+        get_MaxTimeToReceive: fn (
             self: *const IMSMQMessage2,
             plMaxTimeToReceive: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MaxTimeToReceive: fn(
+        put_MaxTimeToReceive: fn (
             self: *const IMSMQMessage2,
             lMaxTimeToReceive: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HashAlgorithm: fn(
+        get_HashAlgorithm: fn (
             self: *const IMSMQMessage2,
             plHashAlg: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_HashAlgorithm: fn(
+        put_HashAlgorithm: fn (
             self: *const IMSMQMessage2,
             lHashAlg: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EncryptAlgorithm: fn(
+        get_EncryptAlgorithm: fn (
             self: *const IMSMQMessage2,
             plEncryptAlg: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EncryptAlgorithm: fn(
+        put_EncryptAlgorithm: fn (
             self: *const IMSMQMessage2,
             lEncryptAlg: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SentTime: fn(
+        get_SentTime: fn (
             self: *const IMSMQMessage2,
             pvarSentTime: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ArrivedTime: fn(
+        get_ArrivedTime: fn (
             self: *const IMSMQMessage2,
             plArrivedTime: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DestinationQueueInfo: fn(
+        get_DestinationQueueInfo: fn (
             self: *const IMSMQMessage2,
             ppqinfoDest: ?*?*IMSMQQueueInfo2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SenderCertificate: fn(
+        get_SenderCertificate: fn (
             self: *const IMSMQMessage2,
             pvarSenderCert: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SenderCertificate: fn(
+        put_SenderCertificate: fn (
             self: *const IMSMQMessage2,
             varSenderCert: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SenderId: fn(
+        get_SenderId: fn (
             self: *const IMSMQMessage2,
             pvarSenderId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SenderIdType: fn(
+        get_SenderIdType: fn (
             self: *const IMSMQMessage2,
             plSenderIdType: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SenderIdType: fn(
+        put_SenderIdType: fn (
             self: *const IMSMQMessage2,
             lSenderIdType: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Send: fn(
+        Send: fn (
             self: *const IMSMQMessage2,
             DestinationQueue: ?*IMSMQQueue2,
             Transaction: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AttachCurrentSecurityContext: fn(
+        AttachCurrentSecurityContext: fn (
             self: *const IMSMQMessage2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SenderVersion: fn(
+        get_SenderVersion: fn (
             self: *const IMSMQMessage2,
             plSenderVersion: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Extension: fn(
+        get_Extension: fn (
             self: *const IMSMQMessage2,
             pvarExtension: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Extension: fn(
+        put_Extension: fn (
             self: *const IMSMQMessage2,
             varExtension: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ConnectorTypeGuid: fn(
+        get_ConnectorTypeGuid: fn (
             self: *const IMSMQMessage2,
             pbstrGuidConnectorType: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ConnectorTypeGuid: fn(
+        put_ConnectorTypeGuid: fn (
             self: *const IMSMQMessage2,
             bstrGuidConnectorType: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TransactionStatusQueueInfo: fn(
+        get_TransactionStatusQueueInfo: fn (
             self: *const IMSMQMessage2,
             ppqinfoXactStatus: ?*?*IMSMQQueueInfo2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DestinationSymmetricKey: fn(
+        get_DestinationSymmetricKey: fn (
             self: *const IMSMQMessage2,
             pvarDestSymmKey: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DestinationSymmetricKey: fn(
+        put_DestinationSymmetricKey: fn (
             self: *const IMSMQMessage2,
             varDestSymmKey: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Signature: fn(
+        get_Signature: fn (
             self: *const IMSMQMessage2,
             pvarSignature: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Signature: fn(
+        put_Signature: fn (
             self: *const IMSMQMessage2,
             varSignature: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AuthenticationProviderType: fn(
+        get_AuthenticationProviderType: fn (
             self: *const IMSMQMessage2,
             plAuthProvType: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AuthenticationProviderType: fn(
+        put_AuthenticationProviderType: fn (
             self: *const IMSMQMessage2,
             lAuthProvType: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AuthenticationProviderName: fn(
+        get_AuthenticationProviderName: fn (
             self: *const IMSMQMessage2,
             pbstrAuthProvName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AuthenticationProviderName: fn(
+        put_AuthenticationProviderName: fn (
             self: *const IMSMQMessage2,
             bstrAuthProvName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SenderId: fn(
+        put_SenderId: fn (
             self: *const IMSMQMessage2,
             varSenderId: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MsgClass: fn(
+        get_MsgClass: fn (
             self: *const IMSMQMessage2,
             plMsgClass: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MsgClass: fn(
+        put_MsgClass: fn (
             self: *const IMSMQMessage2,
             lMsgClass: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQMessage2,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TransactionId: fn(
+        get_TransactionId: fn (
             self: *const IMSMQMessage2,
             pvarXactId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsFirstInTransaction: fn(
+        get_IsFirstInTransaction: fn (
             self: *const IMSMQMessage2,
             pisFirstInXact: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsLastInTransaction: fn(
+        get_IsLastInTransaction: fn (
             self: *const IMSMQMessage2,
             pisLastInXact: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResponseQueueInfo: fn(
+        get_ResponseQueueInfo: fn (
             self: *const IMSMQMessage2,
             ppqinfoResponse: ?*?*IMSMQQueueInfo2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_ResponseQueueInfo: fn(
+        putref_ResponseQueueInfo: fn (
             self: *const IMSMQMessage2,
             pqinfoResponse: ?*IMSMQQueueInfo2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AdminQueueInfo: fn(
+        get_AdminQueueInfo: fn (
             self: *const IMSMQMessage2,
             ppqinfoAdmin: ?*?*IMSMQQueueInfo2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_AdminQueueInfo: fn(
+        putref_AdminQueueInfo: fn (
             self: *const IMSMQMessage2,
             pqinfoAdmin: ?*IMSMQQueueInfo2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReceivedAuthenticationLevel: fn(
+        get_ReceivedAuthenticationLevel: fn (
             self: *const IMSMQMessage2,
             psReceivedAuthenticationLevel: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_Class(self: *const T, plClass: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Class(@ptrCast(*const IMSMQMessage2, self), plClass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQMessage2, self), plPrivLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_PrivLevel(self: *const T, lPrivLevel: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQMessage2, self), lPrivLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_AuthLevel(self: *const T, plAuthLevel: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_AuthLevel(@ptrCast(*const IMSMQMessage2, self), plAuthLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_AuthLevel(self: *const T, lAuthLevel: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_AuthLevel(@ptrCast(*const IMSMQMessage2, self), lAuthLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_IsAuthenticated(self: *const T, pisAuthenticated: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_IsAuthenticated(@ptrCast(*const IMSMQMessage2, self), pisAuthenticated);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_Delivery(self: *const T, plDelivery: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Delivery(@ptrCast(*const IMSMQMessage2, self), plDelivery);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_Delivery(self: *const T, lDelivery: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Delivery(@ptrCast(*const IMSMQMessage2, self), lDelivery);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_Trace(self: *const T, plTrace: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Trace(@ptrCast(*const IMSMQMessage2, self), plTrace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_Trace(self: *const T, lTrace: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Trace(@ptrCast(*const IMSMQMessage2, self), lTrace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_Priority(self: *const T, plPriority: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Priority(@ptrCast(*const IMSMQMessage2, self), plPriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_Priority(self: *const T, lPriority: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Priority(@ptrCast(*const IMSMQMessage2, self), lPriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_Journal(self: *const T, plJournal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQMessage2, self), plJournal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_Journal(self: *const T, lJournal: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQMessage2, self), lJournal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_ResponseQueueInfo_v1(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_ResponseQueueInfo_v1(@ptrCast(*const IMSMQMessage2, self), ppqinfoResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_putref_ResponseQueueInfo_v1(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).putref_ResponseQueueInfo_v1(@ptrCast(*const IMSMQMessage2, self), pqinfoResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_AppSpecific(self: *const T, plAppSpecific: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_AppSpecific(@ptrCast(*const IMSMQMessage2, self), plAppSpecific);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_AppSpecific(self: *const T, lAppSpecific: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_AppSpecific(@ptrCast(*const IMSMQMessage2, self), lAppSpecific);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_SourceMachineGuid(self: *const T, pbstrGuidSrcMachine: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_SourceMachineGuid(@ptrCast(*const IMSMQMessage2, self), pbstrGuidSrcMachine);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_BodyLength(self: *const T, pcbBody: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_BodyLength(@ptrCast(*const IMSMQMessage2, self), pcbBody);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_Body(self: *const T, pvarBody: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Body(@ptrCast(*const IMSMQMessage2, self), pvarBody);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_Body(self: *const T, varBody: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Body(@ptrCast(*const IMSMQMessage2, self), varBody);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_AdminQueueInfo_v1(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_AdminQueueInfo_v1(@ptrCast(*const IMSMQMessage2, self), ppqinfoAdmin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_putref_AdminQueueInfo_v1(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).putref_AdminQueueInfo_v1(@ptrCast(*const IMSMQMessage2, self), pqinfoAdmin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_Id(self: *const T, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Id(@ptrCast(*const IMSMQMessage2, self), pvarMsgId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_CorrelationId(self: *const T, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_CorrelationId(@ptrCast(*const IMSMQMessage2, self), pvarMsgId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_CorrelationId(self: *const T, varMsgId: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_CorrelationId(@ptrCast(*const IMSMQMessage2, self), varMsgId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_Ack(self: *const T, plAck: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Ack(@ptrCast(*const IMSMQMessage2, self), plAck);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_Ack(self: *const T, lAck: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Ack(@ptrCast(*const IMSMQMessage2, self), lAck);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_Label(self: *const T, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQMessage2, self), pbstrLabel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_Label(self: *const T, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQMessage2, self), bstrLabel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_MaxTimeToReachQueue(self: *const T, plMaxTimeToReachQueue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage2, self), plMaxTimeToReachQueue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_MaxTimeToReachQueue(self: *const T, lMaxTimeToReachQueue: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage2, self), lMaxTimeToReachQueue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_MaxTimeToReceive(self: *const T, plMaxTimeToReceive: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_MaxTimeToReceive(@ptrCast(*const IMSMQMessage2, self), plMaxTimeToReceive);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_MaxTimeToReceive(self: *const T, lMaxTimeToReceive: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_MaxTimeToReceive(@ptrCast(*const IMSMQMessage2, self), lMaxTimeToReceive);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_HashAlgorithm(self: *const T, plHashAlg: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const IMSMQMessage2, self), plHashAlg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_HashAlgorithm(self: *const T, lHashAlg: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const IMSMQMessage2, self), lHashAlg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_EncryptAlgorithm(self: *const T, plEncryptAlg: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_EncryptAlgorithm(@ptrCast(*const IMSMQMessage2, self), plEncryptAlg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_EncryptAlgorithm(self: *const T, lEncryptAlg: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_EncryptAlgorithm(@ptrCast(*const IMSMQMessage2, self), lEncryptAlg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_SentTime(self: *const T, pvarSentTime: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_SentTime(@ptrCast(*const IMSMQMessage2, self), pvarSentTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_ArrivedTime(self: *const T, plArrivedTime: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_ArrivedTime(@ptrCast(*const IMSMQMessage2, self), plArrivedTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_DestinationQueueInfo(self: *const T, ppqinfoDest: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_DestinationQueueInfo(@ptrCast(*const IMSMQMessage2, self), ppqinfoDest);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_SenderCertificate(self: *const T, pvarSenderCert: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_SenderCertificate(@ptrCast(*const IMSMQMessage2, self), pvarSenderCert);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_SenderCertificate(self: *const T, varSenderCert: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_SenderCertificate(@ptrCast(*const IMSMQMessage2, self), varSenderCert);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_SenderId(self: *const T, pvarSenderId: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_SenderId(@ptrCast(*const IMSMQMessage2, self), pvarSenderId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_SenderIdType(self: *const T, plSenderIdType: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_SenderIdType(@ptrCast(*const IMSMQMessage2, self), plSenderIdType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_SenderIdType(self: *const T, lSenderIdType: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_SenderIdType(@ptrCast(*const IMSMQMessage2, self), lSenderIdType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_Send(self: *const T, DestinationQueue: ?*IMSMQQueue2, Transaction: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).Send(@ptrCast(*const IMSMQMessage2, self), DestinationQueue, Transaction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_AttachCurrentSecurityContext(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).AttachCurrentSecurityContext(@ptrCast(*const IMSMQMessage2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_SenderVersion(self: *const T, plSenderVersion: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_SenderVersion(@ptrCast(*const IMSMQMessage2, self), plSenderVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_Extension(self: *const T, pvarExtension: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Extension(@ptrCast(*const IMSMQMessage2, self), pvarExtension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_Extension(self: *const T, varExtension: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Extension(@ptrCast(*const IMSMQMessage2, self), varExtension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_ConnectorTypeGuid(self: *const T, pbstrGuidConnectorType: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_ConnectorTypeGuid(@ptrCast(*const IMSMQMessage2, self), pbstrGuidConnectorType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_ConnectorTypeGuid(self: *const T, bstrGuidConnectorType: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_ConnectorTypeGuid(@ptrCast(*const IMSMQMessage2, self), bstrGuidConnectorType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_TransactionStatusQueueInfo(self: *const T, ppqinfoXactStatus: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_TransactionStatusQueueInfo(@ptrCast(*const IMSMQMessage2, self), ppqinfoXactStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_DestinationSymmetricKey(self: *const T, pvarDestSymmKey: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_DestinationSymmetricKey(@ptrCast(*const IMSMQMessage2, self), pvarDestSymmKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_DestinationSymmetricKey(self: *const T, varDestSymmKey: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_DestinationSymmetricKey(@ptrCast(*const IMSMQMessage2, self), varDestSymmKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_Signature(self: *const T, pvarSignature: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Signature(@ptrCast(*const IMSMQMessage2, self), pvarSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_Signature(self: *const T, varSignature: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Signature(@ptrCast(*const IMSMQMessage2, self), varSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_AuthenticationProviderType(self: *const T, plAuthProvType: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_AuthenticationProviderType(@ptrCast(*const IMSMQMessage2, self), plAuthProvType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_AuthenticationProviderType(self: *const T, lAuthProvType: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_AuthenticationProviderType(@ptrCast(*const IMSMQMessage2, self), lAuthProvType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_AuthenticationProviderName(self: *const T, pbstrAuthProvName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_AuthenticationProviderName(@ptrCast(*const IMSMQMessage2, self), pbstrAuthProvName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_AuthenticationProviderName(self: *const T, bstrAuthProvName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_AuthenticationProviderName(@ptrCast(*const IMSMQMessage2, self), bstrAuthProvName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_SenderId(self: *const T, varSenderId: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_SenderId(@ptrCast(*const IMSMQMessage2, self), varSenderId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_MsgClass(self: *const T, plMsgClass: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_MsgClass(@ptrCast(*const IMSMQMessage2, self), plMsgClass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_put_MsgClass(self: *const T, lMsgClass: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_MsgClass(@ptrCast(*const IMSMQMessage2, self), lMsgClass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQMessage2, self), ppcolProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_TransactionId(self: *const T, pvarXactId: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_TransactionId(@ptrCast(*const IMSMQMessage2, self), pvarXactId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_IsFirstInTransaction(self: *const T, pisFirstInXact: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_IsFirstInTransaction(@ptrCast(*const IMSMQMessage2, self), pisFirstInXact);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_IsLastInTransaction(self: *const T, pisLastInXact: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_IsLastInTransaction(@ptrCast(*const IMSMQMessage2, self), pisLastInXact);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_ResponseQueueInfo(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_ResponseQueueInfo(@ptrCast(*const IMSMQMessage2, self), ppqinfoResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_putref_ResponseQueueInfo(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).putref_ResponseQueueInfo(@ptrCast(*const IMSMQMessage2, self), pqinfoResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_AdminQueueInfo(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_AdminQueueInfo(@ptrCast(*const IMSMQMessage2, self), ppqinfoAdmin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_putref_AdminQueueInfo(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).putref_AdminQueueInfo(@ptrCast(*const IMSMQMessage2, self), pqinfoAdmin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage2_get_ReceivedAuthenticationLevel(self: *const T, psReceivedAuthenticationLevel: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_ReceivedAuthenticationLevel(@ptrCast(*const IMSMQMessage2, self), psReceivedAuthenticationLevel);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_Class(self: *const T, plClass: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Class(@ptrCast(*const IMSMQMessage2, self), plClass);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQMessage2, self), plPrivLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_PrivLevel(self: *const T, lPrivLevel: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQMessage2, self), lPrivLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_AuthLevel(self: *const T, plAuthLevel: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_AuthLevel(@ptrCast(*const IMSMQMessage2, self), plAuthLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_AuthLevel(self: *const T, lAuthLevel: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_AuthLevel(@ptrCast(*const IMSMQMessage2, self), lAuthLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_IsAuthenticated(self: *const T, pisAuthenticated: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_IsAuthenticated(@ptrCast(*const IMSMQMessage2, self), pisAuthenticated);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_Delivery(self: *const T, plDelivery: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Delivery(@ptrCast(*const IMSMQMessage2, self), plDelivery);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_Delivery(self: *const T, lDelivery: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Delivery(@ptrCast(*const IMSMQMessage2, self), lDelivery);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_Trace(self: *const T, plTrace: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Trace(@ptrCast(*const IMSMQMessage2, self), plTrace);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_Trace(self: *const T, lTrace: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Trace(@ptrCast(*const IMSMQMessage2, self), lTrace);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_Priority(self: *const T, plPriority: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Priority(@ptrCast(*const IMSMQMessage2, self), plPriority);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_Priority(self: *const T, lPriority: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Priority(@ptrCast(*const IMSMQMessage2, self), lPriority);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_Journal(self: *const T, plJournal: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQMessage2, self), plJournal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_Journal(self: *const T, lJournal: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQMessage2, self), lJournal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_ResponseQueueInfo_v1(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_ResponseQueueInfo_v1(@ptrCast(*const IMSMQMessage2, self), ppqinfoResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_putref_ResponseQueueInfo_v1(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).putref_ResponseQueueInfo_v1(@ptrCast(*const IMSMQMessage2, self), pqinfoResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_AppSpecific(self: *const T, plAppSpecific: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_AppSpecific(@ptrCast(*const IMSMQMessage2, self), plAppSpecific);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_AppSpecific(self: *const T, lAppSpecific: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_AppSpecific(@ptrCast(*const IMSMQMessage2, self), lAppSpecific);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_SourceMachineGuid(self: *const T, pbstrGuidSrcMachine: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_SourceMachineGuid(@ptrCast(*const IMSMQMessage2, self), pbstrGuidSrcMachine);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_BodyLength(self: *const T, pcbBody: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_BodyLength(@ptrCast(*const IMSMQMessage2, self), pcbBody);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_Body(self: *const T, pvarBody: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Body(@ptrCast(*const IMSMQMessage2, self), pvarBody);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_Body(self: *const T, varBody: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Body(@ptrCast(*const IMSMQMessage2, self), varBody);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_AdminQueueInfo_v1(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_AdminQueueInfo_v1(@ptrCast(*const IMSMQMessage2, self), ppqinfoAdmin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_putref_AdminQueueInfo_v1(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).putref_AdminQueueInfo_v1(@ptrCast(*const IMSMQMessage2, self), pqinfoAdmin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_Id(self: *const T, pvarMsgId: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Id(@ptrCast(*const IMSMQMessage2, self), pvarMsgId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_CorrelationId(self: *const T, pvarMsgId: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_CorrelationId(@ptrCast(*const IMSMQMessage2, self), pvarMsgId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_CorrelationId(self: *const T, varMsgId: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_CorrelationId(@ptrCast(*const IMSMQMessage2, self), varMsgId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_Ack(self: *const T, plAck: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Ack(@ptrCast(*const IMSMQMessage2, self), plAck);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_Ack(self: *const T, lAck: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Ack(@ptrCast(*const IMSMQMessage2, self), lAck);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_Label(self: *const T, pbstrLabel: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQMessage2, self), pbstrLabel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_Label(self: *const T, bstrLabel: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQMessage2, self), bstrLabel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_MaxTimeToReachQueue(self: *const T, plMaxTimeToReachQueue: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage2, self), plMaxTimeToReachQueue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_MaxTimeToReachQueue(self: *const T, lMaxTimeToReachQueue: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage2, self), lMaxTimeToReachQueue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_MaxTimeToReceive(self: *const T, plMaxTimeToReceive: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_MaxTimeToReceive(@ptrCast(*const IMSMQMessage2, self), plMaxTimeToReceive);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_MaxTimeToReceive(self: *const T, lMaxTimeToReceive: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_MaxTimeToReceive(@ptrCast(*const IMSMQMessage2, self), lMaxTimeToReceive);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_HashAlgorithm(self: *const T, plHashAlg: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const IMSMQMessage2, self), plHashAlg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_HashAlgorithm(self: *const T, lHashAlg: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const IMSMQMessage2, self), lHashAlg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_EncryptAlgorithm(self: *const T, plEncryptAlg: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_EncryptAlgorithm(@ptrCast(*const IMSMQMessage2, self), plEncryptAlg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_EncryptAlgorithm(self: *const T, lEncryptAlg: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_EncryptAlgorithm(@ptrCast(*const IMSMQMessage2, self), lEncryptAlg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_SentTime(self: *const T, pvarSentTime: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_SentTime(@ptrCast(*const IMSMQMessage2, self), pvarSentTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_ArrivedTime(self: *const T, plArrivedTime: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_ArrivedTime(@ptrCast(*const IMSMQMessage2, self), plArrivedTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_DestinationQueueInfo(self: *const T, ppqinfoDest: ?*?*IMSMQQueueInfo2) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_DestinationQueueInfo(@ptrCast(*const IMSMQMessage2, self), ppqinfoDest);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_SenderCertificate(self: *const T, pvarSenderCert: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_SenderCertificate(@ptrCast(*const IMSMQMessage2, self), pvarSenderCert);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_SenderCertificate(self: *const T, varSenderCert: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_SenderCertificate(@ptrCast(*const IMSMQMessage2, self), varSenderCert);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_SenderId(self: *const T, pvarSenderId: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_SenderId(@ptrCast(*const IMSMQMessage2, self), pvarSenderId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_SenderIdType(self: *const T, plSenderIdType: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_SenderIdType(@ptrCast(*const IMSMQMessage2, self), plSenderIdType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_SenderIdType(self: *const T, lSenderIdType: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_SenderIdType(@ptrCast(*const IMSMQMessage2, self), lSenderIdType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_Send(self: *const T, DestinationQueue: ?*IMSMQQueue2, Transaction: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).Send(@ptrCast(*const IMSMQMessage2, self), DestinationQueue, Transaction);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_AttachCurrentSecurityContext(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).AttachCurrentSecurityContext(@ptrCast(*const IMSMQMessage2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_SenderVersion(self: *const T, plSenderVersion: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_SenderVersion(@ptrCast(*const IMSMQMessage2, self), plSenderVersion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_Extension(self: *const T, pvarExtension: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Extension(@ptrCast(*const IMSMQMessage2, self), pvarExtension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_Extension(self: *const T, varExtension: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Extension(@ptrCast(*const IMSMQMessage2, self), varExtension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_ConnectorTypeGuid(self: *const T, pbstrGuidConnectorType: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_ConnectorTypeGuid(@ptrCast(*const IMSMQMessage2, self), pbstrGuidConnectorType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_ConnectorTypeGuid(self: *const T, bstrGuidConnectorType: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_ConnectorTypeGuid(@ptrCast(*const IMSMQMessage2, self), bstrGuidConnectorType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_TransactionStatusQueueInfo(self: *const T, ppqinfoXactStatus: ?*?*IMSMQQueueInfo2) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_TransactionStatusQueueInfo(@ptrCast(*const IMSMQMessage2, self), ppqinfoXactStatus);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_DestinationSymmetricKey(self: *const T, pvarDestSymmKey: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_DestinationSymmetricKey(@ptrCast(*const IMSMQMessage2, self), pvarDestSymmKey);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_DestinationSymmetricKey(self: *const T, varDestSymmKey: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_DestinationSymmetricKey(@ptrCast(*const IMSMQMessage2, self), varDestSymmKey);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_Signature(self: *const T, pvarSignature: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Signature(@ptrCast(*const IMSMQMessage2, self), pvarSignature);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_Signature(self: *const T, varSignature: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Signature(@ptrCast(*const IMSMQMessage2, self), varSignature);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_AuthenticationProviderType(self: *const T, plAuthProvType: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_AuthenticationProviderType(@ptrCast(*const IMSMQMessage2, self), plAuthProvType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_AuthenticationProviderType(self: *const T, lAuthProvType: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_AuthenticationProviderType(@ptrCast(*const IMSMQMessage2, self), lAuthProvType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_AuthenticationProviderName(self: *const T, pbstrAuthProvName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_AuthenticationProviderName(@ptrCast(*const IMSMQMessage2, self), pbstrAuthProvName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_AuthenticationProviderName(self: *const T, bstrAuthProvName: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_AuthenticationProviderName(@ptrCast(*const IMSMQMessage2, self), bstrAuthProvName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_SenderId(self: *const T, varSenderId: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_SenderId(@ptrCast(*const IMSMQMessage2, self), varSenderId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_MsgClass(self: *const T, plMsgClass: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_MsgClass(@ptrCast(*const IMSMQMessage2, self), plMsgClass);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_put_MsgClass(self: *const T, lMsgClass: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_MsgClass(@ptrCast(*const IMSMQMessage2, self), lMsgClass);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQMessage2, self), ppcolProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_TransactionId(self: *const T, pvarXactId: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_TransactionId(@ptrCast(*const IMSMQMessage2, self), pvarXactId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_IsFirstInTransaction(self: *const T, pisFirstInXact: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_IsFirstInTransaction(@ptrCast(*const IMSMQMessage2, self), pisFirstInXact);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_IsLastInTransaction(self: *const T, pisLastInXact: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_IsLastInTransaction(@ptrCast(*const IMSMQMessage2, self), pisLastInXact);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_ResponseQueueInfo(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo2) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_ResponseQueueInfo(@ptrCast(*const IMSMQMessage2, self), ppqinfoResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_putref_ResponseQueueInfo(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo2) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).putref_ResponseQueueInfo(@ptrCast(*const IMSMQMessage2, self), pqinfoResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_AdminQueueInfo(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo2) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_AdminQueueInfo(@ptrCast(*const IMSMQMessage2, self), ppqinfoAdmin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_putref_AdminQueueInfo(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo2) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).putref_AdminQueueInfo(@ptrCast(*const IMSMQMessage2, self), pqinfoAdmin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage2_get_ReceivedAuthenticationLevel(self: *const T, psReceivedAuthenticationLevel: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_ReceivedAuthenticationLevel(@ptrCast(*const IMSMQMessage2, self), psReceivedAuthenticationLevel);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4878,818 +4926,820 @@ pub const IMSMQMessage3 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Class: fn(
+        get_Class: fn (
             self: *const IMSMQMessage3,
             plClass: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivLevel: fn(
+        get_PrivLevel: fn (
             self: *const IMSMQMessage3,
             plPrivLevel: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PrivLevel: fn(
+        put_PrivLevel: fn (
             self: *const IMSMQMessage3,
             lPrivLevel: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AuthLevel: fn(
+        get_AuthLevel: fn (
             self: *const IMSMQMessage3,
             plAuthLevel: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AuthLevel: fn(
+        put_AuthLevel: fn (
             self: *const IMSMQMessage3,
             lAuthLevel: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsAuthenticated: fn(
+        get_IsAuthenticated: fn (
             self: *const IMSMQMessage3,
             pisAuthenticated: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Delivery: fn(
+        get_Delivery: fn (
             self: *const IMSMQMessage3,
             plDelivery: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Delivery: fn(
+        put_Delivery: fn (
             self: *const IMSMQMessage3,
             lDelivery: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Trace: fn(
+        get_Trace: fn (
             self: *const IMSMQMessage3,
             plTrace: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Trace: fn(
+        put_Trace: fn (
             self: *const IMSMQMessage3,
             lTrace: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Priority: fn(
+        get_Priority: fn (
             self: *const IMSMQMessage3,
             plPriority: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Priority: fn(
+        put_Priority: fn (
             self: *const IMSMQMessage3,
             lPriority: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Journal: fn(
+        get_Journal: fn (
             self: *const IMSMQMessage3,
             plJournal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Journal: fn(
+        put_Journal: fn (
             self: *const IMSMQMessage3,
             lJournal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResponseQueueInfo_v1: fn(
+        get_ResponseQueueInfo_v1: fn (
             self: *const IMSMQMessage3,
             ppqinfoResponse: ?*?*IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_ResponseQueueInfo_v1: fn(
+        putref_ResponseQueueInfo_v1: fn (
             self: *const IMSMQMessage3,
             pqinfoResponse: ?*IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AppSpecific: fn(
+        get_AppSpecific: fn (
             self: *const IMSMQMessage3,
             plAppSpecific: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AppSpecific: fn(
+        put_AppSpecific: fn (
             self: *const IMSMQMessage3,
             lAppSpecific: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SourceMachineGuid: fn(
+        get_SourceMachineGuid: fn (
             self: *const IMSMQMessage3,
             pbstrGuidSrcMachine: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BodyLength: fn(
+        get_BodyLength: fn (
             self: *const IMSMQMessage3,
             pcbBody: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Body: fn(
+        get_Body: fn (
             self: *const IMSMQMessage3,
             pvarBody: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Body: fn(
+        put_Body: fn (
             self: *const IMSMQMessage3,
             varBody: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AdminQueueInfo_v1: fn(
+        get_AdminQueueInfo_v1: fn (
             self: *const IMSMQMessage3,
             ppqinfoAdmin: ?*?*IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_AdminQueueInfo_v1: fn(
+        putref_AdminQueueInfo_v1: fn (
             self: *const IMSMQMessage3,
             pqinfoAdmin: ?*IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: fn(
+        get_Id: fn (
             self: *const IMSMQMessage3,
             pvarMsgId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CorrelationId: fn(
+        get_CorrelationId: fn (
             self: *const IMSMQMessage3,
             pvarMsgId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_CorrelationId: fn(
+        put_CorrelationId: fn (
             self: *const IMSMQMessage3,
             varMsgId: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Ack: fn(
+        get_Ack: fn (
             self: *const IMSMQMessage3,
             plAck: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Ack: fn(
+        put_Ack: fn (
             self: *const IMSMQMessage3,
             lAck: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Label: fn(
+        get_Label: fn (
             self: *const IMSMQMessage3,
             pbstrLabel: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Label: fn(
+        put_Label: fn (
             self: *const IMSMQMessage3,
             bstrLabel: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaxTimeToReachQueue: fn(
+        get_MaxTimeToReachQueue: fn (
             self: *const IMSMQMessage3,
             plMaxTimeToReachQueue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MaxTimeToReachQueue: fn(
+        put_MaxTimeToReachQueue: fn (
             self: *const IMSMQMessage3,
             lMaxTimeToReachQueue: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaxTimeToReceive: fn(
+        get_MaxTimeToReceive: fn (
             self: *const IMSMQMessage3,
             plMaxTimeToReceive: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MaxTimeToReceive: fn(
+        put_MaxTimeToReceive: fn (
             self: *const IMSMQMessage3,
             lMaxTimeToReceive: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HashAlgorithm: fn(
+        get_HashAlgorithm: fn (
             self: *const IMSMQMessage3,
             plHashAlg: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_HashAlgorithm: fn(
+        put_HashAlgorithm: fn (
             self: *const IMSMQMessage3,
             lHashAlg: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EncryptAlgorithm: fn(
+        get_EncryptAlgorithm: fn (
             self: *const IMSMQMessage3,
             plEncryptAlg: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EncryptAlgorithm: fn(
+        put_EncryptAlgorithm: fn (
             self: *const IMSMQMessage3,
             lEncryptAlg: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SentTime: fn(
+        get_SentTime: fn (
             self: *const IMSMQMessage3,
             pvarSentTime: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ArrivedTime: fn(
+        get_ArrivedTime: fn (
             self: *const IMSMQMessage3,
             plArrivedTime: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DestinationQueueInfo: fn(
+        get_DestinationQueueInfo: fn (
             self: *const IMSMQMessage3,
             ppqinfoDest: ?*?*IMSMQQueueInfo3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SenderCertificate: fn(
+        get_SenderCertificate: fn (
             self: *const IMSMQMessage3,
             pvarSenderCert: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SenderCertificate: fn(
+        put_SenderCertificate: fn (
             self: *const IMSMQMessage3,
             varSenderCert: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SenderId: fn(
+        get_SenderId: fn (
             self: *const IMSMQMessage3,
             pvarSenderId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SenderIdType: fn(
+        get_SenderIdType: fn (
             self: *const IMSMQMessage3,
             plSenderIdType: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SenderIdType: fn(
+        put_SenderIdType: fn (
             self: *const IMSMQMessage3,
             lSenderIdType: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Send: fn(
+        Send: fn (
             self: *const IMSMQMessage3,
             DestinationQueue: ?*IDispatch,
             Transaction: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AttachCurrentSecurityContext: fn(
+        AttachCurrentSecurityContext: fn (
             self: *const IMSMQMessage3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SenderVersion: fn(
+        get_SenderVersion: fn (
             self: *const IMSMQMessage3,
             plSenderVersion: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Extension: fn(
+        get_Extension: fn (
             self: *const IMSMQMessage3,
             pvarExtension: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Extension: fn(
+        put_Extension: fn (
             self: *const IMSMQMessage3,
             varExtension: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ConnectorTypeGuid: fn(
+        get_ConnectorTypeGuid: fn (
             self: *const IMSMQMessage3,
             pbstrGuidConnectorType: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ConnectorTypeGuid: fn(
+        put_ConnectorTypeGuid: fn (
             self: *const IMSMQMessage3,
             bstrGuidConnectorType: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TransactionStatusQueueInfo: fn(
+        get_TransactionStatusQueueInfo: fn (
             self: *const IMSMQMessage3,
             ppqinfoXactStatus: ?*?*IMSMQQueueInfo3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DestinationSymmetricKey: fn(
+        get_DestinationSymmetricKey: fn (
             self: *const IMSMQMessage3,
             pvarDestSymmKey: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DestinationSymmetricKey: fn(
+        put_DestinationSymmetricKey: fn (
             self: *const IMSMQMessage3,
             varDestSymmKey: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Signature: fn(
+        get_Signature: fn (
             self: *const IMSMQMessage3,
             pvarSignature: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Signature: fn(
+        put_Signature: fn (
             self: *const IMSMQMessage3,
             varSignature: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AuthenticationProviderType: fn(
+        get_AuthenticationProviderType: fn (
             self: *const IMSMQMessage3,
             plAuthProvType: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AuthenticationProviderType: fn(
+        put_AuthenticationProviderType: fn (
             self: *const IMSMQMessage3,
             lAuthProvType: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AuthenticationProviderName: fn(
+        get_AuthenticationProviderName: fn (
             self: *const IMSMQMessage3,
             pbstrAuthProvName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AuthenticationProviderName: fn(
+        put_AuthenticationProviderName: fn (
             self: *const IMSMQMessage3,
             bstrAuthProvName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SenderId: fn(
+        put_SenderId: fn (
             self: *const IMSMQMessage3,
             varSenderId: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MsgClass: fn(
+        get_MsgClass: fn (
             self: *const IMSMQMessage3,
             plMsgClass: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MsgClass: fn(
+        put_MsgClass: fn (
             self: *const IMSMQMessage3,
             lMsgClass: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQMessage3,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TransactionId: fn(
+        get_TransactionId: fn (
             self: *const IMSMQMessage3,
             pvarXactId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsFirstInTransaction: fn(
+        get_IsFirstInTransaction: fn (
             self: *const IMSMQMessage3,
             pisFirstInXact: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsLastInTransaction: fn(
+        get_IsLastInTransaction: fn (
             self: *const IMSMQMessage3,
             pisLastInXact: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResponseQueueInfo_v2: fn(
+        get_ResponseQueueInfo_v2: fn (
             self: *const IMSMQMessage3,
             ppqinfoResponse: ?*?*IMSMQQueueInfo2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_ResponseQueueInfo_v2: fn(
+        putref_ResponseQueueInfo_v2: fn (
             self: *const IMSMQMessage3,
             pqinfoResponse: ?*IMSMQQueueInfo2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AdminQueueInfo_v2: fn(
+        get_AdminQueueInfo_v2: fn (
             self: *const IMSMQMessage3,
             ppqinfoAdmin: ?*?*IMSMQQueueInfo2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_AdminQueueInfo_v2: fn(
+        putref_AdminQueueInfo_v2: fn (
             self: *const IMSMQMessage3,
             pqinfoAdmin: ?*IMSMQQueueInfo2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReceivedAuthenticationLevel: fn(
+        get_ReceivedAuthenticationLevel: fn (
             self: *const IMSMQMessage3,
             psReceivedAuthenticationLevel: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResponseQueueInfo: fn(
+        get_ResponseQueueInfo: fn (
             self: *const IMSMQMessage3,
             ppqinfoResponse: ?*?*IMSMQQueueInfo3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_ResponseQueueInfo: fn(
+        putref_ResponseQueueInfo: fn (
             self: *const IMSMQMessage3,
             pqinfoResponse: ?*IMSMQQueueInfo3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AdminQueueInfo: fn(
+        get_AdminQueueInfo: fn (
             self: *const IMSMQMessage3,
             ppqinfoAdmin: ?*?*IMSMQQueueInfo3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_AdminQueueInfo: fn(
+        putref_AdminQueueInfo: fn (
             self: *const IMSMQMessage3,
             pqinfoAdmin: ?*IMSMQQueueInfo3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResponseDestination: fn(
+        get_ResponseDestination: fn (
             self: *const IMSMQMessage3,
             ppdestResponse: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_ResponseDestination: fn(
+        putref_ResponseDestination: fn (
             self: *const IMSMQMessage3,
             pdestResponse: ?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Destination: fn(
+        get_Destination: fn (
             self: *const IMSMQMessage3,
             ppdestDestination: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LookupId: fn(
+        get_LookupId: fn (
             self: *const IMSMQMessage3,
             pvarLookupId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsAuthenticated2: fn(
+        get_IsAuthenticated2: fn (
             self: *const IMSMQMessage3,
             pisAuthenticated: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsFirstInTransaction2: fn(
+        get_IsFirstInTransaction2: fn (
             self: *const IMSMQMessage3,
             pisFirstInXact: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsLastInTransaction2: fn(
+        get_IsLastInTransaction2: fn (
             self: *const IMSMQMessage3,
             pisLastInXact: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AttachCurrentSecurityContext2: fn(
+        AttachCurrentSecurityContext2: fn (
             self: *const IMSMQMessage3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SoapEnvelope: fn(
+        get_SoapEnvelope: fn (
             self: *const IMSMQMessage3,
             pbstrSoapEnvelope: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CompoundMessage: fn(
+        get_CompoundMessage: fn (
             self: *const IMSMQMessage3,
             pvarCompoundMessage: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SoapHeader: fn(
+        put_SoapHeader: fn (
             self: *const IMSMQMessage3,
             bstrSoapHeader: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SoapBody: fn(
+        put_SoapBody: fn (
             self: *const IMSMQMessage3,
             bstrSoapBody: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_Class(self: *const T, plClass: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Class(@ptrCast(*const IMSMQMessage3, self), plClass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQMessage3, self), plPrivLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_PrivLevel(self: *const T, lPrivLevel: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQMessage3, self), lPrivLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_AuthLevel(self: *const T, plAuthLevel: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AuthLevel(@ptrCast(*const IMSMQMessage3, self), plAuthLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_AuthLevel(self: *const T, lAuthLevel: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_AuthLevel(@ptrCast(*const IMSMQMessage3, self), lAuthLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_IsAuthenticated(self: *const T, pisAuthenticated: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_IsAuthenticated(@ptrCast(*const IMSMQMessage3, self), pisAuthenticated);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_Delivery(self: *const T, plDelivery: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Delivery(@ptrCast(*const IMSMQMessage3, self), plDelivery);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_Delivery(self: *const T, lDelivery: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Delivery(@ptrCast(*const IMSMQMessage3, self), lDelivery);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_Trace(self: *const T, plTrace: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Trace(@ptrCast(*const IMSMQMessage3, self), plTrace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_Trace(self: *const T, lTrace: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Trace(@ptrCast(*const IMSMQMessage3, self), lTrace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_Priority(self: *const T, plPriority: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Priority(@ptrCast(*const IMSMQMessage3, self), plPriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_Priority(self: *const T, lPriority: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Priority(@ptrCast(*const IMSMQMessage3, self), lPriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_Journal(self: *const T, plJournal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQMessage3, self), plJournal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_Journal(self: *const T, lJournal: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQMessage3, self), lJournal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_ResponseQueueInfo_v1(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ResponseQueueInfo_v1(@ptrCast(*const IMSMQMessage3, self), ppqinfoResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_putref_ResponseQueueInfo_v1(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_ResponseQueueInfo_v1(@ptrCast(*const IMSMQMessage3, self), pqinfoResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_AppSpecific(self: *const T, plAppSpecific: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AppSpecific(@ptrCast(*const IMSMQMessage3, self), plAppSpecific);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_AppSpecific(self: *const T, lAppSpecific: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_AppSpecific(@ptrCast(*const IMSMQMessage3, self), lAppSpecific);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_SourceMachineGuid(self: *const T, pbstrGuidSrcMachine: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SourceMachineGuid(@ptrCast(*const IMSMQMessage3, self), pbstrGuidSrcMachine);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_BodyLength(self: *const T, pcbBody: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_BodyLength(@ptrCast(*const IMSMQMessage3, self), pcbBody);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_Body(self: *const T, pvarBody: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Body(@ptrCast(*const IMSMQMessage3, self), pvarBody);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_Body(self: *const T, varBody: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Body(@ptrCast(*const IMSMQMessage3, self), varBody);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_AdminQueueInfo_v1(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AdminQueueInfo_v1(@ptrCast(*const IMSMQMessage3, self), ppqinfoAdmin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_putref_AdminQueueInfo_v1(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_AdminQueueInfo_v1(@ptrCast(*const IMSMQMessage3, self), pqinfoAdmin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_Id(self: *const T, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Id(@ptrCast(*const IMSMQMessage3, self), pvarMsgId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_CorrelationId(self: *const T, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_CorrelationId(@ptrCast(*const IMSMQMessage3, self), pvarMsgId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_CorrelationId(self: *const T, varMsgId: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_CorrelationId(@ptrCast(*const IMSMQMessage3, self), varMsgId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_Ack(self: *const T, plAck: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Ack(@ptrCast(*const IMSMQMessage3, self), plAck);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_Ack(self: *const T, lAck: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Ack(@ptrCast(*const IMSMQMessage3, self), lAck);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_Label(self: *const T, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQMessage3, self), pbstrLabel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_Label(self: *const T, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQMessage3, self), bstrLabel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_MaxTimeToReachQueue(self: *const T, plMaxTimeToReachQueue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage3, self), plMaxTimeToReachQueue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_MaxTimeToReachQueue(self: *const T, lMaxTimeToReachQueue: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage3, self), lMaxTimeToReachQueue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_MaxTimeToReceive(self: *const T, plMaxTimeToReceive: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_MaxTimeToReceive(@ptrCast(*const IMSMQMessage3, self), plMaxTimeToReceive);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_MaxTimeToReceive(self: *const T, lMaxTimeToReceive: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_MaxTimeToReceive(@ptrCast(*const IMSMQMessage3, self), lMaxTimeToReceive);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_HashAlgorithm(self: *const T, plHashAlg: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const IMSMQMessage3, self), plHashAlg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_HashAlgorithm(self: *const T, lHashAlg: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const IMSMQMessage3, self), lHashAlg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_EncryptAlgorithm(self: *const T, plEncryptAlg: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_EncryptAlgorithm(@ptrCast(*const IMSMQMessage3, self), plEncryptAlg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_EncryptAlgorithm(self: *const T, lEncryptAlg: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_EncryptAlgorithm(@ptrCast(*const IMSMQMessage3, self), lEncryptAlg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_SentTime(self: *const T, pvarSentTime: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SentTime(@ptrCast(*const IMSMQMessage3, self), pvarSentTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_ArrivedTime(self: *const T, plArrivedTime: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ArrivedTime(@ptrCast(*const IMSMQMessage3, self), plArrivedTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_DestinationQueueInfo(self: *const T, ppqinfoDest: ?*?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_DestinationQueueInfo(@ptrCast(*const IMSMQMessage3, self), ppqinfoDest);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_SenderCertificate(self: *const T, pvarSenderCert: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SenderCertificate(@ptrCast(*const IMSMQMessage3, self), pvarSenderCert);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_SenderCertificate(self: *const T, varSenderCert: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_SenderCertificate(@ptrCast(*const IMSMQMessage3, self), varSenderCert);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_SenderId(self: *const T, pvarSenderId: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SenderId(@ptrCast(*const IMSMQMessage3, self), pvarSenderId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_SenderIdType(self: *const T, plSenderIdType: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SenderIdType(@ptrCast(*const IMSMQMessage3, self), plSenderIdType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_SenderIdType(self: *const T, lSenderIdType: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_SenderIdType(@ptrCast(*const IMSMQMessage3, self), lSenderIdType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_Send(self: *const T, DestinationQueue: ?*IDispatch, Transaction: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).Send(@ptrCast(*const IMSMQMessage3, self), DestinationQueue, Transaction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_AttachCurrentSecurityContext(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).AttachCurrentSecurityContext(@ptrCast(*const IMSMQMessage3, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_SenderVersion(self: *const T, plSenderVersion: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SenderVersion(@ptrCast(*const IMSMQMessage3, self), plSenderVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_Extension(self: *const T, pvarExtension: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Extension(@ptrCast(*const IMSMQMessage3, self), pvarExtension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_Extension(self: *const T, varExtension: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Extension(@ptrCast(*const IMSMQMessage3, self), varExtension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_ConnectorTypeGuid(self: *const T, pbstrGuidConnectorType: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ConnectorTypeGuid(@ptrCast(*const IMSMQMessage3, self), pbstrGuidConnectorType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_ConnectorTypeGuid(self: *const T, bstrGuidConnectorType: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_ConnectorTypeGuid(@ptrCast(*const IMSMQMessage3, self), bstrGuidConnectorType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_TransactionStatusQueueInfo(self: *const T, ppqinfoXactStatus: ?*?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_TransactionStatusQueueInfo(@ptrCast(*const IMSMQMessage3, self), ppqinfoXactStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_DestinationSymmetricKey(self: *const T, pvarDestSymmKey: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_DestinationSymmetricKey(@ptrCast(*const IMSMQMessage3, self), pvarDestSymmKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_DestinationSymmetricKey(self: *const T, varDestSymmKey: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_DestinationSymmetricKey(@ptrCast(*const IMSMQMessage3, self), varDestSymmKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_Signature(self: *const T, pvarSignature: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Signature(@ptrCast(*const IMSMQMessage3, self), pvarSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_Signature(self: *const T, varSignature: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Signature(@ptrCast(*const IMSMQMessage3, self), varSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_AuthenticationProviderType(self: *const T, plAuthProvType: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AuthenticationProviderType(@ptrCast(*const IMSMQMessage3, self), plAuthProvType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_AuthenticationProviderType(self: *const T, lAuthProvType: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_AuthenticationProviderType(@ptrCast(*const IMSMQMessage3, self), lAuthProvType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_AuthenticationProviderName(self: *const T, pbstrAuthProvName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AuthenticationProviderName(@ptrCast(*const IMSMQMessage3, self), pbstrAuthProvName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_AuthenticationProviderName(self: *const T, bstrAuthProvName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_AuthenticationProviderName(@ptrCast(*const IMSMQMessage3, self), bstrAuthProvName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_SenderId(self: *const T, varSenderId: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_SenderId(@ptrCast(*const IMSMQMessage3, self), varSenderId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_MsgClass(self: *const T, plMsgClass: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_MsgClass(@ptrCast(*const IMSMQMessage3, self), plMsgClass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_MsgClass(self: *const T, lMsgClass: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_MsgClass(@ptrCast(*const IMSMQMessage3, self), lMsgClass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQMessage3, self), ppcolProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_TransactionId(self: *const T, pvarXactId: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_TransactionId(@ptrCast(*const IMSMQMessage3, self), pvarXactId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_IsFirstInTransaction(self: *const T, pisFirstInXact: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_IsFirstInTransaction(@ptrCast(*const IMSMQMessage3, self), pisFirstInXact);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_IsLastInTransaction(self: *const T, pisLastInXact: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_IsLastInTransaction(@ptrCast(*const IMSMQMessage3, self), pisLastInXact);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_ResponseQueueInfo_v2(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ResponseQueueInfo_v2(@ptrCast(*const IMSMQMessage3, self), ppqinfoResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_putref_ResponseQueueInfo_v2(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_ResponseQueueInfo_v2(@ptrCast(*const IMSMQMessage3, self), pqinfoResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_AdminQueueInfo_v2(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AdminQueueInfo_v2(@ptrCast(*const IMSMQMessage3, self), ppqinfoAdmin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_putref_AdminQueueInfo_v2(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_AdminQueueInfo_v2(@ptrCast(*const IMSMQMessage3, self), pqinfoAdmin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_ReceivedAuthenticationLevel(self: *const T, psReceivedAuthenticationLevel: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ReceivedAuthenticationLevel(@ptrCast(*const IMSMQMessage3, self), psReceivedAuthenticationLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_ResponseQueueInfo(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ResponseQueueInfo(@ptrCast(*const IMSMQMessage3, self), ppqinfoResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_putref_ResponseQueueInfo(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_ResponseQueueInfo(@ptrCast(*const IMSMQMessage3, self), pqinfoResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_AdminQueueInfo(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AdminQueueInfo(@ptrCast(*const IMSMQMessage3, self), ppqinfoAdmin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_putref_AdminQueueInfo(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_AdminQueueInfo(@ptrCast(*const IMSMQMessage3, self), pqinfoAdmin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_ResponseDestination(self: *const T, ppdestResponse: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ResponseDestination(@ptrCast(*const IMSMQMessage3, self), ppdestResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_putref_ResponseDestination(self: *const T, pdestResponse: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_ResponseDestination(@ptrCast(*const IMSMQMessage3, self), pdestResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_Destination(self: *const T, ppdestDestination: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Destination(@ptrCast(*const IMSMQMessage3, self), ppdestDestination);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_LookupId(self: *const T, pvarLookupId: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_LookupId(@ptrCast(*const IMSMQMessage3, self), pvarLookupId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_IsAuthenticated2(self: *const T, pisAuthenticated: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_IsAuthenticated2(@ptrCast(*const IMSMQMessage3, self), pisAuthenticated);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_IsFirstInTransaction2(self: *const T, pisFirstInXact: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_IsFirstInTransaction2(@ptrCast(*const IMSMQMessage3, self), pisFirstInXact);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_IsLastInTransaction2(self: *const T, pisLastInXact: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_IsLastInTransaction2(@ptrCast(*const IMSMQMessage3, self), pisLastInXact);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_AttachCurrentSecurityContext2(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).AttachCurrentSecurityContext2(@ptrCast(*const IMSMQMessage3, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_SoapEnvelope(self: *const T, pbstrSoapEnvelope: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SoapEnvelope(@ptrCast(*const IMSMQMessage3, self), pbstrSoapEnvelope);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_get_CompoundMessage(self: *const T, pvarCompoundMessage: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_CompoundMessage(@ptrCast(*const IMSMQMessage3, self), pvarCompoundMessage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_SoapHeader(self: *const T, bstrSoapHeader: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_SoapHeader(@ptrCast(*const IMSMQMessage3, self), bstrSoapHeader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage3_put_SoapBody(self: *const T, bstrSoapBody: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_SoapBody(@ptrCast(*const IMSMQMessage3, self), bstrSoapBody);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_Class(self: *const T, plClass: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Class(@ptrCast(*const IMSMQMessage3, self), plClass);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQMessage3, self), plPrivLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_PrivLevel(self: *const T, lPrivLevel: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQMessage3, self), lPrivLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_AuthLevel(self: *const T, plAuthLevel: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AuthLevel(@ptrCast(*const IMSMQMessage3, self), plAuthLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_AuthLevel(self: *const T, lAuthLevel: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_AuthLevel(@ptrCast(*const IMSMQMessage3, self), lAuthLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_IsAuthenticated(self: *const T, pisAuthenticated: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_IsAuthenticated(@ptrCast(*const IMSMQMessage3, self), pisAuthenticated);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_Delivery(self: *const T, plDelivery: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Delivery(@ptrCast(*const IMSMQMessage3, self), plDelivery);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_Delivery(self: *const T, lDelivery: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Delivery(@ptrCast(*const IMSMQMessage3, self), lDelivery);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_Trace(self: *const T, plTrace: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Trace(@ptrCast(*const IMSMQMessage3, self), plTrace);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_Trace(self: *const T, lTrace: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Trace(@ptrCast(*const IMSMQMessage3, self), lTrace);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_Priority(self: *const T, plPriority: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Priority(@ptrCast(*const IMSMQMessage3, self), plPriority);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_Priority(self: *const T, lPriority: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Priority(@ptrCast(*const IMSMQMessage3, self), lPriority);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_Journal(self: *const T, plJournal: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQMessage3, self), plJournal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_Journal(self: *const T, lJournal: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQMessage3, self), lJournal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_ResponseQueueInfo_v1(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ResponseQueueInfo_v1(@ptrCast(*const IMSMQMessage3, self), ppqinfoResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_putref_ResponseQueueInfo_v1(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_ResponseQueueInfo_v1(@ptrCast(*const IMSMQMessage3, self), pqinfoResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_AppSpecific(self: *const T, plAppSpecific: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AppSpecific(@ptrCast(*const IMSMQMessage3, self), plAppSpecific);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_AppSpecific(self: *const T, lAppSpecific: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_AppSpecific(@ptrCast(*const IMSMQMessage3, self), lAppSpecific);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_SourceMachineGuid(self: *const T, pbstrGuidSrcMachine: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SourceMachineGuid(@ptrCast(*const IMSMQMessage3, self), pbstrGuidSrcMachine);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_BodyLength(self: *const T, pcbBody: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_BodyLength(@ptrCast(*const IMSMQMessage3, self), pcbBody);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_Body(self: *const T, pvarBody: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Body(@ptrCast(*const IMSMQMessage3, self), pvarBody);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_Body(self: *const T, varBody: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Body(@ptrCast(*const IMSMQMessage3, self), varBody);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_AdminQueueInfo_v1(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AdminQueueInfo_v1(@ptrCast(*const IMSMQMessage3, self), ppqinfoAdmin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_putref_AdminQueueInfo_v1(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_AdminQueueInfo_v1(@ptrCast(*const IMSMQMessage3, self), pqinfoAdmin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_Id(self: *const T, pvarMsgId: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Id(@ptrCast(*const IMSMQMessage3, self), pvarMsgId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_CorrelationId(self: *const T, pvarMsgId: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_CorrelationId(@ptrCast(*const IMSMQMessage3, self), pvarMsgId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_CorrelationId(self: *const T, varMsgId: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_CorrelationId(@ptrCast(*const IMSMQMessage3, self), varMsgId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_Ack(self: *const T, plAck: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Ack(@ptrCast(*const IMSMQMessage3, self), plAck);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_Ack(self: *const T, lAck: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Ack(@ptrCast(*const IMSMQMessage3, self), lAck);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_Label(self: *const T, pbstrLabel: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQMessage3, self), pbstrLabel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_Label(self: *const T, bstrLabel: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQMessage3, self), bstrLabel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_MaxTimeToReachQueue(self: *const T, plMaxTimeToReachQueue: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage3, self), plMaxTimeToReachQueue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_MaxTimeToReachQueue(self: *const T, lMaxTimeToReachQueue: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage3, self), lMaxTimeToReachQueue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_MaxTimeToReceive(self: *const T, plMaxTimeToReceive: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_MaxTimeToReceive(@ptrCast(*const IMSMQMessage3, self), plMaxTimeToReceive);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_MaxTimeToReceive(self: *const T, lMaxTimeToReceive: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_MaxTimeToReceive(@ptrCast(*const IMSMQMessage3, self), lMaxTimeToReceive);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_HashAlgorithm(self: *const T, plHashAlg: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const IMSMQMessage3, self), plHashAlg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_HashAlgorithm(self: *const T, lHashAlg: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const IMSMQMessage3, self), lHashAlg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_EncryptAlgorithm(self: *const T, plEncryptAlg: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_EncryptAlgorithm(@ptrCast(*const IMSMQMessage3, self), plEncryptAlg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_EncryptAlgorithm(self: *const T, lEncryptAlg: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_EncryptAlgorithm(@ptrCast(*const IMSMQMessage3, self), lEncryptAlg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_SentTime(self: *const T, pvarSentTime: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SentTime(@ptrCast(*const IMSMQMessage3, self), pvarSentTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_ArrivedTime(self: *const T, plArrivedTime: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ArrivedTime(@ptrCast(*const IMSMQMessage3, self), plArrivedTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_DestinationQueueInfo(self: *const T, ppqinfoDest: ?*?*IMSMQQueueInfo3) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_DestinationQueueInfo(@ptrCast(*const IMSMQMessage3, self), ppqinfoDest);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_SenderCertificate(self: *const T, pvarSenderCert: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SenderCertificate(@ptrCast(*const IMSMQMessage3, self), pvarSenderCert);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_SenderCertificate(self: *const T, varSenderCert: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_SenderCertificate(@ptrCast(*const IMSMQMessage3, self), varSenderCert);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_SenderId(self: *const T, pvarSenderId: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SenderId(@ptrCast(*const IMSMQMessage3, self), pvarSenderId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_SenderIdType(self: *const T, plSenderIdType: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SenderIdType(@ptrCast(*const IMSMQMessage3, self), plSenderIdType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_SenderIdType(self: *const T, lSenderIdType: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_SenderIdType(@ptrCast(*const IMSMQMessage3, self), lSenderIdType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_Send(self: *const T, DestinationQueue: ?*IDispatch, Transaction: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).Send(@ptrCast(*const IMSMQMessage3, self), DestinationQueue, Transaction);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_AttachCurrentSecurityContext(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).AttachCurrentSecurityContext(@ptrCast(*const IMSMQMessage3, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_SenderVersion(self: *const T, plSenderVersion: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SenderVersion(@ptrCast(*const IMSMQMessage3, self), plSenderVersion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_Extension(self: *const T, pvarExtension: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Extension(@ptrCast(*const IMSMQMessage3, self), pvarExtension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_Extension(self: *const T, varExtension: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Extension(@ptrCast(*const IMSMQMessage3, self), varExtension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_ConnectorTypeGuid(self: *const T, pbstrGuidConnectorType: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ConnectorTypeGuid(@ptrCast(*const IMSMQMessage3, self), pbstrGuidConnectorType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_ConnectorTypeGuid(self: *const T, bstrGuidConnectorType: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_ConnectorTypeGuid(@ptrCast(*const IMSMQMessage3, self), bstrGuidConnectorType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_TransactionStatusQueueInfo(self: *const T, ppqinfoXactStatus: ?*?*IMSMQQueueInfo3) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_TransactionStatusQueueInfo(@ptrCast(*const IMSMQMessage3, self), ppqinfoXactStatus);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_DestinationSymmetricKey(self: *const T, pvarDestSymmKey: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_DestinationSymmetricKey(@ptrCast(*const IMSMQMessage3, self), pvarDestSymmKey);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_DestinationSymmetricKey(self: *const T, varDestSymmKey: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_DestinationSymmetricKey(@ptrCast(*const IMSMQMessage3, self), varDestSymmKey);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_Signature(self: *const T, pvarSignature: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Signature(@ptrCast(*const IMSMQMessage3, self), pvarSignature);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_Signature(self: *const T, varSignature: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Signature(@ptrCast(*const IMSMQMessage3, self), varSignature);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_AuthenticationProviderType(self: *const T, plAuthProvType: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AuthenticationProviderType(@ptrCast(*const IMSMQMessage3, self), plAuthProvType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_AuthenticationProviderType(self: *const T, lAuthProvType: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_AuthenticationProviderType(@ptrCast(*const IMSMQMessage3, self), lAuthProvType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_AuthenticationProviderName(self: *const T, pbstrAuthProvName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AuthenticationProviderName(@ptrCast(*const IMSMQMessage3, self), pbstrAuthProvName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_AuthenticationProviderName(self: *const T, bstrAuthProvName: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_AuthenticationProviderName(@ptrCast(*const IMSMQMessage3, self), bstrAuthProvName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_SenderId(self: *const T, varSenderId: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_SenderId(@ptrCast(*const IMSMQMessage3, self), varSenderId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_MsgClass(self: *const T, plMsgClass: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_MsgClass(@ptrCast(*const IMSMQMessage3, self), plMsgClass);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_MsgClass(self: *const T, lMsgClass: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_MsgClass(@ptrCast(*const IMSMQMessage3, self), lMsgClass);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQMessage3, self), ppcolProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_TransactionId(self: *const T, pvarXactId: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_TransactionId(@ptrCast(*const IMSMQMessage3, self), pvarXactId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_IsFirstInTransaction(self: *const T, pisFirstInXact: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_IsFirstInTransaction(@ptrCast(*const IMSMQMessage3, self), pisFirstInXact);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_IsLastInTransaction(self: *const T, pisLastInXact: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_IsLastInTransaction(@ptrCast(*const IMSMQMessage3, self), pisLastInXact);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_ResponseQueueInfo_v2(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo2) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ResponseQueueInfo_v2(@ptrCast(*const IMSMQMessage3, self), ppqinfoResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_putref_ResponseQueueInfo_v2(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo2) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_ResponseQueueInfo_v2(@ptrCast(*const IMSMQMessage3, self), pqinfoResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_AdminQueueInfo_v2(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo2) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AdminQueueInfo_v2(@ptrCast(*const IMSMQMessage3, self), ppqinfoAdmin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_putref_AdminQueueInfo_v2(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo2) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_AdminQueueInfo_v2(@ptrCast(*const IMSMQMessage3, self), pqinfoAdmin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_ReceivedAuthenticationLevel(self: *const T, psReceivedAuthenticationLevel: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ReceivedAuthenticationLevel(@ptrCast(*const IMSMQMessage3, self), psReceivedAuthenticationLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_ResponseQueueInfo(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo3) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ResponseQueueInfo(@ptrCast(*const IMSMQMessage3, self), ppqinfoResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_putref_ResponseQueueInfo(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo3) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_ResponseQueueInfo(@ptrCast(*const IMSMQMessage3, self), pqinfoResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_AdminQueueInfo(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo3) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AdminQueueInfo(@ptrCast(*const IMSMQMessage3, self), ppqinfoAdmin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_putref_AdminQueueInfo(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo3) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_AdminQueueInfo(@ptrCast(*const IMSMQMessage3, self), pqinfoAdmin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_ResponseDestination(self: *const T, ppdestResponse: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ResponseDestination(@ptrCast(*const IMSMQMessage3, self), ppdestResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_putref_ResponseDestination(self: *const T, pdestResponse: ?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_ResponseDestination(@ptrCast(*const IMSMQMessage3, self), pdestResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_Destination(self: *const T, ppdestDestination: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Destination(@ptrCast(*const IMSMQMessage3, self), ppdestDestination);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_LookupId(self: *const T, pvarLookupId: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_LookupId(@ptrCast(*const IMSMQMessage3, self), pvarLookupId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_IsAuthenticated2(self: *const T, pisAuthenticated: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_IsAuthenticated2(@ptrCast(*const IMSMQMessage3, self), pisAuthenticated);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_IsFirstInTransaction2(self: *const T, pisFirstInXact: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_IsFirstInTransaction2(@ptrCast(*const IMSMQMessage3, self), pisFirstInXact);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_IsLastInTransaction2(self: *const T, pisLastInXact: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_IsLastInTransaction2(@ptrCast(*const IMSMQMessage3, self), pisLastInXact);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_AttachCurrentSecurityContext2(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).AttachCurrentSecurityContext2(@ptrCast(*const IMSMQMessage3, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_SoapEnvelope(self: *const T, pbstrSoapEnvelope: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SoapEnvelope(@ptrCast(*const IMSMQMessage3, self), pbstrSoapEnvelope);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_get_CompoundMessage(self: *const T, pvarCompoundMessage: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_CompoundMessage(@ptrCast(*const IMSMQMessage3, self), pvarCompoundMessage);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_SoapHeader(self: *const T, bstrSoapHeader: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_SoapHeader(@ptrCast(*const IMSMQMessage3, self), bstrSoapHeader);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage3_put_SoapBody(self: *const T, bstrSoapBody: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_SoapBody(@ptrCast(*const IMSMQMessage3, self), bstrSoapBody);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5699,818 +5749,820 @@ pub const IMSMQMessage4 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Class: fn(
+        get_Class: fn (
             self: *const IMSMQMessage4,
             plClass: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivLevel: fn(
+        get_PrivLevel: fn (
             self: *const IMSMQMessage4,
             plPrivLevel: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PrivLevel: fn(
+        put_PrivLevel: fn (
             self: *const IMSMQMessage4,
             lPrivLevel: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AuthLevel: fn(
+        get_AuthLevel: fn (
             self: *const IMSMQMessage4,
             plAuthLevel: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AuthLevel: fn(
+        put_AuthLevel: fn (
             self: *const IMSMQMessage4,
             lAuthLevel: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsAuthenticated: fn(
+        get_IsAuthenticated: fn (
             self: *const IMSMQMessage4,
             pisAuthenticated: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Delivery: fn(
+        get_Delivery: fn (
             self: *const IMSMQMessage4,
             plDelivery: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Delivery: fn(
+        put_Delivery: fn (
             self: *const IMSMQMessage4,
             lDelivery: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Trace: fn(
+        get_Trace: fn (
             self: *const IMSMQMessage4,
             plTrace: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Trace: fn(
+        put_Trace: fn (
             self: *const IMSMQMessage4,
             lTrace: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Priority: fn(
+        get_Priority: fn (
             self: *const IMSMQMessage4,
             plPriority: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Priority: fn(
+        put_Priority: fn (
             self: *const IMSMQMessage4,
             lPriority: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Journal: fn(
+        get_Journal: fn (
             self: *const IMSMQMessage4,
             plJournal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Journal: fn(
+        put_Journal: fn (
             self: *const IMSMQMessage4,
             lJournal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResponseQueueInfo_v1: fn(
+        get_ResponseQueueInfo_v1: fn (
             self: *const IMSMQMessage4,
             ppqinfoResponse: ?*?*IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_ResponseQueueInfo_v1: fn(
+        putref_ResponseQueueInfo_v1: fn (
             self: *const IMSMQMessage4,
             pqinfoResponse: ?*IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AppSpecific: fn(
+        get_AppSpecific: fn (
             self: *const IMSMQMessage4,
             plAppSpecific: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AppSpecific: fn(
+        put_AppSpecific: fn (
             self: *const IMSMQMessage4,
             lAppSpecific: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SourceMachineGuid: fn(
+        get_SourceMachineGuid: fn (
             self: *const IMSMQMessage4,
             pbstrGuidSrcMachine: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BodyLength: fn(
+        get_BodyLength: fn (
             self: *const IMSMQMessage4,
             pcbBody: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Body: fn(
+        get_Body: fn (
             self: *const IMSMQMessage4,
             pvarBody: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Body: fn(
+        put_Body: fn (
             self: *const IMSMQMessage4,
             varBody: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AdminQueueInfo_v1: fn(
+        get_AdminQueueInfo_v1: fn (
             self: *const IMSMQMessage4,
             ppqinfoAdmin: ?*?*IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_AdminQueueInfo_v1: fn(
+        putref_AdminQueueInfo_v1: fn (
             self: *const IMSMQMessage4,
             pqinfoAdmin: ?*IMSMQQueueInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: fn(
+        get_Id: fn (
             self: *const IMSMQMessage4,
             pvarMsgId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CorrelationId: fn(
+        get_CorrelationId: fn (
             self: *const IMSMQMessage4,
             pvarMsgId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_CorrelationId: fn(
+        put_CorrelationId: fn (
             self: *const IMSMQMessage4,
             varMsgId: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Ack: fn(
+        get_Ack: fn (
             self: *const IMSMQMessage4,
             plAck: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Ack: fn(
+        put_Ack: fn (
             self: *const IMSMQMessage4,
             lAck: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Label: fn(
+        get_Label: fn (
             self: *const IMSMQMessage4,
             pbstrLabel: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Label: fn(
+        put_Label: fn (
             self: *const IMSMQMessage4,
             bstrLabel: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaxTimeToReachQueue: fn(
+        get_MaxTimeToReachQueue: fn (
             self: *const IMSMQMessage4,
             plMaxTimeToReachQueue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MaxTimeToReachQueue: fn(
+        put_MaxTimeToReachQueue: fn (
             self: *const IMSMQMessage4,
             lMaxTimeToReachQueue: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaxTimeToReceive: fn(
+        get_MaxTimeToReceive: fn (
             self: *const IMSMQMessage4,
             plMaxTimeToReceive: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MaxTimeToReceive: fn(
+        put_MaxTimeToReceive: fn (
             self: *const IMSMQMessage4,
             lMaxTimeToReceive: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HashAlgorithm: fn(
+        get_HashAlgorithm: fn (
             self: *const IMSMQMessage4,
             plHashAlg: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_HashAlgorithm: fn(
+        put_HashAlgorithm: fn (
             self: *const IMSMQMessage4,
             lHashAlg: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EncryptAlgorithm: fn(
+        get_EncryptAlgorithm: fn (
             self: *const IMSMQMessage4,
             plEncryptAlg: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EncryptAlgorithm: fn(
+        put_EncryptAlgorithm: fn (
             self: *const IMSMQMessage4,
             lEncryptAlg: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SentTime: fn(
+        get_SentTime: fn (
             self: *const IMSMQMessage4,
             pvarSentTime: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ArrivedTime: fn(
+        get_ArrivedTime: fn (
             self: *const IMSMQMessage4,
             plArrivedTime: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DestinationQueueInfo: fn(
+        get_DestinationQueueInfo: fn (
             self: *const IMSMQMessage4,
             ppqinfoDest: ?*?*IMSMQQueueInfo4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SenderCertificate: fn(
+        get_SenderCertificate: fn (
             self: *const IMSMQMessage4,
             pvarSenderCert: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SenderCertificate: fn(
+        put_SenderCertificate: fn (
             self: *const IMSMQMessage4,
             varSenderCert: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SenderId: fn(
+        get_SenderId: fn (
             self: *const IMSMQMessage4,
             pvarSenderId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SenderIdType: fn(
+        get_SenderIdType: fn (
             self: *const IMSMQMessage4,
             plSenderIdType: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SenderIdType: fn(
+        put_SenderIdType: fn (
             self: *const IMSMQMessage4,
             lSenderIdType: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Send: fn(
+        Send: fn (
             self: *const IMSMQMessage4,
             DestinationQueue: ?*IDispatch,
             Transaction: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AttachCurrentSecurityContext: fn(
+        AttachCurrentSecurityContext: fn (
             self: *const IMSMQMessage4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SenderVersion: fn(
+        get_SenderVersion: fn (
             self: *const IMSMQMessage4,
             plSenderVersion: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Extension: fn(
+        get_Extension: fn (
             self: *const IMSMQMessage4,
             pvarExtension: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Extension: fn(
+        put_Extension: fn (
             self: *const IMSMQMessage4,
             varExtension: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ConnectorTypeGuid: fn(
+        get_ConnectorTypeGuid: fn (
             self: *const IMSMQMessage4,
             pbstrGuidConnectorType: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ConnectorTypeGuid: fn(
+        put_ConnectorTypeGuid: fn (
             self: *const IMSMQMessage4,
             bstrGuidConnectorType: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TransactionStatusQueueInfo: fn(
+        get_TransactionStatusQueueInfo: fn (
             self: *const IMSMQMessage4,
             ppqinfoXactStatus: ?*?*IMSMQQueueInfo4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DestinationSymmetricKey: fn(
+        get_DestinationSymmetricKey: fn (
             self: *const IMSMQMessage4,
             pvarDestSymmKey: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DestinationSymmetricKey: fn(
+        put_DestinationSymmetricKey: fn (
             self: *const IMSMQMessage4,
             varDestSymmKey: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Signature: fn(
+        get_Signature: fn (
             self: *const IMSMQMessage4,
             pvarSignature: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Signature: fn(
+        put_Signature: fn (
             self: *const IMSMQMessage4,
             varSignature: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AuthenticationProviderType: fn(
+        get_AuthenticationProviderType: fn (
             self: *const IMSMQMessage4,
             plAuthProvType: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AuthenticationProviderType: fn(
+        put_AuthenticationProviderType: fn (
             self: *const IMSMQMessage4,
             lAuthProvType: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AuthenticationProviderName: fn(
+        get_AuthenticationProviderName: fn (
             self: *const IMSMQMessage4,
             pbstrAuthProvName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AuthenticationProviderName: fn(
+        put_AuthenticationProviderName: fn (
             self: *const IMSMQMessage4,
             bstrAuthProvName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SenderId: fn(
+        put_SenderId: fn (
             self: *const IMSMQMessage4,
             varSenderId: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MsgClass: fn(
+        get_MsgClass: fn (
             self: *const IMSMQMessage4,
             plMsgClass: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MsgClass: fn(
+        put_MsgClass: fn (
             self: *const IMSMQMessage4,
             lMsgClass: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQMessage4,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TransactionId: fn(
+        get_TransactionId: fn (
             self: *const IMSMQMessage4,
             pvarXactId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsFirstInTransaction: fn(
+        get_IsFirstInTransaction: fn (
             self: *const IMSMQMessage4,
             pisFirstInXact: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsLastInTransaction: fn(
+        get_IsLastInTransaction: fn (
             self: *const IMSMQMessage4,
             pisLastInXact: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResponseQueueInfo_v2: fn(
+        get_ResponseQueueInfo_v2: fn (
             self: *const IMSMQMessage4,
             ppqinfoResponse: ?*?*IMSMQQueueInfo2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_ResponseQueueInfo_v2: fn(
+        putref_ResponseQueueInfo_v2: fn (
             self: *const IMSMQMessage4,
             pqinfoResponse: ?*IMSMQQueueInfo2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AdminQueueInfo_v2: fn(
+        get_AdminQueueInfo_v2: fn (
             self: *const IMSMQMessage4,
             ppqinfoAdmin: ?*?*IMSMQQueueInfo2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_AdminQueueInfo_v2: fn(
+        putref_AdminQueueInfo_v2: fn (
             self: *const IMSMQMessage4,
             pqinfoAdmin: ?*IMSMQQueueInfo2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReceivedAuthenticationLevel: fn(
+        get_ReceivedAuthenticationLevel: fn (
             self: *const IMSMQMessage4,
             psReceivedAuthenticationLevel: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResponseQueueInfo: fn(
+        get_ResponseQueueInfo: fn (
             self: *const IMSMQMessage4,
             ppqinfoResponse: ?*?*IMSMQQueueInfo4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_ResponseQueueInfo: fn(
+        putref_ResponseQueueInfo: fn (
             self: *const IMSMQMessage4,
             pqinfoResponse: ?*IMSMQQueueInfo4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AdminQueueInfo: fn(
+        get_AdminQueueInfo: fn (
             self: *const IMSMQMessage4,
             ppqinfoAdmin: ?*?*IMSMQQueueInfo4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_AdminQueueInfo: fn(
+        putref_AdminQueueInfo: fn (
             self: *const IMSMQMessage4,
             pqinfoAdmin: ?*IMSMQQueueInfo4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResponseDestination: fn(
+        get_ResponseDestination: fn (
             self: *const IMSMQMessage4,
             ppdestResponse: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_ResponseDestination: fn(
+        putref_ResponseDestination: fn (
             self: *const IMSMQMessage4,
             pdestResponse: ?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Destination: fn(
+        get_Destination: fn (
             self: *const IMSMQMessage4,
             ppdestDestination: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LookupId: fn(
+        get_LookupId: fn (
             self: *const IMSMQMessage4,
             pvarLookupId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsAuthenticated2: fn(
+        get_IsAuthenticated2: fn (
             self: *const IMSMQMessage4,
             pisAuthenticated: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsFirstInTransaction2: fn(
+        get_IsFirstInTransaction2: fn (
             self: *const IMSMQMessage4,
             pisFirstInXact: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsLastInTransaction2: fn(
+        get_IsLastInTransaction2: fn (
             self: *const IMSMQMessage4,
             pisLastInXact: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AttachCurrentSecurityContext2: fn(
+        AttachCurrentSecurityContext2: fn (
             self: *const IMSMQMessage4,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SoapEnvelope: fn(
+        get_SoapEnvelope: fn (
             self: *const IMSMQMessage4,
             pbstrSoapEnvelope: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CompoundMessage: fn(
+        get_CompoundMessage: fn (
             self: *const IMSMQMessage4,
             pvarCompoundMessage: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SoapHeader: fn(
+        put_SoapHeader: fn (
             self: *const IMSMQMessage4,
             bstrSoapHeader: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SoapBody: fn(
+        put_SoapBody: fn (
             self: *const IMSMQMessage4,
             bstrSoapBody: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_Class(self: *const T, plClass: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Class(@ptrCast(*const IMSMQMessage4, self), plClass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQMessage4, self), plPrivLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_PrivLevel(self: *const T, lPrivLevel: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQMessage4, self), lPrivLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_AuthLevel(self: *const T, plAuthLevel: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AuthLevel(@ptrCast(*const IMSMQMessage4, self), plAuthLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_AuthLevel(self: *const T, lAuthLevel: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_AuthLevel(@ptrCast(*const IMSMQMessage4, self), lAuthLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_IsAuthenticated(self: *const T, pisAuthenticated: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_IsAuthenticated(@ptrCast(*const IMSMQMessage4, self), pisAuthenticated);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_Delivery(self: *const T, plDelivery: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Delivery(@ptrCast(*const IMSMQMessage4, self), plDelivery);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_Delivery(self: *const T, lDelivery: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Delivery(@ptrCast(*const IMSMQMessage4, self), lDelivery);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_Trace(self: *const T, plTrace: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Trace(@ptrCast(*const IMSMQMessage4, self), plTrace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_Trace(self: *const T, lTrace: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Trace(@ptrCast(*const IMSMQMessage4, self), lTrace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_Priority(self: *const T, plPriority: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Priority(@ptrCast(*const IMSMQMessage4, self), plPriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_Priority(self: *const T, lPriority: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Priority(@ptrCast(*const IMSMQMessage4, self), lPriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_Journal(self: *const T, plJournal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQMessage4, self), plJournal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_Journal(self: *const T, lJournal: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQMessage4, self), lJournal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_ResponseQueueInfo_v1(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ResponseQueueInfo_v1(@ptrCast(*const IMSMQMessage4, self), ppqinfoResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_putref_ResponseQueueInfo_v1(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_ResponseQueueInfo_v1(@ptrCast(*const IMSMQMessage4, self), pqinfoResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_AppSpecific(self: *const T, plAppSpecific: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AppSpecific(@ptrCast(*const IMSMQMessage4, self), plAppSpecific);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_AppSpecific(self: *const T, lAppSpecific: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_AppSpecific(@ptrCast(*const IMSMQMessage4, self), lAppSpecific);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_SourceMachineGuid(self: *const T, pbstrGuidSrcMachine: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SourceMachineGuid(@ptrCast(*const IMSMQMessage4, self), pbstrGuidSrcMachine);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_BodyLength(self: *const T, pcbBody: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_BodyLength(@ptrCast(*const IMSMQMessage4, self), pcbBody);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_Body(self: *const T, pvarBody: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Body(@ptrCast(*const IMSMQMessage4, self), pvarBody);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_Body(self: *const T, varBody: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Body(@ptrCast(*const IMSMQMessage4, self), varBody);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_AdminQueueInfo_v1(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AdminQueueInfo_v1(@ptrCast(*const IMSMQMessage4, self), ppqinfoAdmin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_putref_AdminQueueInfo_v1(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_AdminQueueInfo_v1(@ptrCast(*const IMSMQMessage4, self), pqinfoAdmin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_Id(self: *const T, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Id(@ptrCast(*const IMSMQMessage4, self), pvarMsgId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_CorrelationId(self: *const T, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_CorrelationId(@ptrCast(*const IMSMQMessage4, self), pvarMsgId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_CorrelationId(self: *const T, varMsgId: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_CorrelationId(@ptrCast(*const IMSMQMessage4, self), varMsgId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_Ack(self: *const T, plAck: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Ack(@ptrCast(*const IMSMQMessage4, self), plAck);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_Ack(self: *const T, lAck: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Ack(@ptrCast(*const IMSMQMessage4, self), lAck);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_Label(self: *const T, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQMessage4, self), pbstrLabel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_Label(self: *const T, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQMessage4, self), bstrLabel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_MaxTimeToReachQueue(self: *const T, plMaxTimeToReachQueue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage4, self), plMaxTimeToReachQueue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_MaxTimeToReachQueue(self: *const T, lMaxTimeToReachQueue: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage4, self), lMaxTimeToReachQueue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_MaxTimeToReceive(self: *const T, plMaxTimeToReceive: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_MaxTimeToReceive(@ptrCast(*const IMSMQMessage4, self), plMaxTimeToReceive);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_MaxTimeToReceive(self: *const T, lMaxTimeToReceive: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_MaxTimeToReceive(@ptrCast(*const IMSMQMessage4, self), lMaxTimeToReceive);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_HashAlgorithm(self: *const T, plHashAlg: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const IMSMQMessage4, self), plHashAlg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_HashAlgorithm(self: *const T, lHashAlg: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const IMSMQMessage4, self), lHashAlg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_EncryptAlgorithm(self: *const T, plEncryptAlg: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_EncryptAlgorithm(@ptrCast(*const IMSMQMessage4, self), plEncryptAlg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_EncryptAlgorithm(self: *const T, lEncryptAlg: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_EncryptAlgorithm(@ptrCast(*const IMSMQMessage4, self), lEncryptAlg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_SentTime(self: *const T, pvarSentTime: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SentTime(@ptrCast(*const IMSMQMessage4, self), pvarSentTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_ArrivedTime(self: *const T, plArrivedTime: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ArrivedTime(@ptrCast(*const IMSMQMessage4, self), plArrivedTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_DestinationQueueInfo(self: *const T, ppqinfoDest: ?*?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_DestinationQueueInfo(@ptrCast(*const IMSMQMessage4, self), ppqinfoDest);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_SenderCertificate(self: *const T, pvarSenderCert: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SenderCertificate(@ptrCast(*const IMSMQMessage4, self), pvarSenderCert);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_SenderCertificate(self: *const T, varSenderCert: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_SenderCertificate(@ptrCast(*const IMSMQMessage4, self), varSenderCert);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_SenderId(self: *const T, pvarSenderId: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SenderId(@ptrCast(*const IMSMQMessage4, self), pvarSenderId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_SenderIdType(self: *const T, plSenderIdType: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SenderIdType(@ptrCast(*const IMSMQMessage4, self), plSenderIdType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_SenderIdType(self: *const T, lSenderIdType: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_SenderIdType(@ptrCast(*const IMSMQMessage4, self), lSenderIdType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_Send(self: *const T, DestinationQueue: ?*IDispatch, Transaction: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).Send(@ptrCast(*const IMSMQMessage4, self), DestinationQueue, Transaction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_AttachCurrentSecurityContext(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).AttachCurrentSecurityContext(@ptrCast(*const IMSMQMessage4, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_SenderVersion(self: *const T, plSenderVersion: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SenderVersion(@ptrCast(*const IMSMQMessage4, self), plSenderVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_Extension(self: *const T, pvarExtension: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Extension(@ptrCast(*const IMSMQMessage4, self), pvarExtension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_Extension(self: *const T, varExtension: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Extension(@ptrCast(*const IMSMQMessage4, self), varExtension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_ConnectorTypeGuid(self: *const T, pbstrGuidConnectorType: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ConnectorTypeGuid(@ptrCast(*const IMSMQMessage4, self), pbstrGuidConnectorType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_ConnectorTypeGuid(self: *const T, bstrGuidConnectorType: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_ConnectorTypeGuid(@ptrCast(*const IMSMQMessage4, self), bstrGuidConnectorType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_TransactionStatusQueueInfo(self: *const T, ppqinfoXactStatus: ?*?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_TransactionStatusQueueInfo(@ptrCast(*const IMSMQMessage4, self), ppqinfoXactStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_DestinationSymmetricKey(self: *const T, pvarDestSymmKey: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_DestinationSymmetricKey(@ptrCast(*const IMSMQMessage4, self), pvarDestSymmKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_DestinationSymmetricKey(self: *const T, varDestSymmKey: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_DestinationSymmetricKey(@ptrCast(*const IMSMQMessage4, self), varDestSymmKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_Signature(self: *const T, pvarSignature: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Signature(@ptrCast(*const IMSMQMessage4, self), pvarSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_Signature(self: *const T, varSignature: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Signature(@ptrCast(*const IMSMQMessage4, self), varSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_AuthenticationProviderType(self: *const T, plAuthProvType: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AuthenticationProviderType(@ptrCast(*const IMSMQMessage4, self), plAuthProvType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_AuthenticationProviderType(self: *const T, lAuthProvType: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_AuthenticationProviderType(@ptrCast(*const IMSMQMessage4, self), lAuthProvType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_AuthenticationProviderName(self: *const T, pbstrAuthProvName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AuthenticationProviderName(@ptrCast(*const IMSMQMessage4, self), pbstrAuthProvName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_AuthenticationProviderName(self: *const T, bstrAuthProvName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_AuthenticationProviderName(@ptrCast(*const IMSMQMessage4, self), bstrAuthProvName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_SenderId(self: *const T, varSenderId: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_SenderId(@ptrCast(*const IMSMQMessage4, self), varSenderId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_MsgClass(self: *const T, plMsgClass: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_MsgClass(@ptrCast(*const IMSMQMessage4, self), plMsgClass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_MsgClass(self: *const T, lMsgClass: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_MsgClass(@ptrCast(*const IMSMQMessage4, self), lMsgClass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQMessage4, self), ppcolProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_TransactionId(self: *const T, pvarXactId: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_TransactionId(@ptrCast(*const IMSMQMessage4, self), pvarXactId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_IsFirstInTransaction(self: *const T, pisFirstInXact: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_IsFirstInTransaction(@ptrCast(*const IMSMQMessage4, self), pisFirstInXact);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_IsLastInTransaction(self: *const T, pisLastInXact: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_IsLastInTransaction(@ptrCast(*const IMSMQMessage4, self), pisLastInXact);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_ResponseQueueInfo_v2(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ResponseQueueInfo_v2(@ptrCast(*const IMSMQMessage4, self), ppqinfoResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_putref_ResponseQueueInfo_v2(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_ResponseQueueInfo_v2(@ptrCast(*const IMSMQMessage4, self), pqinfoResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_AdminQueueInfo_v2(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AdminQueueInfo_v2(@ptrCast(*const IMSMQMessage4, self), ppqinfoAdmin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_putref_AdminQueueInfo_v2(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_AdminQueueInfo_v2(@ptrCast(*const IMSMQMessage4, self), pqinfoAdmin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_ReceivedAuthenticationLevel(self: *const T, psReceivedAuthenticationLevel: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ReceivedAuthenticationLevel(@ptrCast(*const IMSMQMessage4, self), psReceivedAuthenticationLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_ResponseQueueInfo(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ResponseQueueInfo(@ptrCast(*const IMSMQMessage4, self), ppqinfoResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_putref_ResponseQueueInfo(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_ResponseQueueInfo(@ptrCast(*const IMSMQMessage4, self), pqinfoResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_AdminQueueInfo(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AdminQueueInfo(@ptrCast(*const IMSMQMessage4, self), ppqinfoAdmin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_putref_AdminQueueInfo(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_AdminQueueInfo(@ptrCast(*const IMSMQMessage4, self), pqinfoAdmin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_ResponseDestination(self: *const T, ppdestResponse: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ResponseDestination(@ptrCast(*const IMSMQMessage4, self), ppdestResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_putref_ResponseDestination(self: *const T, pdestResponse: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_ResponseDestination(@ptrCast(*const IMSMQMessage4, self), pdestResponse);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_Destination(self: *const T, ppdestDestination: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Destination(@ptrCast(*const IMSMQMessage4, self), ppdestDestination);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_LookupId(self: *const T, pvarLookupId: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_LookupId(@ptrCast(*const IMSMQMessage4, self), pvarLookupId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_IsAuthenticated2(self: *const T, pisAuthenticated: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_IsAuthenticated2(@ptrCast(*const IMSMQMessage4, self), pisAuthenticated);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_IsFirstInTransaction2(self: *const T, pisFirstInXact: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_IsFirstInTransaction2(@ptrCast(*const IMSMQMessage4, self), pisFirstInXact);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_IsLastInTransaction2(self: *const T, pisLastInXact: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_IsLastInTransaction2(@ptrCast(*const IMSMQMessage4, self), pisLastInXact);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_AttachCurrentSecurityContext2(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).AttachCurrentSecurityContext2(@ptrCast(*const IMSMQMessage4, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_SoapEnvelope(self: *const T, pbstrSoapEnvelope: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SoapEnvelope(@ptrCast(*const IMSMQMessage4, self), pbstrSoapEnvelope);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_get_CompoundMessage(self: *const T, pvarCompoundMessage: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_CompoundMessage(@ptrCast(*const IMSMQMessage4, self), pvarCompoundMessage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_SoapHeader(self: *const T, bstrSoapHeader: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_SoapHeader(@ptrCast(*const IMSMQMessage4, self), bstrSoapHeader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQMessage4_put_SoapBody(self: *const T, bstrSoapBody: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_SoapBody(@ptrCast(*const IMSMQMessage4, self), bstrSoapBody);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_Class(self: *const T, plClass: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Class(@ptrCast(*const IMSMQMessage4, self), plClass);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQMessage4, self), plPrivLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_PrivLevel(self: *const T, lPrivLevel: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQMessage4, self), lPrivLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_AuthLevel(self: *const T, plAuthLevel: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AuthLevel(@ptrCast(*const IMSMQMessage4, self), plAuthLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_AuthLevel(self: *const T, lAuthLevel: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_AuthLevel(@ptrCast(*const IMSMQMessage4, self), lAuthLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_IsAuthenticated(self: *const T, pisAuthenticated: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_IsAuthenticated(@ptrCast(*const IMSMQMessage4, self), pisAuthenticated);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_Delivery(self: *const T, plDelivery: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Delivery(@ptrCast(*const IMSMQMessage4, self), plDelivery);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_Delivery(self: *const T, lDelivery: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Delivery(@ptrCast(*const IMSMQMessage4, self), lDelivery);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_Trace(self: *const T, plTrace: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Trace(@ptrCast(*const IMSMQMessage4, self), plTrace);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_Trace(self: *const T, lTrace: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Trace(@ptrCast(*const IMSMQMessage4, self), lTrace);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_Priority(self: *const T, plPriority: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Priority(@ptrCast(*const IMSMQMessage4, self), plPriority);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_Priority(self: *const T, lPriority: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Priority(@ptrCast(*const IMSMQMessage4, self), lPriority);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_Journal(self: *const T, plJournal: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQMessage4, self), plJournal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_Journal(self: *const T, lJournal: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQMessage4, self), lJournal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_ResponseQueueInfo_v1(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ResponseQueueInfo_v1(@ptrCast(*const IMSMQMessage4, self), ppqinfoResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_putref_ResponseQueueInfo_v1(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_ResponseQueueInfo_v1(@ptrCast(*const IMSMQMessage4, self), pqinfoResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_AppSpecific(self: *const T, plAppSpecific: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AppSpecific(@ptrCast(*const IMSMQMessage4, self), plAppSpecific);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_AppSpecific(self: *const T, lAppSpecific: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_AppSpecific(@ptrCast(*const IMSMQMessage4, self), lAppSpecific);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_SourceMachineGuid(self: *const T, pbstrGuidSrcMachine: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SourceMachineGuid(@ptrCast(*const IMSMQMessage4, self), pbstrGuidSrcMachine);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_BodyLength(self: *const T, pcbBody: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_BodyLength(@ptrCast(*const IMSMQMessage4, self), pcbBody);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_Body(self: *const T, pvarBody: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Body(@ptrCast(*const IMSMQMessage4, self), pvarBody);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_Body(self: *const T, varBody: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Body(@ptrCast(*const IMSMQMessage4, self), varBody);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_AdminQueueInfo_v1(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AdminQueueInfo_v1(@ptrCast(*const IMSMQMessage4, self), ppqinfoAdmin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_putref_AdminQueueInfo_v1(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_AdminQueueInfo_v1(@ptrCast(*const IMSMQMessage4, self), pqinfoAdmin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_Id(self: *const T, pvarMsgId: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Id(@ptrCast(*const IMSMQMessage4, self), pvarMsgId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_CorrelationId(self: *const T, pvarMsgId: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_CorrelationId(@ptrCast(*const IMSMQMessage4, self), pvarMsgId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_CorrelationId(self: *const T, varMsgId: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_CorrelationId(@ptrCast(*const IMSMQMessage4, self), varMsgId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_Ack(self: *const T, plAck: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Ack(@ptrCast(*const IMSMQMessage4, self), plAck);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_Ack(self: *const T, lAck: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Ack(@ptrCast(*const IMSMQMessage4, self), lAck);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_Label(self: *const T, pbstrLabel: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQMessage4, self), pbstrLabel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_Label(self: *const T, bstrLabel: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQMessage4, self), bstrLabel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_MaxTimeToReachQueue(self: *const T, plMaxTimeToReachQueue: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage4, self), plMaxTimeToReachQueue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_MaxTimeToReachQueue(self: *const T, lMaxTimeToReachQueue: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage4, self), lMaxTimeToReachQueue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_MaxTimeToReceive(self: *const T, plMaxTimeToReceive: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_MaxTimeToReceive(@ptrCast(*const IMSMQMessage4, self), plMaxTimeToReceive);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_MaxTimeToReceive(self: *const T, lMaxTimeToReceive: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_MaxTimeToReceive(@ptrCast(*const IMSMQMessage4, self), lMaxTimeToReceive);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_HashAlgorithm(self: *const T, plHashAlg: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const IMSMQMessage4, self), plHashAlg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_HashAlgorithm(self: *const T, lHashAlg: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const IMSMQMessage4, self), lHashAlg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_EncryptAlgorithm(self: *const T, plEncryptAlg: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_EncryptAlgorithm(@ptrCast(*const IMSMQMessage4, self), plEncryptAlg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_EncryptAlgorithm(self: *const T, lEncryptAlg: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_EncryptAlgorithm(@ptrCast(*const IMSMQMessage4, self), lEncryptAlg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_SentTime(self: *const T, pvarSentTime: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SentTime(@ptrCast(*const IMSMQMessage4, self), pvarSentTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_ArrivedTime(self: *const T, plArrivedTime: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ArrivedTime(@ptrCast(*const IMSMQMessage4, self), plArrivedTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_DestinationQueueInfo(self: *const T, ppqinfoDest: ?*?*IMSMQQueueInfo4) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_DestinationQueueInfo(@ptrCast(*const IMSMQMessage4, self), ppqinfoDest);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_SenderCertificate(self: *const T, pvarSenderCert: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SenderCertificate(@ptrCast(*const IMSMQMessage4, self), pvarSenderCert);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_SenderCertificate(self: *const T, varSenderCert: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_SenderCertificate(@ptrCast(*const IMSMQMessage4, self), varSenderCert);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_SenderId(self: *const T, pvarSenderId: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SenderId(@ptrCast(*const IMSMQMessage4, self), pvarSenderId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_SenderIdType(self: *const T, plSenderIdType: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SenderIdType(@ptrCast(*const IMSMQMessage4, self), plSenderIdType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_SenderIdType(self: *const T, lSenderIdType: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_SenderIdType(@ptrCast(*const IMSMQMessage4, self), lSenderIdType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_Send(self: *const T, DestinationQueue: ?*IDispatch, Transaction: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).Send(@ptrCast(*const IMSMQMessage4, self), DestinationQueue, Transaction);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_AttachCurrentSecurityContext(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).AttachCurrentSecurityContext(@ptrCast(*const IMSMQMessage4, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_SenderVersion(self: *const T, plSenderVersion: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SenderVersion(@ptrCast(*const IMSMQMessage4, self), plSenderVersion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_Extension(self: *const T, pvarExtension: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Extension(@ptrCast(*const IMSMQMessage4, self), pvarExtension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_Extension(self: *const T, varExtension: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Extension(@ptrCast(*const IMSMQMessage4, self), varExtension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_ConnectorTypeGuid(self: *const T, pbstrGuidConnectorType: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ConnectorTypeGuid(@ptrCast(*const IMSMQMessage4, self), pbstrGuidConnectorType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_ConnectorTypeGuid(self: *const T, bstrGuidConnectorType: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_ConnectorTypeGuid(@ptrCast(*const IMSMQMessage4, self), bstrGuidConnectorType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_TransactionStatusQueueInfo(self: *const T, ppqinfoXactStatus: ?*?*IMSMQQueueInfo4) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_TransactionStatusQueueInfo(@ptrCast(*const IMSMQMessage4, self), ppqinfoXactStatus);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_DestinationSymmetricKey(self: *const T, pvarDestSymmKey: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_DestinationSymmetricKey(@ptrCast(*const IMSMQMessage4, self), pvarDestSymmKey);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_DestinationSymmetricKey(self: *const T, varDestSymmKey: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_DestinationSymmetricKey(@ptrCast(*const IMSMQMessage4, self), varDestSymmKey);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_Signature(self: *const T, pvarSignature: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Signature(@ptrCast(*const IMSMQMessage4, self), pvarSignature);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_Signature(self: *const T, varSignature: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Signature(@ptrCast(*const IMSMQMessage4, self), varSignature);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_AuthenticationProviderType(self: *const T, plAuthProvType: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AuthenticationProviderType(@ptrCast(*const IMSMQMessage4, self), plAuthProvType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_AuthenticationProviderType(self: *const T, lAuthProvType: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_AuthenticationProviderType(@ptrCast(*const IMSMQMessage4, self), lAuthProvType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_AuthenticationProviderName(self: *const T, pbstrAuthProvName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AuthenticationProviderName(@ptrCast(*const IMSMQMessage4, self), pbstrAuthProvName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_AuthenticationProviderName(self: *const T, bstrAuthProvName: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_AuthenticationProviderName(@ptrCast(*const IMSMQMessage4, self), bstrAuthProvName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_SenderId(self: *const T, varSenderId: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_SenderId(@ptrCast(*const IMSMQMessage4, self), varSenderId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_MsgClass(self: *const T, plMsgClass: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_MsgClass(@ptrCast(*const IMSMQMessage4, self), plMsgClass);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_MsgClass(self: *const T, lMsgClass: i32) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_MsgClass(@ptrCast(*const IMSMQMessage4, self), lMsgClass);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQMessage4, self), ppcolProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_TransactionId(self: *const T, pvarXactId: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_TransactionId(@ptrCast(*const IMSMQMessage4, self), pvarXactId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_IsFirstInTransaction(self: *const T, pisFirstInXact: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_IsFirstInTransaction(@ptrCast(*const IMSMQMessage4, self), pisFirstInXact);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_IsLastInTransaction(self: *const T, pisLastInXact: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_IsLastInTransaction(@ptrCast(*const IMSMQMessage4, self), pisLastInXact);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_ResponseQueueInfo_v2(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo2) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ResponseQueueInfo_v2(@ptrCast(*const IMSMQMessage4, self), ppqinfoResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_putref_ResponseQueueInfo_v2(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo2) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_ResponseQueueInfo_v2(@ptrCast(*const IMSMQMessage4, self), pqinfoResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_AdminQueueInfo_v2(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo2) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AdminQueueInfo_v2(@ptrCast(*const IMSMQMessage4, self), ppqinfoAdmin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_putref_AdminQueueInfo_v2(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo2) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_AdminQueueInfo_v2(@ptrCast(*const IMSMQMessage4, self), pqinfoAdmin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_ReceivedAuthenticationLevel(self: *const T, psReceivedAuthenticationLevel: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ReceivedAuthenticationLevel(@ptrCast(*const IMSMQMessage4, self), psReceivedAuthenticationLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_ResponseQueueInfo(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo4) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ResponseQueueInfo(@ptrCast(*const IMSMQMessage4, self), ppqinfoResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_putref_ResponseQueueInfo(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo4) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_ResponseQueueInfo(@ptrCast(*const IMSMQMessage4, self), pqinfoResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_AdminQueueInfo(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo4) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AdminQueueInfo(@ptrCast(*const IMSMQMessage4, self), ppqinfoAdmin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_putref_AdminQueueInfo(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo4) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_AdminQueueInfo(@ptrCast(*const IMSMQMessage4, self), pqinfoAdmin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_ResponseDestination(self: *const T, ppdestResponse: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ResponseDestination(@ptrCast(*const IMSMQMessage4, self), ppdestResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_putref_ResponseDestination(self: *const T, pdestResponse: ?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_ResponseDestination(@ptrCast(*const IMSMQMessage4, self), pdestResponse);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_Destination(self: *const T, ppdestDestination: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Destination(@ptrCast(*const IMSMQMessage4, self), ppdestDestination);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_LookupId(self: *const T, pvarLookupId: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_LookupId(@ptrCast(*const IMSMQMessage4, self), pvarLookupId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_IsAuthenticated2(self: *const T, pisAuthenticated: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_IsAuthenticated2(@ptrCast(*const IMSMQMessage4, self), pisAuthenticated);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_IsFirstInTransaction2(self: *const T, pisFirstInXact: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_IsFirstInTransaction2(@ptrCast(*const IMSMQMessage4, self), pisFirstInXact);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_IsLastInTransaction2(self: *const T, pisLastInXact: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_IsLastInTransaction2(@ptrCast(*const IMSMQMessage4, self), pisLastInXact);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_AttachCurrentSecurityContext2(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).AttachCurrentSecurityContext2(@ptrCast(*const IMSMQMessage4, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_SoapEnvelope(self: *const T, pbstrSoapEnvelope: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SoapEnvelope(@ptrCast(*const IMSMQMessage4, self), pbstrSoapEnvelope);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_get_CompoundMessage(self: *const T, pvarCompoundMessage: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_CompoundMessage(@ptrCast(*const IMSMQMessage4, self), pvarCompoundMessage);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_SoapHeader(self: *const T, bstrSoapHeader: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_SoapHeader(@ptrCast(*const IMSMQMessage4, self), bstrSoapHeader);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQMessage4_put_SoapBody(self: *const T, bstrSoapBody: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_SoapBody(@ptrCast(*const IMSMQMessage4, self), bstrSoapBody);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6520,16 +6572,16 @@ pub const IMSMQPrivateEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Hwnd: fn(
+        get_Hwnd: fn (
             self: *const IMSMQPrivateEvent,
             phwnd: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FireArrivedEvent: fn(
+        FireArrivedEvent: fn (
             self: *const IMSMQPrivateEvent,
             pq: ?*IMSMQQueue,
             msgcursor: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FireArrivedErrorEvent: fn(
+        FireArrivedErrorEvent: fn (
             self: *const IMSMQPrivateEvent,
             pq: ?*IMSMQQueue,
             hrStatus: HRESULT,
@@ -6537,21 +6589,23 @@ pub const IMSMQPrivateEvent = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQPrivateEvent_get_Hwnd(self: *const T, phwnd: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQPrivateEvent.VTable, self.vtable).get_Hwnd(@ptrCast(*const IMSMQPrivateEvent, self), phwnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQPrivateEvent_FireArrivedEvent(self: *const T, pq: ?*IMSMQQueue, msgcursor: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQPrivateEvent.VTable, self.vtable).FireArrivedEvent(@ptrCast(*const IMSMQPrivateEvent, self), pq, msgcursor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQPrivateEvent_FireArrivedErrorEvent(self: *const T, pq: ?*IMSMQQueue, hrStatus: HRESULT, msgcursor: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQPrivateEvent.VTable, self.vtable).FireArrivedErrorEvent(@ptrCast(*const IMSMQPrivateEvent, self), pq, hrStatus, msgcursor);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQPrivateEvent_get_Hwnd(self: *const T, phwnd: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQPrivateEvent.VTable, self.vtable).get_Hwnd(@ptrCast(*const IMSMQPrivateEvent, self), phwnd);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQPrivateEvent_FireArrivedEvent(self: *const T, pq: ?*IMSMQQueue, msgcursor: i32) HRESULT {
+                return @ptrCast(*const IMSMQPrivateEvent.VTable, self.vtable).FireArrivedEvent(@ptrCast(*const IMSMQPrivateEvent, self), pq, msgcursor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQPrivateEvent_FireArrivedErrorEvent(self: *const T, pq: ?*IMSMQQueue, hrStatus: HRESULT, msgcursor: i32) HRESULT {
+                return @ptrCast(*const IMSMQPrivateEvent.VTable, self.vtable).FireArrivedErrorEvent(@ptrCast(*const IMSMQPrivateEvent, self), pq, hrStatus, msgcursor);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6562,9 +6616,11 @@ pub const _DMSMQEventEvents = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6573,28 +6629,30 @@ pub const IID_IMSMQTransaction2 = &IID_IMSMQTransaction2_Value;
 pub const IMSMQTransaction2 = extern struct {
     pub const VTable = extern struct {
         base: IMSMQTransaction.VTable,
-        InitNew: fn(
+        InitNew: fn (
             self: *const IMSMQTransaction2,
             varTransaction: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQTransaction2,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IMSMQTransaction.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQTransaction2_InitNew(self: *const T, varTransaction: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQTransaction2.VTable, self.vtable).InitNew(@ptrCast(*const IMSMQTransaction2, self), varTransaction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQTransaction2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQTransaction2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQTransaction2, self), ppcolProperties);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IMSMQTransaction.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQTransaction2_InitNew(self: *const T, varTransaction: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQTransaction2.VTable, self.vtable).InitNew(@ptrCast(*const IMSMQTransaction2, self), varTransaction);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQTransaction2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQTransaction2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQTransaction2, self), ppcolProperties);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6604,19 +6662,21 @@ pub const IMSMQTransaction3 = extern struct {
     pub const VTable = extern struct {
         base: IMSMQTransaction2.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ITransaction: fn(
+        get_ITransaction: fn (
             self: *const IMSMQTransaction3,
             pvarITransaction: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IMSMQTransaction2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQTransaction3_get_ITransaction(self: *const T, pvarITransaction: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQTransaction3.VTable, self.vtable).get_ITransaction(@ptrCast(*const IMSMQTransaction3, self), pvarITransaction);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IMSMQTransaction2.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQTransaction3_get_ITransaction(self: *const T, pvarITransaction: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQTransaction3.VTable, self.vtable).get_ITransaction(@ptrCast(*const IMSMQTransaction3, self), pvarITransaction);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6625,28 +6685,30 @@ pub const IID_IMSMQCoordinatedTransactionDispenser2 = &IID_IMSMQCoordinatedTrans
 pub const IMSMQCoordinatedTransactionDispenser2 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        BeginTransaction: fn(
+        BeginTransaction: fn (
             self: *const IMSMQCoordinatedTransactionDispenser2,
             ptransaction: ?*?*IMSMQTransaction2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQCoordinatedTransactionDispenser2,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQCoordinatedTransactionDispenser2_BeginTransaction(self: *const T, ptransaction: ?*?*IMSMQTransaction2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQCoordinatedTransactionDispenser2.VTable, self.vtable).BeginTransaction(@ptrCast(*const IMSMQCoordinatedTransactionDispenser2, self), ptransaction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQCoordinatedTransactionDispenser2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQCoordinatedTransactionDispenser2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQCoordinatedTransactionDispenser2, self), ppcolProperties);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQCoordinatedTransactionDispenser2_BeginTransaction(self: *const T, ptransaction: ?*?*IMSMQTransaction2) HRESULT {
+                return @ptrCast(*const IMSMQCoordinatedTransactionDispenser2.VTable, self.vtable).BeginTransaction(@ptrCast(*const IMSMQCoordinatedTransactionDispenser2, self), ptransaction);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQCoordinatedTransactionDispenser2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQCoordinatedTransactionDispenser2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQCoordinatedTransactionDispenser2, self), ppcolProperties);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6655,28 +6717,30 @@ pub const IID_IMSMQCoordinatedTransactionDispenser3 = &IID_IMSMQCoordinatedTrans
 pub const IMSMQCoordinatedTransactionDispenser3 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        BeginTransaction: fn(
+        BeginTransaction: fn (
             self: *const IMSMQCoordinatedTransactionDispenser3,
             ptransaction: ?*?*IMSMQTransaction3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQCoordinatedTransactionDispenser3,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQCoordinatedTransactionDispenser3_BeginTransaction(self: *const T, ptransaction: ?*?*IMSMQTransaction3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQCoordinatedTransactionDispenser3.VTable, self.vtable).BeginTransaction(@ptrCast(*const IMSMQCoordinatedTransactionDispenser3, self), ptransaction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQCoordinatedTransactionDispenser3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQCoordinatedTransactionDispenser3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQCoordinatedTransactionDispenser3, self), ppcolProperties);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQCoordinatedTransactionDispenser3_BeginTransaction(self: *const T, ptransaction: ?*?*IMSMQTransaction3) HRESULT {
+                return @ptrCast(*const IMSMQCoordinatedTransactionDispenser3.VTable, self.vtable).BeginTransaction(@ptrCast(*const IMSMQCoordinatedTransactionDispenser3, self), ptransaction);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQCoordinatedTransactionDispenser3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQCoordinatedTransactionDispenser3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQCoordinatedTransactionDispenser3, self), ppcolProperties);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6685,28 +6749,30 @@ pub const IID_IMSMQTransactionDispenser2 = &IID_IMSMQTransactionDispenser2_Value
 pub const IMSMQTransactionDispenser2 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        BeginTransaction: fn(
+        BeginTransaction: fn (
             self: *const IMSMQTransactionDispenser2,
             ptransaction: ?*?*IMSMQTransaction2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQTransactionDispenser2,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQTransactionDispenser2_BeginTransaction(self: *const T, ptransaction: ?*?*IMSMQTransaction2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQTransactionDispenser2.VTable, self.vtable).BeginTransaction(@ptrCast(*const IMSMQTransactionDispenser2, self), ptransaction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQTransactionDispenser2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQTransactionDispenser2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQTransactionDispenser2, self), ppcolProperties);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQTransactionDispenser2_BeginTransaction(self: *const T, ptransaction: ?*?*IMSMQTransaction2) HRESULT {
+                return @ptrCast(*const IMSMQTransactionDispenser2.VTable, self.vtable).BeginTransaction(@ptrCast(*const IMSMQTransactionDispenser2, self), ptransaction);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQTransactionDispenser2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQTransactionDispenser2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQTransactionDispenser2, self), ppcolProperties);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6715,28 +6781,30 @@ pub const IID_IMSMQTransactionDispenser3 = &IID_IMSMQTransactionDispenser3_Value
 pub const IMSMQTransactionDispenser3 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        BeginTransaction: fn(
+        BeginTransaction: fn (
             self: *const IMSMQTransactionDispenser3,
             ptransaction: ?*?*IMSMQTransaction3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQTransactionDispenser3,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQTransactionDispenser3_BeginTransaction(self: *const T, ptransaction: ?*?*IMSMQTransaction3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQTransactionDispenser3.VTable, self.vtable).BeginTransaction(@ptrCast(*const IMSMQTransactionDispenser3, self), ptransaction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQTransactionDispenser3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQTransactionDispenser3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQTransactionDispenser3, self), ppcolProperties);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQTransactionDispenser3_BeginTransaction(self: *const T, ptransaction: ?*?*IMSMQTransaction3) HRESULT {
+                return @ptrCast(*const IMSMQTransactionDispenser3.VTable, self.vtable).BeginTransaction(@ptrCast(*const IMSMQTransactionDispenser3, self), ptransaction);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQTransactionDispenser3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQTransactionDispenser3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQTransactionDispenser3, self), ppcolProperties);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6745,20 +6813,22 @@ pub const IID_IMSMQApplication = &IID_IMSMQApplication_Value;
 pub const IMSMQApplication = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        MachineIdOfMachineName: fn(
+        MachineIdOfMachineName: fn (
             self: *const IMSMQApplication,
             MachineName: ?BSTR,
             pbstrGuid: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQApplication_MachineIdOfMachineName(self: *const T, MachineName: ?BSTR, pbstrGuid: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQApplication.VTable, self.vtable).MachineIdOfMachineName(@ptrCast(*const IMSMQApplication, self), MachineName, pbstrGuid);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQApplication_MachineIdOfMachineName(self: *const T, MachineName: ?BSTR, pbstrGuid: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQApplication.VTable, self.vtable).MachineIdOfMachineName(@ptrCast(*const IMSMQApplication, self), MachineName, pbstrGuid);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6767,74 +6837,76 @@ pub const IID_IMSMQApplication2 = &IID_IMSMQApplication2_Value;
 pub const IMSMQApplication2 = extern struct {
     pub const VTable = extern struct {
         base: IMSMQApplication.VTable,
-        RegisterCertificate: fn(
+        RegisterCertificate: fn (
             self: *const IMSMQApplication2,
             Flags: ?*VARIANT,
             ExternalCertificate: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MachineNameOfMachineId: fn(
+        MachineNameOfMachineId: fn (
             self: *const IMSMQApplication2,
             bstrGuid: ?BSTR,
             pbstrMachineName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MSMQVersionMajor: fn(
+        get_MSMQVersionMajor: fn (
             self: *const IMSMQApplication2,
             psMSMQVersionMajor: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MSMQVersionMinor: fn(
+        get_MSMQVersionMinor: fn (
             self: *const IMSMQApplication2,
             psMSMQVersionMinor: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MSMQVersionBuild: fn(
+        get_MSMQVersionBuild: fn (
             self: *const IMSMQApplication2,
             psMSMQVersionBuild: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsDsEnabled: fn(
+        get_IsDsEnabled: fn (
             self: *const IMSMQApplication2,
             pfIsDsEnabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQApplication2,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IMSMQApplication.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQApplication2_RegisterCertificate(self: *const T, Flags: ?*VARIANT, ExternalCertificate: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).RegisterCertificate(@ptrCast(*const IMSMQApplication2, self), Flags, ExternalCertificate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQApplication2_MachineNameOfMachineId(self: *const T, bstrGuid: ?BSTR, pbstrMachineName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).MachineNameOfMachineId(@ptrCast(*const IMSMQApplication2, self), bstrGuid, pbstrMachineName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQApplication2_get_MSMQVersionMajor(self: *const T, psMSMQVersionMajor: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).get_MSMQVersionMajor(@ptrCast(*const IMSMQApplication2, self), psMSMQVersionMajor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQApplication2_get_MSMQVersionMinor(self: *const T, psMSMQVersionMinor: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).get_MSMQVersionMinor(@ptrCast(*const IMSMQApplication2, self), psMSMQVersionMinor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQApplication2_get_MSMQVersionBuild(self: *const T, psMSMQVersionBuild: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).get_MSMQVersionBuild(@ptrCast(*const IMSMQApplication2, self), psMSMQVersionBuild);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQApplication2_get_IsDsEnabled(self: *const T, pfIsDsEnabled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).get_IsDsEnabled(@ptrCast(*const IMSMQApplication2, self), pfIsDsEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQApplication2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQApplication2, self), ppcolProperties);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IMSMQApplication.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQApplication2_RegisterCertificate(self: *const T, Flags: ?*VARIANT, ExternalCertificate: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).RegisterCertificate(@ptrCast(*const IMSMQApplication2, self), Flags, ExternalCertificate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQApplication2_MachineNameOfMachineId(self: *const T, bstrGuid: ?BSTR, pbstrMachineName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).MachineNameOfMachineId(@ptrCast(*const IMSMQApplication2, self), bstrGuid, pbstrMachineName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQApplication2_get_MSMQVersionMajor(self: *const T, psMSMQVersionMajor: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).get_MSMQVersionMajor(@ptrCast(*const IMSMQApplication2, self), psMSMQVersionMajor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQApplication2_get_MSMQVersionMinor(self: *const T, psMSMQVersionMinor: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).get_MSMQVersionMinor(@ptrCast(*const IMSMQApplication2, self), psMSMQVersionMinor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQApplication2_get_MSMQVersionBuild(self: *const T, psMSMQVersionBuild: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).get_MSMQVersionBuild(@ptrCast(*const IMSMQApplication2, self), psMSMQVersionBuild);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQApplication2_get_IsDsEnabled(self: *const T, pfIsDsEnabled: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).get_IsDsEnabled(@ptrCast(*const IMSMQApplication2, self), pfIsDsEnabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQApplication2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQApplication2, self), ppcolProperties);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6844,94 +6916,96 @@ pub const IMSMQApplication3 = extern struct {
     pub const VTable = extern struct {
         base: IMSMQApplication2.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ActiveQueues: fn(
+        get_ActiveQueues: fn (
             self: *const IMSMQApplication3,
             pvActiveQueues: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateQueues: fn(
+        get_PrivateQueues: fn (
             self: *const IMSMQApplication3,
             pvPrivateQueues: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DirectoryServiceServer: fn(
+        get_DirectoryServiceServer: fn (
             self: *const IMSMQApplication3,
             pbstrDirectoryServiceServer: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsConnected: fn(
+        get_IsConnected: fn (
             self: *const IMSMQApplication3,
             pfIsConnected: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BytesInAllQueues: fn(
+        get_BytesInAllQueues: fn (
             self: *const IMSMQApplication3,
             pvBytesInAllQueues: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Machine: fn(
+        put_Machine: fn (
             self: *const IMSMQApplication3,
             bstrMachine: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Machine: fn(
+        get_Machine: fn (
             self: *const IMSMQApplication3,
             pbstrMachine: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Connect: fn(
+        Connect: fn (
             self: *const IMSMQApplication3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Disconnect: fn(
+        Disconnect: fn (
             self: *const IMSMQApplication3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Tidy: fn(
+        Tidy: fn (
             self: *const IMSMQApplication3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IMSMQApplication2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQApplication3_get_ActiveQueues(self: *const T, pvActiveQueues: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).get_ActiveQueues(@ptrCast(*const IMSMQApplication3, self), pvActiveQueues);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQApplication3_get_PrivateQueues(self: *const T, pvPrivateQueues: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).get_PrivateQueues(@ptrCast(*const IMSMQApplication3, self), pvPrivateQueues);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQApplication3_get_DirectoryServiceServer(self: *const T, pbstrDirectoryServiceServer: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).get_DirectoryServiceServer(@ptrCast(*const IMSMQApplication3, self), pbstrDirectoryServiceServer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQApplication3_get_IsConnected(self: *const T, pfIsConnected: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).get_IsConnected(@ptrCast(*const IMSMQApplication3, self), pfIsConnected);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQApplication3_get_BytesInAllQueues(self: *const T, pvBytesInAllQueues: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).get_BytesInAllQueues(@ptrCast(*const IMSMQApplication3, self), pvBytesInAllQueues);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQApplication3_put_Machine(self: *const T, bstrMachine: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).put_Machine(@ptrCast(*const IMSMQApplication3, self), bstrMachine);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQApplication3_get_Machine(self: *const T, pbstrMachine: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).get_Machine(@ptrCast(*const IMSMQApplication3, self), pbstrMachine);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQApplication3_Connect(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).Connect(@ptrCast(*const IMSMQApplication3, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQApplication3_Disconnect(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).Disconnect(@ptrCast(*const IMSMQApplication3, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQApplication3_Tidy(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).Tidy(@ptrCast(*const IMSMQApplication3, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IMSMQApplication2.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQApplication3_get_ActiveQueues(self: *const T, pvActiveQueues: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).get_ActiveQueues(@ptrCast(*const IMSMQApplication3, self), pvActiveQueues);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQApplication3_get_PrivateQueues(self: *const T, pvPrivateQueues: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).get_PrivateQueues(@ptrCast(*const IMSMQApplication3, self), pvPrivateQueues);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQApplication3_get_DirectoryServiceServer(self: *const T, pbstrDirectoryServiceServer: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).get_DirectoryServiceServer(@ptrCast(*const IMSMQApplication3, self), pbstrDirectoryServiceServer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQApplication3_get_IsConnected(self: *const T, pfIsConnected: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).get_IsConnected(@ptrCast(*const IMSMQApplication3, self), pfIsConnected);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQApplication3_get_BytesInAllQueues(self: *const T, pvBytesInAllQueues: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).get_BytesInAllQueues(@ptrCast(*const IMSMQApplication3, self), pvBytesInAllQueues);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQApplication3_put_Machine(self: *const T, bstrMachine: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).put_Machine(@ptrCast(*const IMSMQApplication3, self), bstrMachine);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQApplication3_get_Machine(self: *const T, pbstrMachine: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).get_Machine(@ptrCast(*const IMSMQApplication3, self), pbstrMachine);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQApplication3_Connect(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).Connect(@ptrCast(*const IMSMQApplication3, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQApplication3_Disconnect(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).Disconnect(@ptrCast(*const IMSMQApplication3, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQApplication3_Tidy(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).Tidy(@ptrCast(*const IMSMQApplication3, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6940,131 +7014,133 @@ pub const IID_IMSMQDestination = &IID_IMSMQDestination_Value;
 pub const IMSMQDestination = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Open: fn(
+        Open: fn (
             self: *const IMSMQDestination,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
+        Close: fn (
             self: *const IMSMQDestination,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsOpen: fn(
+        get_IsOpen: fn (
             self: *const IMSMQDestination,
             pfIsOpen: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IADs: fn(
+        get_IADs: fn (
             self: *const IMSMQDestination,
             ppIADs: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_IADs: fn(
+        putref_IADs: fn (
             self: *const IMSMQDestination,
             pIADs: ?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ADsPath: fn(
+        get_ADsPath: fn (
             self: *const IMSMQDestination,
             pbstrADsPath: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ADsPath: fn(
+        put_ADsPath: fn (
             self: *const IMSMQDestination,
             bstrADsPath: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PathName: fn(
+        get_PathName: fn (
             self: *const IMSMQDestination,
             pbstrPathName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PathName: fn(
+        put_PathName: fn (
             self: *const IMSMQDestination,
             bstrPathName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FormatName: fn(
+        get_FormatName: fn (
             self: *const IMSMQDestination,
             pbstrFormatName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FormatName: fn(
+        put_FormatName: fn (
             self: *const IMSMQDestination,
             bstrFormatName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Destinations: fn(
+        get_Destinations: fn (
             self: *const IMSMQDestination,
             ppDestinations: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_Destinations: fn(
+        putref_Destinations: fn (
             self: *const IMSMQDestination,
             pDestinations: ?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const IMSMQDestination,
             ppcolProperties: ?*?*IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQDestination_Open(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQDestination.VTable, self.vtable).Open(@ptrCast(*const IMSMQDestination, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQDestination_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQDestination.VTable, self.vtable).Close(@ptrCast(*const IMSMQDestination, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQDestination_get_IsOpen(self: *const T, pfIsOpen: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_IsOpen(@ptrCast(*const IMSMQDestination, self), pfIsOpen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQDestination_get_IADs(self: *const T, ppIADs: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_IADs(@ptrCast(*const IMSMQDestination, self), ppIADs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQDestination_putref_IADs(self: *const T, pIADs: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQDestination.VTable, self.vtable).putref_IADs(@ptrCast(*const IMSMQDestination, self), pIADs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQDestination_get_ADsPath(self: *const T, pbstrADsPath: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_ADsPath(@ptrCast(*const IMSMQDestination, self), pbstrADsPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQDestination_put_ADsPath(self: *const T, bstrADsPath: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQDestination.VTable, self.vtable).put_ADsPath(@ptrCast(*const IMSMQDestination, self), bstrADsPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQDestination_get_PathName(self: *const T, pbstrPathName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_PathName(@ptrCast(*const IMSMQDestination, self), pbstrPathName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQDestination_put_PathName(self: *const T, bstrPathName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQDestination.VTable, self.vtable).put_PathName(@ptrCast(*const IMSMQDestination, self), bstrPathName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQDestination_get_FormatName(self: *const T, pbstrFormatName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_FormatName(@ptrCast(*const IMSMQDestination, self), pbstrFormatName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQDestination_put_FormatName(self: *const T, bstrFormatName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQDestination.VTable, self.vtable).put_FormatName(@ptrCast(*const IMSMQDestination, self), bstrFormatName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQDestination_get_Destinations(self: *const T, ppDestinations: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_Destinations(@ptrCast(*const IMSMQDestination, self), ppDestinations);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQDestination_putref_Destinations(self: *const T, pDestinations: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQDestination.VTable, self.vtable).putref_Destinations(@ptrCast(*const IMSMQDestination, self), pDestinations);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQDestination_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQDestination, self), ppcolProperties);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQDestination_Open(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).Open(@ptrCast(*const IMSMQDestination, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQDestination_Close(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).Close(@ptrCast(*const IMSMQDestination, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQDestination_get_IsOpen(self: *const T, pfIsOpen: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_IsOpen(@ptrCast(*const IMSMQDestination, self), pfIsOpen);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQDestination_get_IADs(self: *const T, ppIADs: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_IADs(@ptrCast(*const IMSMQDestination, self), ppIADs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQDestination_putref_IADs(self: *const T, pIADs: ?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).putref_IADs(@ptrCast(*const IMSMQDestination, self), pIADs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQDestination_get_ADsPath(self: *const T, pbstrADsPath: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_ADsPath(@ptrCast(*const IMSMQDestination, self), pbstrADsPath);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQDestination_put_ADsPath(self: *const T, bstrADsPath: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).put_ADsPath(@ptrCast(*const IMSMQDestination, self), bstrADsPath);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQDestination_get_PathName(self: *const T, pbstrPathName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_PathName(@ptrCast(*const IMSMQDestination, self), pbstrPathName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQDestination_put_PathName(self: *const T, bstrPathName: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).put_PathName(@ptrCast(*const IMSMQDestination, self), bstrPathName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQDestination_get_FormatName(self: *const T, pbstrFormatName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_FormatName(@ptrCast(*const IMSMQDestination, self), pbstrFormatName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQDestination_put_FormatName(self: *const T, bstrFormatName: ?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).put_FormatName(@ptrCast(*const IMSMQDestination, self), bstrFormatName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQDestination_get_Destinations(self: *const T, ppDestinations: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_Destinations(@ptrCast(*const IMSMQDestination, self), ppDestinations);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQDestination_putref_Destinations(self: *const T, pDestinations: ?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).putref_Destinations(@ptrCast(*const IMSMQDestination, self), pDestinations);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQDestination_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQDestination, self), ppcolProperties);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7074,28 +7150,30 @@ pub const IMSMQPrivateDestination = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: fn(
+        get_Handle: fn (
             self: *const IMSMQPrivateDestination,
             pvarHandle: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Handle: fn(
+        put_Handle: fn (
             self: *const IMSMQPrivateDestination,
             varHandle: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQPrivateDestination_get_Handle(self: *const T, pvarHandle: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQPrivateDestination.VTable, self.vtable).get_Handle(@ptrCast(*const IMSMQPrivateDestination, self), pvarHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQPrivateDestination_put_Handle(self: *const T, varHandle: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQPrivateDestination.VTable, self.vtable).put_Handle(@ptrCast(*const IMSMQPrivateDestination, self), varHandle);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQPrivateDestination_get_Handle(self: *const T, pvarHandle: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQPrivateDestination.VTable, self.vtable).get_Handle(@ptrCast(*const IMSMQPrivateDestination, self), pvarHandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQPrivateDestination_put_Handle(self: *const T, varHandle: VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQPrivateDestination.VTable, self.vtable).put_Handle(@ptrCast(*const IMSMQPrivateDestination, self), varHandle);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7104,37 +7182,39 @@ pub const IID_IMSMQCollection = &IID_IMSMQCollection_Value;
 pub const IMSMQCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Item: fn(
+        Item: fn (
             self: *const IMSMQCollection,
             Index: ?*VARIANT,
             pvarRet: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const IMSMQCollection,
             pCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        _NewEnum: fn(
+        _NewEnum: fn (
             self: *const IMSMQCollection,
             ppunk: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQCollection_Item(self: *const T, Index: ?*VARIANT, pvarRet: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQCollection.VTable, self.vtable).Item(@ptrCast(*const IMSMQCollection, self), Index, pvarRet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQCollection_get_Count(self: *const T, pCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQCollection.VTable, self.vtable).get_Count(@ptrCast(*const IMSMQCollection, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQCollection__NewEnum(self: *const T, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQCollection.VTable, self.vtable)._NewEnum(@ptrCast(*const IMSMQCollection, self), ppunk);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQCollection_Item(self: *const T, Index: ?*VARIANT, pvarRet: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQCollection.VTable, self.vtable).Item(@ptrCast(*const IMSMQCollection, self), Index, pvarRet);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQCollection_get_Count(self: *const T, pCount: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQCollection.VTable, self.vtable).get_Count(@ptrCast(*const IMSMQCollection, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQCollection__NewEnum(self: *const T, ppunk: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IMSMQCollection.VTable, self.vtable)._NewEnum(@ptrCast(*const IMSMQCollection, self), ppunk);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7143,93 +7223,95 @@ pub const IID_IMSMQManagement = &IID_IMSMQManagement_Value;
 pub const IMSMQManagement = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Init: fn(
+        Init: fn (
             self: *const IMSMQManagement,
             Machine: ?*VARIANT,
             Pathname: ?*VARIANT,
             FormatName: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FormatName: fn(
+        get_FormatName: fn (
             self: *const IMSMQManagement,
             pbstrFormatName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Machine: fn(
+        get_Machine: fn (
             self: *const IMSMQManagement,
             pbstrMachine: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MessageCount: fn(
+        get_MessageCount: fn (
             self: *const IMSMQManagement,
             plMessageCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ForeignStatus: fn(
+        get_ForeignStatus: fn (
             self: *const IMSMQManagement,
             plForeignStatus: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QueueType: fn(
+        get_QueueType: fn (
             self: *const IMSMQManagement,
             plQueueType: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsLocal: fn(
+        get_IsLocal: fn (
             self: *const IMSMQManagement,
             pfIsLocal: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TransactionalStatus: fn(
+        get_TransactionalStatus: fn (
             self: *const IMSMQManagement,
             plTransactionalStatus: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BytesInQueue: fn(
+        get_BytesInQueue: fn (
             self: *const IMSMQManagement,
             pvBytesInQueue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQManagement_Init(self: *const T, Machine: ?*VARIANT, Pathname: ?*VARIANT, FormatName: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQManagement.VTable, self.vtable).Init(@ptrCast(*const IMSMQManagement, self), Machine, Pathname, FormatName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQManagement_get_FormatName(self: *const T, pbstrFormatName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_FormatName(@ptrCast(*const IMSMQManagement, self), pbstrFormatName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQManagement_get_Machine(self: *const T, pbstrMachine: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_Machine(@ptrCast(*const IMSMQManagement, self), pbstrMachine);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQManagement_get_MessageCount(self: *const T, plMessageCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_MessageCount(@ptrCast(*const IMSMQManagement, self), plMessageCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQManagement_get_ForeignStatus(self: *const T, plForeignStatus: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_ForeignStatus(@ptrCast(*const IMSMQManagement, self), plForeignStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQManagement_get_QueueType(self: *const T, plQueueType: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_QueueType(@ptrCast(*const IMSMQManagement, self), plQueueType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQManagement_get_IsLocal(self: *const T, pfIsLocal: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_IsLocal(@ptrCast(*const IMSMQManagement, self), pfIsLocal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQManagement_get_TransactionalStatus(self: *const T, plTransactionalStatus: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_TransactionalStatus(@ptrCast(*const IMSMQManagement, self), plTransactionalStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQManagement_get_BytesInQueue(self: *const T, pvBytesInQueue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_BytesInQueue(@ptrCast(*const IMSMQManagement, self), pvBytesInQueue);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQManagement_Init(self: *const T, Machine: ?*VARIANT, Pathname: ?*VARIANT, FormatName: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQManagement.VTable, self.vtable).Init(@ptrCast(*const IMSMQManagement, self), Machine, Pathname, FormatName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQManagement_get_FormatName(self: *const T, pbstrFormatName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_FormatName(@ptrCast(*const IMSMQManagement, self), pbstrFormatName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQManagement_get_Machine(self: *const T, pbstrMachine: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_Machine(@ptrCast(*const IMSMQManagement, self), pbstrMachine);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQManagement_get_MessageCount(self: *const T, plMessageCount: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_MessageCount(@ptrCast(*const IMSMQManagement, self), plMessageCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQManagement_get_ForeignStatus(self: *const T, plForeignStatus: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_ForeignStatus(@ptrCast(*const IMSMQManagement, self), plForeignStatus);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQManagement_get_QueueType(self: *const T, plQueueType: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_QueueType(@ptrCast(*const IMSMQManagement, self), plQueueType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQManagement_get_IsLocal(self: *const T, pfIsLocal: ?*i16) HRESULT {
+                return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_IsLocal(@ptrCast(*const IMSMQManagement, self), pfIsLocal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQManagement_get_TransactionalStatus(self: *const T, plTransactionalStatus: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_TransactionalStatus(@ptrCast(*const IMSMQManagement, self), plTransactionalStatus);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQManagement_get_BytesInQueue(self: *const T, pvBytesInQueue: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_BytesInQueue(@ptrCast(*const IMSMQManagement, self), pvBytesInQueue);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7239,57 +7321,59 @@ pub const IMSMQOutgoingQueueManagement = extern struct {
     pub const VTable = extern struct {
         base: IMSMQManagement.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
+        get_State: fn (
             self: *const IMSMQOutgoingQueueManagement,
             plState: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NextHops: fn(
+        get_NextHops: fn (
             self: *const IMSMQOutgoingQueueManagement,
             pvNextHops: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EodGetSendInfo: fn(
+        EodGetSendInfo: fn (
             self: *const IMSMQOutgoingQueueManagement,
             ppCollection: ?*?*IMSMQCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Resume: fn(
+        Resume: fn (
             self: *const IMSMQOutgoingQueueManagement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Pause: fn(
+        Pause: fn (
             self: *const IMSMQOutgoingQueueManagement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EodResend: fn(
+        EodResend: fn (
             self: *const IMSMQOutgoingQueueManagement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IMSMQManagement.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQOutgoingQueueManagement_get_State(self: *const T, plState: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQOutgoingQueueManagement.VTable, self.vtable).get_State(@ptrCast(*const IMSMQOutgoingQueueManagement, self), plState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQOutgoingQueueManagement_get_NextHops(self: *const T, pvNextHops: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQOutgoingQueueManagement.VTable, self.vtable).get_NextHops(@ptrCast(*const IMSMQOutgoingQueueManagement, self), pvNextHops);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQOutgoingQueueManagement_EodGetSendInfo(self: *const T, ppCollection: ?*?*IMSMQCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQOutgoingQueueManagement.VTable, self.vtable).EodGetSendInfo(@ptrCast(*const IMSMQOutgoingQueueManagement, self), ppCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQOutgoingQueueManagement_Resume(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQOutgoingQueueManagement.VTable, self.vtable).Resume(@ptrCast(*const IMSMQOutgoingQueueManagement, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQOutgoingQueueManagement_Pause(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQOutgoingQueueManagement.VTable, self.vtable).Pause(@ptrCast(*const IMSMQOutgoingQueueManagement, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQOutgoingQueueManagement_EodResend(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQOutgoingQueueManagement.VTable, self.vtable).EodResend(@ptrCast(*const IMSMQOutgoingQueueManagement, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IMSMQManagement.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQOutgoingQueueManagement_get_State(self: *const T, plState: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQOutgoingQueueManagement.VTable, self.vtable).get_State(@ptrCast(*const IMSMQOutgoingQueueManagement, self), plState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQOutgoingQueueManagement_get_NextHops(self: *const T, pvNextHops: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQOutgoingQueueManagement.VTable, self.vtable).get_NextHops(@ptrCast(*const IMSMQOutgoingQueueManagement, self), pvNextHops);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQOutgoingQueueManagement_EodGetSendInfo(self: *const T, ppCollection: ?*?*IMSMQCollection) HRESULT {
+                return @ptrCast(*const IMSMQOutgoingQueueManagement.VTable, self.vtable).EodGetSendInfo(@ptrCast(*const IMSMQOutgoingQueueManagement, self), ppCollection);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQOutgoingQueueManagement_Resume(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQOutgoingQueueManagement.VTable, self.vtable).Resume(@ptrCast(*const IMSMQOutgoingQueueManagement, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQOutgoingQueueManagement_Pause(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQOutgoingQueueManagement.VTable, self.vtable).Pause(@ptrCast(*const IMSMQOutgoingQueueManagement, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQOutgoingQueueManagement_EodResend(self: *const T) HRESULT {
+                return @ptrCast(*const IMSMQOutgoingQueueManagement.VTable, self.vtable).EodResend(@ptrCast(*const IMSMQOutgoingQueueManagement, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7299,39 +7383,40 @@ pub const IMSMQQueueManagement = extern struct {
     pub const VTable = extern struct {
         base: IMSMQManagement.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_JournalMessageCount: fn(
+        get_JournalMessageCount: fn (
             self: *const IMSMQQueueManagement,
             plJournalMessageCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BytesInJournal: fn(
+        get_BytesInJournal: fn (
             self: *const IMSMQQueueManagement,
             pvBytesInJournal: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EodGetReceiveInfo: fn(
+        EodGetReceiveInfo: fn (
             self: *const IMSMQQueueManagement,
             pvCollection: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IMSMQManagement.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueManagement_get_JournalMessageCount(self: *const T, plJournalMessageCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueManagement.VTable, self.vtable).get_JournalMessageCount(@ptrCast(*const IMSMQQueueManagement, self), plJournalMessageCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueManagement_get_BytesInJournal(self: *const T, pvBytesInJournal: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueManagement.VTable, self.vtable).get_BytesInJournal(@ptrCast(*const IMSMQQueueManagement, self), pvBytesInJournal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMSMQQueueManagement_EodGetReceiveInfo(self: *const T, pvCollection: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMSMQQueueManagement.VTable, self.vtable).EodGetReceiveInfo(@ptrCast(*const IMSMQQueueManagement, self), pvCollection);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IMSMQManagement.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueManagement_get_JournalMessageCount(self: *const T, plJournalMessageCount: ?*i32) HRESULT {
+                return @ptrCast(*const IMSMQQueueManagement.VTable, self.vtable).get_JournalMessageCount(@ptrCast(*const IMSMQQueueManagement, self), plJournalMessageCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueManagement_get_BytesInJournal(self: *const T, pvBytesInJournal: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueueManagement.VTable, self.vtable).get_BytesInJournal(@ptrCast(*const IMSMQQueueManagement, self), pvBytesInJournal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMSMQQueueManagement_EodGetReceiveInfo(self: *const T, pvCollection: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IMSMQQueueManagement.VTable, self.vtable).EodGetReceiveInfo(@ptrCast(*const IMSMQQueueManagement, self), pvCollection);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -7342,13 +7427,9 @@ pub const IMSMQQueueManagement = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
@@ -7361,9 +7442,7 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

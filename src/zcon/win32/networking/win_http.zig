@@ -500,14 +500,7 @@ pub const WINHTTP_OPEN_REQUEST_FLAGS = enum(u32) {
         NULL_CODEPAGE: u1 = 0,
         SECURE: u1 = 0,
     }) WINHTTP_OPEN_REQUEST_FLAGS {
-        return @intToEnum(WINHTTP_OPEN_REQUEST_FLAGS,
-              (if (o.BYPASS_PROXY_CACHE == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.BYPASS_PROXY_CACHE) else 0)
-            | (if (o.ESCAPE_DISABLE == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_DISABLE) else 0)
-            | (if (o.ESCAPE_DISABLE_QUERY == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_DISABLE_QUERY) else 0)
-            | (if (o.ESCAPE_PERCENT == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_PERCENT) else 0)
-            | (if (o.NULL_CODEPAGE == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.NULL_CODEPAGE) else 0)
-            | (if (o.SECURE == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.SECURE) else 0)
-        );
+        return @intToEnum(WINHTTP_OPEN_REQUEST_FLAGS, (if (o.BYPASS_PROXY_CACHE == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.BYPASS_PROXY_CACHE) else 0) | (if (o.ESCAPE_DISABLE == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_DISABLE) else 0) | (if (o.ESCAPE_DISABLE_QUERY == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_DISABLE_QUERY) else 0) | (if (o.ESCAPE_PERCENT == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_PERCENT) else 0) | (if (o.NULL_CODEPAGE == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.NULL_CODEPAGE) else 0) | (if (o.SECURE == 1) @enumToInt(WINHTTP_OPEN_REQUEST_FLAGS.SECURE) else 0));
     }
 };
 pub const WINHTTP_FLAG_BYPASS_PROXY_CACHE = WINHTTP_OPEN_REQUEST_FLAGS.BYPASS_PROXY_CACHE;
@@ -655,7 +648,6 @@ pub const WINHTTP_CERTIFICATE_INFO = extern struct {
     dwKeySize: u32,
 };
 
-
 pub const WINHTTP_REQUEST_TIME_ENTRY = enum(i32) {
     ProxyDetectionStart = 0,
     ProxyDetectionEnd = 1,
@@ -735,7 +727,6 @@ pub const WinHttpProxyTlsHandshakeClientLeg3End = WINHTTP_REQUEST_TIME_ENTRY.Pro
 pub const WinHttpRequestTimeLast = WINHTTP_REQUEST_TIME_ENTRY.RequestTimeLast;
 pub const WinHttpRequestTimeMax = WINHTTP_REQUEST_TIME_ENTRY.RequestTimeMax;
 
-
 pub const WINHTTP_REQUEST_STAT_ENTRY = enum(i32) {
     ConnectFailureCount = 0,
     ProxyFailureCount = 1,
@@ -775,8 +766,6 @@ pub const WinHttpProxyTlsHandshakeServerLeg2Size = WINHTTP_REQUEST_STAT_ENTRY.Pr
 pub const WinHttpRequestStatLast = WINHTTP_REQUEST_STAT_ENTRY.RequestStatLast;
 pub const WinHttpRequestStatMax = WINHTTP_REQUEST_STAT_ENTRY.RequestStatMax;
 
-
-
 pub const WINHTTP_EXTENDED_HEADER = extern struct {
     Anonymous1: extern union {
         pwszName: ?[*:0]const u16,
@@ -805,7 +794,6 @@ pub const WinHttpSecureDnsSettingForcePlaintext = WINHTTP_SECURE_DNS_SETTING.For
 pub const WinHttpSecureDnsSettingRequireEncryption = WINHTTP_SECURE_DNS_SETTING.RequireEncryption;
 pub const WinHttpSecureDnsSettingTryEncryptionWithFallback = WINHTTP_SECURE_DNS_SETTING.TryEncryptionWithFallback;
 pub const WinHttpSecureDnsSettingMax = WINHTTP_SECURE_DNS_SETTING.Max;
-
 
 pub const WINHTTP_CONNECTION_GROUP = extern struct {
     cConnections: u32,
@@ -852,7 +840,7 @@ pub const WINHTTP_CREDS_EX = extern struct {
     lpszUrl: ?PSTR,
 };
 
-pub const WINHTTP_STATUS_CALLBACK = fn(
+pub const WINHTTP_STATUS_CALLBACK = fn (
     hInternet: ?*anyopaque,
     dwContext: usize,
     dwInternetStatus: u32,
@@ -860,8 +848,7 @@ pub const WINHTTP_STATUS_CALLBACK = fn(
     dwStatusInformationLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const LPWINHTTP_STATUS_CALLBACK = fn(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const LPWINHTTP_STATUS_CALLBACK = fn () callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WINHTTP_CURRENT_USER_IE_PROXY_CONFIG = extern struct {
     fAutoDetect: BOOL,
@@ -931,12 +918,7 @@ pub const WINHTTP_WEB_SOCKET_STATUS = extern struct {
     eBufferType: WINHTTP_WEB_SOCKET_BUFFER_TYPE,
 };
 
-
-
-
-
-
-pub const WINHTTP_CONNECTION_INFO = switch(@import("../zig.zig").arch) {
+pub const WINHTTP_CONNECTION_INFO = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         cbSize: u32,
         LocalAddress: SOCKADDR_STORAGE,
@@ -949,7 +931,7 @@ pub const WINHTTP_CONNECTION_INFO = switch(@import("../zig.zig").arch) {
         RemoteAddress: SOCKADDR_STORAGE,
     },
 };
-pub const WINHTTP_REQUEST_TIMES = switch(@import("../zig.zig").arch) {
+pub const WINHTTP_REQUEST_TIMES = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         cTimes: u32,
         rgullTimes: [64]u64,
@@ -960,7 +942,7 @@ pub const WINHTTP_REQUEST_TIMES = switch(@import("../zig.zig").arch) {
         rgullTimes: [64]u64,
     },
 };
-pub const WINHTTP_REQUEST_STATS = switch(@import("../zig.zig").arch) {
+pub const WINHTTP_REQUEST_STATS = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         ullFlags: u64,
         ulIndex: u32,
@@ -975,7 +957,7 @@ pub const WINHTTP_REQUEST_STATS = switch(@import("../zig.zig").arch) {
         rgullStats: [32]u64,
     },
 };
-pub const WINHTTP_MATCH_CONNECTION_GUID = switch(@import("../zig.zig").arch) {
+pub const WINHTTP_MATCH_CONNECTION_GUID = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         ConnectionGuid: Guid,
         ullFlags: u64,
@@ -986,7 +968,7 @@ pub const WINHTTP_MATCH_CONNECTION_GUID = switch(@import("../zig.zig").arch) {
         ullFlags: u64,
     },
 };
-pub const WINHTTP_RESOLVER_CACHE_CONFIG = switch(@import("../zig.zig").arch) {
+pub const WINHTTP_RESOLVER_CACHE_CONFIG = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         ulMaxResolverCacheEntries: u32,
         ulMaxCacheEntryAge: u32,
@@ -1046,8 +1028,7 @@ pub extern "winhttp" fn WinHttpCreateUrl(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winhttp" fn WinHttpCheckPlatform(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "winhttp" fn WinHttpCheckPlatform() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "winhttp" fn WinHttpGetDefaultProxyConfiguration(
@@ -1393,19 +1374,14 @@ pub extern "winhttp" fn WinHttpWebSocketQueryCloseStatus(
     pdwReasonLengthConsumed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (8)
@@ -1421,12 +1397,14 @@ const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "WINHTTP_STATUS_CALLBACK")) { _ = WINHTTP_STATUS_CALLBACK; }
-    if (@hasDecl(@This(), "LPWINHTTP_STATUS_CALLBACK")) { _ = LPWINHTTP_STATUS_CALLBACK; }
+    if (@hasDecl(@This(), "WINHTTP_STATUS_CALLBACK")) {
+        _ = WINHTTP_STATUS_CALLBACK;
+    }
+    if (@hasDecl(@This(), "LPWINHTTP_STATUS_CALLBACK")) {
+        _ = LPWINHTTP_STATUS_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

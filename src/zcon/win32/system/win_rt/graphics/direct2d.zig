@@ -36,63 +36,65 @@ pub const IID_IGraphicsEffectD2D1Interop = &IID_IGraphicsEffectD2D1Interop_Value
 pub const IGraphicsEffectD2D1Interop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetEffectId: fn(
+        GetEffectId: fn (
             self: *const IGraphicsEffectD2D1Interop,
             id: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNamedPropertyMapping: fn(
+        GetNamedPropertyMapping: fn (
             self: *const IGraphicsEffectD2D1Interop,
             name: ?[*:0]const u16,
             index: ?*u32,
             mapping: ?*GRAPHICS_EFFECT_PROPERTY_MAPPING,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyCount: fn(
+        GetPropertyCount: fn (
             self: *const IGraphicsEffectD2D1Interop,
             count: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProperty: fn(
+        GetProperty: fn (
             self: *const IGraphicsEffectD2D1Interop,
             index: u32,
-            value: ?**struct{comment: []const u8 = "MissingClrType IPropertyValue.Windows.Foundation"},
+            value: ?**struct { comment: []const u8 = "MissingClrType IPropertyValue.Windows.Foundation" },
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSource: fn(
+        GetSource: fn (
             self: *const IGraphicsEffectD2D1Interop,
             index: u32,
-            source: ?**struct{comment: []const u8 = "MissingClrType IGraphicsEffectSource.Windows.Graphics.Effects"},
+            source: ?**struct { comment: []const u8 = "MissingClrType IGraphicsEffectSource.Windows.Graphics.Effects" },
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSourceCount: fn(
+        GetSourceCount: fn (
             self: *const IGraphicsEffectD2D1Interop,
             count: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGraphicsEffectD2D1Interop_GetEffectId(self: *const T, id: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGraphicsEffectD2D1Interop.VTable, self.vtable).GetEffectId(@ptrCast(*const IGraphicsEffectD2D1Interop, self), id);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGraphicsEffectD2D1Interop_GetNamedPropertyMapping(self: *const T, name: ?[*:0]const u16, index: ?*u32, mapping: ?*GRAPHICS_EFFECT_PROPERTY_MAPPING) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGraphicsEffectD2D1Interop.VTable, self.vtable).GetNamedPropertyMapping(@ptrCast(*const IGraphicsEffectD2D1Interop, self), name, index, mapping);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGraphicsEffectD2D1Interop_GetPropertyCount(self: *const T, count: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGraphicsEffectD2D1Interop.VTable, self.vtable).GetPropertyCount(@ptrCast(*const IGraphicsEffectD2D1Interop, self), count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGraphicsEffectD2D1Interop_GetProperty(self: *const T, index: u32, value: ?**struct{comment: []const u8 = "MissingClrType IPropertyValue.Windows.Foundation"}) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGraphicsEffectD2D1Interop.VTable, self.vtable).GetProperty(@ptrCast(*const IGraphicsEffectD2D1Interop, self), index, value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGraphicsEffectD2D1Interop_GetSource(self: *const T, index: u32, source: ?**struct{comment: []const u8 = "MissingClrType IGraphicsEffectSource.Windows.Graphics.Effects"}) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGraphicsEffectD2D1Interop.VTable, self.vtable).GetSource(@ptrCast(*const IGraphicsEffectD2D1Interop, self), index, source);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGraphicsEffectD2D1Interop_GetSourceCount(self: *const T, count: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGraphicsEffectD2D1Interop.VTable, self.vtable).GetSourceCount(@ptrCast(*const IGraphicsEffectD2D1Interop, self), count);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGraphicsEffectD2D1Interop_GetEffectId(self: *const T, id: ?*Guid) HRESULT {
+                return @ptrCast(*const IGraphicsEffectD2D1Interop.VTable, self.vtable).GetEffectId(@ptrCast(*const IGraphicsEffectD2D1Interop, self), id);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGraphicsEffectD2D1Interop_GetNamedPropertyMapping(self: *const T, name: ?[*:0]const u16, index: ?*u32, mapping: ?*GRAPHICS_EFFECT_PROPERTY_MAPPING) HRESULT {
+                return @ptrCast(*const IGraphicsEffectD2D1Interop.VTable, self.vtable).GetNamedPropertyMapping(@ptrCast(*const IGraphicsEffectD2D1Interop, self), name, index, mapping);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGraphicsEffectD2D1Interop_GetPropertyCount(self: *const T, count: ?*u32) HRESULT {
+                return @ptrCast(*const IGraphicsEffectD2D1Interop.VTable, self.vtable).GetPropertyCount(@ptrCast(*const IGraphicsEffectD2D1Interop, self), count);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGraphicsEffectD2D1Interop_GetProperty(self: *const T, index: u32, value: ?**struct { comment: []const u8 = "MissingClrType IPropertyValue.Windows.Foundation" }) HRESULT {
+                return @ptrCast(*const IGraphicsEffectD2D1Interop.VTable, self.vtable).GetProperty(@ptrCast(*const IGraphicsEffectD2D1Interop, self), index, value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGraphicsEffectD2D1Interop_GetSource(self: *const T, index: u32, source: ?**struct { comment: []const u8 = "MissingClrType IGraphicsEffectSource.Windows.Graphics.Effects" }) HRESULT {
+                return @ptrCast(*const IGraphicsEffectD2D1Interop.VTable, self.vtable).GetSource(@ptrCast(*const IGraphicsEffectD2D1Interop, self), index, source);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGraphicsEffectD2D1Interop_GetSourceCount(self: *const T, count: ?*u32) HRESULT {
+                return @ptrCast(*const IGraphicsEffectD2D1Interop.VTable, self.vtable).GetSourceCount(@ptrCast(*const IGraphicsEffectD2D1Interop, self), count);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -101,31 +103,32 @@ pub const IID_IGeometrySource2DInterop = &IID_IGeometrySource2DInterop_Value;
 pub const IGeometrySource2DInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetGeometry: fn(
+        GetGeometry: fn (
             self: *const IGeometrySource2DInterop,
             value: ?*?*ID2D1Geometry,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TryGetGeometryUsingFactory: fn(
+        TryGetGeometryUsingFactory: fn (
             self: *const IGeometrySource2DInterop,
             factory: ?*ID2D1Factory,
             value: ?*?*ID2D1Geometry,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGeometrySource2DInterop_GetGeometry(self: *const T, value: ?*?*ID2D1Geometry) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGeometrySource2DInterop.VTable, self.vtable).GetGeometry(@ptrCast(*const IGeometrySource2DInterop, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGeometrySource2DInterop_TryGetGeometryUsingFactory(self: *const T, factory: ?*ID2D1Factory, value: ?*?*ID2D1Geometry) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGeometrySource2DInterop.VTable, self.vtable).TryGetGeometryUsingFactory(@ptrCast(*const IGeometrySource2DInterop, self), factory, value);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGeometrySource2DInterop_GetGeometry(self: *const T, value: ?*?*ID2D1Geometry) HRESULT {
+                return @ptrCast(*const IGeometrySource2DInterop.VTable, self.vtable).GetGeometry(@ptrCast(*const IGeometrySource2DInterop, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGeometrySource2DInterop_TryGetGeometryUsingFactory(self: *const T, factory: ?*ID2D1Factory, value: ?*?*ID2D1Geometry) HRESULT {
+                return @ptrCast(*const IGeometrySource2DInterop.VTable, self.vtable).TryGetGeometryUsingFactory(@ptrCast(*const IGeometrySource2DInterop, self), factory, value);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -136,13 +139,9 @@ pub const IGeometrySource2DInterop = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
@@ -155,9 +154,7 @@ const IUnknown = @import("../../../system/com.zig").IUnknown;
 const PWSTR = @import("../../../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

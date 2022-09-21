@@ -495,7 +495,7 @@ pub const IID_IRouterProtocolConfig = &IID_IRouterProtocolConfig_Value;
 pub const IRouterProtocolConfig = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddProtocol: fn(
+        AddProtocol: fn (
             self: *const IRouterProtocolConfig,
             pszMachineName: ?[*:0]const u16,
             dwTransportId: u32,
@@ -505,7 +505,7 @@ pub const IRouterProtocolConfig = extern struct {
             pRouter: ?*IUnknown,
             uReserved1: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveProtocol: fn(
+        RemoveProtocol: fn (
             self: *const IRouterProtocolConfig,
             pszMachineName: ?[*:0]const u16,
             dwTransportId: u32,
@@ -517,17 +517,19 @@ pub const IRouterProtocolConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRouterProtocolConfig_AddProtocol(self: *const T, pszMachineName: ?[*:0]const u16, dwTransportId: u32, dwProtocolId: u32, hWnd: ?HWND, dwFlags: u32, pRouter: ?*IUnknown, uReserved1: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRouterProtocolConfig.VTable, self.vtable).AddProtocol(@ptrCast(*const IRouterProtocolConfig, self), pszMachineName, dwTransportId, dwProtocolId, hWnd, dwFlags, pRouter, uReserved1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRouterProtocolConfig_RemoveProtocol(self: *const T, pszMachineName: ?[*:0]const u16, dwTransportId: u32, dwProtocolId: u32, hWnd: ?HWND, dwFlags: u32, pRouter: ?*IUnknown, uReserved1: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRouterProtocolConfig.VTable, self.vtable).RemoveProtocol(@ptrCast(*const IRouterProtocolConfig, self), pszMachineName, dwTransportId, dwProtocolId, hWnd, dwFlags, pRouter, uReserved1);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRouterProtocolConfig_AddProtocol(self: *const T, pszMachineName: ?[*:0]const u16, dwTransportId: u32, dwProtocolId: u32, hWnd: ?HWND, dwFlags: u32, pRouter: ?*IUnknown, uReserved1: usize) HRESULT {
+                return @ptrCast(*const IRouterProtocolConfig.VTable, self.vtable).AddProtocol(@ptrCast(*const IRouterProtocolConfig, self), pszMachineName, dwTransportId, dwProtocolId, hWnd, dwFlags, pRouter, uReserved1);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRouterProtocolConfig_RemoveProtocol(self: *const T, pszMachineName: ?[*:0]const u16, dwTransportId: u32, dwProtocolId: u32, hWnd: ?HWND, dwFlags: u32, pRouter: ?*IUnknown, uReserved1: usize) HRESULT {
+                return @ptrCast(*const IRouterProtocolConfig.VTable, self.vtable).RemoveProtocol(@ptrCast(*const IRouterProtocolConfig, self), pszMachineName, dwTransportId, dwProtocolId, hWnd, dwFlags, pRouter, uReserved1);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -536,16 +538,16 @@ pub const IID_IAuthenticationProviderConfig = &IID_IAuthenticationProviderConfig
 pub const IAuthenticationProviderConfig = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
+        Initialize: fn (
             self: *const IAuthenticationProviderConfig,
             pszMachineName: ?[*:0]const u16,
             puConnectionParam: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Uninitialize: fn(
+        Uninitialize: fn (
             self: *const IAuthenticationProviderConfig,
             uConnectionParam: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Configure: fn(
+        Configure: fn (
             self: *const IAuthenticationProviderConfig,
             uConnectionParam: usize,
             hWnd: ?HWND,
@@ -553,13 +555,13 @@ pub const IAuthenticationProviderConfig = extern struct {
             uReserved1: usize,
             uReserved2: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Activate: fn(
+        Activate: fn (
             self: *const IAuthenticationProviderConfig,
             uConnectionParam: usize,
             uReserved1: usize,
             uReserved2: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Deactivate: fn(
+        Deactivate: fn (
             self: *const IAuthenticationProviderConfig,
             uConnectionParam: usize,
             uReserved1: usize,
@@ -567,29 +569,31 @@ pub const IAuthenticationProviderConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAuthenticationProviderConfig_Initialize(self: *const T, pszMachineName: ?[*:0]const u16, puConnectionParam: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Initialize(@ptrCast(*const IAuthenticationProviderConfig, self), pszMachineName, puConnectionParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAuthenticationProviderConfig_Uninitialize(self: *const T, uConnectionParam: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Uninitialize(@ptrCast(*const IAuthenticationProviderConfig, self), uConnectionParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAuthenticationProviderConfig_Configure(self: *const T, uConnectionParam: usize, hWnd: ?HWND, dwFlags: u32, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Configure(@ptrCast(*const IAuthenticationProviderConfig, self), uConnectionParam, hWnd, dwFlags, uReserved1, uReserved2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAuthenticationProviderConfig_Activate(self: *const T, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Activate(@ptrCast(*const IAuthenticationProviderConfig, self), uConnectionParam, uReserved1, uReserved2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAuthenticationProviderConfig_Deactivate(self: *const T, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Deactivate(@ptrCast(*const IAuthenticationProviderConfig, self), uConnectionParam, uReserved1, uReserved2);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAuthenticationProviderConfig_Initialize(self: *const T, pszMachineName: ?[*:0]const u16, puConnectionParam: ?*usize) HRESULT {
+                return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Initialize(@ptrCast(*const IAuthenticationProviderConfig, self), pszMachineName, puConnectionParam);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAuthenticationProviderConfig_Uninitialize(self: *const T, uConnectionParam: usize) HRESULT {
+                return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Uninitialize(@ptrCast(*const IAuthenticationProviderConfig, self), uConnectionParam);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAuthenticationProviderConfig_Configure(self: *const T, uConnectionParam: usize, hWnd: ?HWND, dwFlags: u32, uReserved1: usize, uReserved2: usize) HRESULT {
+                return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Configure(@ptrCast(*const IAuthenticationProviderConfig, self), uConnectionParam, hWnd, dwFlags, uReserved1, uReserved2);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAuthenticationProviderConfig_Activate(self: *const T, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) HRESULT {
+                return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Activate(@ptrCast(*const IAuthenticationProviderConfig, self), uConnectionParam, uReserved1, uReserved2);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAuthenticationProviderConfig_Deactivate(self: *const T, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) HRESULT {
+                return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Deactivate(@ptrCast(*const IAuthenticationProviderConfig, self), uConnectionParam, uReserved1, uReserved2);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -598,16 +602,16 @@ pub const IID_IAccountingProviderConfig = &IID_IAccountingProviderConfig_Value;
 pub const IAccountingProviderConfig = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
+        Initialize: fn (
             self: *const IAccountingProviderConfig,
             pszMachineName: ?[*:0]const u16,
             puConnectionParam: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Uninitialize: fn(
+        Uninitialize: fn (
             self: *const IAccountingProviderConfig,
             uConnectionParam: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Configure: fn(
+        Configure: fn (
             self: *const IAccountingProviderConfig,
             uConnectionParam: usize,
             hWnd: ?HWND,
@@ -615,13 +619,13 @@ pub const IAccountingProviderConfig = extern struct {
             uReserved1: usize,
             uReserved2: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Activate: fn(
+        Activate: fn (
             self: *const IAccountingProviderConfig,
             uConnectionParam: usize,
             uReserved1: usize,
             uReserved2: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Deactivate: fn(
+        Deactivate: fn (
             self: *const IAccountingProviderConfig,
             uConnectionParam: usize,
             uReserved1: usize,
@@ -629,29 +633,31 @@ pub const IAccountingProviderConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountingProviderConfig_Initialize(self: *const T, pszMachineName: ?[*:0]const u16, puConnectionParam: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Initialize(@ptrCast(*const IAccountingProviderConfig, self), pszMachineName, puConnectionParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountingProviderConfig_Uninitialize(self: *const T, uConnectionParam: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Uninitialize(@ptrCast(*const IAccountingProviderConfig, self), uConnectionParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountingProviderConfig_Configure(self: *const T, uConnectionParam: usize, hWnd: ?HWND, dwFlags: u32, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Configure(@ptrCast(*const IAccountingProviderConfig, self), uConnectionParam, hWnd, dwFlags, uReserved1, uReserved2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountingProviderConfig_Activate(self: *const T, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Activate(@ptrCast(*const IAccountingProviderConfig, self), uConnectionParam, uReserved1, uReserved2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountingProviderConfig_Deactivate(self: *const T, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Deactivate(@ptrCast(*const IAccountingProviderConfig, self), uConnectionParam, uReserved1, uReserved2);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAccountingProviderConfig_Initialize(self: *const T, pszMachineName: ?[*:0]const u16, puConnectionParam: ?*usize) HRESULT {
+                return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Initialize(@ptrCast(*const IAccountingProviderConfig, self), pszMachineName, puConnectionParam);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAccountingProviderConfig_Uninitialize(self: *const T, uConnectionParam: usize) HRESULT {
+                return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Uninitialize(@ptrCast(*const IAccountingProviderConfig, self), uConnectionParam);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAccountingProviderConfig_Configure(self: *const T, uConnectionParam: usize, hWnd: ?HWND, dwFlags: u32, uReserved1: usize, uReserved2: usize) HRESULT {
+                return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Configure(@ptrCast(*const IAccountingProviderConfig, self), uConnectionParam, hWnd, dwFlags, uReserved1, uReserved2);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAccountingProviderConfig_Activate(self: *const T, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) HRESULT {
+                return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Activate(@ptrCast(*const IAccountingProviderConfig, self), uConnectionParam, uReserved1, uReserved2);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAccountingProviderConfig_Deactivate(self: *const T, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) HRESULT {
+                return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Deactivate(@ptrCast(*const IAccountingProviderConfig, self), uConnectionParam, uReserved1, uReserved2);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -661,18 +667,18 @@ pub const IID_IEAPProviderConfig = &IID_IEAPProviderConfig_Value;
 pub const IEAPProviderConfig = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
+        Initialize: fn (
             self: *const IEAPProviderConfig,
             pszMachineName: ?[*:0]const u16,
             dwEapTypeId: u32,
             puConnectionParam: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Uninitialize: fn(
+        Uninitialize: fn (
             self: *const IEAPProviderConfig,
             dwEapTypeId: u32,
             uConnectionParam: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ServerInvokeConfigUI: fn(
+        ServerInvokeConfigUI: fn (
             self: *const IEAPProviderConfig,
             dwEapTypeId: u32,
             uConnectionParam: usize,
@@ -680,7 +686,7 @@ pub const IEAPProviderConfig = extern struct {
             uReserved1: usize,
             uReserved2: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RouterInvokeConfigUI: fn(
+        RouterInvokeConfigUI: fn (
             self: *const IEAPProviderConfig,
             dwEapTypeId: u32,
             uConnectionParam: usize,
@@ -691,7 +697,7 @@ pub const IEAPProviderConfig = extern struct {
             ppConnectionDataOut: [*]?*u8,
             pdwSizeOfConnectionDataOut: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RouterInvokeCredentialsUI: fn(
+        RouterInvokeCredentialsUI: fn (
             self: *const IEAPProviderConfig,
             dwEapTypeId: u32,
             uConnectionParam: usize,
@@ -706,29 +712,31 @@ pub const IEAPProviderConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig_Initialize(self: *const T, pszMachineName: ?[*:0]const u16, dwEapTypeId: u32, puConnectionParam: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).Initialize(@ptrCast(*const IEAPProviderConfig, self), pszMachineName, dwEapTypeId, puConnectionParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig_Uninitialize(self: *const T, dwEapTypeId: u32, uConnectionParam: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).Uninitialize(@ptrCast(*const IEAPProviderConfig, self), dwEapTypeId, uConnectionParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig_ServerInvokeConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: ?HWND, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).ServerInvokeConfigUI(@ptrCast(*const IEAPProviderConfig, self), dwEapTypeId, uConnectionParam, hWnd, uReserved1, uReserved2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig_RouterInvokeConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hwndParent: ?HWND, dwFlags: u32, pConnectionDataIn: [*:0]u8, dwSizeOfConnectionDataIn: u32, ppConnectionDataOut: [*]?*u8, pdwSizeOfConnectionDataOut: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).RouterInvokeConfigUI(@ptrCast(*const IEAPProviderConfig, self), dwEapTypeId, uConnectionParam, hwndParent, dwFlags, pConnectionDataIn, dwSizeOfConnectionDataIn, ppConnectionDataOut, pdwSizeOfConnectionDataOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig_RouterInvokeCredentialsUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hwndParent: ?HWND, dwFlags: u32, pConnectionDataIn: [*:0]u8, dwSizeOfConnectionDataIn: u32, pUserDataIn: [*:0]u8, dwSizeOfUserDataIn: u32, ppUserDataOut: [*]?*u8, pdwSizeOfUserDataOut: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).RouterInvokeCredentialsUI(@ptrCast(*const IEAPProviderConfig, self), dwEapTypeId, uConnectionParam, hwndParent, dwFlags, pConnectionDataIn, dwSizeOfConnectionDataIn, pUserDataIn, dwSizeOfUserDataIn, ppUserDataOut, pdwSizeOfUserDataOut);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEAPProviderConfig_Initialize(self: *const T, pszMachineName: ?[*:0]const u16, dwEapTypeId: u32, puConnectionParam: ?*usize) HRESULT {
+                return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).Initialize(@ptrCast(*const IEAPProviderConfig, self), pszMachineName, dwEapTypeId, puConnectionParam);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEAPProviderConfig_Uninitialize(self: *const T, dwEapTypeId: u32, uConnectionParam: usize) HRESULT {
+                return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).Uninitialize(@ptrCast(*const IEAPProviderConfig, self), dwEapTypeId, uConnectionParam);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEAPProviderConfig_ServerInvokeConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: ?HWND, uReserved1: usize, uReserved2: usize) HRESULT {
+                return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).ServerInvokeConfigUI(@ptrCast(*const IEAPProviderConfig, self), dwEapTypeId, uConnectionParam, hWnd, uReserved1, uReserved2);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEAPProviderConfig_RouterInvokeConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hwndParent: ?HWND, dwFlags: u32, pConnectionDataIn: [*:0]u8, dwSizeOfConnectionDataIn: u32, ppConnectionDataOut: [*]?*u8, pdwSizeOfConnectionDataOut: ?*u32) HRESULT {
+                return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).RouterInvokeConfigUI(@ptrCast(*const IEAPProviderConfig, self), dwEapTypeId, uConnectionParam, hwndParent, dwFlags, pConnectionDataIn, dwSizeOfConnectionDataIn, ppConnectionDataOut, pdwSizeOfConnectionDataOut);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEAPProviderConfig_RouterInvokeCredentialsUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hwndParent: ?HWND, dwFlags: u32, pConnectionDataIn: [*:0]u8, dwSizeOfConnectionDataIn: u32, pUserDataIn: [*:0]u8, dwSizeOfUserDataIn: u32, ppUserDataOut: [*]?*u8, pdwSizeOfUserDataOut: ?*u32) HRESULT {
+                return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).RouterInvokeCredentialsUI(@ptrCast(*const IEAPProviderConfig, self), dwEapTypeId, uConnectionParam, hwndParent, dwFlags, pConnectionDataIn, dwSizeOfConnectionDataIn, pUserDataIn, dwSizeOfUserDataIn, ppUserDataOut, pdwSizeOfUserDataOut);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -737,7 +745,7 @@ pub const IID_IEAPProviderConfig2 = &IID_IEAPProviderConfig2_Value;
 pub const IEAPProviderConfig2 = extern struct {
     pub const VTable = extern struct {
         base: IEAPProviderConfig.VTable,
-        ServerInvokeConfigUI2: fn(
+        ServerInvokeConfigUI2: fn (
             self: *const IEAPProviderConfig2,
             dwEapTypeId: u32,
             uConnectionParam: usize,
@@ -747,7 +755,7 @@ pub const IEAPProviderConfig2 = extern struct {
             ppConfigDataOut: ?*?*u8,
             pdwSizeOfConfigDataOut: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetGlobalConfig: fn(
+        GetGlobalConfig: fn (
             self: *const IEAPProviderConfig2,
             dwEapTypeId: u32,
             ppConfigDataOut: ?*?*u8,
@@ -755,17 +763,19 @@ pub const IEAPProviderConfig2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IEAPProviderConfig.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig2_ServerInvokeConfigUI2(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: ?HWND, pConfigDataIn: ?*const u8, dwSizeOfConfigDataIn: u32, ppConfigDataOut: ?*?*u8, pdwSizeOfConfigDataOut: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEAPProviderConfig2.VTable, self.vtable).ServerInvokeConfigUI2(@ptrCast(*const IEAPProviderConfig2, self), dwEapTypeId, uConnectionParam, hWnd, pConfigDataIn, dwSizeOfConfigDataIn, ppConfigDataOut, pdwSizeOfConfigDataOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig2_GetGlobalConfig(self: *const T, dwEapTypeId: u32, ppConfigDataOut: ?*?*u8, pdwSizeOfConfigDataOut: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEAPProviderConfig2.VTable, self.vtable).GetGlobalConfig(@ptrCast(*const IEAPProviderConfig2, self), dwEapTypeId, ppConfigDataOut, pdwSizeOfConfigDataOut);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IEAPProviderConfig.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEAPProviderConfig2_ServerInvokeConfigUI2(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: ?HWND, pConfigDataIn: ?*const u8, dwSizeOfConfigDataIn: u32, ppConfigDataOut: ?*?*u8, pdwSizeOfConfigDataOut: ?*u32) HRESULT {
+                return @ptrCast(*const IEAPProviderConfig2.VTable, self.vtable).ServerInvokeConfigUI2(@ptrCast(*const IEAPProviderConfig2, self), dwEapTypeId, uConnectionParam, hWnd, pConfigDataIn, dwSizeOfConfigDataIn, ppConfigDataOut, pdwSizeOfConfigDataOut);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEAPProviderConfig2_GetGlobalConfig(self: *const T, dwEapTypeId: u32, ppConfigDataOut: ?*?*u8, pdwSizeOfConfigDataOut: ?*u32) HRESULT {
+                return @ptrCast(*const IEAPProviderConfig2.VTable, self.vtable).GetGlobalConfig(@ptrCast(*const IEAPProviderConfig2, self), dwEapTypeId, ppConfigDataOut, pdwSizeOfConfigDataOut);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -774,7 +784,7 @@ pub const IID_IEAPProviderConfig3 = &IID_IEAPProviderConfig3_Value;
 pub const IEAPProviderConfig3 = extern struct {
     pub const VTable = extern struct {
         base: IEAPProviderConfig2.VTable,
-        ServerInvokeCertificateConfigUI: fn(
+        ServerInvokeCertificateConfigUI: fn (
             self: *const IEAPProviderConfig3,
             dwEapTypeId: u32,
             uConnectionParam: usize,
@@ -787,13 +797,15 @@ pub const IEAPProviderConfig3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IEAPProviderConfig2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig3_ServerInvokeCertificateConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: ?HWND, pConfigDataIn: ?*const u8, dwSizeOfConfigDataIn: u32, ppConfigDataOut: ?*?*u8, pdwSizeOfConfigDataOut: ?*u32, uReserved: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEAPProviderConfig3.VTable, self.vtable).ServerInvokeCertificateConfigUI(@ptrCast(*const IEAPProviderConfig3, self), dwEapTypeId, uConnectionParam, hWnd, pConfigDataIn, dwSizeOfConfigDataIn, ppConfigDataOut, pdwSizeOfConfigDataOut, uReserved);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IEAPProviderConfig2.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEAPProviderConfig3_ServerInvokeCertificateConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: ?HWND, pConfigDataIn: ?*const u8, dwSizeOfConfigDataIn: u32, ppConfigDataOut: ?*?*u8, pdwSizeOfConfigDataOut: ?*u32, uReserved: usize) HRESULT {
+                return @ptrCast(*const IEAPProviderConfig3.VTable, self.vtable).ServerInvokeCertificateConfigUI(@ptrCast(*const IEAPProviderConfig3, self), dwEapTypeId, uConnectionParam, hWnd, pConfigDataIn, dwSizeOfConfigDataIn, ppConfigDataOut, pdwSizeOfConfigDataOut, uReserved);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1401,7 +1413,7 @@ pub const EapCodeSuccess = EapCode.Success;
 pub const EapCodeFailure = EapCode.Failure;
 pub const EapCodeMaximum = EapCode.Failure;
 
-pub const NotificationHandler = fn(
+pub const NotificationHandler = fn (
     connectionId: Guid,
     pContextData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -1512,7 +1524,6 @@ pub const EAP_AUTHENTICATOR_METHOD_ROUTINES = extern struct {
     EapMethodAuthenticatorEndSession: isize,
     EapMethodAuthenticatorShutdown: isize,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (32)
@@ -1667,12 +1678,10 @@ pub extern "eappcfg" fn EapHostPeerFreeErrorMemory(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "eappprxy" fn EapHostPeerInitialize(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "eappprxy" fn EapHostPeerInitialize() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "eappprxy" fn EapHostPeerUninitialize(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "eappprxy" fn EapHostPeerUninitialize() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerBeginSession(
@@ -1814,19 +1823,14 @@ pub extern "eappprxy" fn EapHostPeerFreeRuntimeMemory(
     pData: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
@@ -1843,11 +1847,11 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "NotificationHandler")) { _ = NotificationHandler; }
+    if (@hasDecl(@This(), "NotificationHandler")) {
+        _ = NotificationHandler;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

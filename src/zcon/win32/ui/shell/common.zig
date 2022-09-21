@@ -172,11 +172,11 @@ pub const IID_IObjectArray = &IID_IObjectArray_Value;
 pub const IObjectArray = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: fn(
+        GetCount: fn (
             self: *const IObjectArray,
             pcObjects: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAt: fn(
+        GetAt: fn (
             self: *const IObjectArray,
             uiIndex: u32,
             riid: ?*const Guid,
@@ -184,17 +184,19 @@ pub const IObjectArray = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectArray_GetCount(self: *const T, pcObjects: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IObjectArray.VTable, self.vtable).GetCount(@ptrCast(*const IObjectArray, self), pcObjects);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectArray_GetAt(self: *const T, uiIndex: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IObjectArray.VTable, self.vtable).GetAt(@ptrCast(*const IObjectArray, self), uiIndex, riid, ppv);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IObjectArray_GetCount(self: *const T, pcObjects: ?*u32) HRESULT {
+                return @ptrCast(*const IObjectArray.VTable, self.vtable).GetCount(@ptrCast(*const IObjectArray, self), pcObjects);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IObjectArray_GetAt(self: *const T, uiIndex: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IObjectArray.VTable, self.vtable).GetAt(@ptrCast(*const IObjectArray, self), uiIndex, riid, ppv);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -204,45 +206,46 @@ pub const IID_IObjectCollection = &IID_IObjectCollection_Value;
 pub const IObjectCollection = extern struct {
     pub const VTable = extern struct {
         base: IObjectArray.VTable,
-        AddObject: fn(
+        AddObject: fn (
             self: *const IObjectCollection,
             punk: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddFromArray: fn(
+        AddFromArray: fn (
             self: *const IObjectCollection,
             poaSource: ?*IObjectArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveObjectAt: fn(
+        RemoveObjectAt: fn (
             self: *const IObjectCollection,
             uiIndex: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clear: fn(
+        Clear: fn (
             self: *const IObjectCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IObjectArray.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectCollection_AddObject(self: *const T, punk: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IObjectCollection.VTable, self.vtable).AddObject(@ptrCast(*const IObjectCollection, self), punk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectCollection_AddFromArray(self: *const T, poaSource: ?*IObjectArray) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IObjectCollection.VTable, self.vtable).AddFromArray(@ptrCast(*const IObjectCollection, self), poaSource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectCollection_RemoveObjectAt(self: *const T, uiIndex: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IObjectCollection.VTable, self.vtable).RemoveObjectAt(@ptrCast(*const IObjectCollection, self), uiIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectCollection_Clear(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IObjectCollection.VTable, self.vtable).Clear(@ptrCast(*const IObjectCollection, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IObjectArray.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IObjectCollection_AddObject(self: *const T, punk: ?*IUnknown) HRESULT {
+                return @ptrCast(*const IObjectCollection.VTable, self.vtable).AddObject(@ptrCast(*const IObjectCollection, self), punk);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IObjectCollection_AddFromArray(self: *const T, poaSource: ?*IObjectArray) HRESULT {
+                return @ptrCast(*const IObjectCollection.VTable, self.vtable).AddFromArray(@ptrCast(*const IObjectCollection, self), poaSource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IObjectCollection_RemoveObjectAt(self: *const T, uiIndex: u32) HRESULT {
+                return @ptrCast(*const IObjectCollection.VTable, self.vtable).RemoveObjectAt(@ptrCast(*const IObjectCollection, self), uiIndex);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IObjectCollection_Clear(self: *const T) HRESULT {
+                return @ptrCast(*const IObjectCollection.VTable, self.vtable).Clear(@ptrCast(*const IObjectCollection, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -253,13 +256,9 @@ pub const IObjectCollection = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
@@ -270,9 +269,7 @@ const IUnknown = @import("../../system/com.zig").IUnknown;
 const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

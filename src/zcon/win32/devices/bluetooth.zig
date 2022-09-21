@@ -1029,7 +1029,7 @@ pub const BLUETOOTH_COD_PAIRS = extern struct {
     pcszDescription: ?[*:0]const u16,
 };
 
-pub const PFN_DEVICE_CALLBACK = fn(
+pub const PFN_DEVICE_CALLBACK = fn (
     pvParam: ?*anyopaque,
     pDevice: ?*const BLUETOOTH_DEVICE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -1070,12 +1070,12 @@ pub const BLUETOOTH_PASSKEY_INFO = extern struct {
     passkey: u32,
 };
 
-pub const PFN_AUTHENTICATION_CALLBACK = fn(
+pub const PFN_AUTHENTICATION_CALLBACK = fn (
     pvParam: ?*anyopaque,
     pDevice: ?*BLUETOOTH_DEVICE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_AUTHENTICATION_CALLBACK_EX = fn(
+pub const PFN_AUTHENTICATION_CALLBACK_EX = fn (
     pvParam: ?*anyopaque,
     pAuthCallbackParams: ?*BLUETOOTH_AUTHENTICATION_CALLBACK_PARAMS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -1135,7 +1135,7 @@ pub const SDP_STRING_TYPE_DATA = extern struct {
     attributeId: u16,
 };
 
-pub const PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK = fn(
+pub const PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK = fn (
     uAttribId: u32,
     // TODO: what to do with BytesParamIndex 2?
     pValueStream: ?*u8,
@@ -1224,7 +1224,6 @@ pub const BTH_INFO_RSP = packed struct {
         data: [44]u8,
     },
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (34)
@@ -1459,19 +1458,14 @@ pub extern "bluetoothapis" fn BluetoothIsVersionAvailable(
     MinorVersion: u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
@@ -1486,14 +1480,20 @@ const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFN_DEVICE_CALLBACK")) { _ = PFN_DEVICE_CALLBACK; }
-    if (@hasDecl(@This(), "PFN_AUTHENTICATION_CALLBACK")) { _ = PFN_AUTHENTICATION_CALLBACK; }
-    if (@hasDecl(@This(), "PFN_AUTHENTICATION_CALLBACK_EX")) { _ = PFN_AUTHENTICATION_CALLBACK_EX; }
-    if (@hasDecl(@This(), "PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK")) { _ = PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK; }
+    if (@hasDecl(@This(), "PFN_DEVICE_CALLBACK")) {
+        _ = PFN_DEVICE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PFN_AUTHENTICATION_CALLBACK")) {
+        _ = PFN_AUTHENTICATION_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PFN_AUTHENTICATION_CALLBACK_EX")) {
+        _ = PFN_AUTHENTICATION_CALLBACK_EX;
+    }
+    if (@hasDecl(@This(), "PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK")) {
+        _ = PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

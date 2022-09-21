@@ -2,15 +2,15 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (38)
 //--------------------------------------------------------------------------------
-pub const PKEY_PhotoAcquire_RelativePathname = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 2 };
-pub const PKEY_PhotoAcquire_FinalFilename = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 3 };
-pub const PKEY_PhotoAcquire_GroupTag = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 4 };
-pub const PKEY_PhotoAcquire_TransferResult = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 5 };
-pub const PKEY_PhotoAcquire_OriginalFilename = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 6 };
-pub const PKEY_PhotoAcquire_CameraSequenceNumber = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 7 };
-pub const PKEY_PhotoAcquire_IntermediateFile = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 8 };
-pub const PKEY_PhotoAcquire_SkipImport = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 9 };
-pub const PKEY_PhotoAcquire_DuplicateDetectionID = PROPERTYKEY { .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 10 };
+pub const PKEY_PhotoAcquire_RelativePathname = PROPERTYKEY{ .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 2 };
+pub const PKEY_PhotoAcquire_FinalFilename = PROPERTYKEY{ .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 3 };
+pub const PKEY_PhotoAcquire_GroupTag = PROPERTYKEY{ .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 4 };
+pub const PKEY_PhotoAcquire_TransferResult = PROPERTYKEY{ .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 5 };
+pub const PKEY_PhotoAcquire_OriginalFilename = PROPERTYKEY{ .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 6 };
+pub const PKEY_PhotoAcquire_CameraSequenceNumber = PROPERTYKEY{ .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 7 };
+pub const PKEY_PhotoAcquire_IntermediateFile = PROPERTYKEY{ .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 8 };
+pub const PKEY_PhotoAcquire_SkipImport = PROPERTYKEY{ .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 9 };
+pub const PKEY_PhotoAcquire_DuplicateDetectionID = PROPERTYKEY{ .fmtid = Guid.initString("00f23377-7ac6-4b7a-8443-345e731fa57a"), .pid = 10 };
 pub const PROGRESS_INDETERMINATE = @as(i32, -1);
 pub const PHOTOACQ_ERROR_RESTART_REQUIRED = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147180543));
 pub const PHOTOACQ_RUN_DEFAULT = @as(u32, 0);
@@ -67,86 +67,88 @@ pub const IID_IPhotoAcquireItem = &IID_IPhotoAcquireItem_Value;
 pub const IPhotoAcquireItem = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetItemName: fn(
+        GetItemName: fn (
             self: *const IPhotoAcquireItem,
             pbstrItemName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetThumbnail: fn(
+        GetThumbnail: fn (
             self: *const IPhotoAcquireItem,
             sizeThumbnail: SIZE,
             phbmpThumbnail: ?*?HBITMAP,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProperty: fn(
+        GetProperty: fn (
             self: *const IPhotoAcquireItem,
             key: ?*const PROPERTYKEY,
             pv: ?*PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProperty: fn(
+        SetProperty: fn (
             self: *const IPhotoAcquireItem,
             key: ?*const PROPERTYKEY,
             pv: ?*const PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStream: fn(
+        GetStream: fn (
             self: *const IPhotoAcquireItem,
             ppStream: ?*?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CanDelete: fn(
+        CanDelete: fn (
             self: *const IPhotoAcquireItem,
             pfCanDelete: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
+        Delete: fn (
             self: *const IPhotoAcquireItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSubItemCount: fn(
+        GetSubItemCount: fn (
             self: *const IPhotoAcquireItem,
             pnCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSubItemAt: fn(
+        GetSubItemAt: fn (
             self: *const IPhotoAcquireItem,
             nItemIndex: u32,
             ppPhotoAcquireItem: ?*?*IPhotoAcquireItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireItem_GetItemName(self: *const T, pbstrItemName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).GetItemName(@ptrCast(*const IPhotoAcquireItem, self), pbstrItemName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireItem_GetThumbnail(self: *const T, sizeThumbnail: SIZE, phbmpThumbnail: ?*?HBITMAP) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).GetThumbnail(@ptrCast(*const IPhotoAcquireItem, self), sizeThumbnail, phbmpThumbnail);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireItem_GetProperty(self: *const T, key: ?*const PROPERTYKEY, pv: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).GetProperty(@ptrCast(*const IPhotoAcquireItem, self), key, pv);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireItem_SetProperty(self: *const T, key: ?*const PROPERTYKEY, pv: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).SetProperty(@ptrCast(*const IPhotoAcquireItem, self), key, pv);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireItem_GetStream(self: *const T, ppStream: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).GetStream(@ptrCast(*const IPhotoAcquireItem, self), ppStream);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireItem_CanDelete(self: *const T, pfCanDelete: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).CanDelete(@ptrCast(*const IPhotoAcquireItem, self), pfCanDelete);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireItem_Delete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).Delete(@ptrCast(*const IPhotoAcquireItem, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireItem_GetSubItemCount(self: *const T, pnCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).GetSubItemCount(@ptrCast(*const IPhotoAcquireItem, self), pnCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireItem_GetSubItemAt(self: *const T, nItemIndex: u32, ppPhotoAcquireItem: ?*?*IPhotoAcquireItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).GetSubItemAt(@ptrCast(*const IPhotoAcquireItem, self), nItemIndex, ppPhotoAcquireItem);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireItem_GetItemName(self: *const T, pbstrItemName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).GetItemName(@ptrCast(*const IPhotoAcquireItem, self), pbstrItemName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireItem_GetThumbnail(self: *const T, sizeThumbnail: SIZE, phbmpThumbnail: ?*?HBITMAP) HRESULT {
+                return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).GetThumbnail(@ptrCast(*const IPhotoAcquireItem, self), sizeThumbnail, phbmpThumbnail);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireItem_GetProperty(self: *const T, key: ?*const PROPERTYKEY, pv: ?*PROPVARIANT) HRESULT {
+                return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).GetProperty(@ptrCast(*const IPhotoAcquireItem, self), key, pv);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireItem_SetProperty(self: *const T, key: ?*const PROPERTYKEY, pv: ?*const PROPVARIANT) HRESULT {
+                return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).SetProperty(@ptrCast(*const IPhotoAcquireItem, self), key, pv);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireItem_GetStream(self: *const T, ppStream: ?*?*IStream) HRESULT {
+                return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).GetStream(@ptrCast(*const IPhotoAcquireItem, self), ppStream);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireItem_CanDelete(self: *const T, pfCanDelete: ?*BOOL) HRESULT {
+                return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).CanDelete(@ptrCast(*const IPhotoAcquireItem, self), pfCanDelete);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireItem_Delete(self: *const T) HRESULT {
+                return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).Delete(@ptrCast(*const IPhotoAcquireItem, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireItem_GetSubItemCount(self: *const T, pnCount: ?*u32) HRESULT {
+                return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).GetSubItemCount(@ptrCast(*const IPhotoAcquireItem, self), pnCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireItem_GetSubItemAt(self: *const T, nItemIndex: u32, ppPhotoAcquireItem: ?*?*IPhotoAcquireItem) HRESULT {
+                return @ptrCast(*const IPhotoAcquireItem.VTable, self.vtable).GetSubItemAt(@ptrCast(*const IPhotoAcquireItem, self), nItemIndex, ppPhotoAcquireItem);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -162,44 +164,44 @@ pub const IID_IUserInputString = &IID_IUserInputString_Value;
 pub const IUserInputString = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSubmitButtonText: fn(
+        GetSubmitButtonText: fn (
             self: *const IUserInputString,
             pbstrSubmitButtonText: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPrompt: fn(
+        GetPrompt: fn (
             self: *const IUserInputString,
             pbstrPromptTitle: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStringId: fn(
+        GetStringId: fn (
             self: *const IUserInputString,
             pbstrStringId: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStringType: fn(
+        GetStringType: fn (
             self: *const IUserInputString,
             pnStringType: ?*USER_INPUT_STRING_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTooltipText: fn(
+        GetTooltipText: fn (
             self: *const IUserInputString,
             pbstrTooltipText: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMaxLength: fn(
+        GetMaxLength: fn (
             self: *const IUserInputString,
             pcchMaxLength: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDefault: fn(
+        GetDefault: fn (
             self: *const IUserInputString,
             pbstrDefault: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMruCount: fn(
+        GetMruCount: fn (
             self: *const IUserInputString,
             pnMruCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMruEntryAt: fn(
+        GetMruEntryAt: fn (
             self: *const IUserInputString,
             nIndex: u32,
             pbstrMruEntry: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetImage: fn(
+        GetImage: fn (
             self: *const IUserInputString,
             nSize: u32,
             phBitmap: ?*?HBITMAP,
@@ -207,49 +209,51 @@ pub const IUserInputString = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserInputString_GetSubmitButtonText(self: *const T, pbstrSubmitButtonText: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUserInputString.VTable, self.vtable).GetSubmitButtonText(@ptrCast(*const IUserInputString, self), pbstrSubmitButtonText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserInputString_GetPrompt(self: *const T, pbstrPromptTitle: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUserInputString.VTable, self.vtable).GetPrompt(@ptrCast(*const IUserInputString, self), pbstrPromptTitle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserInputString_GetStringId(self: *const T, pbstrStringId: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUserInputString.VTable, self.vtable).GetStringId(@ptrCast(*const IUserInputString, self), pbstrStringId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserInputString_GetStringType(self: *const T, pnStringType: ?*USER_INPUT_STRING_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUserInputString.VTable, self.vtable).GetStringType(@ptrCast(*const IUserInputString, self), pnStringType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserInputString_GetTooltipText(self: *const T, pbstrTooltipText: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUserInputString.VTable, self.vtable).GetTooltipText(@ptrCast(*const IUserInputString, self), pbstrTooltipText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserInputString_GetMaxLength(self: *const T, pcchMaxLength: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUserInputString.VTable, self.vtable).GetMaxLength(@ptrCast(*const IUserInputString, self), pcchMaxLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserInputString_GetDefault(self: *const T, pbstrDefault: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUserInputString.VTable, self.vtable).GetDefault(@ptrCast(*const IUserInputString, self), pbstrDefault);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserInputString_GetMruCount(self: *const T, pnMruCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUserInputString.VTable, self.vtable).GetMruCount(@ptrCast(*const IUserInputString, self), pnMruCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserInputString_GetMruEntryAt(self: *const T, nIndex: u32, pbstrMruEntry: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUserInputString.VTable, self.vtable).GetMruEntryAt(@ptrCast(*const IUserInputString, self), nIndex, pbstrMruEntry);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUserInputString_GetImage(self: *const T, nSize: u32, phBitmap: ?*?HBITMAP, phIcon: ?*?HICON) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUserInputString.VTable, self.vtable).GetImage(@ptrCast(*const IUserInputString, self), nSize, phBitmap, phIcon);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUserInputString_GetSubmitButtonText(self: *const T, pbstrSubmitButtonText: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IUserInputString.VTable, self.vtable).GetSubmitButtonText(@ptrCast(*const IUserInputString, self), pbstrSubmitButtonText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUserInputString_GetPrompt(self: *const T, pbstrPromptTitle: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IUserInputString.VTable, self.vtable).GetPrompt(@ptrCast(*const IUserInputString, self), pbstrPromptTitle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUserInputString_GetStringId(self: *const T, pbstrStringId: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IUserInputString.VTable, self.vtable).GetStringId(@ptrCast(*const IUserInputString, self), pbstrStringId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUserInputString_GetStringType(self: *const T, pnStringType: ?*USER_INPUT_STRING_TYPE) HRESULT {
+                return @ptrCast(*const IUserInputString.VTable, self.vtable).GetStringType(@ptrCast(*const IUserInputString, self), pnStringType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUserInputString_GetTooltipText(self: *const T, pbstrTooltipText: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IUserInputString.VTable, self.vtable).GetTooltipText(@ptrCast(*const IUserInputString, self), pbstrTooltipText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUserInputString_GetMaxLength(self: *const T, pcchMaxLength: ?*u32) HRESULT {
+                return @ptrCast(*const IUserInputString.VTable, self.vtable).GetMaxLength(@ptrCast(*const IUserInputString, self), pcchMaxLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUserInputString_GetDefault(self: *const T, pbstrDefault: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IUserInputString.VTable, self.vtable).GetDefault(@ptrCast(*const IUserInputString, self), pbstrDefault);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUserInputString_GetMruCount(self: *const T, pnMruCount: ?*u32) HRESULT {
+                return @ptrCast(*const IUserInputString.VTable, self.vtable).GetMruCount(@ptrCast(*const IUserInputString, self), pnMruCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUserInputString_GetMruEntryAt(self: *const T, nIndex: u32, pbstrMruEntry: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IUserInputString.VTable, self.vtable).GetMruEntryAt(@ptrCast(*const IUserInputString, self), nIndex, pbstrMruEntry);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUserInputString_GetImage(self: *const T, nSize: u32, phBitmap: ?*?HBITMAP, phIcon: ?*?HICON) HRESULT {
+                return @ptrCast(*const IUserInputString.VTable, self.vtable).GetImage(@ptrCast(*const IUserInputString, self), nSize, phBitmap, phIcon);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -286,89 +290,89 @@ pub const IID_IPhotoAcquireProgressCB = &IID_IPhotoAcquireProgressCB_Value;
 pub const IPhotoAcquireProgressCB = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Cancelled: fn(
+        Cancelled: fn (
             self: *const IPhotoAcquireProgressCB,
             pfCancelled: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StartEnumeration: fn(
+        StartEnumeration: fn (
             self: *const IPhotoAcquireProgressCB,
             pPhotoAcquireSource: ?*IPhotoAcquireSource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FoundItem: fn(
+        FoundItem: fn (
             self: *const IPhotoAcquireProgressCB,
             pPhotoAcquireItem: ?*IPhotoAcquireItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndEnumeration: fn(
+        EndEnumeration: fn (
             self: *const IPhotoAcquireProgressCB,
             hr: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StartTransfer: fn(
+        StartTransfer: fn (
             self: *const IPhotoAcquireProgressCB,
             pPhotoAcquireSource: ?*IPhotoAcquireSource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StartItemTransfer: fn(
+        StartItemTransfer: fn (
             self: *const IPhotoAcquireProgressCB,
             nItemIndex: u32,
             pPhotoAcquireItem: ?*IPhotoAcquireItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DirectoryCreated: fn(
+        DirectoryCreated: fn (
             self: *const IPhotoAcquireProgressCB,
             pszDirectory: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateTransferPercent: fn(
+        UpdateTransferPercent: fn (
             self: *const IPhotoAcquireProgressCB,
             fOverall: BOOL,
             nPercent: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndItemTransfer: fn(
+        EndItemTransfer: fn (
             self: *const IPhotoAcquireProgressCB,
             nItemIndex: u32,
             pPhotoAcquireItem: ?*IPhotoAcquireItem,
             hr: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndTransfer: fn(
+        EndTransfer: fn (
             self: *const IPhotoAcquireProgressCB,
             hr: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StartDelete: fn(
+        StartDelete: fn (
             self: *const IPhotoAcquireProgressCB,
             pPhotoAcquireSource: ?*IPhotoAcquireSource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StartItemDelete: fn(
+        StartItemDelete: fn (
             self: *const IPhotoAcquireProgressCB,
             nItemIndex: u32,
             pPhotoAcquireItem: ?*IPhotoAcquireItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateDeletePercent: fn(
+        UpdateDeletePercent: fn (
             self: *const IPhotoAcquireProgressCB,
             nPercent: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndItemDelete: fn(
+        EndItemDelete: fn (
             self: *const IPhotoAcquireProgressCB,
             nItemIndex: u32,
             pPhotoAcquireItem: ?*IPhotoAcquireItem,
             hr: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndDelete: fn(
+        EndDelete: fn (
             self: *const IPhotoAcquireProgressCB,
             hr: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndSession: fn(
+        EndSession: fn (
             self: *const IPhotoAcquireProgressCB,
             hr: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeleteAfterAcquire: fn(
+        GetDeleteAfterAcquire: fn (
             self: *const IPhotoAcquireProgressCB,
             pfDeleteAfterAcquire: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ErrorAdvise: fn(
+        ErrorAdvise: fn (
             self: *const IPhotoAcquireProgressCB,
             hr: HRESULT,
             pszErrorMessage: ?[*:0]const u16,
             nMessageType: ERROR_ADVISE_MESSAGE_TYPE,
             pnErrorAdviseResult: ?*ERROR_ADVISE_RESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetUserInput: fn(
+        GetUserInput: fn (
             self: *const IPhotoAcquireProgressCB,
             riidType: ?*const Guid,
             pUnknown: ?*IUnknown,
@@ -377,85 +381,87 @@ pub const IPhotoAcquireProgressCB = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireProgressCB_Cancelled(self: *const T, pfCancelled: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).Cancelled(@ptrCast(*const IPhotoAcquireProgressCB, self), pfCancelled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireProgressCB_StartEnumeration(self: *const T, pPhotoAcquireSource: ?*IPhotoAcquireSource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).StartEnumeration(@ptrCast(*const IPhotoAcquireProgressCB, self), pPhotoAcquireSource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireProgressCB_FoundItem(self: *const T, pPhotoAcquireItem: ?*IPhotoAcquireItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).FoundItem(@ptrCast(*const IPhotoAcquireProgressCB, self), pPhotoAcquireItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireProgressCB_EndEnumeration(self: *const T, hr: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).EndEnumeration(@ptrCast(*const IPhotoAcquireProgressCB, self), hr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireProgressCB_StartTransfer(self: *const T, pPhotoAcquireSource: ?*IPhotoAcquireSource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).StartTransfer(@ptrCast(*const IPhotoAcquireProgressCB, self), pPhotoAcquireSource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireProgressCB_StartItemTransfer(self: *const T, nItemIndex: u32, pPhotoAcquireItem: ?*IPhotoAcquireItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).StartItemTransfer(@ptrCast(*const IPhotoAcquireProgressCB, self), nItemIndex, pPhotoAcquireItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireProgressCB_DirectoryCreated(self: *const T, pszDirectory: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).DirectoryCreated(@ptrCast(*const IPhotoAcquireProgressCB, self), pszDirectory);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireProgressCB_UpdateTransferPercent(self: *const T, fOverall: BOOL, nPercent: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).UpdateTransferPercent(@ptrCast(*const IPhotoAcquireProgressCB, self), fOverall, nPercent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireProgressCB_EndItemTransfer(self: *const T, nItemIndex: u32, pPhotoAcquireItem: ?*IPhotoAcquireItem, hr: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).EndItemTransfer(@ptrCast(*const IPhotoAcquireProgressCB, self), nItemIndex, pPhotoAcquireItem, hr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireProgressCB_EndTransfer(self: *const T, hr: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).EndTransfer(@ptrCast(*const IPhotoAcquireProgressCB, self), hr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireProgressCB_StartDelete(self: *const T, pPhotoAcquireSource: ?*IPhotoAcquireSource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).StartDelete(@ptrCast(*const IPhotoAcquireProgressCB, self), pPhotoAcquireSource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireProgressCB_StartItemDelete(self: *const T, nItemIndex: u32, pPhotoAcquireItem: ?*IPhotoAcquireItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).StartItemDelete(@ptrCast(*const IPhotoAcquireProgressCB, self), nItemIndex, pPhotoAcquireItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireProgressCB_UpdateDeletePercent(self: *const T, nPercent: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).UpdateDeletePercent(@ptrCast(*const IPhotoAcquireProgressCB, self), nPercent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireProgressCB_EndItemDelete(self: *const T, nItemIndex: u32, pPhotoAcquireItem: ?*IPhotoAcquireItem, hr: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).EndItemDelete(@ptrCast(*const IPhotoAcquireProgressCB, self), nItemIndex, pPhotoAcquireItem, hr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireProgressCB_EndDelete(self: *const T, hr: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).EndDelete(@ptrCast(*const IPhotoAcquireProgressCB, self), hr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireProgressCB_EndSession(self: *const T, hr: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).EndSession(@ptrCast(*const IPhotoAcquireProgressCB, self), hr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireProgressCB_GetDeleteAfterAcquire(self: *const T, pfDeleteAfterAcquire: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).GetDeleteAfterAcquire(@ptrCast(*const IPhotoAcquireProgressCB, self), pfDeleteAfterAcquire);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireProgressCB_ErrorAdvise(self: *const T, hr: HRESULT, pszErrorMessage: ?[*:0]const u16, nMessageType: ERROR_ADVISE_MESSAGE_TYPE, pnErrorAdviseResult: ?*ERROR_ADVISE_RESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).ErrorAdvise(@ptrCast(*const IPhotoAcquireProgressCB, self), hr, pszErrorMessage, nMessageType, pnErrorAdviseResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireProgressCB_GetUserInput(self: *const T, riidType: ?*const Guid, pUnknown: ?*IUnknown, pPropVarResult: ?*PROPVARIANT, pPropVarDefault: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).GetUserInput(@ptrCast(*const IPhotoAcquireProgressCB, self), riidType, pUnknown, pPropVarResult, pPropVarDefault);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireProgressCB_Cancelled(self: *const T, pfCancelled: ?*BOOL) HRESULT {
+                return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).Cancelled(@ptrCast(*const IPhotoAcquireProgressCB, self), pfCancelled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireProgressCB_StartEnumeration(self: *const T, pPhotoAcquireSource: ?*IPhotoAcquireSource) HRESULT {
+                return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).StartEnumeration(@ptrCast(*const IPhotoAcquireProgressCB, self), pPhotoAcquireSource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireProgressCB_FoundItem(self: *const T, pPhotoAcquireItem: ?*IPhotoAcquireItem) HRESULT {
+                return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).FoundItem(@ptrCast(*const IPhotoAcquireProgressCB, self), pPhotoAcquireItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireProgressCB_EndEnumeration(self: *const T, hr: HRESULT) HRESULT {
+                return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).EndEnumeration(@ptrCast(*const IPhotoAcquireProgressCB, self), hr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireProgressCB_StartTransfer(self: *const T, pPhotoAcquireSource: ?*IPhotoAcquireSource) HRESULT {
+                return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).StartTransfer(@ptrCast(*const IPhotoAcquireProgressCB, self), pPhotoAcquireSource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireProgressCB_StartItemTransfer(self: *const T, nItemIndex: u32, pPhotoAcquireItem: ?*IPhotoAcquireItem) HRESULT {
+                return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).StartItemTransfer(@ptrCast(*const IPhotoAcquireProgressCB, self), nItemIndex, pPhotoAcquireItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireProgressCB_DirectoryCreated(self: *const T, pszDirectory: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).DirectoryCreated(@ptrCast(*const IPhotoAcquireProgressCB, self), pszDirectory);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireProgressCB_UpdateTransferPercent(self: *const T, fOverall: BOOL, nPercent: u32) HRESULT {
+                return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).UpdateTransferPercent(@ptrCast(*const IPhotoAcquireProgressCB, self), fOverall, nPercent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireProgressCB_EndItemTransfer(self: *const T, nItemIndex: u32, pPhotoAcquireItem: ?*IPhotoAcquireItem, hr: HRESULT) HRESULT {
+                return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).EndItemTransfer(@ptrCast(*const IPhotoAcquireProgressCB, self), nItemIndex, pPhotoAcquireItem, hr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireProgressCB_EndTransfer(self: *const T, hr: HRESULT) HRESULT {
+                return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).EndTransfer(@ptrCast(*const IPhotoAcquireProgressCB, self), hr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireProgressCB_StartDelete(self: *const T, pPhotoAcquireSource: ?*IPhotoAcquireSource) HRESULT {
+                return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).StartDelete(@ptrCast(*const IPhotoAcquireProgressCB, self), pPhotoAcquireSource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireProgressCB_StartItemDelete(self: *const T, nItemIndex: u32, pPhotoAcquireItem: ?*IPhotoAcquireItem) HRESULT {
+                return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).StartItemDelete(@ptrCast(*const IPhotoAcquireProgressCB, self), nItemIndex, pPhotoAcquireItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireProgressCB_UpdateDeletePercent(self: *const T, nPercent: u32) HRESULT {
+                return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).UpdateDeletePercent(@ptrCast(*const IPhotoAcquireProgressCB, self), nPercent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireProgressCB_EndItemDelete(self: *const T, nItemIndex: u32, pPhotoAcquireItem: ?*IPhotoAcquireItem, hr: HRESULT) HRESULT {
+                return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).EndItemDelete(@ptrCast(*const IPhotoAcquireProgressCB, self), nItemIndex, pPhotoAcquireItem, hr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireProgressCB_EndDelete(self: *const T, hr: HRESULT) HRESULT {
+                return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).EndDelete(@ptrCast(*const IPhotoAcquireProgressCB, self), hr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireProgressCB_EndSession(self: *const T, hr: HRESULT) HRESULT {
+                return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).EndSession(@ptrCast(*const IPhotoAcquireProgressCB, self), hr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireProgressCB_GetDeleteAfterAcquire(self: *const T, pfDeleteAfterAcquire: ?*BOOL) HRESULT {
+                return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).GetDeleteAfterAcquire(@ptrCast(*const IPhotoAcquireProgressCB, self), pfDeleteAfterAcquire);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireProgressCB_ErrorAdvise(self: *const T, hr: HRESULT, pszErrorMessage: ?[*:0]const u16, nMessageType: ERROR_ADVISE_MESSAGE_TYPE, pnErrorAdviseResult: ?*ERROR_ADVISE_RESULT) HRESULT {
+                return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).ErrorAdvise(@ptrCast(*const IPhotoAcquireProgressCB, self), hr, pszErrorMessage, nMessageType, pnErrorAdviseResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireProgressCB_GetUserInput(self: *const T, riidType: ?*const Guid, pUnknown: ?*IUnknown, pPropVarResult: ?*PROPVARIANT, pPropVarDefault: ?*const PROPVARIANT) HRESULT {
+                return @ptrCast(*const IPhotoAcquireProgressCB.VTable, self.vtable).GetUserInput(@ptrCast(*const IPhotoAcquireProgressCB, self), riidType, pUnknown, pPropVarResult, pPropVarDefault);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -464,19 +470,21 @@ pub const IID_IPhotoProgressActionCB = &IID_IPhotoProgressActionCB_Value;
 pub const IPhotoProgressActionCB = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        DoAction: fn(
+        DoAction: fn (
             self: *const IPhotoProgressActionCB,
             hWndParent: ?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressActionCB_DoAction(self: *const T, hWndParent: ?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoProgressActionCB.VTable, self.vtable).DoAction(@ptrCast(*const IPhotoProgressActionCB, self), hWndParent);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoProgressActionCB_DoAction(self: *const T, hWndParent: ?HWND) HRESULT {
+                return @ptrCast(*const IPhotoProgressActionCB.VTable, self.vtable).DoAction(@ptrCast(*const IPhotoProgressActionCB, self), hWndParent);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -501,81 +509,81 @@ pub const IID_IPhotoProgressDialog = &IID_IPhotoProgressDialog_Value;
 pub const IPhotoProgressDialog = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Create: fn(
+        Create: fn (
             self: *const IPhotoProgressDialog,
             hwndParent: ?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetWindow: fn(
+        GetWindow: fn (
             self: *const IPhotoProgressDialog,
             phwndProgressDialog: ?*?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Destroy: fn(
+        Destroy: fn (
             self: *const IPhotoProgressDialog,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetTitle: fn(
+        SetTitle: fn (
             self: *const IPhotoProgressDialog,
             pszTitle: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ShowCheckbox: fn(
+        ShowCheckbox: fn (
             self: *const IPhotoProgressDialog,
             nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID,
             fShow: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCheckboxText: fn(
+        SetCheckboxText: fn (
             self: *const IPhotoProgressDialog,
             nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID,
             pszCheckboxText: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCheckboxCheck: fn(
+        SetCheckboxCheck: fn (
             self: *const IPhotoProgressDialog,
             nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID,
             fChecked: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCheckboxTooltip: fn(
+        SetCheckboxTooltip: fn (
             self: *const IPhotoProgressDialog,
             nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID,
             pszCheckboxTooltipText: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsCheckboxChecked: fn(
+        IsCheckboxChecked: fn (
             self: *const IPhotoProgressDialog,
             nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID,
             pfChecked: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCaption: fn(
+        SetCaption: fn (
             self: *const IPhotoProgressDialog,
             pszTitle: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetImage: fn(
+        SetImage: fn (
             self: *const IPhotoProgressDialog,
             nImageType: PROGRESS_DIALOG_IMAGE_TYPE,
             hIcon: ?HICON,
             hBitmap: ?HBITMAP,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPercentComplete: fn(
+        SetPercentComplete: fn (
             self: *const IPhotoProgressDialog,
             nPercent: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProgressText: fn(
+        SetProgressText: fn (
             self: *const IPhotoProgressDialog,
             pszProgressText: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetActionLinkCallback: fn(
+        SetActionLinkCallback: fn (
             self: *const IPhotoProgressDialog,
             pPhotoProgressActionCB: ?*IPhotoProgressActionCB,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetActionLinkText: fn(
+        SetActionLinkText: fn (
             self: *const IPhotoProgressDialog,
             pszCaption: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ShowActionLink: fn(
+        ShowActionLink: fn (
             self: *const IPhotoProgressDialog,
             fShow: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsCancelled: fn(
+        IsCancelled: fn (
             self: *const IPhotoProgressDialog,
             pfCancelled: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetUserInput: fn(
+        GetUserInput: fn (
             self: *const IPhotoProgressDialog,
             riidType: ?*const Guid,
             pUnknown: ?*IUnknown,
@@ -584,81 +592,83 @@ pub const IPhotoProgressDialog = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressDialog_Create(self: *const T, hwndParent: ?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).Create(@ptrCast(*const IPhotoProgressDialog, self), hwndParent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressDialog_GetWindow(self: *const T, phwndProgressDialog: ?*?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).GetWindow(@ptrCast(*const IPhotoProgressDialog, self), phwndProgressDialog);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressDialog_Destroy(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).Destroy(@ptrCast(*const IPhotoProgressDialog, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressDialog_SetTitle(self: *const T, pszTitle: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetTitle(@ptrCast(*const IPhotoProgressDialog, self), pszTitle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressDialog_ShowCheckbox(self: *const T, nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID, fShow: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).ShowCheckbox(@ptrCast(*const IPhotoProgressDialog, self), nCheckboxId, fShow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressDialog_SetCheckboxText(self: *const T, nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID, pszCheckboxText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetCheckboxText(@ptrCast(*const IPhotoProgressDialog, self), nCheckboxId, pszCheckboxText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressDialog_SetCheckboxCheck(self: *const T, nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID, fChecked: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetCheckboxCheck(@ptrCast(*const IPhotoProgressDialog, self), nCheckboxId, fChecked);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressDialog_SetCheckboxTooltip(self: *const T, nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID, pszCheckboxTooltipText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetCheckboxTooltip(@ptrCast(*const IPhotoProgressDialog, self), nCheckboxId, pszCheckboxTooltipText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressDialog_IsCheckboxChecked(self: *const T, nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID, pfChecked: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).IsCheckboxChecked(@ptrCast(*const IPhotoProgressDialog, self), nCheckboxId, pfChecked);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressDialog_SetCaption(self: *const T, pszTitle: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetCaption(@ptrCast(*const IPhotoProgressDialog, self), pszTitle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressDialog_SetImage(self: *const T, nImageType: PROGRESS_DIALOG_IMAGE_TYPE, hIcon: ?HICON, hBitmap: ?HBITMAP) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetImage(@ptrCast(*const IPhotoProgressDialog, self), nImageType, hIcon, hBitmap);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressDialog_SetPercentComplete(self: *const T, nPercent: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetPercentComplete(@ptrCast(*const IPhotoProgressDialog, self), nPercent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressDialog_SetProgressText(self: *const T, pszProgressText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetProgressText(@ptrCast(*const IPhotoProgressDialog, self), pszProgressText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressDialog_SetActionLinkCallback(self: *const T, pPhotoProgressActionCB: ?*IPhotoProgressActionCB) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetActionLinkCallback(@ptrCast(*const IPhotoProgressDialog, self), pPhotoProgressActionCB);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressDialog_SetActionLinkText(self: *const T, pszCaption: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetActionLinkText(@ptrCast(*const IPhotoProgressDialog, self), pszCaption);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressDialog_ShowActionLink(self: *const T, fShow: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).ShowActionLink(@ptrCast(*const IPhotoProgressDialog, self), fShow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressDialog_IsCancelled(self: *const T, pfCancelled: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).IsCancelled(@ptrCast(*const IPhotoProgressDialog, self), pfCancelled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoProgressDialog_GetUserInput(self: *const T, riidType: ?*const Guid, pUnknown: ?*IUnknown, pPropVarResult: ?*PROPVARIANT, pPropVarDefault: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).GetUserInput(@ptrCast(*const IPhotoProgressDialog, self), riidType, pUnknown, pPropVarResult, pPropVarDefault);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoProgressDialog_Create(self: *const T, hwndParent: ?HWND) HRESULT {
+                return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).Create(@ptrCast(*const IPhotoProgressDialog, self), hwndParent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoProgressDialog_GetWindow(self: *const T, phwndProgressDialog: ?*?HWND) HRESULT {
+                return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).GetWindow(@ptrCast(*const IPhotoProgressDialog, self), phwndProgressDialog);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoProgressDialog_Destroy(self: *const T) HRESULT {
+                return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).Destroy(@ptrCast(*const IPhotoProgressDialog, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoProgressDialog_SetTitle(self: *const T, pszTitle: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetTitle(@ptrCast(*const IPhotoProgressDialog, self), pszTitle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoProgressDialog_ShowCheckbox(self: *const T, nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID, fShow: BOOL) HRESULT {
+                return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).ShowCheckbox(@ptrCast(*const IPhotoProgressDialog, self), nCheckboxId, fShow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoProgressDialog_SetCheckboxText(self: *const T, nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID, pszCheckboxText: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetCheckboxText(@ptrCast(*const IPhotoProgressDialog, self), nCheckboxId, pszCheckboxText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoProgressDialog_SetCheckboxCheck(self: *const T, nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID, fChecked: BOOL) HRESULT {
+                return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetCheckboxCheck(@ptrCast(*const IPhotoProgressDialog, self), nCheckboxId, fChecked);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoProgressDialog_SetCheckboxTooltip(self: *const T, nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID, pszCheckboxTooltipText: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetCheckboxTooltip(@ptrCast(*const IPhotoProgressDialog, self), nCheckboxId, pszCheckboxTooltipText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoProgressDialog_IsCheckboxChecked(self: *const T, nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID, pfChecked: ?*BOOL) HRESULT {
+                return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).IsCheckboxChecked(@ptrCast(*const IPhotoProgressDialog, self), nCheckboxId, pfChecked);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoProgressDialog_SetCaption(self: *const T, pszTitle: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetCaption(@ptrCast(*const IPhotoProgressDialog, self), pszTitle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoProgressDialog_SetImage(self: *const T, nImageType: PROGRESS_DIALOG_IMAGE_TYPE, hIcon: ?HICON, hBitmap: ?HBITMAP) HRESULT {
+                return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetImage(@ptrCast(*const IPhotoProgressDialog, self), nImageType, hIcon, hBitmap);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoProgressDialog_SetPercentComplete(self: *const T, nPercent: i32) HRESULT {
+                return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetPercentComplete(@ptrCast(*const IPhotoProgressDialog, self), nPercent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoProgressDialog_SetProgressText(self: *const T, pszProgressText: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetProgressText(@ptrCast(*const IPhotoProgressDialog, self), pszProgressText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoProgressDialog_SetActionLinkCallback(self: *const T, pPhotoProgressActionCB: ?*IPhotoProgressActionCB) HRESULT {
+                return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetActionLinkCallback(@ptrCast(*const IPhotoProgressDialog, self), pPhotoProgressActionCB);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoProgressDialog_SetActionLinkText(self: *const T, pszCaption: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).SetActionLinkText(@ptrCast(*const IPhotoProgressDialog, self), pszCaption);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoProgressDialog_ShowActionLink(self: *const T, fShow: BOOL) HRESULT {
+                return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).ShowActionLink(@ptrCast(*const IPhotoProgressDialog, self), fShow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoProgressDialog_IsCancelled(self: *const T, pfCancelled: ?*BOOL) HRESULT {
+                return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).IsCancelled(@ptrCast(*const IPhotoProgressDialog, self), pfCancelled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoProgressDialog_GetUserInput(self: *const T, riidType: ?*const Guid, pUnknown: ?*IUnknown, pPropVarResult: ?*PROPVARIANT, pPropVarDefault: ?*const PROPVARIANT) HRESULT {
+                return @ptrCast(*const IPhotoProgressDialog.VTable, self.vtable).GetUserInput(@ptrCast(*const IPhotoProgressDialog, self), riidType, pUnknown, pPropVarResult, pPropVarDefault);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -667,81 +677,83 @@ pub const IID_IPhotoAcquireSource = &IID_IPhotoAcquireSource_Value;
 pub const IPhotoAcquireSource = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFriendlyName: fn(
+        GetFriendlyName: fn (
             self: *const IPhotoAcquireSource,
             pbstrFriendlyName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeviceIcons: fn(
+        GetDeviceIcons: fn (
             self: *const IPhotoAcquireSource,
             nSize: u32,
             phLargeIcon: ?*?HICON,
             phSmallIcon: ?*?HICON,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InitializeItemList: fn(
+        InitializeItemList: fn (
             self: *const IPhotoAcquireSource,
             fForceEnumeration: BOOL,
             pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB,
             pnItemCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetItemCount: fn(
+        GetItemCount: fn (
             self: *const IPhotoAcquireSource,
             pnItemCount: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetItemAt: fn(
+        GetItemAt: fn (
             self: *const IPhotoAcquireSource,
             nIndex: u32,
             ppPhotoAcquireItem: ?*?*IPhotoAcquireItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPhotoAcquireSettings: fn(
+        GetPhotoAcquireSettings: fn (
             self: *const IPhotoAcquireSource,
             ppPhotoAcquireSettings: ?*?*IPhotoAcquireSettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeviceId: fn(
+        GetDeviceId: fn (
             self: *const IPhotoAcquireSource,
             pbstrDeviceId: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BindToObject: fn(
+        BindToObject: fn (
             self: *const IPhotoAcquireSource,
             riid: ?*const Guid,
             ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSource_GetFriendlyName(self: *const T, pbstrFriendlyName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetFriendlyName(@ptrCast(*const IPhotoAcquireSource, self), pbstrFriendlyName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSource_GetDeviceIcons(self: *const T, nSize: u32, phLargeIcon: ?*?HICON, phSmallIcon: ?*?HICON) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetDeviceIcons(@ptrCast(*const IPhotoAcquireSource, self), nSize, phLargeIcon, phSmallIcon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSource_InitializeItemList(self: *const T, fForceEnumeration: BOOL, pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB, pnItemCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).InitializeItemList(@ptrCast(*const IPhotoAcquireSource, self), fForceEnumeration, pPhotoAcquireProgressCB, pnItemCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSource_GetItemCount(self: *const T, pnItemCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetItemCount(@ptrCast(*const IPhotoAcquireSource, self), pnItemCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSource_GetItemAt(self: *const T, nIndex: u32, ppPhotoAcquireItem: ?*?*IPhotoAcquireItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetItemAt(@ptrCast(*const IPhotoAcquireSource, self), nIndex, ppPhotoAcquireItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSource_GetPhotoAcquireSettings(self: *const T, ppPhotoAcquireSettings: ?*?*IPhotoAcquireSettings) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetPhotoAcquireSettings(@ptrCast(*const IPhotoAcquireSource, self), ppPhotoAcquireSettings);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSource_GetDeviceId(self: *const T, pbstrDeviceId: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetDeviceId(@ptrCast(*const IPhotoAcquireSource, self), pbstrDeviceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSource_BindToObject(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).BindToObject(@ptrCast(*const IPhotoAcquireSource, self), riid, ppv);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSource_GetFriendlyName(self: *const T, pbstrFriendlyName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetFriendlyName(@ptrCast(*const IPhotoAcquireSource, self), pbstrFriendlyName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSource_GetDeviceIcons(self: *const T, nSize: u32, phLargeIcon: ?*?HICON, phSmallIcon: ?*?HICON) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetDeviceIcons(@ptrCast(*const IPhotoAcquireSource, self), nSize, phLargeIcon, phSmallIcon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSource_InitializeItemList(self: *const T, fForceEnumeration: BOOL, pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB, pnItemCount: ?*u32) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).InitializeItemList(@ptrCast(*const IPhotoAcquireSource, self), fForceEnumeration, pPhotoAcquireProgressCB, pnItemCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSource_GetItemCount(self: *const T, pnItemCount: ?*u32) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetItemCount(@ptrCast(*const IPhotoAcquireSource, self), pnItemCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSource_GetItemAt(self: *const T, nIndex: u32, ppPhotoAcquireItem: ?*?*IPhotoAcquireItem) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetItemAt(@ptrCast(*const IPhotoAcquireSource, self), nIndex, ppPhotoAcquireItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSource_GetPhotoAcquireSettings(self: *const T, ppPhotoAcquireSettings: ?*?*IPhotoAcquireSettings) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetPhotoAcquireSettings(@ptrCast(*const IPhotoAcquireSource, self), ppPhotoAcquireSettings);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSource_GetDeviceId(self: *const T, pbstrDeviceId: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).GetDeviceId(@ptrCast(*const IPhotoAcquireSource, self), pbstrDeviceId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSource_BindToObject(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSource.VTable, self.vtable).BindToObject(@ptrCast(*const IPhotoAcquireSource, self), riid, ppv);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -750,12 +762,12 @@ pub const IID_IPhotoAcquire = &IID_IPhotoAcquire_Value;
 pub const IPhotoAcquire = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreatePhotoSource: fn(
+        CreatePhotoSource: fn (
             self: *const IPhotoAcquire,
             pszDevice: ?[*:0]const u16,
             ppPhotoAcquireSource: ?*?*IPhotoAcquireSource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Acquire: fn(
+        Acquire: fn (
             self: *const IPhotoAcquire,
             pPhotoAcquireSource: ?*IPhotoAcquireSource,
             fShowProgress: BOOL,
@@ -763,27 +775,29 @@ pub const IPhotoAcquire = extern struct {
             pszApplicationName: ?[*:0]const u16,
             pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumResults: fn(
+        EnumResults: fn (
             self: *const IPhotoAcquire,
             ppEnumFilePaths: ?*?*IEnumString,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquire_CreatePhotoSource(self: *const T, pszDevice: ?[*:0]const u16, ppPhotoAcquireSource: ?*?*IPhotoAcquireSource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquire.VTable, self.vtable).CreatePhotoSource(@ptrCast(*const IPhotoAcquire, self), pszDevice, ppPhotoAcquireSource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquire_Acquire(self: *const T, pPhotoAcquireSource: ?*IPhotoAcquireSource, fShowProgress: BOOL, hWndParent: ?HWND, pszApplicationName: ?[*:0]const u16, pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquire.VTable, self.vtable).Acquire(@ptrCast(*const IPhotoAcquire, self), pPhotoAcquireSource, fShowProgress, hWndParent, pszApplicationName, pPhotoAcquireProgressCB);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquire_EnumResults(self: *const T, ppEnumFilePaths: ?*?*IEnumString) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquire.VTable, self.vtable).EnumResults(@ptrCast(*const IPhotoAcquire, self), ppEnumFilePaths);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquire_CreatePhotoSource(self: *const T, pszDevice: ?[*:0]const u16, ppPhotoAcquireSource: ?*?*IPhotoAcquireSource) HRESULT {
+                return @ptrCast(*const IPhotoAcquire.VTable, self.vtable).CreatePhotoSource(@ptrCast(*const IPhotoAcquire, self), pszDevice, ppPhotoAcquireSource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquire_Acquire(self: *const T, pPhotoAcquireSource: ?*IPhotoAcquireSource, fShowProgress: BOOL, hWndParent: ?HWND, pszApplicationName: ?[*:0]const u16, pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB) HRESULT {
+                return @ptrCast(*const IPhotoAcquire.VTable, self.vtable).Acquire(@ptrCast(*const IPhotoAcquire, self), pPhotoAcquireSource, fShowProgress, hWndParent, pszApplicationName, pPhotoAcquireProgressCB);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquire_EnumResults(self: *const T, ppEnumFilePaths: ?*?*IEnumString) HRESULT {
+                return @ptrCast(*const IPhotoAcquire.VTable, self.vtable).EnumResults(@ptrCast(*const IPhotoAcquire, self), ppEnumFilePaths);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -792,115 +806,117 @@ pub const IID_IPhotoAcquireSettings = &IID_IPhotoAcquireSettings_Value;
 pub const IPhotoAcquireSettings = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        InitializeFromRegistry: fn(
+        InitializeFromRegistry: fn (
             self: *const IPhotoAcquireSettings,
             pszRegistryKey: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetFlags: fn(
+        SetFlags: fn (
             self: *const IPhotoAcquireSettings,
             dwPhotoAcquireFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOutputFilenameTemplate: fn(
+        SetOutputFilenameTemplate: fn (
             self: *const IPhotoAcquireSettings,
             pszTemplate: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSequencePaddingWidth: fn(
+        SetSequencePaddingWidth: fn (
             self: *const IPhotoAcquireSettings,
             dwWidth: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSequenceZeroPadding: fn(
+        SetSequenceZeroPadding: fn (
             self: *const IPhotoAcquireSettings,
             fZeroPad: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetGroupTag: fn(
+        SetGroupTag: fn (
             self: *const IPhotoAcquireSettings,
             pszGroupTag: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAcquisitionTime: fn(
+        SetAcquisitionTime: fn (
             self: *const IPhotoAcquireSettings,
             pftAcquisitionTime: ?*const FILETIME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFlags: fn(
+        GetFlags: fn (
             self: *const IPhotoAcquireSettings,
             pdwPhotoAcquireFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputFilenameTemplate: fn(
+        GetOutputFilenameTemplate: fn (
             self: *const IPhotoAcquireSettings,
             pbstrTemplate: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSequencePaddingWidth: fn(
+        GetSequencePaddingWidth: fn (
             self: *const IPhotoAcquireSettings,
             pdwWidth: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSequenceZeroPadding: fn(
+        GetSequenceZeroPadding: fn (
             self: *const IPhotoAcquireSettings,
             pfZeroPad: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetGroupTag: fn(
+        GetGroupTag: fn (
             self: *const IPhotoAcquireSettings,
             pbstrGroupTag: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAcquisitionTime: fn(
+        GetAcquisitionTime: fn (
             self: *const IPhotoAcquireSettings,
             pftAcquisitionTime: ?*FILETIME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSettings_InitializeFromRegistry(self: *const T, pszRegistryKey: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).InitializeFromRegistry(@ptrCast(*const IPhotoAcquireSettings, self), pszRegistryKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSettings_SetFlags(self: *const T, dwPhotoAcquireFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).SetFlags(@ptrCast(*const IPhotoAcquireSettings, self), dwPhotoAcquireFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSettings_SetOutputFilenameTemplate(self: *const T, pszTemplate: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).SetOutputFilenameTemplate(@ptrCast(*const IPhotoAcquireSettings, self), pszTemplate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSettings_SetSequencePaddingWidth(self: *const T, dwWidth: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).SetSequencePaddingWidth(@ptrCast(*const IPhotoAcquireSettings, self), dwWidth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSettings_SetSequenceZeroPadding(self: *const T, fZeroPad: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).SetSequenceZeroPadding(@ptrCast(*const IPhotoAcquireSettings, self), fZeroPad);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSettings_SetGroupTag(self: *const T, pszGroupTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).SetGroupTag(@ptrCast(*const IPhotoAcquireSettings, self), pszGroupTag);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSettings_SetAcquisitionTime(self: *const T, pftAcquisitionTime: ?*const FILETIME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).SetAcquisitionTime(@ptrCast(*const IPhotoAcquireSettings, self), pftAcquisitionTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSettings_GetFlags(self: *const T, pdwPhotoAcquireFlags: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).GetFlags(@ptrCast(*const IPhotoAcquireSettings, self), pdwPhotoAcquireFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSettings_GetOutputFilenameTemplate(self: *const T, pbstrTemplate: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).GetOutputFilenameTemplate(@ptrCast(*const IPhotoAcquireSettings, self), pbstrTemplate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSettings_GetSequencePaddingWidth(self: *const T, pdwWidth: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).GetSequencePaddingWidth(@ptrCast(*const IPhotoAcquireSettings, self), pdwWidth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSettings_GetSequenceZeroPadding(self: *const T, pfZeroPad: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).GetSequenceZeroPadding(@ptrCast(*const IPhotoAcquireSettings, self), pfZeroPad);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSettings_GetGroupTag(self: *const T, pbstrGroupTag: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).GetGroupTag(@ptrCast(*const IPhotoAcquireSettings, self), pbstrGroupTag);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireSettings_GetAcquisitionTime(self: *const T, pftAcquisitionTime: ?*FILETIME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).GetAcquisitionTime(@ptrCast(*const IPhotoAcquireSettings, self), pftAcquisitionTime);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSettings_InitializeFromRegistry(self: *const T, pszRegistryKey: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).InitializeFromRegistry(@ptrCast(*const IPhotoAcquireSettings, self), pszRegistryKey);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSettings_SetFlags(self: *const T, dwPhotoAcquireFlags: u32) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).SetFlags(@ptrCast(*const IPhotoAcquireSettings, self), dwPhotoAcquireFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSettings_SetOutputFilenameTemplate(self: *const T, pszTemplate: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).SetOutputFilenameTemplate(@ptrCast(*const IPhotoAcquireSettings, self), pszTemplate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSettings_SetSequencePaddingWidth(self: *const T, dwWidth: u32) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).SetSequencePaddingWidth(@ptrCast(*const IPhotoAcquireSettings, self), dwWidth);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSettings_SetSequenceZeroPadding(self: *const T, fZeroPad: BOOL) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).SetSequenceZeroPadding(@ptrCast(*const IPhotoAcquireSettings, self), fZeroPad);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSettings_SetGroupTag(self: *const T, pszGroupTag: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).SetGroupTag(@ptrCast(*const IPhotoAcquireSettings, self), pszGroupTag);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSettings_SetAcquisitionTime(self: *const T, pftAcquisitionTime: ?*const FILETIME) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).SetAcquisitionTime(@ptrCast(*const IPhotoAcquireSettings, self), pftAcquisitionTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSettings_GetFlags(self: *const T, pdwPhotoAcquireFlags: ?*u32) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).GetFlags(@ptrCast(*const IPhotoAcquireSettings, self), pdwPhotoAcquireFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSettings_GetOutputFilenameTemplate(self: *const T, pbstrTemplate: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).GetOutputFilenameTemplate(@ptrCast(*const IPhotoAcquireSettings, self), pbstrTemplate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSettings_GetSequencePaddingWidth(self: *const T, pdwWidth: ?*u32) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).GetSequencePaddingWidth(@ptrCast(*const IPhotoAcquireSettings, self), pdwWidth);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSettings_GetSequenceZeroPadding(self: *const T, pfZeroPad: ?*BOOL) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).GetSequenceZeroPadding(@ptrCast(*const IPhotoAcquireSettings, self), pfZeroPad);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSettings_GetGroupTag(self: *const T, pbstrGroupTag: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).GetGroupTag(@ptrCast(*const IPhotoAcquireSettings, self), pbstrGroupTag);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireSettings_GetAcquisitionTime(self: *const T, pftAcquisitionTime: ?*FILETIME) HRESULT {
+                return @ptrCast(*const IPhotoAcquireSettings.VTable, self.vtable).GetAcquisitionTime(@ptrCast(*const IPhotoAcquireSettings, self), pftAcquisitionTime);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -909,51 +925,53 @@ pub const IID_IPhotoAcquireOptionsDialog = &IID_IPhotoAcquireOptionsDialog_Value
 pub const IPhotoAcquireOptionsDialog = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
+        Initialize: fn (
             self: *const IPhotoAcquireOptionsDialog,
             pszRegistryRoot: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Create: fn(
+        Create: fn (
             self: *const IPhotoAcquireOptionsDialog,
             hWndParent: ?HWND,
             phWndDialog: ?*?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Destroy: fn(
+        Destroy: fn (
             self: *const IPhotoAcquireOptionsDialog,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DoModal: fn(
+        DoModal: fn (
             self: *const IPhotoAcquireOptionsDialog,
             hWndParent: ?HWND,
             ppnReturnCode: ?*isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SaveData: fn(
+        SaveData: fn (
             self: *const IPhotoAcquireOptionsDialog,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireOptionsDialog_Initialize(self: *const T, pszRegistryRoot: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireOptionsDialog.VTable, self.vtable).Initialize(@ptrCast(*const IPhotoAcquireOptionsDialog, self), pszRegistryRoot);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireOptionsDialog_Create(self: *const T, hWndParent: ?HWND, phWndDialog: ?*?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireOptionsDialog.VTable, self.vtable).Create(@ptrCast(*const IPhotoAcquireOptionsDialog, self), hWndParent, phWndDialog);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireOptionsDialog_Destroy(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireOptionsDialog.VTable, self.vtable).Destroy(@ptrCast(*const IPhotoAcquireOptionsDialog, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireOptionsDialog_DoModal(self: *const T, hWndParent: ?HWND, ppnReturnCode: ?*isize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireOptionsDialog.VTable, self.vtable).DoModal(@ptrCast(*const IPhotoAcquireOptionsDialog, self), hWndParent, ppnReturnCode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireOptionsDialog_SaveData(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireOptionsDialog.VTable, self.vtable).SaveData(@ptrCast(*const IPhotoAcquireOptionsDialog, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireOptionsDialog_Initialize(self: *const T, pszRegistryRoot: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPhotoAcquireOptionsDialog.VTable, self.vtable).Initialize(@ptrCast(*const IPhotoAcquireOptionsDialog, self), pszRegistryRoot);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireOptionsDialog_Create(self: *const T, hWndParent: ?HWND, phWndDialog: ?*?HWND) HRESULT {
+                return @ptrCast(*const IPhotoAcquireOptionsDialog.VTable, self.vtable).Create(@ptrCast(*const IPhotoAcquireOptionsDialog, self), hWndParent, phWndDialog);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireOptionsDialog_Destroy(self: *const T) HRESULT {
+                return @ptrCast(*const IPhotoAcquireOptionsDialog.VTable, self.vtable).Destroy(@ptrCast(*const IPhotoAcquireOptionsDialog, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireOptionsDialog_DoModal(self: *const T, hWndParent: ?HWND, ppnReturnCode: ?*isize) HRESULT {
+                return @ptrCast(*const IPhotoAcquireOptionsDialog.VTable, self.vtable).DoModal(@ptrCast(*const IPhotoAcquireOptionsDialog, self), hWndParent, ppnReturnCode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireOptionsDialog_SaveData(self: *const T) HRESULT {
+                return @ptrCast(*const IPhotoAcquireOptionsDialog.VTable, self.vtable).SaveData(@ptrCast(*const IPhotoAcquireOptionsDialog, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -979,15 +997,15 @@ pub const IID_IPhotoAcquireDeviceSelectionDialog = &IID_IPhotoAcquireDeviceSelec
 pub const IPhotoAcquireDeviceSelectionDialog = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetTitle: fn(
+        SetTitle: fn (
             self: *const IPhotoAcquireDeviceSelectionDialog,
             pszTitle: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSubmitButtonText: fn(
+        SetSubmitButtonText: fn (
             self: *const IPhotoAcquireDeviceSelectionDialog,
             pszSubmitButtonText: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DoModal: fn(
+        DoModal: fn (
             self: *const IPhotoAcquireDeviceSelectionDialog,
             hWndParent: ?HWND,
             dwDeviceFlags: u32,
@@ -996,21 +1014,23 @@ pub const IPhotoAcquireDeviceSelectionDialog = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireDeviceSelectionDialog_SetTitle(self: *const T, pszTitle: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireDeviceSelectionDialog.VTable, self.vtable).SetTitle(@ptrCast(*const IPhotoAcquireDeviceSelectionDialog, self), pszTitle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireDeviceSelectionDialog_SetSubmitButtonText(self: *const T, pszSubmitButtonText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireDeviceSelectionDialog.VTable, self.vtable).SetSubmitButtonText(@ptrCast(*const IPhotoAcquireDeviceSelectionDialog, self), pszSubmitButtonText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquireDeviceSelectionDialog_DoModal(self: *const T, hWndParent: ?HWND, dwDeviceFlags: u32, pbstrDeviceId: ?*?BSTR, pnDeviceType: ?*DEVICE_SELECTION_DEVICE_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquireDeviceSelectionDialog.VTable, self.vtable).DoModal(@ptrCast(*const IPhotoAcquireDeviceSelectionDialog, self), hWndParent, dwDeviceFlags, pbstrDeviceId, pnDeviceType);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireDeviceSelectionDialog_SetTitle(self: *const T, pszTitle: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPhotoAcquireDeviceSelectionDialog.VTable, self.vtable).SetTitle(@ptrCast(*const IPhotoAcquireDeviceSelectionDialog, self), pszTitle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireDeviceSelectionDialog_SetSubmitButtonText(self: *const T, pszSubmitButtonText: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPhotoAcquireDeviceSelectionDialog.VTable, self.vtable).SetSubmitButtonText(@ptrCast(*const IPhotoAcquireDeviceSelectionDialog, self), pszSubmitButtonText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquireDeviceSelectionDialog_DoModal(self: *const T, hWndParent: ?HWND, dwDeviceFlags: u32, pbstrDeviceId: ?*?BSTR, pnDeviceType: ?*DEVICE_SELECTION_DEVICE_TYPE) HRESULT {
+                return @ptrCast(*const IPhotoAcquireDeviceSelectionDialog.VTable, self.vtable).DoModal(@ptrCast(*const IPhotoAcquireDeviceSelectionDialog, self), hWndParent, dwDeviceFlags, pbstrDeviceId, pnDeviceType);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1019,12 +1039,12 @@ pub const IID_IPhotoAcquirePlugin = &IID_IPhotoAcquirePlugin_Value;
 pub const IPhotoAcquirePlugin = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
+        Initialize: fn (
             self: *const IPhotoAcquirePlugin,
             pPhotoAcquireSource: ?*IPhotoAcquireSource,
             pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessItem: fn(
+        ProcessItem: fn (
             self: *const IPhotoAcquirePlugin,
             dwAcquireStage: u32,
             pPhotoAcquireItem: ?*IPhotoAcquireItem,
@@ -1032,38 +1052,39 @@ pub const IPhotoAcquirePlugin = extern struct {
             pszFinalFilename: ?[*:0]const u16,
             pPropertyStore: ?*IPropertyStore,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TransferComplete: fn(
+        TransferComplete: fn (
             self: *const IPhotoAcquirePlugin,
             hr: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DisplayConfigureDialog: fn(
+        DisplayConfigureDialog: fn (
             self: *const IPhotoAcquirePlugin,
             hWndParent: ?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquirePlugin_Initialize(self: *const T, pPhotoAcquireSource: ?*IPhotoAcquireSource, pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquirePlugin.VTable, self.vtable).Initialize(@ptrCast(*const IPhotoAcquirePlugin, self), pPhotoAcquireSource, pPhotoAcquireProgressCB);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquirePlugin_ProcessItem(self: *const T, dwAcquireStage: u32, pPhotoAcquireItem: ?*IPhotoAcquireItem, pOriginalItemStream: ?*IStream, pszFinalFilename: ?[*:0]const u16, pPropertyStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquirePlugin.VTable, self.vtable).ProcessItem(@ptrCast(*const IPhotoAcquirePlugin, self), dwAcquireStage, pPhotoAcquireItem, pOriginalItemStream, pszFinalFilename, pPropertyStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquirePlugin_TransferComplete(self: *const T, hr: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquirePlugin.VTable, self.vtable).TransferComplete(@ptrCast(*const IPhotoAcquirePlugin, self), hr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPhotoAcquirePlugin_DisplayConfigureDialog(self: *const T, hWndParent: ?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPhotoAcquirePlugin.VTable, self.vtable).DisplayConfigureDialog(@ptrCast(*const IPhotoAcquirePlugin, self), hWndParent);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquirePlugin_Initialize(self: *const T, pPhotoAcquireSource: ?*IPhotoAcquireSource, pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB) HRESULT {
+                return @ptrCast(*const IPhotoAcquirePlugin.VTable, self.vtable).Initialize(@ptrCast(*const IPhotoAcquirePlugin, self), pPhotoAcquireSource, pPhotoAcquireProgressCB);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquirePlugin_ProcessItem(self: *const T, dwAcquireStage: u32, pPhotoAcquireItem: ?*IPhotoAcquireItem, pOriginalItemStream: ?*IStream, pszFinalFilename: ?[*:0]const u16, pPropertyStore: ?*IPropertyStore) HRESULT {
+                return @ptrCast(*const IPhotoAcquirePlugin.VTable, self.vtable).ProcessItem(@ptrCast(*const IPhotoAcquirePlugin, self), dwAcquireStage, pPhotoAcquireItem, pOriginalItemStream, pszFinalFilename, pPropertyStore);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquirePlugin_TransferComplete(self: *const T, hr: HRESULT) HRESULT {
+                return @ptrCast(*const IPhotoAcquirePlugin.VTable, self.vtable).TransferComplete(@ptrCast(*const IPhotoAcquirePlugin, self), hr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPhotoAcquirePlugin_DisplayConfigureDialog(self: *const T, hWndParent: ?HWND) HRESULT {
+                return @ptrCast(*const IPhotoAcquirePlugin.VTable, self.vtable).DisplayConfigureDialog(@ptrCast(*const IPhotoAcquirePlugin, self), hWndParent);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -1074,13 +1095,9 @@ pub const IPhotoAcquirePlugin = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (16)
@@ -1103,9 +1120,7 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const SIZE = @import("../foundation.zig").SIZE;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

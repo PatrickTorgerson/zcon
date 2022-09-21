@@ -258,15 +258,7 @@ pub const RPC_C_QOS_CAPABILITIES = enum(u32) {
         LOCAL_MA_HINT: u1 = 0,
         SCHANNEL_FULL_AUTH_IDENTITY: u1 = 0,
     }) RPC_C_QOS_CAPABILITIES {
-        return @intToEnum(RPC_C_QOS_CAPABILITIES,
-              (if (o.DEFAULT == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.DEFAULT) else 0)
-            | (if (o.MUTUAL_AUTH == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.MUTUAL_AUTH) else 0)
-            | (if (o.MAKE_FULLSIC == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.MAKE_FULLSIC) else 0)
-            | (if (o.ANY_AUTHORITY == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.ANY_AUTHORITY) else 0)
-            | (if (o.IGNORE_DELEGATE_FAILURE == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.IGNORE_DELEGATE_FAILURE) else 0)
-            | (if (o.LOCAL_MA_HINT == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.LOCAL_MA_HINT) else 0)
-            | (if (o.SCHANNEL_FULL_AUTH_IDENTITY == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.SCHANNEL_FULL_AUTH_IDENTITY) else 0)
-        );
+        return @intToEnum(RPC_C_QOS_CAPABILITIES, (if (o.DEFAULT == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.DEFAULT) else 0) | (if (o.MUTUAL_AUTH == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.MUTUAL_AUTH) else 0) | (if (o.MAKE_FULLSIC == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.MAKE_FULLSIC) else 0) | (if (o.ANY_AUTHORITY == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.ANY_AUTHORITY) else 0) | (if (o.IGNORE_DELEGATE_FAILURE == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.IGNORE_DELEGATE_FAILURE) else 0) | (if (o.LOCAL_MA_HINT == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.LOCAL_MA_HINT) else 0) | (if (o.SCHANNEL_FULL_AUTH_IDENTITY == 1) @enumToInt(RPC_C_QOS_CAPABILITIES.SCHANNEL_FULL_AUTH_IDENTITY) else 0));
     }
 };
 pub const RPC_C_QOS_CAPABILITIES_DEFAULT = RPC_C_QOS_CAPABILITIES.DEFAULT;
@@ -303,12 +295,7 @@ pub const RPC_C_HTTP_FLAGS = enum(u32) {
         IGNORE_CERT_CN_INVALID: u1 = 0,
         ENABLE_CERT_REVOCATION_CHECK: u1 = 0,
     }) RPC_C_HTTP_FLAGS {
-        return @intToEnum(RPC_C_HTTP_FLAGS,
-              (if (o.USE_SSL == 1) @enumToInt(RPC_C_HTTP_FLAGS.USE_SSL) else 0)
-            | (if (o.USE_FIRST_AUTH_SCHEME == 1) @enumToInt(RPC_C_HTTP_FLAGS.USE_FIRST_AUTH_SCHEME) else 0)
-            | (if (o.IGNORE_CERT_CN_INVALID == 1) @enumToInt(RPC_C_HTTP_FLAGS.IGNORE_CERT_CN_INVALID) else 0)
-            | (if (o.ENABLE_CERT_REVOCATION_CHECK == 1) @enumToInt(RPC_C_HTTP_FLAGS.ENABLE_CERT_REVOCATION_CHECK) else 0)
-        );
+        return @intToEnum(RPC_C_HTTP_FLAGS, (if (o.USE_SSL == 1) @enumToInt(RPC_C_HTTP_FLAGS.USE_SSL) else 0) | (if (o.USE_FIRST_AUTH_SCHEME == 1) @enumToInt(RPC_C_HTTP_FLAGS.USE_FIRST_AUTH_SCHEME) else 0) | (if (o.IGNORE_CERT_CN_INVALID == 1) @enumToInt(RPC_C_HTTP_FLAGS.IGNORE_CERT_CN_INVALID) else 0) | (if (o.ENABLE_CERT_REVOCATION_CHECK == 1) @enumToInt(RPC_C_HTTP_FLAGS.ENABLE_CERT_REVOCATION_CHECK) else 0));
     }
 };
 pub const RPC_C_HTTP_FLAG_USE_SSL = RPC_C_HTTP_FLAGS.USE_SSL;
@@ -324,10 +311,7 @@ pub const RPC_C_HTTP_AUTHN_TARGET = enum(u32) {
         SERVER: u1 = 0,
         PROXY: u1 = 0,
     }) RPC_C_HTTP_AUTHN_TARGET {
-        return @intToEnum(RPC_C_HTTP_AUTHN_TARGET,
-              (if (o.SERVER == 1) @enumToInt(RPC_C_HTTP_AUTHN_TARGET.SERVER) else 0)
-            | (if (o.PROXY == 1) @enumToInt(RPC_C_HTTP_AUTHN_TARGET.PROXY) else 0)
-        );
+        return @intToEnum(RPC_C_HTTP_AUTHN_TARGET, (if (o.SERVER == 1) @enumToInt(RPC_C_HTTP_AUTHN_TARGET.SERVER) else 0) | (if (o.PROXY == 1) @enumToInt(RPC_C_HTTP_AUTHN_TARGET.PROXY) else 0));
     }
 };
 pub const RPC_C_HTTP_AUTHN_TARGET_SERVER = RPC_C_HTTP_AUTHN_TARGET.SERVER;
@@ -558,10 +542,7 @@ pub const RPC_BINDING_HANDLE_OPTIONS_FLAGS = enum(u32) {
         NONCAUSAL: u1 = 0,
         DONTLINGER: u1 = 0,
     }) RPC_BINDING_HANDLE_OPTIONS_FLAGS {
-        return @intToEnum(RPC_BINDING_HANDLE_OPTIONS_FLAGS,
-              (if (o.NONCAUSAL == 1) @enumToInt(RPC_BINDING_HANDLE_OPTIONS_FLAGS.NONCAUSAL) else 0)
-            | (if (o.DONTLINGER == 1) @enumToInt(RPC_BINDING_HANDLE_OPTIONS_FLAGS.DONTLINGER) else 0)
-        );
+        return @intToEnum(RPC_BINDING_HANDLE_OPTIONS_FLAGS, (if (o.NONCAUSAL == 1) @enumToInt(RPC_BINDING_HANDLE_OPTIONS_FLAGS.NONCAUSAL) else 0) | (if (o.DONTLINGER == 1) @enumToInt(RPC_BINDING_HANDLE_OPTIONS_FLAGS.DONTLINGER) else 0));
     }
 };
 pub const RPC_BHO_NONCAUSAL = RPC_BINDING_HANDLE_OPTIONS_FLAGS.NONCAUSAL;
@@ -599,18 +580,18 @@ pub const RPC_POLICY = extern struct {
     NICFlags: u32,
 };
 
-pub const RPC_OBJECT_INQ_FN = fn(
+pub const RPC_OBJECT_INQ_FN = fn (
     ObjectUuid: ?*Guid,
     TypeUuid: ?*Guid,
     Status: ?*RPC_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const RPC_IF_CALLBACK_FN = fn(
+pub const RPC_IF_CALLBACK_FN = fn (
     InterfaceUuid: ?*anyopaque,
     Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
-pub const RPC_SECURITY_CALLBACK_FN = fn(
+pub const RPC_SECURITY_CALLBACK_FN = fn (
     Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -879,7 +860,7 @@ pub const RPCHTTP_RS_SESSION = RPC_HTTP_REDIRECTOR_STAGE.SESSION;
 pub const RPCHTTP_RS_ACCESS_2 = RPC_HTTP_REDIRECTOR_STAGE.ACCESS_2;
 pub const RPCHTTP_RS_INTERFACE = RPC_HTTP_REDIRECTOR_STAGE.INTERFACE;
 
-pub const RPC_NEW_HTTP_PROXY_CHANNEL = fn(
+pub const RPC_NEW_HTTP_PROXY_CHANNEL = fn (
     RedirectorStage: RPC_HTTP_REDIRECTOR_STAGE,
     ServerName: ?*u16,
     ServerPort: ?*u16,
@@ -894,11 +875,11 @@ pub const RPC_NEW_HTTP_PROXY_CHANNEL = fn(
     NewServerPort: ?*?*u16,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
-pub const RPC_HTTP_PROXY_FREE_STRING = fn(
+pub const RPC_HTTP_PROXY_FREE_STRING = fn (
     String: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const RPC_AUTH_KEY_RETRIEVAL_FN = fn(
+pub const RPC_AUTH_KEY_RETRIEVAL_FN = fn (
     Arg: ?*anyopaque,
     ServerPrincName: ?*u16,
     KeyVer: u32,
@@ -913,7 +894,7 @@ pub const RPC_CLIENT_INFORMATION1 = extern struct {
     AuthFlags: u32,
 };
 
-pub const RPC_MGMT_AUTHORIZATION_FN = fn(
+pub const RPC_MGMT_AUTHORIZATION_FN = fn (
     ClientBinding: ?*anyopaque,
     RequestedMgmtOperation: u32,
     Status: ?*RPC_STATUS,
@@ -963,7 +944,7 @@ pub const RPC_INTERFACE_TEMPLATEW = extern struct {
     SecurityDescriptor: ?*anyopaque,
 };
 
-pub const RPC_INTERFACE_GROUP_IDLE_CALLBACK_FN = fn(
+pub const RPC_INTERFACE_GROUP_IDLE_CALLBACK_FN = fn (
     IfGroup: ?*anyopaque,
     IdleCallbackContext: ?*anyopaque,
     IsGroupIdle: u32,
@@ -993,7 +974,7 @@ pub const RPC_MESSAGE = extern struct {
     RpcFlags: u32,
 };
 
-pub const RPC_FORWARD_FUNCTION = fn(
+pub const RPC_FORWARD_FUNCTION = fn (
     InterfaceId: ?*Guid,
     InterfaceVersion: ?*RPC_VERSION,
     ObjectId: ?*Guid,
@@ -1010,11 +991,11 @@ pub const PROTOCOL_NOT_LOADED = RPC_ADDRESS_CHANGE_TYPE.NOT_LOADED;
 pub const PROTOCOL_LOADED = RPC_ADDRESS_CHANGE_TYPE.LOADED;
 pub const PROTOCOL_ADDRESS_CHANGE = RPC_ADDRESS_CHANGE_TYPE.ADDRESS_CHANGE;
 
-pub const RPC_ADDRESS_CHANGE_FN = fn(
+pub const RPC_ADDRESS_CHANGE_FN = fn (
     arg: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const RPC_DISPATCH_FUNCTION = fn(
+pub const RPC_DISPATCH_FUNCTION = fn (
     Message: ?*RPC_MESSAGE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1060,7 +1041,7 @@ pub const LRPC_SYSTEM_HANDLE_MARSHAL_DIRECTION = enum(i32) {
 pub const MarshalDirectionMarshal = LRPC_SYSTEM_HANDLE_MARSHAL_DIRECTION.Marshal;
 pub const MarshalDirectionUnmarshal = LRPC_SYSTEM_HANDLE_MARSHAL_DIRECTION.Unmarshal;
 
-pub const PRPC_RUNDOWN = fn(
+pub const PRPC_RUNDOWN = fn (
     AssociationContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1076,17 +1057,17 @@ pub const RPC_TRANSFER_SYNTAX = extern struct {
     VersMinor: u16,
 };
 
-pub const RPCLT_PDU_FILTER_FUNC = fn(
+pub const RPCLT_PDU_FILTER_FUNC = fn (
     Buffer: ?*anyopaque,
     BufferLength: u32,
     fDatagram: i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const RPC_SETFILTER_FUNC = fn(
+pub const RPC_SETFILTER_FUNC = fn (
     pfnFilter: ?RPCLT_PDU_FILTER_FUNC,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const RPC_BLOCKING_FN = fn(
+pub const RPC_BLOCKING_FN = fn (
     hWnd: ?*anyopaque,
     Context: ?*anyopaque,
     hSyncEvent: ?*anyopaque,
@@ -1114,33 +1095,33 @@ pub const RDR_CALLOUT_STATE = extern struct {
     CertContext: ?*anyopaque,
 };
 
-pub const I_RpcProxyIsValidMachineFn = fn(
+pub const I_RpcProxyIsValidMachineFn = fn (
     Machine: ?*u16,
     DotMachine: ?*u16,
     PortNumber: u32,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
-pub const I_RpcProxyGetClientAddressFn = fn(
+pub const I_RpcProxyGetClientAddressFn = fn (
     Context: ?*anyopaque,
     Buffer: ?PSTR,
     BufferLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
-pub const I_RpcProxyGetConnectionTimeoutFn = fn(
+pub const I_RpcProxyGetConnectionTimeoutFn = fn (
     ConnectionTimeout: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
-pub const I_RpcPerformCalloutFn = fn(
+pub const I_RpcPerformCalloutFn = fn (
     Context: ?*anyopaque,
     CallOutState: ?*RDR_CALLOUT_STATE,
     Stage: RPC_HTTP_REDIRECTOR_STAGE,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
-pub const I_RpcFreeCalloutStateFn = fn(
+pub const I_RpcFreeCalloutStateFn = fn (
     CallOutState: ?*RDR_CALLOUT_STATE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const I_RpcProxyGetClientSessionAndResourceUUID = fn(
+pub const I_RpcProxyGetClientSessionAndResourceUUID = fn (
     Context: ?*anyopaque,
     SessionIdPresent: ?*i32,
     SessionId: ?*Guid,
@@ -1148,7 +1129,7 @@ pub const I_RpcProxyGetClientSessionAndResourceUUID = fn(
     ResourceId: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
-pub const I_RpcProxyFilterIfFn = fn(
+pub const I_RpcProxyFilterIfFn = fn (
     Context: ?*anyopaque,
     IfUuid: ?*Guid,
     IfMajorVersion: u16,
@@ -1182,13 +1163,13 @@ pub const RpcAttemptedLbsMessages = RpcProxyPerfCounters.AttemptedLbsMessages;
 pub const RpcFailedLbsMessages = RpcProxyPerfCounters.FailedLbsMessages;
 pub const RpcLastCounter = RpcProxyPerfCounters.LastCounter;
 
-pub const I_RpcProxyUpdatePerfCounterFn = fn(
+pub const I_RpcProxyUpdatePerfCounterFn = fn (
     Counter: RpcProxyPerfCounters,
     ModifyTrend: i32,
     Size: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const I_RpcProxyUpdatePerfCounterBackendServerFn = fn(
+pub const I_RpcProxyUpdatePerfCounterBackendServerFn = fn (
     MachineName: ?*u16,
     IsConnectEvent: i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -1233,7 +1214,7 @@ pub const RpcReceiveComplete = RPC_ASYNC_EVENT.ReceiveComplete;
 pub const RpcClientDisconnect = RPC_ASYNC_EVENT.ClientDisconnect;
 pub const RpcClientCancel = RPC_ASYNC_EVENT.ClientCancel;
 
-pub const PFN_RPCNOTIFICATION_ROUTINE = fn(
+pub const PFN_RPCNOTIFICATION_ROUTINE = fn (
     pAsync: ?*RPC_ASYNC_STATE,
     Context: ?*anyopaque,
     Event: RPC_ASYNC_EVENT,
@@ -1498,14 +1479,13 @@ pub const _NDR_SCONTEXT = extern struct {
     userContext: ?*anyopaque,
 };
 
-pub const NDR_RUNDOWN = fn(
+pub const NDR_RUNDOWN = fn (
     context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const NDR_NOTIFY_ROUTINE = fn(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const NDR_NOTIFY_ROUTINE = fn () callconv(@import("std").os.windows.WINAPI) void;
 
-pub const NDR_NOTIFY2_ROUTINE = fn(
+pub const NDR_NOTIFY2_ROUTINE = fn (
     flag: u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1514,7 +1494,7 @@ pub const SCONTEXT_QUEUE = extern struct {
     ArrayOfObjects: ?*?*NDR_SCONTEXT_1,
 };
 
-pub const EXPR_EVAL = fn(
+pub const EXPR_EVAL = fn (
     param0: ?*MIDL_STUB_MESSAGE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1609,11 +1589,11 @@ pub const MIDL_STUB_MESSAGE = extern struct {
     Reserved51_5: isize,
 };
 
-pub const GENERIC_BINDING_ROUTINE = fn(
+pub const GENERIC_BINDING_ROUTINE = fn (
     param0: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const GENERIC_UNBIND_ROUTINE = fn(
+pub const GENERIC_UNBIND_ROUTINE = fn (
     param0: ?*anyopaque,
     param1: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -1630,7 +1610,7 @@ pub const GENERIC_BINDING_INFO = extern struct {
     pfnUnbind: ?GENERIC_UNBIND_ROUTINE,
 };
 
-pub const XMIT_HELPER_ROUTINE = fn(
+pub const XMIT_HELPER_ROUTINE = fn (
     param0: ?*MIDL_STUB_MESSAGE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1641,25 +1621,25 @@ pub const XMIT_ROUTINE_QUINTUPLE = extern struct {
     pfnFreeInst: ?XMIT_HELPER_ROUTINE,
 };
 
-pub const USER_MARSHAL_SIZING_ROUTINE = fn(
+pub const USER_MARSHAL_SIZING_ROUTINE = fn (
     param0: ?*u32,
     param1: u32,
     param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const USER_MARSHAL_MARSHALLING_ROUTINE = fn(
+pub const USER_MARSHAL_MARSHALLING_ROUTINE = fn (
     param0: ?*u32,
     param1: ?*u8,
     param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
-pub const USER_MARSHAL_UNMARSHALLING_ROUTINE = fn(
+pub const USER_MARSHAL_UNMARSHALLING_ROUTINE = fn (
     param0: ?*u32,
     param1: ?*u8,
     param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*u8;
 
-pub const USER_MARSHAL_FREEING_ROUTINE = fn(
+pub const USER_MARSHAL_FREEING_ROUTINE = fn (
     param0: ?*u32,
     param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -1711,7 +1691,7 @@ pub const IDL_CS_NO_CONVERT = IDL_CS_CONVERT.NO_CONVERT;
 pub const IDL_CS_IN_PLACE_CONVERT = IDL_CS_CONVERT.IN_PLACE_CONVERT;
 pub const IDL_CS_NEW_BUFFER_CONVERT = IDL_CS_CONVERT.NEW_BUFFER_CONVERT;
 
-pub const CS_TYPE_NET_SIZE_ROUTINE = fn(
+pub const CS_TYPE_NET_SIZE_ROUTINE = fn (
     hBinding: ?*anyopaque,
     ulNetworkCodeSet: u32,
     ulLocalBufferSize: u32,
@@ -1720,7 +1700,7 @@ pub const CS_TYPE_NET_SIZE_ROUTINE = fn(
     pStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const CS_TYPE_LOCAL_SIZE_ROUTINE = fn(
+pub const CS_TYPE_LOCAL_SIZE_ROUTINE = fn (
     hBinding: ?*anyopaque,
     ulNetworkCodeSet: u32,
     ulNetworkBufferSize: u32,
@@ -1729,7 +1709,7 @@ pub const CS_TYPE_LOCAL_SIZE_ROUTINE = fn(
     pStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const CS_TYPE_TO_NETCS_ROUTINE = fn(
+pub const CS_TYPE_TO_NETCS_ROUTINE = fn (
     hBinding: ?*anyopaque,
     ulNetworkCodeSet: u32,
     pLocalData: ?*anyopaque,
@@ -1739,7 +1719,7 @@ pub const CS_TYPE_TO_NETCS_ROUTINE = fn(
     pStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const CS_TYPE_FROM_NETCS_ROUTINE = fn(
+pub const CS_TYPE_FROM_NETCS_ROUTINE = fn (
     hBinding: ?*anyopaque,
     ulNetworkCodeSet: u32,
     pNetworkData: ?*u8,
@@ -1750,7 +1730,7 @@ pub const CS_TYPE_FROM_NETCS_ROUTINE = fn(
     pStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const CS_TAG_GETTING_ROUTINE = fn(
+pub const CS_TAG_GETTING_ROUTINE = fn (
     hBinding: ?*anyopaque,
     fServerSide: i32,
     pulSendingTag: ?*u32,
@@ -1808,12 +1788,11 @@ pub const MIDL_FORMAT_STRING = extern struct {
     Format: [1]u8,
 };
 
-pub const STUB_THUNK = fn(
+pub const STUB_THUNK = fn (
     param0: ?*MIDL_STUB_MESSAGE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const SERVER_ROUTINE = fn(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const SERVER_ROUTINE = fn () callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const MIDL_METHOD_PROPERTY = extern struct {
     Id: u32,
@@ -1953,11 +1932,11 @@ pub const PROXY_MARSHAL = PROXY_PHASE.MARSHAL;
 pub const PROXY_SENDRECEIVE = PROXY_PHASE.SENDRECEIVE;
 pub const PROXY_UNMARSHAL = PROXY_PHASE.UNMARSHAL;
 
-pub const RPC_CLIENT_ALLOC = fn(
+pub const RPC_CLIENT_ALLOC = fn (
     Size: usize,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const RPC_CLIENT_FREE = fn(
+pub const RPC_CLIENT_FREE = fn (
     Ptr: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1995,19 +1974,19 @@ pub const MES_INCREMENTAL_HANDLE = MIDL_ES_HANDLE_STYLE.INCREMENTAL_HANDLE;
 pub const MES_FIXED_BUFFER_HANDLE = MIDL_ES_HANDLE_STYLE.FIXED_BUFFER_HANDLE;
 pub const MES_DYNAMIC_BUFFER_HANDLE = MIDL_ES_HANDLE_STYLE.DYNAMIC_BUFFER_HANDLE;
 
-pub const MIDL_ES_ALLOC = fn(
+pub const MIDL_ES_ALLOC = fn (
     state: ?*anyopaque,
     pbuffer: ?*?*i8,
     psize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const MIDL_ES_WRITE = fn(
+pub const MIDL_ES_WRITE = fn (
     state: ?*anyopaque,
     buffer: ?PSTR,
     size: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const MIDL_ES_READ = fn(
+pub const MIDL_ES_READ = fn (
     state: ?*anyopaque,
     pbuffer: ?*?*i8,
     psize: ?*u32,
@@ -2487,7 +2466,6 @@ pub const NDR64_TYPE_STRICT_CONTEXT_HANDLE = extern struct {
     CtxtID: u32,
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (508)
 //--------------------------------------------------------------------------------
@@ -2919,8 +2897,7 @@ pub extern "rpcrt4" fn RpcServerUseProtseqIfExW(
     Policy: ?*RPC_POLICY,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
-pub extern "rpcrt4" fn RpcServerYield(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "rpcrt4" fn RpcServerYield() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rpcrt4" fn RpcMgmtStatsVectorFree(
@@ -2944,8 +2921,7 @@ pub extern "rpcrt4" fn RpcMgmtStopServerListening(
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "rpcrt4" fn RpcMgmtWaitServerListen(
-) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
+pub extern "rpcrt4" fn RpcMgmtWaitServerListen() callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rpcrt4" fn RpcMgmtSetServerStackSize(
@@ -2953,12 +2929,10 @@ pub extern "rpcrt4" fn RpcMgmtSetServerStackSize(
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "rpcrt4" fn RpcSsDontSerializeContext(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "rpcrt4" fn RpcSsDontSerializeContext() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "rpcrt4" fn RpcMgmtEnableIdleCleanup(
-) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
+pub extern "rpcrt4" fn RpcMgmtEnableIdleCleanup() callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rpcrt4" fn RpcMgmtInqIfIds(
@@ -3053,8 +3027,7 @@ pub extern "rpcrt4" fn RpcRevertToSelfEx(
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "rpcrt4" fn RpcRevertToSelf(
-) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
+pub extern "rpcrt4" fn RpcRevertToSelf() callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "rpcrt4" fn RpcImpersonateClientContainer(
@@ -3062,8 +3035,7 @@ pub extern "rpcrt4" fn RpcImpersonateClientContainer(
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "rpcrt4" fn RpcRevertContainerImpersonation(
-) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
+pub extern "rpcrt4" fn RpcRevertContainerImpersonation() callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rpcrt4" fn RpcBindingInqAuthClientA(
@@ -3227,8 +3199,7 @@ pub extern "rpcrt4" fn RpcRaiseException(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "rpcrt4" fn RpcTestCancel(
-) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
+pub extern "rpcrt4" fn RpcTestCancel() callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rpcrt4" fn RpcServerTestCancel(
@@ -3521,8 +3492,7 @@ pub extern "rpcrt4" fn I_RpcPauseExecution(
     Milliseconds: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "rpcrt4" fn I_RpcGetExtendedError(
-) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
+pub extern "rpcrt4" fn I_RpcGetExtendedError() callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 pub extern "rpcrt4" fn I_RpcSystemHandleTypeSpecificWork(
     Handle: ?*anyopaque,
@@ -3531,8 +3501,7 @@ pub extern "rpcrt4" fn I_RpcSystemHandleTypeSpecificWork(
     MarshalDirection: LRPC_SYSTEM_HANDLE_MARSHAL_DIRECTION,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
-pub extern "rpcrt4" fn I_RpcGetCurrentCallHandle(
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+pub extern "rpcrt4" fn I_RpcGetCurrentCallHandle() callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "rpcrt4" fn I_RpcNsInterfaceExported(
     EntryNameSyntax: u32,
@@ -3682,15 +3651,13 @@ pub extern "rpcrt4" fn I_RpcBindingCreateNP(
     Binding: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
-pub extern "rpcrt4" fn I_RpcSsDontSerializeContext(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "rpcrt4" fn I_RpcSsDontSerializeContext() callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "rpcrt4" fn I_RpcServerRegisterForwardFunction(
     pForwardFunction: ?*?RPC_FORWARD_FUNCTION,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
-pub extern "rpcrt4" fn I_RpcServerInqAddressChangeFn(
-) callconv(@import("std").os.windows.WINAPI) ?*?RPC_ADDRESS_CHANGE_FN;
+pub extern "rpcrt4" fn I_RpcServerInqAddressChangeFn() callconv(@import("std").os.windows.WINAPI) ?*?RPC_ADDRESS_CHANGE_FN;
 
 pub extern "rpcrt4" fn I_RpcServerSetAddressChangeFn(
     pAddressChangeFn: ?*?RPC_ADDRESS_CHANGE_FN,
@@ -3710,11 +3677,9 @@ pub extern "rpcrt4" fn I_RpcServerInqRemoteConnAddress(
     AddressFormat: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
-pub extern "rpcrt4" fn I_RpcSessionStrictContextHandle(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "rpcrt4" fn I_RpcSessionStrictContextHandle() callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "rpcrt4" fn I_RpcTurnOnEEInfoPropagation(
-) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
+pub extern "rpcrt4" fn I_RpcTurnOnEEInfoPropagation() callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 pub extern "rpcrt4" fn I_RpcServerInqTransportType(
     Type: ?*u32,
@@ -3730,8 +3695,7 @@ pub extern "rpcrt4" fn I_RpcRecordCalloutFailure(
     DllName: ?*u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "rpcrt4" fn I_RpcMgmtEnableDedicatedThreadPool(
-) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
+pub extern "rpcrt4" fn I_RpcMgmtEnableDedicatedThreadPool() callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 pub extern "rpcrt4" fn I_RpcGetDefaultSD(
     ppSecurityDescriptor: ?*?*anyopaque,
@@ -3764,8 +3728,7 @@ pub extern "rpcrt4" fn I_RpcServerGetAssociationID(
     AssociationID: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
-pub extern "rpcrt4" fn I_RpcServerDisableExceptionFilter(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "rpcrt4" fn I_RpcServerDisableExceptionFilter() callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "rpcrt4" fn I_RpcServerSubscribeForDisconnectNotification2(
     Binding: ?*anyopaque,
@@ -4281,8 +4244,7 @@ pub extern "rpcrt4" fn RpcErrorAddRecord(
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "rpcrt4" fn RpcErrorClearInformation(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "rpcrt4" fn RpcErrorClearInformation() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "rpcrt4" fn RpcGetAuthorizationContextForClient(
@@ -5234,12 +5196,10 @@ pub extern "rpcrt4" fn RpcSsAllocate(
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "rpcrt4" fn RpcSsDisableAllocate(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "rpcrt4" fn RpcSsDisableAllocate() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "rpcrt4" fn RpcSsEnableAllocate(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "rpcrt4" fn RpcSsEnableAllocate() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rpcrt4" fn RpcSsFree(
@@ -5247,8 +5207,7 @@ pub extern "rpcrt4" fn RpcSsFree(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "rpcrt4" fn RpcSsGetThreadHandle(
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+pub extern "rpcrt4" fn RpcSsGetThreadHandle() callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rpcrt4" fn RpcSsSetClientAllocFree(
@@ -5286,12 +5245,10 @@ pub extern "rpcrt4" fn RpcSmDestroyClientContext(
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "rpcrt4" fn RpcSmDisableAllocate(
-) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
+pub extern "rpcrt4" fn RpcSmDisableAllocate() callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "rpcrt4" fn RpcSmEnableAllocate(
-) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
+pub extern "rpcrt4" fn RpcSmEnableAllocate() callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "rpcrt4" fn RpcSmFree(
@@ -5704,7 +5661,6 @@ pub extern "rpcrt4" fn RpcCertGeneratePrincipalNameA(
     pBuffer: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (76)
 //--------------------------------------------------------------------------------
@@ -5867,82 +5823,82 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const RpcCertGeneratePrincipalName = thismodule.RpcCertGeneratePrincipalNameW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const RPC_PROTSEQ_VECTOR = *opaque{};
-        pub const SEC_WINNT_AUTH_IDENTITY_ = *opaque{};
-        pub const RPC_HTTP_TRANSPORT_CREDENTIALS_ = *opaque{};
-        pub const RPC_HTTP_TRANSPORT_CREDENTIALS_V2_ = *opaque{};
-        pub const RPC_HTTP_TRANSPORT_CREDENTIALS_V3_ = *opaque{};
-        pub const RPC_SECURITY_QOS_V2_ = *opaque{};
-        pub const RPC_SECURITY_QOS_V3_ = *opaque{};
-        pub const RPC_SECURITY_QOS_V4_ = *opaque{};
-        pub const RPC_SECURITY_QOS_V5_ = *opaque{};
-        pub const RPC_BINDING_HANDLE_TEMPLATE_V1_ = *opaque{};
-        pub const RPC_BINDING_HANDLE_SECURITY_V1_ = *opaque{};
-        pub const RPC_ENDPOINT_TEMPLATE = *opaque{};
-        pub const RPC_INTERFACE_TEMPLATE = *opaque{};
-        pub const RPC_CALL_ATTRIBUTES_V1_ = *opaque{};
-        pub const RPC_CALL_ATTRIBUTES_V2_ = *opaque{};
-        pub const RPC_CALL_ATTRIBUTES_V3_ = *opaque{};
-        pub const RpcBindingFromStringBinding = *opaque{};
-        pub const RpcBindingToStringBinding = *opaque{};
-        pub const RpcStringBindingCompose = *opaque{};
-        pub const RpcStringBindingParse = *opaque{};
-        pub const RpcStringFree = *opaque{};
-        pub const RpcNetworkIsProtseqValid = *opaque{};
-        pub const RpcNetworkInqProtseqs = *opaque{};
-        pub const RpcProtseqVectorFree = *opaque{};
-        pub const RpcServerUseProtseq = *opaque{};
-        pub const RpcServerUseProtseqEx = *opaque{};
-        pub const RpcServerUseProtseqEp = *opaque{};
-        pub const RpcServerUseProtseqEpEx = *opaque{};
-        pub const RpcServerUseProtseqIf = *opaque{};
-        pub const RpcServerUseProtseqIfEx = *opaque{};
-        pub const RpcMgmtInqServerPrincName = *opaque{};
-        pub const RpcServerInqDefaultPrincName = *opaque{};
-        pub const RpcNsBindingInqEntryName = *opaque{};
-        pub const RpcBindingCreate = *opaque{};
-        pub const RpcBindingInqAuthClient = *opaque{};
-        pub const RpcBindingInqAuthClientEx = *opaque{};
-        pub const RpcBindingInqAuthInfo = *opaque{};
-        pub const RpcBindingSetAuthInfo = *opaque{};
-        pub const RpcBindingSetAuthInfoEx = *opaque{};
-        pub const RpcBindingInqAuthInfoEx = *opaque{};
-        pub const RpcServerRegisterAuthInfo = *opaque{};
-        pub const UuidToString = *opaque{};
-        pub const UuidFromString = *opaque{};
-        pub const RpcEpRegisterNoReplace = *opaque{};
-        pub const RpcEpRegister = *opaque{};
-        pub const DceErrorInqText = *opaque{};
-        pub const RpcMgmtEpEltInqNext = *opaque{};
-        pub const RpcServerInterfaceGroupCreate = *opaque{};
-        pub const I_RpcNsBindingSetEntryName = *opaque{};
-        pub const I_RpcServerUseProtseqEp2 = *opaque{};
-        pub const I_RpcServerUseProtseq2 = *opaque{};
-        pub const I_RpcBindingInqDynamicEndpoint = *opaque{};
-        pub const RpcNsBindingExport = *opaque{};
-        pub const RpcNsBindingUnexport = *opaque{};
-        pub const RpcNsBindingExportPnP = *opaque{};
-        pub const RpcNsBindingUnexportPnP = *opaque{};
-        pub const RpcNsBindingLookupBegin = *opaque{};
-        pub const RpcNsGroupDelete = *opaque{};
-        pub const RpcNsGroupMbrAdd = *opaque{};
-        pub const RpcNsGroupMbrRemove = *opaque{};
-        pub const RpcNsGroupMbrInqBegin = *opaque{};
-        pub const RpcNsGroupMbrInqNext = *opaque{};
-        pub const RpcNsProfileDelete = *opaque{};
-        pub const RpcNsProfileEltAdd = *opaque{};
-        pub const RpcNsProfileEltRemove = *opaque{};
-        pub const RpcNsProfileEltInqBegin = *opaque{};
-        pub const RpcNsProfileEltInqNext = *opaque{};
-        pub const RpcNsEntryObjectInqBegin = *opaque{};
-        pub const RpcNsEntryExpandName = *opaque{};
-        pub const RpcNsMgmtBindingUnexport = *opaque{};
-        pub const RpcNsMgmtEntryCreate = *opaque{};
-        pub const RpcNsMgmtEntryDelete = *opaque{};
-        pub const RpcNsMgmtEntryInqIfIds = *opaque{};
-        pub const RpcNsBindingImportBegin = *opaque{};
-        pub const RpcServerInqCallAttributes = *opaque{};
-        pub const RpcCertGeneratePrincipalName = *opaque{};
+        pub const RPC_PROTSEQ_VECTOR = *opaque {};
+        pub const SEC_WINNT_AUTH_IDENTITY_ = *opaque {};
+        pub const RPC_HTTP_TRANSPORT_CREDENTIALS_ = *opaque {};
+        pub const RPC_HTTP_TRANSPORT_CREDENTIALS_V2_ = *opaque {};
+        pub const RPC_HTTP_TRANSPORT_CREDENTIALS_V3_ = *opaque {};
+        pub const RPC_SECURITY_QOS_V2_ = *opaque {};
+        pub const RPC_SECURITY_QOS_V3_ = *opaque {};
+        pub const RPC_SECURITY_QOS_V4_ = *opaque {};
+        pub const RPC_SECURITY_QOS_V5_ = *opaque {};
+        pub const RPC_BINDING_HANDLE_TEMPLATE_V1_ = *opaque {};
+        pub const RPC_BINDING_HANDLE_SECURITY_V1_ = *opaque {};
+        pub const RPC_ENDPOINT_TEMPLATE = *opaque {};
+        pub const RPC_INTERFACE_TEMPLATE = *opaque {};
+        pub const RPC_CALL_ATTRIBUTES_V1_ = *opaque {};
+        pub const RPC_CALL_ATTRIBUTES_V2_ = *opaque {};
+        pub const RPC_CALL_ATTRIBUTES_V3_ = *opaque {};
+        pub const RpcBindingFromStringBinding = *opaque {};
+        pub const RpcBindingToStringBinding = *opaque {};
+        pub const RpcStringBindingCompose = *opaque {};
+        pub const RpcStringBindingParse = *opaque {};
+        pub const RpcStringFree = *opaque {};
+        pub const RpcNetworkIsProtseqValid = *opaque {};
+        pub const RpcNetworkInqProtseqs = *opaque {};
+        pub const RpcProtseqVectorFree = *opaque {};
+        pub const RpcServerUseProtseq = *opaque {};
+        pub const RpcServerUseProtseqEx = *opaque {};
+        pub const RpcServerUseProtseqEp = *opaque {};
+        pub const RpcServerUseProtseqEpEx = *opaque {};
+        pub const RpcServerUseProtseqIf = *opaque {};
+        pub const RpcServerUseProtseqIfEx = *opaque {};
+        pub const RpcMgmtInqServerPrincName = *opaque {};
+        pub const RpcServerInqDefaultPrincName = *opaque {};
+        pub const RpcNsBindingInqEntryName = *opaque {};
+        pub const RpcBindingCreate = *opaque {};
+        pub const RpcBindingInqAuthClient = *opaque {};
+        pub const RpcBindingInqAuthClientEx = *opaque {};
+        pub const RpcBindingInqAuthInfo = *opaque {};
+        pub const RpcBindingSetAuthInfo = *opaque {};
+        pub const RpcBindingSetAuthInfoEx = *opaque {};
+        pub const RpcBindingInqAuthInfoEx = *opaque {};
+        pub const RpcServerRegisterAuthInfo = *opaque {};
+        pub const UuidToString = *opaque {};
+        pub const UuidFromString = *opaque {};
+        pub const RpcEpRegisterNoReplace = *opaque {};
+        pub const RpcEpRegister = *opaque {};
+        pub const DceErrorInqText = *opaque {};
+        pub const RpcMgmtEpEltInqNext = *opaque {};
+        pub const RpcServerInterfaceGroupCreate = *opaque {};
+        pub const I_RpcNsBindingSetEntryName = *opaque {};
+        pub const I_RpcServerUseProtseqEp2 = *opaque {};
+        pub const I_RpcServerUseProtseq2 = *opaque {};
+        pub const I_RpcBindingInqDynamicEndpoint = *opaque {};
+        pub const RpcNsBindingExport = *opaque {};
+        pub const RpcNsBindingUnexport = *opaque {};
+        pub const RpcNsBindingExportPnP = *opaque {};
+        pub const RpcNsBindingUnexportPnP = *opaque {};
+        pub const RpcNsBindingLookupBegin = *opaque {};
+        pub const RpcNsGroupDelete = *opaque {};
+        pub const RpcNsGroupMbrAdd = *opaque {};
+        pub const RpcNsGroupMbrRemove = *opaque {};
+        pub const RpcNsGroupMbrInqBegin = *opaque {};
+        pub const RpcNsGroupMbrInqNext = *opaque {};
+        pub const RpcNsProfileDelete = *opaque {};
+        pub const RpcNsProfileEltAdd = *opaque {};
+        pub const RpcNsProfileEltRemove = *opaque {};
+        pub const RpcNsProfileEltInqBegin = *opaque {};
+        pub const RpcNsProfileEltInqNext = *opaque {};
+        pub const RpcNsEntryObjectInqBegin = *opaque {};
+        pub const RpcNsEntryExpandName = *opaque {};
+        pub const RpcNsMgmtBindingUnexport = *opaque {};
+        pub const RpcNsMgmtEntryCreate = *opaque {};
+        pub const RpcNsMgmtEntryDelete = *opaque {};
+        pub const RpcNsMgmtEntryInqIfIds = *opaque {};
+        pub const RpcNsBindingImportBegin = *opaque {};
+        pub const RpcServerInqCallAttributes = *opaque {};
+        pub const RpcCertGeneratePrincipalName = *opaque {};
     } else struct {
         pub const RPC_PROTSEQ_VECTOR = @compileError("'RPC_PROTSEQ_VECTOR' requires that UNICODE be set to true or false in the root module");
         pub const SEC_WINNT_AUTH_IDENTITY_ = @compileError("'SEC_WINNT_AUTH_IDENTITY_' requires that UNICODE be set to true or false in the root module");
@@ -6045,58 +6001,152 @@ const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "RPC_OBJECT_INQ_FN")) { _ = RPC_OBJECT_INQ_FN; }
-    if (@hasDecl(@This(), "RPC_IF_CALLBACK_FN")) { _ = RPC_IF_CALLBACK_FN; }
-    if (@hasDecl(@This(), "RPC_SECURITY_CALLBACK_FN")) { _ = RPC_SECURITY_CALLBACK_FN; }
-    if (@hasDecl(@This(), "RPC_NEW_HTTP_PROXY_CHANNEL")) { _ = RPC_NEW_HTTP_PROXY_CHANNEL; }
-    if (@hasDecl(@This(), "RPC_HTTP_PROXY_FREE_STRING")) { _ = RPC_HTTP_PROXY_FREE_STRING; }
-    if (@hasDecl(@This(), "RPC_AUTH_KEY_RETRIEVAL_FN")) { _ = RPC_AUTH_KEY_RETRIEVAL_FN; }
-    if (@hasDecl(@This(), "RPC_MGMT_AUTHORIZATION_FN")) { _ = RPC_MGMT_AUTHORIZATION_FN; }
-    if (@hasDecl(@This(), "RPC_INTERFACE_GROUP_IDLE_CALLBACK_FN")) { _ = RPC_INTERFACE_GROUP_IDLE_CALLBACK_FN; }
-    if (@hasDecl(@This(), "RPC_FORWARD_FUNCTION")) { _ = RPC_FORWARD_FUNCTION; }
-    if (@hasDecl(@This(), "RPC_ADDRESS_CHANGE_FN")) { _ = RPC_ADDRESS_CHANGE_FN; }
-    if (@hasDecl(@This(), "RPC_DISPATCH_FUNCTION")) { _ = RPC_DISPATCH_FUNCTION; }
-    if (@hasDecl(@This(), "PRPC_RUNDOWN")) { _ = PRPC_RUNDOWN; }
-    if (@hasDecl(@This(), "RPCLT_PDU_FILTER_FUNC")) { _ = RPCLT_PDU_FILTER_FUNC; }
-    if (@hasDecl(@This(), "RPC_SETFILTER_FUNC")) { _ = RPC_SETFILTER_FUNC; }
-    if (@hasDecl(@This(), "RPC_BLOCKING_FN")) { _ = RPC_BLOCKING_FN; }
-    if (@hasDecl(@This(), "I_RpcProxyIsValidMachineFn")) { _ = I_RpcProxyIsValidMachineFn; }
-    if (@hasDecl(@This(), "I_RpcProxyGetClientAddressFn")) { _ = I_RpcProxyGetClientAddressFn; }
-    if (@hasDecl(@This(), "I_RpcProxyGetConnectionTimeoutFn")) { _ = I_RpcProxyGetConnectionTimeoutFn; }
-    if (@hasDecl(@This(), "I_RpcPerformCalloutFn")) { _ = I_RpcPerformCalloutFn; }
-    if (@hasDecl(@This(), "I_RpcFreeCalloutStateFn")) { _ = I_RpcFreeCalloutStateFn; }
-    if (@hasDecl(@This(), "I_RpcProxyGetClientSessionAndResourceUUID")) { _ = I_RpcProxyGetClientSessionAndResourceUUID; }
-    if (@hasDecl(@This(), "I_RpcProxyFilterIfFn")) { _ = I_RpcProxyFilterIfFn; }
-    if (@hasDecl(@This(), "I_RpcProxyUpdatePerfCounterFn")) { _ = I_RpcProxyUpdatePerfCounterFn; }
-    if (@hasDecl(@This(), "I_RpcProxyUpdatePerfCounterBackendServerFn")) { _ = I_RpcProxyUpdatePerfCounterBackendServerFn; }
-    if (@hasDecl(@This(), "PFN_RPCNOTIFICATION_ROUTINE")) { _ = PFN_RPCNOTIFICATION_ROUTINE; }
-    if (@hasDecl(@This(), "NDR_RUNDOWN")) { _ = NDR_RUNDOWN; }
-    if (@hasDecl(@This(), "NDR_NOTIFY_ROUTINE")) { _ = NDR_NOTIFY_ROUTINE; }
-    if (@hasDecl(@This(), "NDR_NOTIFY2_ROUTINE")) { _ = NDR_NOTIFY2_ROUTINE; }
-    if (@hasDecl(@This(), "EXPR_EVAL")) { _ = EXPR_EVAL; }
-    if (@hasDecl(@This(), "GENERIC_BINDING_ROUTINE")) { _ = GENERIC_BINDING_ROUTINE; }
-    if (@hasDecl(@This(), "GENERIC_UNBIND_ROUTINE")) { _ = GENERIC_UNBIND_ROUTINE; }
-    if (@hasDecl(@This(), "XMIT_HELPER_ROUTINE")) { _ = XMIT_HELPER_ROUTINE; }
-    if (@hasDecl(@This(), "USER_MARSHAL_SIZING_ROUTINE")) { _ = USER_MARSHAL_SIZING_ROUTINE; }
-    if (@hasDecl(@This(), "USER_MARSHAL_MARSHALLING_ROUTINE")) { _ = USER_MARSHAL_MARSHALLING_ROUTINE; }
-    if (@hasDecl(@This(), "USER_MARSHAL_UNMARSHALLING_ROUTINE")) { _ = USER_MARSHAL_UNMARSHALLING_ROUTINE; }
-    if (@hasDecl(@This(), "USER_MARSHAL_FREEING_ROUTINE")) { _ = USER_MARSHAL_FREEING_ROUTINE; }
-    if (@hasDecl(@This(), "CS_TYPE_NET_SIZE_ROUTINE")) { _ = CS_TYPE_NET_SIZE_ROUTINE; }
-    if (@hasDecl(@This(), "CS_TYPE_LOCAL_SIZE_ROUTINE")) { _ = CS_TYPE_LOCAL_SIZE_ROUTINE; }
-    if (@hasDecl(@This(), "CS_TYPE_TO_NETCS_ROUTINE")) { _ = CS_TYPE_TO_NETCS_ROUTINE; }
-    if (@hasDecl(@This(), "CS_TYPE_FROM_NETCS_ROUTINE")) { _ = CS_TYPE_FROM_NETCS_ROUTINE; }
-    if (@hasDecl(@This(), "CS_TAG_GETTING_ROUTINE")) { _ = CS_TAG_GETTING_ROUTINE; }
-    if (@hasDecl(@This(), "STUB_THUNK")) { _ = STUB_THUNK; }
-    if (@hasDecl(@This(), "SERVER_ROUTINE")) { _ = SERVER_ROUTINE; }
-    if (@hasDecl(@This(), "RPC_CLIENT_ALLOC")) { _ = RPC_CLIENT_ALLOC; }
-    if (@hasDecl(@This(), "RPC_CLIENT_FREE")) { _ = RPC_CLIENT_FREE; }
-    if (@hasDecl(@This(), "MIDL_ES_ALLOC")) { _ = MIDL_ES_ALLOC; }
-    if (@hasDecl(@This(), "MIDL_ES_WRITE")) { _ = MIDL_ES_WRITE; }
-    if (@hasDecl(@This(), "MIDL_ES_READ")) { _ = MIDL_ES_READ; }
+    if (@hasDecl(@This(), "RPC_OBJECT_INQ_FN")) {
+        _ = RPC_OBJECT_INQ_FN;
+    }
+    if (@hasDecl(@This(), "RPC_IF_CALLBACK_FN")) {
+        _ = RPC_IF_CALLBACK_FN;
+    }
+    if (@hasDecl(@This(), "RPC_SECURITY_CALLBACK_FN")) {
+        _ = RPC_SECURITY_CALLBACK_FN;
+    }
+    if (@hasDecl(@This(), "RPC_NEW_HTTP_PROXY_CHANNEL")) {
+        _ = RPC_NEW_HTTP_PROXY_CHANNEL;
+    }
+    if (@hasDecl(@This(), "RPC_HTTP_PROXY_FREE_STRING")) {
+        _ = RPC_HTTP_PROXY_FREE_STRING;
+    }
+    if (@hasDecl(@This(), "RPC_AUTH_KEY_RETRIEVAL_FN")) {
+        _ = RPC_AUTH_KEY_RETRIEVAL_FN;
+    }
+    if (@hasDecl(@This(), "RPC_MGMT_AUTHORIZATION_FN")) {
+        _ = RPC_MGMT_AUTHORIZATION_FN;
+    }
+    if (@hasDecl(@This(), "RPC_INTERFACE_GROUP_IDLE_CALLBACK_FN")) {
+        _ = RPC_INTERFACE_GROUP_IDLE_CALLBACK_FN;
+    }
+    if (@hasDecl(@This(), "RPC_FORWARD_FUNCTION")) {
+        _ = RPC_FORWARD_FUNCTION;
+    }
+    if (@hasDecl(@This(), "RPC_ADDRESS_CHANGE_FN")) {
+        _ = RPC_ADDRESS_CHANGE_FN;
+    }
+    if (@hasDecl(@This(), "RPC_DISPATCH_FUNCTION")) {
+        _ = RPC_DISPATCH_FUNCTION;
+    }
+    if (@hasDecl(@This(), "PRPC_RUNDOWN")) {
+        _ = PRPC_RUNDOWN;
+    }
+    if (@hasDecl(@This(), "RPCLT_PDU_FILTER_FUNC")) {
+        _ = RPCLT_PDU_FILTER_FUNC;
+    }
+    if (@hasDecl(@This(), "RPC_SETFILTER_FUNC")) {
+        _ = RPC_SETFILTER_FUNC;
+    }
+    if (@hasDecl(@This(), "RPC_BLOCKING_FN")) {
+        _ = RPC_BLOCKING_FN;
+    }
+    if (@hasDecl(@This(), "I_RpcProxyIsValidMachineFn")) {
+        _ = I_RpcProxyIsValidMachineFn;
+    }
+    if (@hasDecl(@This(), "I_RpcProxyGetClientAddressFn")) {
+        _ = I_RpcProxyGetClientAddressFn;
+    }
+    if (@hasDecl(@This(), "I_RpcProxyGetConnectionTimeoutFn")) {
+        _ = I_RpcProxyGetConnectionTimeoutFn;
+    }
+    if (@hasDecl(@This(), "I_RpcPerformCalloutFn")) {
+        _ = I_RpcPerformCalloutFn;
+    }
+    if (@hasDecl(@This(), "I_RpcFreeCalloutStateFn")) {
+        _ = I_RpcFreeCalloutStateFn;
+    }
+    if (@hasDecl(@This(), "I_RpcProxyGetClientSessionAndResourceUUID")) {
+        _ = I_RpcProxyGetClientSessionAndResourceUUID;
+    }
+    if (@hasDecl(@This(), "I_RpcProxyFilterIfFn")) {
+        _ = I_RpcProxyFilterIfFn;
+    }
+    if (@hasDecl(@This(), "I_RpcProxyUpdatePerfCounterFn")) {
+        _ = I_RpcProxyUpdatePerfCounterFn;
+    }
+    if (@hasDecl(@This(), "I_RpcProxyUpdatePerfCounterBackendServerFn")) {
+        _ = I_RpcProxyUpdatePerfCounterBackendServerFn;
+    }
+    if (@hasDecl(@This(), "PFN_RPCNOTIFICATION_ROUTINE")) {
+        _ = PFN_RPCNOTIFICATION_ROUTINE;
+    }
+    if (@hasDecl(@This(), "NDR_RUNDOWN")) {
+        _ = NDR_RUNDOWN;
+    }
+    if (@hasDecl(@This(), "NDR_NOTIFY_ROUTINE")) {
+        _ = NDR_NOTIFY_ROUTINE;
+    }
+    if (@hasDecl(@This(), "NDR_NOTIFY2_ROUTINE")) {
+        _ = NDR_NOTIFY2_ROUTINE;
+    }
+    if (@hasDecl(@This(), "EXPR_EVAL")) {
+        _ = EXPR_EVAL;
+    }
+    if (@hasDecl(@This(), "GENERIC_BINDING_ROUTINE")) {
+        _ = GENERIC_BINDING_ROUTINE;
+    }
+    if (@hasDecl(@This(), "GENERIC_UNBIND_ROUTINE")) {
+        _ = GENERIC_UNBIND_ROUTINE;
+    }
+    if (@hasDecl(@This(), "XMIT_HELPER_ROUTINE")) {
+        _ = XMIT_HELPER_ROUTINE;
+    }
+    if (@hasDecl(@This(), "USER_MARSHAL_SIZING_ROUTINE")) {
+        _ = USER_MARSHAL_SIZING_ROUTINE;
+    }
+    if (@hasDecl(@This(), "USER_MARSHAL_MARSHALLING_ROUTINE")) {
+        _ = USER_MARSHAL_MARSHALLING_ROUTINE;
+    }
+    if (@hasDecl(@This(), "USER_MARSHAL_UNMARSHALLING_ROUTINE")) {
+        _ = USER_MARSHAL_UNMARSHALLING_ROUTINE;
+    }
+    if (@hasDecl(@This(), "USER_MARSHAL_FREEING_ROUTINE")) {
+        _ = USER_MARSHAL_FREEING_ROUTINE;
+    }
+    if (@hasDecl(@This(), "CS_TYPE_NET_SIZE_ROUTINE")) {
+        _ = CS_TYPE_NET_SIZE_ROUTINE;
+    }
+    if (@hasDecl(@This(), "CS_TYPE_LOCAL_SIZE_ROUTINE")) {
+        _ = CS_TYPE_LOCAL_SIZE_ROUTINE;
+    }
+    if (@hasDecl(@This(), "CS_TYPE_TO_NETCS_ROUTINE")) {
+        _ = CS_TYPE_TO_NETCS_ROUTINE;
+    }
+    if (@hasDecl(@This(), "CS_TYPE_FROM_NETCS_ROUTINE")) {
+        _ = CS_TYPE_FROM_NETCS_ROUTINE;
+    }
+    if (@hasDecl(@This(), "CS_TAG_GETTING_ROUTINE")) {
+        _ = CS_TAG_GETTING_ROUTINE;
+    }
+    if (@hasDecl(@This(), "STUB_THUNK")) {
+        _ = STUB_THUNK;
+    }
+    if (@hasDecl(@This(), "SERVER_ROUTINE")) {
+        _ = SERVER_ROUTINE;
+    }
+    if (@hasDecl(@This(), "RPC_CLIENT_ALLOC")) {
+        _ = RPC_CLIENT_ALLOC;
+    }
+    if (@hasDecl(@This(), "RPC_CLIENT_FREE")) {
+        _ = RPC_CLIENT_FREE;
+    }
+    if (@hasDecl(@This(), "MIDL_ES_ALLOC")) {
+        _ = MIDL_ES_ALLOC;
+    }
+    if (@hasDecl(@This(), "MIDL_ES_WRITE")) {
+        _ = MIDL_ES_WRITE;
+    }
+    if (@hasDecl(@This(), "MIDL_ES_READ")) {
+        _ = MIDL_ES_READ;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

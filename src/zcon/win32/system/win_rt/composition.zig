@@ -11,62 +11,64 @@ pub const IID_ICompositionDrawingSurfaceInterop = &IID_ICompositionDrawingSurfac
 pub const ICompositionDrawingSurfaceInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        BeginDraw: fn(
+        BeginDraw: fn (
             self: *const ICompositionDrawingSurfaceInterop,
             updateRect: ?*const RECT,
             iid: ?*const Guid,
             updateObject: ?*?*anyopaque,
             updateOffset: ?*POINT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndDraw: fn(
+        EndDraw: fn (
             self: *const ICompositionDrawingSurfaceInterop,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Resize: fn(
+        Resize: fn (
             self: *const ICompositionDrawingSurfaceInterop,
             sizePixels: SIZE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Scroll: fn(
+        Scroll: fn (
             self: *const ICompositionDrawingSurfaceInterop,
             scrollRect: ?*const RECT,
             clipRect: ?*const RECT,
             offsetX: i32,
             offsetY: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ResumeDraw: fn(
+        ResumeDraw: fn (
             self: *const ICompositionDrawingSurfaceInterop,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SuspendDraw: fn(
+        SuspendDraw: fn (
             self: *const ICompositionDrawingSurfaceInterop,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICompositionDrawingSurfaceInterop_BeginDraw(self: *const T, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: ?*?*anyopaque, updateOffset: ?*POINT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICompositionDrawingSurfaceInterop.VTable, self.vtable).BeginDraw(@ptrCast(*const ICompositionDrawingSurfaceInterop, self), updateRect, iid, updateObject, updateOffset);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICompositionDrawingSurfaceInterop_EndDraw(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICompositionDrawingSurfaceInterop.VTable, self.vtable).EndDraw(@ptrCast(*const ICompositionDrawingSurfaceInterop, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICompositionDrawingSurfaceInterop_Resize(self: *const T, sizePixels: SIZE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICompositionDrawingSurfaceInterop.VTable, self.vtable).Resize(@ptrCast(*const ICompositionDrawingSurfaceInterop, self), sizePixels);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICompositionDrawingSurfaceInterop_Scroll(self: *const T, scrollRect: ?*const RECT, clipRect: ?*const RECT, offsetX: i32, offsetY: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICompositionDrawingSurfaceInterop.VTable, self.vtable).Scroll(@ptrCast(*const ICompositionDrawingSurfaceInterop, self), scrollRect, clipRect, offsetX, offsetY);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICompositionDrawingSurfaceInterop_ResumeDraw(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICompositionDrawingSurfaceInterop.VTable, self.vtable).ResumeDraw(@ptrCast(*const ICompositionDrawingSurfaceInterop, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICompositionDrawingSurfaceInterop_SuspendDraw(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICompositionDrawingSurfaceInterop.VTable, self.vtable).SuspendDraw(@ptrCast(*const ICompositionDrawingSurfaceInterop, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICompositionDrawingSurfaceInterop_BeginDraw(self: *const T, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: ?*?*anyopaque, updateOffset: ?*POINT) HRESULT {
+                return @ptrCast(*const ICompositionDrawingSurfaceInterop.VTable, self.vtable).BeginDraw(@ptrCast(*const ICompositionDrawingSurfaceInterop, self), updateRect, iid, updateObject, updateOffset);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICompositionDrawingSurfaceInterop_EndDraw(self: *const T) HRESULT {
+                return @ptrCast(*const ICompositionDrawingSurfaceInterop.VTable, self.vtable).EndDraw(@ptrCast(*const ICompositionDrawingSurfaceInterop, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICompositionDrawingSurfaceInterop_Resize(self: *const T, sizePixels: SIZE) HRESULT {
+                return @ptrCast(*const ICompositionDrawingSurfaceInterop.VTable, self.vtable).Resize(@ptrCast(*const ICompositionDrawingSurfaceInterop, self), sizePixels);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICompositionDrawingSurfaceInterop_Scroll(self: *const T, scrollRect: ?*const RECT, clipRect: ?*const RECT, offsetX: i32, offsetY: i32) HRESULT {
+                return @ptrCast(*const ICompositionDrawingSurfaceInterop.VTable, self.vtable).Scroll(@ptrCast(*const ICompositionDrawingSurfaceInterop, self), scrollRect, clipRect, offsetX, offsetY);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICompositionDrawingSurfaceInterop_ResumeDraw(self: *const T) HRESULT {
+                return @ptrCast(*const ICompositionDrawingSurfaceInterop.VTable, self.vtable).ResumeDraw(@ptrCast(*const ICompositionDrawingSurfaceInterop, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICompositionDrawingSurfaceInterop_SuspendDraw(self: *const T) HRESULT {
+                return @ptrCast(*const ICompositionDrawingSurfaceInterop.VTable, self.vtable).SuspendDraw(@ptrCast(*const ICompositionDrawingSurfaceInterop, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -75,7 +77,7 @@ pub const IID_ICompositionDrawingSurfaceInterop2 = &IID_ICompositionDrawingSurfa
 pub const ICompositionDrawingSurfaceInterop2 = extern struct {
     pub const VTable = extern struct {
         base: ICompositionDrawingSurfaceInterop.VTable,
-        CopySurface: fn(
+        CopySurface: fn (
             self: *const ICompositionDrawingSurfaceInterop2,
             destinationResource: ?*IUnknown,
             destinationOffsetX: i32,
@@ -84,13 +86,15 @@ pub const ICompositionDrawingSurfaceInterop2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ICompositionDrawingSurfaceInterop.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICompositionDrawingSurfaceInterop2_CopySurface(self: *const T, destinationResource: ?*IUnknown, destinationOffsetX: i32, destinationOffsetY: i32, sourceRectangle: ?*const RECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICompositionDrawingSurfaceInterop2.VTable, self.vtable).CopySurface(@ptrCast(*const ICompositionDrawingSurfaceInterop2, self), destinationResource, destinationOffsetX, destinationOffsetY, sourceRectangle);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ICompositionDrawingSurfaceInterop.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICompositionDrawingSurfaceInterop2_CopySurface(self: *const T, destinationResource: ?*IUnknown, destinationOffsetX: i32, destinationOffsetY: i32, sourceRectangle: ?*const RECT) HRESULT {
+                return @ptrCast(*const ICompositionDrawingSurfaceInterop2.VTable, self.vtable).CopySurface(@ptrCast(*const ICompositionDrawingSurfaceInterop2, self), destinationResource, destinationOffsetX, destinationOffsetY, sourceRectangle);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -99,27 +103,29 @@ pub const IID_ICompositionGraphicsDeviceInterop = &IID_ICompositionGraphicsDevic
 pub const ICompositionGraphicsDeviceInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetRenderingDevice: fn(
+        GetRenderingDevice: fn (
             self: *const ICompositionGraphicsDeviceInterop,
             value: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetRenderingDevice: fn(
+        SetRenderingDevice: fn (
             self: *const ICompositionGraphicsDeviceInterop,
             value: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICompositionGraphicsDeviceInterop_GetRenderingDevice(self: *const T, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICompositionGraphicsDeviceInterop.VTable, self.vtable).GetRenderingDevice(@ptrCast(*const ICompositionGraphicsDeviceInterop, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICompositionGraphicsDeviceInterop_SetRenderingDevice(self: *const T, value: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICompositionGraphicsDeviceInterop.VTable, self.vtable).SetRenderingDevice(@ptrCast(*const ICompositionGraphicsDeviceInterop, self), value);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICompositionGraphicsDeviceInterop_GetRenderingDevice(self: *const T, value: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ICompositionGraphicsDeviceInterop.VTable, self.vtable).GetRenderingDevice(@ptrCast(*const ICompositionGraphicsDeviceInterop, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICompositionGraphicsDeviceInterop_SetRenderingDevice(self: *const T, value: ?*IUnknown) HRESULT {
+                return @ptrCast(*const ICompositionGraphicsDeviceInterop.VTable, self.vtable).SetRenderingDevice(@ptrCast(*const ICompositionGraphicsDeviceInterop, self), value);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -128,38 +134,40 @@ pub const IID_ICompositorInterop = &IID_ICompositorInterop_Value;
 pub const ICompositorInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateCompositionSurfaceForHandle: fn(
+        CreateCompositionSurfaceForHandle: fn (
             self: *const ICompositorInterop,
             swapChain: ?HANDLE,
-            result: ?**struct{comment: []const u8 = "MissingClrType ICompositionSurface.Windows.UI.Composition"},
+            result: ?**struct { comment: []const u8 = "MissingClrType ICompositionSurface.Windows.UI.Composition" },
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateCompositionSurfaceForSwapChain: fn(
+        CreateCompositionSurfaceForSwapChain: fn (
             self: *const ICompositorInterop,
             swapChain: ?*IUnknown,
-            result: ?**struct{comment: []const u8 = "MissingClrType ICompositionSurface.Windows.UI.Composition"},
+            result: ?**struct { comment: []const u8 = "MissingClrType ICompositionSurface.Windows.UI.Composition" },
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateGraphicsDevice: fn(
+        CreateGraphicsDevice: fn (
             self: *const ICompositorInterop,
             renderingDevice: ?*IUnknown,
-            result: ?**struct{comment: []const u8 = "MissingClrType CompositionGraphicsDevice.Windows.UI.Composition"},
+            result: ?**struct { comment: []const u8 = "MissingClrType CompositionGraphicsDevice.Windows.UI.Composition" },
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICompositorInterop_CreateCompositionSurfaceForHandle(self: *const T, swapChain: ?HANDLE, result: ?**struct{comment: []const u8 = "MissingClrType ICompositionSurface.Windows.UI.Composition"}) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICompositorInterop.VTable, self.vtable).CreateCompositionSurfaceForHandle(@ptrCast(*const ICompositorInterop, self), swapChain, result);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICompositorInterop_CreateCompositionSurfaceForSwapChain(self: *const T, swapChain: ?*IUnknown, result: ?**struct{comment: []const u8 = "MissingClrType ICompositionSurface.Windows.UI.Composition"}) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICompositorInterop.VTable, self.vtable).CreateCompositionSurfaceForSwapChain(@ptrCast(*const ICompositorInterop, self), swapChain, result);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICompositorInterop_CreateGraphicsDevice(self: *const T, renderingDevice: ?*IUnknown, result: ?**struct{comment: []const u8 = "MissingClrType CompositionGraphicsDevice.Windows.UI.Composition"}) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICompositorInterop.VTable, self.vtable).CreateGraphicsDevice(@ptrCast(*const ICompositorInterop, self), renderingDevice, result);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICompositorInterop_CreateCompositionSurfaceForHandle(self: *const T, swapChain: ?HANDLE, result: ?**struct { comment: []const u8 = "MissingClrType ICompositionSurface.Windows.UI.Composition" }) HRESULT {
+                return @ptrCast(*const ICompositorInterop.VTable, self.vtable).CreateCompositionSurfaceForHandle(@ptrCast(*const ICompositorInterop, self), swapChain, result);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICompositorInterop_CreateCompositionSurfaceForSwapChain(self: *const T, swapChain: ?*IUnknown, result: ?**struct { comment: []const u8 = "MissingClrType ICompositionSurface.Windows.UI.Composition" }) HRESULT {
+                return @ptrCast(*const ICompositorInterop.VTable, self.vtable).CreateCompositionSurfaceForSwapChain(@ptrCast(*const ICompositorInterop, self), swapChain, result);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICompositorInterop_CreateGraphicsDevice(self: *const T, renderingDevice: ?*IUnknown, result: ?**struct { comment: []const u8 = "MissingClrType CompositionGraphicsDevice.Windows.UI.Composition" }) HRESULT {
+                return @ptrCast(*const ICompositorInterop.VTable, self.vtable).CreateGraphicsDevice(@ptrCast(*const ICompositorInterop, self), renderingDevice, result);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -168,19 +176,21 @@ pub const IID_ISwapChainInterop = &IID_ISwapChainInterop_Value;
 pub const ISwapChainInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetSwapChain: fn(
+        SetSwapChain: fn (
             self: *const ISwapChainInterop,
             swapChain: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISwapChainInterop_SetSwapChain(self: *const T, swapChain: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISwapChainInterop.VTable, self.vtable).SetSwapChain(@ptrCast(*const ISwapChainInterop, self), swapChain);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISwapChainInterop_SetSwapChain(self: *const T, swapChain: ?*IUnknown) HRESULT {
+                return @ptrCast(*const ISwapChainInterop.VTable, self.vtable).SetSwapChain(@ptrCast(*const ISwapChainInterop, self), swapChain);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -189,19 +199,21 @@ pub const IID_IVisualInteractionSourceInterop = &IID_IVisualInteractionSourceInt
 pub const IVisualInteractionSourceInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        TryRedirectForManipulation: fn(
+        TryRedirectForManipulation: fn (
             self: *const IVisualInteractionSourceInterop,
             pointerInfo: ?*const POINTER_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVisualInteractionSourceInterop_TryRedirectForManipulation(self: *const T, pointerInfo: ?*const POINTER_INFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IVisualInteractionSourceInterop.VTable, self.vtable).TryRedirectForManipulation(@ptrCast(*const IVisualInteractionSourceInterop, self), pointerInfo);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IVisualInteractionSourceInterop_TryRedirectForManipulation(self: *const T, pointerInfo: ?*const POINTER_INFO) HRESULT {
+                return @ptrCast(*const IVisualInteractionSourceInterop.VTable, self.vtable).TryRedirectForManipulation(@ptrCast(*const IVisualInteractionSourceInterop, self), pointerInfo);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -210,20 +222,22 @@ pub const IID_ICompositionCapabilitiesInteropFactory = &IID_ICompositionCapabili
 pub const ICompositionCapabilitiesInteropFactory = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        GetForWindow: fn(
+        GetForWindow: fn (
             self: *const ICompositionCapabilitiesInteropFactory,
             hwnd: ?HWND,
-            result: ?**struct{comment: []const u8 = "MissingClrType CompositionCapabilities.Windows.UI.Composition"},
+            result: ?**struct { comment: []const u8 = "MissingClrType CompositionCapabilities.Windows.UI.Composition" },
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICompositionCapabilitiesInteropFactory_GetForWindow(self: *const T, hwnd: ?HWND, result: ?**struct{comment: []const u8 = "MissingClrType CompositionCapabilities.Windows.UI.Composition"}) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICompositionCapabilitiesInteropFactory.VTable, self.vtable).GetForWindow(@ptrCast(*const ICompositionCapabilitiesInteropFactory, self), hwnd, result);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IInspectable.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICompositionCapabilitiesInteropFactory_GetForWindow(self: *const T, hwnd: ?HWND, result: ?**struct { comment: []const u8 = "MissingClrType CompositionCapabilities.Windows.UI.Composition" }) HRESULT {
+                return @ptrCast(*const ICompositionCapabilitiesInteropFactory.VTable, self.vtable).GetForWindow(@ptrCast(*const ICompositionCapabilitiesInteropFactory, self), hwnd, result);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -232,29 +246,31 @@ pub const IID_ICompositorDesktopInterop = &IID_ICompositorDesktopInterop_Value;
 pub const ICompositorDesktopInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateDesktopWindowTarget: fn(
+        CreateDesktopWindowTarget: fn (
             self: *const ICompositorDesktopInterop,
             hwndTarget: ?HWND,
             isTopmost: BOOL,
-            result: ?**struct{comment: []const u8 = "MissingClrType DesktopWindowTarget.Windows.UI.Composition.Desktop"},
+            result: ?**struct { comment: []const u8 = "MissingClrType DesktopWindowTarget.Windows.UI.Composition.Desktop" },
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnsureOnThread: fn(
+        EnsureOnThread: fn (
             self: *const ICompositorDesktopInterop,
             threadId: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICompositorDesktopInterop_CreateDesktopWindowTarget(self: *const T, hwndTarget: ?HWND, isTopmost: BOOL, result: ?**struct{comment: []const u8 = "MissingClrType DesktopWindowTarget.Windows.UI.Composition.Desktop"}) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICompositorDesktopInterop.VTable, self.vtable).CreateDesktopWindowTarget(@ptrCast(*const ICompositorDesktopInterop, self), hwndTarget, isTopmost, result);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICompositorDesktopInterop_EnsureOnThread(self: *const T, threadId: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICompositorDesktopInterop.VTable, self.vtable).EnsureOnThread(@ptrCast(*const ICompositorDesktopInterop, self), threadId);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICompositorDesktopInterop_CreateDesktopWindowTarget(self: *const T, hwndTarget: ?HWND, isTopmost: BOOL, result: ?**struct { comment: []const u8 = "MissingClrType DesktopWindowTarget.Windows.UI.Composition.Desktop" }) HRESULT {
+                return @ptrCast(*const ICompositorDesktopInterop.VTable, self.vtable).CreateDesktopWindowTarget(@ptrCast(*const ICompositorDesktopInterop, self), hwndTarget, isTopmost, result);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICompositorDesktopInterop_EnsureOnThread(self: *const T, threadId: u32) HRESULT {
+                return @ptrCast(*const ICompositorDesktopInterop.VTable, self.vtable).EnsureOnThread(@ptrCast(*const ICompositorDesktopInterop, self), threadId);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -264,22 +280,23 @@ pub const IDesktopWindowTargetInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Hwnd: fn(
+        get_Hwnd: fn (
             self: *const IDesktopWindowTargetInterop,
             value: ?*?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDesktopWindowTargetInterop_get_Hwnd(self: *const T, value: ?*?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDesktopWindowTargetInterop.VTable, self.vtable).get_Hwnd(@ptrCast(*const IDesktopWindowTargetInterop, self), value);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDesktopWindowTargetInterop_get_Hwnd(self: *const T, value: ?*?HWND) HRESULT {
+                return @ptrCast(*const IDesktopWindowTargetInterop.VTable, self.vtable).get_Hwnd(@ptrCast(*const IDesktopWindowTargetInterop, self), value);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -290,13 +307,9 @@ pub const IDesktopWindowTargetInterop = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (11)
@@ -314,9 +327,7 @@ const RECT = @import("../../foundation.zig").RECT;
 const SIZE = @import("../../foundation.zig").SIZE;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

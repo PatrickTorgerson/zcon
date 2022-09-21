@@ -1434,11 +1434,7 @@ pub const EXPORT_SECURITY_CONTEXT_FLAGS = enum(u32) {
         DELETE_OLD: u1 = 0,
         TO_KERNEL: u1 = 0,
     }) EXPORT_SECURITY_CONTEXT_FLAGS {
-        return @intToEnum(EXPORT_SECURITY_CONTEXT_FLAGS,
-              (if (o.RESET_NEW == 1) @enumToInt(EXPORT_SECURITY_CONTEXT_FLAGS.RESET_NEW) else 0)
-            | (if (o.DELETE_OLD == 1) @enumToInt(EXPORT_SECURITY_CONTEXT_FLAGS.DELETE_OLD) else 0)
-            | (if (o.TO_KERNEL == 1) @enumToInt(EXPORT_SECURITY_CONTEXT_FLAGS.TO_KERNEL) else 0)
-        );
+        return @intToEnum(EXPORT_SECURITY_CONTEXT_FLAGS, (if (o.RESET_NEW == 1) @enumToInt(EXPORT_SECURITY_CONTEXT_FLAGS.RESET_NEW) else 0) | (if (o.DELETE_OLD == 1) @enumToInt(EXPORT_SECURITY_CONTEXT_FLAGS.DELETE_OLD) else 0) | (if (o.TO_KERNEL == 1) @enumToInt(EXPORT_SECURITY_CONTEXT_FLAGS.TO_KERNEL) else 0));
     }
 };
 pub const SECPKG_CONTEXT_EXPORT_RESET_NEW = EXPORT_SECURITY_CONTEXT_FLAGS.RESET_NEW;
@@ -1463,15 +1459,7 @@ pub const ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ = enum(u32) {
         SEQUENCE_DETECT: u1 = 0,
         STREAM: u1 = 0,
     }) ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ {
-        return @intToEnum(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ,
-              (if (o.ALLOCATE_MEMORY == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.ALLOCATE_MEMORY) else 0)
-            | (if (o.CONNECTION == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.CONNECTION) else 0)
-            | (if (o.DELEGATE == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.DELEGATE) else 0)
-            | (if (o.EXTENDED_ERROR == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.EXTENDED_ERROR) else 0)
-            | (if (o.REPLAY_DETECT == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.REPLAY_DETECT) else 0)
-            | (if (o.SEQUENCE_DETECT == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.SEQUENCE_DETECT) else 0)
-            | (if (o.STREAM == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.STREAM) else 0)
-        );
+        return @intToEnum(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ, (if (o.ALLOCATE_MEMORY == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.ALLOCATE_MEMORY) else 0) | (if (o.CONNECTION == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.CONNECTION) else 0) | (if (o.DELEGATE == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.DELEGATE) else 0) | (if (o.EXTENDED_ERROR == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.EXTENDED_ERROR) else 0) | (if (o.REPLAY_DETECT == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.REPLAY_DETECT) else 0) | (if (o.SEQUENCE_DETECT == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.SEQUENCE_DETECT) else 0) | (if (o.STREAM == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.STREAM) else 0));
     }
 };
 pub const ASC_REQ_ALLOCATE_MEMORY = ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.ALLOCATE_MEMORY;
@@ -1514,22 +1502,7 @@ pub const KERB_TICKET_FLAGS = enum(u32) {
         reserved: u1 = 0,
         reserved1: u1 = 0,
     }) KERB_TICKET_FLAGS {
-        return @intToEnum(KERB_TICKET_FLAGS,
-              (if (o.forwardable == 1) @enumToInt(KERB_TICKET_FLAGS.forwardable) else 0)
-            | (if (o.forwarded == 1) @enumToInt(KERB_TICKET_FLAGS.forwarded) else 0)
-            | (if (o.hw_authent == 1) @enumToInt(KERB_TICKET_FLAGS.hw_authent) else 0)
-            | (if (o.initial == 1) @enumToInt(KERB_TICKET_FLAGS.initial) else 0)
-            | (if (o.invalid == 1) @enumToInt(KERB_TICKET_FLAGS.invalid) else 0)
-            | (if (o.may_postdate == 1) @enumToInt(KERB_TICKET_FLAGS.may_postdate) else 0)
-            | (if (o.ok_as_delegate == 1) @enumToInt(KERB_TICKET_FLAGS.ok_as_delegate) else 0)
-            | (if (o.postdated == 1) @enumToInt(KERB_TICKET_FLAGS.postdated) else 0)
-            | (if (o.pre_authent == 1) @enumToInt(KERB_TICKET_FLAGS.pre_authent) else 0)
-            | (if (o.proxiable == 1) @enumToInt(KERB_TICKET_FLAGS.proxiable) else 0)
-            | (if (o.proxy == 1) @enumToInt(KERB_TICKET_FLAGS.proxy) else 0)
-            | (if (o.renewable == 1) @enumToInt(KERB_TICKET_FLAGS.renewable) else 0)
-            | (if (o.reserved == 1) @enumToInt(KERB_TICKET_FLAGS.reserved) else 0)
-            | (if (o.reserved1 == 1) @enumToInt(KERB_TICKET_FLAGS.reserved1) else 0)
-        );
+        return @intToEnum(KERB_TICKET_FLAGS, (if (o.forwardable == 1) @enumToInt(KERB_TICKET_FLAGS.forwardable) else 0) | (if (o.forwarded == 1) @enumToInt(KERB_TICKET_FLAGS.forwarded) else 0) | (if (o.hw_authent == 1) @enumToInt(KERB_TICKET_FLAGS.hw_authent) else 0) | (if (o.initial == 1) @enumToInt(KERB_TICKET_FLAGS.initial) else 0) | (if (o.invalid == 1) @enumToInt(KERB_TICKET_FLAGS.invalid) else 0) | (if (o.may_postdate == 1) @enumToInt(KERB_TICKET_FLAGS.may_postdate) else 0) | (if (o.ok_as_delegate == 1) @enumToInt(KERB_TICKET_FLAGS.ok_as_delegate) else 0) | (if (o.postdated == 1) @enumToInt(KERB_TICKET_FLAGS.postdated) else 0) | (if (o.pre_authent == 1) @enumToInt(KERB_TICKET_FLAGS.pre_authent) else 0) | (if (o.proxiable == 1) @enumToInt(KERB_TICKET_FLAGS.proxiable) else 0) | (if (o.proxy == 1) @enumToInt(KERB_TICKET_FLAGS.proxy) else 0) | (if (o.renewable == 1) @enumToInt(KERB_TICKET_FLAGS.renewable) else 0) | (if (o.reserved == 1) @enumToInt(KERB_TICKET_FLAGS.reserved) else 0) | (if (o.reserved1 == 1) @enumToInt(KERB_TICKET_FLAGS.reserved1) else 0));
     }
 };
 pub const KERB_TICKET_FLAGS_forwardable = KERB_TICKET_FLAGS.forwardable;
@@ -1592,25 +1565,7 @@ pub const SCHANNEL_CRED_FLAGS = enum(u32) {
         USE_STRONG_CRYPTO: u1 = 0,
         USE_PRESHAREDKEY_ONLY: u1 = 0,
     }) SCHANNEL_CRED_FLAGS {
-        return @intToEnum(SCHANNEL_CRED_FLAGS,
-              (if (o.CRED_AUTO_CRED_VALIDATION == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_AUTO_CRED_VALIDATION) else 0)
-            | (if (o.CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE) else 0)
-            | (if (o.DISABLE_RECONNECTS == 1) @enumToInt(SCHANNEL_CRED_FLAGS.DISABLE_RECONNECTS) else 0)
-            | (if (o.CRED_IGNORE_NO_REVOCATION_CHECK == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_IGNORE_NO_REVOCATION_CHECK) else 0)
-            | (if (o.CRED_IGNORE_REVOCATION_OFFLINE == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_IGNORE_REVOCATION_OFFLINE) else 0)
-            | (if (o.CRED_MANUAL_CRED_VALIDATION == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_MANUAL_CRED_VALIDATION) else 0)
-            | (if (o.CRED_NO_DEFAULT_CREDS == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_NO_DEFAULT_CREDS) else 0)
-            | (if (o.CRED_NO_SERVERNAME_CHECK == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_NO_SERVERNAME_CHECK) else 0)
-            | (if (o.CRED_NO_SYSTEM_MAPPER == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_NO_SYSTEM_MAPPER) else 0)
-            | (if (o.CRED_REVOCATION_CHECK_CHAIN == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_REVOCATION_CHECK_CHAIN) else 0)
-            | (if (o.CRED_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT) else 0)
-            | (if (o.CRED_REVOCATION_CHECK_END_CERT == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_REVOCATION_CHECK_END_CERT) else 0)
-            | (if (o.CRED_USE_DEFAULT_CREDS == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_USE_DEFAULT_CREDS) else 0)
-            | (if (o.SEND_AUX_RECORD == 1) @enumToInt(SCHANNEL_CRED_FLAGS.SEND_AUX_RECORD) else 0)
-            | (if (o.SEND_ROOT_CERT == 1) @enumToInt(SCHANNEL_CRED_FLAGS.SEND_ROOT_CERT) else 0)
-            | (if (o.USE_STRONG_CRYPTO == 1) @enumToInt(SCHANNEL_CRED_FLAGS.USE_STRONG_CRYPTO) else 0)
-            | (if (o.USE_PRESHAREDKEY_ONLY == 1) @enumToInt(SCHANNEL_CRED_FLAGS.USE_PRESHAREDKEY_ONLY) else 0)
-        );
+        return @intToEnum(SCHANNEL_CRED_FLAGS, (if (o.CRED_AUTO_CRED_VALIDATION == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_AUTO_CRED_VALIDATION) else 0) | (if (o.CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE) else 0) | (if (o.DISABLE_RECONNECTS == 1) @enumToInt(SCHANNEL_CRED_FLAGS.DISABLE_RECONNECTS) else 0) | (if (o.CRED_IGNORE_NO_REVOCATION_CHECK == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_IGNORE_NO_REVOCATION_CHECK) else 0) | (if (o.CRED_IGNORE_REVOCATION_OFFLINE == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_IGNORE_REVOCATION_OFFLINE) else 0) | (if (o.CRED_MANUAL_CRED_VALIDATION == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_MANUAL_CRED_VALIDATION) else 0) | (if (o.CRED_NO_DEFAULT_CREDS == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_NO_DEFAULT_CREDS) else 0) | (if (o.CRED_NO_SERVERNAME_CHECK == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_NO_SERVERNAME_CHECK) else 0) | (if (o.CRED_NO_SYSTEM_MAPPER == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_NO_SYSTEM_MAPPER) else 0) | (if (o.CRED_REVOCATION_CHECK_CHAIN == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_REVOCATION_CHECK_CHAIN) else 0) | (if (o.CRED_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT) else 0) | (if (o.CRED_REVOCATION_CHECK_END_CERT == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_REVOCATION_CHECK_END_CERT) else 0) | (if (o.CRED_USE_DEFAULT_CREDS == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_USE_DEFAULT_CREDS) else 0) | (if (o.SEND_AUX_RECORD == 1) @enumToInt(SCHANNEL_CRED_FLAGS.SEND_AUX_RECORD) else 0) | (if (o.SEND_ROOT_CERT == 1) @enumToInt(SCHANNEL_CRED_FLAGS.SEND_ROOT_CERT) else 0) | (if (o.USE_STRONG_CRYPTO == 1) @enumToInt(SCHANNEL_CRED_FLAGS.USE_STRONG_CRYPTO) else 0) | (if (o.USE_PRESHAREDKEY_ONLY == 1) @enumToInt(SCHANNEL_CRED_FLAGS.USE_PRESHAREDKEY_ONLY) else 0));
     }
 };
 pub const SCH_CRED_AUTO_CRED_VALIDATION = SCHANNEL_CRED_FLAGS.CRED_AUTO_CRED_VALIDATION;
@@ -1647,14 +1602,7 @@ pub const DOMAIN_PASSWORD_PROPERTIES = enum(u32) {
         PASSWORD_STORE_CLEARTEXT: u1 = 0,
         REFUSE_PASSWORD_CHANGE: u1 = 0,
     }) DOMAIN_PASSWORD_PROPERTIES {
-        return @intToEnum(DOMAIN_PASSWORD_PROPERTIES,
-              (if (o.PASSWORD_COMPLEX == 1) @enumToInt(DOMAIN_PASSWORD_PROPERTIES.PASSWORD_COMPLEX) else 0)
-            | (if (o.PASSWORD_NO_ANON_CHANGE == 1) @enumToInt(DOMAIN_PASSWORD_PROPERTIES.PASSWORD_NO_ANON_CHANGE) else 0)
-            | (if (o.PASSWORD_NO_CLEAR_CHANGE == 1) @enumToInt(DOMAIN_PASSWORD_PROPERTIES.PASSWORD_NO_CLEAR_CHANGE) else 0)
-            | (if (o.LOCKOUT_ADMINS == 1) @enumToInt(DOMAIN_PASSWORD_PROPERTIES.LOCKOUT_ADMINS) else 0)
-            | (if (o.PASSWORD_STORE_CLEARTEXT == 1) @enumToInt(DOMAIN_PASSWORD_PROPERTIES.PASSWORD_STORE_CLEARTEXT) else 0)
-            | (if (o.REFUSE_PASSWORD_CHANGE == 1) @enumToInt(DOMAIN_PASSWORD_PROPERTIES.REFUSE_PASSWORD_CHANGE) else 0)
-        );
+        return @intToEnum(DOMAIN_PASSWORD_PROPERTIES, (if (o.PASSWORD_COMPLEX == 1) @enumToInt(DOMAIN_PASSWORD_PROPERTIES.PASSWORD_COMPLEX) else 0) | (if (o.PASSWORD_NO_ANON_CHANGE == 1) @enumToInt(DOMAIN_PASSWORD_PROPERTIES.PASSWORD_NO_ANON_CHANGE) else 0) | (if (o.PASSWORD_NO_CLEAR_CHANGE == 1) @enumToInt(DOMAIN_PASSWORD_PROPERTIES.PASSWORD_NO_CLEAR_CHANGE) else 0) | (if (o.LOCKOUT_ADMINS == 1) @enumToInt(DOMAIN_PASSWORD_PROPERTIES.LOCKOUT_ADMINS) else 0) | (if (o.PASSWORD_STORE_CLEARTEXT == 1) @enumToInt(DOMAIN_PASSWORD_PROPERTIES.PASSWORD_STORE_CLEARTEXT) else 0) | (if (o.REFUSE_PASSWORD_CHANGE == 1) @enumToInt(DOMAIN_PASSWORD_PROPERTIES.REFUSE_PASSWORD_CHANGE) else 0));
     }
 };
 pub const DOMAIN_PASSWORD_COMPLEX = DOMAIN_PASSWORD_PROPERTIES.PASSWORD_COMPLEX;
@@ -1706,18 +1654,7 @@ pub const MSV_SUBAUTH_LOGON_PARAMETER_CONTROL = enum(u32) {
         RETURN_PROFILE_PATH: u1 = 0,
         TRY_SPECIFIED_DOMAIN_ONLY: u1 = 0,
     }) MSV_SUBAUTH_LOGON_PARAMETER_CONTROL {
-        return @intToEnum(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL,
-              (if (o.CLEARTEXT_PASSWORD_ALLOWED == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.CLEARTEXT_PASSWORD_ALLOWED) else 0)
-            | (if (o.UPDATE_LOGON_STATISTICS == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.UPDATE_LOGON_STATISTICS) else 0)
-            | (if (o.RETURN_USER_PARAMETERS == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.RETURN_USER_PARAMETERS) else 0)
-            | (if (o.DONT_TRY_GUEST_ACCOUNT == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.DONT_TRY_GUEST_ACCOUNT) else 0)
-            | (if (o.ALLOW_SERVER_TRUST_ACCOUNT == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.ALLOW_SERVER_TRUST_ACCOUNT) else 0)
-            | (if (o.RETURN_PASSWORD_EXPIRY == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.RETURN_PASSWORD_EXPIRY) else 0)
-            | (if (o.ALLOW_WORKSTATION_TRUST_ACCOUNT == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.ALLOW_WORKSTATION_TRUST_ACCOUNT) else 0)
-            | (if (o.TRY_GUEST_ACCOUNT_ONLY == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.TRY_GUEST_ACCOUNT_ONLY) else 0)
-            | (if (o.RETURN_PROFILE_PATH == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.RETURN_PROFILE_PATH) else 0)
-            | (if (o.TRY_SPECIFIED_DOMAIN_ONLY == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.TRY_SPECIFIED_DOMAIN_ONLY) else 0)
-        );
+        return @intToEnum(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL, (if (o.CLEARTEXT_PASSWORD_ALLOWED == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.CLEARTEXT_PASSWORD_ALLOWED) else 0) | (if (o.UPDATE_LOGON_STATISTICS == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.UPDATE_LOGON_STATISTICS) else 0) | (if (o.RETURN_USER_PARAMETERS == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.RETURN_USER_PARAMETERS) else 0) | (if (o.DONT_TRY_GUEST_ACCOUNT == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.DONT_TRY_GUEST_ACCOUNT) else 0) | (if (o.ALLOW_SERVER_TRUST_ACCOUNT == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.ALLOW_SERVER_TRUST_ACCOUNT) else 0) | (if (o.RETURN_PASSWORD_EXPIRY == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.RETURN_PASSWORD_EXPIRY) else 0) | (if (o.ALLOW_WORKSTATION_TRUST_ACCOUNT == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.ALLOW_WORKSTATION_TRUST_ACCOUNT) else 0) | (if (o.TRY_GUEST_ACCOUNT_ONLY == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.TRY_GUEST_ACCOUNT_ONLY) else 0) | (if (o.RETURN_PROFILE_PATH == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.RETURN_PROFILE_PATH) else 0) | (if (o.TRY_SPECIFIED_DOMAIN_ONLY == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.TRY_SPECIFIED_DOMAIN_ONLY) else 0));
     }
 };
 pub const MSV1_0_CLEARTEXT_PASSWORD_ALLOWED = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.CLEARTEXT_PASSWORD_ALLOWED;
@@ -1761,11 +1698,7 @@ pub const MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS = enum(u32) {
         NT_PRESENT: u1 = 0,
         VERSION: u1 = 0,
     }) MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS {
-        return @intToEnum(MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS,
-              (if (o.LM_PRESENT == 1) @enumToInt(MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.LM_PRESENT) else 0)
-            | (if (o.NT_PRESENT == 1) @enumToInt(MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.NT_PRESENT) else 0)
-            | (if (o.VERSION == 1) @enumToInt(MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.VERSION) else 0)
-        );
+        return @intToEnum(MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS, (if (o.LM_PRESENT == 1) @enumToInt(MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.LM_PRESENT) else 0) | (if (o.NT_PRESENT == 1) @enumToInt(MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.NT_PRESENT) else 0) | (if (o.VERSION == 1) @enumToInt(MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.VERSION) else 0));
     }
 };
 pub const MSV1_0_CRED_LM_PRESENT = MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.LM_PRESENT;
@@ -2468,16 +2401,15 @@ pub const DOMAIN_PASSWORD_INFORMATION = extern struct {
     MinPasswordAge: LARGE_INTEGER,
 };
 
-pub const PSAM_PASSWORD_NOTIFICATION_ROUTINE = fn(
+pub const PSAM_PASSWORD_NOTIFICATION_ROUTINE = fn (
     UserName: ?*UNICODE_STRING,
     RelativeId: u32,
     NewPassword: ?*UNICODE_STRING,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PSAM_INIT_NOTIFICATION_ROUTINE = fn(
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+pub const PSAM_INIT_NOTIFICATION_ROUTINE = fn () callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub const PSAM_PASSWORD_FILTER_ROUTINE = fn(
+pub const PSAM_PASSWORD_FILTER_ROUTINE = fn (
     AccountName: ?*UNICODE_STRING,
     FullName: ?*UNICODE_STRING,
     Password: ?*UNICODE_STRING,
@@ -3853,7 +3785,7 @@ pub const SECPKG_APP_MODE_INFO = extern struct {
     ReturnToLsa: BOOLEAN,
 };
 
-pub const SEC_GET_KEY_FN = fn(
+pub const SEC_GET_KEY_FN = fn (
     Arg: ?*anyopaque,
     Principal: ?*anyopaque,
     KeyVer: u32,
@@ -3861,7 +3793,7 @@ pub const SEC_GET_KEY_FN = fn(
     Status: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const ACQUIRE_CREDENTIALS_HANDLE_FN_W = fn(
+pub const ACQUIRE_CREDENTIALS_HANDLE_FN_W = fn (
     param0: ?*u16,
     param1: ?*u16,
     param2: u32,
@@ -3873,7 +3805,7 @@ pub const ACQUIRE_CREDENTIALS_HANDLE_FN_W = fn(
     param8: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const ACQUIRE_CREDENTIALS_HANDLE_FN_A = fn(
+pub const ACQUIRE_CREDENTIALS_HANDLE_FN_A = fn (
     param0: ?*i8,
     param1: ?*i8,
     param2: u32,
@@ -3885,11 +3817,11 @@ pub const ACQUIRE_CREDENTIALS_HANDLE_FN_A = fn(
     param8: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const FREE_CREDENTIALS_HANDLE_FN = fn(
+pub const FREE_CREDENTIALS_HANDLE_FN = fn (
     param0: ?*SecHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const ADD_CREDENTIALS_FN_W = fn(
+pub const ADD_CREDENTIALS_FN_W = fn (
     param0: ?*SecHandle,
     param1: ?*u16,
     param2: ?*u16,
@@ -3900,7 +3832,7 @@ pub const ADD_CREDENTIALS_FN_W = fn(
     param7: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const ADD_CREDENTIALS_FN_A = fn(
+pub const ADD_CREDENTIALS_FN_A = fn (
     param0: ?*SecHandle,
     param1: ?*i8,
     param2: ?*i8,
@@ -3911,7 +3843,7 @@ pub const ADD_CREDENTIALS_FN_A = fn(
     param7: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const CHANGE_PASSWORD_FN_W = fn(
+pub const CHANGE_PASSWORD_FN_W = fn (
     param0: ?*u16,
     param1: ?*u16,
     param2: ?*u16,
@@ -3922,7 +3854,7 @@ pub const CHANGE_PASSWORD_FN_W = fn(
     param7: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const CHANGE_PASSWORD_FN_A = fn(
+pub const CHANGE_PASSWORD_FN_A = fn (
     param0: ?*i8,
     param1: ?*i8,
     param2: ?*i8,
@@ -3933,7 +3865,7 @@ pub const CHANGE_PASSWORD_FN_A = fn(
     param7: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const INITIALIZE_SECURITY_CONTEXT_FN_W = fn(
+pub const INITIALIZE_SECURITY_CONTEXT_FN_W = fn (
     param0: ?*SecHandle,
     param1: ?*SecHandle,
     param2: ?*u16,
@@ -3948,7 +3880,7 @@ pub const INITIALIZE_SECURITY_CONTEXT_FN_W = fn(
     param11: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const INITIALIZE_SECURITY_CONTEXT_FN_A = fn(
+pub const INITIALIZE_SECURITY_CONTEXT_FN_A = fn (
     param0: ?*SecHandle,
     param1: ?*SecHandle,
     param2: ?*i8,
@@ -3963,7 +3895,7 @@ pub const INITIALIZE_SECURITY_CONTEXT_FN_A = fn(
     param11: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const ACCEPT_SECURITY_CONTEXT_FN = fn(
+pub const ACCEPT_SECURITY_CONTEXT_FN = fn (
     param0: ?*SecHandle,
     param1: ?*SecHandle,
     param2: ?*SecBufferDesc,
@@ -3975,161 +3907,161 @@ pub const ACCEPT_SECURITY_CONTEXT_FN = fn(
     param8: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const COMPLETE_AUTH_TOKEN_FN = fn(
+pub const COMPLETE_AUTH_TOKEN_FN = fn (
     param0: ?*SecHandle,
     param1: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const IMPERSONATE_SECURITY_CONTEXT_FN = fn(
+pub const IMPERSONATE_SECURITY_CONTEXT_FN = fn (
     param0: ?*SecHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const REVERT_SECURITY_CONTEXT_FN = fn(
+pub const REVERT_SECURITY_CONTEXT_FN = fn (
     param0: ?*SecHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const QUERY_SECURITY_CONTEXT_TOKEN_FN = fn(
+pub const QUERY_SECURITY_CONTEXT_TOKEN_FN = fn (
     param0: ?*SecHandle,
     param1: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const DELETE_SECURITY_CONTEXT_FN = fn(
+pub const DELETE_SECURITY_CONTEXT_FN = fn (
     param0: ?*SecHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const APPLY_CONTROL_TOKEN_FN = fn(
+pub const APPLY_CONTROL_TOKEN_FN = fn (
     param0: ?*SecHandle,
     param1: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const QUERY_CONTEXT_ATTRIBUTES_FN_W = fn(
+pub const QUERY_CONTEXT_ATTRIBUTES_FN_W = fn (
     param0: ?*SecHandle,
     param1: u32,
     param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const QUERY_CONTEXT_ATTRIBUTES_EX_FN_W = fn(
-    param0: ?*SecHandle,
-    param1: u32,
-    param2: ?*anyopaque,
-    param3: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub const QUERY_CONTEXT_ATTRIBUTES_FN_A = fn(
-    param0: ?*SecHandle,
-    param1: u32,
-    param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub const QUERY_CONTEXT_ATTRIBUTES_EX_FN_A = fn(
+pub const QUERY_CONTEXT_ATTRIBUTES_EX_FN_W = fn (
     param0: ?*SecHandle,
     param1: u32,
     param2: ?*anyopaque,
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const SET_CONTEXT_ATTRIBUTES_FN_W = fn(
+pub const QUERY_CONTEXT_ATTRIBUTES_FN_A = fn (
+    param0: ?*SecHandle,
+    param1: u32,
+    param2: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub const QUERY_CONTEXT_ATTRIBUTES_EX_FN_A = fn (
     param0: ?*SecHandle,
     param1: u32,
     param2: ?*anyopaque,
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const SET_CONTEXT_ATTRIBUTES_FN_A = fn(
+pub const SET_CONTEXT_ATTRIBUTES_FN_W = fn (
     param0: ?*SecHandle,
     param1: u32,
     param2: ?*anyopaque,
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const QUERY_CREDENTIALS_ATTRIBUTES_FN_W = fn(
-    param0: ?*SecHandle,
-    param1: u32,
-    param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub const QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_W = fn(
+pub const SET_CONTEXT_ATTRIBUTES_FN_A = fn (
     param0: ?*SecHandle,
     param1: u32,
     param2: ?*anyopaque,
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const QUERY_CREDENTIALS_ATTRIBUTES_FN_A = fn(
+pub const QUERY_CREDENTIALS_ATTRIBUTES_FN_W = fn (
     param0: ?*SecHandle,
     param1: u32,
     param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_A = fn(
-    param0: ?*SecHandle,
-    param1: u32,
-    param2: ?*anyopaque,
-    param3: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub const SET_CREDENTIALS_ATTRIBUTES_FN_W = fn(
+pub const QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_W = fn (
     param0: ?*SecHandle,
     param1: u32,
     param2: ?*anyopaque,
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const SET_CREDENTIALS_ATTRIBUTES_FN_A = fn(
+pub const QUERY_CREDENTIALS_ATTRIBUTES_FN_A = fn (
+    param0: ?*SecHandle,
+    param1: u32,
+    param2: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub const QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_A = fn (
     param0: ?*SecHandle,
     param1: u32,
     param2: ?*anyopaque,
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const FREE_CONTEXT_BUFFER_FN = fn(
+pub const SET_CREDENTIALS_ATTRIBUTES_FN_W = fn (
+    param0: ?*SecHandle,
+    param1: u32,
+    param2: ?*anyopaque,
+    param3: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub const SET_CREDENTIALS_ATTRIBUTES_FN_A = fn (
+    param0: ?*SecHandle,
+    param1: u32,
+    param2: ?*anyopaque,
+    param3: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub const FREE_CONTEXT_BUFFER_FN = fn (
     param0: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const MAKE_SIGNATURE_FN = fn(
+pub const MAKE_SIGNATURE_FN = fn (
     param0: ?*SecHandle,
     param1: u32,
     param2: ?*SecBufferDesc,
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const VERIFY_SIGNATURE_FN = fn(
+pub const VERIFY_SIGNATURE_FN = fn (
     param0: ?*SecHandle,
     param1: ?*SecBufferDesc,
     param2: u32,
     param3: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const ENCRYPT_MESSAGE_FN = fn(
+pub const ENCRYPT_MESSAGE_FN = fn (
     param0: ?*SecHandle,
     param1: u32,
     param2: ?*SecBufferDesc,
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const DECRYPT_MESSAGE_FN = fn(
+pub const DECRYPT_MESSAGE_FN = fn (
     param0: ?*SecHandle,
     param1: ?*SecBufferDesc,
     param2: u32,
     param3: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const ENUMERATE_SECURITY_PACKAGES_FN_W = fn(
+pub const ENUMERATE_SECURITY_PACKAGES_FN_W = fn (
     param0: ?*u32,
     param1: ?*?*SecPkgInfoW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const ENUMERATE_SECURITY_PACKAGES_FN_A = fn(
+pub const ENUMERATE_SECURITY_PACKAGES_FN_A = fn (
     param0: ?*u32,
     param1: ?*?*SecPkgInfoA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const QUERY_SECURITY_PACKAGE_INFO_FN_W = fn(
+pub const QUERY_SECURITY_PACKAGE_INFO_FN_W = fn (
     param0: ?*u16,
     param1: ?*?*SecPkgInfoW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const QUERY_SECURITY_PACKAGE_INFO_FN_A = fn(
+pub const QUERY_SECURITY_PACKAGE_INFO_FN_A = fn (
     param0: ?*i8,
     param1: ?*?*SecPkgInfoA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -4147,21 +4079,21 @@ pub const SecTree = SecDelegationType.Tree;
 pub const SecDirectory = SecDelegationType.Directory;
 pub const SecObject = SecDelegationType.Object;
 
-pub const EXPORT_SECURITY_CONTEXT_FN = fn(
+pub const EXPORT_SECURITY_CONTEXT_FN = fn (
     param0: ?*SecHandle,
     param1: u32,
     param2: ?*SecBuffer,
     param3: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const IMPORT_SECURITY_CONTEXT_FN_W = fn(
+pub const IMPORT_SECURITY_CONTEXT_FN_W = fn (
     param0: ?*u16,
     param1: ?*SecBuffer,
     param2: ?*anyopaque,
     param3: ?*SecHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const IMPORT_SECURITY_CONTEXT_FN_A = fn(
+pub const IMPORT_SECURITY_CONTEXT_FN_A = fn (
     param0: ?*i8,
     param1: ?*SecBuffer,
     param2: ?*anyopaque,
@@ -4238,11 +4170,9 @@ pub const SecurityFunctionTableA = extern struct {
     QueryCredentialsAttributesExA: ?QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_A,
 };
 
-pub const INIT_SECURITY_INTERFACE_A = fn(
-) callconv(@import("std").os.windows.WINAPI) ?*SecurityFunctionTableA;
+pub const INIT_SECURITY_INTERFACE_A = fn () callconv(@import("std").os.windows.WINAPI) ?*SecurityFunctionTableA;
 
-pub const INIT_SECURITY_INTERFACE_W = fn(
-) callconv(@import("std").os.windows.WINAPI) ?*SecurityFunctionTableW;
+pub const INIT_SECURITY_INTERFACE_W = fn () callconv(@import("std").os.windows.WINAPI) ?*SecurityFunctionTableW;
 
 pub const SASL_AUTHZID_STATE = enum(i32) {
     Forbidden = 0,
@@ -4349,22 +4279,22 @@ pub const LSA_TOKEN_INFORMATION_V3 = extern struct {
     DeviceGroups: ?*TOKEN_GROUPS,
 };
 
-pub const PLSA_CREATE_LOGON_SESSION = fn(
+pub const PLSA_CREATE_LOGON_SESSION = fn (
     LogonId: ?*LUID,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_DELETE_LOGON_SESSION = fn(
+pub const PLSA_DELETE_LOGON_SESSION = fn (
     LogonId: ?*LUID,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_ADD_CREDENTIAL = fn(
+pub const PLSA_ADD_CREDENTIAL = fn (
     LogonId: ?*LUID,
     AuthenticationPackage: u32,
     PrimaryKeyValue: ?*STRING,
     Credentials: ?*STRING,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_GET_CREDENTIALS = fn(
+pub const PLSA_GET_CREDENTIALS = fn (
     LogonId: ?*LUID,
     AuthenticationPackage: u32,
     QueryContext: ?*u32,
@@ -4374,40 +4304,40 @@ pub const PLSA_GET_CREDENTIALS = fn(
     Credentials: ?*STRING,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_DELETE_CREDENTIAL = fn(
+pub const PLSA_DELETE_CREDENTIAL = fn (
     LogonId: ?*LUID,
     AuthenticationPackage: u32,
     PrimaryKeyValue: ?*STRING,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_ALLOCATE_LSA_HEAP = fn(
+pub const PLSA_ALLOCATE_LSA_HEAP = fn (
     Length: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const PLSA_FREE_LSA_HEAP = fn(
+pub const PLSA_FREE_LSA_HEAP = fn (
     Base: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PLSA_ALLOCATE_PRIVATE_HEAP = fn(
+pub const PLSA_ALLOCATE_PRIVATE_HEAP = fn (
     Length: usize,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const PLSA_FREE_PRIVATE_HEAP = fn(
+pub const PLSA_FREE_PRIVATE_HEAP = fn (
     Base: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PLSA_ALLOCATE_CLIENT_BUFFER = fn(
+pub const PLSA_ALLOCATE_CLIENT_BUFFER = fn (
     ClientRequest: ?*?*anyopaque,
     LengthRequired: u32,
     ClientBaseAddress: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_FREE_CLIENT_BUFFER = fn(
+pub const PLSA_FREE_CLIENT_BUFFER = fn (
     ClientRequest: ?*?*anyopaque,
     ClientBaseAddress: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_COPY_TO_CLIENT_BUFFER = fn(
+pub const PLSA_COPY_TO_CLIENT_BUFFER = fn (
     ClientRequest: ?*?*anyopaque,
     Length: u32,
     // TODO: what to do with BytesParamIndex 1?
@@ -4416,7 +4346,7 @@ pub const PLSA_COPY_TO_CLIENT_BUFFER = fn(
     BufferToCopy: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_COPY_FROM_CLIENT_BUFFER = fn(
+pub const PLSA_COPY_FROM_CLIENT_BUFFER = fn (
     ClientRequest: ?*?*anyopaque,
     Length: u32,
     // TODO: what to do with BytesParamIndex 1?
@@ -4439,7 +4369,7 @@ pub const LSA_DISPATCH_TABLE = extern struct {
     CopyFromClientBuffer: ?PLSA_COPY_FROM_CLIENT_BUFFER,
 };
 
-pub const PLSA_AP_INITIALIZE_PACKAGE = fn(
+pub const PLSA_AP_INITIALIZE_PACKAGE = fn (
     AuthenticationPackageId: u32,
     LsaDispatchTable: ?*LSA_DISPATCH_TABLE,
     Database: ?*STRING,
@@ -4447,7 +4377,7 @@ pub const PLSA_AP_INITIALIZE_PACKAGE = fn(
     AuthenticationPackageName: ?*?*STRING,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_AP_LOGON_USER = fn(
+pub const PLSA_AP_LOGON_USER = fn (
     ClientRequest: ?*?*anyopaque,
     LogonType: SECURITY_LOGON_TYPE,
     // TODO: what to do with BytesParamIndex 4?
@@ -4464,7 +4394,7 @@ pub const PLSA_AP_LOGON_USER = fn(
     AuthenticatingAuthority: ?*?*UNICODE_STRING,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_AP_LOGON_USER_EX = fn(
+pub const PLSA_AP_LOGON_USER_EX = fn (
     ClientRequest: ?*?*anyopaque,
     LogonType: SECURITY_LOGON_TYPE,
     // TODO: what to do with BytesParamIndex 4?
@@ -4482,7 +4412,7 @@ pub const PLSA_AP_LOGON_USER_EX = fn(
     MachineName: ?*?*UNICODE_STRING,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_AP_CALL_PACKAGE = fn(
+pub const PLSA_AP_CALL_PACKAGE = fn (
     ClientRequest: ?*?*anyopaque,
     // TODO: what to do with BytesParamIndex 3?
     ProtocolSubmitBuffer: ?*anyopaque,
@@ -4493,7 +4423,7 @@ pub const PLSA_AP_CALL_PACKAGE = fn(
     ProtocolStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_AP_CALL_PACKAGE_PASSTHROUGH = fn(
+pub const PLSA_AP_CALL_PACKAGE_PASSTHROUGH = fn (
     ClientRequest: ?*?*anyopaque,
     // TODO: what to do with BytesParamIndex 3?
     ProtocolSubmitBuffer: ?*anyopaque,
@@ -4504,11 +4434,11 @@ pub const PLSA_AP_CALL_PACKAGE_PASSTHROUGH = fn(
     ProtocolStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_AP_LOGON_TERMINATED = fn(
+pub const PLSA_AP_LOGON_TERMINATED = fn (
     LogonId: ?*LUID,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PSAM_CREDENTIAL_UPDATE_NOTIFY_ROUTINE = fn(
+pub const PSAM_CREDENTIAL_UPDATE_NOTIFY_ROUTINE = fn (
     ClearPassword: ?*UNICODE_STRING,
     // TODO: what to do with BytesParamIndex 2?
     OldCredentials: ?*anyopaque,
@@ -4522,11 +4452,11 @@ pub const PSAM_CREDENTIAL_UPDATE_NOTIFY_ROUTINE = fn(
     NewCredentialSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PSAM_CREDENTIAL_UPDATE_REGISTER_ROUTINE = fn(
+pub const PSAM_CREDENTIAL_UPDATE_REGISTER_ROUTINE = fn (
     CredentialName: ?*UNICODE_STRING,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub const PSAM_CREDENTIAL_UPDATE_FREE_ROUTINE = fn(
+pub const PSAM_CREDENTIAL_UPDATE_FREE_ROUTINE = fn (
     p: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -4546,7 +4476,7 @@ pub const SAM_REGISTER_MAPPING_TABLE = extern struct {
     Lists: ?*SAM_REGISTER_MAPPING_LIST,
 };
 
-pub const PSAM_CREDENTIAL_UPDATE_REGISTER_MAPPED_ENTRYPOINTS_ROUTINE = fn(
+pub const PSAM_CREDENTIAL_UPDATE_REGISTER_MAPPED_ENTRYPOINTS_ROUTINE = fn (
     Table: ?*SAM_REGISTER_MAPPING_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
@@ -4629,7 +4559,7 @@ pub const SECPKG_SURROGATE_LOGON = extern struct {
     Entries: ?*SECPKG_SURROGATE_LOGON_ENTRY,
 };
 
-pub const PLSA_CALLBACK_FUNCTION = fn(
+pub const PLSA_CALLBACK_FUNCTION = fn (
     Argument1: usize,
     Argument2: usize,
     InputBuffer: ?*SecBuffer,
@@ -4795,14 +4725,14 @@ pub const SECPKG_CALL_PACKAGE_TRANSFER_CRED_REQUEST = extern struct {
     Flags: u32,
 };
 
-pub const PLSA_REDIRECTED_LOGON_INIT = fn(
+pub const PLSA_REDIRECTED_LOGON_INIT = fn (
     RedirectedLogonHandle: ?HANDLE,
     PackageName: ?*const UNICODE_STRING,
     SessionId: u32,
     LogonId: ?*const LUID,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_REDIRECTED_LOGON_CALLBACK = fn(
+pub const PLSA_REDIRECTED_LOGON_CALLBACK = fn (
     RedirectedLogonHandle: ?HANDLE,
     Buffer: ?*anyopaque,
     BufferLength: u32,
@@ -4810,17 +4740,17 @@ pub const PLSA_REDIRECTED_LOGON_CALLBACK = fn(
     ReturnBufferLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_REDIRECTED_LOGON_CLEANUP_CALLBACK = fn(
+pub const PLSA_REDIRECTED_LOGON_CLEANUP_CALLBACK = fn (
     RedirectedLogonHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PLSA_REDIRECTED_LOGON_GET_LOGON_CREDS = fn(
+pub const PLSA_REDIRECTED_LOGON_GET_LOGON_CREDS = fn (
     RedirectedLogonHandle: ?HANDLE,
     LogonBuffer: ?*?*u8,
     LogonBufferLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_REDIRECTED_LOGON_GET_SUPP_CREDS = fn(
+pub const PLSA_REDIRECTED_LOGON_GET_SUPP_CREDS = fn (
     RedirectedLogonHandle: ?HANDLE,
     SupplementalCredentials: ?*?*SECPKG_SUPPLEMENTAL_CRED_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -4841,18 +4771,16 @@ pub const SECPKG_POST_LOGON_USER_INFO = extern struct {
     LinkedLogonId: LUID,
 };
 
-pub const PLSA_IMPERSONATE_CLIENT = fn(
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+pub const PLSA_IMPERSONATE_CLIENT = fn () callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_UNLOAD_PACKAGE = fn(
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+pub const PLSA_UNLOAD_PACKAGE = fn () callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_DUPLICATE_HANDLE = fn(
+pub const PLSA_DUPLICATE_HANDLE = fn (
     SourceHandle: ?HANDLE,
     DestionationHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_SAVE_SUPPLEMENTAL_CREDENTIALS = fn(
+pub const PLSA_SAVE_SUPPLEMENTAL_CREDENTIALS = fn (
     LogonId: ?*LUID,
     SupplementalCredSize: u32,
     // TODO: what to do with BytesParamIndex 1?
@@ -4860,7 +4788,7 @@ pub const PLSA_SAVE_SUPPLEMENTAL_CREDENTIALS = fn(
     Synchronous: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_CREATE_THREAD = fn(
+pub const PLSA_CREATE_THREAD = fn (
     SecurityAttributes: ?*SECURITY_ATTRIBUTES,
     StackSize: u32,
     StartFunction: ?LPTHREAD_START_ROUTINE,
@@ -4869,11 +4797,11 @@ pub const PLSA_CREATE_THREAD = fn(
     ThreadId: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub const PLSA_GET_CLIENT_INFO = fn(
+pub const PLSA_GET_CLIENT_INFO = fn (
     ClientInfo: ?*SECPKG_CLIENT_INFO,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_REGISTER_NOTIFICATION = fn(
+pub const PLSA_REGISTER_NOTIFICATION = fn (
     StartFunction: ?LPTHREAD_START_ROUTINE,
     Parameter: ?*anyopaque,
     NotificationType: u32,
@@ -4883,16 +4811,16 @@ pub const PLSA_REGISTER_NOTIFICATION = fn(
     WaitEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub const PLSA_CANCEL_NOTIFICATION = fn(
+pub const PLSA_CANCEL_NOTIFICATION = fn (
     NotifyHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_MAP_BUFFER = fn(
+pub const PLSA_MAP_BUFFER = fn (
     InputBuffer: ?*SecBuffer,
     OutputBuffer: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_CREATE_TOKEN = fn(
+pub const PLSA_CREATE_TOKEN = fn (
     LogonId: ?*LUID,
     TokenSource: ?*TOKEN_SOURCE,
     LogonType: SECURITY_LOGON_TYPE,
@@ -4913,7 +4841,7 @@ pub const SECPKG_SESSIONINFO_TYPE = enum(i32) {
 };
 pub const SecSessionPrimaryCred = SECPKG_SESSIONINFO_TYPE.d;
 
-pub const PLSA_CREATE_TOKEN_EX = fn(
+pub const PLSA_CREATE_TOKEN_EX = fn (
     LogonId: ?*LUID,
     TokenSource: ?*TOKEN_SOURCE,
     LogonType: SECURITY_LOGON_TYPE,
@@ -4929,7 +4857,7 @@ pub const PLSA_CREATE_TOKEN_EX = fn(
     SubStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_AUDIT_LOGON = fn(
+pub const PLSA_AUDIT_LOGON = fn (
     Status: NTSTATUS,
     SubStatus: NTSTATUS,
     AccountName: ?*UNICODE_STRING,
@@ -4941,7 +4869,7 @@ pub const PLSA_AUDIT_LOGON = fn(
     LogonId: ?*LUID,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PLSA_CALL_PACKAGE = fn(
+pub const PLSA_CALL_PACKAGE = fn (
     AuthenticationPackage: ?*UNICODE_STRING,
     // TODO: what to do with BytesParamIndex 2?
     ProtocolSubmitBuffer: ?*anyopaque,
@@ -4951,7 +4879,7 @@ pub const PLSA_CALL_PACKAGE = fn(
     ProtocolStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_CALL_PACKAGEEX = fn(
+pub const PLSA_CALL_PACKAGEEX = fn (
     AuthenticationPackage: ?*UNICODE_STRING,
     ClientBufferBase: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 3?
@@ -4962,7 +4890,7 @@ pub const PLSA_CALL_PACKAGEEX = fn(
     ProtocolStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_CALL_PACKAGE_PASSTHROUGH = fn(
+pub const PLSA_CALL_PACKAGE_PASSTHROUGH = fn (
     AuthenticationPackage: ?*UNICODE_STRING,
     ClientBufferBase: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 3?
@@ -4973,30 +4901,30 @@ pub const PLSA_CALL_PACKAGE_PASSTHROUGH = fn(
     ProtocolStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_GET_CALL_INFO = fn(
+pub const PLSA_GET_CALL_INFO = fn (
     Info: ?*SECPKG_CALL_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub const PLSA_CREATE_SHARED_MEMORY = fn(
+pub const PLSA_CREATE_SHARED_MEMORY = fn (
     MaxSize: u32,
     InitialSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const PLSA_ALLOCATE_SHARED_MEMORY = fn(
+pub const PLSA_ALLOCATE_SHARED_MEMORY = fn (
     SharedMem: ?*anyopaque,
     Size: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const PLSA_FREE_SHARED_MEMORY = fn(
+pub const PLSA_FREE_SHARED_MEMORY = fn (
     SharedMem: ?*anyopaque,
     Memory: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PLSA_DELETE_SHARED_MEMORY = fn(
+pub const PLSA_DELETE_SHARED_MEMORY = fn (
     SharedMem: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub const PLSA_GET_APP_MODE_INFO = fn(
+pub const PLSA_GET_APP_MODE_INFO = fn (
     UserFunction: ?*u32,
     Argument1: ?*usize,
     Argument2: ?*usize,
@@ -5004,7 +4932,7 @@ pub const PLSA_GET_APP_MODE_INFO = fn(
     ReturnToLsa: ?*BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_SET_APP_MODE_INFO = fn(
+pub const PLSA_SET_APP_MODE_INFO = fn (
     UserFunction: u32,
     Argument1: usize,
     Argument2: usize,
@@ -5025,7 +4953,7 @@ pub const SecNameFlat = SECPKG_NAME_TYPE.Flat;
 pub const SecNameDN = SECPKG_NAME_TYPE.DN;
 pub const SecNameSPN = SECPKG_NAME_TYPE.SPN;
 
-pub const PLSA_OPEN_SAM_USER = fn(
+pub const PLSA_OPEN_SAM_USER = fn (
     Name: ?*UNICODE_STRING,
     NameType: SECPKG_NAME_TYPE,
     Prefix: ?*UNICODE_STRING,
@@ -5034,7 +4962,7 @@ pub const PLSA_OPEN_SAM_USER = fn(
     UserHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_GET_USER_CREDENTIALS = fn(
+pub const PLSA_GET_USER_CREDENTIALS = fn (
     UserHandle: ?*anyopaque,
     PrimaryCreds: ?*?*anyopaque,
     PrimaryCredsSize: ?*u32,
@@ -5042,17 +4970,17 @@ pub const PLSA_GET_USER_CREDENTIALS = fn(
     SupplementalCredsSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_GET_USER_AUTH_DATA = fn(
+pub const PLSA_GET_USER_AUTH_DATA = fn (
     UserHandle: ?*anyopaque,
     UserAuthData: ?*?*u8,
     UserAuthDataSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_CLOSE_SAM_USER = fn(
+pub const PLSA_CLOSE_SAM_USER = fn (
     UserHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_GET_AUTH_DATA_FOR_USER = fn(
+pub const PLSA_GET_AUTH_DATA_FOR_USER = fn (
     Name: ?*UNICODE_STRING,
     NameType: SECPKG_NAME_TYPE,
     Prefix: ?*UNICODE_STRING,
@@ -5061,7 +4989,7 @@ pub const PLSA_GET_AUTH_DATA_FOR_USER = fn(
     UserFlatName: ?*UNICODE_STRING,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_CONVERT_AUTH_DATA_TO_TOKEN = fn(
+pub const PLSA_CONVERT_AUTH_DATA_TO_TOKEN = fn (
     UserAuthData: ?*anyopaque,
     UserAuthDataSize: u32,
     ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL,
@@ -5074,7 +5002,7 @@ pub const PLSA_CONVERT_AUTH_DATA_TO_TOKEN = fn(
     SubStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_CRACK_SINGLE_NAME = fn(
+pub const PLSA_CRACK_SINGLE_NAME = fn (
     FormatOffered: u32,
     PerformAtGC: BOOLEAN,
     NameInput: ?*UNICODE_STRING,
@@ -5085,7 +5013,7 @@ pub const PLSA_CRACK_SINGLE_NAME = fn(
     SubStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_AUDIT_ACCOUNT_LOGON = fn(
+pub const PLSA_AUDIT_ACCOUNT_LOGON = fn (
     AuditId: u32,
     Success: BOOLEAN,
     Source: ?*UNICODE_STRING,
@@ -5094,7 +5022,7 @@ pub const PLSA_AUDIT_ACCOUNT_LOGON = fn(
     Status: NTSTATUS,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_CLIENT_CALLBACK = fn(
+pub const PLSA_CLIENT_CALLBACK = fn (
     Callback: ?[*]u8,
     Argument1: usize,
     Argument2: usize,
@@ -5102,12 +5030,12 @@ pub const PLSA_CLIENT_CALLBACK = fn(
     Output: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_REGISTER_CALLBACK = fn(
+pub const PLSA_REGISTER_CALLBACK = fn (
     CallbackId: u32,
     Callback: ?PLSA_CALLBACK_FUNCTION,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_GET_EXTENDED_CALL_FLAGS = fn(
+pub const PLSA_GET_EXTENDED_CALL_FLAGS = fn (
     Flags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
@@ -5130,23 +5058,23 @@ pub const SECPKG_EVENT_NOTIFY = extern struct {
     PackageParameter: ?*anyopaque,
 };
 
-pub const PLSA_UPDATE_PRIMARY_CREDENTIALS = fn(
+pub const PLSA_UPDATE_PRIMARY_CREDENTIALS = fn (
     PrimaryCredentials: ?*SECPKG_PRIMARY_CRED,
     Credentials: ?*SECPKG_SUPPLEMENTAL_CRED_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_PROTECT_MEMORY = fn(
+pub const PLSA_PROTECT_MEMORY = fn (
     // TODO: what to do with BytesParamIndex 1?
     Buffer: ?*anyopaque,
     BufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PLSA_OPEN_TOKEN_BY_LOGON_ID = fn(
+pub const PLSA_OPEN_TOKEN_BY_LOGON_ID = fn (
     LogonId: ?*LUID,
     RetTokenHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_EXPAND_AUTH_DATA_FOR_DOMAIN = fn(
+pub const PLSA_EXPAND_AUTH_DATA_FOR_DOMAIN = fn (
     // TODO: what to do with BytesParamIndex 1?
     UserAuthData: ?*u8,
     UserAuthDataSize: u32,
@@ -5164,7 +5092,7 @@ pub const CredFetchDefault = CRED_FETCH.Default;
 pub const CredFetchDPAPI = CRED_FETCH.DPAPI;
 pub const CredFetchForced = CRED_FETCH.Forced;
 
-pub const PLSA_GET_SERVICE_ACCOUNT_PASSWORD = fn(
+pub const PLSA_GET_SERVICE_ACCOUNT_PASSWORD = fn (
     AccountName: ?*UNICODE_STRING,
     DomainName: ?*UNICODE_STRING,
     CredFetch: CRED_FETCH,
@@ -5174,7 +5102,7 @@ pub const PLSA_GET_SERVICE_ACCOUNT_PASSWORD = fn(
     FileTimeCurrPwdValidForOutbound: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_AUDIT_LOGON_EX = fn(
+pub const PLSA_AUDIT_LOGON_EX = fn (
     Status: NTSTATUS,
     SubStatus: NTSTATUS,
     AccountName: ?*UNICODE_STRING,
@@ -5187,12 +5115,12 @@ pub const PLSA_AUDIT_LOGON_EX = fn(
     LogonId: ?*LUID,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PLSA_CHECK_PROTECTED_USER_BY_TOKEN = fn(
+pub const PLSA_CHECK_PROTECTED_USER_BY_TOKEN = fn (
     UserToken: ?HANDLE,
     ProtectedUser: ?*BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_QUERY_CLIENT_REQUEST = fn(
+pub const PLSA_QUERY_CLIENT_REQUEST = fn (
     ClientRequest: ?*?*anyopaque,
     QueryType: u32,
     ReplyBuffer: ?*?*anyopaque,
@@ -5203,7 +5131,7 @@ pub const ENCRYPTED_CREDENTIALW = extern struct {
     ClearCredentialBlobSize: u32,
 };
 
-pub const CredReadFn = fn(
+pub const CredReadFn = fn (
     LogonId: ?*LUID,
     CredFlags: u32,
     TargetName: ?PWSTR,
@@ -5212,7 +5140,7 @@ pub const CredReadFn = fn(
     Credential: ?*?*ENCRYPTED_CREDENTIALW,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const CredReadDomainCredentialsFn = fn(
+pub const CredReadDomainCredentialsFn = fn (
     LogonId: ?*LUID,
     CredFlags: u32,
     TargetInfo: ?*CREDENTIAL_TARGET_INFORMATIONW,
@@ -5221,19 +5149,19 @@ pub const CredReadDomainCredentialsFn = fn(
     Credential: ?*?*?*ENCRYPTED_CREDENTIALW,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const CredFreeCredentialsFn = fn(
+pub const CredFreeCredentialsFn = fn (
     Count: u32,
     Credentials: ?[*]?*ENCRYPTED_CREDENTIALW,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const CredWriteFn = fn(
+pub const CredWriteFn = fn (
     LogonId: ?*LUID,
     CredFlags: u32,
     Credential: ?*ENCRYPTED_CREDENTIALW,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const CrediUnmarshalandDecodeStringFn = fn(
+pub const CrediUnmarshalandDecodeStringFn = fn (
     MarshaledString: ?PWSTR,
     Blob: ?*?*u8,
     BlobSize: ?*u32,
@@ -5330,7 +5258,7 @@ pub const LSA_SECPKG_FUNCTION_TABLE = extern struct {
     SetAppModeInfo: ?PLSA_SET_APP_MODE_INFO,
 };
 
-pub const PLSA_LOCATE_PKG_BY_ID = fn(
+pub const PLSA_LOCATE_PKG_BY_ID = fn (
     PackgeId: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
@@ -5341,30 +5269,29 @@ pub const SECPKG_DLL_FUNCTIONS = extern struct {
     LocatePackageById: ?PLSA_LOCATE_PKG_BY_ID,
 };
 
-pub const SpInitializeFn = fn(
+pub const SpInitializeFn = fn (
     PackageId: usize,
     Parameters: ?*SECPKG_PARAMETERS,
     FunctionTable: ?*LSA_SECPKG_FUNCTION_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpShutdownFn = fn(
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+pub const SpShutdownFn = fn () callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpGetInfoFn = fn(
+pub const SpGetInfoFn = fn (
     PackageInfo: ?*SecPkgInfoA,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpGetExtendedInformationFn = fn(
+pub const SpGetExtendedInformationFn = fn (
     Class: SECPKG_EXTENDED_INFORMATION_CLASS,
     ppInformation: ?*?*SECPKG_EXTENDED_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpSetExtendedInformationFn = fn(
+pub const SpSetExtendedInformationFn = fn (
     Class: SECPKG_EXTENDED_INFORMATION_CLASS,
     Info: ?*SECPKG_EXTENDED_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_AP_LOGON_USER_EX2 = fn(
+pub const PLSA_AP_LOGON_USER_EX2 = fn (
     ClientRequest: ?*?*anyopaque,
     LogonType: SECURITY_LOGON_TYPE,
     // TODO: what to do with BytesParamIndex 4?
@@ -5384,7 +5311,7 @@ pub const PLSA_AP_LOGON_USER_EX2 = fn(
     SupplementalCredentials: ?*?*SECPKG_SUPPLEMENTAL_CRED_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_AP_LOGON_USER_EX3 = fn(
+pub const PLSA_AP_LOGON_USER_EX3 = fn (
     ClientRequest: ?*?*anyopaque,
     LogonType: SECURITY_LOGON_TYPE,
     // TODO: what to do with BytesParamIndex 4?
@@ -5405,7 +5332,7 @@ pub const PLSA_AP_LOGON_USER_EX3 = fn(
     SupplementalCredentials: ?*?*SECPKG_SUPPLEMENTAL_CRED_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_AP_PRE_LOGON_USER_SURROGATE = fn(
+pub const PLSA_AP_PRE_LOGON_USER_SURROGATE = fn (
     ClientRequest: ?*?*anyopaque,
     LogonType: SECURITY_LOGON_TYPE,
     // TODO: what to do with BytesParamIndex 4?
@@ -5416,7 +5343,7 @@ pub const PLSA_AP_PRE_LOGON_USER_SURROGATE = fn(
     SubStatus: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PLSA_AP_POST_LOGON_USER_SURROGATE = fn(
+pub const PLSA_AP_POST_LOGON_USER_SURROGATE = fn (
     ClientRequest: ?*?*anyopaque,
     LogonType: SECURITY_LOGON_TYPE,
     // TODO: what to do with BytesParamIndex 4?
@@ -5439,14 +5366,14 @@ pub const PLSA_AP_POST_LOGON_USER_SURROGATE = fn(
     SupplementalCredentials: ?*SECPKG_SUPPLEMENTAL_CRED_ARRAY,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpAcceptCredentialsFn = fn(
+pub const SpAcceptCredentialsFn = fn (
     LogonType: SECURITY_LOGON_TYPE,
     AccountName: ?*UNICODE_STRING,
     PrimaryCredentials: ?*SECPKG_PRIMARY_CRED,
     SupplementalCredentials: ?*SECPKG_SUPPLEMENTAL_CRED,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpAcquireCredentialsHandleFn = fn(
+pub const SpAcquireCredentialsHandleFn = fn (
     PrincipalName: ?*UNICODE_STRING,
     CredentialUseFlags: u32,
     LogonId: ?*LUID,
@@ -5457,17 +5384,17 @@ pub const SpAcquireCredentialsHandleFn = fn(
     ExpirationTime: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpFreeCredentialsHandleFn = fn(
+pub const SpFreeCredentialsHandleFn = fn (
     CredentialHandle: usize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpQueryCredentialsAttributesFn = fn(
+pub const SpQueryCredentialsAttributesFn = fn (
     CredentialHandle: usize,
     CredentialAttribute: u32,
     Buffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpSetCredentialsAttributesFn = fn(
+pub const SpSetCredentialsAttributesFn = fn (
     CredentialHandle: usize,
     CredentialAttribute: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -5475,7 +5402,7 @@ pub const SpSetCredentialsAttributesFn = fn(
     BufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpAddCredentialsFn = fn(
+pub const SpAddCredentialsFn = fn (
     CredentialHandle: usize,
     PrincipalName: ?*UNICODE_STRING,
     Package: ?*UNICODE_STRING,
@@ -5486,22 +5413,22 @@ pub const SpAddCredentialsFn = fn(
     ExpirationTime: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpSaveCredentialsFn = fn(
+pub const SpSaveCredentialsFn = fn (
     CredentialHandle: usize,
     Credentials: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpGetCredentialsFn = fn(
+pub const SpGetCredentialsFn = fn (
     CredentialHandle: usize,
     Credentials: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpDeleteCredentialsFn = fn(
+pub const SpDeleteCredentialsFn = fn (
     CredentialHandle: usize,
     Key: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpInitLsaModeContextFn = fn(
+pub const SpInitLsaModeContextFn = fn (
     CredentialHandle: usize,
     ContextHandle: usize,
     TargetName: ?*UNICODE_STRING,
@@ -5516,16 +5443,16 @@ pub const SpInitLsaModeContextFn = fn(
     ContextData: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpDeleteContextFn = fn(
+pub const SpDeleteContextFn = fn (
     ContextHandle: usize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpApplyControlTokenFn = fn(
+pub const SpApplyControlTokenFn = fn (
     ContextHandle: usize,
     ControlToken: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpAcceptLsaModeContextFn = fn(
+pub const SpAcceptLsaModeContextFn = fn (
     CredentialHandle: usize,
     ContextHandle: usize,
     InputBuffer: ?*SecBufferDesc,
@@ -5539,19 +5466,19 @@ pub const SpAcceptLsaModeContextFn = fn(
     ContextData: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpGetUserInfoFn = fn(
+pub const SpGetUserInfoFn = fn (
     LogonId: ?*LUID,
     Flags: u32,
     UserData: ?*?*SECURITY_USER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpQueryContextAttributesFn = fn(
+pub const SpQueryContextAttributesFn = fn (
     ContextHandle: usize,
     ContextAttribute: u32,
     Buffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpSetContextAttributesFn = fn(
+pub const SpSetContextAttributesFn = fn (
     ContextHandle: usize,
     ContextAttribute: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -5559,7 +5486,7 @@ pub const SpSetContextAttributesFn = fn(
     BufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpChangeAccountPasswordFn = fn(
+pub const SpChangeAccountPasswordFn = fn (
     pDomainName: ?*UNICODE_STRING,
     pAccountName: ?*UNICODE_STRING,
     pOldPassword: ?*UNICODE_STRING,
@@ -5568,7 +5495,7 @@ pub const SpChangeAccountPasswordFn = fn(
     pOutput: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpQueryMetaDataFn = fn(
+pub const SpQueryMetaDataFn = fn (
     CredentialHandle: usize,
     TargetName: ?*UNICODE_STRING,
     ContextRequirements: u32,
@@ -5577,7 +5504,7 @@ pub const SpQueryMetaDataFn = fn(
     ContextHandle: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpExchangeMetaDataFn = fn(
+pub const SpExchangeMetaDataFn = fn (
     CredentialHandle: usize,
     TargetName: ?*UNICODE_STRING,
     ContextRequirements: u32,
@@ -5587,14 +5514,14 @@ pub const SpExchangeMetaDataFn = fn(
     ContextHandle: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpGetCredUIContextFn = fn(
+pub const SpGetCredUIContextFn = fn (
     ContextHandle: usize,
     CredType: ?*Guid,
     FlatCredUIContextLength: ?*u32,
     FlatCredUIContext: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpUpdateCredentialsFn = fn(
+pub const SpUpdateCredentialsFn = fn (
     ContextHandle: usize,
     CredType: ?*Guid,
     FlatCredUIContextLength: u32,
@@ -5602,7 +5529,7 @@ pub const SpUpdateCredentialsFn = fn(
     FlatCredUIContext: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpValidateTargetInfoFn = fn(
+pub const SpValidateTargetInfoFn = fn (
     ClientRequest: ?*?*anyopaque,
     // TODO: what to do with BytesParamIndex 3?
     ProtocolSubmitBuffer: ?*anyopaque,
@@ -5611,11 +5538,11 @@ pub const SpValidateTargetInfoFn = fn(
     TargetInfo: ?*SECPKG_TARGETINFO,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const LSA_AP_POST_LOGON_USER = fn(
+pub const LSA_AP_POST_LOGON_USER = fn (
     PostLogonUserInfo: ?*SECPKG_POST_LOGON_USER_INFO,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpGetRemoteCredGuardLogonBufferFn = fn(
+pub const SpGetRemoteCredGuardLogonBufferFn = fn (
     CredHandle: usize,
     ContextHandle: usize,
     TargetName: ?*const UNICODE_STRING,
@@ -5626,7 +5553,7 @@ pub const SpGetRemoteCredGuardLogonBufferFn = fn(
     LogonBuffer: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpGetRemoteCredGuardSupplementalCredsFn = fn(
+pub const SpGetRemoteCredGuardSupplementalCredsFn = fn (
     CredHandle: usize,
     TargetName: ?*const UNICODE_STRING,
     RedirectedLogonHandle: ?*?HANDLE,
@@ -5636,7 +5563,7 @@ pub const SpGetRemoteCredGuardSupplementalCredsFn = fn(
     SupplementalCreds: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpGetTbalSupplementalCredsFn = fn(
+pub const SpGetTbalSupplementalCredsFn = fn (
     LogonId: LUID,
     SupplementalCredsSize: ?*u32,
     SupplementalCreds: ?*?*anyopaque,
@@ -5687,74 +5614,74 @@ pub const SECPKG_FUNCTION_TABLE = extern struct {
     PostLogonUserSurrogate: ?PLSA_AP_POST_LOGON_USER_SURROGATE,
 };
 
-pub const SpInstanceInitFn = fn(
+pub const SpInstanceInitFn = fn (
     Version: u32,
     FunctionTable: ?*SECPKG_DLL_FUNCTIONS,
     UserFunctions: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpInitUserModeContextFn = fn(
+pub const SpInitUserModeContextFn = fn (
     ContextHandle: usize,
     PackedContext: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpMakeSignatureFn = fn(
+pub const SpMakeSignatureFn = fn (
     ContextHandle: usize,
     QualityOfProtection: u32,
     MessageBuffers: ?*SecBufferDesc,
     MessageSequenceNumber: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpVerifySignatureFn = fn(
+pub const SpVerifySignatureFn = fn (
     ContextHandle: usize,
     MessageBuffers: ?*SecBufferDesc,
     MessageSequenceNumber: u32,
     QualityOfProtection: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpSealMessageFn = fn(
+pub const SpSealMessageFn = fn (
     ContextHandle: usize,
     QualityOfProtection: u32,
     MessageBuffers: ?*SecBufferDesc,
     MessageSequenceNumber: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpUnsealMessageFn = fn(
+pub const SpUnsealMessageFn = fn (
     ContextHandle: usize,
     MessageBuffers: ?*SecBufferDesc,
     MessageSequenceNumber: u32,
     QualityOfProtection: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpGetContextTokenFn = fn(
+pub const SpGetContextTokenFn = fn (
     ContextHandle: usize,
     ImpersonationToken: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpExportSecurityContextFn = fn(
+pub const SpExportSecurityContextFn = fn (
     phContext: usize,
     fFlags: u32,
     pPackedContext: ?*SecBuffer,
     pToken: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpImportSecurityContextFn = fn(
+pub const SpImportSecurityContextFn = fn (
     pPackedContext: ?*SecBuffer,
     Token: ?HANDLE,
     phContext: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpCompleteAuthTokenFn = fn(
+pub const SpCompleteAuthTokenFn = fn (
     ContextHandle: usize,
     InputBuffer: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpFormatCredentialsFn = fn(
+pub const SpFormatCredentialsFn = fn (
     Credentials: ?*SecBuffer,
     FormattedCredentials: ?*SecBuffer,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpMarshallSupplementalCredsFn = fn(
+pub const SpMarshallSupplementalCredsFn = fn (
     CredentialSize: u32,
     // TODO: what to do with BytesParamIndex 0?
     Credentials: ?*u8,
@@ -5762,7 +5689,7 @@ pub const SpMarshallSupplementalCredsFn = fn(
     MarshalledCreds: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpMarshalAttributeDataFn = fn(
+pub const SpMarshalAttributeDataFn = fn (
     AttributeInfo: u32,
     Attribute: u32,
     AttributeDataSize: u32,
@@ -5790,14 +5717,14 @@ pub const SECPKG_USER_FUNCTION_TABLE = extern struct {
     MarshalAttributeData: ?SpMarshalAttributeDataFn,
 };
 
-pub const SpLsaModeInitializeFn = fn(
+pub const SpLsaModeInitializeFn = fn (
     LsaVersion: u32,
     PackageVersion: ?*u32,
     ppTables: ?*?*SECPKG_FUNCTION_TABLE,
     pcTables: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const SpUserModeInitializeFn = fn(
+pub const SpUserModeInitializeFn = fn (
     LsaVersion: u32,
     PackageVersion: ?*u32,
     ppTables: ?*?*SECPKG_USER_FUNCTION_TABLE,
@@ -5819,39 +5746,39 @@ pub const KSEC_LIST_ENTRY = extern struct {
     Reserved: ?*anyopaque,
 };
 
-pub const PKSEC_CREATE_CONTEXT_LIST = fn(
+pub const PKSEC_CREATE_CONTEXT_LIST = fn (
     Type: KSEC_CONTEXT_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const PKSEC_INSERT_LIST_ENTRY = fn(
+pub const PKSEC_INSERT_LIST_ENTRY = fn (
     List: ?*anyopaque,
     Entry: ?*KSEC_LIST_ENTRY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PKSEC_REFERENCE_LIST_ENTRY = fn(
+pub const PKSEC_REFERENCE_LIST_ENTRY = fn (
     Entry: ?*KSEC_LIST_ENTRY,
     Signature: u32,
     RemoveNoRef: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PKSEC_DEREFERENCE_LIST_ENTRY = fn(
+pub const PKSEC_DEREFERENCE_LIST_ENTRY = fn (
     Entry: ?*KSEC_LIST_ENTRY,
     Delete: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PKSEC_SERIALIZE_WINNT_AUTH_DATA = fn(
+pub const PKSEC_SERIALIZE_WINNT_AUTH_DATA = fn (
     pvAuthData: ?*anyopaque,
     Size: ?*u32,
     SerializedData: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PKSEC_SERIALIZE_SCHANNEL_AUTH_DATA = fn(
+pub const PKSEC_SERIALIZE_SCHANNEL_AUTH_DATA = fn (
     pvAuthData: ?*anyopaque,
     Size: ?*u32,
     SerializedData: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PKSEC_LOCATE_PKG_BY_ID = fn(
+pub const PKSEC_LOCATE_PKG_BY_ID = fn (
     PackageId: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
@@ -5867,76 +5794,76 @@ pub const SECPKG_KERNEL_FUNCTIONS = extern struct {
     LocatePackageById: ?PKSEC_LOCATE_PKG_BY_ID,
 };
 
-pub const KspInitPackageFn = fn(
+pub const KspInitPackageFn = fn (
     FunctionTable: ?*SECPKG_KERNEL_FUNCTIONS,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const KspDeleteContextFn = fn(
+pub const KspDeleteContextFn = fn (
     ContextId: usize,
     LsaContextId: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const KspInitContextFn = fn(
+pub const KspInitContextFn = fn (
     ContextId: usize,
     ContextData: ?*SecBuffer,
     NewContextId: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const KspMakeSignatureFn = fn(
+pub const KspMakeSignatureFn = fn (
     ContextId: usize,
     fQOP: u32,
     Message: ?*SecBufferDesc,
     MessageSeqNo: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const KspVerifySignatureFn = fn(
+pub const KspVerifySignatureFn = fn (
     ContextId: usize,
     Message: ?*SecBufferDesc,
     MessageSeqNo: u32,
     pfQOP: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const KspSealMessageFn = fn(
+pub const KspSealMessageFn = fn (
     ContextId: usize,
     fQOP: u32,
     Message: ?*SecBufferDesc,
     MessageSeqNo: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const KspUnsealMessageFn = fn(
+pub const KspUnsealMessageFn = fn (
     ContextId: usize,
     Message: ?*SecBufferDesc,
     MessageSeqNo: u32,
     pfQOP: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const KspGetTokenFn = fn(
+pub const KspGetTokenFn = fn (
     ContextId: usize,
     ImpersonationToken: ?*?HANDLE,
     RawToken: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const KspQueryAttributesFn = fn(
+pub const KspQueryAttributesFn = fn (
     ContextId: usize,
     Attribute: u32,
     Buffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const KspCompleteTokenFn = fn(
+pub const KspCompleteTokenFn = fn (
     ContextId: usize,
     Token: ?*SecBufferDesc,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const KspMapHandleFn = fn(
+pub const KspMapHandleFn = fn (
     ContextId: usize,
     LsaContextId: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const KspSetPagingModeFn = fn(
+pub const KspSetPagingModeFn = fn (
     PagingMode: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const KspSerializeAuthDataFn = fn(
+pub const KspSerializeAuthDataFn = fn (
     pvAuthData: ?*anyopaque,
     Size: ?*u32,
     SerializedData: ?*?*anyopaque,
@@ -6261,12 +6188,12 @@ pub const SCHANNEL_CLIENT_SIGNATURE = extern struct {
     CertThumbprint: [20]u8,
 };
 
-pub const SSL_EMPTY_CACHE_FN_A = fn(
+pub const SSL_EMPTY_CACHE_FN_A = fn (
     pszTargetName: ?PSTR,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const SSL_EMPTY_CACHE_FN_W = fn(
+pub const SSL_EMPTY_CACHE_FN_W = fn (
     pszTargetName: ?PWSTR,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -6323,18 +6250,18 @@ pub const X509Certificate = extern struct {
     pPublicKey: ?*PctPublicKey,
 };
 
-pub const SSL_CRACK_CERTIFICATE_FN = fn(
+pub const SSL_CRACK_CERTIFICATE_FN = fn (
     pbCertificate: ?*u8,
     cbCertificate: u32,
     VerifySignature: BOOL,
     ppCertificate: ?*?*X509Certificate,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const SSL_FREE_CERTIFICATE_FN = fn(
+pub const SSL_FREE_CERTIFICATE_FN = fn (
     pCertificate: ?*X509Certificate,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const SslGetServerIdentityFn = fn(
+pub const SslGetServerIdentityFn = fn (
     // TODO: what to do with BytesParamIndex 1?
     ClientHello: ?*u8,
     ClientHelloSize: u32,
@@ -6357,16 +6284,13 @@ pub const SchGetExtensionsOptions = enum(u32) {
         EXTENSIONS_OPTIONS_NONE: u1 = 0,
         NO_RECORD_HEADER: u1 = 0,
     }) SchGetExtensionsOptions {
-        return @intToEnum(SchGetExtensionsOptions,
-              (if (o.EXTENSIONS_OPTIONS_NONE == 1) @enumToInt(SchGetExtensionsOptions.EXTENSIONS_OPTIONS_NONE) else 0)
-            | (if (o.NO_RECORD_HEADER == 1) @enumToInt(SchGetExtensionsOptions.NO_RECORD_HEADER) else 0)
-        );
+        return @intToEnum(SchGetExtensionsOptions, (if (o.EXTENSIONS_OPTIONS_NONE == 1) @enumToInt(SchGetExtensionsOptions.EXTENSIONS_OPTIONS_NONE) else 0) | (if (o.NO_RECORD_HEADER == 1) @enumToInt(SchGetExtensionsOptions.NO_RECORD_HEADER) else 0));
     }
 };
 pub const SCH_EXTENSIONS_OPTIONS_NONE = SchGetExtensionsOptions.EXTENSIONS_OPTIONS_NONE;
 pub const SCH_NO_RECORD_HEADER = SchGetExtensionsOptions.NO_RECORD_HEADER;
 
-pub const SslGetExtensionsFn = fn(
+pub const SslGetExtensionsFn = fn (
     clientHello: [*:0]const u8,
     clientHelloByteSize: u32,
     genericExtensions: [*]SCH_EXTENSION_DATA,
@@ -6684,7 +6608,7 @@ pub const IID_ICcgDomainAuthCredentials = &IID_ICcgDomainAuthCredentials_Value;
 pub const ICcgDomainAuthCredentials = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPasswordCredentials: fn(
+        GetPasswordCredentials: fn (
             self: *const ICcgDomainAuthCredentials,
             pluginInput: ?[*:0]const u16,
             domainName: ?*?PWSTR,
@@ -6693,16 +6617,17 @@ pub const ICcgDomainAuthCredentials = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICcgDomainAuthCredentials_GetPasswordCredentials(self: *const T, pluginInput: ?[*:0]const u16, domainName: ?*?PWSTR, username: ?*?PWSTR, password: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICcgDomainAuthCredentials.VTable, self.vtable).GetPasswordCredentials(@ptrCast(*const ICcgDomainAuthCredentials, self), pluginInput, domainName, username, password);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICcgDomainAuthCredentials_GetPasswordCredentials(self: *const T, pluginInput: ?[*:0]const u16, domainName: ?*?PWSTR, username: ?*?PWSTR, password: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const ICcgDomainAuthCredentials.VTable, self.vtable).GetPasswordCredentials(@ptrCast(*const ICcgDomainAuthCredentials, self), pluginInput, domainName, username, password);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (211)
@@ -7536,12 +7461,10 @@ pub extern "secur32" fn ImportSecurityContextA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "secur32" fn InitSecurityInterfaceA(
-) callconv(@import("std").os.windows.WINAPI) ?*SecurityFunctionTableA;
+pub extern "secur32" fn InitSecurityInterfaceA() callconv(@import("std").os.windows.WINAPI) ?*SecurityFunctionTableA;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "secur32" fn InitSecurityInterfaceW(
-) callconv(@import("std").os.windows.WINAPI) ?*SecurityFunctionTableW;
+pub extern "secur32" fn InitSecurityInterfaceW() callconv(@import("std").os.windows.WINAPI) ?*SecurityFunctionTableW;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "secur32" fn SaslEnumerateProfilesA(
@@ -7936,8 +7859,7 @@ pub extern "tokenbinding" fn TokenBindingDeleteBinding(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "tokenbinding" fn TokenBindingDeleteAllBindings(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "tokenbinding" fn TokenBindingDeleteAllBindings() callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "tokenbinding" fn TokenBindingGenerateID(
@@ -8327,7 +8249,6 @@ pub extern "api-ms-win-core-slapi-l1-1-0" fn SLQueryLicenseValueFromApp(
     resultDataSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (57)
 //--------------------------------------------------------------------------------
@@ -8452,63 +8373,63 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
         pub const TranslateName = thismodule.TranslateNameW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const SecPkgInfo = *opaque{};
-        pub const SecPkgCredentials_Names = *opaque{};
-        pub const SecPkgCredentials_SSIProvider = *opaque{};
-        pub const SecPkgContext_Names = *opaque{};
-        pub const SecPkgContext_KeyInfo = *opaque{};
-        pub const SecPkgContext_Authority = *opaque{};
-        pub const SecPkgContext_ProtoInfo = *opaque{};
-        pub const SecPkgContext_PackageInfo = *opaque{};
-        pub const SecPkgContext_NegotiationInfo = *opaque{};
-        pub const SecPkgContext_NativeNames = *opaque{};
-        pub const SecPkgContext_CredentialName = *opaque{};
-        pub const ACQUIRE_CREDENTIALS_HANDLE_FN_ = *opaque{};
-        pub const ADD_CREDENTIALS_FN_ = *opaque{};
-        pub const CHANGE_PASSWORD_FN_ = *opaque{};
-        pub const INITIALIZE_SECURITY_CONTEXT_FN_ = *opaque{};
-        pub const QUERY_CONTEXT_ATTRIBUTES_FN_ = *opaque{};
-        pub const QUERY_CONTEXT_ATTRIBUTES_EX_FN_ = *opaque{};
-        pub const SET_CONTEXT_ATTRIBUTES_FN_ = *opaque{};
-        pub const QUERY_CREDENTIALS_ATTRIBUTES_FN_ = *opaque{};
-        pub const QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_ = *opaque{};
-        pub const SET_CREDENTIALS_ATTRIBUTES_FN_ = *opaque{};
-        pub const ENUMERATE_SECURITY_PACKAGES_FN_ = *opaque{};
-        pub const QUERY_SECURITY_PACKAGE_INFO_FN_ = *opaque{};
-        pub const IMPORT_SECURITY_CONTEXT_FN_ = *opaque{};
-        pub const SecurityFunctionTable = *opaque{};
-        pub const INIT_SECURITY_INTERFACE_ = *opaque{};
-        pub const SEC_WINNT_AUTH_IDENTITY_EX = *opaque{};
-        pub const SSL_EMPTY_CACHE_FN_ = *opaque{};
-        pub const AuditLookupCategoryName = *opaque{};
-        pub const AuditLookupSubCategoryName = *opaque{};
-        pub const AuditSetGlobalSacl = *opaque{};
-        pub const AuditQueryGlobalSacl = *opaque{};
-        pub const AcquireCredentialsHandle = *opaque{};
-        pub const AddCredentials = *opaque{};
-        pub const ChangeAccountPassword = *opaque{};
-        pub const InitializeSecurityContext = *opaque{};
-        pub const QueryContextAttributes = *opaque{};
-        pub const QueryContextAttributesEx = *opaque{};
-        pub const SetContextAttributes = *opaque{};
-        pub const QueryCredentialsAttributes = *opaque{};
-        pub const QueryCredentialsAttributesEx = *opaque{};
-        pub const SetCredentialsAttributes = *opaque{};
-        pub const EnumerateSecurityPackages = *opaque{};
-        pub const QuerySecurityPackageInfo = *opaque{};
-        pub const ImportSecurityContext = *opaque{};
-        pub const InitSecurityInterface = *opaque{};
-        pub const SaslEnumerateProfiles = *opaque{};
-        pub const SaslGetProfilePackage = *opaque{};
-        pub const SaslIdentifyPackage = *opaque{};
-        pub const SaslInitializeSecurityContext = *opaque{};
-        pub const SspiPromptForCredentials = *opaque{};
-        pub const AddSecurityPackage = *opaque{};
-        pub const DeleteSecurityPackage = *opaque{};
-        pub const SslEmptyCache = *opaque{};
-        pub const GetUserNameEx = *opaque{};
-        pub const GetComputerObjectName = *opaque{};
-        pub const TranslateName = *opaque{};
+        pub const SecPkgInfo = *opaque {};
+        pub const SecPkgCredentials_Names = *opaque {};
+        pub const SecPkgCredentials_SSIProvider = *opaque {};
+        pub const SecPkgContext_Names = *opaque {};
+        pub const SecPkgContext_KeyInfo = *opaque {};
+        pub const SecPkgContext_Authority = *opaque {};
+        pub const SecPkgContext_ProtoInfo = *opaque {};
+        pub const SecPkgContext_PackageInfo = *opaque {};
+        pub const SecPkgContext_NegotiationInfo = *opaque {};
+        pub const SecPkgContext_NativeNames = *opaque {};
+        pub const SecPkgContext_CredentialName = *opaque {};
+        pub const ACQUIRE_CREDENTIALS_HANDLE_FN_ = *opaque {};
+        pub const ADD_CREDENTIALS_FN_ = *opaque {};
+        pub const CHANGE_PASSWORD_FN_ = *opaque {};
+        pub const INITIALIZE_SECURITY_CONTEXT_FN_ = *opaque {};
+        pub const QUERY_CONTEXT_ATTRIBUTES_FN_ = *opaque {};
+        pub const QUERY_CONTEXT_ATTRIBUTES_EX_FN_ = *opaque {};
+        pub const SET_CONTEXT_ATTRIBUTES_FN_ = *opaque {};
+        pub const QUERY_CREDENTIALS_ATTRIBUTES_FN_ = *opaque {};
+        pub const QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_ = *opaque {};
+        pub const SET_CREDENTIALS_ATTRIBUTES_FN_ = *opaque {};
+        pub const ENUMERATE_SECURITY_PACKAGES_FN_ = *opaque {};
+        pub const QUERY_SECURITY_PACKAGE_INFO_FN_ = *opaque {};
+        pub const IMPORT_SECURITY_CONTEXT_FN_ = *opaque {};
+        pub const SecurityFunctionTable = *opaque {};
+        pub const INIT_SECURITY_INTERFACE_ = *opaque {};
+        pub const SEC_WINNT_AUTH_IDENTITY_EX = *opaque {};
+        pub const SSL_EMPTY_CACHE_FN_ = *opaque {};
+        pub const AuditLookupCategoryName = *opaque {};
+        pub const AuditLookupSubCategoryName = *opaque {};
+        pub const AuditSetGlobalSacl = *opaque {};
+        pub const AuditQueryGlobalSacl = *opaque {};
+        pub const AcquireCredentialsHandle = *opaque {};
+        pub const AddCredentials = *opaque {};
+        pub const ChangeAccountPassword = *opaque {};
+        pub const InitializeSecurityContext = *opaque {};
+        pub const QueryContextAttributes = *opaque {};
+        pub const QueryContextAttributesEx = *opaque {};
+        pub const SetContextAttributes = *opaque {};
+        pub const QueryCredentialsAttributes = *opaque {};
+        pub const QueryCredentialsAttributesEx = *opaque {};
+        pub const SetCredentialsAttributes = *opaque {};
+        pub const EnumerateSecurityPackages = *opaque {};
+        pub const QuerySecurityPackageInfo = *opaque {};
+        pub const ImportSecurityContext = *opaque {};
+        pub const InitSecurityInterface = *opaque {};
+        pub const SaslEnumerateProfiles = *opaque {};
+        pub const SaslGetProfilePackage = *opaque {};
+        pub const SaslIdentifyPackage = *opaque {};
+        pub const SaslInitializeSecurityContext = *opaque {};
+        pub const SspiPromptForCredentials = *opaque {};
+        pub const AddSecurityPackage = *opaque {};
+        pub const DeleteSecurityPackage = *opaque {};
+        pub const SslEmptyCache = *opaque {};
+        pub const GetUserNameEx = *opaque {};
+        pub const GetComputerObjectName = *opaque {};
+        pub const TranslateName = *opaque {};
     } else struct {
         pub const SecPkgInfo = @compileError("'SecPkgInfo' requires that UNICODE be set to true or false in the root module");
         pub const SecPkgCredentials_Names = @compileError("'SecPkgCredentials_Names' requires that UNICODE be set to true or false in the root module");
@@ -8619,208 +8540,602 @@ const UNICODE_STRING = @import("../../foundation.zig").UNICODE_STRING;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PSAM_PASSWORD_NOTIFICATION_ROUTINE")) { _ = PSAM_PASSWORD_NOTIFICATION_ROUTINE; }
-    if (@hasDecl(@This(), "PSAM_INIT_NOTIFICATION_ROUTINE")) { _ = PSAM_INIT_NOTIFICATION_ROUTINE; }
-    if (@hasDecl(@This(), "PSAM_PASSWORD_FILTER_ROUTINE")) { _ = PSAM_PASSWORD_FILTER_ROUTINE; }
-    if (@hasDecl(@This(), "SEC_GET_KEY_FN")) { _ = SEC_GET_KEY_FN; }
-    if (@hasDecl(@This(), "ACQUIRE_CREDENTIALS_HANDLE_FN_W")) { _ = ACQUIRE_CREDENTIALS_HANDLE_FN_W; }
-    if (@hasDecl(@This(), "ACQUIRE_CREDENTIALS_HANDLE_FN_A")) { _ = ACQUIRE_CREDENTIALS_HANDLE_FN_A; }
-    if (@hasDecl(@This(), "FREE_CREDENTIALS_HANDLE_FN")) { _ = FREE_CREDENTIALS_HANDLE_FN; }
-    if (@hasDecl(@This(), "ADD_CREDENTIALS_FN_W")) { _ = ADD_CREDENTIALS_FN_W; }
-    if (@hasDecl(@This(), "ADD_CREDENTIALS_FN_A")) { _ = ADD_CREDENTIALS_FN_A; }
-    if (@hasDecl(@This(), "CHANGE_PASSWORD_FN_W")) { _ = CHANGE_PASSWORD_FN_W; }
-    if (@hasDecl(@This(), "CHANGE_PASSWORD_FN_A")) { _ = CHANGE_PASSWORD_FN_A; }
-    if (@hasDecl(@This(), "INITIALIZE_SECURITY_CONTEXT_FN_W")) { _ = INITIALIZE_SECURITY_CONTEXT_FN_W; }
-    if (@hasDecl(@This(), "INITIALIZE_SECURITY_CONTEXT_FN_A")) { _ = INITIALIZE_SECURITY_CONTEXT_FN_A; }
-    if (@hasDecl(@This(), "ACCEPT_SECURITY_CONTEXT_FN")) { _ = ACCEPT_SECURITY_CONTEXT_FN; }
-    if (@hasDecl(@This(), "COMPLETE_AUTH_TOKEN_FN")) { _ = COMPLETE_AUTH_TOKEN_FN; }
-    if (@hasDecl(@This(), "IMPERSONATE_SECURITY_CONTEXT_FN")) { _ = IMPERSONATE_SECURITY_CONTEXT_FN; }
-    if (@hasDecl(@This(), "REVERT_SECURITY_CONTEXT_FN")) { _ = REVERT_SECURITY_CONTEXT_FN; }
-    if (@hasDecl(@This(), "QUERY_SECURITY_CONTEXT_TOKEN_FN")) { _ = QUERY_SECURITY_CONTEXT_TOKEN_FN; }
-    if (@hasDecl(@This(), "DELETE_SECURITY_CONTEXT_FN")) { _ = DELETE_SECURITY_CONTEXT_FN; }
-    if (@hasDecl(@This(), "APPLY_CONTROL_TOKEN_FN")) { _ = APPLY_CONTROL_TOKEN_FN; }
-    if (@hasDecl(@This(), "QUERY_CONTEXT_ATTRIBUTES_FN_W")) { _ = QUERY_CONTEXT_ATTRIBUTES_FN_W; }
-    if (@hasDecl(@This(), "QUERY_CONTEXT_ATTRIBUTES_EX_FN_W")) { _ = QUERY_CONTEXT_ATTRIBUTES_EX_FN_W; }
-    if (@hasDecl(@This(), "QUERY_CONTEXT_ATTRIBUTES_FN_A")) { _ = QUERY_CONTEXT_ATTRIBUTES_FN_A; }
-    if (@hasDecl(@This(), "QUERY_CONTEXT_ATTRIBUTES_EX_FN_A")) { _ = QUERY_CONTEXT_ATTRIBUTES_EX_FN_A; }
-    if (@hasDecl(@This(), "SET_CONTEXT_ATTRIBUTES_FN_W")) { _ = SET_CONTEXT_ATTRIBUTES_FN_W; }
-    if (@hasDecl(@This(), "SET_CONTEXT_ATTRIBUTES_FN_A")) { _ = SET_CONTEXT_ATTRIBUTES_FN_A; }
-    if (@hasDecl(@This(), "QUERY_CREDENTIALS_ATTRIBUTES_FN_W")) { _ = QUERY_CREDENTIALS_ATTRIBUTES_FN_W; }
-    if (@hasDecl(@This(), "QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_W")) { _ = QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_W; }
-    if (@hasDecl(@This(), "QUERY_CREDENTIALS_ATTRIBUTES_FN_A")) { _ = QUERY_CREDENTIALS_ATTRIBUTES_FN_A; }
-    if (@hasDecl(@This(), "QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_A")) { _ = QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_A; }
-    if (@hasDecl(@This(), "SET_CREDENTIALS_ATTRIBUTES_FN_W")) { _ = SET_CREDENTIALS_ATTRIBUTES_FN_W; }
-    if (@hasDecl(@This(), "SET_CREDENTIALS_ATTRIBUTES_FN_A")) { _ = SET_CREDENTIALS_ATTRIBUTES_FN_A; }
-    if (@hasDecl(@This(), "FREE_CONTEXT_BUFFER_FN")) { _ = FREE_CONTEXT_BUFFER_FN; }
-    if (@hasDecl(@This(), "MAKE_SIGNATURE_FN")) { _ = MAKE_SIGNATURE_FN; }
-    if (@hasDecl(@This(), "VERIFY_SIGNATURE_FN")) { _ = VERIFY_SIGNATURE_FN; }
-    if (@hasDecl(@This(), "ENCRYPT_MESSAGE_FN")) { _ = ENCRYPT_MESSAGE_FN; }
-    if (@hasDecl(@This(), "DECRYPT_MESSAGE_FN")) { _ = DECRYPT_MESSAGE_FN; }
-    if (@hasDecl(@This(), "ENUMERATE_SECURITY_PACKAGES_FN_W")) { _ = ENUMERATE_SECURITY_PACKAGES_FN_W; }
-    if (@hasDecl(@This(), "ENUMERATE_SECURITY_PACKAGES_FN_A")) { _ = ENUMERATE_SECURITY_PACKAGES_FN_A; }
-    if (@hasDecl(@This(), "QUERY_SECURITY_PACKAGE_INFO_FN_W")) { _ = QUERY_SECURITY_PACKAGE_INFO_FN_W; }
-    if (@hasDecl(@This(), "QUERY_SECURITY_PACKAGE_INFO_FN_A")) { _ = QUERY_SECURITY_PACKAGE_INFO_FN_A; }
-    if (@hasDecl(@This(), "EXPORT_SECURITY_CONTEXT_FN")) { _ = EXPORT_SECURITY_CONTEXT_FN; }
-    if (@hasDecl(@This(), "IMPORT_SECURITY_CONTEXT_FN_W")) { _ = IMPORT_SECURITY_CONTEXT_FN_W; }
-    if (@hasDecl(@This(), "IMPORT_SECURITY_CONTEXT_FN_A")) { _ = IMPORT_SECURITY_CONTEXT_FN_A; }
-    if (@hasDecl(@This(), "INIT_SECURITY_INTERFACE_A")) { _ = INIT_SECURITY_INTERFACE_A; }
-    if (@hasDecl(@This(), "INIT_SECURITY_INTERFACE_W")) { _ = INIT_SECURITY_INTERFACE_W; }
-    if (@hasDecl(@This(), "PLSA_CREATE_LOGON_SESSION")) { _ = PLSA_CREATE_LOGON_SESSION; }
-    if (@hasDecl(@This(), "PLSA_DELETE_LOGON_SESSION")) { _ = PLSA_DELETE_LOGON_SESSION; }
-    if (@hasDecl(@This(), "PLSA_ADD_CREDENTIAL")) { _ = PLSA_ADD_CREDENTIAL; }
-    if (@hasDecl(@This(), "PLSA_GET_CREDENTIALS")) { _ = PLSA_GET_CREDENTIALS; }
-    if (@hasDecl(@This(), "PLSA_DELETE_CREDENTIAL")) { _ = PLSA_DELETE_CREDENTIAL; }
-    if (@hasDecl(@This(), "PLSA_ALLOCATE_LSA_HEAP")) { _ = PLSA_ALLOCATE_LSA_HEAP; }
-    if (@hasDecl(@This(), "PLSA_FREE_LSA_HEAP")) { _ = PLSA_FREE_LSA_HEAP; }
-    if (@hasDecl(@This(), "PLSA_ALLOCATE_PRIVATE_HEAP")) { _ = PLSA_ALLOCATE_PRIVATE_HEAP; }
-    if (@hasDecl(@This(), "PLSA_FREE_PRIVATE_HEAP")) { _ = PLSA_FREE_PRIVATE_HEAP; }
-    if (@hasDecl(@This(), "PLSA_ALLOCATE_CLIENT_BUFFER")) { _ = PLSA_ALLOCATE_CLIENT_BUFFER; }
-    if (@hasDecl(@This(), "PLSA_FREE_CLIENT_BUFFER")) { _ = PLSA_FREE_CLIENT_BUFFER; }
-    if (@hasDecl(@This(), "PLSA_COPY_TO_CLIENT_BUFFER")) { _ = PLSA_COPY_TO_CLIENT_BUFFER; }
-    if (@hasDecl(@This(), "PLSA_COPY_FROM_CLIENT_BUFFER")) { _ = PLSA_COPY_FROM_CLIENT_BUFFER; }
-    if (@hasDecl(@This(), "PLSA_AP_INITIALIZE_PACKAGE")) { _ = PLSA_AP_INITIALIZE_PACKAGE; }
-    if (@hasDecl(@This(), "PLSA_AP_LOGON_USER")) { _ = PLSA_AP_LOGON_USER; }
-    if (@hasDecl(@This(), "PLSA_AP_LOGON_USER_EX")) { _ = PLSA_AP_LOGON_USER_EX; }
-    if (@hasDecl(@This(), "PLSA_AP_CALL_PACKAGE")) { _ = PLSA_AP_CALL_PACKAGE; }
-    if (@hasDecl(@This(), "PLSA_AP_CALL_PACKAGE_PASSTHROUGH")) { _ = PLSA_AP_CALL_PACKAGE_PASSTHROUGH; }
-    if (@hasDecl(@This(), "PLSA_AP_LOGON_TERMINATED")) { _ = PLSA_AP_LOGON_TERMINATED; }
-    if (@hasDecl(@This(), "PSAM_CREDENTIAL_UPDATE_NOTIFY_ROUTINE")) { _ = PSAM_CREDENTIAL_UPDATE_NOTIFY_ROUTINE; }
-    if (@hasDecl(@This(), "PSAM_CREDENTIAL_UPDATE_REGISTER_ROUTINE")) { _ = PSAM_CREDENTIAL_UPDATE_REGISTER_ROUTINE; }
-    if (@hasDecl(@This(), "PSAM_CREDENTIAL_UPDATE_FREE_ROUTINE")) { _ = PSAM_CREDENTIAL_UPDATE_FREE_ROUTINE; }
-    if (@hasDecl(@This(), "PSAM_CREDENTIAL_UPDATE_REGISTER_MAPPED_ENTRYPOINTS_ROUTINE")) { _ = PSAM_CREDENTIAL_UPDATE_REGISTER_MAPPED_ENTRYPOINTS_ROUTINE; }
-    if (@hasDecl(@This(), "PLSA_CALLBACK_FUNCTION")) { _ = PLSA_CALLBACK_FUNCTION; }
-    if (@hasDecl(@This(), "PLSA_REDIRECTED_LOGON_INIT")) { _ = PLSA_REDIRECTED_LOGON_INIT; }
-    if (@hasDecl(@This(), "PLSA_REDIRECTED_LOGON_CALLBACK")) { _ = PLSA_REDIRECTED_LOGON_CALLBACK; }
-    if (@hasDecl(@This(), "PLSA_REDIRECTED_LOGON_CLEANUP_CALLBACK")) { _ = PLSA_REDIRECTED_LOGON_CLEANUP_CALLBACK; }
-    if (@hasDecl(@This(), "PLSA_REDIRECTED_LOGON_GET_LOGON_CREDS")) { _ = PLSA_REDIRECTED_LOGON_GET_LOGON_CREDS; }
-    if (@hasDecl(@This(), "PLSA_REDIRECTED_LOGON_GET_SUPP_CREDS")) { _ = PLSA_REDIRECTED_LOGON_GET_SUPP_CREDS; }
-    if (@hasDecl(@This(), "PLSA_IMPERSONATE_CLIENT")) { _ = PLSA_IMPERSONATE_CLIENT; }
-    if (@hasDecl(@This(), "PLSA_UNLOAD_PACKAGE")) { _ = PLSA_UNLOAD_PACKAGE; }
-    if (@hasDecl(@This(), "PLSA_DUPLICATE_HANDLE")) { _ = PLSA_DUPLICATE_HANDLE; }
-    if (@hasDecl(@This(), "PLSA_SAVE_SUPPLEMENTAL_CREDENTIALS")) { _ = PLSA_SAVE_SUPPLEMENTAL_CREDENTIALS; }
-    if (@hasDecl(@This(), "PLSA_CREATE_THREAD")) { _ = PLSA_CREATE_THREAD; }
-    if (@hasDecl(@This(), "PLSA_GET_CLIENT_INFO")) { _ = PLSA_GET_CLIENT_INFO; }
-    if (@hasDecl(@This(), "PLSA_REGISTER_NOTIFICATION")) { _ = PLSA_REGISTER_NOTIFICATION; }
-    if (@hasDecl(@This(), "PLSA_CANCEL_NOTIFICATION")) { _ = PLSA_CANCEL_NOTIFICATION; }
-    if (@hasDecl(@This(), "PLSA_MAP_BUFFER")) { _ = PLSA_MAP_BUFFER; }
-    if (@hasDecl(@This(), "PLSA_CREATE_TOKEN")) { _ = PLSA_CREATE_TOKEN; }
-    if (@hasDecl(@This(), "PLSA_CREATE_TOKEN_EX")) { _ = PLSA_CREATE_TOKEN_EX; }
-    if (@hasDecl(@This(), "PLSA_AUDIT_LOGON")) { _ = PLSA_AUDIT_LOGON; }
-    if (@hasDecl(@This(), "PLSA_CALL_PACKAGE")) { _ = PLSA_CALL_PACKAGE; }
-    if (@hasDecl(@This(), "PLSA_CALL_PACKAGEEX")) { _ = PLSA_CALL_PACKAGEEX; }
-    if (@hasDecl(@This(), "PLSA_CALL_PACKAGE_PASSTHROUGH")) { _ = PLSA_CALL_PACKAGE_PASSTHROUGH; }
-    if (@hasDecl(@This(), "PLSA_GET_CALL_INFO")) { _ = PLSA_GET_CALL_INFO; }
-    if (@hasDecl(@This(), "PLSA_CREATE_SHARED_MEMORY")) { _ = PLSA_CREATE_SHARED_MEMORY; }
-    if (@hasDecl(@This(), "PLSA_ALLOCATE_SHARED_MEMORY")) { _ = PLSA_ALLOCATE_SHARED_MEMORY; }
-    if (@hasDecl(@This(), "PLSA_FREE_SHARED_MEMORY")) { _ = PLSA_FREE_SHARED_MEMORY; }
-    if (@hasDecl(@This(), "PLSA_DELETE_SHARED_MEMORY")) { _ = PLSA_DELETE_SHARED_MEMORY; }
-    if (@hasDecl(@This(), "PLSA_GET_APP_MODE_INFO")) { _ = PLSA_GET_APP_MODE_INFO; }
-    if (@hasDecl(@This(), "PLSA_SET_APP_MODE_INFO")) { _ = PLSA_SET_APP_MODE_INFO; }
-    if (@hasDecl(@This(), "PLSA_OPEN_SAM_USER")) { _ = PLSA_OPEN_SAM_USER; }
-    if (@hasDecl(@This(), "PLSA_GET_USER_CREDENTIALS")) { _ = PLSA_GET_USER_CREDENTIALS; }
-    if (@hasDecl(@This(), "PLSA_GET_USER_AUTH_DATA")) { _ = PLSA_GET_USER_AUTH_DATA; }
-    if (@hasDecl(@This(), "PLSA_CLOSE_SAM_USER")) { _ = PLSA_CLOSE_SAM_USER; }
-    if (@hasDecl(@This(), "PLSA_GET_AUTH_DATA_FOR_USER")) { _ = PLSA_GET_AUTH_DATA_FOR_USER; }
-    if (@hasDecl(@This(), "PLSA_CONVERT_AUTH_DATA_TO_TOKEN")) { _ = PLSA_CONVERT_AUTH_DATA_TO_TOKEN; }
-    if (@hasDecl(@This(), "PLSA_CRACK_SINGLE_NAME")) { _ = PLSA_CRACK_SINGLE_NAME; }
-    if (@hasDecl(@This(), "PLSA_AUDIT_ACCOUNT_LOGON")) { _ = PLSA_AUDIT_ACCOUNT_LOGON; }
-    if (@hasDecl(@This(), "PLSA_CLIENT_CALLBACK")) { _ = PLSA_CLIENT_CALLBACK; }
-    if (@hasDecl(@This(), "PLSA_REGISTER_CALLBACK")) { _ = PLSA_REGISTER_CALLBACK; }
-    if (@hasDecl(@This(), "PLSA_GET_EXTENDED_CALL_FLAGS")) { _ = PLSA_GET_EXTENDED_CALL_FLAGS; }
-    if (@hasDecl(@This(), "PLSA_UPDATE_PRIMARY_CREDENTIALS")) { _ = PLSA_UPDATE_PRIMARY_CREDENTIALS; }
-    if (@hasDecl(@This(), "PLSA_PROTECT_MEMORY")) { _ = PLSA_PROTECT_MEMORY; }
-    if (@hasDecl(@This(), "PLSA_OPEN_TOKEN_BY_LOGON_ID")) { _ = PLSA_OPEN_TOKEN_BY_LOGON_ID; }
-    if (@hasDecl(@This(), "PLSA_EXPAND_AUTH_DATA_FOR_DOMAIN")) { _ = PLSA_EXPAND_AUTH_DATA_FOR_DOMAIN; }
-    if (@hasDecl(@This(), "PLSA_GET_SERVICE_ACCOUNT_PASSWORD")) { _ = PLSA_GET_SERVICE_ACCOUNT_PASSWORD; }
-    if (@hasDecl(@This(), "PLSA_AUDIT_LOGON_EX")) { _ = PLSA_AUDIT_LOGON_EX; }
-    if (@hasDecl(@This(), "PLSA_CHECK_PROTECTED_USER_BY_TOKEN")) { _ = PLSA_CHECK_PROTECTED_USER_BY_TOKEN; }
-    if (@hasDecl(@This(), "PLSA_QUERY_CLIENT_REQUEST")) { _ = PLSA_QUERY_CLIENT_REQUEST; }
-    if (@hasDecl(@This(), "CredReadFn")) { _ = CredReadFn; }
-    if (@hasDecl(@This(), "CredReadDomainCredentialsFn")) { _ = CredReadDomainCredentialsFn; }
-    if (@hasDecl(@This(), "CredFreeCredentialsFn")) { _ = CredFreeCredentialsFn; }
-    if (@hasDecl(@This(), "CredWriteFn")) { _ = CredWriteFn; }
-    if (@hasDecl(@This(), "CrediUnmarshalandDecodeStringFn")) { _ = CrediUnmarshalandDecodeStringFn; }
-    if (@hasDecl(@This(), "PLSA_LOCATE_PKG_BY_ID")) { _ = PLSA_LOCATE_PKG_BY_ID; }
-    if (@hasDecl(@This(), "SpInitializeFn")) { _ = SpInitializeFn; }
-    if (@hasDecl(@This(), "SpShutdownFn")) { _ = SpShutdownFn; }
-    if (@hasDecl(@This(), "SpGetInfoFn")) { _ = SpGetInfoFn; }
-    if (@hasDecl(@This(), "SpGetExtendedInformationFn")) { _ = SpGetExtendedInformationFn; }
-    if (@hasDecl(@This(), "SpSetExtendedInformationFn")) { _ = SpSetExtendedInformationFn; }
-    if (@hasDecl(@This(), "PLSA_AP_LOGON_USER_EX2")) { _ = PLSA_AP_LOGON_USER_EX2; }
-    if (@hasDecl(@This(), "PLSA_AP_LOGON_USER_EX3")) { _ = PLSA_AP_LOGON_USER_EX3; }
-    if (@hasDecl(@This(), "PLSA_AP_PRE_LOGON_USER_SURROGATE")) { _ = PLSA_AP_PRE_LOGON_USER_SURROGATE; }
-    if (@hasDecl(@This(), "PLSA_AP_POST_LOGON_USER_SURROGATE")) { _ = PLSA_AP_POST_LOGON_USER_SURROGATE; }
-    if (@hasDecl(@This(), "SpAcceptCredentialsFn")) { _ = SpAcceptCredentialsFn; }
-    if (@hasDecl(@This(), "SpAcquireCredentialsHandleFn")) { _ = SpAcquireCredentialsHandleFn; }
-    if (@hasDecl(@This(), "SpFreeCredentialsHandleFn")) { _ = SpFreeCredentialsHandleFn; }
-    if (@hasDecl(@This(), "SpQueryCredentialsAttributesFn")) { _ = SpQueryCredentialsAttributesFn; }
-    if (@hasDecl(@This(), "SpSetCredentialsAttributesFn")) { _ = SpSetCredentialsAttributesFn; }
-    if (@hasDecl(@This(), "SpAddCredentialsFn")) { _ = SpAddCredentialsFn; }
-    if (@hasDecl(@This(), "SpSaveCredentialsFn")) { _ = SpSaveCredentialsFn; }
-    if (@hasDecl(@This(), "SpGetCredentialsFn")) { _ = SpGetCredentialsFn; }
-    if (@hasDecl(@This(), "SpDeleteCredentialsFn")) { _ = SpDeleteCredentialsFn; }
-    if (@hasDecl(@This(), "SpInitLsaModeContextFn")) { _ = SpInitLsaModeContextFn; }
-    if (@hasDecl(@This(), "SpDeleteContextFn")) { _ = SpDeleteContextFn; }
-    if (@hasDecl(@This(), "SpApplyControlTokenFn")) { _ = SpApplyControlTokenFn; }
-    if (@hasDecl(@This(), "SpAcceptLsaModeContextFn")) { _ = SpAcceptLsaModeContextFn; }
-    if (@hasDecl(@This(), "SpGetUserInfoFn")) { _ = SpGetUserInfoFn; }
-    if (@hasDecl(@This(), "SpQueryContextAttributesFn")) { _ = SpQueryContextAttributesFn; }
-    if (@hasDecl(@This(), "SpSetContextAttributesFn")) { _ = SpSetContextAttributesFn; }
-    if (@hasDecl(@This(), "SpChangeAccountPasswordFn")) { _ = SpChangeAccountPasswordFn; }
-    if (@hasDecl(@This(), "SpQueryMetaDataFn")) { _ = SpQueryMetaDataFn; }
-    if (@hasDecl(@This(), "SpExchangeMetaDataFn")) { _ = SpExchangeMetaDataFn; }
-    if (@hasDecl(@This(), "SpGetCredUIContextFn")) { _ = SpGetCredUIContextFn; }
-    if (@hasDecl(@This(), "SpUpdateCredentialsFn")) { _ = SpUpdateCredentialsFn; }
-    if (@hasDecl(@This(), "SpValidateTargetInfoFn")) { _ = SpValidateTargetInfoFn; }
-    if (@hasDecl(@This(), "LSA_AP_POST_LOGON_USER")) { _ = LSA_AP_POST_LOGON_USER; }
-    if (@hasDecl(@This(), "SpGetRemoteCredGuardLogonBufferFn")) { _ = SpGetRemoteCredGuardLogonBufferFn; }
-    if (@hasDecl(@This(), "SpGetRemoteCredGuardSupplementalCredsFn")) { _ = SpGetRemoteCredGuardSupplementalCredsFn; }
-    if (@hasDecl(@This(), "SpGetTbalSupplementalCredsFn")) { _ = SpGetTbalSupplementalCredsFn; }
-    if (@hasDecl(@This(), "SpInstanceInitFn")) { _ = SpInstanceInitFn; }
-    if (@hasDecl(@This(), "SpInitUserModeContextFn")) { _ = SpInitUserModeContextFn; }
-    if (@hasDecl(@This(), "SpMakeSignatureFn")) { _ = SpMakeSignatureFn; }
-    if (@hasDecl(@This(), "SpVerifySignatureFn")) { _ = SpVerifySignatureFn; }
-    if (@hasDecl(@This(), "SpSealMessageFn")) { _ = SpSealMessageFn; }
-    if (@hasDecl(@This(), "SpUnsealMessageFn")) { _ = SpUnsealMessageFn; }
-    if (@hasDecl(@This(), "SpGetContextTokenFn")) { _ = SpGetContextTokenFn; }
-    if (@hasDecl(@This(), "SpExportSecurityContextFn")) { _ = SpExportSecurityContextFn; }
-    if (@hasDecl(@This(), "SpImportSecurityContextFn")) { _ = SpImportSecurityContextFn; }
-    if (@hasDecl(@This(), "SpCompleteAuthTokenFn")) { _ = SpCompleteAuthTokenFn; }
-    if (@hasDecl(@This(), "SpFormatCredentialsFn")) { _ = SpFormatCredentialsFn; }
-    if (@hasDecl(@This(), "SpMarshallSupplementalCredsFn")) { _ = SpMarshallSupplementalCredsFn; }
-    if (@hasDecl(@This(), "SpMarshalAttributeDataFn")) { _ = SpMarshalAttributeDataFn; }
-    if (@hasDecl(@This(), "SpLsaModeInitializeFn")) { _ = SpLsaModeInitializeFn; }
-    if (@hasDecl(@This(), "SpUserModeInitializeFn")) { _ = SpUserModeInitializeFn; }
-    if (@hasDecl(@This(), "PKSEC_CREATE_CONTEXT_LIST")) { _ = PKSEC_CREATE_CONTEXT_LIST; }
-    if (@hasDecl(@This(), "PKSEC_INSERT_LIST_ENTRY")) { _ = PKSEC_INSERT_LIST_ENTRY; }
-    if (@hasDecl(@This(), "PKSEC_REFERENCE_LIST_ENTRY")) { _ = PKSEC_REFERENCE_LIST_ENTRY; }
-    if (@hasDecl(@This(), "PKSEC_DEREFERENCE_LIST_ENTRY")) { _ = PKSEC_DEREFERENCE_LIST_ENTRY; }
-    if (@hasDecl(@This(), "PKSEC_SERIALIZE_WINNT_AUTH_DATA")) { _ = PKSEC_SERIALIZE_WINNT_AUTH_DATA; }
-    if (@hasDecl(@This(), "PKSEC_SERIALIZE_SCHANNEL_AUTH_DATA")) { _ = PKSEC_SERIALIZE_SCHANNEL_AUTH_DATA; }
-    if (@hasDecl(@This(), "PKSEC_LOCATE_PKG_BY_ID")) { _ = PKSEC_LOCATE_PKG_BY_ID; }
-    if (@hasDecl(@This(), "KspInitPackageFn")) { _ = KspInitPackageFn; }
-    if (@hasDecl(@This(), "KspDeleteContextFn")) { _ = KspDeleteContextFn; }
-    if (@hasDecl(@This(), "KspInitContextFn")) { _ = KspInitContextFn; }
-    if (@hasDecl(@This(), "KspMakeSignatureFn")) { _ = KspMakeSignatureFn; }
-    if (@hasDecl(@This(), "KspVerifySignatureFn")) { _ = KspVerifySignatureFn; }
-    if (@hasDecl(@This(), "KspSealMessageFn")) { _ = KspSealMessageFn; }
-    if (@hasDecl(@This(), "KspUnsealMessageFn")) { _ = KspUnsealMessageFn; }
-    if (@hasDecl(@This(), "KspGetTokenFn")) { _ = KspGetTokenFn; }
-    if (@hasDecl(@This(), "KspQueryAttributesFn")) { _ = KspQueryAttributesFn; }
-    if (@hasDecl(@This(), "KspCompleteTokenFn")) { _ = KspCompleteTokenFn; }
-    if (@hasDecl(@This(), "KspMapHandleFn")) { _ = KspMapHandleFn; }
-    if (@hasDecl(@This(), "KspSetPagingModeFn")) { _ = KspSetPagingModeFn; }
-    if (@hasDecl(@This(), "KspSerializeAuthDataFn")) { _ = KspSerializeAuthDataFn; }
-    if (@hasDecl(@This(), "SSL_EMPTY_CACHE_FN_A")) { _ = SSL_EMPTY_CACHE_FN_A; }
-    if (@hasDecl(@This(), "SSL_EMPTY_CACHE_FN_W")) { _ = SSL_EMPTY_CACHE_FN_W; }
-    if (@hasDecl(@This(), "SSL_CRACK_CERTIFICATE_FN")) { _ = SSL_CRACK_CERTIFICATE_FN; }
-    if (@hasDecl(@This(), "SSL_FREE_CERTIFICATE_FN")) { _ = SSL_FREE_CERTIFICATE_FN; }
-    if (@hasDecl(@This(), "SslGetServerIdentityFn")) { _ = SslGetServerIdentityFn; }
-    if (@hasDecl(@This(), "SslGetExtensionsFn")) { _ = SslGetExtensionsFn; }
+    if (@hasDecl(@This(), "PSAM_PASSWORD_NOTIFICATION_ROUTINE")) {
+        _ = PSAM_PASSWORD_NOTIFICATION_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PSAM_INIT_NOTIFICATION_ROUTINE")) {
+        _ = PSAM_INIT_NOTIFICATION_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PSAM_PASSWORD_FILTER_ROUTINE")) {
+        _ = PSAM_PASSWORD_FILTER_ROUTINE;
+    }
+    if (@hasDecl(@This(), "SEC_GET_KEY_FN")) {
+        _ = SEC_GET_KEY_FN;
+    }
+    if (@hasDecl(@This(), "ACQUIRE_CREDENTIALS_HANDLE_FN_W")) {
+        _ = ACQUIRE_CREDENTIALS_HANDLE_FN_W;
+    }
+    if (@hasDecl(@This(), "ACQUIRE_CREDENTIALS_HANDLE_FN_A")) {
+        _ = ACQUIRE_CREDENTIALS_HANDLE_FN_A;
+    }
+    if (@hasDecl(@This(), "FREE_CREDENTIALS_HANDLE_FN")) {
+        _ = FREE_CREDENTIALS_HANDLE_FN;
+    }
+    if (@hasDecl(@This(), "ADD_CREDENTIALS_FN_W")) {
+        _ = ADD_CREDENTIALS_FN_W;
+    }
+    if (@hasDecl(@This(), "ADD_CREDENTIALS_FN_A")) {
+        _ = ADD_CREDENTIALS_FN_A;
+    }
+    if (@hasDecl(@This(), "CHANGE_PASSWORD_FN_W")) {
+        _ = CHANGE_PASSWORD_FN_W;
+    }
+    if (@hasDecl(@This(), "CHANGE_PASSWORD_FN_A")) {
+        _ = CHANGE_PASSWORD_FN_A;
+    }
+    if (@hasDecl(@This(), "INITIALIZE_SECURITY_CONTEXT_FN_W")) {
+        _ = INITIALIZE_SECURITY_CONTEXT_FN_W;
+    }
+    if (@hasDecl(@This(), "INITIALIZE_SECURITY_CONTEXT_FN_A")) {
+        _ = INITIALIZE_SECURITY_CONTEXT_FN_A;
+    }
+    if (@hasDecl(@This(), "ACCEPT_SECURITY_CONTEXT_FN")) {
+        _ = ACCEPT_SECURITY_CONTEXT_FN;
+    }
+    if (@hasDecl(@This(), "COMPLETE_AUTH_TOKEN_FN")) {
+        _ = COMPLETE_AUTH_TOKEN_FN;
+    }
+    if (@hasDecl(@This(), "IMPERSONATE_SECURITY_CONTEXT_FN")) {
+        _ = IMPERSONATE_SECURITY_CONTEXT_FN;
+    }
+    if (@hasDecl(@This(), "REVERT_SECURITY_CONTEXT_FN")) {
+        _ = REVERT_SECURITY_CONTEXT_FN;
+    }
+    if (@hasDecl(@This(), "QUERY_SECURITY_CONTEXT_TOKEN_FN")) {
+        _ = QUERY_SECURITY_CONTEXT_TOKEN_FN;
+    }
+    if (@hasDecl(@This(), "DELETE_SECURITY_CONTEXT_FN")) {
+        _ = DELETE_SECURITY_CONTEXT_FN;
+    }
+    if (@hasDecl(@This(), "APPLY_CONTROL_TOKEN_FN")) {
+        _ = APPLY_CONTROL_TOKEN_FN;
+    }
+    if (@hasDecl(@This(), "QUERY_CONTEXT_ATTRIBUTES_FN_W")) {
+        _ = QUERY_CONTEXT_ATTRIBUTES_FN_W;
+    }
+    if (@hasDecl(@This(), "QUERY_CONTEXT_ATTRIBUTES_EX_FN_W")) {
+        _ = QUERY_CONTEXT_ATTRIBUTES_EX_FN_W;
+    }
+    if (@hasDecl(@This(), "QUERY_CONTEXT_ATTRIBUTES_FN_A")) {
+        _ = QUERY_CONTEXT_ATTRIBUTES_FN_A;
+    }
+    if (@hasDecl(@This(), "QUERY_CONTEXT_ATTRIBUTES_EX_FN_A")) {
+        _ = QUERY_CONTEXT_ATTRIBUTES_EX_FN_A;
+    }
+    if (@hasDecl(@This(), "SET_CONTEXT_ATTRIBUTES_FN_W")) {
+        _ = SET_CONTEXT_ATTRIBUTES_FN_W;
+    }
+    if (@hasDecl(@This(), "SET_CONTEXT_ATTRIBUTES_FN_A")) {
+        _ = SET_CONTEXT_ATTRIBUTES_FN_A;
+    }
+    if (@hasDecl(@This(), "QUERY_CREDENTIALS_ATTRIBUTES_FN_W")) {
+        _ = QUERY_CREDENTIALS_ATTRIBUTES_FN_W;
+    }
+    if (@hasDecl(@This(), "QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_W")) {
+        _ = QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_W;
+    }
+    if (@hasDecl(@This(), "QUERY_CREDENTIALS_ATTRIBUTES_FN_A")) {
+        _ = QUERY_CREDENTIALS_ATTRIBUTES_FN_A;
+    }
+    if (@hasDecl(@This(), "QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_A")) {
+        _ = QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_A;
+    }
+    if (@hasDecl(@This(), "SET_CREDENTIALS_ATTRIBUTES_FN_W")) {
+        _ = SET_CREDENTIALS_ATTRIBUTES_FN_W;
+    }
+    if (@hasDecl(@This(), "SET_CREDENTIALS_ATTRIBUTES_FN_A")) {
+        _ = SET_CREDENTIALS_ATTRIBUTES_FN_A;
+    }
+    if (@hasDecl(@This(), "FREE_CONTEXT_BUFFER_FN")) {
+        _ = FREE_CONTEXT_BUFFER_FN;
+    }
+    if (@hasDecl(@This(), "MAKE_SIGNATURE_FN")) {
+        _ = MAKE_SIGNATURE_FN;
+    }
+    if (@hasDecl(@This(), "VERIFY_SIGNATURE_FN")) {
+        _ = VERIFY_SIGNATURE_FN;
+    }
+    if (@hasDecl(@This(), "ENCRYPT_MESSAGE_FN")) {
+        _ = ENCRYPT_MESSAGE_FN;
+    }
+    if (@hasDecl(@This(), "DECRYPT_MESSAGE_FN")) {
+        _ = DECRYPT_MESSAGE_FN;
+    }
+    if (@hasDecl(@This(), "ENUMERATE_SECURITY_PACKAGES_FN_W")) {
+        _ = ENUMERATE_SECURITY_PACKAGES_FN_W;
+    }
+    if (@hasDecl(@This(), "ENUMERATE_SECURITY_PACKAGES_FN_A")) {
+        _ = ENUMERATE_SECURITY_PACKAGES_FN_A;
+    }
+    if (@hasDecl(@This(), "QUERY_SECURITY_PACKAGE_INFO_FN_W")) {
+        _ = QUERY_SECURITY_PACKAGE_INFO_FN_W;
+    }
+    if (@hasDecl(@This(), "QUERY_SECURITY_PACKAGE_INFO_FN_A")) {
+        _ = QUERY_SECURITY_PACKAGE_INFO_FN_A;
+    }
+    if (@hasDecl(@This(), "EXPORT_SECURITY_CONTEXT_FN")) {
+        _ = EXPORT_SECURITY_CONTEXT_FN;
+    }
+    if (@hasDecl(@This(), "IMPORT_SECURITY_CONTEXT_FN_W")) {
+        _ = IMPORT_SECURITY_CONTEXT_FN_W;
+    }
+    if (@hasDecl(@This(), "IMPORT_SECURITY_CONTEXT_FN_A")) {
+        _ = IMPORT_SECURITY_CONTEXT_FN_A;
+    }
+    if (@hasDecl(@This(), "INIT_SECURITY_INTERFACE_A")) {
+        _ = INIT_SECURITY_INTERFACE_A;
+    }
+    if (@hasDecl(@This(), "INIT_SECURITY_INTERFACE_W")) {
+        _ = INIT_SECURITY_INTERFACE_W;
+    }
+    if (@hasDecl(@This(), "PLSA_CREATE_LOGON_SESSION")) {
+        _ = PLSA_CREATE_LOGON_SESSION;
+    }
+    if (@hasDecl(@This(), "PLSA_DELETE_LOGON_SESSION")) {
+        _ = PLSA_DELETE_LOGON_SESSION;
+    }
+    if (@hasDecl(@This(), "PLSA_ADD_CREDENTIAL")) {
+        _ = PLSA_ADD_CREDENTIAL;
+    }
+    if (@hasDecl(@This(), "PLSA_GET_CREDENTIALS")) {
+        _ = PLSA_GET_CREDENTIALS;
+    }
+    if (@hasDecl(@This(), "PLSA_DELETE_CREDENTIAL")) {
+        _ = PLSA_DELETE_CREDENTIAL;
+    }
+    if (@hasDecl(@This(), "PLSA_ALLOCATE_LSA_HEAP")) {
+        _ = PLSA_ALLOCATE_LSA_HEAP;
+    }
+    if (@hasDecl(@This(), "PLSA_FREE_LSA_HEAP")) {
+        _ = PLSA_FREE_LSA_HEAP;
+    }
+    if (@hasDecl(@This(), "PLSA_ALLOCATE_PRIVATE_HEAP")) {
+        _ = PLSA_ALLOCATE_PRIVATE_HEAP;
+    }
+    if (@hasDecl(@This(), "PLSA_FREE_PRIVATE_HEAP")) {
+        _ = PLSA_FREE_PRIVATE_HEAP;
+    }
+    if (@hasDecl(@This(), "PLSA_ALLOCATE_CLIENT_BUFFER")) {
+        _ = PLSA_ALLOCATE_CLIENT_BUFFER;
+    }
+    if (@hasDecl(@This(), "PLSA_FREE_CLIENT_BUFFER")) {
+        _ = PLSA_FREE_CLIENT_BUFFER;
+    }
+    if (@hasDecl(@This(), "PLSA_COPY_TO_CLIENT_BUFFER")) {
+        _ = PLSA_COPY_TO_CLIENT_BUFFER;
+    }
+    if (@hasDecl(@This(), "PLSA_COPY_FROM_CLIENT_BUFFER")) {
+        _ = PLSA_COPY_FROM_CLIENT_BUFFER;
+    }
+    if (@hasDecl(@This(), "PLSA_AP_INITIALIZE_PACKAGE")) {
+        _ = PLSA_AP_INITIALIZE_PACKAGE;
+    }
+    if (@hasDecl(@This(), "PLSA_AP_LOGON_USER")) {
+        _ = PLSA_AP_LOGON_USER;
+    }
+    if (@hasDecl(@This(), "PLSA_AP_LOGON_USER_EX")) {
+        _ = PLSA_AP_LOGON_USER_EX;
+    }
+    if (@hasDecl(@This(), "PLSA_AP_CALL_PACKAGE")) {
+        _ = PLSA_AP_CALL_PACKAGE;
+    }
+    if (@hasDecl(@This(), "PLSA_AP_CALL_PACKAGE_PASSTHROUGH")) {
+        _ = PLSA_AP_CALL_PACKAGE_PASSTHROUGH;
+    }
+    if (@hasDecl(@This(), "PLSA_AP_LOGON_TERMINATED")) {
+        _ = PLSA_AP_LOGON_TERMINATED;
+    }
+    if (@hasDecl(@This(), "PSAM_CREDENTIAL_UPDATE_NOTIFY_ROUTINE")) {
+        _ = PSAM_CREDENTIAL_UPDATE_NOTIFY_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PSAM_CREDENTIAL_UPDATE_REGISTER_ROUTINE")) {
+        _ = PSAM_CREDENTIAL_UPDATE_REGISTER_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PSAM_CREDENTIAL_UPDATE_FREE_ROUTINE")) {
+        _ = PSAM_CREDENTIAL_UPDATE_FREE_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PSAM_CREDENTIAL_UPDATE_REGISTER_MAPPED_ENTRYPOINTS_ROUTINE")) {
+        _ = PSAM_CREDENTIAL_UPDATE_REGISTER_MAPPED_ENTRYPOINTS_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PLSA_CALLBACK_FUNCTION")) {
+        _ = PLSA_CALLBACK_FUNCTION;
+    }
+    if (@hasDecl(@This(), "PLSA_REDIRECTED_LOGON_INIT")) {
+        _ = PLSA_REDIRECTED_LOGON_INIT;
+    }
+    if (@hasDecl(@This(), "PLSA_REDIRECTED_LOGON_CALLBACK")) {
+        _ = PLSA_REDIRECTED_LOGON_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PLSA_REDIRECTED_LOGON_CLEANUP_CALLBACK")) {
+        _ = PLSA_REDIRECTED_LOGON_CLEANUP_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PLSA_REDIRECTED_LOGON_GET_LOGON_CREDS")) {
+        _ = PLSA_REDIRECTED_LOGON_GET_LOGON_CREDS;
+    }
+    if (@hasDecl(@This(), "PLSA_REDIRECTED_LOGON_GET_SUPP_CREDS")) {
+        _ = PLSA_REDIRECTED_LOGON_GET_SUPP_CREDS;
+    }
+    if (@hasDecl(@This(), "PLSA_IMPERSONATE_CLIENT")) {
+        _ = PLSA_IMPERSONATE_CLIENT;
+    }
+    if (@hasDecl(@This(), "PLSA_UNLOAD_PACKAGE")) {
+        _ = PLSA_UNLOAD_PACKAGE;
+    }
+    if (@hasDecl(@This(), "PLSA_DUPLICATE_HANDLE")) {
+        _ = PLSA_DUPLICATE_HANDLE;
+    }
+    if (@hasDecl(@This(), "PLSA_SAVE_SUPPLEMENTAL_CREDENTIALS")) {
+        _ = PLSA_SAVE_SUPPLEMENTAL_CREDENTIALS;
+    }
+    if (@hasDecl(@This(), "PLSA_CREATE_THREAD")) {
+        _ = PLSA_CREATE_THREAD;
+    }
+    if (@hasDecl(@This(), "PLSA_GET_CLIENT_INFO")) {
+        _ = PLSA_GET_CLIENT_INFO;
+    }
+    if (@hasDecl(@This(), "PLSA_REGISTER_NOTIFICATION")) {
+        _ = PLSA_REGISTER_NOTIFICATION;
+    }
+    if (@hasDecl(@This(), "PLSA_CANCEL_NOTIFICATION")) {
+        _ = PLSA_CANCEL_NOTIFICATION;
+    }
+    if (@hasDecl(@This(), "PLSA_MAP_BUFFER")) {
+        _ = PLSA_MAP_BUFFER;
+    }
+    if (@hasDecl(@This(), "PLSA_CREATE_TOKEN")) {
+        _ = PLSA_CREATE_TOKEN;
+    }
+    if (@hasDecl(@This(), "PLSA_CREATE_TOKEN_EX")) {
+        _ = PLSA_CREATE_TOKEN_EX;
+    }
+    if (@hasDecl(@This(), "PLSA_AUDIT_LOGON")) {
+        _ = PLSA_AUDIT_LOGON;
+    }
+    if (@hasDecl(@This(), "PLSA_CALL_PACKAGE")) {
+        _ = PLSA_CALL_PACKAGE;
+    }
+    if (@hasDecl(@This(), "PLSA_CALL_PACKAGEEX")) {
+        _ = PLSA_CALL_PACKAGEEX;
+    }
+    if (@hasDecl(@This(), "PLSA_CALL_PACKAGE_PASSTHROUGH")) {
+        _ = PLSA_CALL_PACKAGE_PASSTHROUGH;
+    }
+    if (@hasDecl(@This(), "PLSA_GET_CALL_INFO")) {
+        _ = PLSA_GET_CALL_INFO;
+    }
+    if (@hasDecl(@This(), "PLSA_CREATE_SHARED_MEMORY")) {
+        _ = PLSA_CREATE_SHARED_MEMORY;
+    }
+    if (@hasDecl(@This(), "PLSA_ALLOCATE_SHARED_MEMORY")) {
+        _ = PLSA_ALLOCATE_SHARED_MEMORY;
+    }
+    if (@hasDecl(@This(), "PLSA_FREE_SHARED_MEMORY")) {
+        _ = PLSA_FREE_SHARED_MEMORY;
+    }
+    if (@hasDecl(@This(), "PLSA_DELETE_SHARED_MEMORY")) {
+        _ = PLSA_DELETE_SHARED_MEMORY;
+    }
+    if (@hasDecl(@This(), "PLSA_GET_APP_MODE_INFO")) {
+        _ = PLSA_GET_APP_MODE_INFO;
+    }
+    if (@hasDecl(@This(), "PLSA_SET_APP_MODE_INFO")) {
+        _ = PLSA_SET_APP_MODE_INFO;
+    }
+    if (@hasDecl(@This(), "PLSA_OPEN_SAM_USER")) {
+        _ = PLSA_OPEN_SAM_USER;
+    }
+    if (@hasDecl(@This(), "PLSA_GET_USER_CREDENTIALS")) {
+        _ = PLSA_GET_USER_CREDENTIALS;
+    }
+    if (@hasDecl(@This(), "PLSA_GET_USER_AUTH_DATA")) {
+        _ = PLSA_GET_USER_AUTH_DATA;
+    }
+    if (@hasDecl(@This(), "PLSA_CLOSE_SAM_USER")) {
+        _ = PLSA_CLOSE_SAM_USER;
+    }
+    if (@hasDecl(@This(), "PLSA_GET_AUTH_DATA_FOR_USER")) {
+        _ = PLSA_GET_AUTH_DATA_FOR_USER;
+    }
+    if (@hasDecl(@This(), "PLSA_CONVERT_AUTH_DATA_TO_TOKEN")) {
+        _ = PLSA_CONVERT_AUTH_DATA_TO_TOKEN;
+    }
+    if (@hasDecl(@This(), "PLSA_CRACK_SINGLE_NAME")) {
+        _ = PLSA_CRACK_SINGLE_NAME;
+    }
+    if (@hasDecl(@This(), "PLSA_AUDIT_ACCOUNT_LOGON")) {
+        _ = PLSA_AUDIT_ACCOUNT_LOGON;
+    }
+    if (@hasDecl(@This(), "PLSA_CLIENT_CALLBACK")) {
+        _ = PLSA_CLIENT_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PLSA_REGISTER_CALLBACK")) {
+        _ = PLSA_REGISTER_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PLSA_GET_EXTENDED_CALL_FLAGS")) {
+        _ = PLSA_GET_EXTENDED_CALL_FLAGS;
+    }
+    if (@hasDecl(@This(), "PLSA_UPDATE_PRIMARY_CREDENTIALS")) {
+        _ = PLSA_UPDATE_PRIMARY_CREDENTIALS;
+    }
+    if (@hasDecl(@This(), "PLSA_PROTECT_MEMORY")) {
+        _ = PLSA_PROTECT_MEMORY;
+    }
+    if (@hasDecl(@This(), "PLSA_OPEN_TOKEN_BY_LOGON_ID")) {
+        _ = PLSA_OPEN_TOKEN_BY_LOGON_ID;
+    }
+    if (@hasDecl(@This(), "PLSA_EXPAND_AUTH_DATA_FOR_DOMAIN")) {
+        _ = PLSA_EXPAND_AUTH_DATA_FOR_DOMAIN;
+    }
+    if (@hasDecl(@This(), "PLSA_GET_SERVICE_ACCOUNT_PASSWORD")) {
+        _ = PLSA_GET_SERVICE_ACCOUNT_PASSWORD;
+    }
+    if (@hasDecl(@This(), "PLSA_AUDIT_LOGON_EX")) {
+        _ = PLSA_AUDIT_LOGON_EX;
+    }
+    if (@hasDecl(@This(), "PLSA_CHECK_PROTECTED_USER_BY_TOKEN")) {
+        _ = PLSA_CHECK_PROTECTED_USER_BY_TOKEN;
+    }
+    if (@hasDecl(@This(), "PLSA_QUERY_CLIENT_REQUEST")) {
+        _ = PLSA_QUERY_CLIENT_REQUEST;
+    }
+    if (@hasDecl(@This(), "CredReadFn")) {
+        _ = CredReadFn;
+    }
+    if (@hasDecl(@This(), "CredReadDomainCredentialsFn")) {
+        _ = CredReadDomainCredentialsFn;
+    }
+    if (@hasDecl(@This(), "CredFreeCredentialsFn")) {
+        _ = CredFreeCredentialsFn;
+    }
+    if (@hasDecl(@This(), "CredWriteFn")) {
+        _ = CredWriteFn;
+    }
+    if (@hasDecl(@This(), "CrediUnmarshalandDecodeStringFn")) {
+        _ = CrediUnmarshalandDecodeStringFn;
+    }
+    if (@hasDecl(@This(), "PLSA_LOCATE_PKG_BY_ID")) {
+        _ = PLSA_LOCATE_PKG_BY_ID;
+    }
+    if (@hasDecl(@This(), "SpInitializeFn")) {
+        _ = SpInitializeFn;
+    }
+    if (@hasDecl(@This(), "SpShutdownFn")) {
+        _ = SpShutdownFn;
+    }
+    if (@hasDecl(@This(), "SpGetInfoFn")) {
+        _ = SpGetInfoFn;
+    }
+    if (@hasDecl(@This(), "SpGetExtendedInformationFn")) {
+        _ = SpGetExtendedInformationFn;
+    }
+    if (@hasDecl(@This(), "SpSetExtendedInformationFn")) {
+        _ = SpSetExtendedInformationFn;
+    }
+    if (@hasDecl(@This(), "PLSA_AP_LOGON_USER_EX2")) {
+        _ = PLSA_AP_LOGON_USER_EX2;
+    }
+    if (@hasDecl(@This(), "PLSA_AP_LOGON_USER_EX3")) {
+        _ = PLSA_AP_LOGON_USER_EX3;
+    }
+    if (@hasDecl(@This(), "PLSA_AP_PRE_LOGON_USER_SURROGATE")) {
+        _ = PLSA_AP_PRE_LOGON_USER_SURROGATE;
+    }
+    if (@hasDecl(@This(), "PLSA_AP_POST_LOGON_USER_SURROGATE")) {
+        _ = PLSA_AP_POST_LOGON_USER_SURROGATE;
+    }
+    if (@hasDecl(@This(), "SpAcceptCredentialsFn")) {
+        _ = SpAcceptCredentialsFn;
+    }
+    if (@hasDecl(@This(), "SpAcquireCredentialsHandleFn")) {
+        _ = SpAcquireCredentialsHandleFn;
+    }
+    if (@hasDecl(@This(), "SpFreeCredentialsHandleFn")) {
+        _ = SpFreeCredentialsHandleFn;
+    }
+    if (@hasDecl(@This(), "SpQueryCredentialsAttributesFn")) {
+        _ = SpQueryCredentialsAttributesFn;
+    }
+    if (@hasDecl(@This(), "SpSetCredentialsAttributesFn")) {
+        _ = SpSetCredentialsAttributesFn;
+    }
+    if (@hasDecl(@This(), "SpAddCredentialsFn")) {
+        _ = SpAddCredentialsFn;
+    }
+    if (@hasDecl(@This(), "SpSaveCredentialsFn")) {
+        _ = SpSaveCredentialsFn;
+    }
+    if (@hasDecl(@This(), "SpGetCredentialsFn")) {
+        _ = SpGetCredentialsFn;
+    }
+    if (@hasDecl(@This(), "SpDeleteCredentialsFn")) {
+        _ = SpDeleteCredentialsFn;
+    }
+    if (@hasDecl(@This(), "SpInitLsaModeContextFn")) {
+        _ = SpInitLsaModeContextFn;
+    }
+    if (@hasDecl(@This(), "SpDeleteContextFn")) {
+        _ = SpDeleteContextFn;
+    }
+    if (@hasDecl(@This(), "SpApplyControlTokenFn")) {
+        _ = SpApplyControlTokenFn;
+    }
+    if (@hasDecl(@This(), "SpAcceptLsaModeContextFn")) {
+        _ = SpAcceptLsaModeContextFn;
+    }
+    if (@hasDecl(@This(), "SpGetUserInfoFn")) {
+        _ = SpGetUserInfoFn;
+    }
+    if (@hasDecl(@This(), "SpQueryContextAttributesFn")) {
+        _ = SpQueryContextAttributesFn;
+    }
+    if (@hasDecl(@This(), "SpSetContextAttributesFn")) {
+        _ = SpSetContextAttributesFn;
+    }
+    if (@hasDecl(@This(), "SpChangeAccountPasswordFn")) {
+        _ = SpChangeAccountPasswordFn;
+    }
+    if (@hasDecl(@This(), "SpQueryMetaDataFn")) {
+        _ = SpQueryMetaDataFn;
+    }
+    if (@hasDecl(@This(), "SpExchangeMetaDataFn")) {
+        _ = SpExchangeMetaDataFn;
+    }
+    if (@hasDecl(@This(), "SpGetCredUIContextFn")) {
+        _ = SpGetCredUIContextFn;
+    }
+    if (@hasDecl(@This(), "SpUpdateCredentialsFn")) {
+        _ = SpUpdateCredentialsFn;
+    }
+    if (@hasDecl(@This(), "SpValidateTargetInfoFn")) {
+        _ = SpValidateTargetInfoFn;
+    }
+    if (@hasDecl(@This(), "LSA_AP_POST_LOGON_USER")) {
+        _ = LSA_AP_POST_LOGON_USER;
+    }
+    if (@hasDecl(@This(), "SpGetRemoteCredGuardLogonBufferFn")) {
+        _ = SpGetRemoteCredGuardLogonBufferFn;
+    }
+    if (@hasDecl(@This(), "SpGetRemoteCredGuardSupplementalCredsFn")) {
+        _ = SpGetRemoteCredGuardSupplementalCredsFn;
+    }
+    if (@hasDecl(@This(), "SpGetTbalSupplementalCredsFn")) {
+        _ = SpGetTbalSupplementalCredsFn;
+    }
+    if (@hasDecl(@This(), "SpInstanceInitFn")) {
+        _ = SpInstanceInitFn;
+    }
+    if (@hasDecl(@This(), "SpInitUserModeContextFn")) {
+        _ = SpInitUserModeContextFn;
+    }
+    if (@hasDecl(@This(), "SpMakeSignatureFn")) {
+        _ = SpMakeSignatureFn;
+    }
+    if (@hasDecl(@This(), "SpVerifySignatureFn")) {
+        _ = SpVerifySignatureFn;
+    }
+    if (@hasDecl(@This(), "SpSealMessageFn")) {
+        _ = SpSealMessageFn;
+    }
+    if (@hasDecl(@This(), "SpUnsealMessageFn")) {
+        _ = SpUnsealMessageFn;
+    }
+    if (@hasDecl(@This(), "SpGetContextTokenFn")) {
+        _ = SpGetContextTokenFn;
+    }
+    if (@hasDecl(@This(), "SpExportSecurityContextFn")) {
+        _ = SpExportSecurityContextFn;
+    }
+    if (@hasDecl(@This(), "SpImportSecurityContextFn")) {
+        _ = SpImportSecurityContextFn;
+    }
+    if (@hasDecl(@This(), "SpCompleteAuthTokenFn")) {
+        _ = SpCompleteAuthTokenFn;
+    }
+    if (@hasDecl(@This(), "SpFormatCredentialsFn")) {
+        _ = SpFormatCredentialsFn;
+    }
+    if (@hasDecl(@This(), "SpMarshallSupplementalCredsFn")) {
+        _ = SpMarshallSupplementalCredsFn;
+    }
+    if (@hasDecl(@This(), "SpMarshalAttributeDataFn")) {
+        _ = SpMarshalAttributeDataFn;
+    }
+    if (@hasDecl(@This(), "SpLsaModeInitializeFn")) {
+        _ = SpLsaModeInitializeFn;
+    }
+    if (@hasDecl(@This(), "SpUserModeInitializeFn")) {
+        _ = SpUserModeInitializeFn;
+    }
+    if (@hasDecl(@This(), "PKSEC_CREATE_CONTEXT_LIST")) {
+        _ = PKSEC_CREATE_CONTEXT_LIST;
+    }
+    if (@hasDecl(@This(), "PKSEC_INSERT_LIST_ENTRY")) {
+        _ = PKSEC_INSERT_LIST_ENTRY;
+    }
+    if (@hasDecl(@This(), "PKSEC_REFERENCE_LIST_ENTRY")) {
+        _ = PKSEC_REFERENCE_LIST_ENTRY;
+    }
+    if (@hasDecl(@This(), "PKSEC_DEREFERENCE_LIST_ENTRY")) {
+        _ = PKSEC_DEREFERENCE_LIST_ENTRY;
+    }
+    if (@hasDecl(@This(), "PKSEC_SERIALIZE_WINNT_AUTH_DATA")) {
+        _ = PKSEC_SERIALIZE_WINNT_AUTH_DATA;
+    }
+    if (@hasDecl(@This(), "PKSEC_SERIALIZE_SCHANNEL_AUTH_DATA")) {
+        _ = PKSEC_SERIALIZE_SCHANNEL_AUTH_DATA;
+    }
+    if (@hasDecl(@This(), "PKSEC_LOCATE_PKG_BY_ID")) {
+        _ = PKSEC_LOCATE_PKG_BY_ID;
+    }
+    if (@hasDecl(@This(), "KspInitPackageFn")) {
+        _ = KspInitPackageFn;
+    }
+    if (@hasDecl(@This(), "KspDeleteContextFn")) {
+        _ = KspDeleteContextFn;
+    }
+    if (@hasDecl(@This(), "KspInitContextFn")) {
+        _ = KspInitContextFn;
+    }
+    if (@hasDecl(@This(), "KspMakeSignatureFn")) {
+        _ = KspMakeSignatureFn;
+    }
+    if (@hasDecl(@This(), "KspVerifySignatureFn")) {
+        _ = KspVerifySignatureFn;
+    }
+    if (@hasDecl(@This(), "KspSealMessageFn")) {
+        _ = KspSealMessageFn;
+    }
+    if (@hasDecl(@This(), "KspUnsealMessageFn")) {
+        _ = KspUnsealMessageFn;
+    }
+    if (@hasDecl(@This(), "KspGetTokenFn")) {
+        _ = KspGetTokenFn;
+    }
+    if (@hasDecl(@This(), "KspQueryAttributesFn")) {
+        _ = KspQueryAttributesFn;
+    }
+    if (@hasDecl(@This(), "KspCompleteTokenFn")) {
+        _ = KspCompleteTokenFn;
+    }
+    if (@hasDecl(@This(), "KspMapHandleFn")) {
+        _ = KspMapHandleFn;
+    }
+    if (@hasDecl(@This(), "KspSetPagingModeFn")) {
+        _ = KspSetPagingModeFn;
+    }
+    if (@hasDecl(@This(), "KspSerializeAuthDataFn")) {
+        _ = KspSerializeAuthDataFn;
+    }
+    if (@hasDecl(@This(), "SSL_EMPTY_CACHE_FN_A")) {
+        _ = SSL_EMPTY_CACHE_FN_A;
+    }
+    if (@hasDecl(@This(), "SSL_EMPTY_CACHE_FN_W")) {
+        _ = SSL_EMPTY_CACHE_FN_W;
+    }
+    if (@hasDecl(@This(), "SSL_CRACK_CERTIFICATE_FN")) {
+        _ = SSL_CRACK_CERTIFICATE_FN;
+    }
+    if (@hasDecl(@This(), "SSL_FREE_CERTIFICATE_FN")) {
+        _ = SSL_FREE_CERTIFICATE_FN;
+    }
+    if (@hasDecl(@This(), "SslGetServerIdentityFn")) {
+        _ = SslGetServerIdentityFn;
+    }
+    if (@hasDecl(@This(), "SslGetExtensionsFn")) {
+        _ = SslGetExtensionsFn;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

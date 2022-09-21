@@ -12,19 +12,21 @@ pub const IID_IRandomAccessStreamFileAccessMode = &IID_IRandomAccessStreamFileAc
 pub const IRandomAccessStreamFileAccessMode = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetMode: fn(
+        GetMode: fn (
             self: *const IRandomAccessStreamFileAccessMode,
             fileAccessMode: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRandomAccessStreamFileAccessMode_GetMode(self: *const T, fileAccessMode: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRandomAccessStreamFileAccessMode.VTable, self.vtable).GetMode(@ptrCast(*const IRandomAccessStreamFileAccessMode, self), fileAccessMode);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRandomAccessStreamFileAccessMode_GetMode(self: *const T, fileAccessMode: ?*u32) HRESULT {
+                return @ptrCast(*const IRandomAccessStreamFileAccessMode.VTable, self.vtable).GetMode(@ptrCast(*const IRandomAccessStreamFileAccessMode, self), fileAccessMode);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -34,18 +36,20 @@ pub const IID_IUnbufferedFileHandleOplockCallback = &IID_IUnbufferedFileHandleOp
 pub const IUnbufferedFileHandleOplockCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnBrokenCallback: fn(
+        OnBrokenCallback: fn (
             self: *const IUnbufferedFileHandleOplockCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUnbufferedFileHandleOplockCallback_OnBrokenCallback(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUnbufferedFileHandleOplockCallback.VTable, self.vtable).OnBrokenCallback(@ptrCast(*const IUnbufferedFileHandleOplockCallback, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUnbufferedFileHandleOplockCallback_OnBrokenCallback(self: *const T) HRESULT {
+                return @ptrCast(*const IUnbufferedFileHandleOplockCallback.VTable, self.vtable).OnBrokenCallback(@ptrCast(*const IUnbufferedFileHandleOplockCallback, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -55,27 +59,29 @@ pub const IID_IUnbufferedFileHandleProvider = &IID_IUnbufferedFileHandleProvider
 pub const IUnbufferedFileHandleProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OpenUnbufferedFileHandle: fn(
+        OpenUnbufferedFileHandle: fn (
             self: *const IUnbufferedFileHandleProvider,
             oplockBreakCallback: ?*IUnbufferedFileHandleOplockCallback,
             fileHandle: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CloseUnbufferedFileHandle: fn(
+        CloseUnbufferedFileHandle: fn (
             self: *const IUnbufferedFileHandleProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUnbufferedFileHandleProvider_OpenUnbufferedFileHandle(self: *const T, oplockBreakCallback: ?*IUnbufferedFileHandleOplockCallback, fileHandle: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUnbufferedFileHandleProvider.VTable, self.vtable).OpenUnbufferedFileHandle(@ptrCast(*const IUnbufferedFileHandleProvider, self), oplockBreakCallback, fileHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUnbufferedFileHandleProvider_CloseUnbufferedFileHandle(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUnbufferedFileHandleProvider.VTable, self.vtable).CloseUnbufferedFileHandle(@ptrCast(*const IUnbufferedFileHandleProvider, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUnbufferedFileHandleProvider_OpenUnbufferedFileHandle(self: *const T, oplockBreakCallback: ?*IUnbufferedFileHandleOplockCallback, fileHandle: ?*usize) HRESULT {
+                return @ptrCast(*const IUnbufferedFileHandleProvider.VTable, self.vtable).OpenUnbufferedFileHandle(@ptrCast(*const IUnbufferedFileHandleProvider, self), oplockBreakCallback, fileHandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUnbufferedFileHandleProvider_CloseUnbufferedFileHandle(self: *const T) HRESULT {
+                return @ptrCast(*const IUnbufferedFileHandleProvider.VTable, self.vtable).CloseUnbufferedFileHandle(@ptrCast(*const IUnbufferedFileHandleProvider, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -99,16 +105,7 @@ pub const HANDLE_OPTIONS = enum(u32) {
         OVERLAPPED: u1 = 0,
         WRITE_THROUGH: u1 = 0,
     }) HANDLE_OPTIONS {
-        return @intToEnum(HANDLE_OPTIONS,
-              (if (o.NONE == 1) @enumToInt(HANDLE_OPTIONS.NONE) else 0)
-            | (if (o.OPEN_REQUIRING_OPLOCK == 1) @enumToInt(HANDLE_OPTIONS.OPEN_REQUIRING_OPLOCK) else 0)
-            | (if (o.DELETE_ON_CLOSE == 1) @enumToInt(HANDLE_OPTIONS.DELETE_ON_CLOSE) else 0)
-            | (if (o.SEQUENTIAL_SCAN == 1) @enumToInt(HANDLE_OPTIONS.SEQUENTIAL_SCAN) else 0)
-            | (if (o.RANDOM_ACCESS == 1) @enumToInt(HANDLE_OPTIONS.RANDOM_ACCESS) else 0)
-            | (if (o.NO_BUFFERING == 1) @enumToInt(HANDLE_OPTIONS.NO_BUFFERING) else 0)
-            | (if (o.OVERLAPPED == 1) @enumToInt(HANDLE_OPTIONS.OVERLAPPED) else 0)
-            | (if (o.WRITE_THROUGH == 1) @enumToInt(HANDLE_OPTIONS.WRITE_THROUGH) else 0)
-        );
+        return @intToEnum(HANDLE_OPTIONS, (if (o.NONE == 1) @enumToInt(HANDLE_OPTIONS.NONE) else 0) | (if (o.OPEN_REQUIRING_OPLOCK == 1) @enumToInt(HANDLE_OPTIONS.OPEN_REQUIRING_OPLOCK) else 0) | (if (o.DELETE_ON_CLOSE == 1) @enumToInt(HANDLE_OPTIONS.DELETE_ON_CLOSE) else 0) | (if (o.SEQUENTIAL_SCAN == 1) @enumToInt(HANDLE_OPTIONS.SEQUENTIAL_SCAN) else 0) | (if (o.RANDOM_ACCESS == 1) @enumToInt(HANDLE_OPTIONS.RANDOM_ACCESS) else 0) | (if (o.NO_BUFFERING == 1) @enumToInt(HANDLE_OPTIONS.NO_BUFFERING) else 0) | (if (o.OVERLAPPED == 1) @enumToInt(HANDLE_OPTIONS.OVERLAPPED) else 0) | (if (o.WRITE_THROUGH == 1) @enumToInt(HANDLE_OPTIONS.WRITE_THROUGH) else 0));
     }
 };
 pub const HO_NONE = HANDLE_OPTIONS.NONE;
@@ -134,13 +131,7 @@ pub const HANDLE_ACCESS_OPTIONS = enum(u32) {
         WRITE: u1 = 0,
         DELETE: u1 = 0,
     }) HANDLE_ACCESS_OPTIONS {
-        return @intToEnum(HANDLE_ACCESS_OPTIONS,
-              (if (o.NONE == 1) @enumToInt(HANDLE_ACCESS_OPTIONS.NONE) else 0)
-            | (if (o.READ_ATTRIBUTES == 1) @enumToInt(HANDLE_ACCESS_OPTIONS.READ_ATTRIBUTES) else 0)
-            | (if (o.READ == 1) @enumToInt(HANDLE_ACCESS_OPTIONS.READ) else 0)
-            | (if (o.WRITE == 1) @enumToInt(HANDLE_ACCESS_OPTIONS.WRITE) else 0)
-            | (if (o.DELETE == 1) @enumToInt(HANDLE_ACCESS_OPTIONS.DELETE) else 0)
-        );
+        return @intToEnum(HANDLE_ACCESS_OPTIONS, (if (o.NONE == 1) @enumToInt(HANDLE_ACCESS_OPTIONS.NONE) else 0) | (if (o.READ_ATTRIBUTES == 1) @enumToInt(HANDLE_ACCESS_OPTIONS.READ_ATTRIBUTES) else 0) | (if (o.READ == 1) @enumToInt(HANDLE_ACCESS_OPTIONS.READ) else 0) | (if (o.WRITE == 1) @enumToInt(HANDLE_ACCESS_OPTIONS.WRITE) else 0) | (if (o.DELETE == 1) @enumToInt(HANDLE_ACCESS_OPTIONS.DELETE) else 0));
     }
 };
 pub const HAO_NONE = HANDLE_ACCESS_OPTIONS.NONE;
@@ -161,12 +152,7 @@ pub const HANDLE_SHARING_OPTIONS = enum(u32) {
         WRITE: u1 = 0,
         DELETE: u1 = 0,
     }) HANDLE_SHARING_OPTIONS {
-        return @intToEnum(HANDLE_SHARING_OPTIONS,
-              (if (o.NONE == 1) @enumToInt(HANDLE_SHARING_OPTIONS.NONE) else 0)
-            | (if (o.READ == 1) @enumToInt(HANDLE_SHARING_OPTIONS.READ) else 0)
-            | (if (o.WRITE == 1) @enumToInt(HANDLE_SHARING_OPTIONS.WRITE) else 0)
-            | (if (o.DELETE == 1) @enumToInt(HANDLE_SHARING_OPTIONS.DELETE) else 0)
-        );
+        return @intToEnum(HANDLE_SHARING_OPTIONS, (if (o.NONE == 1) @enumToInt(HANDLE_SHARING_OPTIONS.NONE) else 0) | (if (o.READ == 1) @enumToInt(HANDLE_SHARING_OPTIONS.READ) else 0) | (if (o.WRITE == 1) @enumToInt(HANDLE_SHARING_OPTIONS.WRITE) else 0) | (if (o.DELETE == 1) @enumToInt(HANDLE_SHARING_OPTIONS.DELETE) else 0));
     }
 };
 pub const HSO_SHARE_NONE = HANDLE_SHARING_OPTIONS.NONE;
@@ -193,18 +179,20 @@ pub const IID_IOplockBreakingHandler = &IID_IOplockBreakingHandler_Value;
 pub const IOplockBreakingHandler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OplockBreaking: fn(
+        OplockBreaking: fn (
             self: *const IOplockBreakingHandler,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOplockBreakingHandler_OplockBreaking(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IOplockBreakingHandler.VTable, self.vtable).OplockBreaking(@ptrCast(*const IOplockBreakingHandler, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IOplockBreakingHandler_OplockBreaking(self: *const T) HRESULT {
+                return @ptrCast(*const IOplockBreakingHandler.VTable, self.vtable).OplockBreaking(@ptrCast(*const IOplockBreakingHandler, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -214,7 +202,7 @@ pub const IID_IStorageItemHandleAccess = &IID_IStorageItemHandleAccess_Value;
 pub const IStorageItemHandleAccess = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Create: fn(
+        Create: fn (
             self: *const IStorageItemHandleAccess,
             accessOptions: HANDLE_ACCESS_OPTIONS,
             sharingOptions: HANDLE_SHARING_OPTIONS,
@@ -224,13 +212,15 @@ pub const IStorageItemHandleAccess = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStorageItemHandleAccess_Create(self: *const T, accessOptions: HANDLE_ACCESS_OPTIONS, sharingOptions: HANDLE_SHARING_OPTIONS, options: HANDLE_OPTIONS, oplockBreakingHandler: ?*IOplockBreakingHandler, interopHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStorageItemHandleAccess.VTable, self.vtable).Create(@ptrCast(*const IStorageItemHandleAccess, self), accessOptions, sharingOptions, options, oplockBreakingHandler, interopHandle);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStorageItemHandleAccess_Create(self: *const T, accessOptions: HANDLE_ACCESS_OPTIONS, sharingOptions: HANDLE_SHARING_OPTIONS, options: HANDLE_OPTIONS, oplockBreakingHandler: ?*IOplockBreakingHandler, interopHandle: ?*?HANDLE) HRESULT {
+                return @ptrCast(*const IStorageItemHandleAccess.VTable, self.vtable).Create(@ptrCast(*const IStorageItemHandleAccess, self), accessOptions, sharingOptions, options, oplockBreakingHandler, interopHandle);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -240,7 +230,7 @@ pub const IID_IStorageFolderHandleAccess = &IID_IStorageFolderHandleAccess_Value
 pub const IStorageFolderHandleAccess = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Create: fn(
+        Create: fn (
             self: *const IStorageFolderHandleAccess,
             fileName: ?[*:0]const u16,
             creationOptions: HANDLE_CREATION_OPTIONS,
@@ -252,16 +242,17 @@ pub const IStorageFolderHandleAccess = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStorageFolderHandleAccess_Create(self: *const T, fileName: ?[*:0]const u16, creationOptions: HANDLE_CREATION_OPTIONS, accessOptions: HANDLE_ACCESS_OPTIONS, sharingOptions: HANDLE_SHARING_OPTIONS, options: HANDLE_OPTIONS, oplockBreakingHandler: ?*IOplockBreakingHandler, interopHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStorageFolderHandleAccess.VTable, self.vtable).Create(@ptrCast(*const IStorageFolderHandleAccess, self), fileName, creationOptions, accessOptions, sharingOptions, options, oplockBreakingHandler, interopHandle);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStorageFolderHandleAccess_Create(self: *const T, fileName: ?[*:0]const u16, creationOptions: HANDLE_CREATION_OPTIONS, accessOptions: HANDLE_ACCESS_OPTIONS, sharingOptions: HANDLE_SHARING_OPTIONS, options: HANDLE_OPTIONS, oplockBreakingHandler: ?*IOplockBreakingHandler, interopHandle: ?*?HANDLE) HRESULT {
+                return @ptrCast(*const IStorageFolderHandleAccess.VTable, self.vtable).Create(@ptrCast(*const IStorageFolderHandleAccess, self), fileName, creationOptions, accessOptions, sharingOptions, options, oplockBreakingHandler, interopHandle);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -272,13 +263,9 @@ pub const IStorageFolderHandleAccess = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
@@ -290,9 +277,7 @@ const IUnknown = @import("../../system/com.zig").IUnknown;
 const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

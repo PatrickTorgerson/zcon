@@ -12,7 +12,7 @@ pub const IID_IRadialControllerInterop = &IID_IRadialControllerInterop_Value;
 pub const IRadialControllerInterop = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        CreateForWindow: fn(
+        CreateForWindow: fn (
             self: *const IRadialControllerInterop,
             hwnd: ?HWND,
             riid: ?*const Guid,
@@ -20,13 +20,15 @@ pub const IRadialControllerInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRadialControllerInterop_CreateForWindow(self: *const T, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRadialControllerInterop.VTable, self.vtable).CreateForWindow(@ptrCast(*const IRadialControllerInterop, self), hwnd, riid, ppv);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IInspectable.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRadialControllerInterop_CreateForWindow(self: *const T, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IRadialControllerInterop.VTable, self.vtable).CreateForWindow(@ptrCast(*const IRadialControllerInterop, self), hwnd, riid, ppv);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -36,7 +38,7 @@ pub const IID_IRadialControllerConfigurationInterop = &IID_IRadialControllerConf
 pub const IRadialControllerConfigurationInterop = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        GetForWindow: fn(
+        GetForWindow: fn (
             self: *const IRadialControllerConfigurationInterop,
             hwnd: ?HWND,
             riid: ?*const Guid,
@@ -44,13 +46,15 @@ pub const IRadialControllerConfigurationInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRadialControllerConfigurationInterop_GetForWindow(self: *const T, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRadialControllerConfigurationInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IRadialControllerConfigurationInterop, self), hwnd, riid, ppv);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IInspectable.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRadialControllerConfigurationInterop_GetForWindow(self: *const T, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IRadialControllerConfigurationInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IRadialControllerConfigurationInterop, self), hwnd, riid, ppv);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -59,7 +63,7 @@ pub const IID_IRadialControllerIndependentInputSourceInterop = &IID_IRadialContr
 pub const IRadialControllerIndependentInputSourceInterop = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        CreateForWindow: fn(
+        CreateForWindow: fn (
             self: *const IRadialControllerIndependentInputSourceInterop,
             hwnd: ?HWND,
             riid: ?*const Guid,
@@ -67,16 +71,17 @@ pub const IRadialControllerIndependentInputSourceInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRadialControllerIndependentInputSourceInterop_CreateForWindow(self: *const T, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRadialControllerIndependentInputSourceInterop.VTable, self.vtable).CreateForWindow(@ptrCast(*const IRadialControllerIndependentInputSourceInterop, self), hwnd, riid, ppv);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IInspectable.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRadialControllerIndependentInputSourceInterop_CreateForWindow(self: *const T, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IRadialControllerIndependentInputSourceInterop.VTable, self.vtable).CreateForWindow(@ptrCast(*const IRadialControllerIndependentInputSourceInterop, self), hwnd, riid, ppv);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -87,13 +92,9 @@ pub const IRadialControllerIndependentInputSourceInterop = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
@@ -104,9 +105,7 @@ const HWND = @import("../../foundation.zig").HWND;
 const IInspectable = @import("../../system/win_rt.zig").IInspectable;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

@@ -11,13 +11,13 @@ pub const IID_IPrinting3DManagerInterop = &IID_IPrinting3DManagerInterop_Value;
 pub const IPrinting3DManagerInterop = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        GetForWindow: fn(
+        GetForWindow: fn (
             self: *const IPrinting3DManagerInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
             printManager: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ShowPrintUIForWindowAsync: fn(
+        ShowPrintUIForWindowAsync: fn (
             self: *const IPrinting3DManagerInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
@@ -25,17 +25,19 @@ pub const IPrinting3DManagerInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinting3DManagerInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, printManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinting3DManagerInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IPrinting3DManagerInterop, self), appWindow, riid, printManager);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinting3DManagerInterop_ShowPrintUIForWindowAsync(self: *const T, appWindow: ?HWND, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinting3DManagerInterop.VTable, self.vtable).ShowPrintUIForWindowAsync(@ptrCast(*const IPrinting3DManagerInterop, self), appWindow, riid, asyncOperation);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IInspectable.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinting3DManagerInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, printManager: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IPrinting3DManagerInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IPrinting3DManagerInterop, self), appWindow, riid, printManager);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinting3DManagerInterop_ShowPrintUIForWindowAsync(self: *const T, appWindow: ?HWND, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IPrinting3DManagerInterop.VTable, self.vtable).ShowPrintUIForWindowAsync(@ptrCast(*const IPrinting3DManagerInterop, self), appWindow, riid, asyncOperation);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -45,13 +47,13 @@ pub const IID_IPrintManagerInterop = &IID_IPrintManagerInterop_Value;
 pub const IPrintManagerInterop = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        GetForWindow: fn(
+        GetForWindow: fn (
             self: *const IPrintManagerInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
             printManager: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ShowPrintUIForWindowAsync: fn(
+        ShowPrintUIForWindowAsync: fn (
             self: *const IPrintManagerInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
@@ -59,17 +61,19 @@ pub const IPrintManagerInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintManagerInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, printManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintManagerInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IPrintManagerInterop, self), appWindow, riid, printManager);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintManagerInterop_ShowPrintUIForWindowAsync(self: *const T, appWindow: ?HWND, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintManagerInterop.VTable, self.vtable).ShowPrintUIForWindowAsync(@ptrCast(*const IPrintManagerInterop, self), appWindow, riid, asyncOperation);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IInspectable.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintManagerInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, printManager: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IPrintManagerInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IPrintManagerInterop, self), appWindow, riid, printManager);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintManagerInterop_ShowPrintUIForWindowAsync(self: *const T, appWindow: ?HWND, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IPrintManagerInterop.VTable, self.vtable).ShowPrintUIForWindowAsync(@ptrCast(*const IPrintManagerInterop, self), appWindow, riid, asyncOperation);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -78,55 +82,57 @@ pub const IID_IPrintWorkflowXpsReceiver = &IID_IPrintWorkflowXpsReceiver_Value;
 pub const IPrintWorkflowXpsReceiver = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetDocumentSequencePrintTicket: fn(
+        SetDocumentSequencePrintTicket: fn (
             self: *const IPrintWorkflowXpsReceiver,
             documentSequencePrintTicket: ?*IStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDocumentSequenceUri: fn(
+        SetDocumentSequenceUri: fn (
             self: *const IPrintWorkflowXpsReceiver,
             documentSequenceUri: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddDocumentData: fn(
+        AddDocumentData: fn (
             self: *const IPrintWorkflowXpsReceiver,
             documentId: u32,
             documentPrintTicket: ?*IStream,
             documentUri: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddPage: fn(
+        AddPage: fn (
             self: *const IPrintWorkflowXpsReceiver,
             documentId: u32,
             pageId: u32,
             pageReference: ?*IXpsOMPageReference,
             pageUri: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
+        Close: fn (
             self: *const IPrintWorkflowXpsReceiver,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintWorkflowXpsReceiver_SetDocumentSequencePrintTicket(self: *const T, documentSequencePrintTicket: ?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintWorkflowXpsReceiver.VTable, self.vtable).SetDocumentSequencePrintTicket(@ptrCast(*const IPrintWorkflowXpsReceiver, self), documentSequencePrintTicket);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintWorkflowXpsReceiver_SetDocumentSequenceUri(self: *const T, documentSequenceUri: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintWorkflowXpsReceiver.VTable, self.vtable).SetDocumentSequenceUri(@ptrCast(*const IPrintWorkflowXpsReceiver, self), documentSequenceUri);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintWorkflowXpsReceiver_AddDocumentData(self: *const T, documentId: u32, documentPrintTicket: ?*IStream, documentUri: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintWorkflowXpsReceiver.VTable, self.vtable).AddDocumentData(@ptrCast(*const IPrintWorkflowXpsReceiver, self), documentId, documentPrintTicket, documentUri);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintWorkflowXpsReceiver_AddPage(self: *const T, documentId: u32, pageId: u32, pageReference: ?*IXpsOMPageReference, pageUri: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintWorkflowXpsReceiver.VTable, self.vtable).AddPage(@ptrCast(*const IPrintWorkflowXpsReceiver, self), documentId, pageId, pageReference, pageUri);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintWorkflowXpsReceiver_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintWorkflowXpsReceiver.VTable, self.vtable).Close(@ptrCast(*const IPrintWorkflowXpsReceiver, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintWorkflowXpsReceiver_SetDocumentSequencePrintTicket(self: *const T, documentSequencePrintTicket: ?*IStream) HRESULT {
+                return @ptrCast(*const IPrintWorkflowXpsReceiver.VTable, self.vtable).SetDocumentSequencePrintTicket(@ptrCast(*const IPrintWorkflowXpsReceiver, self), documentSequencePrintTicket);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintWorkflowXpsReceiver_SetDocumentSequenceUri(self: *const T, documentSequenceUri: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPrintWorkflowXpsReceiver.VTable, self.vtable).SetDocumentSequenceUri(@ptrCast(*const IPrintWorkflowXpsReceiver, self), documentSequenceUri);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintWorkflowXpsReceiver_AddDocumentData(self: *const T, documentId: u32, documentPrintTicket: ?*IStream, documentUri: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPrintWorkflowXpsReceiver.VTable, self.vtable).AddDocumentData(@ptrCast(*const IPrintWorkflowXpsReceiver, self), documentId, documentPrintTicket, documentUri);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintWorkflowXpsReceiver_AddPage(self: *const T, documentId: u32, pageId: u32, pageReference: ?*IXpsOMPageReference, pageUri: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPrintWorkflowXpsReceiver.VTable, self.vtable).AddPage(@ptrCast(*const IPrintWorkflowXpsReceiver, self), documentId, pageId, pageReference, pageUri);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintWorkflowXpsReceiver_Close(self: *const T) HRESULT {
+                return @ptrCast(*const IPrintWorkflowXpsReceiver.VTable, self.vtable).Close(@ptrCast(*const IPrintWorkflowXpsReceiver, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -135,19 +141,21 @@ pub const IID_IPrintWorkflowXpsReceiver2 = &IID_IPrintWorkflowXpsReceiver2_Value
 pub const IPrintWorkflowXpsReceiver2 = extern struct {
     pub const VTable = extern struct {
         base: IPrintWorkflowXpsReceiver.VTable,
-        Failed: fn(
+        Failed: fn (
             self: *const IPrintWorkflowXpsReceiver2,
             XpsError: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintWorkflowXpsReceiver.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintWorkflowXpsReceiver2_Failed(self: *const T, XpsError: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintWorkflowXpsReceiver2.VTable, self.vtable).Failed(@ptrCast(*const IPrintWorkflowXpsReceiver2, self), XpsError);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintWorkflowXpsReceiver.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintWorkflowXpsReceiver2_Failed(self: *const T, XpsError: HRESULT) HRESULT {
+                return @ptrCast(*const IPrintWorkflowXpsReceiver2.VTable, self.vtable).Failed(@ptrCast(*const IPrintWorkflowXpsReceiver2, self), XpsError);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -156,28 +164,30 @@ pub const IID_IPrintWorkflowObjectModelSourceFileContentNative = &IID_IPrintWork
 pub const IPrintWorkflowObjectModelSourceFileContentNative = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        StartXpsOMGeneration: fn(
+        StartXpsOMGeneration: fn (
             self: *const IPrintWorkflowObjectModelSourceFileContentNative,
             receiver: ?*IPrintWorkflowXpsReceiver,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ObjectFactory: fn(
+        get_ObjectFactory: fn (
             self: *const IPrintWorkflowObjectModelSourceFileContentNative,
             value: ?*?*IXpsOMObjectFactory1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintWorkflowObjectModelSourceFileContentNative_StartXpsOMGeneration(self: *const T, receiver: ?*IPrintWorkflowXpsReceiver) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintWorkflowObjectModelSourceFileContentNative.VTable, self.vtable).StartXpsOMGeneration(@ptrCast(*const IPrintWorkflowObjectModelSourceFileContentNative, self), receiver);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintWorkflowObjectModelSourceFileContentNative_get_ObjectFactory(self: *const T, value: ?*?*IXpsOMObjectFactory1) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintWorkflowObjectModelSourceFileContentNative.VTable, self.vtable).get_ObjectFactory(@ptrCast(*const IPrintWorkflowObjectModelSourceFileContentNative, self), value);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintWorkflowObjectModelSourceFileContentNative_StartXpsOMGeneration(self: *const T, receiver: ?*IPrintWorkflowXpsReceiver) HRESULT {
+                return @ptrCast(*const IPrintWorkflowObjectModelSourceFileContentNative.VTable, self.vtable).StartXpsOMGeneration(@ptrCast(*const IPrintWorkflowObjectModelSourceFileContentNative, self), receiver);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintWorkflowObjectModelSourceFileContentNative_get_ObjectFactory(self: *const T, value: ?*?*IXpsOMObjectFactory1) HRESULT {
+                return @ptrCast(*const IPrintWorkflowObjectModelSourceFileContentNative.VTable, self.vtable).get_ObjectFactory(@ptrCast(*const IPrintWorkflowObjectModelSourceFileContentNative, self), value);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -187,19 +197,21 @@ pub const IPrintWorkflowXpsObjectModelTargetPackageNative = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DocumentPackageTarget: fn(
+        get_DocumentPackageTarget: fn (
             self: *const IPrintWorkflowXpsObjectModelTargetPackageNative,
             value: ?*?*IXpsDocumentPackageTarget,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintWorkflowXpsObjectModelTargetPackageNative_get_DocumentPackageTarget(self: *const T, value: ?*?*IXpsDocumentPackageTarget) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintWorkflowXpsObjectModelTargetPackageNative.VTable, self.vtable).get_DocumentPackageTarget(@ptrCast(*const IPrintWorkflowXpsObjectModelTargetPackageNative, self), value);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintWorkflowXpsObjectModelTargetPackageNative_get_DocumentPackageTarget(self: *const T, value: ?*?*IXpsDocumentPackageTarget) HRESULT {
+                return @ptrCast(*const IPrintWorkflowXpsObjectModelTargetPackageNative.VTable, self.vtable).get_DocumentPackageTarget(@ptrCast(*const IPrintWorkflowXpsObjectModelTargetPackageNative, self), value);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -209,40 +221,41 @@ pub const IPrintWorkflowConfigurationNative = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrinterQueue: fn(
+        get_PrinterQueue: fn (
             self: *const IPrintWorkflowConfigurationNative,
             value: ?*?*IPrinterQueue,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DriverProperties: fn(
+        get_DriverProperties: fn (
             self: *const IPrintWorkflowConfigurationNative,
             value: ?*?*IPrinterPropertyBag,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserProperties: fn(
+        get_UserProperties: fn (
             self: *const IPrintWorkflowConfigurationNative,
             value: ?*?*IPrinterPropertyBag,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintWorkflowConfigurationNative_get_PrinterQueue(self: *const T, value: ?*?*IPrinterQueue) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintWorkflowConfigurationNative.VTable, self.vtable).get_PrinterQueue(@ptrCast(*const IPrintWorkflowConfigurationNative, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintWorkflowConfigurationNative_get_DriverProperties(self: *const T, value: ?*?*IPrinterPropertyBag) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintWorkflowConfigurationNative.VTable, self.vtable).get_DriverProperties(@ptrCast(*const IPrintWorkflowConfigurationNative, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintWorkflowConfigurationNative_get_UserProperties(self: *const T, value: ?*?*IPrinterPropertyBag) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintWorkflowConfigurationNative.VTable, self.vtable).get_UserProperties(@ptrCast(*const IPrintWorkflowConfigurationNative, self), value);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintWorkflowConfigurationNative_get_PrinterQueue(self: *const T, value: ?*?*IPrinterQueue) HRESULT {
+                return @ptrCast(*const IPrintWorkflowConfigurationNative.VTable, self.vtable).get_PrinterQueue(@ptrCast(*const IPrintWorkflowConfigurationNative, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintWorkflowConfigurationNative_get_DriverProperties(self: *const T, value: ?*?*IPrinterPropertyBag) HRESULT {
+                return @ptrCast(*const IPrintWorkflowConfigurationNative.VTable, self.vtable).get_DriverProperties(@ptrCast(*const IPrintWorkflowConfigurationNative, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintWorkflowConfigurationNative_get_UserProperties(self: *const T, value: ?*?*IPrinterPropertyBag) HRESULT {
+                return @ptrCast(*const IPrintWorkflowConfigurationNative.VTable, self.vtable).get_UserProperties(@ptrCast(*const IPrintWorkflowConfigurationNative, self), value);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -253,13 +266,9 @@ pub const IPrintWorkflowConfigurationNative = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (12)
@@ -278,9 +287,7 @@ const IXpsOMPageReference = @import("../../storage/xps.zig").IXpsOMPageReference
 const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

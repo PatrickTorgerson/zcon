@@ -20,37 +20,39 @@ pub const IUPnPNAT = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StaticPortMappingCollection: fn(
+        get_StaticPortMappingCollection: fn (
             self: *const IUPnPNAT,
             ppSPMs: ?*?*IStaticPortMappingCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DynamicPortMappingCollection: fn(
+        get_DynamicPortMappingCollection: fn (
             self: *const IUPnPNAT,
             ppDPMs: ?*?*IDynamicPortMappingCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NATEventManager: fn(
+        get_NATEventManager: fn (
             self: *const IUPnPNAT,
             ppNEM: ?*?*INATEventManager,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUPnPNAT_get_StaticPortMappingCollection(self: *const T, ppSPMs: ?*?*IStaticPortMappingCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUPnPNAT.VTable, self.vtable).get_StaticPortMappingCollection(@ptrCast(*const IUPnPNAT, self), ppSPMs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUPnPNAT_get_DynamicPortMappingCollection(self: *const T, ppDPMs: ?*?*IDynamicPortMappingCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUPnPNAT.VTable, self.vtable).get_DynamicPortMappingCollection(@ptrCast(*const IUPnPNAT, self), ppDPMs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUPnPNAT_get_NATEventManager(self: *const T, ppNEM: ?*?*INATEventManager) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUPnPNAT.VTable, self.vtable).get_NATEventManager(@ptrCast(*const IUPnPNAT, self), ppNEM);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUPnPNAT_get_StaticPortMappingCollection(self: *const T, ppSPMs: ?*?*IStaticPortMappingCollection) HRESULT {
+                return @ptrCast(*const IUPnPNAT.VTable, self.vtable).get_StaticPortMappingCollection(@ptrCast(*const IUPnPNAT, self), ppSPMs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUPnPNAT_get_DynamicPortMappingCollection(self: *const T, ppDPMs: ?*?*IDynamicPortMappingCollection) HRESULT {
+                return @ptrCast(*const IUPnPNAT.VTable, self.vtable).get_DynamicPortMappingCollection(@ptrCast(*const IUPnPNAT, self), ppDPMs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUPnPNAT_get_NATEventManager(self: *const T, ppNEM: ?*?*INATEventManager) HRESULT {
+                return @ptrCast(*const IUPnPNAT.VTable, self.vtable).get_NATEventManager(@ptrCast(*const IUPnPNAT, self), ppNEM);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -61,28 +63,30 @@ pub const INATEventManager = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ExternalIPAddressCallback: fn(
+        put_ExternalIPAddressCallback: fn (
             self: *const INATEventManager,
             pUnk: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_NumberOfEntriesCallback: fn(
+        put_NumberOfEntriesCallback: fn (
             self: *const INATEventManager,
             pUnk: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INATEventManager_put_ExternalIPAddressCallback(self: *const T, pUnk: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INATEventManager.VTable, self.vtable).put_ExternalIPAddressCallback(@ptrCast(*const INATEventManager, self), pUnk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INATEventManager_put_NumberOfEntriesCallback(self: *const T, pUnk: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INATEventManager.VTable, self.vtable).put_NumberOfEntriesCallback(@ptrCast(*const INATEventManager, self), pUnk);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INATEventManager_put_ExternalIPAddressCallback(self: *const T, pUnk: ?*IUnknown) HRESULT {
+                return @ptrCast(*const INATEventManager.VTable, self.vtable).put_ExternalIPAddressCallback(@ptrCast(*const INATEventManager, self), pUnk);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INATEventManager_put_NumberOfEntriesCallback(self: *const T, pUnk: ?*IUnknown) HRESULT {
+                return @ptrCast(*const INATEventManager.VTable, self.vtable).put_NumberOfEntriesCallback(@ptrCast(*const INATEventManager, self), pUnk);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -92,19 +96,21 @@ pub const IID_INATExternalIPAddressCallback = &IID_INATExternalIPAddressCallback
 pub const INATExternalIPAddressCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        NewExternalIPAddress: fn(
+        NewExternalIPAddress: fn (
             self: *const INATExternalIPAddressCallback,
             bstrNewExternalIPAddress: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INATExternalIPAddressCallback_NewExternalIPAddress(self: *const T, bstrNewExternalIPAddress: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INATExternalIPAddressCallback.VTable, self.vtable).NewExternalIPAddress(@ptrCast(*const INATExternalIPAddressCallback, self), bstrNewExternalIPAddress);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INATExternalIPAddressCallback_NewExternalIPAddress(self: *const T, bstrNewExternalIPAddress: ?BSTR) HRESULT {
+                return @ptrCast(*const INATExternalIPAddressCallback.VTable, self.vtable).NewExternalIPAddress(@ptrCast(*const INATExternalIPAddressCallback, self), bstrNewExternalIPAddress);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -114,19 +120,21 @@ pub const IID_INATNumberOfEntriesCallback = &IID_INATNumberOfEntriesCallback_Val
 pub const INATNumberOfEntriesCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        NewNumberOfEntries: fn(
+        NewNumberOfEntries: fn (
             self: *const INATNumberOfEntriesCallback,
             lNewNumberOfEntries: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INATNumberOfEntriesCallback_NewNumberOfEntries(self: *const T, lNewNumberOfEntries: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INATNumberOfEntriesCallback.VTable, self.vtable).NewNumberOfEntries(@ptrCast(*const INATNumberOfEntriesCallback, self), lNewNumberOfEntries);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INATNumberOfEntriesCallback_NewNumberOfEntries(self: *const T, lNewNumberOfEntries: i32) HRESULT {
+                return @ptrCast(*const INATNumberOfEntriesCallback.VTable, self.vtable).NewNumberOfEntries(@ptrCast(*const INATNumberOfEntriesCallback, self), lNewNumberOfEntries);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -136,12 +144,12 @@ pub const IDynamicPortMappingCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const IDynamicPortMappingCollection,
             pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const IDynamicPortMappingCollection,
             bstrRemoteHost: ?BSTR,
             lExternalPort: i32,
@@ -149,17 +157,17 @@ pub const IDynamicPortMappingCollection = extern struct {
             ppDPM: ?*?*IDynamicPortMapping,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const IDynamicPortMappingCollection,
             pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Remove: fn(
+        Remove: fn (
             self: *const IDynamicPortMappingCollection,
             bstrRemoteHost: ?BSTR,
             lExternalPort: i32,
             bstrProtocol: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Add: fn(
+        Add: fn (
             self: *const IDynamicPortMappingCollection,
             bstrRemoteHost: ?BSTR,
             lExternalPort: i32,
@@ -173,29 +181,31 @@ pub const IDynamicPortMappingCollection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicPortMappingCollection_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicPortMappingCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IDynamicPortMappingCollection, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicPortMappingCollection_get_Item(self: *const T, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR, ppDPM: ?*?*IDynamicPortMapping) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicPortMappingCollection.VTable, self.vtable).get_Item(@ptrCast(*const IDynamicPortMappingCollection, self), bstrRemoteHost, lExternalPort, bstrProtocol, ppDPM);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicPortMappingCollection_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicPortMappingCollection.VTable, self.vtable).get_Count(@ptrCast(*const IDynamicPortMappingCollection, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicPortMappingCollection_Remove(self: *const T, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicPortMappingCollection.VTable, self.vtable).Remove(@ptrCast(*const IDynamicPortMappingCollection, self), bstrRemoteHost, lExternalPort, bstrProtocol);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicPortMappingCollection_Add(self: *const T, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR, lInternalPort: i32, bstrInternalClient: ?BSTR, bEnabled: i16, bstrDescription: ?BSTR, lLeaseDuration: i32, ppDPM: ?*?*IDynamicPortMapping) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicPortMappingCollection.VTable, self.vtable).Add(@ptrCast(*const IDynamicPortMappingCollection, self), bstrRemoteHost, lExternalPort, bstrProtocol, lInternalPort, bstrInternalClient, bEnabled, bstrDescription, lLeaseDuration, ppDPM);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicPortMappingCollection_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IDynamicPortMappingCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IDynamicPortMappingCollection, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicPortMappingCollection_get_Item(self: *const T, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR, ppDPM: ?*?*IDynamicPortMapping) HRESULT {
+                return @ptrCast(*const IDynamicPortMappingCollection.VTable, self.vtable).get_Item(@ptrCast(*const IDynamicPortMappingCollection, self), bstrRemoteHost, lExternalPort, bstrProtocol, ppDPM);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicPortMappingCollection_get_Count(self: *const T, pVal: ?*i32) HRESULT {
+                return @ptrCast(*const IDynamicPortMappingCollection.VTable, self.vtable).get_Count(@ptrCast(*const IDynamicPortMappingCollection, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicPortMappingCollection_Remove(self: *const T, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR) HRESULT {
+                return @ptrCast(*const IDynamicPortMappingCollection.VTable, self.vtable).Remove(@ptrCast(*const IDynamicPortMappingCollection, self), bstrRemoteHost, lExternalPort, bstrProtocol);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicPortMappingCollection_Add(self: *const T, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR, lInternalPort: i32, bstrInternalClient: ?BSTR, bEnabled: i16, bstrDescription: ?BSTR, lLeaseDuration: i32, ppDPM: ?*?*IDynamicPortMapping) HRESULT {
+                return @ptrCast(*const IDynamicPortMappingCollection.VTable, self.vtable).Add(@ptrCast(*const IDynamicPortMappingCollection, self), bstrRemoteHost, lExternalPort, bstrProtocol, lInternalPort, bstrInternalClient, bEnabled, bstrDescription, lLeaseDuration, ppDPM);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -205,132 +215,134 @@ pub const IDynamicPortMapping = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExternalIPAddress: fn(
+        get_ExternalIPAddress: fn (
             self: *const IDynamicPortMapping,
             pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RemoteHost: fn(
+        get_RemoteHost: fn (
             self: *const IDynamicPortMapping,
             pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExternalPort: fn(
+        get_ExternalPort: fn (
             self: *const IDynamicPortMapping,
             pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Protocol: fn(
+        get_Protocol: fn (
             self: *const IDynamicPortMapping,
             pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InternalPort: fn(
+        get_InternalPort: fn (
             self: *const IDynamicPortMapping,
             pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InternalClient: fn(
+        get_InternalClient: fn (
             self: *const IDynamicPortMapping,
             pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: fn(
+        get_Enabled: fn (
             self: *const IDynamicPortMapping,
             pVal: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: fn(
+        get_Description: fn (
             self: *const IDynamicPortMapping,
             pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LeaseDuration: fn(
+        get_LeaseDuration: fn (
             self: *const IDynamicPortMapping,
             pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RenewLease: fn(
+        RenewLease: fn (
             self: *const IDynamicPortMapping,
             lLeaseDurationDesired: i32,
             pLeaseDurationReturned: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EditInternalClient: fn(
+        EditInternalClient: fn (
             self: *const IDynamicPortMapping,
             bstrInternalClient: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Enable: fn(
+        Enable: fn (
             self: *const IDynamicPortMapping,
             vb: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EditDescription: fn(
+        EditDescription: fn (
             self: *const IDynamicPortMapping,
             bstrDescription: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EditInternalPort: fn(
+        EditInternalPort: fn (
             self: *const IDynamicPortMapping,
             lInternalPort: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicPortMapping_get_ExternalIPAddress(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).get_ExternalIPAddress(@ptrCast(*const IDynamicPortMapping, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicPortMapping_get_RemoteHost(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).get_RemoteHost(@ptrCast(*const IDynamicPortMapping, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicPortMapping_get_ExternalPort(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).get_ExternalPort(@ptrCast(*const IDynamicPortMapping, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicPortMapping_get_Protocol(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).get_Protocol(@ptrCast(*const IDynamicPortMapping, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicPortMapping_get_InternalPort(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).get_InternalPort(@ptrCast(*const IDynamicPortMapping, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicPortMapping_get_InternalClient(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).get_InternalClient(@ptrCast(*const IDynamicPortMapping, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicPortMapping_get_Enabled(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).get_Enabled(@ptrCast(*const IDynamicPortMapping, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicPortMapping_get_Description(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).get_Description(@ptrCast(*const IDynamicPortMapping, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicPortMapping_get_LeaseDuration(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).get_LeaseDuration(@ptrCast(*const IDynamicPortMapping, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicPortMapping_RenewLease(self: *const T, lLeaseDurationDesired: i32, pLeaseDurationReturned: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).RenewLease(@ptrCast(*const IDynamicPortMapping, self), lLeaseDurationDesired, pLeaseDurationReturned);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicPortMapping_EditInternalClient(self: *const T, bstrInternalClient: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).EditInternalClient(@ptrCast(*const IDynamicPortMapping, self), bstrInternalClient);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicPortMapping_Enable(self: *const T, vb: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).Enable(@ptrCast(*const IDynamicPortMapping, self), vb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicPortMapping_EditDescription(self: *const T, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).EditDescription(@ptrCast(*const IDynamicPortMapping, self), bstrDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicPortMapping_EditInternalPort(self: *const T, lInternalPort: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).EditInternalPort(@ptrCast(*const IDynamicPortMapping, self), lInternalPort);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicPortMapping_get_ExternalIPAddress(self: *const T, pVal: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).get_ExternalIPAddress(@ptrCast(*const IDynamicPortMapping, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicPortMapping_get_RemoteHost(self: *const T, pVal: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).get_RemoteHost(@ptrCast(*const IDynamicPortMapping, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicPortMapping_get_ExternalPort(self: *const T, pVal: ?*i32) HRESULT {
+                return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).get_ExternalPort(@ptrCast(*const IDynamicPortMapping, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicPortMapping_get_Protocol(self: *const T, pVal: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).get_Protocol(@ptrCast(*const IDynamicPortMapping, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicPortMapping_get_InternalPort(self: *const T, pVal: ?*i32) HRESULT {
+                return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).get_InternalPort(@ptrCast(*const IDynamicPortMapping, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicPortMapping_get_InternalClient(self: *const T, pVal: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).get_InternalClient(@ptrCast(*const IDynamicPortMapping, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicPortMapping_get_Enabled(self: *const T, pVal: ?*i16) HRESULT {
+                return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).get_Enabled(@ptrCast(*const IDynamicPortMapping, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicPortMapping_get_Description(self: *const T, pVal: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).get_Description(@ptrCast(*const IDynamicPortMapping, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicPortMapping_get_LeaseDuration(self: *const T, pVal: ?*i32) HRESULT {
+                return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).get_LeaseDuration(@ptrCast(*const IDynamicPortMapping, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicPortMapping_RenewLease(self: *const T, lLeaseDurationDesired: i32, pLeaseDurationReturned: ?*i32) HRESULT {
+                return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).RenewLease(@ptrCast(*const IDynamicPortMapping, self), lLeaseDurationDesired, pLeaseDurationReturned);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicPortMapping_EditInternalClient(self: *const T, bstrInternalClient: ?BSTR) HRESULT {
+                return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).EditInternalClient(@ptrCast(*const IDynamicPortMapping, self), bstrInternalClient);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicPortMapping_Enable(self: *const T, vb: i16) HRESULT {
+                return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).Enable(@ptrCast(*const IDynamicPortMapping, self), vb);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicPortMapping_EditDescription(self: *const T, bstrDescription: ?BSTR) HRESULT {
+                return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).EditDescription(@ptrCast(*const IDynamicPortMapping, self), bstrDescription);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicPortMapping_EditInternalPort(self: *const T, lInternalPort: i32) HRESULT {
+                return @ptrCast(*const IDynamicPortMapping.VTable, self.vtable).EditInternalPort(@ptrCast(*const IDynamicPortMapping, self), lInternalPort);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -341,28 +353,28 @@ pub const IStaticPortMappingCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const IStaticPortMappingCollection,
             pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const IStaticPortMappingCollection,
             lExternalPort: i32,
             bstrProtocol: ?BSTR,
             ppSPM: ?*?*IStaticPortMapping,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const IStaticPortMappingCollection,
             pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Remove: fn(
+        Remove: fn (
             self: *const IStaticPortMappingCollection,
             lExternalPort: i32,
             bstrProtocol: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Add: fn(
+        Add: fn (
             self: *const IStaticPortMappingCollection,
             lExternalPort: i32,
             bstrProtocol: ?BSTR,
@@ -374,29 +386,31 @@ pub const IStaticPortMappingCollection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStaticPortMappingCollection_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStaticPortMappingCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IStaticPortMappingCollection, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStaticPortMappingCollection_get_Item(self: *const T, lExternalPort: i32, bstrProtocol: ?BSTR, ppSPM: ?*?*IStaticPortMapping) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStaticPortMappingCollection.VTable, self.vtable).get_Item(@ptrCast(*const IStaticPortMappingCollection, self), lExternalPort, bstrProtocol, ppSPM);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStaticPortMappingCollection_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStaticPortMappingCollection.VTable, self.vtable).get_Count(@ptrCast(*const IStaticPortMappingCollection, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStaticPortMappingCollection_Remove(self: *const T, lExternalPort: i32, bstrProtocol: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStaticPortMappingCollection.VTable, self.vtable).Remove(@ptrCast(*const IStaticPortMappingCollection, self), lExternalPort, bstrProtocol);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStaticPortMappingCollection_Add(self: *const T, lExternalPort: i32, bstrProtocol: ?BSTR, lInternalPort: i32, bstrInternalClient: ?BSTR, bEnabled: i16, bstrDescription: ?BSTR, ppSPM: ?*?*IStaticPortMapping) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStaticPortMappingCollection.VTable, self.vtable).Add(@ptrCast(*const IStaticPortMappingCollection, self), lExternalPort, bstrProtocol, lInternalPort, bstrInternalClient, bEnabled, bstrDescription, ppSPM);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStaticPortMappingCollection_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IStaticPortMappingCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IStaticPortMappingCollection, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStaticPortMappingCollection_get_Item(self: *const T, lExternalPort: i32, bstrProtocol: ?BSTR, ppSPM: ?*?*IStaticPortMapping) HRESULT {
+                return @ptrCast(*const IStaticPortMappingCollection.VTable, self.vtable).get_Item(@ptrCast(*const IStaticPortMappingCollection, self), lExternalPort, bstrProtocol, ppSPM);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStaticPortMappingCollection_get_Count(self: *const T, pVal: ?*i32) HRESULT {
+                return @ptrCast(*const IStaticPortMappingCollection.VTable, self.vtable).get_Count(@ptrCast(*const IStaticPortMappingCollection, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStaticPortMappingCollection_Remove(self: *const T, lExternalPort: i32, bstrProtocol: ?BSTR) HRESULT {
+                return @ptrCast(*const IStaticPortMappingCollection.VTable, self.vtable).Remove(@ptrCast(*const IStaticPortMappingCollection, self), lExternalPort, bstrProtocol);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStaticPortMappingCollection_Add(self: *const T, lExternalPort: i32, bstrProtocol: ?BSTR, lInternalPort: i32, bstrInternalClient: ?BSTR, bEnabled: i16, bstrDescription: ?BSTR, ppSPM: ?*?*IStaticPortMapping) HRESULT {
+                return @ptrCast(*const IStaticPortMappingCollection.VTable, self.vtable).Add(@ptrCast(*const IStaticPortMappingCollection, self), lExternalPort, bstrProtocol, lInternalPort, bstrInternalClient, bEnabled, bstrDescription, ppSPM);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -407,105 +421,107 @@ pub const IStaticPortMapping = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExternalIPAddress: fn(
+        get_ExternalIPAddress: fn (
             self: *const IStaticPortMapping,
             pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExternalPort: fn(
+        get_ExternalPort: fn (
             self: *const IStaticPortMapping,
             pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InternalPort: fn(
+        get_InternalPort: fn (
             self: *const IStaticPortMapping,
             pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Protocol: fn(
+        get_Protocol: fn (
             self: *const IStaticPortMapping,
             pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InternalClient: fn(
+        get_InternalClient: fn (
             self: *const IStaticPortMapping,
             pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: fn(
+        get_Enabled: fn (
             self: *const IStaticPortMapping,
             pVal: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: fn(
+        get_Description: fn (
             self: *const IStaticPortMapping,
             pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EditInternalClient: fn(
+        EditInternalClient: fn (
             self: *const IStaticPortMapping,
             bstrInternalClient: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Enable: fn(
+        Enable: fn (
             self: *const IStaticPortMapping,
             vb: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EditDescription: fn(
+        EditDescription: fn (
             self: *const IStaticPortMapping,
             bstrDescription: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EditInternalPort: fn(
+        EditInternalPort: fn (
             self: *const IStaticPortMapping,
             lInternalPort: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStaticPortMapping_get_ExternalIPAddress(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).get_ExternalIPAddress(@ptrCast(*const IStaticPortMapping, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStaticPortMapping_get_ExternalPort(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).get_ExternalPort(@ptrCast(*const IStaticPortMapping, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStaticPortMapping_get_InternalPort(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).get_InternalPort(@ptrCast(*const IStaticPortMapping, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStaticPortMapping_get_Protocol(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).get_Protocol(@ptrCast(*const IStaticPortMapping, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStaticPortMapping_get_InternalClient(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).get_InternalClient(@ptrCast(*const IStaticPortMapping, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStaticPortMapping_get_Enabled(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).get_Enabled(@ptrCast(*const IStaticPortMapping, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStaticPortMapping_get_Description(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).get_Description(@ptrCast(*const IStaticPortMapping, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStaticPortMapping_EditInternalClient(self: *const T, bstrInternalClient: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).EditInternalClient(@ptrCast(*const IStaticPortMapping, self), bstrInternalClient);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStaticPortMapping_Enable(self: *const T, vb: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).Enable(@ptrCast(*const IStaticPortMapping, self), vb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStaticPortMapping_EditDescription(self: *const T, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).EditDescription(@ptrCast(*const IStaticPortMapping, self), bstrDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStaticPortMapping_EditInternalPort(self: *const T, lInternalPort: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).EditInternalPort(@ptrCast(*const IStaticPortMapping, self), lInternalPort);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStaticPortMapping_get_ExternalIPAddress(self: *const T, pVal: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).get_ExternalIPAddress(@ptrCast(*const IStaticPortMapping, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStaticPortMapping_get_ExternalPort(self: *const T, pVal: ?*i32) HRESULT {
+                return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).get_ExternalPort(@ptrCast(*const IStaticPortMapping, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStaticPortMapping_get_InternalPort(self: *const T, pVal: ?*i32) HRESULT {
+                return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).get_InternalPort(@ptrCast(*const IStaticPortMapping, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStaticPortMapping_get_Protocol(self: *const T, pVal: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).get_Protocol(@ptrCast(*const IStaticPortMapping, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStaticPortMapping_get_InternalClient(self: *const T, pVal: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).get_InternalClient(@ptrCast(*const IStaticPortMapping, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStaticPortMapping_get_Enabled(self: *const T, pVal: ?*i16) HRESULT {
+                return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).get_Enabled(@ptrCast(*const IStaticPortMapping, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStaticPortMapping_get_Description(self: *const T, pVal: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).get_Description(@ptrCast(*const IStaticPortMapping, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStaticPortMapping_EditInternalClient(self: *const T, bstrInternalClient: ?BSTR) HRESULT {
+                return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).EditInternalClient(@ptrCast(*const IStaticPortMapping, self), bstrInternalClient);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStaticPortMapping_Enable(self: *const T, vb: i16) HRESULT {
+                return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).Enable(@ptrCast(*const IStaticPortMapping, self), vb);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStaticPortMapping_EditDescription(self: *const T, bstrDescription: ?BSTR) HRESULT {
+                return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).EditDescription(@ptrCast(*const IStaticPortMapping, self), bstrDescription);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStaticPortMapping_EditInternalPort(self: *const T, lInternalPort: i32) HRESULT {
+                return @ptrCast(*const IStaticPortMapping.VTable, self.vtable).EditInternalPort(@ptrCast(*const IStaticPortMapping, self), lInternalPort);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -517,44 +533,46 @@ pub const IID_IEnumNetConnection = &IID_IEnumNetConnection_Value;
 pub const IEnumNetConnection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
+        Next: fn (
             self: *const IEnumNetConnection,
             celt: u32,
             rgelt: [*]?*INetConnection,
             pceltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
+        Skip: fn (
             self: *const IEnumNetConnection,
             celt: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
+        Reset: fn (
             self: *const IEnumNetConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
+        Clone: fn (
             self: *const IEnumNetConnection,
             ppenum: ?*?*IEnumNetConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetConnection_Next(self: *const T, celt: u32, rgelt: [*]?*INetConnection, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetConnection.VTable, self.vtable).Next(@ptrCast(*const IEnumNetConnection, self), celt, rgelt, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetConnection_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetConnection.VTable, self.vtable).Skip(@ptrCast(*const IEnumNetConnection, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetConnection_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetConnection.VTable, self.vtable).Reset(@ptrCast(*const IEnumNetConnection, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetConnection_Clone(self: *const T, ppenum: ?*?*IEnumNetConnection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetConnection.VTable, self.vtable).Clone(@ptrCast(*const IEnumNetConnection, self), ppenum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetConnection_Next(self: *const T, celt: u32, rgelt: [*]?*INetConnection, pceltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumNetConnection.VTable, self.vtable).Next(@ptrCast(*const IEnumNetConnection, self), celt, rgelt, pceltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetConnection_Skip(self: *const T, celt: u32) HRESULT {
+                return @ptrCast(*const IEnumNetConnection.VTable, self.vtable).Skip(@ptrCast(*const IEnumNetConnection, self), celt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetConnection_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumNetConnection.VTable, self.vtable).Reset(@ptrCast(*const IEnumNetConnection, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetConnection_Clone(self: *const T, ppenum: ?*?*IEnumNetConnection) HRESULT {
+                return @ptrCast(*const IEnumNetConnection.VTable, self.vtable).Clone(@ptrCast(*const IEnumNetConnection, self), ppenum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -695,65 +713,67 @@ pub const IID_INetConnection = &IID_INetConnection_Value;
 pub const INetConnection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Connect: fn(
+        Connect: fn (
             self: *const INetConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Disconnect: fn(
+        Disconnect: fn (
             self: *const INetConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
+        Delete: fn (
             self: *const INetConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Duplicate: fn(
+        Duplicate: fn (
             self: *const INetConnection,
             pszwDuplicateName: ?[*:0]const u16,
             ppCon: ?*?*INetConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProperties: fn(
+        GetProperties: fn (
             self: *const INetConnection,
             ppProps: ?*?*NETCON_PROPERTIES,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetUiObjectClassId: fn(
+        GetUiObjectClassId: fn (
             self: *const INetConnection,
             pclsid: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Rename: fn(
+        Rename: fn (
             self: *const INetConnection,
             pszwNewName: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetConnection_Connect(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetConnection.VTable, self.vtable).Connect(@ptrCast(*const INetConnection, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetConnection_Disconnect(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetConnection.VTable, self.vtable).Disconnect(@ptrCast(*const INetConnection, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetConnection_Delete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetConnection.VTable, self.vtable).Delete(@ptrCast(*const INetConnection, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetConnection_Duplicate(self: *const T, pszwDuplicateName: ?[*:0]const u16, ppCon: ?*?*INetConnection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetConnection.VTable, self.vtable).Duplicate(@ptrCast(*const INetConnection, self), pszwDuplicateName, ppCon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetConnection_GetProperties(self: *const T, ppProps: ?*?*NETCON_PROPERTIES) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetConnection.VTable, self.vtable).GetProperties(@ptrCast(*const INetConnection, self), ppProps);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetConnection_GetUiObjectClassId(self: *const T, pclsid: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetConnection.VTable, self.vtable).GetUiObjectClassId(@ptrCast(*const INetConnection, self), pclsid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetConnection_Rename(self: *const T, pszwNewName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetConnection.VTable, self.vtable).Rename(@ptrCast(*const INetConnection, self), pszwNewName);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetConnection_Connect(self: *const T) HRESULT {
+                return @ptrCast(*const INetConnection.VTable, self.vtable).Connect(@ptrCast(*const INetConnection, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetConnection_Disconnect(self: *const T) HRESULT {
+                return @ptrCast(*const INetConnection.VTable, self.vtable).Disconnect(@ptrCast(*const INetConnection, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetConnection_Delete(self: *const T) HRESULT {
+                return @ptrCast(*const INetConnection.VTable, self.vtable).Delete(@ptrCast(*const INetConnection, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetConnection_Duplicate(self: *const T, pszwDuplicateName: ?[*:0]const u16, ppCon: ?*?*INetConnection) HRESULT {
+                return @ptrCast(*const INetConnection.VTable, self.vtable).Duplicate(@ptrCast(*const INetConnection, self), pszwDuplicateName, ppCon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetConnection_GetProperties(self: *const T, ppProps: ?*?*NETCON_PROPERTIES) HRESULT {
+                return @ptrCast(*const INetConnection.VTable, self.vtable).GetProperties(@ptrCast(*const INetConnection, self), ppProps);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetConnection_GetUiObjectClassId(self: *const T, pclsid: ?*Guid) HRESULT {
+                return @ptrCast(*const INetConnection.VTable, self.vtable).GetUiObjectClassId(@ptrCast(*const INetConnection, self), pclsid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetConnection_Rename(self: *const T, pszwNewName: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const INetConnection.VTable, self.vtable).Rename(@ptrCast(*const INetConnection, self), pszwNewName);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -769,20 +789,22 @@ pub const IID_INetConnectionManager = &IID_INetConnectionManager_Value;
 pub const INetConnectionManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        EnumConnections: fn(
+        EnumConnections: fn (
             self: *const INetConnectionManager,
             Flags: NETCONMGR_ENUM_FLAGS,
             ppEnum: ?*?*IEnumNetConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetConnectionManager_EnumConnections(self: *const T, Flags: NETCONMGR_ENUM_FLAGS, ppEnum: ?*?*IEnumNetConnection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetConnectionManager.VTable, self.vtable).EnumConnections(@ptrCast(*const INetConnectionManager, self), Flags, ppEnum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetConnectionManager_EnumConnections(self: *const T, Flags: NETCONMGR_ENUM_FLAGS, ppEnum: ?*?*IEnumNetConnection) HRESULT {
+                return @ptrCast(*const INetConnectionManager.VTable, self.vtable).EnumConnections(@ptrCast(*const INetConnectionManager, self), Flags, ppEnum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -800,37 +822,39 @@ pub const IID_INetConnectionConnectUi = &IID_INetConnectionConnectUi_Value;
 pub const INetConnectionConnectUi = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetConnection: fn(
+        SetConnection: fn (
             self: *const INetConnectionConnectUi,
             pCon: ?*INetConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Connect: fn(
+        Connect: fn (
             self: *const INetConnectionConnectUi,
             hwndParent: ?HWND,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Disconnect: fn(
+        Disconnect: fn (
             self: *const INetConnectionConnectUi,
             hwndParent: ?HWND,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetConnectionConnectUi_SetConnection(self: *const T, pCon: ?*INetConnection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetConnectionConnectUi.VTable, self.vtable).SetConnection(@ptrCast(*const INetConnectionConnectUi, self), pCon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetConnectionConnectUi_Connect(self: *const T, hwndParent: ?HWND, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetConnectionConnectUi.VTable, self.vtable).Connect(@ptrCast(*const INetConnectionConnectUi, self), hwndParent, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetConnectionConnectUi_Disconnect(self: *const T, hwndParent: ?HWND, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetConnectionConnectUi.VTable, self.vtable).Disconnect(@ptrCast(*const INetConnectionConnectUi, self), hwndParent, dwFlags);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetConnectionConnectUi_SetConnection(self: *const T, pCon: ?*INetConnection) HRESULT {
+                return @ptrCast(*const INetConnectionConnectUi.VTable, self.vtable).SetConnection(@ptrCast(*const INetConnectionConnectUi, self), pCon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetConnectionConnectUi_Connect(self: *const T, hwndParent: ?HWND, dwFlags: u32) HRESULT {
+                return @ptrCast(*const INetConnectionConnectUi.VTable, self.vtable).Connect(@ptrCast(*const INetConnectionConnectUi, self), hwndParent, dwFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetConnectionConnectUi_Disconnect(self: *const T, hwndParent: ?HWND, dwFlags: u32) HRESULT {
+                return @ptrCast(*const INetConnectionConnectUi.VTable, self.vtable).Disconnect(@ptrCast(*const INetConnectionConnectUi, self), hwndParent, dwFlags);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -840,44 +864,46 @@ pub const IID_IEnumNetSharingPortMapping = &IID_IEnumNetSharingPortMapping_Value
 pub const IEnumNetSharingPortMapping = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
+        Next: fn (
             self: *const IEnumNetSharingPortMapping,
             celt: u32,
             rgVar: [*]VARIANT,
             pceltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
+        Skip: fn (
             self: *const IEnumNetSharingPortMapping,
             celt: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
+        Reset: fn (
             self: *const IEnumNetSharingPortMapping,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
+        Clone: fn (
             self: *const IEnumNetSharingPortMapping,
             ppenum: ?*?*IEnumNetSharingPortMapping,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetSharingPortMapping_Next(self: *const T, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetSharingPortMapping.VTable, self.vtable).Next(@ptrCast(*const IEnumNetSharingPortMapping, self), celt, rgVar, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetSharingPortMapping_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetSharingPortMapping.VTable, self.vtable).Skip(@ptrCast(*const IEnumNetSharingPortMapping, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetSharingPortMapping_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetSharingPortMapping.VTable, self.vtable).Reset(@ptrCast(*const IEnumNetSharingPortMapping, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetSharingPortMapping_Clone(self: *const T, ppenum: ?*?*IEnumNetSharingPortMapping) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetSharingPortMapping.VTable, self.vtable).Clone(@ptrCast(*const IEnumNetSharingPortMapping, self), ppenum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetSharingPortMapping_Next(self: *const T, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumNetSharingPortMapping.VTable, self.vtable).Next(@ptrCast(*const IEnumNetSharingPortMapping, self), celt, rgVar, pceltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetSharingPortMapping_Skip(self: *const T, celt: u32) HRESULT {
+                return @ptrCast(*const IEnumNetSharingPortMapping.VTable, self.vtable).Skip(@ptrCast(*const IEnumNetSharingPortMapping, self), celt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetSharingPortMapping_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumNetSharingPortMapping.VTable, self.vtable).Reset(@ptrCast(*const IEnumNetSharingPortMapping, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetSharingPortMapping_Clone(self: *const T, ppenum: ?*?*IEnumNetSharingPortMapping) HRESULT {
+                return @ptrCast(*const IEnumNetSharingPortMapping.VTable, self.vtable).Clone(@ptrCast(*const IEnumNetSharingPortMapping, self), ppenum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -888,82 +914,84 @@ pub const INetSharingPortMappingProps = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
+        get_Name: fn (
             self: *const INetSharingPortMappingProps,
             pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IPProtocol: fn(
+        get_IPProtocol: fn (
             self: *const INetSharingPortMappingProps,
             pucIPProt: ?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExternalPort: fn(
+        get_ExternalPort: fn (
             self: *const INetSharingPortMappingProps,
             pusPort: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InternalPort: fn(
+        get_InternalPort: fn (
             self: *const INetSharingPortMappingProps,
             pusPort: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Options: fn(
+        get_Options: fn (
             self: *const INetSharingPortMappingProps,
             pdwOptions: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TargetName: fn(
+        get_TargetName: fn (
             self: *const INetSharingPortMappingProps,
             pbstrTargetName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TargetIPAddress: fn(
+        get_TargetIPAddress: fn (
             self: *const INetSharingPortMappingProps,
             pbstrTargetIPAddress: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: fn(
+        get_Enabled: fn (
             self: *const INetSharingPortMappingProps,
             pbool: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingPortMappingProps_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingPortMappingProps.VTable, self.vtable).get_Name(@ptrCast(*const INetSharingPortMappingProps, self), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingPortMappingProps_get_IPProtocol(self: *const T, pucIPProt: ?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingPortMappingProps.VTable, self.vtable).get_IPProtocol(@ptrCast(*const INetSharingPortMappingProps, self), pucIPProt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingPortMappingProps_get_ExternalPort(self: *const T, pusPort: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingPortMappingProps.VTable, self.vtable).get_ExternalPort(@ptrCast(*const INetSharingPortMappingProps, self), pusPort);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingPortMappingProps_get_InternalPort(self: *const T, pusPort: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingPortMappingProps.VTable, self.vtable).get_InternalPort(@ptrCast(*const INetSharingPortMappingProps, self), pusPort);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingPortMappingProps_get_Options(self: *const T, pdwOptions: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingPortMappingProps.VTable, self.vtable).get_Options(@ptrCast(*const INetSharingPortMappingProps, self), pdwOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingPortMappingProps_get_TargetName(self: *const T, pbstrTargetName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingPortMappingProps.VTable, self.vtable).get_TargetName(@ptrCast(*const INetSharingPortMappingProps, self), pbstrTargetName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingPortMappingProps_get_TargetIPAddress(self: *const T, pbstrTargetIPAddress: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingPortMappingProps.VTable, self.vtable).get_TargetIPAddress(@ptrCast(*const INetSharingPortMappingProps, self), pbstrTargetIPAddress);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingPortMappingProps_get_Enabled(self: *const T, pbool: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingPortMappingProps.VTable, self.vtable).get_Enabled(@ptrCast(*const INetSharingPortMappingProps, self), pbool);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingPortMappingProps_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetSharingPortMappingProps.VTable, self.vtable).get_Name(@ptrCast(*const INetSharingPortMappingProps, self), pbstrName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingPortMappingProps_get_IPProtocol(self: *const T, pucIPProt: ?*u8) HRESULT {
+                return @ptrCast(*const INetSharingPortMappingProps.VTable, self.vtable).get_IPProtocol(@ptrCast(*const INetSharingPortMappingProps, self), pucIPProt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingPortMappingProps_get_ExternalPort(self: *const T, pusPort: ?*i32) HRESULT {
+                return @ptrCast(*const INetSharingPortMappingProps.VTable, self.vtable).get_ExternalPort(@ptrCast(*const INetSharingPortMappingProps, self), pusPort);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingPortMappingProps_get_InternalPort(self: *const T, pusPort: ?*i32) HRESULT {
+                return @ptrCast(*const INetSharingPortMappingProps.VTable, self.vtable).get_InternalPort(@ptrCast(*const INetSharingPortMappingProps, self), pusPort);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingPortMappingProps_get_Options(self: *const T, pdwOptions: ?*i32) HRESULT {
+                return @ptrCast(*const INetSharingPortMappingProps.VTable, self.vtable).get_Options(@ptrCast(*const INetSharingPortMappingProps, self), pdwOptions);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingPortMappingProps_get_TargetName(self: *const T, pbstrTargetName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetSharingPortMappingProps.VTable, self.vtable).get_TargetName(@ptrCast(*const INetSharingPortMappingProps, self), pbstrTargetName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingPortMappingProps_get_TargetIPAddress(self: *const T, pbstrTargetIPAddress: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetSharingPortMappingProps.VTable, self.vtable).get_TargetIPAddress(@ptrCast(*const INetSharingPortMappingProps, self), pbstrTargetIPAddress);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingPortMappingProps_get_Enabled(self: *const T, pbool: ?*i16) HRESULT {
+                return @ptrCast(*const INetSharingPortMappingProps.VTable, self.vtable).get_Enabled(@ptrCast(*const INetSharingPortMappingProps, self), pbool);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -973,41 +1001,43 @@ pub const IID_INetSharingPortMapping = &IID_INetSharingPortMapping_Value;
 pub const INetSharingPortMapping = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Disable: fn(
+        Disable: fn (
             self: *const INetSharingPortMapping,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Enable: fn(
+        Enable: fn (
             self: *const INetSharingPortMapping,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: fn(
+        get_Properties: fn (
             self: *const INetSharingPortMapping,
             ppNSPMP: ?*?*INetSharingPortMappingProps,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
+        Delete: fn (
             self: *const INetSharingPortMapping,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingPortMapping_Disable(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingPortMapping.VTable, self.vtable).Disable(@ptrCast(*const INetSharingPortMapping, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingPortMapping_Enable(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingPortMapping.VTable, self.vtable).Enable(@ptrCast(*const INetSharingPortMapping, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingPortMapping_get_Properties(self: *const T, ppNSPMP: ?*?*INetSharingPortMappingProps) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingPortMapping.VTable, self.vtable).get_Properties(@ptrCast(*const INetSharingPortMapping, self), ppNSPMP);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingPortMapping_Delete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingPortMapping.VTable, self.vtable).Delete(@ptrCast(*const INetSharingPortMapping, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingPortMapping_Disable(self: *const T) HRESULT {
+                return @ptrCast(*const INetSharingPortMapping.VTable, self.vtable).Disable(@ptrCast(*const INetSharingPortMapping, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingPortMapping_Enable(self: *const T) HRESULT {
+                return @ptrCast(*const INetSharingPortMapping.VTable, self.vtable).Enable(@ptrCast(*const INetSharingPortMapping, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingPortMapping_get_Properties(self: *const T, ppNSPMP: ?*?*INetSharingPortMappingProps) HRESULT {
+                return @ptrCast(*const INetSharingPortMapping.VTable, self.vtable).get_Properties(@ptrCast(*const INetSharingPortMapping, self), ppNSPMP);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingPortMapping_Delete(self: *const T) HRESULT {
+                return @ptrCast(*const INetSharingPortMapping.VTable, self.vtable).Delete(@ptrCast(*const INetSharingPortMapping, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1017,44 +1047,46 @@ pub const IID_IEnumNetSharingEveryConnection = &IID_IEnumNetSharingEveryConnecti
 pub const IEnumNetSharingEveryConnection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
+        Next: fn (
             self: *const IEnumNetSharingEveryConnection,
             celt: u32,
             rgVar: [*]VARIANT,
             pceltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
+        Skip: fn (
             self: *const IEnumNetSharingEveryConnection,
             celt: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
+        Reset: fn (
             self: *const IEnumNetSharingEveryConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
+        Clone: fn (
             self: *const IEnumNetSharingEveryConnection,
             ppenum: ?*?*IEnumNetSharingEveryConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetSharingEveryConnection_Next(self: *const T, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetSharingEveryConnection.VTable, self.vtable).Next(@ptrCast(*const IEnumNetSharingEveryConnection, self), celt, rgVar, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetSharingEveryConnection_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetSharingEveryConnection.VTable, self.vtable).Skip(@ptrCast(*const IEnumNetSharingEveryConnection, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetSharingEveryConnection_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetSharingEveryConnection.VTable, self.vtable).Reset(@ptrCast(*const IEnumNetSharingEveryConnection, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetSharingEveryConnection_Clone(self: *const T, ppenum: ?*?*IEnumNetSharingEveryConnection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetSharingEveryConnection.VTable, self.vtable).Clone(@ptrCast(*const IEnumNetSharingEveryConnection, self), ppenum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetSharingEveryConnection_Next(self: *const T, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumNetSharingEveryConnection.VTable, self.vtable).Next(@ptrCast(*const IEnumNetSharingEveryConnection, self), celt, rgVar, pceltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetSharingEveryConnection_Skip(self: *const T, celt: u32) HRESULT {
+                return @ptrCast(*const IEnumNetSharingEveryConnection.VTable, self.vtable).Skip(@ptrCast(*const IEnumNetSharingEveryConnection, self), celt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetSharingEveryConnection_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumNetSharingEveryConnection.VTable, self.vtable).Reset(@ptrCast(*const IEnumNetSharingEveryConnection, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetSharingEveryConnection_Clone(self: *const T, ppenum: ?*?*IEnumNetSharingEveryConnection) HRESULT {
+                return @ptrCast(*const IEnumNetSharingEveryConnection.VTable, self.vtable).Clone(@ptrCast(*const IEnumNetSharingEveryConnection, self), ppenum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1064,44 +1096,46 @@ pub const IID_IEnumNetSharingPublicConnection = &IID_IEnumNetSharingPublicConnec
 pub const IEnumNetSharingPublicConnection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
+        Next: fn (
             self: *const IEnumNetSharingPublicConnection,
             celt: u32,
             rgVar: [*]VARIANT,
             pceltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
+        Skip: fn (
             self: *const IEnumNetSharingPublicConnection,
             celt: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
+        Reset: fn (
             self: *const IEnumNetSharingPublicConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
+        Clone: fn (
             self: *const IEnumNetSharingPublicConnection,
             ppenum: ?*?*IEnumNetSharingPublicConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetSharingPublicConnection_Next(self: *const T, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetSharingPublicConnection.VTable, self.vtable).Next(@ptrCast(*const IEnumNetSharingPublicConnection, self), celt, rgVar, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetSharingPublicConnection_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetSharingPublicConnection.VTable, self.vtable).Skip(@ptrCast(*const IEnumNetSharingPublicConnection, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetSharingPublicConnection_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetSharingPublicConnection.VTable, self.vtable).Reset(@ptrCast(*const IEnumNetSharingPublicConnection, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetSharingPublicConnection_Clone(self: *const T, ppenum: ?*?*IEnumNetSharingPublicConnection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetSharingPublicConnection.VTable, self.vtable).Clone(@ptrCast(*const IEnumNetSharingPublicConnection, self), ppenum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetSharingPublicConnection_Next(self: *const T, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumNetSharingPublicConnection.VTable, self.vtable).Next(@ptrCast(*const IEnumNetSharingPublicConnection, self), celt, rgVar, pceltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetSharingPublicConnection_Skip(self: *const T, celt: u32) HRESULT {
+                return @ptrCast(*const IEnumNetSharingPublicConnection.VTable, self.vtable).Skip(@ptrCast(*const IEnumNetSharingPublicConnection, self), celt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetSharingPublicConnection_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumNetSharingPublicConnection.VTable, self.vtable).Reset(@ptrCast(*const IEnumNetSharingPublicConnection, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetSharingPublicConnection_Clone(self: *const T, ppenum: ?*?*IEnumNetSharingPublicConnection) HRESULT {
+                return @ptrCast(*const IEnumNetSharingPublicConnection.VTable, self.vtable).Clone(@ptrCast(*const IEnumNetSharingPublicConnection, self), ppenum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1111,44 +1145,46 @@ pub const IID_IEnumNetSharingPrivateConnection = &IID_IEnumNetSharingPrivateConn
 pub const IEnumNetSharingPrivateConnection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
+        Next: fn (
             self: *const IEnumNetSharingPrivateConnection,
             celt: u32,
             rgVar: [*]VARIANT,
             pCeltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
+        Skip: fn (
             self: *const IEnumNetSharingPrivateConnection,
             celt: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
+        Reset: fn (
             self: *const IEnumNetSharingPrivateConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
+        Clone: fn (
             self: *const IEnumNetSharingPrivateConnection,
             ppenum: ?*?*IEnumNetSharingPrivateConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetSharingPrivateConnection_Next(self: *const T, celt: u32, rgVar: [*]VARIANT, pCeltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetSharingPrivateConnection.VTable, self.vtable).Next(@ptrCast(*const IEnumNetSharingPrivateConnection, self), celt, rgVar, pCeltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetSharingPrivateConnection_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetSharingPrivateConnection.VTable, self.vtable).Skip(@ptrCast(*const IEnumNetSharingPrivateConnection, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetSharingPrivateConnection_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetSharingPrivateConnection.VTable, self.vtable).Reset(@ptrCast(*const IEnumNetSharingPrivateConnection, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetSharingPrivateConnection_Clone(self: *const T, ppenum: ?*?*IEnumNetSharingPrivateConnection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetSharingPrivateConnection.VTable, self.vtable).Clone(@ptrCast(*const IEnumNetSharingPrivateConnection, self), ppenum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetSharingPrivateConnection_Next(self: *const T, celt: u32, rgVar: [*]VARIANT, pCeltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumNetSharingPrivateConnection.VTable, self.vtable).Next(@ptrCast(*const IEnumNetSharingPrivateConnection, self), celt, rgVar, pCeltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetSharingPrivateConnection_Skip(self: *const T, celt: u32) HRESULT {
+                return @ptrCast(*const IEnumNetSharingPrivateConnection.VTable, self.vtable).Skip(@ptrCast(*const IEnumNetSharingPrivateConnection, self), celt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetSharingPrivateConnection_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumNetSharingPrivateConnection.VTable, self.vtable).Reset(@ptrCast(*const IEnumNetSharingPrivateConnection, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetSharingPrivateConnection_Clone(self: *const T, ppenum: ?*?*IEnumNetSharingPrivateConnection) HRESULT {
+                return @ptrCast(*const IEnumNetSharingPrivateConnection.VTable, self.vtable).Clone(@ptrCast(*const IEnumNetSharingPrivateConnection, self), ppenum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1159,28 +1195,30 @@ pub const INetSharingPortMappingCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const INetSharingPortMappingCollection,
             pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const INetSharingPortMappingCollection,
             pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingPortMappingCollection_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingPortMappingCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const INetSharingPortMappingCollection, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingPortMappingCollection_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingPortMappingCollection.VTable, self.vtable).get_Count(@ptrCast(*const INetSharingPortMappingCollection, self), pVal);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingPortMappingCollection_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const INetSharingPortMappingCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const INetSharingPortMappingCollection, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingPortMappingCollection_get_Count(self: *const T, pVal: ?*i32) HRESULT {
+                return @ptrCast(*const INetSharingPortMappingCollection.VTable, self.vtable).get_Count(@ptrCast(*const INetSharingPortMappingCollection, self), pVal);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1191,64 +1229,66 @@ pub const INetConnectionProps = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Guid: fn(
+        get_Guid: fn (
             self: *const INetConnectionProps,
             pbstrGuid: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
+        get_Name: fn (
             self: *const INetConnectionProps,
             pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DeviceName: fn(
+        get_DeviceName: fn (
             self: *const INetConnectionProps,
             pbstrDeviceName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Status: fn(
+        get_Status: fn (
             self: *const INetConnectionProps,
             pStatus: ?*NETCON_STATUS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MediaType: fn(
+        get_MediaType: fn (
             self: *const INetConnectionProps,
             pMediaType: ?*NETCON_MEDIATYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Characteristics: fn(
+        get_Characteristics: fn (
             self: *const INetConnectionProps,
             pdwFlags: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetConnectionProps_get_Guid(self: *const T, pbstrGuid: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetConnectionProps.VTable, self.vtable).get_Guid(@ptrCast(*const INetConnectionProps, self), pbstrGuid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetConnectionProps_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetConnectionProps.VTable, self.vtable).get_Name(@ptrCast(*const INetConnectionProps, self), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetConnectionProps_get_DeviceName(self: *const T, pbstrDeviceName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetConnectionProps.VTable, self.vtable).get_DeviceName(@ptrCast(*const INetConnectionProps, self), pbstrDeviceName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetConnectionProps_get_Status(self: *const T, pStatus: ?*NETCON_STATUS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetConnectionProps.VTable, self.vtable).get_Status(@ptrCast(*const INetConnectionProps, self), pStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetConnectionProps_get_MediaType(self: *const T, pMediaType: ?*NETCON_MEDIATYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetConnectionProps.VTable, self.vtable).get_MediaType(@ptrCast(*const INetConnectionProps, self), pMediaType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetConnectionProps_get_Characteristics(self: *const T, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetConnectionProps.VTable, self.vtable).get_Characteristics(@ptrCast(*const INetConnectionProps, self), pdwFlags);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetConnectionProps_get_Guid(self: *const T, pbstrGuid: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetConnectionProps.VTable, self.vtable).get_Guid(@ptrCast(*const INetConnectionProps, self), pbstrGuid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetConnectionProps_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetConnectionProps.VTable, self.vtable).get_Name(@ptrCast(*const INetConnectionProps, self), pbstrName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetConnectionProps_get_DeviceName(self: *const T, pbstrDeviceName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetConnectionProps.VTable, self.vtable).get_DeviceName(@ptrCast(*const INetConnectionProps, self), pbstrDeviceName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetConnectionProps_get_Status(self: *const T, pStatus: ?*NETCON_STATUS) HRESULT {
+                return @ptrCast(*const INetConnectionProps.VTable, self.vtable).get_Status(@ptrCast(*const INetConnectionProps, self), pStatus);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetConnectionProps_get_MediaType(self: *const T, pMediaType: ?*NETCON_MEDIATYPE) HRESULT {
+                return @ptrCast(*const INetConnectionProps.VTable, self.vtable).get_MediaType(@ptrCast(*const INetConnectionProps, self), pMediaType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetConnectionProps_get_Characteristics(self: *const T, pdwFlags: ?*u32) HRESULT {
+                return @ptrCast(*const INetConnectionProps.VTable, self.vtable).get_Characteristics(@ptrCast(*const INetConnectionProps, self), pdwFlags);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1280,40 +1320,40 @@ pub const INetSharingConfiguration = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SharingEnabled: fn(
+        get_SharingEnabled: fn (
             self: *const INetSharingConfiguration,
             pbEnabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SharingConnectionType: fn(
+        get_SharingConnectionType: fn (
             self: *const INetSharingConfiguration,
             pType: ?*SHARINGCONNECTIONTYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DisableSharing: fn(
+        DisableSharing: fn (
             self: *const INetSharingConfiguration,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnableSharing: fn(
+        EnableSharing: fn (
             self: *const INetSharingConfiguration,
             Type: SHARINGCONNECTIONTYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InternetFirewallEnabled: fn(
+        get_InternetFirewallEnabled: fn (
             self: *const INetSharingConfiguration,
             pbEnabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DisableInternetFirewall: fn(
+        DisableInternetFirewall: fn (
             self: *const INetSharingConfiguration,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnableInternetFirewall: fn(
+        EnableInternetFirewall: fn (
             self: *const INetSharingConfiguration,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EnumPortMappings: fn(
+        get_EnumPortMappings: fn (
             self: *const INetSharingConfiguration,
             Flags: SHARINGCONNECTION_ENUM_FLAGS,
             ppColl: ?*?*INetSharingPortMappingCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddPortMapping: fn(
+        AddPortMapping: fn (
             self: *const INetSharingConfiguration,
             bstrName: ?BSTR,
             ucIPProtocol: u8,
@@ -1324,55 +1364,57 @@ pub const INetSharingConfiguration = extern struct {
             eTargetType: ICS_TARGETTYPE,
             ppMapping: ?*?*INetSharingPortMapping,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemovePortMapping: fn(
+        RemovePortMapping: fn (
             self: *const INetSharingConfiguration,
             pMapping: ?*INetSharingPortMapping,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingConfiguration_get_SharingEnabled(self: *const T, pbEnabled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingConfiguration.VTable, self.vtable).get_SharingEnabled(@ptrCast(*const INetSharingConfiguration, self), pbEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingConfiguration_get_SharingConnectionType(self: *const T, pType: ?*SHARINGCONNECTIONTYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingConfiguration.VTable, self.vtable).get_SharingConnectionType(@ptrCast(*const INetSharingConfiguration, self), pType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingConfiguration_DisableSharing(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingConfiguration.VTable, self.vtable).DisableSharing(@ptrCast(*const INetSharingConfiguration, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingConfiguration_EnableSharing(self: *const T, Type: SHARINGCONNECTIONTYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingConfiguration.VTable, self.vtable).EnableSharing(@ptrCast(*const INetSharingConfiguration, self), Type);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingConfiguration_get_InternetFirewallEnabled(self: *const T, pbEnabled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingConfiguration.VTable, self.vtable).get_InternetFirewallEnabled(@ptrCast(*const INetSharingConfiguration, self), pbEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingConfiguration_DisableInternetFirewall(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingConfiguration.VTable, self.vtable).DisableInternetFirewall(@ptrCast(*const INetSharingConfiguration, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingConfiguration_EnableInternetFirewall(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingConfiguration.VTable, self.vtable).EnableInternetFirewall(@ptrCast(*const INetSharingConfiguration, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingConfiguration_get_EnumPortMappings(self: *const T, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPortMappingCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingConfiguration.VTable, self.vtable).get_EnumPortMappings(@ptrCast(*const INetSharingConfiguration, self), Flags, ppColl);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingConfiguration_AddPortMapping(self: *const T, bstrName: ?BSTR, ucIPProtocol: u8, usExternalPort: u16, usInternalPort: u16, dwOptions: u32, bstrTargetNameOrIPAddress: ?BSTR, eTargetType: ICS_TARGETTYPE, ppMapping: ?*?*INetSharingPortMapping) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingConfiguration.VTable, self.vtable).AddPortMapping(@ptrCast(*const INetSharingConfiguration, self), bstrName, ucIPProtocol, usExternalPort, usInternalPort, dwOptions, bstrTargetNameOrIPAddress, eTargetType, ppMapping);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingConfiguration_RemovePortMapping(self: *const T, pMapping: ?*INetSharingPortMapping) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingConfiguration.VTable, self.vtable).RemovePortMapping(@ptrCast(*const INetSharingConfiguration, self), pMapping);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingConfiguration_get_SharingEnabled(self: *const T, pbEnabled: ?*i16) HRESULT {
+                return @ptrCast(*const INetSharingConfiguration.VTable, self.vtable).get_SharingEnabled(@ptrCast(*const INetSharingConfiguration, self), pbEnabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingConfiguration_get_SharingConnectionType(self: *const T, pType: ?*SHARINGCONNECTIONTYPE) HRESULT {
+                return @ptrCast(*const INetSharingConfiguration.VTable, self.vtable).get_SharingConnectionType(@ptrCast(*const INetSharingConfiguration, self), pType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingConfiguration_DisableSharing(self: *const T) HRESULT {
+                return @ptrCast(*const INetSharingConfiguration.VTable, self.vtable).DisableSharing(@ptrCast(*const INetSharingConfiguration, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingConfiguration_EnableSharing(self: *const T, Type: SHARINGCONNECTIONTYPE) HRESULT {
+                return @ptrCast(*const INetSharingConfiguration.VTable, self.vtable).EnableSharing(@ptrCast(*const INetSharingConfiguration, self), Type);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingConfiguration_get_InternetFirewallEnabled(self: *const T, pbEnabled: ?*i16) HRESULT {
+                return @ptrCast(*const INetSharingConfiguration.VTable, self.vtable).get_InternetFirewallEnabled(@ptrCast(*const INetSharingConfiguration, self), pbEnabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingConfiguration_DisableInternetFirewall(self: *const T) HRESULT {
+                return @ptrCast(*const INetSharingConfiguration.VTable, self.vtable).DisableInternetFirewall(@ptrCast(*const INetSharingConfiguration, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingConfiguration_EnableInternetFirewall(self: *const T) HRESULT {
+                return @ptrCast(*const INetSharingConfiguration.VTable, self.vtable).EnableInternetFirewall(@ptrCast(*const INetSharingConfiguration, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingConfiguration_get_EnumPortMappings(self: *const T, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPortMappingCollection) HRESULT {
+                return @ptrCast(*const INetSharingConfiguration.VTable, self.vtable).get_EnumPortMappings(@ptrCast(*const INetSharingConfiguration, self), Flags, ppColl);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingConfiguration_AddPortMapping(self: *const T, bstrName: ?BSTR, ucIPProtocol: u8, usExternalPort: u16, usInternalPort: u16, dwOptions: u32, bstrTargetNameOrIPAddress: ?BSTR, eTargetType: ICS_TARGETTYPE, ppMapping: ?*?*INetSharingPortMapping) HRESULT {
+                return @ptrCast(*const INetSharingConfiguration.VTable, self.vtable).AddPortMapping(@ptrCast(*const INetSharingConfiguration, self), bstrName, ucIPProtocol, usExternalPort, usInternalPort, dwOptions, bstrTargetNameOrIPAddress, eTargetType, ppMapping);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingConfiguration_RemovePortMapping(self: *const T, pMapping: ?*INetSharingPortMapping) HRESULT {
+                return @ptrCast(*const INetSharingConfiguration.VTable, self.vtable).RemovePortMapping(@ptrCast(*const INetSharingConfiguration, self), pMapping);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1383,28 +1425,30 @@ pub const INetSharingEveryConnectionCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const INetSharingEveryConnectionCollection,
             pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const INetSharingEveryConnectionCollection,
             pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingEveryConnectionCollection_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingEveryConnectionCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const INetSharingEveryConnectionCollection, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingEveryConnectionCollection_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingEveryConnectionCollection.VTable, self.vtable).get_Count(@ptrCast(*const INetSharingEveryConnectionCollection, self), pVal);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingEveryConnectionCollection_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const INetSharingEveryConnectionCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const INetSharingEveryConnectionCollection, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingEveryConnectionCollection_get_Count(self: *const T, pVal: ?*i32) HRESULT {
+                return @ptrCast(*const INetSharingEveryConnectionCollection.VTable, self.vtable).get_Count(@ptrCast(*const INetSharingEveryConnectionCollection, self), pVal);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1415,28 +1459,30 @@ pub const INetSharingPublicConnectionCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const INetSharingPublicConnectionCollection,
             pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const INetSharingPublicConnectionCollection,
             pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingPublicConnectionCollection_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingPublicConnectionCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const INetSharingPublicConnectionCollection, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingPublicConnectionCollection_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingPublicConnectionCollection.VTable, self.vtable).get_Count(@ptrCast(*const INetSharingPublicConnectionCollection, self), pVal);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingPublicConnectionCollection_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const INetSharingPublicConnectionCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const INetSharingPublicConnectionCollection, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingPublicConnectionCollection_get_Count(self: *const T, pVal: ?*i32) HRESULT {
+                return @ptrCast(*const INetSharingPublicConnectionCollection.VTable, self.vtable).get_Count(@ptrCast(*const INetSharingPublicConnectionCollection, self), pVal);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1447,28 +1493,30 @@ pub const INetSharingPrivateConnectionCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const INetSharingPrivateConnectionCollection,
             pVal: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const INetSharingPrivateConnectionCollection,
             pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingPrivateConnectionCollection_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingPrivateConnectionCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const INetSharingPrivateConnectionCollection, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingPrivateConnectionCollection_get_Count(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingPrivateConnectionCollection.VTable, self.vtable).get_Count(@ptrCast(*const INetSharingPrivateConnectionCollection, self), pVal);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingPrivateConnectionCollection_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const INetSharingPrivateConnectionCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const INetSharingPrivateConnectionCollection, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingPrivateConnectionCollection_get_Count(self: *const T, pVal: ?*i32) HRESULT {
+                return @ptrCast(*const INetSharingPrivateConnectionCollection.VTable, self.vtable).get_Count(@ptrCast(*const INetSharingPrivateConnectionCollection, self), pVal);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1479,68 +1527,70 @@ pub const INetSharingManager = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SharingInstalled: fn(
+        get_SharingInstalled: fn (
             self: *const INetSharingManager,
             pbInstalled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EnumPublicConnections: fn(
+        get_EnumPublicConnections: fn (
             self: *const INetSharingManager,
             Flags: SHARINGCONNECTION_ENUM_FLAGS,
             ppColl: ?*?*INetSharingPublicConnectionCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EnumPrivateConnections: fn(
+        get_EnumPrivateConnections: fn (
             self: *const INetSharingManager,
             Flags: SHARINGCONNECTION_ENUM_FLAGS,
             ppColl: ?*?*INetSharingPrivateConnectionCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_INetSharingConfigurationForINetConnection: fn(
+        get_INetSharingConfigurationForINetConnection: fn (
             self: *const INetSharingManager,
             pNetConnection: ?*INetConnection,
             ppNetSharingConfiguration: ?*?*INetSharingConfiguration,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EnumEveryConnection: fn(
+        get_EnumEveryConnection: fn (
             self: *const INetSharingManager,
             ppColl: ?*?*INetSharingEveryConnectionCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NetConnectionProps: fn(
+        get_NetConnectionProps: fn (
             self: *const INetSharingManager,
             pNetConnection: ?*INetConnection,
             ppProps: ?*?*INetConnectionProps,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingManager_get_SharingInstalled(self: *const T, pbInstalled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingManager.VTable, self.vtable).get_SharingInstalled(@ptrCast(*const INetSharingManager, self), pbInstalled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingManager_get_EnumPublicConnections(self: *const T, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPublicConnectionCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingManager.VTable, self.vtable).get_EnumPublicConnections(@ptrCast(*const INetSharingManager, self), Flags, ppColl);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingManager_get_EnumPrivateConnections(self: *const T, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPrivateConnectionCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingManager.VTable, self.vtable).get_EnumPrivateConnections(@ptrCast(*const INetSharingManager, self), Flags, ppColl);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingManager_get_INetSharingConfigurationForINetConnection(self: *const T, pNetConnection: ?*INetConnection, ppNetSharingConfiguration: ?*?*INetSharingConfiguration) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingManager.VTable, self.vtable).get_INetSharingConfigurationForINetConnection(@ptrCast(*const INetSharingManager, self), pNetConnection, ppNetSharingConfiguration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingManager_get_EnumEveryConnection(self: *const T, ppColl: ?*?*INetSharingEveryConnectionCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingManager.VTable, self.vtable).get_EnumEveryConnection(@ptrCast(*const INetSharingManager, self), ppColl);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetSharingManager_get_NetConnectionProps(self: *const T, pNetConnection: ?*INetConnection, ppProps: ?*?*INetConnectionProps) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetSharingManager.VTable, self.vtable).get_NetConnectionProps(@ptrCast(*const INetSharingManager, self), pNetConnection, ppProps);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingManager_get_SharingInstalled(self: *const T, pbInstalled: ?*i16) HRESULT {
+                return @ptrCast(*const INetSharingManager.VTable, self.vtable).get_SharingInstalled(@ptrCast(*const INetSharingManager, self), pbInstalled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingManager_get_EnumPublicConnections(self: *const T, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPublicConnectionCollection) HRESULT {
+                return @ptrCast(*const INetSharingManager.VTable, self.vtable).get_EnumPublicConnections(@ptrCast(*const INetSharingManager, self), Flags, ppColl);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingManager_get_EnumPrivateConnections(self: *const T, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPrivateConnectionCollection) HRESULT {
+                return @ptrCast(*const INetSharingManager.VTable, self.vtable).get_EnumPrivateConnections(@ptrCast(*const INetSharingManager, self), Flags, ppColl);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingManager_get_INetSharingConfigurationForINetConnection(self: *const T, pNetConnection: ?*INetConnection, ppNetSharingConfiguration: ?*?*INetSharingConfiguration) HRESULT {
+                return @ptrCast(*const INetSharingManager.VTable, self.vtable).get_INetSharingConfigurationForINetConnection(@ptrCast(*const INetSharingManager, self), pNetConnection, ppNetSharingConfiguration);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingManager_get_EnumEveryConnection(self: *const T, ppColl: ?*?*INetSharingEveryConnectionCollection) HRESULT {
+                return @ptrCast(*const INetSharingManager.VTable, self.vtable).get_EnumEveryConnection(@ptrCast(*const INetSharingManager, self), ppColl);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetSharingManager_get_NetConnectionProps(self: *const T, pNetConnection: ?*INetConnection, ppProps: ?*?*INetConnectionProps) HRESULT {
+                return @ptrCast(*const INetSharingManager.VTable, self.vtable).get_NetConnectionProps(@ptrCast(*const INetSharingManager, self), pNetConnection, ppProps);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1769,7 +1819,7 @@ pub const INET_FIREWALL_APP_CONTAINER = extern struct {
     packageFullName: ?PWSTR,
 };
 
-pub const PAC_CHANGES_CALLBACK_FN = fn(
+pub const PAC_CHANGES_CALLBACK_FN = fn (
     context: ?*anyopaque,
     pChange: ?*const INET_FIREWALL_AC_CHANGE,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -1787,7 +1837,7 @@ pub const NETISO_ERROR_TYPE_INTERNET_CLIENT = NETISO_ERROR_TYPE.INTERNET_CLIENT;
 pub const NETISO_ERROR_TYPE_INTERNET_CLIENT_SERVER = NETISO_ERROR_TYPE.INTERNET_CLIENT_SERVER;
 pub const NETISO_ERROR_TYPE_MAX = NETISO_ERROR_TYPE.MAX;
 
-pub const PNETISO_EDP_ID_CALLBACK_FN = fn(
+pub const PNETISO_EDP_ID_CALLBACK_FN = fn (
     context: ?*anyopaque,
     wszEnterpriseId: ?[*:0]const u16,
     dwErr: u32,
@@ -1830,29 +1880,29 @@ pub const FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_AUTO_RESOLVE = _tag_FW_DYNAMIC_K
 pub const FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_NON_AUTO_RESOLVE = _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS.NON_AUTO_RESOLVE;
 pub const FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS_ALL = _tag_FW_DYNAMIC_KEYWORD_ADDRESS_ENUM_FLAGS.ALL;
 
-pub const PFN_FWADDDYNAMICKEYWORDADDRESS0 = fn(
+pub const PFN_FWADDDYNAMICKEYWORDADDRESS0 = fn (
     dynamicKeywordAddress: ?*const _tag_FW_DYNAMIC_KEYWORD_ADDRESS0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFN_FWDELETEDYNAMICKEYWORDADDRESS0 = fn(
+pub const PFN_FWDELETEDYNAMICKEYWORDADDRESS0 = fn (
     dynamicKeywordAddressId: Guid,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFN_FWENUMDYNAMICKEYWORDADDRESSESBYTYPE0 = fn(
+pub const PFN_FWENUMDYNAMICKEYWORDADDRESSESBYTYPE0 = fn (
     flags: u32,
     dynamicKeywordAddressData: ?*?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFN_FWENUMDYNAMICKEYWORDADDRESSBYID0 = fn(
+pub const PFN_FWENUMDYNAMICKEYWORDADDRESSBYID0 = fn (
     dynamicKeywordAddressId: Guid,
     dynamicKeywordAddressData: ?*?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFN_FWFREEDYNAMICKEYWORDADDRESSDATA0 = fn(
+pub const PFN_FWFREEDYNAMICKEYWORDADDRESSDATA0 = fn (
     dynamicKeywordAddressData: ?*_tag_FW_DYNAMIC_KEYWORD_ADDRESS_DATA0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFN_FWUPDATEDYNAMICKEYWORDADDRESS0 = fn(
+pub const PFN_FWUPDATEDYNAMICKEYWORDADDRESS0 = fn (
     dynamicKeywordAddressId: Guid,
     updatedAddresses: ?[*:0]const u16,
     append: BOOL,
@@ -1865,82 +1915,84 @@ pub const INetFwRemoteAdminSettings = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IpVersion: fn(
+        get_IpVersion: fn (
             self: *const INetFwRemoteAdminSettings,
             ipVersion: ?*NET_FW_IP_VERSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_IpVersion: fn(
+        put_IpVersion: fn (
             self: *const INetFwRemoteAdminSettings,
             ipVersion: NET_FW_IP_VERSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Scope: fn(
+        get_Scope: fn (
             self: *const INetFwRemoteAdminSettings,
             scope: ?*NET_FW_SCOPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Scope: fn(
+        put_Scope: fn (
             self: *const INetFwRemoteAdminSettings,
             scope: NET_FW_SCOPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RemoteAddresses: fn(
+        get_RemoteAddresses: fn (
             self: *const INetFwRemoteAdminSettings,
             remoteAddrs: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RemoteAddresses: fn(
+        put_RemoteAddresses: fn (
             self: *const INetFwRemoteAdminSettings,
             remoteAddrs: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: fn(
+        get_Enabled: fn (
             self: *const INetFwRemoteAdminSettings,
             enabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: fn(
+        put_Enabled: fn (
             self: *const INetFwRemoteAdminSettings,
             enabled: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRemoteAdminSettings_get_IpVersion(self: *const T, ipVersion: ?*NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRemoteAdminSettings.VTable, self.vtable).get_IpVersion(@ptrCast(*const INetFwRemoteAdminSettings, self), ipVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRemoteAdminSettings_put_IpVersion(self: *const T, ipVersion: NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRemoteAdminSettings.VTable, self.vtable).put_IpVersion(@ptrCast(*const INetFwRemoteAdminSettings, self), ipVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRemoteAdminSettings_get_Scope(self: *const T, scope: ?*NET_FW_SCOPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRemoteAdminSettings.VTable, self.vtable).get_Scope(@ptrCast(*const INetFwRemoteAdminSettings, self), scope);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRemoteAdminSettings_put_Scope(self: *const T, scope: NET_FW_SCOPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRemoteAdminSettings.VTable, self.vtable).put_Scope(@ptrCast(*const INetFwRemoteAdminSettings, self), scope);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRemoteAdminSettings_get_RemoteAddresses(self: *const T, remoteAddrs: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRemoteAdminSettings.VTable, self.vtable).get_RemoteAddresses(@ptrCast(*const INetFwRemoteAdminSettings, self), remoteAddrs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRemoteAdminSettings_put_RemoteAddresses(self: *const T, remoteAddrs: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRemoteAdminSettings.VTable, self.vtable).put_RemoteAddresses(@ptrCast(*const INetFwRemoteAdminSettings, self), remoteAddrs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRemoteAdminSettings_get_Enabled(self: *const T, enabled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRemoteAdminSettings.VTable, self.vtable).get_Enabled(@ptrCast(*const INetFwRemoteAdminSettings, self), enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRemoteAdminSettings_put_Enabled(self: *const T, enabled: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRemoteAdminSettings.VTable, self.vtable).put_Enabled(@ptrCast(*const INetFwRemoteAdminSettings, self), enabled);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRemoteAdminSettings_get_IpVersion(self: *const T, ipVersion: ?*NET_FW_IP_VERSION) HRESULT {
+                return @ptrCast(*const INetFwRemoteAdminSettings.VTable, self.vtable).get_IpVersion(@ptrCast(*const INetFwRemoteAdminSettings, self), ipVersion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRemoteAdminSettings_put_IpVersion(self: *const T, ipVersion: NET_FW_IP_VERSION) HRESULT {
+                return @ptrCast(*const INetFwRemoteAdminSettings.VTable, self.vtable).put_IpVersion(@ptrCast(*const INetFwRemoteAdminSettings, self), ipVersion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRemoteAdminSettings_get_Scope(self: *const T, scope: ?*NET_FW_SCOPE) HRESULT {
+                return @ptrCast(*const INetFwRemoteAdminSettings.VTable, self.vtable).get_Scope(@ptrCast(*const INetFwRemoteAdminSettings, self), scope);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRemoteAdminSettings_put_Scope(self: *const T, scope: NET_FW_SCOPE) HRESULT {
+                return @ptrCast(*const INetFwRemoteAdminSettings.VTable, self.vtable).put_Scope(@ptrCast(*const INetFwRemoteAdminSettings, self), scope);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRemoteAdminSettings_get_RemoteAddresses(self: *const T, remoteAddrs: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRemoteAdminSettings.VTable, self.vtable).get_RemoteAddresses(@ptrCast(*const INetFwRemoteAdminSettings, self), remoteAddrs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRemoteAdminSettings_put_RemoteAddresses(self: *const T, remoteAddrs: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRemoteAdminSettings.VTable, self.vtable).put_RemoteAddresses(@ptrCast(*const INetFwRemoteAdminSettings, self), remoteAddrs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRemoteAdminSettings_get_Enabled(self: *const T, enabled: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwRemoteAdminSettings.VTable, self.vtable).get_Enabled(@ptrCast(*const INetFwRemoteAdminSettings, self), enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRemoteAdminSettings_put_Enabled(self: *const T, enabled: i16) HRESULT {
+                return @ptrCast(*const INetFwRemoteAdminSettings.VTable, self.vtable).put_Enabled(@ptrCast(*const INetFwRemoteAdminSettings, self), enabled);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1951,190 +2003,192 @@ pub const INetFwIcmpSettings = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AllowOutboundDestinationUnreachable: fn(
+        get_AllowOutboundDestinationUnreachable: fn (
             self: *const INetFwIcmpSettings,
             allow: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AllowOutboundDestinationUnreachable: fn(
+        put_AllowOutboundDestinationUnreachable: fn (
             self: *const INetFwIcmpSettings,
             allow: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AllowRedirect: fn(
+        get_AllowRedirect: fn (
             self: *const INetFwIcmpSettings,
             allow: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AllowRedirect: fn(
+        put_AllowRedirect: fn (
             self: *const INetFwIcmpSettings,
             allow: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AllowInboundEchoRequest: fn(
+        get_AllowInboundEchoRequest: fn (
             self: *const INetFwIcmpSettings,
             allow: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AllowInboundEchoRequest: fn(
+        put_AllowInboundEchoRequest: fn (
             self: *const INetFwIcmpSettings,
             allow: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AllowOutboundTimeExceeded: fn(
+        get_AllowOutboundTimeExceeded: fn (
             self: *const INetFwIcmpSettings,
             allow: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AllowOutboundTimeExceeded: fn(
+        put_AllowOutboundTimeExceeded: fn (
             self: *const INetFwIcmpSettings,
             allow: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AllowOutboundParameterProblem: fn(
+        get_AllowOutboundParameterProblem: fn (
             self: *const INetFwIcmpSettings,
             allow: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AllowOutboundParameterProblem: fn(
+        put_AllowOutboundParameterProblem: fn (
             self: *const INetFwIcmpSettings,
             allow: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AllowOutboundSourceQuench: fn(
+        get_AllowOutboundSourceQuench: fn (
             self: *const INetFwIcmpSettings,
             allow: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AllowOutboundSourceQuench: fn(
+        put_AllowOutboundSourceQuench: fn (
             self: *const INetFwIcmpSettings,
             allow: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AllowInboundRouterRequest: fn(
+        get_AllowInboundRouterRequest: fn (
             self: *const INetFwIcmpSettings,
             allow: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AllowInboundRouterRequest: fn(
+        put_AllowInboundRouterRequest: fn (
             self: *const INetFwIcmpSettings,
             allow: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AllowInboundTimestampRequest: fn(
+        get_AllowInboundTimestampRequest: fn (
             self: *const INetFwIcmpSettings,
             allow: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AllowInboundTimestampRequest: fn(
+        put_AllowInboundTimestampRequest: fn (
             self: *const INetFwIcmpSettings,
             allow: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AllowInboundMaskRequest: fn(
+        get_AllowInboundMaskRequest: fn (
             self: *const INetFwIcmpSettings,
             allow: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AllowInboundMaskRequest: fn(
+        put_AllowInboundMaskRequest: fn (
             self: *const INetFwIcmpSettings,
             allow: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AllowOutboundPacketTooBig: fn(
+        get_AllowOutboundPacketTooBig: fn (
             self: *const INetFwIcmpSettings,
             allow: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AllowOutboundPacketTooBig: fn(
+        put_AllowOutboundPacketTooBig: fn (
             self: *const INetFwIcmpSettings,
             allow: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwIcmpSettings_get_AllowOutboundDestinationUnreachable(self: *const T, allow: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).get_AllowOutboundDestinationUnreachable(@ptrCast(*const INetFwIcmpSettings, self), allow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwIcmpSettings_put_AllowOutboundDestinationUnreachable(self: *const T, allow: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).put_AllowOutboundDestinationUnreachable(@ptrCast(*const INetFwIcmpSettings, self), allow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwIcmpSettings_get_AllowRedirect(self: *const T, allow: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).get_AllowRedirect(@ptrCast(*const INetFwIcmpSettings, self), allow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwIcmpSettings_put_AllowRedirect(self: *const T, allow: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).put_AllowRedirect(@ptrCast(*const INetFwIcmpSettings, self), allow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwIcmpSettings_get_AllowInboundEchoRequest(self: *const T, allow: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).get_AllowInboundEchoRequest(@ptrCast(*const INetFwIcmpSettings, self), allow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwIcmpSettings_put_AllowInboundEchoRequest(self: *const T, allow: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).put_AllowInboundEchoRequest(@ptrCast(*const INetFwIcmpSettings, self), allow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwIcmpSettings_get_AllowOutboundTimeExceeded(self: *const T, allow: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).get_AllowOutboundTimeExceeded(@ptrCast(*const INetFwIcmpSettings, self), allow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwIcmpSettings_put_AllowOutboundTimeExceeded(self: *const T, allow: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).put_AllowOutboundTimeExceeded(@ptrCast(*const INetFwIcmpSettings, self), allow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwIcmpSettings_get_AllowOutboundParameterProblem(self: *const T, allow: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).get_AllowOutboundParameterProblem(@ptrCast(*const INetFwIcmpSettings, self), allow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwIcmpSettings_put_AllowOutboundParameterProblem(self: *const T, allow: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).put_AllowOutboundParameterProblem(@ptrCast(*const INetFwIcmpSettings, self), allow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwIcmpSettings_get_AllowOutboundSourceQuench(self: *const T, allow: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).get_AllowOutboundSourceQuench(@ptrCast(*const INetFwIcmpSettings, self), allow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwIcmpSettings_put_AllowOutboundSourceQuench(self: *const T, allow: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).put_AllowOutboundSourceQuench(@ptrCast(*const INetFwIcmpSettings, self), allow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwIcmpSettings_get_AllowInboundRouterRequest(self: *const T, allow: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).get_AllowInboundRouterRequest(@ptrCast(*const INetFwIcmpSettings, self), allow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwIcmpSettings_put_AllowInboundRouterRequest(self: *const T, allow: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).put_AllowInboundRouterRequest(@ptrCast(*const INetFwIcmpSettings, self), allow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwIcmpSettings_get_AllowInboundTimestampRequest(self: *const T, allow: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).get_AllowInboundTimestampRequest(@ptrCast(*const INetFwIcmpSettings, self), allow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwIcmpSettings_put_AllowInboundTimestampRequest(self: *const T, allow: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).put_AllowInboundTimestampRequest(@ptrCast(*const INetFwIcmpSettings, self), allow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwIcmpSettings_get_AllowInboundMaskRequest(self: *const T, allow: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).get_AllowInboundMaskRequest(@ptrCast(*const INetFwIcmpSettings, self), allow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwIcmpSettings_put_AllowInboundMaskRequest(self: *const T, allow: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).put_AllowInboundMaskRequest(@ptrCast(*const INetFwIcmpSettings, self), allow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwIcmpSettings_get_AllowOutboundPacketTooBig(self: *const T, allow: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).get_AllowOutboundPacketTooBig(@ptrCast(*const INetFwIcmpSettings, self), allow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwIcmpSettings_put_AllowOutboundPacketTooBig(self: *const T, allow: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).put_AllowOutboundPacketTooBig(@ptrCast(*const INetFwIcmpSettings, self), allow);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwIcmpSettings_get_AllowOutboundDestinationUnreachable(self: *const T, allow: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).get_AllowOutboundDestinationUnreachable(@ptrCast(*const INetFwIcmpSettings, self), allow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwIcmpSettings_put_AllowOutboundDestinationUnreachable(self: *const T, allow: i16) HRESULT {
+                return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).put_AllowOutboundDestinationUnreachable(@ptrCast(*const INetFwIcmpSettings, self), allow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwIcmpSettings_get_AllowRedirect(self: *const T, allow: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).get_AllowRedirect(@ptrCast(*const INetFwIcmpSettings, self), allow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwIcmpSettings_put_AllowRedirect(self: *const T, allow: i16) HRESULT {
+                return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).put_AllowRedirect(@ptrCast(*const INetFwIcmpSettings, self), allow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwIcmpSettings_get_AllowInboundEchoRequest(self: *const T, allow: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).get_AllowInboundEchoRequest(@ptrCast(*const INetFwIcmpSettings, self), allow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwIcmpSettings_put_AllowInboundEchoRequest(self: *const T, allow: i16) HRESULT {
+                return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).put_AllowInboundEchoRequest(@ptrCast(*const INetFwIcmpSettings, self), allow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwIcmpSettings_get_AllowOutboundTimeExceeded(self: *const T, allow: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).get_AllowOutboundTimeExceeded(@ptrCast(*const INetFwIcmpSettings, self), allow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwIcmpSettings_put_AllowOutboundTimeExceeded(self: *const T, allow: i16) HRESULT {
+                return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).put_AllowOutboundTimeExceeded(@ptrCast(*const INetFwIcmpSettings, self), allow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwIcmpSettings_get_AllowOutboundParameterProblem(self: *const T, allow: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).get_AllowOutboundParameterProblem(@ptrCast(*const INetFwIcmpSettings, self), allow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwIcmpSettings_put_AllowOutboundParameterProblem(self: *const T, allow: i16) HRESULT {
+                return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).put_AllowOutboundParameterProblem(@ptrCast(*const INetFwIcmpSettings, self), allow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwIcmpSettings_get_AllowOutboundSourceQuench(self: *const T, allow: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).get_AllowOutboundSourceQuench(@ptrCast(*const INetFwIcmpSettings, self), allow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwIcmpSettings_put_AllowOutboundSourceQuench(self: *const T, allow: i16) HRESULT {
+                return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).put_AllowOutboundSourceQuench(@ptrCast(*const INetFwIcmpSettings, self), allow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwIcmpSettings_get_AllowInboundRouterRequest(self: *const T, allow: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).get_AllowInboundRouterRequest(@ptrCast(*const INetFwIcmpSettings, self), allow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwIcmpSettings_put_AllowInboundRouterRequest(self: *const T, allow: i16) HRESULT {
+                return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).put_AllowInboundRouterRequest(@ptrCast(*const INetFwIcmpSettings, self), allow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwIcmpSettings_get_AllowInboundTimestampRequest(self: *const T, allow: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).get_AllowInboundTimestampRequest(@ptrCast(*const INetFwIcmpSettings, self), allow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwIcmpSettings_put_AllowInboundTimestampRequest(self: *const T, allow: i16) HRESULT {
+                return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).put_AllowInboundTimestampRequest(@ptrCast(*const INetFwIcmpSettings, self), allow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwIcmpSettings_get_AllowInboundMaskRequest(self: *const T, allow: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).get_AllowInboundMaskRequest(@ptrCast(*const INetFwIcmpSettings, self), allow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwIcmpSettings_put_AllowInboundMaskRequest(self: *const T, allow: i16) HRESULT {
+                return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).put_AllowInboundMaskRequest(@ptrCast(*const INetFwIcmpSettings, self), allow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwIcmpSettings_get_AllowOutboundPacketTooBig(self: *const T, allow: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).get_AllowOutboundPacketTooBig(@ptrCast(*const INetFwIcmpSettings, self), allow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwIcmpSettings_put_AllowOutboundPacketTooBig(self: *const T, allow: i16) HRESULT {
+                return @ptrCast(*const INetFwIcmpSettings.VTable, self.vtable).put_AllowOutboundPacketTooBig(@ptrCast(*const INetFwIcmpSettings, self), allow);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2145,145 +2199,147 @@ pub const INetFwOpenPort = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
+        get_Name: fn (
             self: *const INetFwOpenPort,
             name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: fn(
+        put_Name: fn (
             self: *const INetFwOpenPort,
             name: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IpVersion: fn(
+        get_IpVersion: fn (
             self: *const INetFwOpenPort,
             ipVersion: ?*NET_FW_IP_VERSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_IpVersion: fn(
+        put_IpVersion: fn (
             self: *const INetFwOpenPort,
             ipVersion: NET_FW_IP_VERSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Protocol: fn(
+        get_Protocol: fn (
             self: *const INetFwOpenPort,
             ipProtocol: ?*NET_FW_IP_PROTOCOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Protocol: fn(
+        put_Protocol: fn (
             self: *const INetFwOpenPort,
             ipProtocol: NET_FW_IP_PROTOCOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Port: fn(
+        get_Port: fn (
             self: *const INetFwOpenPort,
             portNumber: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Port: fn(
+        put_Port: fn (
             self: *const INetFwOpenPort,
             portNumber: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Scope: fn(
+        get_Scope: fn (
             self: *const INetFwOpenPort,
             scope: ?*NET_FW_SCOPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Scope: fn(
+        put_Scope: fn (
             self: *const INetFwOpenPort,
             scope: NET_FW_SCOPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RemoteAddresses: fn(
+        get_RemoteAddresses: fn (
             self: *const INetFwOpenPort,
             remoteAddrs: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RemoteAddresses: fn(
+        put_RemoteAddresses: fn (
             self: *const INetFwOpenPort,
             remoteAddrs: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: fn(
+        get_Enabled: fn (
             self: *const INetFwOpenPort,
             enabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: fn(
+        put_Enabled: fn (
             self: *const INetFwOpenPort,
             enabled: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BuiltIn: fn(
+        get_BuiltIn: fn (
             self: *const INetFwOpenPort,
             builtIn: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwOpenPort_get_Name(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).get_Name(@ptrCast(*const INetFwOpenPort, self), name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwOpenPort_put_Name(self: *const T, name: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).put_Name(@ptrCast(*const INetFwOpenPort, self), name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwOpenPort_get_IpVersion(self: *const T, ipVersion: ?*NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).get_IpVersion(@ptrCast(*const INetFwOpenPort, self), ipVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwOpenPort_put_IpVersion(self: *const T, ipVersion: NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).put_IpVersion(@ptrCast(*const INetFwOpenPort, self), ipVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwOpenPort_get_Protocol(self: *const T, ipProtocol: ?*NET_FW_IP_PROTOCOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).get_Protocol(@ptrCast(*const INetFwOpenPort, self), ipProtocol);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwOpenPort_put_Protocol(self: *const T, ipProtocol: NET_FW_IP_PROTOCOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).put_Protocol(@ptrCast(*const INetFwOpenPort, self), ipProtocol);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwOpenPort_get_Port(self: *const T, portNumber: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).get_Port(@ptrCast(*const INetFwOpenPort, self), portNumber);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwOpenPort_put_Port(self: *const T, portNumber: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).put_Port(@ptrCast(*const INetFwOpenPort, self), portNumber);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwOpenPort_get_Scope(self: *const T, scope: ?*NET_FW_SCOPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).get_Scope(@ptrCast(*const INetFwOpenPort, self), scope);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwOpenPort_put_Scope(self: *const T, scope: NET_FW_SCOPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).put_Scope(@ptrCast(*const INetFwOpenPort, self), scope);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwOpenPort_get_RemoteAddresses(self: *const T, remoteAddrs: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).get_RemoteAddresses(@ptrCast(*const INetFwOpenPort, self), remoteAddrs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwOpenPort_put_RemoteAddresses(self: *const T, remoteAddrs: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).put_RemoteAddresses(@ptrCast(*const INetFwOpenPort, self), remoteAddrs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwOpenPort_get_Enabled(self: *const T, enabled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).get_Enabled(@ptrCast(*const INetFwOpenPort, self), enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwOpenPort_put_Enabled(self: *const T, enabled: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).put_Enabled(@ptrCast(*const INetFwOpenPort, self), enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwOpenPort_get_BuiltIn(self: *const T, builtIn: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).get_BuiltIn(@ptrCast(*const INetFwOpenPort, self), builtIn);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwOpenPort_get_Name(self: *const T, name: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).get_Name(@ptrCast(*const INetFwOpenPort, self), name);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwOpenPort_put_Name(self: *const T, name: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).put_Name(@ptrCast(*const INetFwOpenPort, self), name);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwOpenPort_get_IpVersion(self: *const T, ipVersion: ?*NET_FW_IP_VERSION) HRESULT {
+                return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).get_IpVersion(@ptrCast(*const INetFwOpenPort, self), ipVersion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwOpenPort_put_IpVersion(self: *const T, ipVersion: NET_FW_IP_VERSION) HRESULT {
+                return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).put_IpVersion(@ptrCast(*const INetFwOpenPort, self), ipVersion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwOpenPort_get_Protocol(self: *const T, ipProtocol: ?*NET_FW_IP_PROTOCOL) HRESULT {
+                return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).get_Protocol(@ptrCast(*const INetFwOpenPort, self), ipProtocol);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwOpenPort_put_Protocol(self: *const T, ipProtocol: NET_FW_IP_PROTOCOL) HRESULT {
+                return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).put_Protocol(@ptrCast(*const INetFwOpenPort, self), ipProtocol);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwOpenPort_get_Port(self: *const T, portNumber: ?*i32) HRESULT {
+                return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).get_Port(@ptrCast(*const INetFwOpenPort, self), portNumber);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwOpenPort_put_Port(self: *const T, portNumber: i32) HRESULT {
+                return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).put_Port(@ptrCast(*const INetFwOpenPort, self), portNumber);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwOpenPort_get_Scope(self: *const T, scope: ?*NET_FW_SCOPE) HRESULT {
+                return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).get_Scope(@ptrCast(*const INetFwOpenPort, self), scope);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwOpenPort_put_Scope(self: *const T, scope: NET_FW_SCOPE) HRESULT {
+                return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).put_Scope(@ptrCast(*const INetFwOpenPort, self), scope);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwOpenPort_get_RemoteAddresses(self: *const T, remoteAddrs: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).get_RemoteAddresses(@ptrCast(*const INetFwOpenPort, self), remoteAddrs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwOpenPort_put_RemoteAddresses(self: *const T, remoteAddrs: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).put_RemoteAddresses(@ptrCast(*const INetFwOpenPort, self), remoteAddrs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwOpenPort_get_Enabled(self: *const T, enabled: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).get_Enabled(@ptrCast(*const INetFwOpenPort, self), enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwOpenPort_put_Enabled(self: *const T, enabled: i16) HRESULT {
+                return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).put_Enabled(@ptrCast(*const INetFwOpenPort, self), enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwOpenPort_get_BuiltIn(self: *const T, builtIn: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwOpenPort.VTable, self.vtable).get_BuiltIn(@ptrCast(*const INetFwOpenPort, self), builtIn);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2294,55 +2350,57 @@ pub const INetFwOpenPorts = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const INetFwOpenPorts,
             count: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Add: fn(
+        Add: fn (
             self: *const INetFwOpenPorts,
             port: ?*INetFwOpenPort,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Remove: fn(
+        Remove: fn (
             self: *const INetFwOpenPorts,
             portNumber: i32,
             ipProtocol: NET_FW_IP_PROTOCOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
+        Item: fn (
             self: *const INetFwOpenPorts,
             portNumber: i32,
             ipProtocol: NET_FW_IP_PROTOCOL,
             openPort: ?*?*INetFwOpenPort,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const INetFwOpenPorts,
             newEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwOpenPorts_get_Count(self: *const T, count: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwOpenPorts.VTable, self.vtable).get_Count(@ptrCast(*const INetFwOpenPorts, self), count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwOpenPorts_Add(self: *const T, port: ?*INetFwOpenPort) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwOpenPorts.VTable, self.vtable).Add(@ptrCast(*const INetFwOpenPorts, self), port);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwOpenPorts_Remove(self: *const T, portNumber: i32, ipProtocol: NET_FW_IP_PROTOCOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwOpenPorts.VTable, self.vtable).Remove(@ptrCast(*const INetFwOpenPorts, self), portNumber, ipProtocol);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwOpenPorts_Item(self: *const T, portNumber: i32, ipProtocol: NET_FW_IP_PROTOCOL, openPort: ?*?*INetFwOpenPort) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwOpenPorts.VTable, self.vtable).Item(@ptrCast(*const INetFwOpenPorts, self), portNumber, ipProtocol, openPort);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwOpenPorts_get__NewEnum(self: *const T, newEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwOpenPorts.VTable, self.vtable).get__NewEnum(@ptrCast(*const INetFwOpenPorts, self), newEnum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwOpenPorts_get_Count(self: *const T, count: ?*i32) HRESULT {
+                return @ptrCast(*const INetFwOpenPorts.VTable, self.vtable).get_Count(@ptrCast(*const INetFwOpenPorts, self), count);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwOpenPorts_Add(self: *const T, port: ?*INetFwOpenPort) HRESULT {
+                return @ptrCast(*const INetFwOpenPorts.VTable, self.vtable).Add(@ptrCast(*const INetFwOpenPorts, self), port);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwOpenPorts_Remove(self: *const T, portNumber: i32, ipProtocol: NET_FW_IP_PROTOCOL) HRESULT {
+                return @ptrCast(*const INetFwOpenPorts.VTable, self.vtable).Remove(@ptrCast(*const INetFwOpenPorts, self), portNumber, ipProtocol);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwOpenPorts_Item(self: *const T, portNumber: i32, ipProtocol: NET_FW_IP_PROTOCOL, openPort: ?*?*INetFwOpenPort) HRESULT {
+                return @ptrCast(*const INetFwOpenPorts.VTable, self.vtable).Item(@ptrCast(*const INetFwOpenPorts, self), portNumber, ipProtocol, openPort);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwOpenPorts_get__NewEnum(self: *const T, newEnum: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const INetFwOpenPorts.VTable, self.vtable).get__NewEnum(@ptrCast(*const INetFwOpenPorts, self), newEnum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2353,118 +2411,120 @@ pub const INetFwService = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
+        get_Name: fn (
             self: *const INetFwService,
             name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: fn(
+        get_Type: fn (
             self: *const INetFwService,
             type: ?*NET_FW_SERVICE_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Customized: fn(
+        get_Customized: fn (
             self: *const INetFwService,
             customized: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IpVersion: fn(
+        get_IpVersion: fn (
             self: *const INetFwService,
             ipVersion: ?*NET_FW_IP_VERSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_IpVersion: fn(
+        put_IpVersion: fn (
             self: *const INetFwService,
             ipVersion: NET_FW_IP_VERSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Scope: fn(
+        get_Scope: fn (
             self: *const INetFwService,
             scope: ?*NET_FW_SCOPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Scope: fn(
+        put_Scope: fn (
             self: *const INetFwService,
             scope: NET_FW_SCOPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RemoteAddresses: fn(
+        get_RemoteAddresses: fn (
             self: *const INetFwService,
             remoteAddrs: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RemoteAddresses: fn(
+        put_RemoteAddresses: fn (
             self: *const INetFwService,
             remoteAddrs: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: fn(
+        get_Enabled: fn (
             self: *const INetFwService,
             enabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: fn(
+        put_Enabled: fn (
             self: *const INetFwService,
             enabled: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_GloballyOpenPorts: fn(
+        get_GloballyOpenPorts: fn (
             self: *const INetFwService,
             openPorts: ?*?*INetFwOpenPorts,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwService_get_Name(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwService.VTable, self.vtable).get_Name(@ptrCast(*const INetFwService, self), name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwService_get_Type(self: *const T, type_: ?*NET_FW_SERVICE_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwService.VTable, self.vtable).get_Type(@ptrCast(*const INetFwService, self), type_);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwService_get_Customized(self: *const T, customized: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwService.VTable, self.vtable).get_Customized(@ptrCast(*const INetFwService, self), customized);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwService_get_IpVersion(self: *const T, ipVersion: ?*NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwService.VTable, self.vtable).get_IpVersion(@ptrCast(*const INetFwService, self), ipVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwService_put_IpVersion(self: *const T, ipVersion: NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwService.VTable, self.vtable).put_IpVersion(@ptrCast(*const INetFwService, self), ipVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwService_get_Scope(self: *const T, scope: ?*NET_FW_SCOPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwService.VTable, self.vtable).get_Scope(@ptrCast(*const INetFwService, self), scope);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwService_put_Scope(self: *const T, scope: NET_FW_SCOPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwService.VTable, self.vtable).put_Scope(@ptrCast(*const INetFwService, self), scope);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwService_get_RemoteAddresses(self: *const T, remoteAddrs: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwService.VTable, self.vtable).get_RemoteAddresses(@ptrCast(*const INetFwService, self), remoteAddrs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwService_put_RemoteAddresses(self: *const T, remoteAddrs: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwService.VTable, self.vtable).put_RemoteAddresses(@ptrCast(*const INetFwService, self), remoteAddrs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwService_get_Enabled(self: *const T, enabled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwService.VTable, self.vtable).get_Enabled(@ptrCast(*const INetFwService, self), enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwService_put_Enabled(self: *const T, enabled: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwService.VTable, self.vtable).put_Enabled(@ptrCast(*const INetFwService, self), enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwService_get_GloballyOpenPorts(self: *const T, openPorts: ?*?*INetFwOpenPorts) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwService.VTable, self.vtable).get_GloballyOpenPorts(@ptrCast(*const INetFwService, self), openPorts);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwService_get_Name(self: *const T, name: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwService.VTable, self.vtable).get_Name(@ptrCast(*const INetFwService, self), name);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwService_get_Type(self: *const T, type_: ?*NET_FW_SERVICE_TYPE) HRESULT {
+                return @ptrCast(*const INetFwService.VTable, self.vtable).get_Type(@ptrCast(*const INetFwService, self), type_);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwService_get_Customized(self: *const T, customized: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwService.VTable, self.vtable).get_Customized(@ptrCast(*const INetFwService, self), customized);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwService_get_IpVersion(self: *const T, ipVersion: ?*NET_FW_IP_VERSION) HRESULT {
+                return @ptrCast(*const INetFwService.VTable, self.vtable).get_IpVersion(@ptrCast(*const INetFwService, self), ipVersion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwService_put_IpVersion(self: *const T, ipVersion: NET_FW_IP_VERSION) HRESULT {
+                return @ptrCast(*const INetFwService.VTable, self.vtable).put_IpVersion(@ptrCast(*const INetFwService, self), ipVersion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwService_get_Scope(self: *const T, scope: ?*NET_FW_SCOPE) HRESULT {
+                return @ptrCast(*const INetFwService.VTable, self.vtable).get_Scope(@ptrCast(*const INetFwService, self), scope);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwService_put_Scope(self: *const T, scope: NET_FW_SCOPE) HRESULT {
+                return @ptrCast(*const INetFwService.VTable, self.vtable).put_Scope(@ptrCast(*const INetFwService, self), scope);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwService_get_RemoteAddresses(self: *const T, remoteAddrs: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwService.VTable, self.vtable).get_RemoteAddresses(@ptrCast(*const INetFwService, self), remoteAddrs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwService_put_RemoteAddresses(self: *const T, remoteAddrs: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwService.VTable, self.vtable).put_RemoteAddresses(@ptrCast(*const INetFwService, self), remoteAddrs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwService_get_Enabled(self: *const T, enabled: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwService.VTable, self.vtable).get_Enabled(@ptrCast(*const INetFwService, self), enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwService_put_Enabled(self: *const T, enabled: i16) HRESULT {
+                return @ptrCast(*const INetFwService.VTable, self.vtable).put_Enabled(@ptrCast(*const INetFwService, self), enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwService_get_GloballyOpenPorts(self: *const T, openPorts: ?*?*INetFwOpenPorts) HRESULT {
+                return @ptrCast(*const INetFwService.VTable, self.vtable).get_GloballyOpenPorts(@ptrCast(*const INetFwService, self), openPorts);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2475,37 +2535,39 @@ pub const INetFwServices = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const INetFwServices,
             count: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
+        Item: fn (
             self: *const INetFwServices,
             svcType: NET_FW_SERVICE_TYPE,
             service: ?*?*INetFwService,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const INetFwServices,
             newEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwServices_get_Count(self: *const T, count: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwServices.VTable, self.vtable).get_Count(@ptrCast(*const INetFwServices, self), count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwServices_Item(self: *const T, svcType: NET_FW_SERVICE_TYPE, service: ?*?*INetFwService) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwServices.VTable, self.vtable).Item(@ptrCast(*const INetFwServices, self), svcType, service);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwServices_get__NewEnum(self: *const T, newEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwServices.VTable, self.vtable).get__NewEnum(@ptrCast(*const INetFwServices, self), newEnum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwServices_get_Count(self: *const T, count: ?*i32) HRESULT {
+                return @ptrCast(*const INetFwServices.VTable, self.vtable).get_Count(@ptrCast(*const INetFwServices, self), count);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwServices_Item(self: *const T, svcType: NET_FW_SERVICE_TYPE, service: ?*?*INetFwService) HRESULT {
+                return @ptrCast(*const INetFwServices.VTable, self.vtable).Item(@ptrCast(*const INetFwServices, self), svcType, service);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwServices_get__NewEnum(self: *const T, newEnum: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const INetFwServices.VTable, self.vtable).get__NewEnum(@ptrCast(*const INetFwServices, self), newEnum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2516,118 +2578,120 @@ pub const INetFwAuthorizedApplication = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
+        get_Name: fn (
             self: *const INetFwAuthorizedApplication,
             name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: fn(
+        put_Name: fn (
             self: *const INetFwAuthorizedApplication,
             name: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProcessImageFileName: fn(
+        get_ProcessImageFileName: fn (
             self: *const INetFwAuthorizedApplication,
             imageFileName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ProcessImageFileName: fn(
+        put_ProcessImageFileName: fn (
             self: *const INetFwAuthorizedApplication,
             imageFileName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IpVersion: fn(
+        get_IpVersion: fn (
             self: *const INetFwAuthorizedApplication,
             ipVersion: ?*NET_FW_IP_VERSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_IpVersion: fn(
+        put_IpVersion: fn (
             self: *const INetFwAuthorizedApplication,
             ipVersion: NET_FW_IP_VERSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Scope: fn(
+        get_Scope: fn (
             self: *const INetFwAuthorizedApplication,
             scope: ?*NET_FW_SCOPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Scope: fn(
+        put_Scope: fn (
             self: *const INetFwAuthorizedApplication,
             scope: NET_FW_SCOPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RemoteAddresses: fn(
+        get_RemoteAddresses: fn (
             self: *const INetFwAuthorizedApplication,
             remoteAddrs: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RemoteAddresses: fn(
+        put_RemoteAddresses: fn (
             self: *const INetFwAuthorizedApplication,
             remoteAddrs: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: fn(
+        get_Enabled: fn (
             self: *const INetFwAuthorizedApplication,
             enabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: fn(
+        put_Enabled: fn (
             self: *const INetFwAuthorizedApplication,
             enabled: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwAuthorizedApplication_get_Name(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).get_Name(@ptrCast(*const INetFwAuthorizedApplication, self), name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwAuthorizedApplication_put_Name(self: *const T, name: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).put_Name(@ptrCast(*const INetFwAuthorizedApplication, self), name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwAuthorizedApplication_get_ProcessImageFileName(self: *const T, imageFileName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).get_ProcessImageFileName(@ptrCast(*const INetFwAuthorizedApplication, self), imageFileName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwAuthorizedApplication_put_ProcessImageFileName(self: *const T, imageFileName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).put_ProcessImageFileName(@ptrCast(*const INetFwAuthorizedApplication, self), imageFileName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwAuthorizedApplication_get_IpVersion(self: *const T, ipVersion: ?*NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).get_IpVersion(@ptrCast(*const INetFwAuthorizedApplication, self), ipVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwAuthorizedApplication_put_IpVersion(self: *const T, ipVersion: NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).put_IpVersion(@ptrCast(*const INetFwAuthorizedApplication, self), ipVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwAuthorizedApplication_get_Scope(self: *const T, scope: ?*NET_FW_SCOPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).get_Scope(@ptrCast(*const INetFwAuthorizedApplication, self), scope);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwAuthorizedApplication_put_Scope(self: *const T, scope: NET_FW_SCOPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).put_Scope(@ptrCast(*const INetFwAuthorizedApplication, self), scope);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwAuthorizedApplication_get_RemoteAddresses(self: *const T, remoteAddrs: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).get_RemoteAddresses(@ptrCast(*const INetFwAuthorizedApplication, self), remoteAddrs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwAuthorizedApplication_put_RemoteAddresses(self: *const T, remoteAddrs: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).put_RemoteAddresses(@ptrCast(*const INetFwAuthorizedApplication, self), remoteAddrs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwAuthorizedApplication_get_Enabled(self: *const T, enabled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).get_Enabled(@ptrCast(*const INetFwAuthorizedApplication, self), enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwAuthorizedApplication_put_Enabled(self: *const T, enabled: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).put_Enabled(@ptrCast(*const INetFwAuthorizedApplication, self), enabled);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwAuthorizedApplication_get_Name(self: *const T, name: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).get_Name(@ptrCast(*const INetFwAuthorizedApplication, self), name);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwAuthorizedApplication_put_Name(self: *const T, name: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).put_Name(@ptrCast(*const INetFwAuthorizedApplication, self), name);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwAuthorizedApplication_get_ProcessImageFileName(self: *const T, imageFileName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).get_ProcessImageFileName(@ptrCast(*const INetFwAuthorizedApplication, self), imageFileName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwAuthorizedApplication_put_ProcessImageFileName(self: *const T, imageFileName: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).put_ProcessImageFileName(@ptrCast(*const INetFwAuthorizedApplication, self), imageFileName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwAuthorizedApplication_get_IpVersion(self: *const T, ipVersion: ?*NET_FW_IP_VERSION) HRESULT {
+                return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).get_IpVersion(@ptrCast(*const INetFwAuthorizedApplication, self), ipVersion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwAuthorizedApplication_put_IpVersion(self: *const T, ipVersion: NET_FW_IP_VERSION) HRESULT {
+                return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).put_IpVersion(@ptrCast(*const INetFwAuthorizedApplication, self), ipVersion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwAuthorizedApplication_get_Scope(self: *const T, scope: ?*NET_FW_SCOPE) HRESULT {
+                return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).get_Scope(@ptrCast(*const INetFwAuthorizedApplication, self), scope);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwAuthorizedApplication_put_Scope(self: *const T, scope: NET_FW_SCOPE) HRESULT {
+                return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).put_Scope(@ptrCast(*const INetFwAuthorizedApplication, self), scope);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwAuthorizedApplication_get_RemoteAddresses(self: *const T, remoteAddrs: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).get_RemoteAddresses(@ptrCast(*const INetFwAuthorizedApplication, self), remoteAddrs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwAuthorizedApplication_put_RemoteAddresses(self: *const T, remoteAddrs: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).put_RemoteAddresses(@ptrCast(*const INetFwAuthorizedApplication, self), remoteAddrs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwAuthorizedApplication_get_Enabled(self: *const T, enabled: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).get_Enabled(@ptrCast(*const INetFwAuthorizedApplication, self), enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwAuthorizedApplication_put_Enabled(self: *const T, enabled: i16) HRESULT {
+                return @ptrCast(*const INetFwAuthorizedApplication.VTable, self.vtable).put_Enabled(@ptrCast(*const INetFwAuthorizedApplication, self), enabled);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2638,53 +2702,55 @@ pub const INetFwAuthorizedApplications = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const INetFwAuthorizedApplications,
             count: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Add: fn(
+        Add: fn (
             self: *const INetFwAuthorizedApplications,
             app: ?*INetFwAuthorizedApplication,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Remove: fn(
+        Remove: fn (
             self: *const INetFwAuthorizedApplications,
             imageFileName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
+        Item: fn (
             self: *const INetFwAuthorizedApplications,
             imageFileName: ?BSTR,
             app: ?*?*INetFwAuthorizedApplication,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const INetFwAuthorizedApplications,
             newEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwAuthorizedApplications_get_Count(self: *const T, count: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwAuthorizedApplications.VTable, self.vtable).get_Count(@ptrCast(*const INetFwAuthorizedApplications, self), count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwAuthorizedApplications_Add(self: *const T, app: ?*INetFwAuthorizedApplication) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwAuthorizedApplications.VTable, self.vtable).Add(@ptrCast(*const INetFwAuthorizedApplications, self), app);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwAuthorizedApplications_Remove(self: *const T, imageFileName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwAuthorizedApplications.VTable, self.vtable).Remove(@ptrCast(*const INetFwAuthorizedApplications, self), imageFileName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwAuthorizedApplications_Item(self: *const T, imageFileName: ?BSTR, app: ?*?*INetFwAuthorizedApplication) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwAuthorizedApplications.VTable, self.vtable).Item(@ptrCast(*const INetFwAuthorizedApplications, self), imageFileName, app);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwAuthorizedApplications_get__NewEnum(self: *const T, newEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwAuthorizedApplications.VTable, self.vtable).get__NewEnum(@ptrCast(*const INetFwAuthorizedApplications, self), newEnum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwAuthorizedApplications_get_Count(self: *const T, count: ?*i32) HRESULT {
+                return @ptrCast(*const INetFwAuthorizedApplications.VTable, self.vtable).get_Count(@ptrCast(*const INetFwAuthorizedApplications, self), count);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwAuthorizedApplications_Add(self: *const T, app: ?*INetFwAuthorizedApplication) HRESULT {
+                return @ptrCast(*const INetFwAuthorizedApplications.VTable, self.vtable).Add(@ptrCast(*const INetFwAuthorizedApplications, self), app);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwAuthorizedApplications_Remove(self: *const T, imageFileName: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwAuthorizedApplications.VTable, self.vtable).Remove(@ptrCast(*const INetFwAuthorizedApplications, self), imageFileName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwAuthorizedApplications_Item(self: *const T, imageFileName: ?BSTR, app: ?*?*INetFwAuthorizedApplication) HRESULT {
+                return @ptrCast(*const INetFwAuthorizedApplications.VTable, self.vtable).Item(@ptrCast(*const INetFwAuthorizedApplications, self), imageFileName, app);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwAuthorizedApplications_get__NewEnum(self: *const T, newEnum: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const INetFwAuthorizedApplications.VTable, self.vtable).get__NewEnum(@ptrCast(*const INetFwAuthorizedApplications, self), newEnum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2695,334 +2761,336 @@ pub const INetFwRule = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
+        get_Name: fn (
             self: *const INetFwRule,
             name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: fn(
+        put_Name: fn (
             self: *const INetFwRule,
             name: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: fn(
+        get_Description: fn (
             self: *const INetFwRule,
             desc: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Description: fn(
+        put_Description: fn (
             self: *const INetFwRule,
             desc: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ApplicationName: fn(
+        get_ApplicationName: fn (
             self: *const INetFwRule,
             imageFileName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ApplicationName: fn(
+        put_ApplicationName: fn (
             self: *const INetFwRule,
             imageFileName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ServiceName: fn(
+        get_ServiceName: fn (
             self: *const INetFwRule,
             serviceName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ServiceName: fn(
+        put_ServiceName: fn (
             self: *const INetFwRule,
             serviceName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Protocol: fn(
+        get_Protocol: fn (
             self: *const INetFwRule,
             protocol: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Protocol: fn(
+        put_Protocol: fn (
             self: *const INetFwRule,
             protocol: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalPorts: fn(
+        get_LocalPorts: fn (
             self: *const INetFwRule,
             portNumbers: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LocalPorts: fn(
+        put_LocalPorts: fn (
             self: *const INetFwRule,
             portNumbers: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RemotePorts: fn(
+        get_RemotePorts: fn (
             self: *const INetFwRule,
             portNumbers: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RemotePorts: fn(
+        put_RemotePorts: fn (
             self: *const INetFwRule,
             portNumbers: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalAddresses: fn(
+        get_LocalAddresses: fn (
             self: *const INetFwRule,
             localAddrs: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LocalAddresses: fn(
+        put_LocalAddresses: fn (
             self: *const INetFwRule,
             localAddrs: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RemoteAddresses: fn(
+        get_RemoteAddresses: fn (
             self: *const INetFwRule,
             remoteAddrs: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RemoteAddresses: fn(
+        put_RemoteAddresses: fn (
             self: *const INetFwRule,
             remoteAddrs: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IcmpTypesAndCodes: fn(
+        get_IcmpTypesAndCodes: fn (
             self: *const INetFwRule,
             icmpTypesAndCodes: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_IcmpTypesAndCodes: fn(
+        put_IcmpTypesAndCodes: fn (
             self: *const INetFwRule,
             icmpTypesAndCodes: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Direction: fn(
+        get_Direction: fn (
             self: *const INetFwRule,
             dir: ?*NET_FW_RULE_DIRECTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Direction: fn(
+        put_Direction: fn (
             self: *const INetFwRule,
             dir: NET_FW_RULE_DIRECTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Interfaces: fn(
+        get_Interfaces: fn (
             self: *const INetFwRule,
             interfaces: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Interfaces: fn(
+        put_Interfaces: fn (
             self: *const INetFwRule,
             interfaces: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InterfaceTypes: fn(
+        get_InterfaceTypes: fn (
             self: *const INetFwRule,
             interfaceTypes: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_InterfaceTypes: fn(
+        put_InterfaceTypes: fn (
             self: *const INetFwRule,
             interfaceTypes: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: fn(
+        get_Enabled: fn (
             self: *const INetFwRule,
             enabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: fn(
+        put_Enabled: fn (
             self: *const INetFwRule,
             enabled: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Grouping: fn(
+        get_Grouping: fn (
             self: *const INetFwRule,
             context: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Grouping: fn(
+        put_Grouping: fn (
             self: *const INetFwRule,
             context: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Profiles: fn(
+        get_Profiles: fn (
             self: *const INetFwRule,
             profileTypesBitmask: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Profiles: fn(
+        put_Profiles: fn (
             self: *const INetFwRule,
             profileTypesBitmask: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EdgeTraversal: fn(
+        get_EdgeTraversal: fn (
             self: *const INetFwRule,
             enabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EdgeTraversal: fn(
+        put_EdgeTraversal: fn (
             self: *const INetFwRule,
             enabled: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Action: fn(
+        get_Action: fn (
             self: *const INetFwRule,
             action: ?*NET_FW_ACTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Action: fn(
+        put_Action: fn (
             self: *const INetFwRule,
             action: NET_FW_ACTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_get_Name(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).get_Name(@ptrCast(*const INetFwRule, self), name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_put_Name(self: *const T, name: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).put_Name(@ptrCast(*const INetFwRule, self), name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_get_Description(self: *const T, desc: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).get_Description(@ptrCast(*const INetFwRule, self), desc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_put_Description(self: *const T, desc: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).put_Description(@ptrCast(*const INetFwRule, self), desc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_get_ApplicationName(self: *const T, imageFileName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).get_ApplicationName(@ptrCast(*const INetFwRule, self), imageFileName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_put_ApplicationName(self: *const T, imageFileName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).put_ApplicationName(@ptrCast(*const INetFwRule, self), imageFileName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_get_ServiceName(self: *const T, serviceName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).get_ServiceName(@ptrCast(*const INetFwRule, self), serviceName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_put_ServiceName(self: *const T, serviceName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).put_ServiceName(@ptrCast(*const INetFwRule, self), serviceName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_get_Protocol(self: *const T, protocol: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).get_Protocol(@ptrCast(*const INetFwRule, self), protocol);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_put_Protocol(self: *const T, protocol: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).put_Protocol(@ptrCast(*const INetFwRule, self), protocol);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_get_LocalPorts(self: *const T, portNumbers: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).get_LocalPorts(@ptrCast(*const INetFwRule, self), portNumbers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_put_LocalPorts(self: *const T, portNumbers: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).put_LocalPorts(@ptrCast(*const INetFwRule, self), portNumbers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_get_RemotePorts(self: *const T, portNumbers: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).get_RemotePorts(@ptrCast(*const INetFwRule, self), portNumbers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_put_RemotePorts(self: *const T, portNumbers: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).put_RemotePorts(@ptrCast(*const INetFwRule, self), portNumbers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_get_LocalAddresses(self: *const T, localAddrs: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).get_LocalAddresses(@ptrCast(*const INetFwRule, self), localAddrs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_put_LocalAddresses(self: *const T, localAddrs: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).put_LocalAddresses(@ptrCast(*const INetFwRule, self), localAddrs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_get_RemoteAddresses(self: *const T, remoteAddrs: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).get_RemoteAddresses(@ptrCast(*const INetFwRule, self), remoteAddrs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_put_RemoteAddresses(self: *const T, remoteAddrs: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).put_RemoteAddresses(@ptrCast(*const INetFwRule, self), remoteAddrs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_get_IcmpTypesAndCodes(self: *const T, icmpTypesAndCodes: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).get_IcmpTypesAndCodes(@ptrCast(*const INetFwRule, self), icmpTypesAndCodes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_put_IcmpTypesAndCodes(self: *const T, icmpTypesAndCodes: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).put_IcmpTypesAndCodes(@ptrCast(*const INetFwRule, self), icmpTypesAndCodes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_get_Direction(self: *const T, dir: ?*NET_FW_RULE_DIRECTION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).get_Direction(@ptrCast(*const INetFwRule, self), dir);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_put_Direction(self: *const T, dir: NET_FW_RULE_DIRECTION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).put_Direction(@ptrCast(*const INetFwRule, self), dir);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_get_Interfaces(self: *const T, interfaces: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).get_Interfaces(@ptrCast(*const INetFwRule, self), interfaces);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_put_Interfaces(self: *const T, interfaces: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).put_Interfaces(@ptrCast(*const INetFwRule, self), interfaces);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_get_InterfaceTypes(self: *const T, interfaceTypes: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).get_InterfaceTypes(@ptrCast(*const INetFwRule, self), interfaceTypes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_put_InterfaceTypes(self: *const T, interfaceTypes: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).put_InterfaceTypes(@ptrCast(*const INetFwRule, self), interfaceTypes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_get_Enabled(self: *const T, enabled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).get_Enabled(@ptrCast(*const INetFwRule, self), enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_put_Enabled(self: *const T, enabled: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).put_Enabled(@ptrCast(*const INetFwRule, self), enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_get_Grouping(self: *const T, context: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).get_Grouping(@ptrCast(*const INetFwRule, self), context);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_put_Grouping(self: *const T, context: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).put_Grouping(@ptrCast(*const INetFwRule, self), context);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_get_Profiles(self: *const T, profileTypesBitmask: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).get_Profiles(@ptrCast(*const INetFwRule, self), profileTypesBitmask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_put_Profiles(self: *const T, profileTypesBitmask: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).put_Profiles(@ptrCast(*const INetFwRule, self), profileTypesBitmask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_get_EdgeTraversal(self: *const T, enabled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).get_EdgeTraversal(@ptrCast(*const INetFwRule, self), enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_put_EdgeTraversal(self: *const T, enabled: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).put_EdgeTraversal(@ptrCast(*const INetFwRule, self), enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_get_Action(self: *const T, action: ?*NET_FW_ACTION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).get_Action(@ptrCast(*const INetFwRule, self), action);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule_put_Action(self: *const T, action: NET_FW_ACTION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule.VTable, self.vtable).put_Action(@ptrCast(*const INetFwRule, self), action);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_get_Name(self: *const T, name: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).get_Name(@ptrCast(*const INetFwRule, self), name);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_put_Name(self: *const T, name: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).put_Name(@ptrCast(*const INetFwRule, self), name);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_get_Description(self: *const T, desc: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).get_Description(@ptrCast(*const INetFwRule, self), desc);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_put_Description(self: *const T, desc: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).put_Description(@ptrCast(*const INetFwRule, self), desc);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_get_ApplicationName(self: *const T, imageFileName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).get_ApplicationName(@ptrCast(*const INetFwRule, self), imageFileName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_put_ApplicationName(self: *const T, imageFileName: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).put_ApplicationName(@ptrCast(*const INetFwRule, self), imageFileName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_get_ServiceName(self: *const T, serviceName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).get_ServiceName(@ptrCast(*const INetFwRule, self), serviceName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_put_ServiceName(self: *const T, serviceName: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).put_ServiceName(@ptrCast(*const INetFwRule, self), serviceName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_get_Protocol(self: *const T, protocol: ?*i32) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).get_Protocol(@ptrCast(*const INetFwRule, self), protocol);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_put_Protocol(self: *const T, protocol: i32) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).put_Protocol(@ptrCast(*const INetFwRule, self), protocol);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_get_LocalPorts(self: *const T, portNumbers: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).get_LocalPorts(@ptrCast(*const INetFwRule, self), portNumbers);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_put_LocalPorts(self: *const T, portNumbers: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).put_LocalPorts(@ptrCast(*const INetFwRule, self), portNumbers);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_get_RemotePorts(self: *const T, portNumbers: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).get_RemotePorts(@ptrCast(*const INetFwRule, self), portNumbers);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_put_RemotePorts(self: *const T, portNumbers: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).put_RemotePorts(@ptrCast(*const INetFwRule, self), portNumbers);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_get_LocalAddresses(self: *const T, localAddrs: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).get_LocalAddresses(@ptrCast(*const INetFwRule, self), localAddrs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_put_LocalAddresses(self: *const T, localAddrs: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).put_LocalAddresses(@ptrCast(*const INetFwRule, self), localAddrs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_get_RemoteAddresses(self: *const T, remoteAddrs: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).get_RemoteAddresses(@ptrCast(*const INetFwRule, self), remoteAddrs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_put_RemoteAddresses(self: *const T, remoteAddrs: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).put_RemoteAddresses(@ptrCast(*const INetFwRule, self), remoteAddrs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_get_IcmpTypesAndCodes(self: *const T, icmpTypesAndCodes: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).get_IcmpTypesAndCodes(@ptrCast(*const INetFwRule, self), icmpTypesAndCodes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_put_IcmpTypesAndCodes(self: *const T, icmpTypesAndCodes: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).put_IcmpTypesAndCodes(@ptrCast(*const INetFwRule, self), icmpTypesAndCodes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_get_Direction(self: *const T, dir: ?*NET_FW_RULE_DIRECTION) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).get_Direction(@ptrCast(*const INetFwRule, self), dir);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_put_Direction(self: *const T, dir: NET_FW_RULE_DIRECTION) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).put_Direction(@ptrCast(*const INetFwRule, self), dir);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_get_Interfaces(self: *const T, interfaces: ?*VARIANT) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).get_Interfaces(@ptrCast(*const INetFwRule, self), interfaces);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_put_Interfaces(self: *const T, interfaces: VARIANT) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).put_Interfaces(@ptrCast(*const INetFwRule, self), interfaces);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_get_InterfaceTypes(self: *const T, interfaceTypes: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).get_InterfaceTypes(@ptrCast(*const INetFwRule, self), interfaceTypes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_put_InterfaceTypes(self: *const T, interfaceTypes: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).put_InterfaceTypes(@ptrCast(*const INetFwRule, self), interfaceTypes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_get_Enabled(self: *const T, enabled: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).get_Enabled(@ptrCast(*const INetFwRule, self), enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_put_Enabled(self: *const T, enabled: i16) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).put_Enabled(@ptrCast(*const INetFwRule, self), enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_get_Grouping(self: *const T, context: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).get_Grouping(@ptrCast(*const INetFwRule, self), context);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_put_Grouping(self: *const T, context: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).put_Grouping(@ptrCast(*const INetFwRule, self), context);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_get_Profiles(self: *const T, profileTypesBitmask: ?*i32) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).get_Profiles(@ptrCast(*const INetFwRule, self), profileTypesBitmask);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_put_Profiles(self: *const T, profileTypesBitmask: i32) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).put_Profiles(@ptrCast(*const INetFwRule, self), profileTypesBitmask);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_get_EdgeTraversal(self: *const T, enabled: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).get_EdgeTraversal(@ptrCast(*const INetFwRule, self), enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_put_EdgeTraversal(self: *const T, enabled: i16) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).put_EdgeTraversal(@ptrCast(*const INetFwRule, self), enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_get_Action(self: *const T, action: ?*NET_FW_ACTION) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).get_Action(@ptrCast(*const INetFwRule, self), action);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule_put_Action(self: *const T, action: NET_FW_ACTION) HRESULT {
+                return @ptrCast(*const INetFwRule.VTable, self.vtable).put_Action(@ptrCast(*const INetFwRule, self), action);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3033,28 +3101,30 @@ pub const INetFwRule2 = extern struct {
     pub const VTable = extern struct {
         base: INetFwRule.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EdgeTraversalOptions: fn(
+        get_EdgeTraversalOptions: fn (
             self: *const INetFwRule2,
             lOptions: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EdgeTraversalOptions: fn(
+        put_EdgeTraversalOptions: fn (
             self: *const INetFwRule2,
             lOptions: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace INetFwRule.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule2_get_EdgeTraversalOptions(self: *const T, lOptions: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule2.VTable, self.vtable).get_EdgeTraversalOptions(@ptrCast(*const INetFwRule2, self), lOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule2_put_EdgeTraversalOptions(self: *const T, lOptions: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule2.VTable, self.vtable).put_EdgeTraversalOptions(@ptrCast(*const INetFwRule2, self), lOptions);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace INetFwRule.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule2_get_EdgeTraversalOptions(self: *const T, lOptions: ?*i32) HRESULT {
+                return @ptrCast(*const INetFwRule2.VTable, self.vtable).get_EdgeTraversalOptions(@ptrCast(*const INetFwRule2, self), lOptions);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule2_put_EdgeTraversalOptions(self: *const T, lOptions: i32) HRESULT {
+                return @ptrCast(*const INetFwRule2.VTable, self.vtable).put_EdgeTraversalOptions(@ptrCast(*const INetFwRule2, self), lOptions);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3065,118 +3135,120 @@ pub const INetFwRule3 = extern struct {
     pub const VTable = extern struct {
         base: INetFwRule2.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalAppPackageId: fn(
+        get_LocalAppPackageId: fn (
             self: *const INetFwRule3,
             wszPackageId: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LocalAppPackageId: fn(
+        put_LocalAppPackageId: fn (
             self: *const INetFwRule3,
             wszPackageId: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalUserOwner: fn(
+        get_LocalUserOwner: fn (
             self: *const INetFwRule3,
             wszUserOwner: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LocalUserOwner: fn(
+        put_LocalUserOwner: fn (
             self: *const INetFwRule3,
             wszUserOwner: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalUserAuthorizedList: fn(
+        get_LocalUserAuthorizedList: fn (
             self: *const INetFwRule3,
             wszUserAuthList: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LocalUserAuthorizedList: fn(
+        put_LocalUserAuthorizedList: fn (
             self: *const INetFwRule3,
             wszUserAuthList: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RemoteUserAuthorizedList: fn(
+        get_RemoteUserAuthorizedList: fn (
             self: *const INetFwRule3,
             wszUserAuthList: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RemoteUserAuthorizedList: fn(
+        put_RemoteUserAuthorizedList: fn (
             self: *const INetFwRule3,
             wszUserAuthList: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RemoteMachineAuthorizedList: fn(
+        get_RemoteMachineAuthorizedList: fn (
             self: *const INetFwRule3,
             wszUserAuthList: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RemoteMachineAuthorizedList: fn(
+        put_RemoteMachineAuthorizedList: fn (
             self: *const INetFwRule3,
             wszUserAuthList: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SecureFlags: fn(
+        get_SecureFlags: fn (
             self: *const INetFwRule3,
             lOptions: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SecureFlags: fn(
+        put_SecureFlags: fn (
             self: *const INetFwRule3,
             lOptions: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace INetFwRule2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule3_get_LocalAppPackageId(self: *const T, wszPackageId: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule3.VTable, self.vtable).get_LocalAppPackageId(@ptrCast(*const INetFwRule3, self), wszPackageId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule3_put_LocalAppPackageId(self: *const T, wszPackageId: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule3.VTable, self.vtable).put_LocalAppPackageId(@ptrCast(*const INetFwRule3, self), wszPackageId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule3_get_LocalUserOwner(self: *const T, wszUserOwner: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule3.VTable, self.vtable).get_LocalUserOwner(@ptrCast(*const INetFwRule3, self), wszUserOwner);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule3_put_LocalUserOwner(self: *const T, wszUserOwner: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule3.VTable, self.vtable).put_LocalUserOwner(@ptrCast(*const INetFwRule3, self), wszUserOwner);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule3_get_LocalUserAuthorizedList(self: *const T, wszUserAuthList: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule3.VTable, self.vtable).get_LocalUserAuthorizedList(@ptrCast(*const INetFwRule3, self), wszUserAuthList);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule3_put_LocalUserAuthorizedList(self: *const T, wszUserAuthList: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule3.VTable, self.vtable).put_LocalUserAuthorizedList(@ptrCast(*const INetFwRule3, self), wszUserAuthList);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule3_get_RemoteUserAuthorizedList(self: *const T, wszUserAuthList: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule3.VTable, self.vtable).get_RemoteUserAuthorizedList(@ptrCast(*const INetFwRule3, self), wszUserAuthList);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule3_put_RemoteUserAuthorizedList(self: *const T, wszUserAuthList: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule3.VTable, self.vtable).put_RemoteUserAuthorizedList(@ptrCast(*const INetFwRule3, self), wszUserAuthList);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule3_get_RemoteMachineAuthorizedList(self: *const T, wszUserAuthList: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule3.VTable, self.vtable).get_RemoteMachineAuthorizedList(@ptrCast(*const INetFwRule3, self), wszUserAuthList);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule3_put_RemoteMachineAuthorizedList(self: *const T, wszUserAuthList: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule3.VTable, self.vtable).put_RemoteMachineAuthorizedList(@ptrCast(*const INetFwRule3, self), wszUserAuthList);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule3_get_SecureFlags(self: *const T, lOptions: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule3.VTable, self.vtable).get_SecureFlags(@ptrCast(*const INetFwRule3, self), lOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRule3_put_SecureFlags(self: *const T, lOptions: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRule3.VTable, self.vtable).put_SecureFlags(@ptrCast(*const INetFwRule3, self), lOptions);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace INetFwRule2.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule3_get_LocalAppPackageId(self: *const T, wszPackageId: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule3.VTable, self.vtable).get_LocalAppPackageId(@ptrCast(*const INetFwRule3, self), wszPackageId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule3_put_LocalAppPackageId(self: *const T, wszPackageId: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule3.VTable, self.vtable).put_LocalAppPackageId(@ptrCast(*const INetFwRule3, self), wszPackageId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule3_get_LocalUserOwner(self: *const T, wszUserOwner: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule3.VTable, self.vtable).get_LocalUserOwner(@ptrCast(*const INetFwRule3, self), wszUserOwner);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule3_put_LocalUserOwner(self: *const T, wszUserOwner: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule3.VTable, self.vtable).put_LocalUserOwner(@ptrCast(*const INetFwRule3, self), wszUserOwner);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule3_get_LocalUserAuthorizedList(self: *const T, wszUserAuthList: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule3.VTable, self.vtable).get_LocalUserAuthorizedList(@ptrCast(*const INetFwRule3, self), wszUserAuthList);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule3_put_LocalUserAuthorizedList(self: *const T, wszUserAuthList: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule3.VTable, self.vtable).put_LocalUserAuthorizedList(@ptrCast(*const INetFwRule3, self), wszUserAuthList);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule3_get_RemoteUserAuthorizedList(self: *const T, wszUserAuthList: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule3.VTable, self.vtable).get_RemoteUserAuthorizedList(@ptrCast(*const INetFwRule3, self), wszUserAuthList);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule3_put_RemoteUserAuthorizedList(self: *const T, wszUserAuthList: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule3.VTable, self.vtable).put_RemoteUserAuthorizedList(@ptrCast(*const INetFwRule3, self), wszUserAuthList);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule3_get_RemoteMachineAuthorizedList(self: *const T, wszUserAuthList: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule3.VTable, self.vtable).get_RemoteMachineAuthorizedList(@ptrCast(*const INetFwRule3, self), wszUserAuthList);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule3_put_RemoteMachineAuthorizedList(self: *const T, wszUserAuthList: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRule3.VTable, self.vtable).put_RemoteMachineAuthorizedList(@ptrCast(*const INetFwRule3, self), wszUserAuthList);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule3_get_SecureFlags(self: *const T, lOptions: ?*i32) HRESULT {
+                return @ptrCast(*const INetFwRule3.VTable, self.vtable).get_SecureFlags(@ptrCast(*const INetFwRule3, self), lOptions);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRule3_put_SecureFlags(self: *const T, lOptions: i32) HRESULT {
+                return @ptrCast(*const INetFwRule3.VTable, self.vtable).put_SecureFlags(@ptrCast(*const INetFwRule3, self), lOptions);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3187,53 +3259,55 @@ pub const INetFwRules = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const INetFwRules,
             count: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Add: fn(
+        Add: fn (
             self: *const INetFwRules,
             rule: ?*INetFwRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Remove: fn(
+        Remove: fn (
             self: *const INetFwRules,
             name: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
+        Item: fn (
             self: *const INetFwRules,
             name: ?BSTR,
             rule: ?*?*INetFwRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const INetFwRules,
             newEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRules_get_Count(self: *const T, count: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRules.VTable, self.vtable).get_Count(@ptrCast(*const INetFwRules, self), count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRules_Add(self: *const T, rule: ?*INetFwRule) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRules.VTable, self.vtable).Add(@ptrCast(*const INetFwRules, self), rule);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRules_Remove(self: *const T, name: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRules.VTable, self.vtable).Remove(@ptrCast(*const INetFwRules, self), name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRules_Item(self: *const T, name: ?BSTR, rule: ?*?*INetFwRule) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRules.VTable, self.vtable).Item(@ptrCast(*const INetFwRules, self), name, rule);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwRules_get__NewEnum(self: *const T, newEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwRules.VTable, self.vtable).get__NewEnum(@ptrCast(*const INetFwRules, self), newEnum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRules_get_Count(self: *const T, count: ?*i32) HRESULT {
+                return @ptrCast(*const INetFwRules.VTable, self.vtable).get_Count(@ptrCast(*const INetFwRules, self), count);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRules_Add(self: *const T, rule: ?*INetFwRule) HRESULT {
+                return @ptrCast(*const INetFwRules.VTable, self.vtable).Add(@ptrCast(*const INetFwRules, self), rule);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRules_Remove(self: *const T, name: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwRules.VTable, self.vtable).Remove(@ptrCast(*const INetFwRules, self), name);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRules_Item(self: *const T, name: ?BSTR, rule: ?*?*INetFwRule) HRESULT {
+                return @ptrCast(*const INetFwRules.VTable, self.vtable).Item(@ptrCast(*const INetFwRules, self), name, rule);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwRules_get__NewEnum(self: *const T, newEnum: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const INetFwRules.VTable, self.vtable).get__NewEnum(@ptrCast(*const INetFwRules, self), newEnum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3243,41 +3317,43 @@ pub const IID_INetFwServiceRestriction = &IID_INetFwServiceRestriction_Value;
 pub const INetFwServiceRestriction = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        RestrictService: fn(
+        RestrictService: fn (
             self: *const INetFwServiceRestriction,
             serviceName: ?BSTR,
             appName: ?BSTR,
             restrictService: i16,
             serviceSidRestricted: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ServiceRestricted: fn(
+        ServiceRestricted: fn (
             self: *const INetFwServiceRestriction,
             serviceName: ?BSTR,
             appName: ?BSTR,
             serviceRestricted: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Rules: fn(
+        get_Rules: fn (
             self: *const INetFwServiceRestriction,
             rules: ?*?*INetFwRules,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwServiceRestriction_RestrictService(self: *const T, serviceName: ?BSTR, appName: ?BSTR, restrictService: i16, serviceSidRestricted: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwServiceRestriction.VTable, self.vtable).RestrictService(@ptrCast(*const INetFwServiceRestriction, self), serviceName, appName, restrictService, serviceSidRestricted);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwServiceRestriction_ServiceRestricted(self: *const T, serviceName: ?BSTR, appName: ?BSTR, serviceRestricted: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwServiceRestriction.VTable, self.vtable).ServiceRestricted(@ptrCast(*const INetFwServiceRestriction, self), serviceName, appName, serviceRestricted);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwServiceRestriction_get_Rules(self: *const T, rules: ?*?*INetFwRules) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwServiceRestriction.VTable, self.vtable).get_Rules(@ptrCast(*const INetFwServiceRestriction, self), rules);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwServiceRestriction_RestrictService(self: *const T, serviceName: ?BSTR, appName: ?BSTR, restrictService: i16, serviceSidRestricted: i16) HRESULT {
+                return @ptrCast(*const INetFwServiceRestriction.VTable, self.vtable).RestrictService(@ptrCast(*const INetFwServiceRestriction, self), serviceName, appName, restrictService, serviceSidRestricted);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwServiceRestriction_ServiceRestricted(self: *const T, serviceName: ?BSTR, appName: ?BSTR, serviceRestricted: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwServiceRestriction.VTable, self.vtable).ServiceRestricted(@ptrCast(*const INetFwServiceRestriction, self), serviceName, appName, serviceRestricted);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwServiceRestriction_get_Rules(self: *const T, rules: ?*?*INetFwRules) HRESULT {
+                return @ptrCast(*const INetFwServiceRestriction.VTable, self.vtable).get_Rules(@ptrCast(*const INetFwServiceRestriction, self), rules);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3288,136 +3364,138 @@ pub const INetFwProfile = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: fn(
+        get_Type: fn (
             self: *const INetFwProfile,
             type: ?*NET_FW_PROFILE_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FirewallEnabled: fn(
+        get_FirewallEnabled: fn (
             self: *const INetFwProfile,
             enabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FirewallEnabled: fn(
+        put_FirewallEnabled: fn (
             self: *const INetFwProfile,
             enabled: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExceptionsNotAllowed: fn(
+        get_ExceptionsNotAllowed: fn (
             self: *const INetFwProfile,
             notAllowed: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ExceptionsNotAllowed: fn(
+        put_ExceptionsNotAllowed: fn (
             self: *const INetFwProfile,
             notAllowed: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NotificationsDisabled: fn(
+        get_NotificationsDisabled: fn (
             self: *const INetFwProfile,
             disabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_NotificationsDisabled: fn(
+        put_NotificationsDisabled: fn (
             self: *const INetFwProfile,
             disabled: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UnicastResponsesToMulticastBroadcastDisabled: fn(
+        get_UnicastResponsesToMulticastBroadcastDisabled: fn (
             self: *const INetFwProfile,
             disabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_UnicastResponsesToMulticastBroadcastDisabled: fn(
+        put_UnicastResponsesToMulticastBroadcastDisabled: fn (
             self: *const INetFwProfile,
             disabled: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RemoteAdminSettings: fn(
+        get_RemoteAdminSettings: fn (
             self: *const INetFwProfile,
             remoteAdminSettings: ?*?*INetFwRemoteAdminSettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IcmpSettings: fn(
+        get_IcmpSettings: fn (
             self: *const INetFwProfile,
             icmpSettings: ?*?*INetFwIcmpSettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_GloballyOpenPorts: fn(
+        get_GloballyOpenPorts: fn (
             self: *const INetFwProfile,
             openPorts: ?*?*INetFwOpenPorts,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Services: fn(
+        get_Services: fn (
             self: *const INetFwProfile,
             services: ?*?*INetFwServices,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AuthorizedApplications: fn(
+        get_AuthorizedApplications: fn (
             self: *const INetFwProfile,
             apps: ?*?*INetFwAuthorizedApplications,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProfile_get_Type(self: *const T, type_: ?*NET_FW_PROFILE_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_Type(@ptrCast(*const INetFwProfile, self), type_);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProfile_get_FirewallEnabled(self: *const T, enabled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_FirewallEnabled(@ptrCast(*const INetFwProfile, self), enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProfile_put_FirewallEnabled(self: *const T, enabled: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProfile.VTable, self.vtable).put_FirewallEnabled(@ptrCast(*const INetFwProfile, self), enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProfile_get_ExceptionsNotAllowed(self: *const T, notAllowed: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_ExceptionsNotAllowed(@ptrCast(*const INetFwProfile, self), notAllowed);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProfile_put_ExceptionsNotAllowed(self: *const T, notAllowed: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProfile.VTable, self.vtable).put_ExceptionsNotAllowed(@ptrCast(*const INetFwProfile, self), notAllowed);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProfile_get_NotificationsDisabled(self: *const T, disabled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_NotificationsDisabled(@ptrCast(*const INetFwProfile, self), disabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProfile_put_NotificationsDisabled(self: *const T, disabled: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProfile.VTable, self.vtable).put_NotificationsDisabled(@ptrCast(*const INetFwProfile, self), disabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProfile_get_UnicastResponsesToMulticastBroadcastDisabled(self: *const T, disabled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_UnicastResponsesToMulticastBroadcastDisabled(@ptrCast(*const INetFwProfile, self), disabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProfile_put_UnicastResponsesToMulticastBroadcastDisabled(self: *const T, disabled: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProfile.VTable, self.vtable).put_UnicastResponsesToMulticastBroadcastDisabled(@ptrCast(*const INetFwProfile, self), disabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProfile_get_RemoteAdminSettings(self: *const T, remoteAdminSettings: ?*?*INetFwRemoteAdminSettings) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_RemoteAdminSettings(@ptrCast(*const INetFwProfile, self), remoteAdminSettings);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProfile_get_IcmpSettings(self: *const T, icmpSettings: ?*?*INetFwIcmpSettings) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_IcmpSettings(@ptrCast(*const INetFwProfile, self), icmpSettings);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProfile_get_GloballyOpenPorts(self: *const T, openPorts: ?*?*INetFwOpenPorts) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_GloballyOpenPorts(@ptrCast(*const INetFwProfile, self), openPorts);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProfile_get_Services(self: *const T, services: ?*?*INetFwServices) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_Services(@ptrCast(*const INetFwProfile, self), services);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProfile_get_AuthorizedApplications(self: *const T, apps: ?*?*INetFwAuthorizedApplications) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_AuthorizedApplications(@ptrCast(*const INetFwProfile, self), apps);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProfile_get_Type(self: *const T, type_: ?*NET_FW_PROFILE_TYPE) HRESULT {
+                return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_Type(@ptrCast(*const INetFwProfile, self), type_);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProfile_get_FirewallEnabled(self: *const T, enabled: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_FirewallEnabled(@ptrCast(*const INetFwProfile, self), enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProfile_put_FirewallEnabled(self: *const T, enabled: i16) HRESULT {
+                return @ptrCast(*const INetFwProfile.VTable, self.vtable).put_FirewallEnabled(@ptrCast(*const INetFwProfile, self), enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProfile_get_ExceptionsNotAllowed(self: *const T, notAllowed: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_ExceptionsNotAllowed(@ptrCast(*const INetFwProfile, self), notAllowed);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProfile_put_ExceptionsNotAllowed(self: *const T, notAllowed: i16) HRESULT {
+                return @ptrCast(*const INetFwProfile.VTable, self.vtable).put_ExceptionsNotAllowed(@ptrCast(*const INetFwProfile, self), notAllowed);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProfile_get_NotificationsDisabled(self: *const T, disabled: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_NotificationsDisabled(@ptrCast(*const INetFwProfile, self), disabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProfile_put_NotificationsDisabled(self: *const T, disabled: i16) HRESULT {
+                return @ptrCast(*const INetFwProfile.VTable, self.vtable).put_NotificationsDisabled(@ptrCast(*const INetFwProfile, self), disabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProfile_get_UnicastResponsesToMulticastBroadcastDisabled(self: *const T, disabled: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_UnicastResponsesToMulticastBroadcastDisabled(@ptrCast(*const INetFwProfile, self), disabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProfile_put_UnicastResponsesToMulticastBroadcastDisabled(self: *const T, disabled: i16) HRESULT {
+                return @ptrCast(*const INetFwProfile.VTable, self.vtable).put_UnicastResponsesToMulticastBroadcastDisabled(@ptrCast(*const INetFwProfile, self), disabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProfile_get_RemoteAdminSettings(self: *const T, remoteAdminSettings: ?*?*INetFwRemoteAdminSettings) HRESULT {
+                return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_RemoteAdminSettings(@ptrCast(*const INetFwProfile, self), remoteAdminSettings);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProfile_get_IcmpSettings(self: *const T, icmpSettings: ?*?*INetFwIcmpSettings) HRESULT {
+                return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_IcmpSettings(@ptrCast(*const INetFwProfile, self), icmpSettings);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProfile_get_GloballyOpenPorts(self: *const T, openPorts: ?*?*INetFwOpenPorts) HRESULT {
+                return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_GloballyOpenPorts(@ptrCast(*const INetFwProfile, self), openPorts);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProfile_get_Services(self: *const T, services: ?*?*INetFwServices) HRESULT {
+                return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_Services(@ptrCast(*const INetFwProfile, self), services);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProfile_get_AuthorizedApplications(self: *const T, apps: ?*?*INetFwAuthorizedApplications) HRESULT {
+                return @ptrCast(*const INetFwProfile.VTable, self.vtable).get_AuthorizedApplications(@ptrCast(*const INetFwProfile, self), apps);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3428,28 +3506,30 @@ pub const INetFwPolicy = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentProfile: fn(
+        get_CurrentProfile: fn (
             self: *const INetFwPolicy,
             profile: ?*?*INetFwProfile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProfileByType: fn(
+        GetProfileByType: fn (
             self: *const INetFwPolicy,
             profileType: NET_FW_PROFILE_TYPE,
             profile: ?*?*INetFwProfile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy_get_CurrentProfile(self: *const T, profile: ?*?*INetFwProfile) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy.VTable, self.vtable).get_CurrentProfile(@ptrCast(*const INetFwPolicy, self), profile);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy_GetProfileByType(self: *const T, profileType: NET_FW_PROFILE_TYPE, profile: ?*?*INetFwProfile) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy.VTable, self.vtable).GetProfileByType(@ptrCast(*const INetFwPolicy, self), profileType, profile);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy_get_CurrentProfile(self: *const T, profile: ?*?*INetFwProfile) HRESULT {
+                return @ptrCast(*const INetFwPolicy.VTable, self.vtable).get_CurrentProfile(@ptrCast(*const INetFwPolicy, self), profile);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy_GetProfileByType(self: *const T, profileType: NET_FW_PROFILE_TYPE, profile: ?*?*INetFwProfile) HRESULT {
+                return @ptrCast(*const INetFwPolicy.VTable, self.vtable).GetProfileByType(@ptrCast(*const INetFwPolicy, self), profileType, profile);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3460,223 +3540,225 @@ pub const INetFwPolicy2 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentProfileTypes: fn(
+        get_CurrentProfileTypes: fn (
             self: *const INetFwPolicy2,
             profileTypesBitmask: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FirewallEnabled: fn(
+        get_FirewallEnabled: fn (
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             enabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FirewallEnabled: fn(
+        put_FirewallEnabled: fn (
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             enabled: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExcludedInterfaces: fn(
+        get_ExcludedInterfaces: fn (
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             interfaces: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ExcludedInterfaces: fn(
+        put_ExcludedInterfaces: fn (
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             interfaces: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BlockAllInboundTraffic: fn(
+        get_BlockAllInboundTraffic: fn (
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             Block: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BlockAllInboundTraffic: fn(
+        put_BlockAllInboundTraffic: fn (
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             Block: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NotificationsDisabled: fn(
+        get_NotificationsDisabled: fn (
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             disabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_NotificationsDisabled: fn(
+        put_NotificationsDisabled: fn (
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             disabled: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UnicastResponsesToMulticastBroadcastDisabled: fn(
+        get_UnicastResponsesToMulticastBroadcastDisabled: fn (
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             disabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_UnicastResponsesToMulticastBroadcastDisabled: fn(
+        put_UnicastResponsesToMulticastBroadcastDisabled: fn (
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             disabled: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Rules: fn(
+        get_Rules: fn (
             self: *const INetFwPolicy2,
             rules: ?*?*INetFwRules,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ServiceRestriction: fn(
+        get_ServiceRestriction: fn (
             self: *const INetFwPolicy2,
             ServiceRestriction: ?*?*INetFwServiceRestriction,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnableRuleGroup: fn(
+        EnableRuleGroup: fn (
             self: *const INetFwPolicy2,
             profileTypesBitmask: i32,
             group: ?BSTR,
             enable: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsRuleGroupEnabled: fn(
+        IsRuleGroupEnabled: fn (
             self: *const INetFwPolicy2,
             profileTypesBitmask: i32,
             group: ?BSTR,
             enabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RestoreLocalFirewallDefaults: fn(
+        RestoreLocalFirewallDefaults: fn (
             self: *const INetFwPolicy2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DefaultInboundAction: fn(
-            self: *const INetFwPolicy2,
-            profileType: NET_FW_PROFILE_TYPE2,
-            action: ?*NET_FW_ACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DefaultInboundAction: fn(
-            self: *const INetFwPolicy2,
-            profileType: NET_FW_PROFILE_TYPE2,
-            action: NET_FW_ACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DefaultOutboundAction: fn(
+        get_DefaultInboundAction: fn (
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             action: ?*NET_FW_ACTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DefaultOutboundAction: fn(
+        put_DefaultInboundAction: fn (
             self: *const INetFwPolicy2,
             profileType: NET_FW_PROFILE_TYPE2,
             action: NET_FW_ACTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsRuleGroupCurrentlyEnabled: fn(
+        get_DefaultOutboundAction: fn (
+            self: *const INetFwPolicy2,
+            profileType: NET_FW_PROFILE_TYPE2,
+            action: ?*NET_FW_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_DefaultOutboundAction: fn (
+            self: *const INetFwPolicy2,
+            profileType: NET_FW_PROFILE_TYPE2,
+            action: NET_FW_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_IsRuleGroupCurrentlyEnabled: fn (
             self: *const INetFwPolicy2,
             group: ?BSTR,
             enabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalPolicyModifyState: fn(
+        get_LocalPolicyModifyState: fn (
             self: *const INetFwPolicy2,
             modifyState: ?*NET_FW_MODIFY_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_get_CurrentProfileTypes(self: *const T, profileTypesBitmask: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_CurrentProfileTypes(@ptrCast(*const INetFwPolicy2, self), profileTypesBitmask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_get_FirewallEnabled(self: *const T, profileType: NET_FW_PROFILE_TYPE2, enabled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_FirewallEnabled(@ptrCast(*const INetFwPolicy2, self), profileType, enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_put_FirewallEnabled(self: *const T, profileType: NET_FW_PROFILE_TYPE2, enabled: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).put_FirewallEnabled(@ptrCast(*const INetFwPolicy2, self), profileType, enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_get_ExcludedInterfaces(self: *const T, profileType: NET_FW_PROFILE_TYPE2, interfaces: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_ExcludedInterfaces(@ptrCast(*const INetFwPolicy2, self), profileType, interfaces);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_put_ExcludedInterfaces(self: *const T, profileType: NET_FW_PROFILE_TYPE2, interfaces: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).put_ExcludedInterfaces(@ptrCast(*const INetFwPolicy2, self), profileType, interfaces);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_get_BlockAllInboundTraffic(self: *const T, profileType: NET_FW_PROFILE_TYPE2, Block: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_BlockAllInboundTraffic(@ptrCast(*const INetFwPolicy2, self), profileType, Block);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_put_BlockAllInboundTraffic(self: *const T, profileType: NET_FW_PROFILE_TYPE2, Block: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).put_BlockAllInboundTraffic(@ptrCast(*const INetFwPolicy2, self), profileType, Block);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_get_NotificationsDisabled(self: *const T, profileType: NET_FW_PROFILE_TYPE2, disabled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_NotificationsDisabled(@ptrCast(*const INetFwPolicy2, self), profileType, disabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_put_NotificationsDisabled(self: *const T, profileType: NET_FW_PROFILE_TYPE2, disabled: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).put_NotificationsDisabled(@ptrCast(*const INetFwPolicy2, self), profileType, disabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_get_UnicastResponsesToMulticastBroadcastDisabled(self: *const T, profileType: NET_FW_PROFILE_TYPE2, disabled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_UnicastResponsesToMulticastBroadcastDisabled(@ptrCast(*const INetFwPolicy2, self), profileType, disabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_put_UnicastResponsesToMulticastBroadcastDisabled(self: *const T, profileType: NET_FW_PROFILE_TYPE2, disabled: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).put_UnicastResponsesToMulticastBroadcastDisabled(@ptrCast(*const INetFwPolicy2, self), profileType, disabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_get_Rules(self: *const T, rules: ?*?*INetFwRules) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_Rules(@ptrCast(*const INetFwPolicy2, self), rules);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_get_ServiceRestriction(self: *const T, ServiceRestriction: ?*?*INetFwServiceRestriction) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_ServiceRestriction(@ptrCast(*const INetFwPolicy2, self), ServiceRestriction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_EnableRuleGroup(self: *const T, profileTypesBitmask: i32, group: ?BSTR, enable: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).EnableRuleGroup(@ptrCast(*const INetFwPolicy2, self), profileTypesBitmask, group, enable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_IsRuleGroupEnabled(self: *const T, profileTypesBitmask: i32, group: ?BSTR, enabled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).IsRuleGroupEnabled(@ptrCast(*const INetFwPolicy2, self), profileTypesBitmask, group, enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_RestoreLocalFirewallDefaults(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).RestoreLocalFirewallDefaults(@ptrCast(*const INetFwPolicy2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_get_DefaultInboundAction(self: *const T, profileType: NET_FW_PROFILE_TYPE2, action: ?*NET_FW_ACTION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_DefaultInboundAction(@ptrCast(*const INetFwPolicy2, self), profileType, action);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_put_DefaultInboundAction(self: *const T, profileType: NET_FW_PROFILE_TYPE2, action: NET_FW_ACTION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).put_DefaultInboundAction(@ptrCast(*const INetFwPolicy2, self), profileType, action);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_get_DefaultOutboundAction(self: *const T, profileType: NET_FW_PROFILE_TYPE2, action: ?*NET_FW_ACTION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_DefaultOutboundAction(@ptrCast(*const INetFwPolicy2, self), profileType, action);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_put_DefaultOutboundAction(self: *const T, profileType: NET_FW_PROFILE_TYPE2, action: NET_FW_ACTION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).put_DefaultOutboundAction(@ptrCast(*const INetFwPolicy2, self), profileType, action);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_get_IsRuleGroupCurrentlyEnabled(self: *const T, group: ?BSTR, enabled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_IsRuleGroupCurrentlyEnabled(@ptrCast(*const INetFwPolicy2, self), group, enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwPolicy2_get_LocalPolicyModifyState(self: *const T, modifyState: ?*NET_FW_MODIFY_STATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_LocalPolicyModifyState(@ptrCast(*const INetFwPolicy2, self), modifyState);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_get_CurrentProfileTypes(self: *const T, profileTypesBitmask: ?*i32) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_CurrentProfileTypes(@ptrCast(*const INetFwPolicy2, self), profileTypesBitmask);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_get_FirewallEnabled(self: *const T, profileType: NET_FW_PROFILE_TYPE2, enabled: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_FirewallEnabled(@ptrCast(*const INetFwPolicy2, self), profileType, enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_put_FirewallEnabled(self: *const T, profileType: NET_FW_PROFILE_TYPE2, enabled: i16) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).put_FirewallEnabled(@ptrCast(*const INetFwPolicy2, self), profileType, enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_get_ExcludedInterfaces(self: *const T, profileType: NET_FW_PROFILE_TYPE2, interfaces: ?*VARIANT) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_ExcludedInterfaces(@ptrCast(*const INetFwPolicy2, self), profileType, interfaces);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_put_ExcludedInterfaces(self: *const T, profileType: NET_FW_PROFILE_TYPE2, interfaces: VARIANT) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).put_ExcludedInterfaces(@ptrCast(*const INetFwPolicy2, self), profileType, interfaces);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_get_BlockAllInboundTraffic(self: *const T, profileType: NET_FW_PROFILE_TYPE2, Block: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_BlockAllInboundTraffic(@ptrCast(*const INetFwPolicy2, self), profileType, Block);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_put_BlockAllInboundTraffic(self: *const T, profileType: NET_FW_PROFILE_TYPE2, Block: i16) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).put_BlockAllInboundTraffic(@ptrCast(*const INetFwPolicy2, self), profileType, Block);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_get_NotificationsDisabled(self: *const T, profileType: NET_FW_PROFILE_TYPE2, disabled: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_NotificationsDisabled(@ptrCast(*const INetFwPolicy2, self), profileType, disabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_put_NotificationsDisabled(self: *const T, profileType: NET_FW_PROFILE_TYPE2, disabled: i16) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).put_NotificationsDisabled(@ptrCast(*const INetFwPolicy2, self), profileType, disabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_get_UnicastResponsesToMulticastBroadcastDisabled(self: *const T, profileType: NET_FW_PROFILE_TYPE2, disabled: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_UnicastResponsesToMulticastBroadcastDisabled(@ptrCast(*const INetFwPolicy2, self), profileType, disabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_put_UnicastResponsesToMulticastBroadcastDisabled(self: *const T, profileType: NET_FW_PROFILE_TYPE2, disabled: i16) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).put_UnicastResponsesToMulticastBroadcastDisabled(@ptrCast(*const INetFwPolicy2, self), profileType, disabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_get_Rules(self: *const T, rules: ?*?*INetFwRules) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_Rules(@ptrCast(*const INetFwPolicy2, self), rules);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_get_ServiceRestriction(self: *const T, ServiceRestriction: ?*?*INetFwServiceRestriction) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_ServiceRestriction(@ptrCast(*const INetFwPolicy2, self), ServiceRestriction);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_EnableRuleGroup(self: *const T, profileTypesBitmask: i32, group: ?BSTR, enable: i16) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).EnableRuleGroup(@ptrCast(*const INetFwPolicy2, self), profileTypesBitmask, group, enable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_IsRuleGroupEnabled(self: *const T, profileTypesBitmask: i32, group: ?BSTR, enabled: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).IsRuleGroupEnabled(@ptrCast(*const INetFwPolicy2, self), profileTypesBitmask, group, enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_RestoreLocalFirewallDefaults(self: *const T) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).RestoreLocalFirewallDefaults(@ptrCast(*const INetFwPolicy2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_get_DefaultInboundAction(self: *const T, profileType: NET_FW_PROFILE_TYPE2, action: ?*NET_FW_ACTION) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_DefaultInboundAction(@ptrCast(*const INetFwPolicy2, self), profileType, action);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_put_DefaultInboundAction(self: *const T, profileType: NET_FW_PROFILE_TYPE2, action: NET_FW_ACTION) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).put_DefaultInboundAction(@ptrCast(*const INetFwPolicy2, self), profileType, action);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_get_DefaultOutboundAction(self: *const T, profileType: NET_FW_PROFILE_TYPE2, action: ?*NET_FW_ACTION) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_DefaultOutboundAction(@ptrCast(*const INetFwPolicy2, self), profileType, action);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_put_DefaultOutboundAction(self: *const T, profileType: NET_FW_PROFILE_TYPE2, action: NET_FW_ACTION) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).put_DefaultOutboundAction(@ptrCast(*const INetFwPolicy2, self), profileType, action);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_get_IsRuleGroupCurrentlyEnabled(self: *const T, group: ?BSTR, enabled: ?*i16) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_IsRuleGroupCurrentlyEnabled(@ptrCast(*const INetFwPolicy2, self), group, enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwPolicy2_get_LocalPolicyModifyState(self: *const T, modifyState: ?*NET_FW_MODIFY_STATE) HRESULT {
+                return @ptrCast(*const INetFwPolicy2.VTable, self.vtable).get_LocalPolicyModifyState(@ptrCast(*const INetFwPolicy2, self), modifyState);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3687,19 +3769,19 @@ pub const INetFwMgr = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalPolicy: fn(
+        get_LocalPolicy: fn (
             self: *const INetFwMgr,
             localPolicy: ?*?*INetFwPolicy,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentProfileType: fn(
+        get_CurrentProfileType: fn (
             self: *const INetFwMgr,
             profileType: ?*NET_FW_PROFILE_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RestoreDefaults: fn(
+        RestoreDefaults: fn (
             self: *const INetFwMgr,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsPortAllowed: fn(
+        IsPortAllowed: fn (
             self: *const INetFwMgr,
             imageFileName: ?BSTR,
             ipVersion: NET_FW_IP_VERSION,
@@ -3709,7 +3791,7 @@ pub const INetFwMgr = extern struct {
             allowed: ?*VARIANT,
             restricted: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsIcmpTypeAllowed: fn(
+        IsIcmpTypeAllowed: fn (
             self: *const INetFwMgr,
             ipVersion: NET_FW_IP_VERSION,
             localAddress: ?BSTR,
@@ -3719,29 +3801,31 @@ pub const INetFwMgr = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwMgr_get_LocalPolicy(self: *const T, localPolicy: ?*?*INetFwPolicy) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwMgr.VTable, self.vtable).get_LocalPolicy(@ptrCast(*const INetFwMgr, self), localPolicy);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwMgr_get_CurrentProfileType(self: *const T, profileType: ?*NET_FW_PROFILE_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwMgr.VTable, self.vtable).get_CurrentProfileType(@ptrCast(*const INetFwMgr, self), profileType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwMgr_RestoreDefaults(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwMgr.VTable, self.vtable).RestoreDefaults(@ptrCast(*const INetFwMgr, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwMgr_IsPortAllowed(self: *const T, imageFileName: ?BSTR, ipVersion: NET_FW_IP_VERSION, portNumber: i32, localAddress: ?BSTR, ipProtocol: NET_FW_IP_PROTOCOL, allowed: ?*VARIANT, restricted: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwMgr.VTable, self.vtable).IsPortAllowed(@ptrCast(*const INetFwMgr, self), imageFileName, ipVersion, portNumber, localAddress, ipProtocol, allowed, restricted);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwMgr_IsIcmpTypeAllowed(self: *const T, ipVersion: NET_FW_IP_VERSION, localAddress: ?BSTR, type_: u8, allowed: ?*VARIANT, restricted: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwMgr.VTable, self.vtable).IsIcmpTypeAllowed(@ptrCast(*const INetFwMgr, self), ipVersion, localAddress, type_, allowed, restricted);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwMgr_get_LocalPolicy(self: *const T, localPolicy: ?*?*INetFwPolicy) HRESULT {
+                return @ptrCast(*const INetFwMgr.VTable, self.vtable).get_LocalPolicy(@ptrCast(*const INetFwMgr, self), localPolicy);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwMgr_get_CurrentProfileType(self: *const T, profileType: ?*NET_FW_PROFILE_TYPE) HRESULT {
+                return @ptrCast(*const INetFwMgr.VTable, self.vtable).get_CurrentProfileType(@ptrCast(*const INetFwMgr, self), profileType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwMgr_RestoreDefaults(self: *const T) HRESULT {
+                return @ptrCast(*const INetFwMgr.VTable, self.vtable).RestoreDefaults(@ptrCast(*const INetFwMgr, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwMgr_IsPortAllowed(self: *const T, imageFileName: ?BSTR, ipVersion: NET_FW_IP_VERSION, portNumber: i32, localAddress: ?BSTR, ipProtocol: NET_FW_IP_PROTOCOL, allowed: ?*VARIANT, restricted: ?*VARIANT) HRESULT {
+                return @ptrCast(*const INetFwMgr.VTable, self.vtable).IsPortAllowed(@ptrCast(*const INetFwMgr, self), imageFileName, ipVersion, portNumber, localAddress, ipProtocol, allowed, restricted);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwMgr_IsIcmpTypeAllowed(self: *const T, ipVersion: NET_FW_IP_VERSION, localAddress: ?BSTR, type_: u8, allowed: ?*VARIANT, restricted: ?*VARIANT) HRESULT {
+                return @ptrCast(*const INetFwMgr.VTable, self.vtable).IsIcmpTypeAllowed(@ptrCast(*const INetFwMgr, self), ipVersion, localAddress, type_, allowed, restricted);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3752,55 +3836,57 @@ pub const INetFwProduct = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RuleCategories: fn(
+        get_RuleCategories: fn (
             self: *const INetFwProduct,
             ruleCategories: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RuleCategories: fn(
+        put_RuleCategories: fn (
             self: *const INetFwProduct,
             ruleCategories: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisplayName: fn(
+        get_DisplayName: fn (
             self: *const INetFwProduct,
             displayName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DisplayName: fn(
+        put_DisplayName: fn (
             self: *const INetFwProduct,
             displayName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PathToSignedProductExe: fn(
+        get_PathToSignedProductExe: fn (
             self: *const INetFwProduct,
             path: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProduct_get_RuleCategories(self: *const T, ruleCategories: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProduct.VTable, self.vtable).get_RuleCategories(@ptrCast(*const INetFwProduct, self), ruleCategories);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProduct_put_RuleCategories(self: *const T, ruleCategories: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProduct.VTable, self.vtable).put_RuleCategories(@ptrCast(*const INetFwProduct, self), ruleCategories);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProduct_get_DisplayName(self: *const T, displayName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProduct.VTable, self.vtable).get_DisplayName(@ptrCast(*const INetFwProduct, self), displayName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProduct_put_DisplayName(self: *const T, displayName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProduct.VTable, self.vtable).put_DisplayName(@ptrCast(*const INetFwProduct, self), displayName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProduct_get_PathToSignedProductExe(self: *const T, path: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProduct.VTable, self.vtable).get_PathToSignedProductExe(@ptrCast(*const INetFwProduct, self), path);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProduct_get_RuleCategories(self: *const T, ruleCategories: ?*VARIANT) HRESULT {
+                return @ptrCast(*const INetFwProduct.VTable, self.vtable).get_RuleCategories(@ptrCast(*const INetFwProduct, self), ruleCategories);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProduct_put_RuleCategories(self: *const T, ruleCategories: VARIANT) HRESULT {
+                return @ptrCast(*const INetFwProduct.VTable, self.vtable).put_RuleCategories(@ptrCast(*const INetFwProduct, self), ruleCategories);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProduct_get_DisplayName(self: *const T, displayName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwProduct.VTable, self.vtable).get_DisplayName(@ptrCast(*const INetFwProduct, self), displayName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProduct_put_DisplayName(self: *const T, displayName: ?BSTR) HRESULT {
+                return @ptrCast(*const INetFwProduct.VTable, self.vtable).put_DisplayName(@ptrCast(*const INetFwProduct, self), displayName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProduct_get_PathToSignedProductExe(self: *const T, path: ?*?BSTR) HRESULT {
+                return @ptrCast(*const INetFwProduct.VTable, self.vtable).get_PathToSignedProductExe(@ptrCast(*const INetFwProduct, self), path);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3811,49 +3897,50 @@ pub const INetFwProducts = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const INetFwProducts,
             count: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Register: fn(
+        Register: fn (
             self: *const INetFwProducts,
             product: ?*INetFwProduct,
             registration: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
+        Item: fn (
             self: *const INetFwProducts,
             index: i32,
             product: ?*?*INetFwProduct,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const INetFwProducts,
             newEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProducts_get_Count(self: *const T, count: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProducts.VTable, self.vtable).get_Count(@ptrCast(*const INetFwProducts, self), count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProducts_Register(self: *const T, product: ?*INetFwProduct, registration: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProducts.VTable, self.vtable).Register(@ptrCast(*const INetFwProducts, self), product, registration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProducts_Item(self: *const T, index: i32, product: ?*?*INetFwProduct) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProducts.VTable, self.vtable).Item(@ptrCast(*const INetFwProducts, self), index, product);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetFwProducts_get__NewEnum(self: *const T, newEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetFwProducts.VTable, self.vtable).get__NewEnum(@ptrCast(*const INetFwProducts, self), newEnum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProducts_get_Count(self: *const T, count: ?*i32) HRESULT {
+                return @ptrCast(*const INetFwProducts.VTable, self.vtable).get_Count(@ptrCast(*const INetFwProducts, self), count);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProducts_Register(self: *const T, product: ?*INetFwProduct, registration: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const INetFwProducts.VTable, self.vtable).Register(@ptrCast(*const INetFwProducts, self), product, registration);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProducts_Item(self: *const T, index: i32, product: ?*?*INetFwProduct) HRESULT {
+                return @ptrCast(*const INetFwProducts.VTable, self.vtable).Item(@ptrCast(*const INetFwProducts, self), index, product);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetFwProducts_get__NewEnum(self: *const T, newEnum: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const INetFwProducts.VTable, self.vtable).get__NewEnum(@ptrCast(*const INetFwProducts, self), newEnum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (8)
@@ -3912,19 +3999,14 @@ pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationDiagnoseConnectF
     netIsoError: ?*NETISO_ERROR_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (13)
@@ -3945,18 +4027,32 @@ const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PAC_CHANGES_CALLBACK_FN")) { _ = PAC_CHANGES_CALLBACK_FN; }
-    if (@hasDecl(@This(), "PNETISO_EDP_ID_CALLBACK_FN")) { _ = PNETISO_EDP_ID_CALLBACK_FN; }
-    if (@hasDecl(@This(), "PFN_FWADDDYNAMICKEYWORDADDRESS0")) { _ = PFN_FWADDDYNAMICKEYWORDADDRESS0; }
-    if (@hasDecl(@This(), "PFN_FWDELETEDYNAMICKEYWORDADDRESS0")) { _ = PFN_FWDELETEDYNAMICKEYWORDADDRESS0; }
-    if (@hasDecl(@This(), "PFN_FWENUMDYNAMICKEYWORDADDRESSESBYTYPE0")) { _ = PFN_FWENUMDYNAMICKEYWORDADDRESSESBYTYPE0; }
-    if (@hasDecl(@This(), "PFN_FWENUMDYNAMICKEYWORDADDRESSBYID0")) { _ = PFN_FWENUMDYNAMICKEYWORDADDRESSBYID0; }
-    if (@hasDecl(@This(), "PFN_FWFREEDYNAMICKEYWORDADDRESSDATA0")) { _ = PFN_FWFREEDYNAMICKEYWORDADDRESSDATA0; }
-    if (@hasDecl(@This(), "PFN_FWUPDATEDYNAMICKEYWORDADDRESS0")) { _ = PFN_FWUPDATEDYNAMICKEYWORDADDRESS0; }
+    if (@hasDecl(@This(), "PAC_CHANGES_CALLBACK_FN")) {
+        _ = PAC_CHANGES_CALLBACK_FN;
+    }
+    if (@hasDecl(@This(), "PNETISO_EDP_ID_CALLBACK_FN")) {
+        _ = PNETISO_EDP_ID_CALLBACK_FN;
+    }
+    if (@hasDecl(@This(), "PFN_FWADDDYNAMICKEYWORDADDRESS0")) {
+        _ = PFN_FWADDDYNAMICKEYWORDADDRESS0;
+    }
+    if (@hasDecl(@This(), "PFN_FWDELETEDYNAMICKEYWORDADDRESS0")) {
+        _ = PFN_FWDELETEDYNAMICKEYWORDADDRESS0;
+    }
+    if (@hasDecl(@This(), "PFN_FWENUMDYNAMICKEYWORDADDRESSESBYTYPE0")) {
+        _ = PFN_FWENUMDYNAMICKEYWORDADDRESSESBYTYPE0;
+    }
+    if (@hasDecl(@This(), "PFN_FWENUMDYNAMICKEYWORDADDRESSBYID0")) {
+        _ = PFN_FWENUMDYNAMICKEYWORDADDRESSBYID0;
+    }
+    if (@hasDecl(@This(), "PFN_FWFREEDYNAMICKEYWORDADDRESSDATA0")) {
+        _ = PFN_FWFREEDYNAMICKEYWORDADDRESSDATA0;
+    }
+    if (@hasDecl(@This(), "PFN_FWUPDATEDYNAMICKEYWORDADDRESS0")) {
+        _ = PFN_FWUPDATEDYNAMICKEYWORDADDRESS0;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

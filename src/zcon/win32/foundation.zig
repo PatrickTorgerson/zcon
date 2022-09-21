@@ -13022,10 +13022,7 @@ pub const DUPLICATE_HANDLE_OPTIONS = enum(u32) {
         CLOSE_SOURCE: u1 = 0,
         SAME_ACCESS: u1 = 0,
     }) DUPLICATE_HANDLE_OPTIONS {
-        return @intToEnum(DUPLICATE_HANDLE_OPTIONS,
-              (if (o.CLOSE_SOURCE == 1) @enumToInt(DUPLICATE_HANDLE_OPTIONS.CLOSE_SOURCE) else 0)
-            | (if (o.SAME_ACCESS == 1) @enumToInt(DUPLICATE_HANDLE_OPTIONS.SAME_ACCESS) else 0)
-        );
+        return @intToEnum(DUPLICATE_HANDLE_OPTIONS, (if (o.CLOSE_SOURCE == 1) @enumToInt(DUPLICATE_HANDLE_OPTIONS.CLOSE_SOURCE) else 0) | (if (o.SAME_ACCESS == 1) @enumToInt(DUPLICATE_HANDLE_OPTIONS.SAME_ACCESS) else 0));
     }
 };
 pub const DUPLICATE_CLOSE_SOURCE = DUPLICATE_HANDLE_OPTIONS.CLOSE_SOURCE;
@@ -13039,10 +13036,7 @@ pub const HANDLE_FLAGS = enum(u32) {
         INHERIT: u1 = 0,
         PROTECT_FROM_CLOSE: u1 = 0,
     }) HANDLE_FLAGS {
-        return @intToEnum(HANDLE_FLAGS,
-              (if (o.INHERIT == 1) @enumToInt(HANDLE_FLAGS.INHERIT) else 0)
-            | (if (o.PROTECT_FROM_CLOSE == 1) @enumToInt(HANDLE_FLAGS.PROTECT_FROM_CLOSE) else 0)
-        );
+        return @intToEnum(HANDLE_FLAGS, (if (o.INHERIT == 1) @enumToInt(HANDLE_FLAGS.INHERIT) else 0) | (if (o.PROTECT_FROM_CLOSE == 1) @enumToInt(HANDLE_FLAGS.PROTECT_FROM_CLOSE) else 0));
     }
 };
 pub const HANDLE_FLAG_INHERIT = HANDLE_FLAGS.INHERIT;
@@ -13059,11 +13053,11 @@ pub const BSTR = *u16;
 pub const HANDLE = @import("std").os.windows.HANDLE;
 
 // TODO: this type has a FreeFunc 'FreeLibrary', what can Zig do with this information?
-pub const HINSTANCE = *opaque{};
+pub const HINSTANCE = *opaque {};
 
 pub const HRESULT = i32;
 
-pub const HWND = *opaque{};
+pub const HWND = *opaque {};
 
 pub const LPARAM = isize;
 
@@ -13073,7 +13067,7 @@ pub const LSTATUS = i32;
 
 pub const NTSTATUS = i32;
 
-pub const PSID = *opaque{};
+pub const PSID = *opaque {};
 
 pub const PSTR = [*:0]u8;
 
@@ -13081,7 +13075,7 @@ pub const PWSTR = [*:0]u16;
 
 pub const WPARAM = usize;
 
-pub const HRSRC = *opaque{};
+pub const HRSRC = *opaque {};
 
 pub const CHAR = u8;
 
@@ -13119,14 +13113,11 @@ pub const DECIMAL = extern struct {
     },
 };
 
-pub const FARPROC = fn(
-) callconv(@import("std").os.windows.WINAPI) isize;
+pub const FARPROC = fn () callconv(@import("std").os.windows.WINAPI) isize;
 
-pub const NEARPROC = fn(
-) callconv(@import("std").os.windows.WINAPI) isize;
+pub const NEARPROC = fn () callconv(@import("std").os.windows.WINAPI) isize;
 
-pub const PROC = fn(
-) callconv(@import("std").os.windows.WINAPI) isize;
+pub const PROC = fn () callconv(@import("std").os.windows.WINAPI) isize;
 
 pub const HSPRITE__ = extern struct {
     unused: i32,
@@ -13227,10 +13218,9 @@ pub const LUID = extern struct {
     HighPart: i32,
 };
 
-pub const PAPCFUNC = fn(
+pub const PAPCFUNC = fn (
     Parameter: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (19)
@@ -13318,8 +13308,7 @@ pub extern "kernel32" fn SetHandleInformation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetLastError(
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+pub extern "kernel32" fn GetLastError() callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn SetLastError(
@@ -13337,19 +13326,14 @@ pub extern "ntdll" fn RtlNtStatusToDosError(
     Status: NTSTATUS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (0)
@@ -13357,14 +13341,20 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "FARPROC")) { _ = FARPROC; }
-    if (@hasDecl(@This(), "NEARPROC")) { _ = NEARPROC; }
-    if (@hasDecl(@This(), "PROC")) { _ = PROC; }
-    if (@hasDecl(@This(), "PAPCFUNC")) { _ = PAPCFUNC; }
+    if (@hasDecl(@This(), "FARPROC")) {
+        _ = FARPROC;
+    }
+    if (@hasDecl(@This(), "NEARPROC")) {
+        _ = NEARPROC;
+    }
+    if (@hasDecl(@This(), "PROC")) {
+        _ = PROC;
+    }
+    if (@hasDecl(@This(), "PAPCFUNC")) {
+        _ = PAPCFUNC;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

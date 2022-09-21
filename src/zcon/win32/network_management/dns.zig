@@ -339,7 +339,6 @@ pub const IP4_ARRAY = extern struct {
     AddrArray: [1]u32,
 };
 
-
 pub const DNS_ADDR = extern struct {
     MaxSa: [32]CHAR,
     Data: packed union {
@@ -1007,7 +1006,7 @@ pub const DNS_RRSET = extern struct {
     pLastRR: ?*DNS_RECORDA,
 };
 
-pub const DNS_PROXY_COMPLETION_ROUTINE = fn(
+pub const DNS_PROXY_COMPLETION_ROUTINE = fn (
     completionContext: ?*anyopaque,
     status: i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -1057,7 +1056,7 @@ pub const DNS_QUERY_RESULT = extern struct {
     Reserved: ?*anyopaque,
 };
 
-pub const PDNS_QUERY_COMPLETION_ROUTINE = fn(
+pub const PDNS_QUERY_COMPLETION_ROUTINE = fn (
     pQueryContext: ?*anyopaque,
     pQueryResults: ?*DNS_QUERY_RESULT,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -1255,7 +1254,7 @@ pub const DNS_SERVICE_CANCEL = extern struct {
     reserved: ?*anyopaque,
 };
 
-pub const PDNS_SERVICE_BROWSE_CALLBACK = fn(
+pub const PDNS_SERVICE_BROWSE_CALLBACK = fn (
     Status: u32,
     pQueryContext: ?*anyopaque,
     pDnsRecord: ?*DNS_RECORDA,
@@ -1272,7 +1271,7 @@ pub const DNS_SERVICE_BROWSE_REQUEST = extern struct {
     pQueryContext: ?*anyopaque,
 };
 
-pub const PDNS_SERVICE_RESOLVE_COMPLETE = fn(
+pub const PDNS_SERVICE_RESOLVE_COMPLETE = fn (
     Status: u32,
     pQueryContext: ?*anyopaque,
     pInstance: ?*DNS_SERVICE_INSTANCE,
@@ -1286,7 +1285,7 @@ pub const DNS_SERVICE_RESOLVE_REQUEST = extern struct {
     pQueryContext: ?*anyopaque,
 };
 
-pub const PDNS_SERVICE_REGISTER_COMPLETE = fn(
+pub const PDNS_SERVICE_REGISTER_COMPLETE = fn (
     Status: u32,
     pQueryContext: ?*anyopaque,
     pInstance: ?*DNS_SERVICE_INSTANCE,
@@ -1310,7 +1309,7 @@ pub const MDNS_QUERY_HANDLE = extern struct {
     stateNameData: [2]u32,
 };
 
-pub const PMDNS_QUERY_CALLBACK = fn(
+pub const PMDNS_QUERY_CALLBACK = fn (
     pQueryContext: ?*anyopaque,
     pQueryHandle: ?*MDNS_QUERY_HANDLE,
     pQueryResults: ?*DNS_QUERY_RESULT,
@@ -1329,8 +1328,7 @@ pub const MDNS_QUERY_REQUEST = extern struct {
     ulResendCount: u32,
 };
 
-
-pub const IP6_ADDRESS = switch(@import("../zig.zig").arch) {
+pub const IP6_ADDRESS = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern union {
         IP6Qword: [2]u64,
         IP6Dword: [4]u32,
@@ -1747,7 +1745,6 @@ pub extern "dnsapi" fn DnsStopMulticastQuery(
     pHandle: ?*MDNS_QUERY_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (21)
 //--------------------------------------------------------------------------------
@@ -1800,27 +1797,27 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const DnsNameCompare_ = thismodule.DnsNameCompare_W;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const DNS_PTR_DATA = *opaque{};
-        pub const DNS_SOA_DATA = *opaque{};
-        pub const DNS_MINFO_DATA = *opaque{};
-        pub const DNS_MX_DATA = *opaque{};
-        pub const DNS_TXT_DATA = *opaque{};
-        pub const DNS_SIG_DATA = *opaque{};
-        pub const DNS_NSEC_DATA = *opaque{};
-        pub const DNS_NXT_DATA = *opaque{};
-        pub const DNS_SRV_DATA = *opaque{};
-        pub const DNS_NAPTR_DATA = *opaque{};
-        pub const DNS_TKEY_DATA = *opaque{};
-        pub const DNS_TSIG_DATA = *opaque{};
-        pub const DNS_WINSR_DATA = *opaque{};
-        pub const DNS_RECORD = *opaque{};
-        pub const _DnsRecordOpt = *opaque{};
-        pub const DnsQuery_ = *opaque{};
-        pub const DnsAcquireContextHandle_ = *opaque{};
-        pub const DnsModifyRecordsInSet_ = *opaque{};
-        pub const DnsReplaceRecordSet = *opaque{};
-        pub const DnsValidateName_ = *opaque{};
-        pub const DnsNameCompare_ = *opaque{};
+        pub const DNS_PTR_DATA = *opaque {};
+        pub const DNS_SOA_DATA = *opaque {};
+        pub const DNS_MINFO_DATA = *opaque {};
+        pub const DNS_MX_DATA = *opaque {};
+        pub const DNS_TXT_DATA = *opaque {};
+        pub const DNS_SIG_DATA = *opaque {};
+        pub const DNS_NSEC_DATA = *opaque {};
+        pub const DNS_NXT_DATA = *opaque {};
+        pub const DNS_SRV_DATA = *opaque {};
+        pub const DNS_NAPTR_DATA = *opaque {};
+        pub const DNS_TKEY_DATA = *opaque {};
+        pub const DNS_TSIG_DATA = *opaque {};
+        pub const DNS_WINSR_DATA = *opaque {};
+        pub const DNS_RECORD = *opaque {};
+        pub const _DnsRecordOpt = *opaque {};
+        pub const DnsQuery_ = *opaque {};
+        pub const DnsAcquireContextHandle_ = *opaque {};
+        pub const DnsModifyRecordsInSet_ = *opaque {};
+        pub const DnsReplaceRecordSet = *opaque {};
+        pub const DnsValidateName_ = *opaque {};
+        pub const DnsNameCompare_ = *opaque {};
     } else struct {
         pub const DNS_PTR_DATA = @compileError("'DNS_PTR_DATA' requires that UNICODE be set to true or false in the root module");
         pub const DNS_SOA_DATA = @compileError("'DNS_SOA_DATA' requires that UNICODE be set to true or false in the root module");
@@ -1856,16 +1853,26 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "DNS_PROXY_COMPLETION_ROUTINE")) { _ = DNS_PROXY_COMPLETION_ROUTINE; }
-    if (@hasDecl(@This(), "PDNS_QUERY_COMPLETION_ROUTINE")) { _ = PDNS_QUERY_COMPLETION_ROUTINE; }
-    if (@hasDecl(@This(), "PDNS_SERVICE_BROWSE_CALLBACK")) { _ = PDNS_SERVICE_BROWSE_CALLBACK; }
-    if (@hasDecl(@This(), "PDNS_SERVICE_RESOLVE_COMPLETE")) { _ = PDNS_SERVICE_RESOLVE_COMPLETE; }
-    if (@hasDecl(@This(), "PDNS_SERVICE_REGISTER_COMPLETE")) { _ = PDNS_SERVICE_REGISTER_COMPLETE; }
-    if (@hasDecl(@This(), "PMDNS_QUERY_CALLBACK")) { _ = PMDNS_QUERY_CALLBACK; }
+    if (@hasDecl(@This(), "DNS_PROXY_COMPLETION_ROUTINE")) {
+        _ = DNS_PROXY_COMPLETION_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PDNS_QUERY_COMPLETION_ROUTINE")) {
+        _ = PDNS_QUERY_COMPLETION_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PDNS_SERVICE_BROWSE_CALLBACK")) {
+        _ = PDNS_SERVICE_BROWSE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PDNS_SERVICE_RESOLVE_COMPLETE")) {
+        _ = PDNS_SERVICE_RESOLVE_COMPLETE;
+    }
+    if (@hasDecl(@This(), "PDNS_SERVICE_REGISTER_COMPLETE")) {
+        _ = PDNS_SERVICE_REGISTER_COMPLETE;
+    }
+    if (@hasDecl(@This(), "PMDNS_QUERY_CALLBACK")) {
+        _ = PMDNS_QUERY_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

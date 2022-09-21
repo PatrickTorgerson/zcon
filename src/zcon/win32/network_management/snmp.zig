@@ -310,28 +310,28 @@ pub const SnmpVarBindList = extern struct {
     len: u32,
 };
 
-pub const PFNSNMPEXTENSIONINIT = fn(
+pub const PFNSNMPEXTENSIONINIT = fn (
     dwUpTimeReference: u32,
     phSubagentTrapEvent: ?*?HANDLE,
     pFirstSupportedRegion: ?*AsnObjectIdentifier,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFNSNMPEXTENSIONINITEX = fn(
+pub const PFNSNMPEXTENSIONINITEX = fn (
     pNextSupportedRegion: ?*AsnObjectIdentifier,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFNSNMPEXTENSIONMONITOR = fn(
+pub const PFNSNMPEXTENSIONMONITOR = fn (
     pAgentMgmtData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFNSNMPEXTENSIONQUERY = fn(
+pub const PFNSNMPEXTENSIONQUERY = fn (
     bPduType: u8,
     pVarBindList: ?*SnmpVarBindList,
     pErrorStatus: ?*i32,
     pErrorIndex: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFNSNMPEXTENSIONQUERYEX = fn(
+pub const PFNSNMPEXTENSIONQUERYEX = fn (
     nRequestType: u32,
     nTransactionId: u32,
     pVarBindList: ?*SnmpVarBindList,
@@ -340,7 +340,7 @@ pub const PFNSNMPEXTENSIONQUERYEX = fn(
     pErrorIndex: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFNSNMPEXTENSIONTRAP = fn(
+pub const PFNSNMPEXTENSIONTRAP = fn (
     pEnterpriseOid: ?*AsnObjectIdentifier,
     pGenericTrapId: ?*i32,
     pSpecificTrapId: ?*i32,
@@ -348,8 +348,7 @@ pub const PFNSNMPEXTENSIONTRAP = fn(
     pVarBindList: ?*SnmpVarBindList,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFNSNMPEXTENSIONCLOSE = fn(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PFNSNMPEXTENSIONCLOSE = fn () callconv(@import("std").os.windows.WINAPI) void;
 
 pub const smiOCTETS = extern struct {
     len: u32,
@@ -386,7 +385,7 @@ pub const smiVENDORINFO = extern struct {
     vendorEnterprise: u32,
 };
 
-pub const SNMPAPI_CALLBACK = fn(
+pub const SNMPAPI_CALLBACK = fn (
     hSession: isize,
     hWnd: ?HWND,
     wMsg: u32,
@@ -395,7 +394,7 @@ pub const SNMPAPI_CALLBACK = fn(
     lpClientData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFNSNMPSTARTUPEX = fn(
+pub const PFNSNMPSTARTUPEX = fn (
     param0: ?*u32,
     param1: ?*u32,
     param2: ?*u32,
@@ -403,9 +402,7 @@ pub const PFNSNMPSTARTUPEX = fn(
     param4: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFNSNMPCLEANUPEX = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
+pub const PFNSNMPCLEANUPEX = fn () callconv(@import("std").os.windows.WINAPI) u32;
 
 //--------------------------------------------------------------------------------
 // Section: Functions (84)
@@ -535,8 +532,7 @@ pub extern "snmpapi" fn SnmpUtilPrintAsnAny(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "snmpapi" fn SnmpSvcGetUptime(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "snmpapi" fn SnmpSvcGetUptime() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpSvcSetLogLevel(
@@ -687,8 +683,7 @@ pub extern "wsnmp32" fn SnmpStartup(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "wsnmp32" fn SnmpCleanup(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "wsnmp32" fn SnmpCleanup() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpOpen(
@@ -765,8 +760,7 @@ pub extern "wsnmp32" fn SnmpStartupEx(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "wsnmp32" fn SnmpCleanupEx(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "wsnmp32" fn SnmpCleanupEx() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpStrToEntity(
@@ -953,19 +947,14 @@ pub extern "wsnmp32" fn SnmpFreeDescriptor(
     descriptor: ?*smiOCTETS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (8)
@@ -981,20 +970,38 @@ const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFNSNMPEXTENSIONINIT")) { _ = PFNSNMPEXTENSIONINIT; }
-    if (@hasDecl(@This(), "PFNSNMPEXTENSIONINITEX")) { _ = PFNSNMPEXTENSIONINITEX; }
-    if (@hasDecl(@This(), "PFNSNMPEXTENSIONMONITOR")) { _ = PFNSNMPEXTENSIONMONITOR; }
-    if (@hasDecl(@This(), "PFNSNMPEXTENSIONQUERY")) { _ = PFNSNMPEXTENSIONQUERY; }
-    if (@hasDecl(@This(), "PFNSNMPEXTENSIONQUERYEX")) { _ = PFNSNMPEXTENSIONQUERYEX; }
-    if (@hasDecl(@This(), "PFNSNMPEXTENSIONTRAP")) { _ = PFNSNMPEXTENSIONTRAP; }
-    if (@hasDecl(@This(), "PFNSNMPEXTENSIONCLOSE")) { _ = PFNSNMPEXTENSIONCLOSE; }
-    if (@hasDecl(@This(), "SNMPAPI_CALLBACK")) { _ = SNMPAPI_CALLBACK; }
-    if (@hasDecl(@This(), "PFNSNMPSTARTUPEX")) { _ = PFNSNMPSTARTUPEX; }
-    if (@hasDecl(@This(), "PFNSNMPCLEANUPEX")) { _ = PFNSNMPCLEANUPEX; }
+    if (@hasDecl(@This(), "PFNSNMPEXTENSIONINIT")) {
+        _ = PFNSNMPEXTENSIONINIT;
+    }
+    if (@hasDecl(@This(), "PFNSNMPEXTENSIONINITEX")) {
+        _ = PFNSNMPEXTENSIONINITEX;
+    }
+    if (@hasDecl(@This(), "PFNSNMPEXTENSIONMONITOR")) {
+        _ = PFNSNMPEXTENSIONMONITOR;
+    }
+    if (@hasDecl(@This(), "PFNSNMPEXTENSIONQUERY")) {
+        _ = PFNSNMPEXTENSIONQUERY;
+    }
+    if (@hasDecl(@This(), "PFNSNMPEXTENSIONQUERYEX")) {
+        _ = PFNSNMPEXTENSIONQUERYEX;
+    }
+    if (@hasDecl(@This(), "PFNSNMPEXTENSIONTRAP")) {
+        _ = PFNSNMPEXTENSIONTRAP;
+    }
+    if (@hasDecl(@This(), "PFNSNMPEXTENSIONCLOSE")) {
+        _ = PFNSNMPEXTENSIONCLOSE;
+    }
+    if (@hasDecl(@This(), "SNMPAPI_CALLBACK")) {
+        _ = SNMPAPI_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PFNSNMPSTARTUPEX")) {
+        _ = PFNSNMPSTARTUPEX;
+    }
+    if (@hasDecl(@This(), "PFNSNMPCLEANUPEX")) {
+        _ = PFNSNMPCLEANUPEX;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

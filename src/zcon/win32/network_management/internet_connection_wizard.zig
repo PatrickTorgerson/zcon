@@ -24,15 +24,14 @@ pub const ICW_USEDEFAULTS = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (2)
 //--------------------------------------------------------------------------------
-pub const PFNCHECKCONNECTIONWIZARD = fn(
+pub const PFNCHECKCONNECTIONWIZARD = fn (
     param0: u32,
     param1: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFNSETSHELLNEXT = fn(
+pub const PFNSETSHELLNEXT = fn (
     param0: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -43,13 +42,9 @@ pub const PFNSETSHELLNEXT = fn(
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (1)
@@ -58,12 +53,14 @@ const PSTR = @import("../foundation.zig").PSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFNCHECKCONNECTIONWIZARD")) { _ = PFNCHECKCONNECTIONWIZARD; }
-    if (@hasDecl(@This(), "PFNSETSHELLNEXT")) { _ = PFNSETSHELLNEXT; }
+    if (@hasDecl(@This(), "PFNCHECKCONNECTIONWIZARD")) {
+        _ = PFNCHECKCONNECTIONWIZARD;
+    }
+    if (@hasDecl(@This(), "PFNSETSHELLNEXT")) {
+        _ = PFNSETSHELLNEXT;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

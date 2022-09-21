@@ -287,9 +287,7 @@ pub const WS_XML_WRITER_PROPERTY_BYTES_TO_CLOSE = WS_XML_WRITER_PROPERTY_ID.BYTE
 pub const WS_XML_WRITER_PROPERTY_COMPRESS_EMPTY_ELEMENTS = WS_XML_WRITER_PROPERTY_ID.COMPRESS_EMPTY_ELEMENTS;
 pub const WS_XML_WRITER_PROPERTY_EMIT_UNCOMPRESSED_EMPTY_ELEMENTS = WS_XML_WRITER_PROPERTY_ID.EMIT_UNCOMPRESSED_EMPTY_ELEMENTS;
 
-pub const WS_XML_BUFFER_PROPERTY_ID = enum(i32) {
-    _
-};
+pub const WS_XML_BUFFER_PROPERTY_ID = enum(i32) { _ };
 
 pub const WS_XML_TEXT_TYPE = enum(i32) {
     UTF8 = 1,
@@ -1030,9 +1028,7 @@ pub const WS_SECURITY_HEADER_LAYOUT_LAX = WS_SECURITY_HEADER_LAYOUT.LAX;
 pub const WS_SECURITY_HEADER_LAYOUT_LAX_WITH_TIMESTAMP_FIRST = WS_SECURITY_HEADER_LAYOUT.LAX_WITH_TIMESTAMP_FIRST;
 pub const WS_SECURITY_HEADER_LAYOUT_LAX_WITH_TIMESTAMP_LAST = WS_SECURITY_HEADER_LAYOUT.LAX_WITH_TIMESTAMP_LAST;
 
-pub const WS_SECURITY_ALGORITHM_PROPERTY_ID = enum(i32) {
-    _
-};
+pub const WS_SECURITY_ALGORITHM_PROPERTY_ID = enum(i32) { _ };
 
 pub const WS_SECURITY_ALGORITHM_ID = enum(i32) {
     DEFAULT = 0,
@@ -2146,7 +2142,7 @@ pub const WS_HTTP_SSL_KERBEROS_APREQ_SECURITY_CONTEXT_BINDING_TEMPLATE_TYPE = WS
 pub const WS_TCP_SSPI_USERNAME_SECURITY_CONTEXT_BINDING_TEMPLATE_TYPE = WS_BINDING_TEMPLATE_TYPE.TCP_SSPI_USERNAME_SECURITY_CONTEXT_BINDING_TEMPLATE_TYPE;
 pub const WS_TCP_SSPI_KERBEROS_APREQ_SECURITY_CONTEXT_BINDING_TEMPLATE_TYPE = WS_BINDING_TEMPLATE_TYPE.TCP_SSPI_KERBEROS_APREQ_SECURITY_CONTEXT_BINDING_TEMPLATE_TYPE;
 
-pub const WS_READ_CALLBACK = fn(
+pub const WS_READ_CALLBACK = fn (
     callbackState: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 2?
     bytes: ?*anyopaque,
@@ -2156,7 +2152,7 @@ pub const WS_READ_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_WRITE_CALLBACK = fn(
+pub const WS_WRITE_CALLBACK = fn (
     callbackState: ?*anyopaque,
     buffers: [*]const WS_BYTES,
     count: u32,
@@ -2164,7 +2160,7 @@ pub const WS_WRITE_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_PUSH_BYTES_CALLBACK = fn(
+pub const WS_PUSH_BYTES_CALLBACK = fn (
     callbackState: ?*anyopaque,
     writeCallback: ?WS_WRITE_CALLBACK,
     writeCallbackState: ?*anyopaque,
@@ -2172,7 +2168,7 @@ pub const WS_PUSH_BYTES_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_PULL_BYTES_CALLBACK = fn(
+pub const WS_PULL_BYTES_CALLBACK = fn (
     callbackState: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 2?
     bytes: ?*anyopaque,
@@ -2182,7 +2178,7 @@ pub const WS_PULL_BYTES_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_DYNAMIC_STRING_CALLBACK = fn(
+pub const WS_DYNAMIC_STRING_CALLBACK = fn (
     callbackState: ?*anyopaque,
     string: ?*const WS_XML_STRING,
     found: ?*BOOL,
@@ -2190,13 +2186,13 @@ pub const WS_DYNAMIC_STRING_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_ASYNC_CALLBACK = fn(
+pub const WS_ASYNC_CALLBACK = fn (
     errorCode: HRESULT,
     callbackModel: WS_CALLBACK_MODEL,
     callbackState: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WS_ASYNC_FUNCTION = fn(
+pub const WS_ASYNC_FUNCTION = fn (
     hr: HRESULT,
     callbackModel: WS_CALLBACK_MODEL,
     callbackState: ?*anyopaque,
@@ -2205,7 +2201,7 @@ pub const WS_ASYNC_FUNCTION = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_CREATE_CHANNEL_CALLBACK = fn(
+pub const WS_CREATE_CHANNEL_CALLBACK = fn (
     channelType: WS_CHANNEL_TYPE,
     // TODO: what to do with BytesParamIndex 2?
     channelParameters: ?*const anyopaque,
@@ -2214,34 +2210,34 @@ pub const WS_CREATE_CHANNEL_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_FREE_CHANNEL_CALLBACK = fn(
+pub const WS_FREE_CHANNEL_CALLBACK = fn (
     channelInstance: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WS_RESET_CHANNEL_CALLBACK = fn(
+pub const WS_RESET_CHANNEL_CALLBACK = fn (
     channelInstance: ?*anyopaque,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_ABORT_CHANNEL_CALLBACK = fn(
+pub const WS_ABORT_CHANNEL_CALLBACK = fn (
     channelInstance: ?*anyopaque,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_OPEN_CHANNEL_CALLBACK = fn(
+pub const WS_OPEN_CHANNEL_CALLBACK = fn (
     channelInstance: ?*anyopaque,
     endpointAddress: ?*const WS_ENDPOINT_ADDRESS,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_CLOSE_CHANNEL_CALLBACK = fn(
+pub const WS_CLOSE_CHANNEL_CALLBACK = fn (
     channelInstance: ?*anyopaque,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_SET_CHANNEL_PROPERTY_CALLBACK = fn(
+pub const WS_SET_CHANNEL_PROPERTY_CALLBACK = fn (
     channelInstance: ?*anyopaque,
     id: WS_CHANNEL_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
@@ -2250,7 +2246,7 @@ pub const WS_SET_CHANNEL_PROPERTY_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_GET_CHANNEL_PROPERTY_CALLBACK = fn(
+pub const WS_GET_CHANNEL_PROPERTY_CALLBACK = fn (
     channelInstance: ?*anyopaque,
     id: WS_CHANNEL_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
@@ -2259,47 +2255,47 @@ pub const WS_GET_CHANNEL_PROPERTY_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_READ_MESSAGE_START_CALLBACK = fn(
+pub const WS_READ_MESSAGE_START_CALLBACK = fn (
     channelInstance: ?*anyopaque,
     message: ?*WS_MESSAGE,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_READ_MESSAGE_END_CALLBACK = fn(
+pub const WS_READ_MESSAGE_END_CALLBACK = fn (
     channelInstance: ?*anyopaque,
     message: ?*WS_MESSAGE,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_WRITE_MESSAGE_START_CALLBACK = fn(
+pub const WS_WRITE_MESSAGE_START_CALLBACK = fn (
     channelInstance: ?*anyopaque,
     message: ?*WS_MESSAGE,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_WRITE_MESSAGE_END_CALLBACK = fn(
+pub const WS_WRITE_MESSAGE_END_CALLBACK = fn (
     channelInstance: ?*anyopaque,
     message: ?*WS_MESSAGE,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_ABANDON_MESSAGE_CALLBACK = fn(
+pub const WS_ABANDON_MESSAGE_CALLBACK = fn (
     channelInstance: ?*anyopaque,
     message: ?*WS_MESSAGE,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_SHUTDOWN_SESSION_CHANNEL_CALLBACK = fn(
+pub const WS_SHUTDOWN_SESSION_CHANNEL_CALLBACK = fn (
     channelInstance: ?*anyopaque,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_CREATE_ENCODER_CALLBACK = fn(
+pub const WS_CREATE_ENCODER_CALLBACK = fn (
     createContext: ?*anyopaque,
     writeCallback: ?WS_WRITE_CALLBACK,
     writeContext: ?*anyopaque,
@@ -2307,7 +2303,7 @@ pub const WS_CREATE_ENCODER_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_ENCODER_GET_CONTENT_TYPE_CALLBACK = fn(
+pub const WS_ENCODER_GET_CONTENT_TYPE_CALLBACK = fn (
     encoderContext: ?*anyopaque,
     contentType: ?*const WS_STRING,
     newContentType: ?*WS_STRING,
@@ -2315,13 +2311,13 @@ pub const WS_ENCODER_GET_CONTENT_TYPE_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_ENCODER_START_CALLBACK = fn(
+pub const WS_ENCODER_START_CALLBACK = fn (
     encoderContext: ?*anyopaque,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_ENCODER_ENCODE_CALLBACK = fn(
+pub const WS_ENCODER_ENCODE_CALLBACK = fn (
     encoderContext: ?*anyopaque,
     buffers: [*]const WS_BYTES,
     count: u32,
@@ -2329,17 +2325,17 @@ pub const WS_ENCODER_ENCODE_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_ENCODER_END_CALLBACK = fn(
+pub const WS_ENCODER_END_CALLBACK = fn (
     encoderContext: ?*anyopaque,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_FREE_ENCODER_CALLBACK = fn(
+pub const WS_FREE_ENCODER_CALLBACK = fn (
     encoderContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WS_CREATE_DECODER_CALLBACK = fn(
+pub const WS_CREATE_DECODER_CALLBACK = fn (
     createContext: ?*anyopaque,
     readCallback: ?WS_READ_CALLBACK,
     readContext: ?*anyopaque,
@@ -2347,7 +2343,7 @@ pub const WS_CREATE_DECODER_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_DECODER_GET_CONTENT_TYPE_CALLBACK = fn(
+pub const WS_DECODER_GET_CONTENT_TYPE_CALLBACK = fn (
     decoderContext: ?*anyopaque,
     contentType: ?*const WS_STRING,
     contentEncoding: ?*const WS_STRING,
@@ -2355,13 +2351,13 @@ pub const WS_DECODER_GET_CONTENT_TYPE_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_DECODER_START_CALLBACK = fn(
+pub const WS_DECODER_START_CALLBACK = fn (
     encoderContext: ?*anyopaque,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_DECODER_DECODE_CALLBACK = fn(
+pub const WS_DECODER_DECODE_CALLBACK = fn (
     encoderContext: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 2?
     buffer: ?*anyopaque,
@@ -2371,23 +2367,23 @@ pub const WS_DECODER_DECODE_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_DECODER_END_CALLBACK = fn(
+pub const WS_DECODER_END_CALLBACK = fn (
     encoderContext: ?*anyopaque,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_FREE_DECODER_CALLBACK = fn(
+pub const WS_FREE_DECODER_CALLBACK = fn (
     decoderContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WS_HTTP_REDIRECT_CALLBACK = fn(
+pub const WS_HTTP_REDIRECT_CALLBACK = fn (
     state: ?*anyopaque,
     originalUrl: ?*const WS_STRING,
     newUrl: ?*const WS_STRING,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_CREATE_LISTENER_CALLBACK = fn(
+pub const WS_CREATE_LISTENER_CALLBACK = fn (
     channelType: WS_CHANNEL_TYPE,
     // TODO: what to do with BytesParamIndex 2?
     listenerParameters: ?*const anyopaque,
@@ -2396,29 +2392,29 @@ pub const WS_CREATE_LISTENER_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_FREE_LISTENER_CALLBACK = fn(
+pub const WS_FREE_LISTENER_CALLBACK = fn (
     listenerInstance: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WS_RESET_LISTENER_CALLBACK = fn(
+pub const WS_RESET_LISTENER_CALLBACK = fn (
     listenerInstance: ?*anyopaque,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_OPEN_LISTENER_CALLBACK = fn(
+pub const WS_OPEN_LISTENER_CALLBACK = fn (
     listenerInstance: ?*anyopaque,
     url: ?*const WS_STRING,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_CLOSE_LISTENER_CALLBACK = fn(
+pub const WS_CLOSE_LISTENER_CALLBACK = fn (
     listenerInstance: ?*anyopaque,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_GET_LISTENER_PROPERTY_CALLBACK = fn(
+pub const WS_GET_LISTENER_PROPERTY_CALLBACK = fn (
     listenerInstance: ?*anyopaque,
     id: WS_LISTENER_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
@@ -2427,7 +2423,7 @@ pub const WS_GET_LISTENER_PROPERTY_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_SET_LISTENER_PROPERTY_CALLBACK = fn(
+pub const WS_SET_LISTENER_PROPERTY_CALLBACK = fn (
     listenerInstance: ?*anyopaque,
     id: WS_LISTENER_PROPERTY_ID,
     // TODO: what to do with BytesParamIndex 3?
@@ -2436,19 +2432,19 @@ pub const WS_SET_LISTENER_PROPERTY_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_ACCEPT_CHANNEL_CALLBACK = fn(
+pub const WS_ACCEPT_CHANNEL_CALLBACK = fn (
     listenerInstance: ?*anyopaque,
     channelInstance: ?*anyopaque,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_ABORT_LISTENER_CALLBACK = fn(
+pub const WS_ABORT_LISTENER_CALLBACK = fn (
     listenerInstance: ?*anyopaque,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_CREATE_CHANNEL_FOR_LISTENER_CALLBACK = fn(
+pub const WS_CREATE_CHANNEL_FOR_LISTENER_CALLBACK = fn (
     listenerInstance: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 2?
     channelParameters: ?*const anyopaque,
@@ -2457,16 +2453,16 @@ pub const WS_CREATE_CHANNEL_FOR_LISTENER_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_MESSAGE_DONE_CALLBACK = fn(
+pub const WS_MESSAGE_DONE_CALLBACK = fn (
     doneCallbackState: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WS_CERTIFICATE_VALIDATION_CALLBACK = fn(
+pub const WS_CERTIFICATE_VALIDATION_CALLBACK = fn (
     certContext: ?*const CERT_CONTEXT,
     state: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_GET_CERT_CALLBACK = fn(
+pub const WS_GET_CERT_CALLBACK = fn (
     getCertCallbackState: ?*anyopaque,
     targetAddress: ?*const WS_ENDPOINT_ADDRESS,
     viaUri: ?*const WS_STRING,
@@ -2474,13 +2470,13 @@ pub const WS_GET_CERT_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_CERT_ISSUER_LIST_NOTIFICATION_CALLBACK = fn(
+pub const WS_CERT_ISSUER_LIST_NOTIFICATION_CALLBACK = fn (
     certIssuerListNotificationCallbackState: ?*anyopaque,
     issuerList: ?*const SecPkgContext_IssuerListInfoEx,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_VALIDATE_PASSWORD_CALLBACK = fn(
+pub const WS_VALIDATE_PASSWORD_CALLBACK = fn (
     passwordValidatorCallbackState: ?*anyopaque,
     username: ?*const WS_STRING,
     password: ?*const WS_STRING,
@@ -2488,20 +2484,20 @@ pub const WS_VALIDATE_PASSWORD_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_VALIDATE_SAML_CALLBACK = fn(
+pub const WS_VALIDATE_SAML_CALLBACK = fn (
     samlValidatorCallbackState: ?*anyopaque,
     samlAssertion: ?*WS_XML_BUFFER,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_DURATION_COMPARISON_CALLBACK = fn(
+pub const WS_DURATION_COMPARISON_CALLBACK = fn (
     duration1: ?*const WS_DURATION,
     duration2: ?*const WS_DURATION,
     result: ?*i32,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_READ_TYPE_CALLBACK = fn(
+pub const WS_READ_TYPE_CALLBACK = fn (
     reader: ?*WS_XML_READER,
     typeMapping: WS_TYPE_MAPPING,
     descriptionData: ?*const anyopaque,
@@ -2512,7 +2508,7 @@ pub const WS_READ_TYPE_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_WRITE_TYPE_CALLBACK = fn(
+pub const WS_WRITE_TYPE_CALLBACK = fn (
     writer: ?*WS_XML_WRITER,
     typeMapping: WS_TYPE_MAPPING,
     descriptionData: ?*const anyopaque,
@@ -2522,7 +2518,7 @@ pub const WS_WRITE_TYPE_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_IS_DEFAULT_VALUE_CALLBACK = fn(
+pub const WS_IS_DEFAULT_VALUE_CALLBACK = fn (
     descriptionData: ?*const anyopaque,
     // TODO: what to do with BytesParamIndex 3?
     value: ?*const anyopaque,
@@ -2533,22 +2529,22 @@ pub const WS_IS_DEFAULT_VALUE_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_SERVICE_MESSAGE_RECEIVE_CALLBACK = fn(
+pub const WS_SERVICE_MESSAGE_RECEIVE_CALLBACK = fn (
     context: ?*const WS_OPERATION_CONTEXT,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_OPERATION_CANCEL_CALLBACK = fn(
+pub const WS_OPERATION_CANCEL_CALLBACK = fn (
     reason: WS_SERVICE_CANCEL_REASON,
     state: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WS_OPERATION_FREE_STATE_CALLBACK = fn(
+pub const WS_OPERATION_FREE_STATE_CALLBACK = fn (
     state: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WS_SERVICE_STUB_CALLBACK = fn(
+pub const WS_SERVICE_STUB_CALLBACK = fn (
     context: ?*const WS_OPERATION_CONTEXT,
     frame: ?*anyopaque,
     callback: ?*const anyopaque,
@@ -2556,25 +2552,25 @@ pub const WS_SERVICE_STUB_CALLBACK = fn(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_SERVICE_ACCEPT_CHANNEL_CALLBACK = fn(
+pub const WS_SERVICE_ACCEPT_CHANNEL_CALLBACK = fn (
     context: ?*const WS_OPERATION_CONTEXT,
     channelState: ?*?*anyopaque,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_SERVICE_CLOSE_CHANNEL_CALLBACK = fn(
+pub const WS_SERVICE_CLOSE_CHANNEL_CALLBACK = fn (
     context: ?*const WS_OPERATION_CONTEXT,
     asyncContext: ?*const WS_ASYNC_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_SERVICE_SECURITY_CALLBACK = fn(
+pub const WS_SERVICE_SECURITY_CALLBACK = fn (
     context: ?*const WS_OPERATION_CONTEXT,
     authorized: ?*BOOL,
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_PROXY_MESSAGE_CALLBACK = fn(
+pub const WS_PROXY_MESSAGE_CALLBACK = fn (
     message: ?*WS_MESSAGE,
     heap: ?*WS_HEAP,
     state: ?*anyopaque,
@@ -4145,28 +4141,30 @@ pub const IID_IContentPrefetcherTaskTrigger = &IID_IContentPrefetcherTaskTrigger
 pub const IContentPrefetcherTaskTrigger = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        TriggerContentPrefetcherTask: fn(
+        TriggerContentPrefetcherTask: fn (
             self: *const IContentPrefetcherTaskTrigger,
             packageFullName: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsRegisteredForContentPrefetch: fn(
+        IsRegisteredForContentPrefetch: fn (
             self: *const IContentPrefetcherTaskTrigger,
             packageFullName: ?[*:0]const u16,
             isRegistered: ?*u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContentPrefetcherTaskTrigger_TriggerContentPrefetcherTask(self: *const T, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContentPrefetcherTaskTrigger.VTable, self.vtable).TriggerContentPrefetcherTask(@ptrCast(*const IContentPrefetcherTaskTrigger, self), packageFullName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContentPrefetcherTaskTrigger_IsRegisteredForContentPrefetch(self: *const T, packageFullName: ?[*:0]const u16, isRegistered: ?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContentPrefetcherTaskTrigger.VTable, self.vtable).IsRegisteredForContentPrefetch(@ptrCast(*const IContentPrefetcherTaskTrigger, self), packageFullName, isRegistered);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IInspectable.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContentPrefetcherTaskTrigger_TriggerContentPrefetcherTask(self: *const T, packageFullName: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContentPrefetcherTaskTrigger.VTable, self.vtable).TriggerContentPrefetcherTask(@ptrCast(*const IContentPrefetcherTaskTrigger, self), packageFullName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContentPrefetcherTaskTrigger_IsRegisteredForContentPrefetch(self: *const T, packageFullName: ?[*:0]const u16, isRegistered: ?*u8) HRESULT {
+                return @ptrCast(*const IContentPrefetcherTaskTrigger.VTable, self.vtable).IsRegisteredForContentPrefetch(@ptrCast(*const IContentPrefetcherTaskTrigger, self), packageFullName, isRegistered);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4338,7 +4336,6 @@ pub const WEBAUTHN_ASSERTION = extern struct {
     pbCredLargeBlob: ?*u8,
     dwCredLargeBlobStatus: u32,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (203)
@@ -6021,8 +6018,7 @@ pub extern "webservices" fn WsCreateServiceEndpointFromTemplate(
     @"error": ?*WS_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "webauthn" fn WebAuthNGetApiVersionNumber(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "webauthn" fn WebAuthNGetApiVersionNumber() callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "webauthn" fn WebAuthNIsUserVerifyingPlatformAuthenticatorAvailable(
     pbIsUserVerifyingPlatformAuthenticatorAvailable: ?*BOOL,
@@ -6070,19 +6066,14 @@ pub extern "webauthn" fn WebAuthNGetW3CExceptionDOMError(
     hr: HRESULT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (11)
@@ -6101,72 +6092,194 @@ const SecPkgContext_IssuerListInfoEx = @import("../security/authentication/ident
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "WS_READ_CALLBACK")) { _ = WS_READ_CALLBACK; }
-    if (@hasDecl(@This(), "WS_WRITE_CALLBACK")) { _ = WS_WRITE_CALLBACK; }
-    if (@hasDecl(@This(), "WS_PUSH_BYTES_CALLBACK")) { _ = WS_PUSH_BYTES_CALLBACK; }
-    if (@hasDecl(@This(), "WS_PULL_BYTES_CALLBACK")) { _ = WS_PULL_BYTES_CALLBACK; }
-    if (@hasDecl(@This(), "WS_DYNAMIC_STRING_CALLBACK")) { _ = WS_DYNAMIC_STRING_CALLBACK; }
-    if (@hasDecl(@This(), "WS_ASYNC_CALLBACK")) { _ = WS_ASYNC_CALLBACK; }
-    if (@hasDecl(@This(), "WS_ASYNC_FUNCTION")) { _ = WS_ASYNC_FUNCTION; }
-    if (@hasDecl(@This(), "WS_CREATE_CHANNEL_CALLBACK")) { _ = WS_CREATE_CHANNEL_CALLBACK; }
-    if (@hasDecl(@This(), "WS_FREE_CHANNEL_CALLBACK")) { _ = WS_FREE_CHANNEL_CALLBACK; }
-    if (@hasDecl(@This(), "WS_RESET_CHANNEL_CALLBACK")) { _ = WS_RESET_CHANNEL_CALLBACK; }
-    if (@hasDecl(@This(), "WS_ABORT_CHANNEL_CALLBACK")) { _ = WS_ABORT_CHANNEL_CALLBACK; }
-    if (@hasDecl(@This(), "WS_OPEN_CHANNEL_CALLBACK")) { _ = WS_OPEN_CHANNEL_CALLBACK; }
-    if (@hasDecl(@This(), "WS_CLOSE_CHANNEL_CALLBACK")) { _ = WS_CLOSE_CHANNEL_CALLBACK; }
-    if (@hasDecl(@This(), "WS_SET_CHANNEL_PROPERTY_CALLBACK")) { _ = WS_SET_CHANNEL_PROPERTY_CALLBACK; }
-    if (@hasDecl(@This(), "WS_GET_CHANNEL_PROPERTY_CALLBACK")) { _ = WS_GET_CHANNEL_PROPERTY_CALLBACK; }
-    if (@hasDecl(@This(), "WS_READ_MESSAGE_START_CALLBACK")) { _ = WS_READ_MESSAGE_START_CALLBACK; }
-    if (@hasDecl(@This(), "WS_READ_MESSAGE_END_CALLBACK")) { _ = WS_READ_MESSAGE_END_CALLBACK; }
-    if (@hasDecl(@This(), "WS_WRITE_MESSAGE_START_CALLBACK")) { _ = WS_WRITE_MESSAGE_START_CALLBACK; }
-    if (@hasDecl(@This(), "WS_WRITE_MESSAGE_END_CALLBACK")) { _ = WS_WRITE_MESSAGE_END_CALLBACK; }
-    if (@hasDecl(@This(), "WS_ABANDON_MESSAGE_CALLBACK")) { _ = WS_ABANDON_MESSAGE_CALLBACK; }
-    if (@hasDecl(@This(), "WS_SHUTDOWN_SESSION_CHANNEL_CALLBACK")) { _ = WS_SHUTDOWN_SESSION_CHANNEL_CALLBACK; }
-    if (@hasDecl(@This(), "WS_CREATE_ENCODER_CALLBACK")) { _ = WS_CREATE_ENCODER_CALLBACK; }
-    if (@hasDecl(@This(), "WS_ENCODER_GET_CONTENT_TYPE_CALLBACK")) { _ = WS_ENCODER_GET_CONTENT_TYPE_CALLBACK; }
-    if (@hasDecl(@This(), "WS_ENCODER_START_CALLBACK")) { _ = WS_ENCODER_START_CALLBACK; }
-    if (@hasDecl(@This(), "WS_ENCODER_ENCODE_CALLBACK")) { _ = WS_ENCODER_ENCODE_CALLBACK; }
-    if (@hasDecl(@This(), "WS_ENCODER_END_CALLBACK")) { _ = WS_ENCODER_END_CALLBACK; }
-    if (@hasDecl(@This(), "WS_FREE_ENCODER_CALLBACK")) { _ = WS_FREE_ENCODER_CALLBACK; }
-    if (@hasDecl(@This(), "WS_CREATE_DECODER_CALLBACK")) { _ = WS_CREATE_DECODER_CALLBACK; }
-    if (@hasDecl(@This(), "WS_DECODER_GET_CONTENT_TYPE_CALLBACK")) { _ = WS_DECODER_GET_CONTENT_TYPE_CALLBACK; }
-    if (@hasDecl(@This(), "WS_DECODER_START_CALLBACK")) { _ = WS_DECODER_START_CALLBACK; }
-    if (@hasDecl(@This(), "WS_DECODER_DECODE_CALLBACK")) { _ = WS_DECODER_DECODE_CALLBACK; }
-    if (@hasDecl(@This(), "WS_DECODER_END_CALLBACK")) { _ = WS_DECODER_END_CALLBACK; }
-    if (@hasDecl(@This(), "WS_FREE_DECODER_CALLBACK")) { _ = WS_FREE_DECODER_CALLBACK; }
-    if (@hasDecl(@This(), "WS_HTTP_REDIRECT_CALLBACK")) { _ = WS_HTTP_REDIRECT_CALLBACK; }
-    if (@hasDecl(@This(), "WS_CREATE_LISTENER_CALLBACK")) { _ = WS_CREATE_LISTENER_CALLBACK; }
-    if (@hasDecl(@This(), "WS_FREE_LISTENER_CALLBACK")) { _ = WS_FREE_LISTENER_CALLBACK; }
-    if (@hasDecl(@This(), "WS_RESET_LISTENER_CALLBACK")) { _ = WS_RESET_LISTENER_CALLBACK; }
-    if (@hasDecl(@This(), "WS_OPEN_LISTENER_CALLBACK")) { _ = WS_OPEN_LISTENER_CALLBACK; }
-    if (@hasDecl(@This(), "WS_CLOSE_LISTENER_CALLBACK")) { _ = WS_CLOSE_LISTENER_CALLBACK; }
-    if (@hasDecl(@This(), "WS_GET_LISTENER_PROPERTY_CALLBACK")) { _ = WS_GET_LISTENER_PROPERTY_CALLBACK; }
-    if (@hasDecl(@This(), "WS_SET_LISTENER_PROPERTY_CALLBACK")) { _ = WS_SET_LISTENER_PROPERTY_CALLBACK; }
-    if (@hasDecl(@This(), "WS_ACCEPT_CHANNEL_CALLBACK")) { _ = WS_ACCEPT_CHANNEL_CALLBACK; }
-    if (@hasDecl(@This(), "WS_ABORT_LISTENER_CALLBACK")) { _ = WS_ABORT_LISTENER_CALLBACK; }
-    if (@hasDecl(@This(), "WS_CREATE_CHANNEL_FOR_LISTENER_CALLBACK")) { _ = WS_CREATE_CHANNEL_FOR_LISTENER_CALLBACK; }
-    if (@hasDecl(@This(), "WS_MESSAGE_DONE_CALLBACK")) { _ = WS_MESSAGE_DONE_CALLBACK; }
-    if (@hasDecl(@This(), "WS_CERTIFICATE_VALIDATION_CALLBACK")) { _ = WS_CERTIFICATE_VALIDATION_CALLBACK; }
-    if (@hasDecl(@This(), "WS_GET_CERT_CALLBACK")) { _ = WS_GET_CERT_CALLBACK; }
-    if (@hasDecl(@This(), "WS_CERT_ISSUER_LIST_NOTIFICATION_CALLBACK")) { _ = WS_CERT_ISSUER_LIST_NOTIFICATION_CALLBACK; }
-    if (@hasDecl(@This(), "WS_VALIDATE_PASSWORD_CALLBACK")) { _ = WS_VALIDATE_PASSWORD_CALLBACK; }
-    if (@hasDecl(@This(), "WS_VALIDATE_SAML_CALLBACK")) { _ = WS_VALIDATE_SAML_CALLBACK; }
-    if (@hasDecl(@This(), "WS_DURATION_COMPARISON_CALLBACK")) { _ = WS_DURATION_COMPARISON_CALLBACK; }
-    if (@hasDecl(@This(), "WS_READ_TYPE_CALLBACK")) { _ = WS_READ_TYPE_CALLBACK; }
-    if (@hasDecl(@This(), "WS_WRITE_TYPE_CALLBACK")) { _ = WS_WRITE_TYPE_CALLBACK; }
-    if (@hasDecl(@This(), "WS_IS_DEFAULT_VALUE_CALLBACK")) { _ = WS_IS_DEFAULT_VALUE_CALLBACK; }
-    if (@hasDecl(@This(), "WS_SERVICE_MESSAGE_RECEIVE_CALLBACK")) { _ = WS_SERVICE_MESSAGE_RECEIVE_CALLBACK; }
-    if (@hasDecl(@This(), "WS_OPERATION_CANCEL_CALLBACK")) { _ = WS_OPERATION_CANCEL_CALLBACK; }
-    if (@hasDecl(@This(), "WS_OPERATION_FREE_STATE_CALLBACK")) { _ = WS_OPERATION_FREE_STATE_CALLBACK; }
-    if (@hasDecl(@This(), "WS_SERVICE_STUB_CALLBACK")) { _ = WS_SERVICE_STUB_CALLBACK; }
-    if (@hasDecl(@This(), "WS_SERVICE_ACCEPT_CHANNEL_CALLBACK")) { _ = WS_SERVICE_ACCEPT_CHANNEL_CALLBACK; }
-    if (@hasDecl(@This(), "WS_SERVICE_CLOSE_CHANNEL_CALLBACK")) { _ = WS_SERVICE_CLOSE_CHANNEL_CALLBACK; }
-    if (@hasDecl(@This(), "WS_SERVICE_SECURITY_CALLBACK")) { _ = WS_SERVICE_SECURITY_CALLBACK; }
-    if (@hasDecl(@This(), "WS_PROXY_MESSAGE_CALLBACK")) { _ = WS_PROXY_MESSAGE_CALLBACK; }
+    if (@hasDecl(@This(), "WS_READ_CALLBACK")) {
+        _ = WS_READ_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_WRITE_CALLBACK")) {
+        _ = WS_WRITE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_PUSH_BYTES_CALLBACK")) {
+        _ = WS_PUSH_BYTES_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_PULL_BYTES_CALLBACK")) {
+        _ = WS_PULL_BYTES_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_DYNAMIC_STRING_CALLBACK")) {
+        _ = WS_DYNAMIC_STRING_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_ASYNC_CALLBACK")) {
+        _ = WS_ASYNC_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_ASYNC_FUNCTION")) {
+        _ = WS_ASYNC_FUNCTION;
+    }
+    if (@hasDecl(@This(), "WS_CREATE_CHANNEL_CALLBACK")) {
+        _ = WS_CREATE_CHANNEL_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_FREE_CHANNEL_CALLBACK")) {
+        _ = WS_FREE_CHANNEL_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_RESET_CHANNEL_CALLBACK")) {
+        _ = WS_RESET_CHANNEL_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_ABORT_CHANNEL_CALLBACK")) {
+        _ = WS_ABORT_CHANNEL_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_OPEN_CHANNEL_CALLBACK")) {
+        _ = WS_OPEN_CHANNEL_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_CLOSE_CHANNEL_CALLBACK")) {
+        _ = WS_CLOSE_CHANNEL_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_SET_CHANNEL_PROPERTY_CALLBACK")) {
+        _ = WS_SET_CHANNEL_PROPERTY_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_GET_CHANNEL_PROPERTY_CALLBACK")) {
+        _ = WS_GET_CHANNEL_PROPERTY_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_READ_MESSAGE_START_CALLBACK")) {
+        _ = WS_READ_MESSAGE_START_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_READ_MESSAGE_END_CALLBACK")) {
+        _ = WS_READ_MESSAGE_END_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_WRITE_MESSAGE_START_CALLBACK")) {
+        _ = WS_WRITE_MESSAGE_START_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_WRITE_MESSAGE_END_CALLBACK")) {
+        _ = WS_WRITE_MESSAGE_END_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_ABANDON_MESSAGE_CALLBACK")) {
+        _ = WS_ABANDON_MESSAGE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_SHUTDOWN_SESSION_CHANNEL_CALLBACK")) {
+        _ = WS_SHUTDOWN_SESSION_CHANNEL_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_CREATE_ENCODER_CALLBACK")) {
+        _ = WS_CREATE_ENCODER_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_ENCODER_GET_CONTENT_TYPE_CALLBACK")) {
+        _ = WS_ENCODER_GET_CONTENT_TYPE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_ENCODER_START_CALLBACK")) {
+        _ = WS_ENCODER_START_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_ENCODER_ENCODE_CALLBACK")) {
+        _ = WS_ENCODER_ENCODE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_ENCODER_END_CALLBACK")) {
+        _ = WS_ENCODER_END_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_FREE_ENCODER_CALLBACK")) {
+        _ = WS_FREE_ENCODER_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_CREATE_DECODER_CALLBACK")) {
+        _ = WS_CREATE_DECODER_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_DECODER_GET_CONTENT_TYPE_CALLBACK")) {
+        _ = WS_DECODER_GET_CONTENT_TYPE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_DECODER_START_CALLBACK")) {
+        _ = WS_DECODER_START_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_DECODER_DECODE_CALLBACK")) {
+        _ = WS_DECODER_DECODE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_DECODER_END_CALLBACK")) {
+        _ = WS_DECODER_END_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_FREE_DECODER_CALLBACK")) {
+        _ = WS_FREE_DECODER_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_HTTP_REDIRECT_CALLBACK")) {
+        _ = WS_HTTP_REDIRECT_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_CREATE_LISTENER_CALLBACK")) {
+        _ = WS_CREATE_LISTENER_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_FREE_LISTENER_CALLBACK")) {
+        _ = WS_FREE_LISTENER_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_RESET_LISTENER_CALLBACK")) {
+        _ = WS_RESET_LISTENER_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_OPEN_LISTENER_CALLBACK")) {
+        _ = WS_OPEN_LISTENER_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_CLOSE_LISTENER_CALLBACK")) {
+        _ = WS_CLOSE_LISTENER_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_GET_LISTENER_PROPERTY_CALLBACK")) {
+        _ = WS_GET_LISTENER_PROPERTY_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_SET_LISTENER_PROPERTY_CALLBACK")) {
+        _ = WS_SET_LISTENER_PROPERTY_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_ACCEPT_CHANNEL_CALLBACK")) {
+        _ = WS_ACCEPT_CHANNEL_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_ABORT_LISTENER_CALLBACK")) {
+        _ = WS_ABORT_LISTENER_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_CREATE_CHANNEL_FOR_LISTENER_CALLBACK")) {
+        _ = WS_CREATE_CHANNEL_FOR_LISTENER_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_MESSAGE_DONE_CALLBACK")) {
+        _ = WS_MESSAGE_DONE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_CERTIFICATE_VALIDATION_CALLBACK")) {
+        _ = WS_CERTIFICATE_VALIDATION_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_GET_CERT_CALLBACK")) {
+        _ = WS_GET_CERT_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_CERT_ISSUER_LIST_NOTIFICATION_CALLBACK")) {
+        _ = WS_CERT_ISSUER_LIST_NOTIFICATION_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_VALIDATE_PASSWORD_CALLBACK")) {
+        _ = WS_VALIDATE_PASSWORD_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_VALIDATE_SAML_CALLBACK")) {
+        _ = WS_VALIDATE_SAML_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_DURATION_COMPARISON_CALLBACK")) {
+        _ = WS_DURATION_COMPARISON_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_READ_TYPE_CALLBACK")) {
+        _ = WS_READ_TYPE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_WRITE_TYPE_CALLBACK")) {
+        _ = WS_WRITE_TYPE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_IS_DEFAULT_VALUE_CALLBACK")) {
+        _ = WS_IS_DEFAULT_VALUE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_SERVICE_MESSAGE_RECEIVE_CALLBACK")) {
+        _ = WS_SERVICE_MESSAGE_RECEIVE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_OPERATION_CANCEL_CALLBACK")) {
+        _ = WS_OPERATION_CANCEL_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_OPERATION_FREE_STATE_CALLBACK")) {
+        _ = WS_OPERATION_FREE_STATE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_SERVICE_STUB_CALLBACK")) {
+        _ = WS_SERVICE_STUB_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_SERVICE_ACCEPT_CHANNEL_CALLBACK")) {
+        _ = WS_SERVICE_ACCEPT_CHANNEL_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_SERVICE_CLOSE_CHANNEL_CALLBACK")) {
+        _ = WS_SERVICE_CLOSE_CHANNEL_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_SERVICE_SECURITY_CALLBACK")) {
+        _ = WS_SERVICE_SECURITY_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WS_PROXY_MESSAGE_CALLBACK")) {
+        _ = WS_PROXY_MESSAGE_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

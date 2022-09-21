@@ -274,21 +274,21 @@ pub const GUID_DYNAMIC_RENDERER_CACHED_DATA = Guid.initString("bf531b92-25bf-4a9
 //--------------------------------------------------------------------------------
 // Section: Types (240)
 //--------------------------------------------------------------------------------
-pub const PfnRecoCallback = fn(
+pub const PfnRecoCallback = fn (
     param0: u32,
     param1: ?*u8,
     param2: ?HRECOCONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const HRECOALT = *opaque{};
+pub const HRECOALT = *opaque {};
 
-pub const HRECOCONTEXT = *opaque{};
+pub const HRECOCONTEXT = *opaque {};
 
-pub const HRECOGNIZER = *opaque{};
+pub const HRECOGNIZER = *opaque {};
 
-pub const HRECOLATTICE = *opaque{};
+pub const HRECOLATTICE = *opaque {};
 
-pub const HRECOWORDLIST = *opaque{};
+pub const HRECOWORDLIST = *opaque {};
 
 const CLSID_InkDisp_Value = Guid.initString("937c1a34-151d-4610-9ca6-a8cc9bdb5d83");
 pub const CLSID_InkDisp = &CLSID_InkDisp_Value;
@@ -1775,63 +1775,63 @@ pub const IInkRectangle = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Top: fn(
+        get_Top: fn (
             self: *const IInkRectangle,
             Units: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Top: fn(
+        put_Top: fn (
             self: *const IInkRectangle,
             Units: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Left: fn(
+        get_Left: fn (
             self: *const IInkRectangle,
             Units: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Left: fn(
+        put_Left: fn (
             self: *const IInkRectangle,
             Units: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Bottom: fn(
+        get_Bottom: fn (
             self: *const IInkRectangle,
             Units: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Bottom: fn(
+        put_Bottom: fn (
             self: *const IInkRectangle,
             Units: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Right: fn(
+        get_Right: fn (
             self: *const IInkRectangle,
             Units: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Right: fn(
+        put_Right: fn (
             self: *const IInkRectangle,
             Units: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Data: fn(
+        get_Data: fn (
             self: *const IInkRectangle,
             Rect: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Data: fn(
+        put_Data: fn (
             self: *const IInkRectangle,
             Rect: RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRectangle: fn(
+        GetRectangle: fn (
             self: *const IInkRectangle,
             Top: ?*i32,
             Left: ?*i32,
             Bottom: ?*i32,
             Right: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetRectangle: fn(
+        SetRectangle: fn (
             self: *const IInkRectangle,
             Top: i32,
             Left: i32,
@@ -1840,57 +1840,59 @@ pub const IInkRectangle = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRectangle_get_Top(self: *const T, Units: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRectangle.VTable, self.vtable).get_Top(@ptrCast(*const IInkRectangle, self), Units);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRectangle_put_Top(self: *const T, Units: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRectangle.VTable, self.vtable).put_Top(@ptrCast(*const IInkRectangle, self), Units);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRectangle_get_Left(self: *const T, Units: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRectangle.VTable, self.vtable).get_Left(@ptrCast(*const IInkRectangle, self), Units);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRectangle_put_Left(self: *const T, Units: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRectangle.VTable, self.vtable).put_Left(@ptrCast(*const IInkRectangle, self), Units);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRectangle_get_Bottom(self: *const T, Units: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRectangle.VTable, self.vtable).get_Bottom(@ptrCast(*const IInkRectangle, self), Units);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRectangle_put_Bottom(self: *const T, Units: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRectangle.VTable, self.vtable).put_Bottom(@ptrCast(*const IInkRectangle, self), Units);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRectangle_get_Right(self: *const T, Units: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRectangle.VTable, self.vtable).get_Right(@ptrCast(*const IInkRectangle, self), Units);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRectangle_put_Right(self: *const T, Units: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRectangle.VTable, self.vtable).put_Right(@ptrCast(*const IInkRectangle, self), Units);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRectangle_get_Data(self: *const T, Rect: ?*RECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRectangle.VTable, self.vtable).get_Data(@ptrCast(*const IInkRectangle, self), Rect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRectangle_put_Data(self: *const T, Rect: RECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRectangle.VTable, self.vtable).put_Data(@ptrCast(*const IInkRectangle, self), Rect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRectangle_GetRectangle(self: *const T, Top: ?*i32, Left: ?*i32, Bottom: ?*i32, Right: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRectangle.VTable, self.vtable).GetRectangle(@ptrCast(*const IInkRectangle, self), Top, Left, Bottom, Right);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRectangle_SetRectangle(self: *const T, Top: i32, Left: i32, Bottom: i32, Right: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRectangle.VTable, self.vtable).SetRectangle(@ptrCast(*const IInkRectangle, self), Top, Left, Bottom, Right);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRectangle_get_Top(self: *const T, Units: ?*i32) HRESULT {
+                return @ptrCast(*const IInkRectangle.VTable, self.vtable).get_Top(@ptrCast(*const IInkRectangle, self), Units);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRectangle_put_Top(self: *const T, Units: i32) HRESULT {
+                return @ptrCast(*const IInkRectangle.VTable, self.vtable).put_Top(@ptrCast(*const IInkRectangle, self), Units);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRectangle_get_Left(self: *const T, Units: ?*i32) HRESULT {
+                return @ptrCast(*const IInkRectangle.VTable, self.vtable).get_Left(@ptrCast(*const IInkRectangle, self), Units);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRectangle_put_Left(self: *const T, Units: i32) HRESULT {
+                return @ptrCast(*const IInkRectangle.VTable, self.vtable).put_Left(@ptrCast(*const IInkRectangle, self), Units);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRectangle_get_Bottom(self: *const T, Units: ?*i32) HRESULT {
+                return @ptrCast(*const IInkRectangle.VTable, self.vtable).get_Bottom(@ptrCast(*const IInkRectangle, self), Units);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRectangle_put_Bottom(self: *const T, Units: i32) HRESULT {
+                return @ptrCast(*const IInkRectangle.VTable, self.vtable).put_Bottom(@ptrCast(*const IInkRectangle, self), Units);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRectangle_get_Right(self: *const T, Units: ?*i32) HRESULT {
+                return @ptrCast(*const IInkRectangle.VTable, self.vtable).get_Right(@ptrCast(*const IInkRectangle, self), Units);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRectangle_put_Right(self: *const T, Units: i32) HRESULT {
+                return @ptrCast(*const IInkRectangle.VTable, self.vtable).put_Right(@ptrCast(*const IInkRectangle, self), Units);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRectangle_get_Data(self: *const T, Rect: ?*RECT) HRESULT {
+                return @ptrCast(*const IInkRectangle.VTable, self.vtable).get_Data(@ptrCast(*const IInkRectangle, self), Rect);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRectangle_put_Data(self: *const T, Rect: RECT) HRESULT {
+                return @ptrCast(*const IInkRectangle.VTable, self.vtable).put_Data(@ptrCast(*const IInkRectangle, self), Rect);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRectangle_GetRectangle(self: *const T, Top: ?*i32, Left: ?*i32, Bottom: ?*i32, Right: ?*i32) HRESULT {
+                return @ptrCast(*const IInkRectangle.VTable, self.vtable).GetRectangle(@ptrCast(*const IInkRectangle, self), Top, Left, Bottom, Right);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRectangle_SetRectangle(self: *const T, Top: i32, Left: i32, Bottom: i32, Right: i32) HRESULT {
+                return @ptrCast(*const IInkRectangle.VTable, self.vtable).SetRectangle(@ptrCast(*const IInkRectangle, self), Top, Left, Bottom, Right);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1901,37 +1903,39 @@ pub const IInkExtendedProperty = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Guid: fn(
+        get_Guid: fn (
             self: *const IInkExtendedProperty,
             Guid: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Data: fn(
+        get_Data: fn (
             self: *const IInkExtendedProperty,
             Data: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Data: fn(
+        put_Data: fn (
             self: *const IInkExtendedProperty,
             Data: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkExtendedProperty_get_Guid(self: *const T, _param_Guid: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkExtendedProperty.VTable, self.vtable).get_Guid(@ptrCast(*const IInkExtendedProperty, self), _param_Guid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkExtendedProperty_get_Data(self: *const T, Data: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkExtendedProperty.VTable, self.vtable).get_Data(@ptrCast(*const IInkExtendedProperty, self), Data);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkExtendedProperty_put_Data(self: *const T, Data: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkExtendedProperty.VTable, self.vtable).put_Data(@ptrCast(*const IInkExtendedProperty, self), Data);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkExtendedProperty_get_Guid(self: *const T, _param_Guid: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkExtendedProperty.VTable, self.vtable).get_Guid(@ptrCast(*const IInkExtendedProperty, self), _param_Guid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkExtendedProperty_get_Data(self: *const T, Data: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkExtendedProperty.VTable, self.vtable).get_Data(@ptrCast(*const IInkExtendedProperty, self), Data);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkExtendedProperty_put_Data(self: *const T, Data: VARIANT) HRESULT {
+                return @ptrCast(*const IInkExtendedProperty.VTable, self.vtable).put_Data(@ptrCast(*const IInkExtendedProperty, self), Data);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1942,71 +1946,73 @@ pub const IInkExtendedProperties = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const IInkExtendedProperties,
             Count: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const IInkExtendedProperties,
             _NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
+        Item: fn (
             self: *const IInkExtendedProperties,
             Identifier: VARIANT,
             Item: ?*?*IInkExtendedProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Add: fn(
+        Add: fn (
             self: *const IInkExtendedProperties,
             Guid: ?BSTR,
             Data: VARIANT,
             InkExtendedProperty: ?*?*IInkExtendedProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Remove: fn(
+        Remove: fn (
             self: *const IInkExtendedProperties,
             Identifier: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clear: fn(
+        Clear: fn (
             self: *const IInkExtendedProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DoesPropertyExist: fn(
+        DoesPropertyExist: fn (
             self: *const IInkExtendedProperties,
             Guid: ?BSTR,
             DoesPropertyExist: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkExtendedProperties_get_Count(self: *const T, Count: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).get_Count(@ptrCast(*const IInkExtendedProperties, self), Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkExtendedProperties_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkExtendedProperties, self), _NewEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkExtendedProperties_Item(self: *const T, Identifier: VARIANT, Item: ?*?*IInkExtendedProperty) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).Item(@ptrCast(*const IInkExtendedProperties, self), Identifier, Item);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkExtendedProperties_Add(self: *const T, _param_Guid: ?BSTR, Data: VARIANT, InkExtendedProperty: ?*?*IInkExtendedProperty) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).Add(@ptrCast(*const IInkExtendedProperties, self), _param_Guid, Data, InkExtendedProperty);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkExtendedProperties_Remove(self: *const T, Identifier: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).Remove(@ptrCast(*const IInkExtendedProperties, self), Identifier);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkExtendedProperties_Clear(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).Clear(@ptrCast(*const IInkExtendedProperties, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkExtendedProperties_DoesPropertyExist(self: *const T, _param_Guid: ?BSTR, DoesPropertyExist: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).DoesPropertyExist(@ptrCast(*const IInkExtendedProperties, self), _param_Guid, DoesPropertyExist);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkExtendedProperties_get_Count(self: *const T, Count: ?*i32) HRESULT {
+                return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).get_Count(@ptrCast(*const IInkExtendedProperties, self), Count);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkExtendedProperties_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkExtendedProperties, self), _NewEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkExtendedProperties_Item(self: *const T, Identifier: VARIANT, Item: ?*?*IInkExtendedProperty) HRESULT {
+                return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).Item(@ptrCast(*const IInkExtendedProperties, self), Identifier, Item);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkExtendedProperties_Add(self: *const T, _param_Guid: ?BSTR, Data: VARIANT, InkExtendedProperty: ?*?*IInkExtendedProperty) HRESULT {
+                return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).Add(@ptrCast(*const IInkExtendedProperties, self), _param_Guid, Data, InkExtendedProperty);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkExtendedProperties_Remove(self: *const T, Identifier: VARIANT) HRESULT {
+                return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).Remove(@ptrCast(*const IInkExtendedProperties, self), Identifier);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkExtendedProperties_Clear(self: *const T) HRESULT {
+                return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).Clear(@ptrCast(*const IInkExtendedProperties, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkExtendedProperties_DoesPropertyExist(self: *const T, _param_Guid: ?BSTR, DoesPropertyExist: ?*i16) HRESULT {
+                return @ptrCast(*const IInkExtendedProperties.VTable, self.vtable).DoesPropertyExist(@ptrCast(*const IInkExtendedProperties, self), _param_Guid, DoesPropertyExist);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2016,189 +2022,191 @@ pub const IInkDrawingAttributes = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Color: fn(
+        get_Color: fn (
             self: *const IInkDrawingAttributes,
             CurrentColor: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Color: fn(
+        put_Color: fn (
             self: *const IInkDrawingAttributes,
             NewColor: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Width: fn(
+        get_Width: fn (
             self: *const IInkDrawingAttributes,
             CurrentWidth: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Width: fn(
+        put_Width: fn (
             self: *const IInkDrawingAttributes,
             NewWidth: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Height: fn(
+        get_Height: fn (
             self: *const IInkDrawingAttributes,
             CurrentHeight: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Height: fn(
+        put_Height: fn (
             self: *const IInkDrawingAttributes,
             NewHeight: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FitToCurve: fn(
+        get_FitToCurve: fn (
             self: *const IInkDrawingAttributes,
             Flag: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FitToCurve: fn(
+        put_FitToCurve: fn (
             self: *const IInkDrawingAttributes,
             Flag: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IgnorePressure: fn(
+        get_IgnorePressure: fn (
             self: *const IInkDrawingAttributes,
             Flag: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_IgnorePressure: fn(
+        put_IgnorePressure: fn (
             self: *const IInkDrawingAttributes,
             Flag: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AntiAliased: fn(
+        get_AntiAliased: fn (
             self: *const IInkDrawingAttributes,
             Flag: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AntiAliased: fn(
+        put_AntiAliased: fn (
             self: *const IInkDrawingAttributes,
             Flag: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Transparency: fn(
+        get_Transparency: fn (
             self: *const IInkDrawingAttributes,
             CurrentTransparency: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Transparency: fn(
+        put_Transparency: fn (
             self: *const IInkDrawingAttributes,
             NewTransparency: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RasterOperation: fn(
+        get_RasterOperation: fn (
             self: *const IInkDrawingAttributes,
             CurrentRasterOperation: ?*InkRasterOperation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RasterOperation: fn(
+        put_RasterOperation: fn (
             self: *const IInkDrawingAttributes,
             NewRasterOperation: InkRasterOperation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PenTip: fn(
+        get_PenTip: fn (
             self: *const IInkDrawingAttributes,
             CurrentPenTip: ?*InkPenTip,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PenTip: fn(
+        put_PenTip: fn (
             self: *const IInkDrawingAttributes,
             NewPenTip: InkPenTip,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExtendedProperties: fn(
+        get_ExtendedProperties: fn (
             self: *const IInkDrawingAttributes,
             Properties: ?*?*IInkExtendedProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
+        Clone: fn (
             self: *const IInkDrawingAttributes,
             DrawingAttributes: ?*?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_get_Color(self: *const T, CurrentColor: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_Color(@ptrCast(*const IInkDrawingAttributes, self), CurrentColor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_put_Color(self: *const T, NewColor: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).put_Color(@ptrCast(*const IInkDrawingAttributes, self), NewColor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_get_Width(self: *const T, CurrentWidth: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_Width(@ptrCast(*const IInkDrawingAttributes, self), CurrentWidth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_put_Width(self: *const T, NewWidth: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).put_Width(@ptrCast(*const IInkDrawingAttributes, self), NewWidth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_get_Height(self: *const T, CurrentHeight: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_Height(@ptrCast(*const IInkDrawingAttributes, self), CurrentHeight);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_put_Height(self: *const T, NewHeight: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).put_Height(@ptrCast(*const IInkDrawingAttributes, self), NewHeight);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_get_FitToCurve(self: *const T, Flag: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_FitToCurve(@ptrCast(*const IInkDrawingAttributes, self), Flag);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_put_FitToCurve(self: *const T, Flag: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).put_FitToCurve(@ptrCast(*const IInkDrawingAttributes, self), Flag);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_get_IgnorePressure(self: *const T, Flag: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_IgnorePressure(@ptrCast(*const IInkDrawingAttributes, self), Flag);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_put_IgnorePressure(self: *const T, Flag: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).put_IgnorePressure(@ptrCast(*const IInkDrawingAttributes, self), Flag);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_get_AntiAliased(self: *const T, Flag: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_AntiAliased(@ptrCast(*const IInkDrawingAttributes, self), Flag);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_put_AntiAliased(self: *const T, Flag: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).put_AntiAliased(@ptrCast(*const IInkDrawingAttributes, self), Flag);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_get_Transparency(self: *const T, CurrentTransparency: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_Transparency(@ptrCast(*const IInkDrawingAttributes, self), CurrentTransparency);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_put_Transparency(self: *const T, NewTransparency: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).put_Transparency(@ptrCast(*const IInkDrawingAttributes, self), NewTransparency);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_get_RasterOperation(self: *const T, CurrentRasterOperation: ?*InkRasterOperation) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_RasterOperation(@ptrCast(*const IInkDrawingAttributes, self), CurrentRasterOperation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_put_RasterOperation(self: *const T, NewRasterOperation: InkRasterOperation) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).put_RasterOperation(@ptrCast(*const IInkDrawingAttributes, self), NewRasterOperation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_get_PenTip(self: *const T, CurrentPenTip: ?*InkPenTip) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_PenTip(@ptrCast(*const IInkDrawingAttributes, self), CurrentPenTip);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_put_PenTip(self: *const T, NewPenTip: InkPenTip) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).put_PenTip(@ptrCast(*const IInkDrawingAttributes, self), NewPenTip);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_get_ExtendedProperties(self: *const T, Properties: ?*?*IInkExtendedProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_ExtendedProperties(@ptrCast(*const IInkDrawingAttributes, self), Properties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDrawingAttributes_Clone(self: *const T, DrawingAttributes: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).Clone(@ptrCast(*const IInkDrawingAttributes, self), DrawingAttributes);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDrawingAttributes_get_Color(self: *const T, CurrentColor: ?*i32) HRESULT {
+                return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_Color(@ptrCast(*const IInkDrawingAttributes, self), CurrentColor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDrawingAttributes_put_Color(self: *const T, NewColor: i32) HRESULT {
+                return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).put_Color(@ptrCast(*const IInkDrawingAttributes, self), NewColor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDrawingAttributes_get_Width(self: *const T, CurrentWidth: ?*f32) HRESULT {
+                return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_Width(@ptrCast(*const IInkDrawingAttributes, self), CurrentWidth);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDrawingAttributes_put_Width(self: *const T, NewWidth: f32) HRESULT {
+                return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).put_Width(@ptrCast(*const IInkDrawingAttributes, self), NewWidth);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDrawingAttributes_get_Height(self: *const T, CurrentHeight: ?*f32) HRESULT {
+                return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_Height(@ptrCast(*const IInkDrawingAttributes, self), CurrentHeight);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDrawingAttributes_put_Height(self: *const T, NewHeight: f32) HRESULT {
+                return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).put_Height(@ptrCast(*const IInkDrawingAttributes, self), NewHeight);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDrawingAttributes_get_FitToCurve(self: *const T, Flag: ?*i16) HRESULT {
+                return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_FitToCurve(@ptrCast(*const IInkDrawingAttributes, self), Flag);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDrawingAttributes_put_FitToCurve(self: *const T, Flag: i16) HRESULT {
+                return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).put_FitToCurve(@ptrCast(*const IInkDrawingAttributes, self), Flag);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDrawingAttributes_get_IgnorePressure(self: *const T, Flag: ?*i16) HRESULT {
+                return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_IgnorePressure(@ptrCast(*const IInkDrawingAttributes, self), Flag);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDrawingAttributes_put_IgnorePressure(self: *const T, Flag: i16) HRESULT {
+                return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).put_IgnorePressure(@ptrCast(*const IInkDrawingAttributes, self), Flag);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDrawingAttributes_get_AntiAliased(self: *const T, Flag: ?*i16) HRESULT {
+                return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_AntiAliased(@ptrCast(*const IInkDrawingAttributes, self), Flag);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDrawingAttributes_put_AntiAliased(self: *const T, Flag: i16) HRESULT {
+                return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).put_AntiAliased(@ptrCast(*const IInkDrawingAttributes, self), Flag);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDrawingAttributes_get_Transparency(self: *const T, CurrentTransparency: ?*i32) HRESULT {
+                return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_Transparency(@ptrCast(*const IInkDrawingAttributes, self), CurrentTransparency);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDrawingAttributes_put_Transparency(self: *const T, NewTransparency: i32) HRESULT {
+                return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).put_Transparency(@ptrCast(*const IInkDrawingAttributes, self), NewTransparency);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDrawingAttributes_get_RasterOperation(self: *const T, CurrentRasterOperation: ?*InkRasterOperation) HRESULT {
+                return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_RasterOperation(@ptrCast(*const IInkDrawingAttributes, self), CurrentRasterOperation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDrawingAttributes_put_RasterOperation(self: *const T, NewRasterOperation: InkRasterOperation) HRESULT {
+                return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).put_RasterOperation(@ptrCast(*const IInkDrawingAttributes, self), NewRasterOperation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDrawingAttributes_get_PenTip(self: *const T, CurrentPenTip: ?*InkPenTip) HRESULT {
+                return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_PenTip(@ptrCast(*const IInkDrawingAttributes, self), CurrentPenTip);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDrawingAttributes_put_PenTip(self: *const T, NewPenTip: InkPenTip) HRESULT {
+                return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).put_PenTip(@ptrCast(*const IInkDrawingAttributes, self), NewPenTip);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDrawingAttributes_get_ExtendedProperties(self: *const T, Properties: ?*?*IInkExtendedProperties) HRESULT {
+                return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).get_ExtendedProperties(@ptrCast(*const IInkDrawingAttributes, self), Properties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDrawingAttributes_Clone(self: *const T, DrawingAttributes: ?*?*IInkDrawingAttributes) HRESULT {
+                return @ptrCast(*const IInkDrawingAttributes.VTable, self.vtable).Clone(@ptrCast(*const IInkDrawingAttributes, self), DrawingAttributes);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2207,36 +2215,36 @@ pub const IID_IInkTransform = &IID_IInkTransform_Value;
 pub const IInkTransform = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Reset: fn(
+        Reset: fn (
             self: *const IInkTransform,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Translate: fn(
+        Translate: fn (
             self: *const IInkTransform,
             HorizontalComponent: f32,
             VerticalComponent: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Rotate: fn(
+        Rotate: fn (
             self: *const IInkTransform,
             Degrees: f32,
             x: f32,
             y: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reflect: fn(
+        Reflect: fn (
             self: *const IInkTransform,
             Horizontally: i16,
             Vertically: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Shear: fn(
+        Shear: fn (
             self: *const IInkTransform,
             HorizontalComponent: f32,
             VerticalComponent: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ScaleTransform: fn(
+        ScaleTransform: fn (
             self: *const IInkTransform,
             HorizontalMultiplier: f32,
             VerticalMultiplier: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTransform: fn(
+        GetTransform: fn (
             self: *const IInkTransform,
             eM11: ?*f32,
             eM12: ?*f32,
@@ -2245,7 +2253,7 @@ pub const IInkTransform = extern struct {
             eDx: ?*f32,
             eDy: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetTransform: fn(
+        SetTransform: fn (
             self: *const IInkTransform,
             eM11: f32,
             eM12: f32,
@@ -2255,168 +2263,170 @@ pub const IInkTransform = extern struct {
             eDy: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_eM11: fn(
+        get_eM11: fn (
             self: *const IInkTransform,
             Value: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_eM11: fn(
+        put_eM11: fn (
             self: *const IInkTransform,
             Value: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_eM12: fn(
+        get_eM12: fn (
             self: *const IInkTransform,
             Value: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_eM12: fn(
+        put_eM12: fn (
             self: *const IInkTransform,
             Value: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_eM21: fn(
+        get_eM21: fn (
             self: *const IInkTransform,
             Value: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_eM21: fn(
+        put_eM21: fn (
             self: *const IInkTransform,
             Value: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_eM22: fn(
+        get_eM22: fn (
             self: *const IInkTransform,
             Value: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_eM22: fn(
+        put_eM22: fn (
             self: *const IInkTransform,
             Value: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_eDx: fn(
+        get_eDx: fn (
             self: *const IInkTransform,
             Value: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_eDx: fn(
+        put_eDx: fn (
             self: *const IInkTransform,
             Value: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_eDy: fn(
+        get_eDy: fn (
             self: *const IInkTransform,
             Value: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_eDy: fn(
+        put_eDy: fn (
             self: *const IInkTransform,
             Value: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Data: fn(
+        get_Data: fn (
             self: *const IInkTransform,
             XForm: ?*XFORM,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Data: fn(
+        put_Data: fn (
             self: *const IInkTransform,
             XForm: XFORM,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).Reset(@ptrCast(*const IInkTransform, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_Translate(self: *const T, HorizontalComponent: f32, VerticalComponent: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).Translate(@ptrCast(*const IInkTransform, self), HorizontalComponent, VerticalComponent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_Rotate(self: *const T, Degrees: f32, x: f32, y: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).Rotate(@ptrCast(*const IInkTransform, self), Degrees, x, y);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_Reflect(self: *const T, Horizontally: i16, Vertically: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).Reflect(@ptrCast(*const IInkTransform, self), Horizontally, Vertically);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_Shear(self: *const T, HorizontalComponent: f32, VerticalComponent: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).Shear(@ptrCast(*const IInkTransform, self), HorizontalComponent, VerticalComponent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_ScaleTransform(self: *const T, HorizontalMultiplier: f32, VerticalMultiplier: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).ScaleTransform(@ptrCast(*const IInkTransform, self), HorizontalMultiplier, VerticalMultiplier);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_GetTransform(self: *const T, eM11: ?*f32, eM12: ?*f32, eM21: ?*f32, eM22: ?*f32, eDx: ?*f32, eDy: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).GetTransform(@ptrCast(*const IInkTransform, self), eM11, eM12, eM21, eM22, eDx, eDy);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_SetTransform(self: *const T, eM11: f32, eM12: f32, eM21: f32, eM22: f32, eDx: f32, eDy: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).SetTransform(@ptrCast(*const IInkTransform, self), eM11, eM12, eM21, eM22, eDx, eDy);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_get_eM11(self: *const T, Value: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).get_eM11(@ptrCast(*const IInkTransform, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_put_eM11(self: *const T, Value: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).put_eM11(@ptrCast(*const IInkTransform, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_get_eM12(self: *const T, Value: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).get_eM12(@ptrCast(*const IInkTransform, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_put_eM12(self: *const T, Value: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).put_eM12(@ptrCast(*const IInkTransform, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_get_eM21(self: *const T, Value: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).get_eM21(@ptrCast(*const IInkTransform, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_put_eM21(self: *const T, Value: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).put_eM21(@ptrCast(*const IInkTransform, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_get_eM22(self: *const T, Value: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).get_eM22(@ptrCast(*const IInkTransform, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_put_eM22(self: *const T, Value: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).put_eM22(@ptrCast(*const IInkTransform, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_get_eDx(self: *const T, Value: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).get_eDx(@ptrCast(*const IInkTransform, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_put_eDx(self: *const T, Value: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).put_eDx(@ptrCast(*const IInkTransform, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_get_eDy(self: *const T, Value: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).get_eDy(@ptrCast(*const IInkTransform, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_put_eDy(self: *const T, Value: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).put_eDy(@ptrCast(*const IInkTransform, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_get_Data(self: *const T, XForm: ?*XFORM) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).get_Data(@ptrCast(*const IInkTransform, self), XForm);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTransform_put_Data(self: *const T, XForm: XFORM) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTransform.VTable, self.vtable).put_Data(@ptrCast(*const IInkTransform, self), XForm);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).Reset(@ptrCast(*const IInkTransform, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_Translate(self: *const T, HorizontalComponent: f32, VerticalComponent: f32) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).Translate(@ptrCast(*const IInkTransform, self), HorizontalComponent, VerticalComponent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_Rotate(self: *const T, Degrees: f32, x: f32, y: f32) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).Rotate(@ptrCast(*const IInkTransform, self), Degrees, x, y);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_Reflect(self: *const T, Horizontally: i16, Vertically: i16) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).Reflect(@ptrCast(*const IInkTransform, self), Horizontally, Vertically);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_Shear(self: *const T, HorizontalComponent: f32, VerticalComponent: f32) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).Shear(@ptrCast(*const IInkTransform, self), HorizontalComponent, VerticalComponent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_ScaleTransform(self: *const T, HorizontalMultiplier: f32, VerticalMultiplier: f32) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).ScaleTransform(@ptrCast(*const IInkTransform, self), HorizontalMultiplier, VerticalMultiplier);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_GetTransform(self: *const T, eM11: ?*f32, eM12: ?*f32, eM21: ?*f32, eM22: ?*f32, eDx: ?*f32, eDy: ?*f32) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).GetTransform(@ptrCast(*const IInkTransform, self), eM11, eM12, eM21, eM22, eDx, eDy);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_SetTransform(self: *const T, eM11: f32, eM12: f32, eM21: f32, eM22: f32, eDx: f32, eDy: f32) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).SetTransform(@ptrCast(*const IInkTransform, self), eM11, eM12, eM21, eM22, eDx, eDy);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_get_eM11(self: *const T, Value: ?*f32) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).get_eM11(@ptrCast(*const IInkTransform, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_put_eM11(self: *const T, Value: f32) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).put_eM11(@ptrCast(*const IInkTransform, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_get_eM12(self: *const T, Value: ?*f32) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).get_eM12(@ptrCast(*const IInkTransform, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_put_eM12(self: *const T, Value: f32) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).put_eM12(@ptrCast(*const IInkTransform, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_get_eM21(self: *const T, Value: ?*f32) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).get_eM21(@ptrCast(*const IInkTransform, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_put_eM21(self: *const T, Value: f32) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).put_eM21(@ptrCast(*const IInkTransform, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_get_eM22(self: *const T, Value: ?*f32) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).get_eM22(@ptrCast(*const IInkTransform, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_put_eM22(self: *const T, Value: f32) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).put_eM22(@ptrCast(*const IInkTransform, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_get_eDx(self: *const T, Value: ?*f32) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).get_eDx(@ptrCast(*const IInkTransform, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_put_eDx(self: *const T, Value: f32) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).put_eDx(@ptrCast(*const IInkTransform, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_get_eDy(self: *const T, Value: ?*f32) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).get_eDy(@ptrCast(*const IInkTransform, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_put_eDy(self: *const T, Value: f32) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).put_eDy(@ptrCast(*const IInkTransform, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_get_Data(self: *const T, XForm: ?*XFORM) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).get_Data(@ptrCast(*const IInkTransform, self), XForm);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTransform_put_Data(self: *const T, XForm: XFORM) HRESULT {
+                return @ptrCast(*const IInkTransform.VTable, self.vtable).put_Data(@ptrCast(*const IInkTransform, self), XForm);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2427,37 +2437,39 @@ pub const IInkGesture = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Confidence: fn(
+        get_Confidence: fn (
             self: *const IInkGesture,
             Confidence: ?*InkRecognitionConfidence,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: fn(
+        get_Id: fn (
             self: *const IInkGesture,
             Id: ?*InkApplicationGesture,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetHotPoint: fn(
+        GetHotPoint: fn (
             self: *const IInkGesture,
             X: ?*i32,
             Y: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkGesture_get_Confidence(self: *const T, Confidence: ?*InkRecognitionConfidence) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkGesture.VTable, self.vtable).get_Confidence(@ptrCast(*const IInkGesture, self), Confidence);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkGesture_get_Id(self: *const T, Id: ?*InkApplicationGesture) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkGesture.VTable, self.vtable).get_Id(@ptrCast(*const IInkGesture, self), Id);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkGesture_GetHotPoint(self: *const T, X: ?*i32, Y: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkGesture.VTable, self.vtable).GetHotPoint(@ptrCast(*const IInkGesture, self), X, Y);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkGesture_get_Confidence(self: *const T, Confidence: ?*InkRecognitionConfidence) HRESULT {
+                return @ptrCast(*const IInkGesture.VTable, self.vtable).get_Confidence(@ptrCast(*const IInkGesture, self), Confidence);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkGesture_get_Id(self: *const T, Id: ?*InkApplicationGesture) HRESULT {
+                return @ptrCast(*const IInkGesture.VTable, self.vtable).get_Id(@ptrCast(*const IInkGesture, self), Id);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkGesture_GetHotPoint(self: *const T, X: ?*i32, Y: ?*i32) HRESULT {
+                return @ptrCast(*const IInkGesture.VTable, self.vtable).GetHotPoint(@ptrCast(*const IInkGesture, self), X, Y);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2468,72 +2480,74 @@ pub const IInkCursor = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
+        get_Name: fn (
             self: *const IInkCursor,
             Name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: fn(
+        get_Id: fn (
             self: *const IInkCursor,
             Id: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Inverted: fn(
+        get_Inverted: fn (
             self: *const IInkCursor,
             Status: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DrawingAttributes: fn(
+        get_DrawingAttributes: fn (
             self: *const IInkCursor,
             Attributes: ?*?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_DrawingAttributes: fn(
+        putref_DrawingAttributes: fn (
             self: *const IInkCursor,
             Attributes: ?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Tablet: fn(
+        get_Tablet: fn (
             self: *const IInkCursor,
             Tablet: ?*?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Buttons: fn(
+        get_Buttons: fn (
             self: *const IInkCursor,
             Buttons: ?*?*IInkCursorButtons,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursor_get_Name(self: *const T, Name: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCursor.VTable, self.vtable).get_Name(@ptrCast(*const IInkCursor, self), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursor_get_Id(self: *const T, Id: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCursor.VTable, self.vtable).get_Id(@ptrCast(*const IInkCursor, self), Id);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursor_get_Inverted(self: *const T, Status: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCursor.VTable, self.vtable).get_Inverted(@ptrCast(*const IInkCursor, self), Status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursor_get_DrawingAttributes(self: *const T, Attributes: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCursor.VTable, self.vtable).get_DrawingAttributes(@ptrCast(*const IInkCursor, self), Attributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursor_putref_DrawingAttributes(self: *const T, Attributes: ?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCursor.VTable, self.vtable).putref_DrawingAttributes(@ptrCast(*const IInkCursor, self), Attributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursor_get_Tablet(self: *const T, Tablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCursor.VTable, self.vtable).get_Tablet(@ptrCast(*const IInkCursor, self), Tablet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursor_get_Buttons(self: *const T, Buttons: ?*?*IInkCursorButtons) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCursor.VTable, self.vtable).get_Buttons(@ptrCast(*const IInkCursor, self), Buttons);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCursor_get_Name(self: *const T, Name: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkCursor.VTable, self.vtable).get_Name(@ptrCast(*const IInkCursor, self), Name);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCursor_get_Id(self: *const T, Id: ?*i32) HRESULT {
+                return @ptrCast(*const IInkCursor.VTable, self.vtable).get_Id(@ptrCast(*const IInkCursor, self), Id);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCursor_get_Inverted(self: *const T, Status: ?*i16) HRESULT {
+                return @ptrCast(*const IInkCursor.VTable, self.vtable).get_Inverted(@ptrCast(*const IInkCursor, self), Status);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCursor_get_DrawingAttributes(self: *const T, Attributes: ?*?*IInkDrawingAttributes) HRESULT {
+                return @ptrCast(*const IInkCursor.VTable, self.vtable).get_DrawingAttributes(@ptrCast(*const IInkCursor, self), Attributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCursor_putref_DrawingAttributes(self: *const T, Attributes: ?*IInkDrawingAttributes) HRESULT {
+                return @ptrCast(*const IInkCursor.VTable, self.vtable).putref_DrawingAttributes(@ptrCast(*const IInkCursor, self), Attributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCursor_get_Tablet(self: *const T, Tablet: ?*?*IInkTablet) HRESULT {
+                return @ptrCast(*const IInkCursor.VTable, self.vtable).get_Tablet(@ptrCast(*const IInkCursor, self), Tablet);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCursor_get_Buttons(self: *const T, Buttons: ?*?*IInkCursorButtons) HRESULT {
+                return @ptrCast(*const IInkCursor.VTable, self.vtable).get_Buttons(@ptrCast(*const IInkCursor, self), Buttons);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2544,37 +2558,39 @@ pub const IInkCursors = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const IInkCursors,
             Count: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const IInkCursors,
             _NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
+        Item: fn (
             self: *const IInkCursors,
             Index: i32,
             Cursor: ?*?*IInkCursor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursors_get_Count(self: *const T, Count: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCursors.VTable, self.vtable).get_Count(@ptrCast(*const IInkCursors, self), Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursors_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCursors.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkCursors, self), _NewEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursors_Item(self: *const T, Index: i32, Cursor: ?*?*IInkCursor) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCursors.VTable, self.vtable).Item(@ptrCast(*const IInkCursors, self), Index, Cursor);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCursors_get_Count(self: *const T, Count: ?*i32) HRESULT {
+                return @ptrCast(*const IInkCursors.VTable, self.vtable).get_Count(@ptrCast(*const IInkCursors, self), Count);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCursors_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IInkCursors.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkCursors, self), _NewEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCursors_Item(self: *const T, Index: i32, Cursor: ?*?*IInkCursor) HRESULT {
+                return @ptrCast(*const IInkCursors.VTable, self.vtable).Item(@ptrCast(*const IInkCursors, self), Index, Cursor);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2585,37 +2601,39 @@ pub const IInkCursorButton = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
+        get_Name: fn (
             self: *const IInkCursorButton,
             Name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: fn(
+        get_Id: fn (
             self: *const IInkCursorButton,
             Id: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
+        get_State: fn (
             self: *const IInkCursorButton,
             CurrentState: ?*InkCursorButtonState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursorButton_get_Name(self: *const T, Name: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCursorButton.VTable, self.vtable).get_Name(@ptrCast(*const IInkCursorButton, self), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursorButton_get_Id(self: *const T, Id: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCursorButton.VTable, self.vtable).get_Id(@ptrCast(*const IInkCursorButton, self), Id);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursorButton_get_State(self: *const T, CurrentState: ?*InkCursorButtonState) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCursorButton.VTable, self.vtable).get_State(@ptrCast(*const IInkCursorButton, self), CurrentState);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCursorButton_get_Name(self: *const T, Name: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkCursorButton.VTable, self.vtable).get_Name(@ptrCast(*const IInkCursorButton, self), Name);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCursorButton_get_Id(self: *const T, Id: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkCursorButton.VTable, self.vtable).get_Id(@ptrCast(*const IInkCursorButton, self), Id);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCursorButton_get_State(self: *const T, CurrentState: ?*InkCursorButtonState) HRESULT {
+                return @ptrCast(*const IInkCursorButton.VTable, self.vtable).get_State(@ptrCast(*const IInkCursorButton, self), CurrentState);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2626,37 +2644,39 @@ pub const IInkCursorButtons = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const IInkCursorButtons,
             Count: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const IInkCursorButtons,
             _NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
+        Item: fn (
             self: *const IInkCursorButtons,
             Identifier: VARIANT,
             Button: ?*?*IInkCursorButton,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursorButtons_get_Count(self: *const T, Count: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCursorButtons.VTable, self.vtable).get_Count(@ptrCast(*const IInkCursorButtons, self), Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursorButtons_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCursorButtons.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkCursorButtons, self), _NewEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCursorButtons_Item(self: *const T, Identifier: VARIANT, Button: ?*?*IInkCursorButton) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCursorButtons.VTable, self.vtable).Item(@ptrCast(*const IInkCursorButtons, self), Identifier, Button);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCursorButtons_get_Count(self: *const T, Count: ?*i32) HRESULT {
+                return @ptrCast(*const IInkCursorButtons.VTable, self.vtable).get_Count(@ptrCast(*const IInkCursorButtons, self), Count);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCursorButtons_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IInkCursorButtons.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkCursorButtons, self), _NewEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCursorButtons_Item(self: *const T, Identifier: VARIANT, Button: ?*?*IInkCursorButton) HRESULT {
+                return @ptrCast(*const IInkCursorButtons.VTable, self.vtable).Item(@ptrCast(*const IInkCursorButtons, self), Identifier, Button);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2667,31 +2687,31 @@ pub const IInkTablet = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
+        get_Name: fn (
             self: *const IInkTablet,
             Name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PlugAndPlayId: fn(
+        get_PlugAndPlayId: fn (
             self: *const IInkTablet,
             Id: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaximumInputRectangle: fn(
+        get_MaximumInputRectangle: fn (
             self: *const IInkTablet,
             Rectangle: ?*?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HardwareCapabilities: fn(
+        get_HardwareCapabilities: fn (
             self: *const IInkTablet,
             Capabilities: ?*TabletHardwareCapabilities,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsPacketPropertySupported: fn(
+        IsPacketPropertySupported: fn (
             self: *const IInkTablet,
             packetPropertyName: ?BSTR,
             Supported: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyMetrics: fn(
+        GetPropertyMetrics: fn (
             self: *const IInkTablet,
             propertyName: ?BSTR,
             Minimum: ?*i32,
@@ -2701,33 +2721,35 @@ pub const IInkTablet = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTablet_get_Name(self: *const T, Name: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTablet.VTable, self.vtable).get_Name(@ptrCast(*const IInkTablet, self), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTablet_get_PlugAndPlayId(self: *const T, Id: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTablet.VTable, self.vtable).get_PlugAndPlayId(@ptrCast(*const IInkTablet, self), Id);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTablet_get_MaximumInputRectangle(self: *const T, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTablet.VTable, self.vtable).get_MaximumInputRectangle(@ptrCast(*const IInkTablet, self), Rectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTablet_get_HardwareCapabilities(self: *const T, Capabilities: ?*TabletHardwareCapabilities) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTablet.VTable, self.vtable).get_HardwareCapabilities(@ptrCast(*const IInkTablet, self), Capabilities);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTablet_IsPacketPropertySupported(self: *const T, packetPropertyName: ?BSTR, Supported: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTablet.VTable, self.vtable).IsPacketPropertySupported(@ptrCast(*const IInkTablet, self), packetPropertyName, Supported);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTablet_GetPropertyMetrics(self: *const T, propertyName: ?BSTR, Minimum: ?*i32, Maximum: ?*i32, Units: ?*TabletPropertyMetricUnit, Resolution: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTablet.VTable, self.vtable).GetPropertyMetrics(@ptrCast(*const IInkTablet, self), propertyName, Minimum, Maximum, Units, Resolution);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTablet_get_Name(self: *const T, Name: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkTablet.VTable, self.vtable).get_Name(@ptrCast(*const IInkTablet, self), Name);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTablet_get_PlugAndPlayId(self: *const T, Id: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkTablet.VTable, self.vtable).get_PlugAndPlayId(@ptrCast(*const IInkTablet, self), Id);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTablet_get_MaximumInputRectangle(self: *const T, Rectangle: ?*?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkTablet.VTable, self.vtable).get_MaximumInputRectangle(@ptrCast(*const IInkTablet, self), Rectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTablet_get_HardwareCapabilities(self: *const T, Capabilities: ?*TabletHardwareCapabilities) HRESULT {
+                return @ptrCast(*const IInkTablet.VTable, self.vtable).get_HardwareCapabilities(@ptrCast(*const IInkTablet, self), Capabilities);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTablet_IsPacketPropertySupported(self: *const T, packetPropertyName: ?BSTR, Supported: ?*i16) HRESULT {
+                return @ptrCast(*const IInkTablet.VTable, self.vtable).IsPacketPropertySupported(@ptrCast(*const IInkTablet, self), packetPropertyName, Supported);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTablet_GetPropertyMetrics(self: *const T, propertyName: ?BSTR, Minimum: ?*i32, Maximum: ?*i32, Units: ?*TabletPropertyMetricUnit, Resolution: ?*f32) HRESULT {
+                return @ptrCast(*const IInkTablet.VTable, self.vtable).GetPropertyMetrics(@ptrCast(*const IInkTablet, self), propertyName, Minimum, Maximum, Units, Resolution);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2738,19 +2760,21 @@ pub const IInkTablet2 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DeviceKind: fn(
+        get_DeviceKind: fn (
             self: *const IInkTablet2,
             Kind: ?*TabletDeviceKind,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTablet2_get_DeviceKind(self: *const T, Kind: ?*TabletDeviceKind) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTablet2.VTable, self.vtable).get_DeviceKind(@ptrCast(*const IInkTablet2, self), Kind);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTablet2_get_DeviceKind(self: *const T, Kind: ?*TabletDeviceKind) HRESULT {
+                return @ptrCast(*const IInkTablet2.VTable, self.vtable).get_DeviceKind(@ptrCast(*const IInkTablet2, self), Kind);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2761,28 +2785,30 @@ pub const IInkTablet3 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsMultiTouch: fn(
+        get_IsMultiTouch: fn (
             self: *const IInkTablet3,
             pIsMultiTouch: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaximumCursors: fn(
+        get_MaximumCursors: fn (
             self: *const IInkTablet3,
             pMaximumCursors: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTablet3_get_IsMultiTouch(self: *const T, pIsMultiTouch: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTablet3.VTable, self.vtable).get_IsMultiTouch(@ptrCast(*const IInkTablet3, self), pIsMultiTouch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTablet3_get_MaximumCursors(self: *const T, pMaximumCursors: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTablet3.VTable, self.vtable).get_MaximumCursors(@ptrCast(*const IInkTablet3, self), pMaximumCursors);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTablet3_get_IsMultiTouch(self: *const T, pIsMultiTouch: ?*i16) HRESULT {
+                return @ptrCast(*const IInkTablet3.VTable, self.vtable).get_IsMultiTouch(@ptrCast(*const IInkTablet3, self), pIsMultiTouch);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTablet3_get_MaximumCursors(self: *const T, pMaximumCursors: ?*u32) HRESULT {
+                return @ptrCast(*const IInkTablet3.VTable, self.vtable).get_MaximumCursors(@ptrCast(*const IInkTablet3, self), pMaximumCursors);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2792,55 +2818,57 @@ pub const IInkTablets = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const IInkTablets,
             Count: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const IInkTablets,
             _NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DefaultTablet: fn(
+        get_DefaultTablet: fn (
             self: *const IInkTablets,
             DefaultTablet: ?*?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
+        Item: fn (
             self: *const IInkTablets,
             Index: i32,
             Tablet: ?*?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsPacketPropertySupported: fn(
+        IsPacketPropertySupported: fn (
             self: *const IInkTablets,
             packetPropertyName: ?BSTR,
             Supported: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTablets_get_Count(self: *const T, Count: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTablets.VTable, self.vtable).get_Count(@ptrCast(*const IInkTablets, self), Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTablets_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTablets.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkTablets, self), _NewEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTablets_get_DefaultTablet(self: *const T, DefaultTablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTablets.VTable, self.vtable).get_DefaultTablet(@ptrCast(*const IInkTablets, self), DefaultTablet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTablets_Item(self: *const T, Index: i32, Tablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTablets.VTable, self.vtable).Item(@ptrCast(*const IInkTablets, self), Index, Tablet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkTablets_IsPacketPropertySupported(self: *const T, packetPropertyName: ?BSTR, Supported: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkTablets.VTable, self.vtable).IsPacketPropertySupported(@ptrCast(*const IInkTablets, self), packetPropertyName, Supported);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTablets_get_Count(self: *const T, Count: ?*i32) HRESULT {
+                return @ptrCast(*const IInkTablets.VTable, self.vtable).get_Count(@ptrCast(*const IInkTablets, self), Count);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTablets_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IInkTablets.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkTablets, self), _NewEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTablets_get_DefaultTablet(self: *const T, DefaultTablet: ?*?*IInkTablet) HRESULT {
+                return @ptrCast(*const IInkTablets.VTable, self.vtable).get_DefaultTablet(@ptrCast(*const IInkTablets, self), DefaultTablet);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTablets_Item(self: *const T, Index: i32, Tablet: ?*?*IInkTablet) HRESULT {
+                return @ptrCast(*const IInkTablets.VTable, self.vtable).Item(@ptrCast(*const IInkTablets, self), Index, Tablet);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkTablets_IsPacketPropertySupported(self: *const T, packetPropertyName: ?BSTR, Supported: ?*i16) HRESULT {
+                return @ptrCast(*const IInkTablets.VTable, self.vtable).IsPacketPropertySupported(@ptrCast(*const IInkTablets, self), packetPropertyName, Supported);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2851,108 +2879,108 @@ pub const IInkStrokeDisp = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ID: fn(
+        get_ID: fn (
             self: *const IInkStrokeDisp,
             ID: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BezierPoints: fn(
+        get_BezierPoints: fn (
             self: *const IInkStrokeDisp,
             Points: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DrawingAttributes: fn(
+        get_DrawingAttributes: fn (
             self: *const IInkStrokeDisp,
             DrawAttrs: ?*?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_DrawingAttributes: fn(
+        putref_DrawingAttributes: fn (
             self: *const IInkStrokeDisp,
             DrawAttrs: ?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Ink: fn(
+        get_Ink: fn (
             self: *const IInkStrokeDisp,
             Ink: ?*?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExtendedProperties: fn(
+        get_ExtendedProperties: fn (
             self: *const IInkStrokeDisp,
             Properties: ?*?*IInkExtendedProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PolylineCusps: fn(
+        get_PolylineCusps: fn (
             self: *const IInkStrokeDisp,
             Cusps: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BezierCusps: fn(
+        get_BezierCusps: fn (
             self: *const IInkStrokeDisp,
             Cusps: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SelfIntersections: fn(
+        get_SelfIntersections: fn (
             self: *const IInkStrokeDisp,
             Intersections: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PacketCount: fn(
+        get_PacketCount: fn (
             self: *const IInkStrokeDisp,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PacketSize: fn(
+        get_PacketSize: fn (
             self: *const IInkStrokeDisp,
             plSize: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PacketDescription: fn(
+        get_PacketDescription: fn (
             self: *const IInkStrokeDisp,
             PacketDescription: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Deleted: fn(
+        get_Deleted: fn (
             self: *const IInkStrokeDisp,
             Deleted: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBoundingBox: fn(
+        GetBoundingBox: fn (
             self: *const IInkStrokeDisp,
             BoundingBoxMode: InkBoundingBoxMode,
             Rectangle: ?*?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindIntersections: fn(
+        FindIntersections: fn (
             self: *const IInkStrokeDisp,
             Strokes: ?*IInkStrokes,
             Intersections: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRectangleIntersections: fn(
+        GetRectangleIntersections: fn (
             self: *const IInkStrokeDisp,
             Rectangle: ?*IInkRectangle,
             Intersections: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clip: fn(
+        Clip: fn (
             self: *const IInkStrokeDisp,
             Rectangle: ?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HitTestCircle: fn(
+        HitTestCircle: fn (
             self: *const IInkStrokeDisp,
             X: i32,
             Y: i32,
             Radius: f32,
             Intersects: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        NearestPoint: fn(
+        NearestPoint: fn (
             self: *const IInkStrokeDisp,
             X: i32,
             Y: i32,
             Distance: ?*f32,
             Point: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Split: fn(
+        Split: fn (
             self: *const IInkStrokeDisp,
             SplitAt: f32,
             NewStroke: ?*?*IInkStrokeDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPacketDescriptionPropertyMetrics: fn(
+        GetPacketDescriptionPropertyMetrics: fn (
             self: *const IInkStrokeDisp,
             PropertyName: ?BSTR,
             Minimum: ?*i32,
@@ -2960,33 +2988,33 @@ pub const IInkStrokeDisp = extern struct {
             Units: ?*TabletPropertyMetricUnit,
             Resolution: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPoints: fn(
+        GetPoints: fn (
             self: *const IInkStrokeDisp,
             Index: i32,
             Count: i32,
             Points: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPoints: fn(
+        SetPoints: fn (
             self: *const IInkStrokeDisp,
             Points: VARIANT,
             Index: i32,
             Count: i32,
             NumberOfPointsSet: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPacketData: fn(
+        GetPacketData: fn (
             self: *const IInkStrokeDisp,
             Index: i32,
             Count: i32,
             PacketData: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPacketValuesByProperty: fn(
+        GetPacketValuesByProperty: fn (
             self: *const IInkStrokeDisp,
             PropertyName: ?BSTR,
             Index: i32,
             Count: i32,
             PacketValues: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPacketValuesByProperty: fn(
+        SetPacketValuesByProperty: fn (
             self: *const IInkStrokeDisp,
             bstrPropertyName: ?BSTR,
             PacketValues: VARIANT,
@@ -2994,178 +3022,180 @@ pub const IInkStrokeDisp = extern struct {
             Count: i32,
             NumberOfPacketsSet: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFlattenedBezierPoints: fn(
+        GetFlattenedBezierPoints: fn (
             self: *const IInkStrokeDisp,
             FittingError: i32,
             FlattenedBezierPoints: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Transform: fn(
+        Transform: fn (
             self: *const IInkStrokeDisp,
             Transform: ?*IInkTransform,
             ApplyOnPenWidth: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ScaleToRectangle: fn(
+        ScaleToRectangle: fn (
             self: *const IInkStrokeDisp,
             Rectangle: ?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Move: fn(
+        Move: fn (
             self: *const IInkStrokeDisp,
             HorizontalComponent: f32,
             VerticalComponent: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Rotate: fn(
+        Rotate: fn (
             self: *const IInkStrokeDisp,
             Degrees: f32,
             x: f32,
             y: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Shear: fn(
+        Shear: fn (
             self: *const IInkStrokeDisp,
             HorizontalMultiplier: f32,
             VerticalMultiplier: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ScaleTransform: fn(
+        ScaleTransform: fn (
             self: *const IInkStrokeDisp,
             HorizontalMultiplier: f32,
             VerticalMultiplier: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_get_ID(self: *const T, ID: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_ID(@ptrCast(*const IInkStrokeDisp, self), ID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_get_BezierPoints(self: *const T, Points: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_BezierPoints(@ptrCast(*const IInkStrokeDisp, self), Points);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_get_DrawingAttributes(self: *const T, DrawAttrs: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_DrawingAttributes(@ptrCast(*const IInkStrokeDisp, self), DrawAttrs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_putref_DrawingAttributes(self: *const T, DrawAttrs: ?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).putref_DrawingAttributes(@ptrCast(*const IInkStrokeDisp, self), DrawAttrs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_get_Ink(self: *const T, Ink: ?*?*IInkDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_Ink(@ptrCast(*const IInkStrokeDisp, self), Ink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_get_ExtendedProperties(self: *const T, Properties: ?*?*IInkExtendedProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_ExtendedProperties(@ptrCast(*const IInkStrokeDisp, self), Properties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_get_PolylineCusps(self: *const T, Cusps: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_PolylineCusps(@ptrCast(*const IInkStrokeDisp, self), Cusps);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_get_BezierCusps(self: *const T, Cusps: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_BezierCusps(@ptrCast(*const IInkStrokeDisp, self), Cusps);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_get_SelfIntersections(self: *const T, Intersections: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_SelfIntersections(@ptrCast(*const IInkStrokeDisp, self), Intersections);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_get_PacketCount(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_PacketCount(@ptrCast(*const IInkStrokeDisp, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_get_PacketSize(self: *const T, plSize: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_PacketSize(@ptrCast(*const IInkStrokeDisp, self), plSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_get_PacketDescription(self: *const T, PacketDescription: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_PacketDescription(@ptrCast(*const IInkStrokeDisp, self), PacketDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_get_Deleted(self: *const T, Deleted: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_Deleted(@ptrCast(*const IInkStrokeDisp, self), Deleted);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_GetBoundingBox(self: *const T, BoundingBoxMode: InkBoundingBoxMode, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).GetBoundingBox(@ptrCast(*const IInkStrokeDisp, self), BoundingBoxMode, Rectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_FindIntersections(self: *const T, Strokes: ?*IInkStrokes, Intersections: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).FindIntersections(@ptrCast(*const IInkStrokeDisp, self), Strokes, Intersections);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_GetRectangleIntersections(self: *const T, Rectangle: ?*IInkRectangle, Intersections: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).GetRectangleIntersections(@ptrCast(*const IInkStrokeDisp, self), Rectangle, Intersections);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_Clip(self: *const T, Rectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).Clip(@ptrCast(*const IInkStrokeDisp, self), Rectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_HitTestCircle(self: *const T, X: i32, Y: i32, Radius: f32, Intersects: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).HitTestCircle(@ptrCast(*const IInkStrokeDisp, self), X, Y, Radius, Intersects);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_NearestPoint(self: *const T, X: i32, Y: i32, Distance: ?*f32, Point: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).NearestPoint(@ptrCast(*const IInkStrokeDisp, self), X, Y, Distance, Point);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_Split(self: *const T, SplitAt: f32, NewStroke: ?*?*IInkStrokeDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).Split(@ptrCast(*const IInkStrokeDisp, self), SplitAt, NewStroke);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_GetPacketDescriptionPropertyMetrics(self: *const T, PropertyName: ?BSTR, Minimum: ?*i32, Maximum: ?*i32, Units: ?*TabletPropertyMetricUnit, Resolution: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).GetPacketDescriptionPropertyMetrics(@ptrCast(*const IInkStrokeDisp, self), PropertyName, Minimum, Maximum, Units, Resolution);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_GetPoints(self: *const T, Index: i32, Count: i32, Points: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).GetPoints(@ptrCast(*const IInkStrokeDisp, self), Index, Count, Points);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_SetPoints(self: *const T, Points: VARIANT, Index: i32, Count: i32, NumberOfPointsSet: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).SetPoints(@ptrCast(*const IInkStrokeDisp, self), Points, Index, Count, NumberOfPointsSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_GetPacketData(self: *const T, Index: i32, Count: i32, PacketData: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).GetPacketData(@ptrCast(*const IInkStrokeDisp, self), Index, Count, PacketData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_GetPacketValuesByProperty(self: *const T, PropertyName: ?BSTR, Index: i32, Count: i32, PacketValues: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).GetPacketValuesByProperty(@ptrCast(*const IInkStrokeDisp, self), PropertyName, Index, Count, PacketValues);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_SetPacketValuesByProperty(self: *const T, bstrPropertyName: ?BSTR, PacketValues: VARIANT, Index: i32, Count: i32, NumberOfPacketsSet: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).SetPacketValuesByProperty(@ptrCast(*const IInkStrokeDisp, self), bstrPropertyName, PacketValues, Index, Count, NumberOfPacketsSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_GetFlattenedBezierPoints(self: *const T, FittingError: i32, FlattenedBezierPoints: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).GetFlattenedBezierPoints(@ptrCast(*const IInkStrokeDisp, self), FittingError, FlattenedBezierPoints);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_Transform(self: *const T, Transform: ?*IInkTransform, ApplyOnPenWidth: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).Transform(@ptrCast(*const IInkStrokeDisp, self), Transform, ApplyOnPenWidth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_ScaleToRectangle(self: *const T, Rectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).ScaleToRectangle(@ptrCast(*const IInkStrokeDisp, self), Rectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_Move(self: *const T, HorizontalComponent: f32, VerticalComponent: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).Move(@ptrCast(*const IInkStrokeDisp, self), HorizontalComponent, VerticalComponent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_Rotate(self: *const T, Degrees: f32, x: f32, y: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).Rotate(@ptrCast(*const IInkStrokeDisp, self), Degrees, x, y);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_Shear(self: *const T, HorizontalMultiplier: f32, VerticalMultiplier: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).Shear(@ptrCast(*const IInkStrokeDisp, self), HorizontalMultiplier, VerticalMultiplier);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokeDisp_ScaleTransform(self: *const T, HorizontalMultiplier: f32, VerticalMultiplier: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).ScaleTransform(@ptrCast(*const IInkStrokeDisp, self), HorizontalMultiplier, VerticalMultiplier);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_get_ID(self: *const T, ID: ?*i32) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_ID(@ptrCast(*const IInkStrokeDisp, self), ID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_get_BezierPoints(self: *const T, Points: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_BezierPoints(@ptrCast(*const IInkStrokeDisp, self), Points);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_get_DrawingAttributes(self: *const T, DrawAttrs: ?*?*IInkDrawingAttributes) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_DrawingAttributes(@ptrCast(*const IInkStrokeDisp, self), DrawAttrs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_putref_DrawingAttributes(self: *const T, DrawAttrs: ?*IInkDrawingAttributes) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).putref_DrawingAttributes(@ptrCast(*const IInkStrokeDisp, self), DrawAttrs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_get_Ink(self: *const T, Ink: ?*?*IInkDisp) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_Ink(@ptrCast(*const IInkStrokeDisp, self), Ink);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_get_ExtendedProperties(self: *const T, Properties: ?*?*IInkExtendedProperties) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_ExtendedProperties(@ptrCast(*const IInkStrokeDisp, self), Properties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_get_PolylineCusps(self: *const T, Cusps: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_PolylineCusps(@ptrCast(*const IInkStrokeDisp, self), Cusps);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_get_BezierCusps(self: *const T, Cusps: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_BezierCusps(@ptrCast(*const IInkStrokeDisp, self), Cusps);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_get_SelfIntersections(self: *const T, Intersections: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_SelfIntersections(@ptrCast(*const IInkStrokeDisp, self), Intersections);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_get_PacketCount(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_PacketCount(@ptrCast(*const IInkStrokeDisp, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_get_PacketSize(self: *const T, plSize: ?*i32) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_PacketSize(@ptrCast(*const IInkStrokeDisp, self), plSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_get_PacketDescription(self: *const T, PacketDescription: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_PacketDescription(@ptrCast(*const IInkStrokeDisp, self), PacketDescription);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_get_Deleted(self: *const T, Deleted: ?*i16) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).get_Deleted(@ptrCast(*const IInkStrokeDisp, self), Deleted);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_GetBoundingBox(self: *const T, BoundingBoxMode: InkBoundingBoxMode, Rectangle: ?*?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).GetBoundingBox(@ptrCast(*const IInkStrokeDisp, self), BoundingBoxMode, Rectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_FindIntersections(self: *const T, Strokes: ?*IInkStrokes, Intersections: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).FindIntersections(@ptrCast(*const IInkStrokeDisp, self), Strokes, Intersections);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_GetRectangleIntersections(self: *const T, Rectangle: ?*IInkRectangle, Intersections: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).GetRectangleIntersections(@ptrCast(*const IInkStrokeDisp, self), Rectangle, Intersections);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_Clip(self: *const T, Rectangle: ?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).Clip(@ptrCast(*const IInkStrokeDisp, self), Rectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_HitTestCircle(self: *const T, X: i32, Y: i32, Radius: f32, Intersects: ?*i16) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).HitTestCircle(@ptrCast(*const IInkStrokeDisp, self), X, Y, Radius, Intersects);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_NearestPoint(self: *const T, X: i32, Y: i32, Distance: ?*f32, Point: ?*f32) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).NearestPoint(@ptrCast(*const IInkStrokeDisp, self), X, Y, Distance, Point);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_Split(self: *const T, SplitAt: f32, NewStroke: ?*?*IInkStrokeDisp) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).Split(@ptrCast(*const IInkStrokeDisp, self), SplitAt, NewStroke);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_GetPacketDescriptionPropertyMetrics(self: *const T, PropertyName: ?BSTR, Minimum: ?*i32, Maximum: ?*i32, Units: ?*TabletPropertyMetricUnit, Resolution: ?*f32) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).GetPacketDescriptionPropertyMetrics(@ptrCast(*const IInkStrokeDisp, self), PropertyName, Minimum, Maximum, Units, Resolution);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_GetPoints(self: *const T, Index: i32, Count: i32, Points: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).GetPoints(@ptrCast(*const IInkStrokeDisp, self), Index, Count, Points);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_SetPoints(self: *const T, Points: VARIANT, Index: i32, Count: i32, NumberOfPointsSet: ?*i32) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).SetPoints(@ptrCast(*const IInkStrokeDisp, self), Points, Index, Count, NumberOfPointsSet);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_GetPacketData(self: *const T, Index: i32, Count: i32, PacketData: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).GetPacketData(@ptrCast(*const IInkStrokeDisp, self), Index, Count, PacketData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_GetPacketValuesByProperty(self: *const T, PropertyName: ?BSTR, Index: i32, Count: i32, PacketValues: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).GetPacketValuesByProperty(@ptrCast(*const IInkStrokeDisp, self), PropertyName, Index, Count, PacketValues);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_SetPacketValuesByProperty(self: *const T, bstrPropertyName: ?BSTR, PacketValues: VARIANT, Index: i32, Count: i32, NumberOfPacketsSet: ?*i32) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).SetPacketValuesByProperty(@ptrCast(*const IInkStrokeDisp, self), bstrPropertyName, PacketValues, Index, Count, NumberOfPacketsSet);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_GetFlattenedBezierPoints(self: *const T, FittingError: i32, FlattenedBezierPoints: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).GetFlattenedBezierPoints(@ptrCast(*const IInkStrokeDisp, self), FittingError, FlattenedBezierPoints);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_Transform(self: *const T, Transform: ?*IInkTransform, ApplyOnPenWidth: i16) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).Transform(@ptrCast(*const IInkStrokeDisp, self), Transform, ApplyOnPenWidth);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_ScaleToRectangle(self: *const T, Rectangle: ?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).ScaleToRectangle(@ptrCast(*const IInkStrokeDisp, self), Rectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_Move(self: *const T, HorizontalComponent: f32, VerticalComponent: f32) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).Move(@ptrCast(*const IInkStrokeDisp, self), HorizontalComponent, VerticalComponent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_Rotate(self: *const T, Degrees: f32, x: f32, y: f32) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).Rotate(@ptrCast(*const IInkStrokeDisp, self), Degrees, x, y);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_Shear(self: *const T, HorizontalMultiplier: f32, VerticalMultiplier: f32) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).Shear(@ptrCast(*const IInkStrokeDisp, self), HorizontalMultiplier, VerticalMultiplier);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokeDisp_ScaleTransform(self: *const T, HorizontalMultiplier: f32, VerticalMultiplier: f32) HRESULT {
+                return @ptrCast(*const IInkStrokeDisp.VTable, self.vtable).ScaleTransform(@ptrCast(*const IInkStrokeDisp, self), HorizontalMultiplier, VerticalMultiplier);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3175,181 +3205,183 @@ pub const IInkStrokes = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const IInkStrokes,
             Count: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const IInkStrokes,
             _NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Ink: fn(
+        get_Ink: fn (
             self: *const IInkStrokes,
             Ink: ?*?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RecognitionResult: fn(
+        get_RecognitionResult: fn (
             self: *const IInkStrokes,
             RecognitionResult: ?*?*IInkRecognitionResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ToString: fn(
+        ToString: fn (
             self: *const IInkStrokes,
             ToString: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
+        Item: fn (
             self: *const IInkStrokes,
             Index: i32,
             Stroke: ?*?*IInkStrokeDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Add: fn(
+        Add: fn (
             self: *const IInkStrokes,
             InkStroke: ?*IInkStrokeDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddStrokes: fn(
+        AddStrokes: fn (
             self: *const IInkStrokes,
             InkStrokes: ?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Remove: fn(
+        Remove: fn (
             self: *const IInkStrokes,
             InkStroke: ?*IInkStrokeDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveStrokes: fn(
+        RemoveStrokes: fn (
             self: *const IInkStrokes,
             InkStrokes: ?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ModifyDrawingAttributes: fn(
+        ModifyDrawingAttributes: fn (
             self: *const IInkStrokes,
             DrawAttrs: ?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBoundingBox: fn(
+        GetBoundingBox: fn (
             self: *const IInkStrokes,
             BoundingBoxMode: InkBoundingBoxMode,
             BoundingBox: ?*?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Transform: fn(
+        Transform: fn (
             self: *const IInkStrokes,
             Transform: ?*IInkTransform,
             ApplyOnPenWidth: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ScaleToRectangle: fn(
+        ScaleToRectangle: fn (
             self: *const IInkStrokes,
             Rectangle: ?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Move: fn(
+        Move: fn (
             self: *const IInkStrokes,
             HorizontalComponent: f32,
             VerticalComponent: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Rotate: fn(
+        Rotate: fn (
             self: *const IInkStrokes,
             Degrees: f32,
             x: f32,
             y: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Shear: fn(
+        Shear: fn (
             self: *const IInkStrokes,
             HorizontalMultiplier: f32,
             VerticalMultiplier: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ScaleTransform: fn(
+        ScaleTransform: fn (
             self: *const IInkStrokes,
             HorizontalMultiplier: f32,
             VerticalMultiplier: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clip: fn(
+        Clip: fn (
             self: *const IInkStrokes,
             Rectangle: ?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveRecognitionResult: fn(
+        RemoveRecognitionResult: fn (
             self: *const IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_get_Count(self: *const T, Count: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokes.VTable, self.vtable).get_Count(@ptrCast(*const IInkStrokes, self), Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokes.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkStrokes, self), _NewEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_get_Ink(self: *const T, Ink: ?*?*IInkDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokes.VTable, self.vtable).get_Ink(@ptrCast(*const IInkStrokes, self), Ink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_get_RecognitionResult(self: *const T, RecognitionResult: ?*?*IInkRecognitionResult) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokes.VTable, self.vtable).get_RecognitionResult(@ptrCast(*const IInkStrokes, self), RecognitionResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_ToString(self: *const T, ToString: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokes.VTable, self.vtable).ToString(@ptrCast(*const IInkStrokes, self), ToString);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_Item(self: *const T, Index: i32, Stroke: ?*?*IInkStrokeDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokes.VTable, self.vtable).Item(@ptrCast(*const IInkStrokes, self), Index, Stroke);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_Add(self: *const T, InkStroke: ?*IInkStrokeDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokes.VTable, self.vtable).Add(@ptrCast(*const IInkStrokes, self), InkStroke);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_AddStrokes(self: *const T, InkStrokes: ?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokes.VTable, self.vtable).AddStrokes(@ptrCast(*const IInkStrokes, self), InkStrokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_Remove(self: *const T, InkStroke: ?*IInkStrokeDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokes.VTable, self.vtable).Remove(@ptrCast(*const IInkStrokes, self), InkStroke);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_RemoveStrokes(self: *const T, InkStrokes: ?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokes.VTable, self.vtable).RemoveStrokes(@ptrCast(*const IInkStrokes, self), InkStrokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_ModifyDrawingAttributes(self: *const T, DrawAttrs: ?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokes.VTable, self.vtable).ModifyDrawingAttributes(@ptrCast(*const IInkStrokes, self), DrawAttrs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_GetBoundingBox(self: *const T, BoundingBoxMode: InkBoundingBoxMode, BoundingBox: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokes.VTable, self.vtable).GetBoundingBox(@ptrCast(*const IInkStrokes, self), BoundingBoxMode, BoundingBox);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_Transform(self: *const T, Transform: ?*IInkTransform, ApplyOnPenWidth: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokes.VTable, self.vtable).Transform(@ptrCast(*const IInkStrokes, self), Transform, ApplyOnPenWidth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_ScaleToRectangle(self: *const T, Rectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokes.VTable, self.vtable).ScaleToRectangle(@ptrCast(*const IInkStrokes, self), Rectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_Move(self: *const T, HorizontalComponent: f32, VerticalComponent: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokes.VTable, self.vtable).Move(@ptrCast(*const IInkStrokes, self), HorizontalComponent, VerticalComponent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_Rotate(self: *const T, Degrees: f32, x: f32, y: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokes.VTable, self.vtable).Rotate(@ptrCast(*const IInkStrokes, self), Degrees, x, y);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_Shear(self: *const T, HorizontalMultiplier: f32, VerticalMultiplier: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokes.VTable, self.vtable).Shear(@ptrCast(*const IInkStrokes, self), HorizontalMultiplier, VerticalMultiplier);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_ScaleTransform(self: *const T, HorizontalMultiplier: f32, VerticalMultiplier: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokes.VTable, self.vtable).ScaleTransform(@ptrCast(*const IInkStrokes, self), HorizontalMultiplier, VerticalMultiplier);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_Clip(self: *const T, Rectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokes.VTable, self.vtable).Clip(@ptrCast(*const IInkStrokes, self), Rectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkStrokes_RemoveRecognitionResult(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkStrokes.VTable, self.vtable).RemoveRecognitionResult(@ptrCast(*const IInkStrokes, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokes_get_Count(self: *const T, Count: ?*i32) HRESULT {
+                return @ptrCast(*const IInkStrokes.VTable, self.vtable).get_Count(@ptrCast(*const IInkStrokes, self), Count);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokes_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IInkStrokes.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkStrokes, self), _NewEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokes_get_Ink(self: *const T, Ink: ?*?*IInkDisp) HRESULT {
+                return @ptrCast(*const IInkStrokes.VTable, self.vtable).get_Ink(@ptrCast(*const IInkStrokes, self), Ink);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokes_get_RecognitionResult(self: *const T, RecognitionResult: ?*?*IInkRecognitionResult) HRESULT {
+                return @ptrCast(*const IInkStrokes.VTable, self.vtable).get_RecognitionResult(@ptrCast(*const IInkStrokes, self), RecognitionResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokes_ToString(self: *const T, ToString: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkStrokes.VTable, self.vtable).ToString(@ptrCast(*const IInkStrokes, self), ToString);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokes_Item(self: *const T, Index: i32, Stroke: ?*?*IInkStrokeDisp) HRESULT {
+                return @ptrCast(*const IInkStrokes.VTable, self.vtable).Item(@ptrCast(*const IInkStrokes, self), Index, Stroke);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokes_Add(self: *const T, InkStroke: ?*IInkStrokeDisp) HRESULT {
+                return @ptrCast(*const IInkStrokes.VTable, self.vtable).Add(@ptrCast(*const IInkStrokes, self), InkStroke);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokes_AddStrokes(self: *const T, InkStrokes: ?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkStrokes.VTable, self.vtable).AddStrokes(@ptrCast(*const IInkStrokes, self), InkStrokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokes_Remove(self: *const T, InkStroke: ?*IInkStrokeDisp) HRESULT {
+                return @ptrCast(*const IInkStrokes.VTable, self.vtable).Remove(@ptrCast(*const IInkStrokes, self), InkStroke);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokes_RemoveStrokes(self: *const T, InkStrokes: ?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkStrokes.VTable, self.vtable).RemoveStrokes(@ptrCast(*const IInkStrokes, self), InkStrokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokes_ModifyDrawingAttributes(self: *const T, DrawAttrs: ?*IInkDrawingAttributes) HRESULT {
+                return @ptrCast(*const IInkStrokes.VTable, self.vtable).ModifyDrawingAttributes(@ptrCast(*const IInkStrokes, self), DrawAttrs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokes_GetBoundingBox(self: *const T, BoundingBoxMode: InkBoundingBoxMode, BoundingBox: ?*?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkStrokes.VTable, self.vtable).GetBoundingBox(@ptrCast(*const IInkStrokes, self), BoundingBoxMode, BoundingBox);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokes_Transform(self: *const T, Transform: ?*IInkTransform, ApplyOnPenWidth: i16) HRESULT {
+                return @ptrCast(*const IInkStrokes.VTable, self.vtable).Transform(@ptrCast(*const IInkStrokes, self), Transform, ApplyOnPenWidth);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokes_ScaleToRectangle(self: *const T, Rectangle: ?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkStrokes.VTable, self.vtable).ScaleToRectangle(@ptrCast(*const IInkStrokes, self), Rectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokes_Move(self: *const T, HorizontalComponent: f32, VerticalComponent: f32) HRESULT {
+                return @ptrCast(*const IInkStrokes.VTable, self.vtable).Move(@ptrCast(*const IInkStrokes, self), HorizontalComponent, VerticalComponent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokes_Rotate(self: *const T, Degrees: f32, x: f32, y: f32) HRESULT {
+                return @ptrCast(*const IInkStrokes.VTable, self.vtable).Rotate(@ptrCast(*const IInkStrokes, self), Degrees, x, y);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokes_Shear(self: *const T, HorizontalMultiplier: f32, VerticalMultiplier: f32) HRESULT {
+                return @ptrCast(*const IInkStrokes.VTable, self.vtable).Shear(@ptrCast(*const IInkStrokes, self), HorizontalMultiplier, VerticalMultiplier);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokes_ScaleTransform(self: *const T, HorizontalMultiplier: f32, VerticalMultiplier: f32) HRESULT {
+                return @ptrCast(*const IInkStrokes.VTable, self.vtable).ScaleTransform(@ptrCast(*const IInkStrokes, self), HorizontalMultiplier, VerticalMultiplier);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokes_Clip(self: *const T, Rectangle: ?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkStrokes.VTable, self.vtable).Clip(@ptrCast(*const IInkStrokes, self), Rectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkStrokes_RemoveRecognitionResult(self: *const T) HRESULT {
+                return @ptrCast(*const IInkStrokes.VTable, self.vtable).RemoveRecognitionResult(@ptrCast(*const IInkStrokes, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3360,61 +3392,63 @@ pub const IInkCustomStrokes = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const IInkCustomStrokes,
             Count: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const IInkCustomStrokes,
             _NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
+        Item: fn (
             self: *const IInkCustomStrokes,
             Identifier: VARIANT,
             Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Add: fn(
+        Add: fn (
             self: *const IInkCustomStrokes,
             Name: ?BSTR,
             Strokes: ?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Remove: fn(
+        Remove: fn (
             self: *const IInkCustomStrokes,
             Identifier: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clear: fn(
+        Clear: fn (
             self: *const IInkCustomStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCustomStrokes_get_Count(self: *const T, Count: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCustomStrokes.VTable, self.vtable).get_Count(@ptrCast(*const IInkCustomStrokes, self), Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCustomStrokes_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCustomStrokes.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkCustomStrokes, self), _NewEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCustomStrokes_Item(self: *const T, Identifier: VARIANT, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCustomStrokes.VTable, self.vtable).Item(@ptrCast(*const IInkCustomStrokes, self), Identifier, Strokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCustomStrokes_Add(self: *const T, Name: ?BSTR, Strokes: ?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCustomStrokes.VTable, self.vtable).Add(@ptrCast(*const IInkCustomStrokes, self), Name, Strokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCustomStrokes_Remove(self: *const T, Identifier: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCustomStrokes.VTable, self.vtable).Remove(@ptrCast(*const IInkCustomStrokes, self), Identifier);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCustomStrokes_Clear(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCustomStrokes.VTable, self.vtable).Clear(@ptrCast(*const IInkCustomStrokes, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCustomStrokes_get_Count(self: *const T, Count: ?*i32) HRESULT {
+                return @ptrCast(*const IInkCustomStrokes.VTable, self.vtable).get_Count(@ptrCast(*const IInkCustomStrokes, self), Count);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCustomStrokes_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IInkCustomStrokes.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkCustomStrokes, self), _NewEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCustomStrokes_Item(self: *const T, Identifier: VARIANT, Strokes: ?*?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkCustomStrokes.VTable, self.vtable).Item(@ptrCast(*const IInkCustomStrokes, self), Identifier, Strokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCustomStrokes_Add(self: *const T, Name: ?BSTR, Strokes: ?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkCustomStrokes.VTable, self.vtable).Add(@ptrCast(*const IInkCustomStrokes, self), Name, Strokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCustomStrokes_Remove(self: *const T, Identifier: VARIANT) HRESULT {
+                return @ptrCast(*const IInkCustomStrokes.VTable, self.vtable).Remove(@ptrCast(*const IInkCustomStrokes, self), Identifier);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCustomStrokes_Clear(self: *const T) HRESULT {
+                return @ptrCast(*const IInkCustomStrokes.VTable, self.vtable).Clear(@ptrCast(*const IInkCustomStrokes, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3425,9 +3459,11 @@ pub const _IInkStrokesEvents = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3437,84 +3473,84 @@ pub const IInkDisp = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Strokes: fn(
+        get_Strokes: fn (
             self: *const IInkDisp,
             Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExtendedProperties: fn(
+        get_ExtendedProperties: fn (
             self: *const IInkDisp,
             Properties: ?*?*IInkExtendedProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Dirty: fn(
+        get_Dirty: fn (
             self: *const IInkDisp,
             Dirty: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Dirty: fn(
+        put_Dirty: fn (
             self: *const IInkDisp,
             Dirty: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CustomStrokes: fn(
+        get_CustomStrokes: fn (
             self: *const IInkDisp,
             ppunkInkCustomStrokes: ?*?*IInkCustomStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBoundingBox: fn(
+        GetBoundingBox: fn (
             self: *const IInkDisp,
             BoundingBoxMode: InkBoundingBoxMode,
             Rectangle: ?*?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteStrokes: fn(
+        DeleteStrokes: fn (
             self: *const IInkDisp,
             Strokes: ?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteStroke: fn(
+        DeleteStroke: fn (
             self: *const IInkDisp,
             Stroke: ?*IInkStrokeDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ExtractStrokes: fn(
+        ExtractStrokes: fn (
             self: *const IInkDisp,
             Strokes: ?*IInkStrokes,
             ExtractFlags: InkExtractFlags,
             ExtractedInk: ?*?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ExtractWithRectangle: fn(
+        ExtractWithRectangle: fn (
             self: *const IInkDisp,
             Rectangle: ?*IInkRectangle,
             extractFlags: InkExtractFlags,
             ExtractedInk: ?*?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clip: fn(
+        Clip: fn (
             self: *const IInkDisp,
             Rectangle: ?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
+        Clone: fn (
             self: *const IInkDisp,
             NewInk: ?*?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HitTestCircle: fn(
+        HitTestCircle: fn (
             self: *const IInkDisp,
             X: i32,
             Y: i32,
             radius: f32,
             Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HitTestWithRectangle: fn(
+        HitTestWithRectangle: fn (
             self: *const IInkDisp,
             SelectionRectangle: ?*IInkRectangle,
             IntersectPercent: f32,
             Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HitTestWithLasso: fn(
+        HitTestWithLasso: fn (
             self: *const IInkDisp,
             Points: VARIANT,
             IntersectPercent: f32,
             LassoPoints: ?*VARIANT,
             Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        NearestPoint: fn(
+        NearestPoint: fn (
             self: *const IInkDisp,
             X: i32,
             Y: i32,
@@ -3522,52 +3558,52 @@ pub const IInkDisp = extern struct {
             DistanceFromPacket: ?*f32,
             Stroke: ?*?*IInkStrokeDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateStrokes: fn(
+        CreateStrokes: fn (
             self: *const IInkDisp,
             StrokeIds: VARIANT,
             Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddStrokesAtRectangle: fn(
+        AddStrokesAtRectangle: fn (
             self: *const IInkDisp,
             SourceStrokes: ?*IInkStrokes,
             TargetRectangle: ?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Save: fn(
+        Save: fn (
             self: *const IInkDisp,
             PersistenceFormat: InkPersistenceFormat,
             CompressionMode: InkPersistenceCompressionMode,
             Data: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Load: fn(
+        Load: fn (
             self: *const IInkDisp,
             Data: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateStroke: fn(
+        CreateStroke: fn (
             self: *const IInkDisp,
             PacketData: VARIANT,
             PacketDescription: VARIANT,
             Stroke: ?*?*IInkStrokeDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ClipboardCopyWithRectangle: fn(
+        ClipboardCopyWithRectangle: fn (
             self: *const IInkDisp,
             Rectangle: ?*IInkRectangle,
             ClipboardFormats: InkClipboardFormats,
             ClipboardModes: InkClipboardModes,
             DataObject: ?*?*IDataObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ClipboardCopy: fn(
+        ClipboardCopy: fn (
             self: *const IInkDisp,
             strokes: ?*IInkStrokes,
             ClipboardFormats: InkClipboardFormats,
             ClipboardModes: InkClipboardModes,
             DataObject: ?*?*IDataObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CanPaste: fn(
+        CanPaste: fn (
             self: *const IInkDisp,
             DataObject: ?*IDataObject,
             CanPaste: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ClipboardPaste: fn(
+        ClipboardPaste: fn (
             self: *const IInkDisp,
             x: i32,
             y: i32,
@@ -3576,109 +3612,111 @@ pub const IInkDisp = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkDisp, self), Strokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_get_ExtendedProperties(self: *const T, Properties: ?*?*IInkExtendedProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).get_ExtendedProperties(@ptrCast(*const IInkDisp, self), Properties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_get_Dirty(self: *const T, Dirty: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).get_Dirty(@ptrCast(*const IInkDisp, self), Dirty);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_put_Dirty(self: *const T, Dirty: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).put_Dirty(@ptrCast(*const IInkDisp, self), Dirty);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_get_CustomStrokes(self: *const T, ppunkInkCustomStrokes: ?*?*IInkCustomStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).get_CustomStrokes(@ptrCast(*const IInkDisp, self), ppunkInkCustomStrokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_GetBoundingBox(self: *const T, BoundingBoxMode: InkBoundingBoxMode, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).GetBoundingBox(@ptrCast(*const IInkDisp, self), BoundingBoxMode, Rectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_DeleteStrokes(self: *const T, Strokes: ?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).DeleteStrokes(@ptrCast(*const IInkDisp, self), Strokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_DeleteStroke(self: *const T, Stroke: ?*IInkStrokeDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).DeleteStroke(@ptrCast(*const IInkDisp, self), Stroke);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_ExtractStrokes(self: *const T, Strokes: ?*IInkStrokes, ExtractFlags: InkExtractFlags, ExtractedInk: ?*?*IInkDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).ExtractStrokes(@ptrCast(*const IInkDisp, self), Strokes, ExtractFlags, ExtractedInk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_ExtractWithRectangle(self: *const T, Rectangle: ?*IInkRectangle, extractFlags: InkExtractFlags, ExtractedInk: ?*?*IInkDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).ExtractWithRectangle(@ptrCast(*const IInkDisp, self), Rectangle, extractFlags, ExtractedInk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_Clip(self: *const T, Rectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).Clip(@ptrCast(*const IInkDisp, self), Rectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_Clone(self: *const T, NewInk: ?*?*IInkDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).Clone(@ptrCast(*const IInkDisp, self), NewInk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_HitTestCircle(self: *const T, X: i32, Y: i32, radius: f32, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).HitTestCircle(@ptrCast(*const IInkDisp, self), X, Y, radius, Strokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_HitTestWithRectangle(self: *const T, SelectionRectangle: ?*IInkRectangle, IntersectPercent: f32, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).HitTestWithRectangle(@ptrCast(*const IInkDisp, self), SelectionRectangle, IntersectPercent, Strokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_HitTestWithLasso(self: *const T, Points: VARIANT, IntersectPercent: f32, LassoPoints: ?*VARIANT, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).HitTestWithLasso(@ptrCast(*const IInkDisp, self), Points, IntersectPercent, LassoPoints, Strokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_NearestPoint(self: *const T, X: i32, Y: i32, PointOnStroke: ?*f32, DistanceFromPacket: ?*f32, Stroke: ?*?*IInkStrokeDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).NearestPoint(@ptrCast(*const IInkDisp, self), X, Y, PointOnStroke, DistanceFromPacket, Stroke);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_CreateStrokes(self: *const T, StrokeIds: VARIANT, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).CreateStrokes(@ptrCast(*const IInkDisp, self), StrokeIds, Strokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_AddStrokesAtRectangle(self: *const T, SourceStrokes: ?*IInkStrokes, TargetRectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).AddStrokesAtRectangle(@ptrCast(*const IInkDisp, self), SourceStrokes, TargetRectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_Save(self: *const T, PersistenceFormat: InkPersistenceFormat, CompressionMode: InkPersistenceCompressionMode, Data: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).Save(@ptrCast(*const IInkDisp, self), PersistenceFormat, CompressionMode, Data);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_Load(self: *const T, Data: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).Load(@ptrCast(*const IInkDisp, self), Data);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_CreateStroke(self: *const T, PacketData: VARIANT, PacketDescription: VARIANT, Stroke: ?*?*IInkStrokeDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).CreateStroke(@ptrCast(*const IInkDisp, self), PacketData, PacketDescription, Stroke);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_ClipboardCopyWithRectangle(self: *const T, Rectangle: ?*IInkRectangle, ClipboardFormats: InkClipboardFormats, ClipboardModes: InkClipboardModes, DataObject: ?*?*IDataObject) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).ClipboardCopyWithRectangle(@ptrCast(*const IInkDisp, self), Rectangle, ClipboardFormats, ClipboardModes, DataObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_ClipboardCopy(self: *const T, strokes: ?*IInkStrokes, ClipboardFormats: InkClipboardFormats, ClipboardModes: InkClipboardModes, DataObject: ?*?*IDataObject) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).ClipboardCopy(@ptrCast(*const IInkDisp, self), strokes, ClipboardFormats, ClipboardModes, DataObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_CanPaste(self: *const T, DataObject: ?*IDataObject, CanPaste: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).CanPaste(@ptrCast(*const IInkDisp, self), DataObject, CanPaste);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDisp_ClipboardPaste(self: *const T, x: i32, y: i32, DataObject: ?*IDataObject, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDisp.VTable, self.vtable).ClipboardPaste(@ptrCast(*const IInkDisp, self), x, y, DataObject, Strokes);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkDisp, self), Strokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_get_ExtendedProperties(self: *const T, Properties: ?*?*IInkExtendedProperties) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).get_ExtendedProperties(@ptrCast(*const IInkDisp, self), Properties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_get_Dirty(self: *const T, Dirty: ?*i16) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).get_Dirty(@ptrCast(*const IInkDisp, self), Dirty);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_put_Dirty(self: *const T, Dirty: i16) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).put_Dirty(@ptrCast(*const IInkDisp, self), Dirty);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_get_CustomStrokes(self: *const T, ppunkInkCustomStrokes: ?*?*IInkCustomStrokes) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).get_CustomStrokes(@ptrCast(*const IInkDisp, self), ppunkInkCustomStrokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_GetBoundingBox(self: *const T, BoundingBoxMode: InkBoundingBoxMode, Rectangle: ?*?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).GetBoundingBox(@ptrCast(*const IInkDisp, self), BoundingBoxMode, Rectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_DeleteStrokes(self: *const T, Strokes: ?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).DeleteStrokes(@ptrCast(*const IInkDisp, self), Strokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_DeleteStroke(self: *const T, Stroke: ?*IInkStrokeDisp) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).DeleteStroke(@ptrCast(*const IInkDisp, self), Stroke);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_ExtractStrokes(self: *const T, Strokes: ?*IInkStrokes, ExtractFlags: InkExtractFlags, ExtractedInk: ?*?*IInkDisp) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).ExtractStrokes(@ptrCast(*const IInkDisp, self), Strokes, ExtractFlags, ExtractedInk);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_ExtractWithRectangle(self: *const T, Rectangle: ?*IInkRectangle, extractFlags: InkExtractFlags, ExtractedInk: ?*?*IInkDisp) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).ExtractWithRectangle(@ptrCast(*const IInkDisp, self), Rectangle, extractFlags, ExtractedInk);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_Clip(self: *const T, Rectangle: ?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).Clip(@ptrCast(*const IInkDisp, self), Rectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_Clone(self: *const T, NewInk: ?*?*IInkDisp) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).Clone(@ptrCast(*const IInkDisp, self), NewInk);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_HitTestCircle(self: *const T, X: i32, Y: i32, radius: f32, Strokes: ?*?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).HitTestCircle(@ptrCast(*const IInkDisp, self), X, Y, radius, Strokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_HitTestWithRectangle(self: *const T, SelectionRectangle: ?*IInkRectangle, IntersectPercent: f32, Strokes: ?*?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).HitTestWithRectangle(@ptrCast(*const IInkDisp, self), SelectionRectangle, IntersectPercent, Strokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_HitTestWithLasso(self: *const T, Points: VARIANT, IntersectPercent: f32, LassoPoints: ?*VARIANT, Strokes: ?*?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).HitTestWithLasso(@ptrCast(*const IInkDisp, self), Points, IntersectPercent, LassoPoints, Strokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_NearestPoint(self: *const T, X: i32, Y: i32, PointOnStroke: ?*f32, DistanceFromPacket: ?*f32, Stroke: ?*?*IInkStrokeDisp) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).NearestPoint(@ptrCast(*const IInkDisp, self), X, Y, PointOnStroke, DistanceFromPacket, Stroke);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_CreateStrokes(self: *const T, StrokeIds: VARIANT, Strokes: ?*?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).CreateStrokes(@ptrCast(*const IInkDisp, self), StrokeIds, Strokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_AddStrokesAtRectangle(self: *const T, SourceStrokes: ?*IInkStrokes, TargetRectangle: ?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).AddStrokesAtRectangle(@ptrCast(*const IInkDisp, self), SourceStrokes, TargetRectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_Save(self: *const T, PersistenceFormat: InkPersistenceFormat, CompressionMode: InkPersistenceCompressionMode, Data: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).Save(@ptrCast(*const IInkDisp, self), PersistenceFormat, CompressionMode, Data);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_Load(self: *const T, Data: VARIANT) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).Load(@ptrCast(*const IInkDisp, self), Data);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_CreateStroke(self: *const T, PacketData: VARIANT, PacketDescription: VARIANT, Stroke: ?*?*IInkStrokeDisp) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).CreateStroke(@ptrCast(*const IInkDisp, self), PacketData, PacketDescription, Stroke);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_ClipboardCopyWithRectangle(self: *const T, Rectangle: ?*IInkRectangle, ClipboardFormats: InkClipboardFormats, ClipboardModes: InkClipboardModes, DataObject: ?*?*IDataObject) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).ClipboardCopyWithRectangle(@ptrCast(*const IInkDisp, self), Rectangle, ClipboardFormats, ClipboardModes, DataObject);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_ClipboardCopy(self: *const T, strokes: ?*IInkStrokes, ClipboardFormats: InkClipboardFormats, ClipboardModes: InkClipboardModes, DataObject: ?*?*IDataObject) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).ClipboardCopy(@ptrCast(*const IInkDisp, self), strokes, ClipboardFormats, ClipboardModes, DataObject);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_CanPaste(self: *const T, DataObject: ?*IDataObject, CanPaste: ?*i16) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).CanPaste(@ptrCast(*const IInkDisp, self), DataObject, CanPaste);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDisp_ClipboardPaste(self: *const T, x: i32, y: i32, DataObject: ?*IDataObject, Strokes: ?*?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkDisp.VTable, self.vtable).ClipboardPaste(@ptrCast(*const IInkDisp, self), x, y, DataObject, Strokes);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3689,9 +3727,11 @@ pub const _IInkEvents = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3700,78 +3740,78 @@ pub const IID_IInkRenderer = &IID_IInkRenderer_Value;
 pub const IInkRenderer = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        GetViewTransform: fn(
+        GetViewTransform: fn (
             self: *const IInkRenderer,
             ViewTransform: ?*IInkTransform,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetViewTransform: fn(
+        SetViewTransform: fn (
             self: *const IInkRenderer,
             ViewTransform: ?*IInkTransform,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetObjectTransform: fn(
+        GetObjectTransform: fn (
             self: *const IInkRenderer,
             ObjectTransform: ?*IInkTransform,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetObjectTransform: fn(
+        SetObjectTransform: fn (
             self: *const IInkRenderer,
             ObjectTransform: ?*IInkTransform,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Draw: fn(
+        Draw: fn (
             self: *const IInkRenderer,
             hDC: isize,
             Strokes: ?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DrawStroke: fn(
+        DrawStroke: fn (
             self: *const IInkRenderer,
             hDC: isize,
             Stroke: ?*IInkStrokeDisp,
             DrawingAttributes: ?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PixelToInkSpace: fn(
+        PixelToInkSpace: fn (
             self: *const IInkRenderer,
             hDC: isize,
             x: ?*i32,
             y: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InkSpaceToPixel: fn(
+        InkSpaceToPixel: fn (
             self: *const IInkRenderer,
             hdcDisplay: isize,
             x: ?*i32,
             y: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PixelToInkSpaceFromPoints: fn(
+        PixelToInkSpaceFromPoints: fn (
             self: *const IInkRenderer,
             hDC: isize,
             Points: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InkSpaceToPixelFromPoints: fn(
+        InkSpaceToPixelFromPoints: fn (
             self: *const IInkRenderer,
             hDC: isize,
             Points: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Measure: fn(
+        Measure: fn (
             self: *const IInkRenderer,
             Strokes: ?*IInkStrokes,
             Rectangle: ?*?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MeasureStroke: fn(
+        MeasureStroke: fn (
             self: *const IInkRenderer,
             Stroke: ?*IInkStrokeDisp,
             DrawingAttributes: ?*IInkDrawingAttributes,
             Rectangle: ?*?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Move: fn(
+        Move: fn (
             self: *const IInkRenderer,
             HorizontalComponent: f32,
             VerticalComponent: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Rotate: fn(
+        Rotate: fn (
             self: *const IInkRenderer,
             Degrees: f32,
             x: f32,
             y: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ScaleTransform: fn(
+        ScaleTransform: fn (
             self: *const IInkRenderer,
             HorizontalMultiplier: f32,
             VerticalMultiplier: f32,
@@ -3779,69 +3819,71 @@ pub const IInkRenderer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_GetViewTransform(self: *const T, ViewTransform: ?*IInkTransform) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRenderer.VTable, self.vtable).GetViewTransform(@ptrCast(*const IInkRenderer, self), ViewTransform);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_SetViewTransform(self: *const T, ViewTransform: ?*IInkTransform) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRenderer.VTable, self.vtable).SetViewTransform(@ptrCast(*const IInkRenderer, self), ViewTransform);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_GetObjectTransform(self: *const T, ObjectTransform: ?*IInkTransform) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRenderer.VTable, self.vtable).GetObjectTransform(@ptrCast(*const IInkRenderer, self), ObjectTransform);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_SetObjectTransform(self: *const T, ObjectTransform: ?*IInkTransform) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRenderer.VTable, self.vtable).SetObjectTransform(@ptrCast(*const IInkRenderer, self), ObjectTransform);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_Draw(self: *const T, hDC: isize, Strokes: ?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRenderer.VTable, self.vtable).Draw(@ptrCast(*const IInkRenderer, self), hDC, Strokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_DrawStroke(self: *const T, hDC: isize, Stroke: ?*IInkStrokeDisp, DrawingAttributes: ?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRenderer.VTable, self.vtable).DrawStroke(@ptrCast(*const IInkRenderer, self), hDC, Stroke, DrawingAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_PixelToInkSpace(self: *const T, hDC: isize, x: ?*i32, y: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRenderer.VTable, self.vtable).PixelToInkSpace(@ptrCast(*const IInkRenderer, self), hDC, x, y);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_InkSpaceToPixel(self: *const T, hdcDisplay: isize, x: ?*i32, y: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRenderer.VTable, self.vtable).InkSpaceToPixel(@ptrCast(*const IInkRenderer, self), hdcDisplay, x, y);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_PixelToInkSpaceFromPoints(self: *const T, hDC: isize, Points: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRenderer.VTable, self.vtable).PixelToInkSpaceFromPoints(@ptrCast(*const IInkRenderer, self), hDC, Points);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_InkSpaceToPixelFromPoints(self: *const T, hDC: isize, Points: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRenderer.VTable, self.vtable).InkSpaceToPixelFromPoints(@ptrCast(*const IInkRenderer, self), hDC, Points);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_Measure(self: *const T, Strokes: ?*IInkStrokes, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRenderer.VTable, self.vtable).Measure(@ptrCast(*const IInkRenderer, self), Strokes, Rectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_MeasureStroke(self: *const T, Stroke: ?*IInkStrokeDisp, DrawingAttributes: ?*IInkDrawingAttributes, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRenderer.VTable, self.vtable).MeasureStroke(@ptrCast(*const IInkRenderer, self), Stroke, DrawingAttributes, Rectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_Move(self: *const T, HorizontalComponent: f32, VerticalComponent: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRenderer.VTable, self.vtable).Move(@ptrCast(*const IInkRenderer, self), HorizontalComponent, VerticalComponent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_Rotate(self: *const T, Degrees: f32, x: f32, y: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRenderer.VTable, self.vtable).Rotate(@ptrCast(*const IInkRenderer, self), Degrees, x, y);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRenderer_ScaleTransform(self: *const T, HorizontalMultiplier: f32, VerticalMultiplier: f32, ApplyOnPenWidth: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRenderer.VTable, self.vtable).ScaleTransform(@ptrCast(*const IInkRenderer, self), HorizontalMultiplier, VerticalMultiplier, ApplyOnPenWidth);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRenderer_GetViewTransform(self: *const T, ViewTransform: ?*IInkTransform) HRESULT {
+                return @ptrCast(*const IInkRenderer.VTable, self.vtable).GetViewTransform(@ptrCast(*const IInkRenderer, self), ViewTransform);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRenderer_SetViewTransform(self: *const T, ViewTransform: ?*IInkTransform) HRESULT {
+                return @ptrCast(*const IInkRenderer.VTable, self.vtable).SetViewTransform(@ptrCast(*const IInkRenderer, self), ViewTransform);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRenderer_GetObjectTransform(self: *const T, ObjectTransform: ?*IInkTransform) HRESULT {
+                return @ptrCast(*const IInkRenderer.VTable, self.vtable).GetObjectTransform(@ptrCast(*const IInkRenderer, self), ObjectTransform);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRenderer_SetObjectTransform(self: *const T, ObjectTransform: ?*IInkTransform) HRESULT {
+                return @ptrCast(*const IInkRenderer.VTable, self.vtable).SetObjectTransform(@ptrCast(*const IInkRenderer, self), ObjectTransform);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRenderer_Draw(self: *const T, hDC: isize, Strokes: ?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkRenderer.VTable, self.vtable).Draw(@ptrCast(*const IInkRenderer, self), hDC, Strokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRenderer_DrawStroke(self: *const T, hDC: isize, Stroke: ?*IInkStrokeDisp, DrawingAttributes: ?*IInkDrawingAttributes) HRESULT {
+                return @ptrCast(*const IInkRenderer.VTable, self.vtable).DrawStroke(@ptrCast(*const IInkRenderer, self), hDC, Stroke, DrawingAttributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRenderer_PixelToInkSpace(self: *const T, hDC: isize, x: ?*i32, y: ?*i32) HRESULT {
+                return @ptrCast(*const IInkRenderer.VTable, self.vtable).PixelToInkSpace(@ptrCast(*const IInkRenderer, self), hDC, x, y);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRenderer_InkSpaceToPixel(self: *const T, hdcDisplay: isize, x: ?*i32, y: ?*i32) HRESULT {
+                return @ptrCast(*const IInkRenderer.VTable, self.vtable).InkSpaceToPixel(@ptrCast(*const IInkRenderer, self), hdcDisplay, x, y);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRenderer_PixelToInkSpaceFromPoints(self: *const T, hDC: isize, Points: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkRenderer.VTable, self.vtable).PixelToInkSpaceFromPoints(@ptrCast(*const IInkRenderer, self), hDC, Points);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRenderer_InkSpaceToPixelFromPoints(self: *const T, hDC: isize, Points: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkRenderer.VTable, self.vtable).InkSpaceToPixelFromPoints(@ptrCast(*const IInkRenderer, self), hDC, Points);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRenderer_Measure(self: *const T, Strokes: ?*IInkStrokes, Rectangle: ?*?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkRenderer.VTable, self.vtable).Measure(@ptrCast(*const IInkRenderer, self), Strokes, Rectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRenderer_MeasureStroke(self: *const T, Stroke: ?*IInkStrokeDisp, DrawingAttributes: ?*IInkDrawingAttributes, Rectangle: ?*?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkRenderer.VTable, self.vtable).MeasureStroke(@ptrCast(*const IInkRenderer, self), Stroke, DrawingAttributes, Rectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRenderer_Move(self: *const T, HorizontalComponent: f32, VerticalComponent: f32) HRESULT {
+                return @ptrCast(*const IInkRenderer.VTable, self.vtable).Move(@ptrCast(*const IInkRenderer, self), HorizontalComponent, VerticalComponent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRenderer_Rotate(self: *const T, Degrees: f32, x: f32, y: f32) HRESULT {
+                return @ptrCast(*const IInkRenderer.VTable, self.vtable).Rotate(@ptrCast(*const IInkRenderer, self), Degrees, x, y);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRenderer_ScaleTransform(self: *const T, HorizontalMultiplier: f32, VerticalMultiplier: f32, ApplyOnPenWidth: i16) HRESULT {
+                return @ptrCast(*const IInkRenderer.VTable, self.vtable).ScaleTransform(@ptrCast(*const IInkRenderer, self), HorizontalMultiplier, VerticalMultiplier, ApplyOnPenWidth);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3851,362 +3893,364 @@ pub const IInkCollector = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_hWnd: fn(
+        get_hWnd: fn (
             self: *const IInkCollector,
             CurrentWindow: ?*isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_hWnd: fn(
+        put_hWnd: fn (
             self: *const IInkCollector,
             NewWindow: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: fn(
+        get_Enabled: fn (
             self: *const IInkCollector,
             Collecting: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: fn(
+        put_Enabled: fn (
             self: *const IInkCollector,
             Collecting: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DefaultDrawingAttributes: fn(
+        get_DefaultDrawingAttributes: fn (
             self: *const IInkCollector,
             CurrentAttributes: ?*?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_DefaultDrawingAttributes: fn(
+        putref_DefaultDrawingAttributes: fn (
             self: *const IInkCollector,
             NewAttributes: ?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Renderer: fn(
+        get_Renderer: fn (
             self: *const IInkCollector,
             CurrentInkRenderer: ?*?*IInkRenderer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_Renderer: fn(
+        putref_Renderer: fn (
             self: *const IInkCollector,
             NewInkRenderer: ?*IInkRenderer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Ink: fn(
+        get_Ink: fn (
             self: *const IInkCollector,
             Ink: ?*?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_Ink: fn(
+        putref_Ink: fn (
             self: *const IInkCollector,
             NewInk: ?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AutoRedraw: fn(
+        get_AutoRedraw: fn (
             self: *const IInkCollector,
             AutoRedraw: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AutoRedraw: fn(
+        put_AutoRedraw: fn (
             self: *const IInkCollector,
             AutoRedraw: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CollectingInk: fn(
+        get_CollectingInk: fn (
             self: *const IInkCollector,
             Collecting: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CollectionMode: fn(
+        get_CollectionMode: fn (
             self: *const IInkCollector,
             Mode: ?*InkCollectionMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_CollectionMode: fn(
+        put_CollectionMode: fn (
             self: *const IInkCollector,
             Mode: InkCollectionMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DynamicRendering: fn(
+        get_DynamicRendering: fn (
             self: *const IInkCollector,
             Enabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DynamicRendering: fn(
+        put_DynamicRendering: fn (
             self: *const IInkCollector,
             Enabled: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DesiredPacketDescription: fn(
+        get_DesiredPacketDescription: fn (
             self: *const IInkCollector,
             PacketGuids: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DesiredPacketDescription: fn(
+        put_DesiredPacketDescription: fn (
             self: *const IInkCollector,
             PacketGuids: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MouseIcon: fn(
+        get_MouseIcon: fn (
             self: *const IInkCollector,
             MouseIcon: ?*?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MouseIcon: fn(
+        put_MouseIcon: fn (
             self: *const IInkCollector,
             MouseIcon: ?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_MouseIcon: fn(
+        putref_MouseIcon: fn (
             self: *const IInkCollector,
             MouseIcon: ?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MousePointer: fn(
+        get_MousePointer: fn (
             self: *const IInkCollector,
             MousePointer: ?*InkMousePointer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MousePointer: fn(
+        put_MousePointer: fn (
             self: *const IInkCollector,
             MousePointer: InkMousePointer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cursors: fn(
+        get_Cursors: fn (
             self: *const IInkCollector,
             Cursors: ?*?*IInkCursors,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MarginX: fn(
+        get_MarginX: fn (
             self: *const IInkCollector,
             MarginX: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MarginX: fn(
+        put_MarginX: fn (
             self: *const IInkCollector,
             MarginX: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MarginY: fn(
+        get_MarginY: fn (
             self: *const IInkCollector,
             MarginY: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MarginY: fn(
+        put_MarginY: fn (
             self: *const IInkCollector,
             MarginY: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Tablet: fn(
+        get_Tablet: fn (
             self: *const IInkCollector,
             SingleTablet: ?*?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportHighContrastInk: fn(
+        get_SupportHighContrastInk: fn (
             self: *const IInkCollector,
             Support: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SupportHighContrastInk: fn(
+        put_SupportHighContrastInk: fn (
             self: *const IInkCollector,
             Support: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetGestureStatus: fn(
+        SetGestureStatus: fn (
             self: *const IInkCollector,
             Gesture: InkApplicationGesture,
             Listen: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetGestureStatus: fn(
+        GetGestureStatus: fn (
             self: *const IInkCollector,
             Gesture: InkApplicationGesture,
             Listening: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetWindowInputRectangle: fn(
+        GetWindowInputRectangle: fn (
             self: *const IInkCollector,
             WindowInputRectangle: ?*?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetWindowInputRectangle: fn(
+        SetWindowInputRectangle: fn (
             self: *const IInkCollector,
             WindowInputRectangle: ?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllTabletsMode: fn(
+        SetAllTabletsMode: fn (
             self: *const IInkCollector,
             UseMouseForInput: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSingleTabletIntegratedMode: fn(
+        SetSingleTabletIntegratedMode: fn (
             self: *const IInkCollector,
             Tablet: ?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEventInterest: fn(
+        GetEventInterest: fn (
             self: *const IInkCollector,
             EventId: InkCollectorEventInterest,
             Listen: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEventInterest: fn(
+        SetEventInterest: fn (
             self: *const IInkCollector,
             EventId: InkCollectorEventInterest,
             Listen: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_hWnd(self: *const T, CurrentWindow: ?*isize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).get_hWnd(@ptrCast(*const IInkCollector, self), CurrentWindow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_put_hWnd(self: *const T, NewWindow: isize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).put_hWnd(@ptrCast(*const IInkCollector, self), NewWindow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_Enabled(self: *const T, Collecting: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).get_Enabled(@ptrCast(*const IInkCollector, self), Collecting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_put_Enabled(self: *const T, Collecting: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).put_Enabled(@ptrCast(*const IInkCollector, self), Collecting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_DefaultDrawingAttributes(self: *const T, CurrentAttributes: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).get_DefaultDrawingAttributes(@ptrCast(*const IInkCollector, self), CurrentAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_putref_DefaultDrawingAttributes(self: *const T, NewAttributes: ?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).putref_DefaultDrawingAttributes(@ptrCast(*const IInkCollector, self), NewAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_Renderer(self: *const T, CurrentInkRenderer: ?*?*IInkRenderer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).get_Renderer(@ptrCast(*const IInkCollector, self), CurrentInkRenderer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_putref_Renderer(self: *const T, NewInkRenderer: ?*IInkRenderer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).putref_Renderer(@ptrCast(*const IInkCollector, self), NewInkRenderer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_Ink(self: *const T, Ink: ?*?*IInkDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).get_Ink(@ptrCast(*const IInkCollector, self), Ink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_putref_Ink(self: *const T, NewInk: ?*IInkDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).putref_Ink(@ptrCast(*const IInkCollector, self), NewInk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_AutoRedraw(self: *const T, AutoRedraw: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).get_AutoRedraw(@ptrCast(*const IInkCollector, self), AutoRedraw);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_put_AutoRedraw(self: *const T, AutoRedraw: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).put_AutoRedraw(@ptrCast(*const IInkCollector, self), AutoRedraw);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_CollectingInk(self: *const T, Collecting: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).get_CollectingInk(@ptrCast(*const IInkCollector, self), Collecting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_CollectionMode(self: *const T, Mode: ?*InkCollectionMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).get_CollectionMode(@ptrCast(*const IInkCollector, self), Mode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_put_CollectionMode(self: *const T, Mode: InkCollectionMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).put_CollectionMode(@ptrCast(*const IInkCollector, self), Mode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_DynamicRendering(self: *const T, Enabled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).get_DynamicRendering(@ptrCast(*const IInkCollector, self), Enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_put_DynamicRendering(self: *const T, Enabled: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).put_DynamicRendering(@ptrCast(*const IInkCollector, self), Enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_DesiredPacketDescription(self: *const T, PacketGuids: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).get_DesiredPacketDescription(@ptrCast(*const IInkCollector, self), PacketGuids);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_put_DesiredPacketDescription(self: *const T, PacketGuids: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).put_DesiredPacketDescription(@ptrCast(*const IInkCollector, self), PacketGuids);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_MouseIcon(self: *const T, MouseIcon: ?*?*IPictureDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).get_MouseIcon(@ptrCast(*const IInkCollector, self), MouseIcon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_put_MouseIcon(self: *const T, MouseIcon: ?*IPictureDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).put_MouseIcon(@ptrCast(*const IInkCollector, self), MouseIcon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_putref_MouseIcon(self: *const T, MouseIcon: ?*IPictureDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).putref_MouseIcon(@ptrCast(*const IInkCollector, self), MouseIcon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_MousePointer(self: *const T, MousePointer: ?*InkMousePointer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).get_MousePointer(@ptrCast(*const IInkCollector, self), MousePointer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_put_MousePointer(self: *const T, MousePointer: InkMousePointer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).put_MousePointer(@ptrCast(*const IInkCollector, self), MousePointer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_Cursors(self: *const T, Cursors: ?*?*IInkCursors) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).get_Cursors(@ptrCast(*const IInkCollector, self), Cursors);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_MarginX(self: *const T, MarginX: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).get_MarginX(@ptrCast(*const IInkCollector, self), MarginX);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_put_MarginX(self: *const T, MarginX: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).put_MarginX(@ptrCast(*const IInkCollector, self), MarginX);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_MarginY(self: *const T, MarginY: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).get_MarginY(@ptrCast(*const IInkCollector, self), MarginY);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_put_MarginY(self: *const T, MarginY: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).put_MarginY(@ptrCast(*const IInkCollector, self), MarginY);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_Tablet(self: *const T, SingleTablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).get_Tablet(@ptrCast(*const IInkCollector, self), SingleTablet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_get_SupportHighContrastInk(self: *const T, Support: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).get_SupportHighContrastInk(@ptrCast(*const IInkCollector, self), Support);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_put_SupportHighContrastInk(self: *const T, Support: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).put_SupportHighContrastInk(@ptrCast(*const IInkCollector, self), Support);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_SetGestureStatus(self: *const T, Gesture: InkApplicationGesture, Listen: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).SetGestureStatus(@ptrCast(*const IInkCollector, self), Gesture, Listen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_GetGestureStatus(self: *const T, Gesture: InkApplicationGesture, Listening: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).GetGestureStatus(@ptrCast(*const IInkCollector, self), Gesture, Listening);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_GetWindowInputRectangle(self: *const T, WindowInputRectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).GetWindowInputRectangle(@ptrCast(*const IInkCollector, self), WindowInputRectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_SetWindowInputRectangle(self: *const T, WindowInputRectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).SetWindowInputRectangle(@ptrCast(*const IInkCollector, self), WindowInputRectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_SetAllTabletsMode(self: *const T, UseMouseForInput: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).SetAllTabletsMode(@ptrCast(*const IInkCollector, self), UseMouseForInput);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_SetSingleTabletIntegratedMode(self: *const T, Tablet: ?*IInkTablet) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).SetSingleTabletIntegratedMode(@ptrCast(*const IInkCollector, self), Tablet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_GetEventInterest(self: *const T, EventId: InkCollectorEventInterest, Listen: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).GetEventInterest(@ptrCast(*const IInkCollector, self), EventId, Listen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkCollector_SetEventInterest(self: *const T, EventId: InkCollectorEventInterest, Listen: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkCollector.VTable, self.vtable).SetEventInterest(@ptrCast(*const IInkCollector, self), EventId, Listen);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_get_hWnd(self: *const T, CurrentWindow: ?*isize) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).get_hWnd(@ptrCast(*const IInkCollector, self), CurrentWindow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_put_hWnd(self: *const T, NewWindow: isize) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).put_hWnd(@ptrCast(*const IInkCollector, self), NewWindow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_get_Enabled(self: *const T, Collecting: ?*i16) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).get_Enabled(@ptrCast(*const IInkCollector, self), Collecting);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_put_Enabled(self: *const T, Collecting: i16) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).put_Enabled(@ptrCast(*const IInkCollector, self), Collecting);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_get_DefaultDrawingAttributes(self: *const T, CurrentAttributes: ?*?*IInkDrawingAttributes) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).get_DefaultDrawingAttributes(@ptrCast(*const IInkCollector, self), CurrentAttributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_putref_DefaultDrawingAttributes(self: *const T, NewAttributes: ?*IInkDrawingAttributes) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).putref_DefaultDrawingAttributes(@ptrCast(*const IInkCollector, self), NewAttributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_get_Renderer(self: *const T, CurrentInkRenderer: ?*?*IInkRenderer) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).get_Renderer(@ptrCast(*const IInkCollector, self), CurrentInkRenderer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_putref_Renderer(self: *const T, NewInkRenderer: ?*IInkRenderer) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).putref_Renderer(@ptrCast(*const IInkCollector, self), NewInkRenderer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_get_Ink(self: *const T, Ink: ?*?*IInkDisp) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).get_Ink(@ptrCast(*const IInkCollector, self), Ink);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_putref_Ink(self: *const T, NewInk: ?*IInkDisp) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).putref_Ink(@ptrCast(*const IInkCollector, self), NewInk);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_get_AutoRedraw(self: *const T, AutoRedraw: ?*i16) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).get_AutoRedraw(@ptrCast(*const IInkCollector, self), AutoRedraw);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_put_AutoRedraw(self: *const T, AutoRedraw: i16) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).put_AutoRedraw(@ptrCast(*const IInkCollector, self), AutoRedraw);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_get_CollectingInk(self: *const T, Collecting: ?*i16) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).get_CollectingInk(@ptrCast(*const IInkCollector, self), Collecting);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_get_CollectionMode(self: *const T, Mode: ?*InkCollectionMode) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).get_CollectionMode(@ptrCast(*const IInkCollector, self), Mode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_put_CollectionMode(self: *const T, Mode: InkCollectionMode) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).put_CollectionMode(@ptrCast(*const IInkCollector, self), Mode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_get_DynamicRendering(self: *const T, Enabled: ?*i16) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).get_DynamicRendering(@ptrCast(*const IInkCollector, self), Enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_put_DynamicRendering(self: *const T, Enabled: i16) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).put_DynamicRendering(@ptrCast(*const IInkCollector, self), Enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_get_DesiredPacketDescription(self: *const T, PacketGuids: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).get_DesiredPacketDescription(@ptrCast(*const IInkCollector, self), PacketGuids);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_put_DesiredPacketDescription(self: *const T, PacketGuids: VARIANT) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).put_DesiredPacketDescription(@ptrCast(*const IInkCollector, self), PacketGuids);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_get_MouseIcon(self: *const T, MouseIcon: ?*?*IPictureDisp) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).get_MouseIcon(@ptrCast(*const IInkCollector, self), MouseIcon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_put_MouseIcon(self: *const T, MouseIcon: ?*IPictureDisp) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).put_MouseIcon(@ptrCast(*const IInkCollector, self), MouseIcon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_putref_MouseIcon(self: *const T, MouseIcon: ?*IPictureDisp) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).putref_MouseIcon(@ptrCast(*const IInkCollector, self), MouseIcon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_get_MousePointer(self: *const T, MousePointer: ?*InkMousePointer) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).get_MousePointer(@ptrCast(*const IInkCollector, self), MousePointer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_put_MousePointer(self: *const T, MousePointer: InkMousePointer) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).put_MousePointer(@ptrCast(*const IInkCollector, self), MousePointer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_get_Cursors(self: *const T, Cursors: ?*?*IInkCursors) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).get_Cursors(@ptrCast(*const IInkCollector, self), Cursors);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_get_MarginX(self: *const T, MarginX: ?*i32) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).get_MarginX(@ptrCast(*const IInkCollector, self), MarginX);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_put_MarginX(self: *const T, MarginX: i32) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).put_MarginX(@ptrCast(*const IInkCollector, self), MarginX);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_get_MarginY(self: *const T, MarginY: ?*i32) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).get_MarginY(@ptrCast(*const IInkCollector, self), MarginY);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_put_MarginY(self: *const T, MarginY: i32) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).put_MarginY(@ptrCast(*const IInkCollector, self), MarginY);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_get_Tablet(self: *const T, SingleTablet: ?*?*IInkTablet) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).get_Tablet(@ptrCast(*const IInkCollector, self), SingleTablet);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_get_SupportHighContrastInk(self: *const T, Support: ?*i16) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).get_SupportHighContrastInk(@ptrCast(*const IInkCollector, self), Support);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_put_SupportHighContrastInk(self: *const T, Support: i16) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).put_SupportHighContrastInk(@ptrCast(*const IInkCollector, self), Support);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_SetGestureStatus(self: *const T, Gesture: InkApplicationGesture, Listen: i16) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).SetGestureStatus(@ptrCast(*const IInkCollector, self), Gesture, Listen);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_GetGestureStatus(self: *const T, Gesture: InkApplicationGesture, Listening: ?*i16) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).GetGestureStatus(@ptrCast(*const IInkCollector, self), Gesture, Listening);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_GetWindowInputRectangle(self: *const T, WindowInputRectangle: ?*?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).GetWindowInputRectangle(@ptrCast(*const IInkCollector, self), WindowInputRectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_SetWindowInputRectangle(self: *const T, WindowInputRectangle: ?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).SetWindowInputRectangle(@ptrCast(*const IInkCollector, self), WindowInputRectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_SetAllTabletsMode(self: *const T, UseMouseForInput: i16) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).SetAllTabletsMode(@ptrCast(*const IInkCollector, self), UseMouseForInput);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_SetSingleTabletIntegratedMode(self: *const T, Tablet: ?*IInkTablet) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).SetSingleTabletIntegratedMode(@ptrCast(*const IInkCollector, self), Tablet);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_GetEventInterest(self: *const T, EventId: InkCollectorEventInterest, Listen: ?*i16) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).GetEventInterest(@ptrCast(*const IInkCollector, self), EventId, Listen);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkCollector_SetEventInterest(self: *const T, EventId: InkCollectorEventInterest, Listen: i16) HRESULT {
+                return @ptrCast(*const IInkCollector.VTable, self.vtable).SetEventInterest(@ptrCast(*const IInkCollector, self), EventId, Listen);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4217,9 +4261,11 @@ pub const _IInkCollectorEvents = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4229,488 +4275,490 @@ pub const IInkOverlay = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_hWnd: fn(
+        get_hWnd: fn (
             self: *const IInkOverlay,
             CurrentWindow: ?*isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_hWnd: fn(
+        put_hWnd: fn (
             self: *const IInkOverlay,
             NewWindow: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: fn(
+        get_Enabled: fn (
             self: *const IInkOverlay,
             Collecting: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: fn(
+        put_Enabled: fn (
             self: *const IInkOverlay,
             Collecting: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DefaultDrawingAttributes: fn(
+        get_DefaultDrawingAttributes: fn (
             self: *const IInkOverlay,
             CurrentAttributes: ?*?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_DefaultDrawingAttributes: fn(
+        putref_DefaultDrawingAttributes: fn (
             self: *const IInkOverlay,
             NewAttributes: ?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Renderer: fn(
+        get_Renderer: fn (
             self: *const IInkOverlay,
             CurrentInkRenderer: ?*?*IInkRenderer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_Renderer: fn(
+        putref_Renderer: fn (
             self: *const IInkOverlay,
             NewInkRenderer: ?*IInkRenderer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Ink: fn(
+        get_Ink: fn (
             self: *const IInkOverlay,
             Ink: ?*?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_Ink: fn(
+        putref_Ink: fn (
             self: *const IInkOverlay,
             NewInk: ?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AutoRedraw: fn(
+        get_AutoRedraw: fn (
             self: *const IInkOverlay,
             AutoRedraw: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AutoRedraw: fn(
+        put_AutoRedraw: fn (
             self: *const IInkOverlay,
             AutoRedraw: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CollectingInk: fn(
+        get_CollectingInk: fn (
             self: *const IInkOverlay,
             Collecting: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CollectionMode: fn(
+        get_CollectionMode: fn (
             self: *const IInkOverlay,
             Mode: ?*InkCollectionMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_CollectionMode: fn(
+        put_CollectionMode: fn (
             self: *const IInkOverlay,
             Mode: InkCollectionMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DynamicRendering: fn(
+        get_DynamicRendering: fn (
             self: *const IInkOverlay,
             Enabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DynamicRendering: fn(
+        put_DynamicRendering: fn (
             self: *const IInkOverlay,
             Enabled: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DesiredPacketDescription: fn(
+        get_DesiredPacketDescription: fn (
             self: *const IInkOverlay,
             PacketGuids: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DesiredPacketDescription: fn(
+        put_DesiredPacketDescription: fn (
             self: *const IInkOverlay,
             PacketGuids: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MouseIcon: fn(
+        get_MouseIcon: fn (
             self: *const IInkOverlay,
             MouseIcon: ?*?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MouseIcon: fn(
+        put_MouseIcon: fn (
             self: *const IInkOverlay,
             MouseIcon: ?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_MouseIcon: fn(
+        putref_MouseIcon: fn (
             self: *const IInkOverlay,
             MouseIcon: ?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MousePointer: fn(
+        get_MousePointer: fn (
             self: *const IInkOverlay,
             MousePointer: ?*InkMousePointer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MousePointer: fn(
+        put_MousePointer: fn (
             self: *const IInkOverlay,
             MousePointer: InkMousePointer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EditingMode: fn(
+        get_EditingMode: fn (
             self: *const IInkOverlay,
             EditingMode: ?*InkOverlayEditingMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EditingMode: fn(
+        put_EditingMode: fn (
             self: *const IInkOverlay,
             EditingMode: InkOverlayEditingMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Selection: fn(
+        get_Selection: fn (
             self: *const IInkOverlay,
             Selection: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Selection: fn(
+        put_Selection: fn (
             self: *const IInkOverlay,
             Selection: ?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EraserMode: fn(
+        get_EraserMode: fn (
             self: *const IInkOverlay,
             EraserMode: ?*InkOverlayEraserMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EraserMode: fn(
+        put_EraserMode: fn (
             self: *const IInkOverlay,
             EraserMode: InkOverlayEraserMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EraserWidth: fn(
+        get_EraserWidth: fn (
             self: *const IInkOverlay,
             EraserWidth: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EraserWidth: fn(
+        put_EraserWidth: fn (
             self: *const IInkOverlay,
             newEraserWidth: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AttachMode: fn(
+        get_AttachMode: fn (
             self: *const IInkOverlay,
             AttachMode: ?*InkOverlayAttachMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AttachMode: fn(
+        put_AttachMode: fn (
             self: *const IInkOverlay,
             AttachMode: InkOverlayAttachMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cursors: fn(
+        get_Cursors: fn (
             self: *const IInkOverlay,
             Cursors: ?*?*IInkCursors,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MarginX: fn(
+        get_MarginX: fn (
             self: *const IInkOverlay,
             MarginX: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MarginX: fn(
+        put_MarginX: fn (
             self: *const IInkOverlay,
             MarginX: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MarginY: fn(
+        get_MarginY: fn (
             self: *const IInkOverlay,
             MarginY: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MarginY: fn(
+        put_MarginY: fn (
             self: *const IInkOverlay,
             MarginY: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Tablet: fn(
+        get_Tablet: fn (
             self: *const IInkOverlay,
             SingleTablet: ?*?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportHighContrastInk: fn(
+        get_SupportHighContrastInk: fn (
             self: *const IInkOverlay,
             Support: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SupportHighContrastInk: fn(
+        put_SupportHighContrastInk: fn (
             self: *const IInkOverlay,
             Support: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportHighContrastSelectionUI: fn(
+        get_SupportHighContrastSelectionUI: fn (
             self: *const IInkOverlay,
             Support: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SupportHighContrastSelectionUI: fn(
+        put_SupportHighContrastSelectionUI: fn (
             self: *const IInkOverlay,
             Support: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HitTestSelection: fn(
+        HitTestSelection: fn (
             self: *const IInkOverlay,
             x: i32,
             y: i32,
             SelArea: ?*SelectionHitResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Draw: fn(
+        Draw: fn (
             self: *const IInkOverlay,
             Rect: ?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetGestureStatus: fn(
+        SetGestureStatus: fn (
             self: *const IInkOverlay,
             Gesture: InkApplicationGesture,
             Listen: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetGestureStatus: fn(
+        GetGestureStatus: fn (
             self: *const IInkOverlay,
             Gesture: InkApplicationGesture,
             Listening: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetWindowInputRectangle: fn(
+        GetWindowInputRectangle: fn (
             self: *const IInkOverlay,
             WindowInputRectangle: ?*?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetWindowInputRectangle: fn(
+        SetWindowInputRectangle: fn (
             self: *const IInkOverlay,
             WindowInputRectangle: ?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllTabletsMode: fn(
+        SetAllTabletsMode: fn (
             self: *const IInkOverlay,
             UseMouseForInput: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSingleTabletIntegratedMode: fn(
+        SetSingleTabletIntegratedMode: fn (
             self: *const IInkOverlay,
             Tablet: ?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEventInterest: fn(
+        GetEventInterest: fn (
             self: *const IInkOverlay,
             EventId: InkCollectorEventInterest,
             Listen: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEventInterest: fn(
+        SetEventInterest: fn (
             self: *const IInkOverlay,
             EventId: InkCollectorEventInterest,
             Listen: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_hWnd(self: *const T, CurrentWindow: ?*isize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_hWnd(@ptrCast(*const IInkOverlay, self), CurrentWindow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_put_hWnd(self: *const T, NewWindow: isize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_hWnd(@ptrCast(*const IInkOverlay, self), NewWindow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_Enabled(self: *const T, Collecting: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_Enabled(@ptrCast(*const IInkOverlay, self), Collecting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_put_Enabled(self: *const T, Collecting: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_Enabled(@ptrCast(*const IInkOverlay, self), Collecting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_DefaultDrawingAttributes(self: *const T, CurrentAttributes: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_DefaultDrawingAttributes(@ptrCast(*const IInkOverlay, self), CurrentAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_putref_DefaultDrawingAttributes(self: *const T, NewAttributes: ?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).putref_DefaultDrawingAttributes(@ptrCast(*const IInkOverlay, self), NewAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_Renderer(self: *const T, CurrentInkRenderer: ?*?*IInkRenderer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_Renderer(@ptrCast(*const IInkOverlay, self), CurrentInkRenderer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_putref_Renderer(self: *const T, NewInkRenderer: ?*IInkRenderer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).putref_Renderer(@ptrCast(*const IInkOverlay, self), NewInkRenderer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_Ink(self: *const T, Ink: ?*?*IInkDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_Ink(@ptrCast(*const IInkOverlay, self), Ink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_putref_Ink(self: *const T, NewInk: ?*IInkDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).putref_Ink(@ptrCast(*const IInkOverlay, self), NewInk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_AutoRedraw(self: *const T, AutoRedraw: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_AutoRedraw(@ptrCast(*const IInkOverlay, self), AutoRedraw);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_put_AutoRedraw(self: *const T, AutoRedraw: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_AutoRedraw(@ptrCast(*const IInkOverlay, self), AutoRedraw);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_CollectingInk(self: *const T, Collecting: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_CollectingInk(@ptrCast(*const IInkOverlay, self), Collecting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_CollectionMode(self: *const T, Mode: ?*InkCollectionMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_CollectionMode(@ptrCast(*const IInkOverlay, self), Mode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_put_CollectionMode(self: *const T, Mode: InkCollectionMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_CollectionMode(@ptrCast(*const IInkOverlay, self), Mode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_DynamicRendering(self: *const T, Enabled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_DynamicRendering(@ptrCast(*const IInkOverlay, self), Enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_put_DynamicRendering(self: *const T, Enabled: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_DynamicRendering(@ptrCast(*const IInkOverlay, self), Enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_DesiredPacketDescription(self: *const T, PacketGuids: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_DesiredPacketDescription(@ptrCast(*const IInkOverlay, self), PacketGuids);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_put_DesiredPacketDescription(self: *const T, PacketGuids: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_DesiredPacketDescription(@ptrCast(*const IInkOverlay, self), PacketGuids);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_MouseIcon(self: *const T, MouseIcon: ?*?*IPictureDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_MouseIcon(@ptrCast(*const IInkOverlay, self), MouseIcon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_put_MouseIcon(self: *const T, MouseIcon: ?*IPictureDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_MouseIcon(@ptrCast(*const IInkOverlay, self), MouseIcon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_putref_MouseIcon(self: *const T, MouseIcon: ?*IPictureDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).putref_MouseIcon(@ptrCast(*const IInkOverlay, self), MouseIcon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_MousePointer(self: *const T, MousePointer: ?*InkMousePointer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_MousePointer(@ptrCast(*const IInkOverlay, self), MousePointer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_put_MousePointer(self: *const T, MousePointer: InkMousePointer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_MousePointer(@ptrCast(*const IInkOverlay, self), MousePointer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_EditingMode(self: *const T, EditingMode: ?*InkOverlayEditingMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_EditingMode(@ptrCast(*const IInkOverlay, self), EditingMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_put_EditingMode(self: *const T, EditingMode: InkOverlayEditingMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_EditingMode(@ptrCast(*const IInkOverlay, self), EditingMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_Selection(self: *const T, Selection: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_Selection(@ptrCast(*const IInkOverlay, self), Selection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_put_Selection(self: *const T, Selection: ?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_Selection(@ptrCast(*const IInkOverlay, self), Selection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_EraserMode(self: *const T, EraserMode: ?*InkOverlayEraserMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_EraserMode(@ptrCast(*const IInkOverlay, self), EraserMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_put_EraserMode(self: *const T, EraserMode: InkOverlayEraserMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_EraserMode(@ptrCast(*const IInkOverlay, self), EraserMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_EraserWidth(self: *const T, EraserWidth: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_EraserWidth(@ptrCast(*const IInkOverlay, self), EraserWidth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_put_EraserWidth(self: *const T, newEraserWidth: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_EraserWidth(@ptrCast(*const IInkOverlay, self), newEraserWidth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_AttachMode(self: *const T, AttachMode: ?*InkOverlayAttachMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_AttachMode(@ptrCast(*const IInkOverlay, self), AttachMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_put_AttachMode(self: *const T, AttachMode: InkOverlayAttachMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_AttachMode(@ptrCast(*const IInkOverlay, self), AttachMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_Cursors(self: *const T, Cursors: ?*?*IInkCursors) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_Cursors(@ptrCast(*const IInkOverlay, self), Cursors);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_MarginX(self: *const T, MarginX: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_MarginX(@ptrCast(*const IInkOverlay, self), MarginX);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_put_MarginX(self: *const T, MarginX: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_MarginX(@ptrCast(*const IInkOverlay, self), MarginX);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_MarginY(self: *const T, MarginY: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_MarginY(@ptrCast(*const IInkOverlay, self), MarginY);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_put_MarginY(self: *const T, MarginY: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_MarginY(@ptrCast(*const IInkOverlay, self), MarginY);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_Tablet(self: *const T, SingleTablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_Tablet(@ptrCast(*const IInkOverlay, self), SingleTablet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_SupportHighContrastInk(self: *const T, Support: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_SupportHighContrastInk(@ptrCast(*const IInkOverlay, self), Support);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_put_SupportHighContrastInk(self: *const T, Support: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_SupportHighContrastInk(@ptrCast(*const IInkOverlay, self), Support);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_get_SupportHighContrastSelectionUI(self: *const T, Support: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_SupportHighContrastSelectionUI(@ptrCast(*const IInkOverlay, self), Support);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_put_SupportHighContrastSelectionUI(self: *const T, Support: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_SupportHighContrastSelectionUI(@ptrCast(*const IInkOverlay, self), Support);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_HitTestSelection(self: *const T, x: i32, y: i32, SelArea: ?*SelectionHitResult) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).HitTestSelection(@ptrCast(*const IInkOverlay, self), x, y, SelArea);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_Draw(self: *const T, Rect: ?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).Draw(@ptrCast(*const IInkOverlay, self), Rect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_SetGestureStatus(self: *const T, Gesture: InkApplicationGesture, Listen: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).SetGestureStatus(@ptrCast(*const IInkOverlay, self), Gesture, Listen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_GetGestureStatus(self: *const T, Gesture: InkApplicationGesture, Listening: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).GetGestureStatus(@ptrCast(*const IInkOverlay, self), Gesture, Listening);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_GetWindowInputRectangle(self: *const T, WindowInputRectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).GetWindowInputRectangle(@ptrCast(*const IInkOverlay, self), WindowInputRectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_SetWindowInputRectangle(self: *const T, WindowInputRectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).SetWindowInputRectangle(@ptrCast(*const IInkOverlay, self), WindowInputRectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_SetAllTabletsMode(self: *const T, UseMouseForInput: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).SetAllTabletsMode(@ptrCast(*const IInkOverlay, self), UseMouseForInput);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_SetSingleTabletIntegratedMode(self: *const T, Tablet: ?*IInkTablet) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).SetSingleTabletIntegratedMode(@ptrCast(*const IInkOverlay, self), Tablet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_GetEventInterest(self: *const T, EventId: InkCollectorEventInterest, Listen: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).GetEventInterest(@ptrCast(*const IInkOverlay, self), EventId, Listen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkOverlay_SetEventInterest(self: *const T, EventId: InkCollectorEventInterest, Listen: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkOverlay.VTable, self.vtable).SetEventInterest(@ptrCast(*const IInkOverlay, self), EventId, Listen);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_hWnd(self: *const T, CurrentWindow: ?*isize) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_hWnd(@ptrCast(*const IInkOverlay, self), CurrentWindow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_put_hWnd(self: *const T, NewWindow: isize) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_hWnd(@ptrCast(*const IInkOverlay, self), NewWindow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_Enabled(self: *const T, Collecting: ?*i16) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_Enabled(@ptrCast(*const IInkOverlay, self), Collecting);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_put_Enabled(self: *const T, Collecting: i16) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_Enabled(@ptrCast(*const IInkOverlay, self), Collecting);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_DefaultDrawingAttributes(self: *const T, CurrentAttributes: ?*?*IInkDrawingAttributes) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_DefaultDrawingAttributes(@ptrCast(*const IInkOverlay, self), CurrentAttributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_putref_DefaultDrawingAttributes(self: *const T, NewAttributes: ?*IInkDrawingAttributes) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).putref_DefaultDrawingAttributes(@ptrCast(*const IInkOverlay, self), NewAttributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_Renderer(self: *const T, CurrentInkRenderer: ?*?*IInkRenderer) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_Renderer(@ptrCast(*const IInkOverlay, self), CurrentInkRenderer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_putref_Renderer(self: *const T, NewInkRenderer: ?*IInkRenderer) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).putref_Renderer(@ptrCast(*const IInkOverlay, self), NewInkRenderer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_Ink(self: *const T, Ink: ?*?*IInkDisp) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_Ink(@ptrCast(*const IInkOverlay, self), Ink);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_putref_Ink(self: *const T, NewInk: ?*IInkDisp) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).putref_Ink(@ptrCast(*const IInkOverlay, self), NewInk);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_AutoRedraw(self: *const T, AutoRedraw: ?*i16) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_AutoRedraw(@ptrCast(*const IInkOverlay, self), AutoRedraw);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_put_AutoRedraw(self: *const T, AutoRedraw: i16) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_AutoRedraw(@ptrCast(*const IInkOverlay, self), AutoRedraw);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_CollectingInk(self: *const T, Collecting: ?*i16) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_CollectingInk(@ptrCast(*const IInkOverlay, self), Collecting);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_CollectionMode(self: *const T, Mode: ?*InkCollectionMode) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_CollectionMode(@ptrCast(*const IInkOverlay, self), Mode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_put_CollectionMode(self: *const T, Mode: InkCollectionMode) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_CollectionMode(@ptrCast(*const IInkOverlay, self), Mode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_DynamicRendering(self: *const T, Enabled: ?*i16) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_DynamicRendering(@ptrCast(*const IInkOverlay, self), Enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_put_DynamicRendering(self: *const T, Enabled: i16) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_DynamicRendering(@ptrCast(*const IInkOverlay, self), Enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_DesiredPacketDescription(self: *const T, PacketGuids: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_DesiredPacketDescription(@ptrCast(*const IInkOverlay, self), PacketGuids);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_put_DesiredPacketDescription(self: *const T, PacketGuids: VARIANT) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_DesiredPacketDescription(@ptrCast(*const IInkOverlay, self), PacketGuids);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_MouseIcon(self: *const T, MouseIcon: ?*?*IPictureDisp) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_MouseIcon(@ptrCast(*const IInkOverlay, self), MouseIcon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_put_MouseIcon(self: *const T, MouseIcon: ?*IPictureDisp) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_MouseIcon(@ptrCast(*const IInkOverlay, self), MouseIcon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_putref_MouseIcon(self: *const T, MouseIcon: ?*IPictureDisp) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).putref_MouseIcon(@ptrCast(*const IInkOverlay, self), MouseIcon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_MousePointer(self: *const T, MousePointer: ?*InkMousePointer) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_MousePointer(@ptrCast(*const IInkOverlay, self), MousePointer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_put_MousePointer(self: *const T, MousePointer: InkMousePointer) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_MousePointer(@ptrCast(*const IInkOverlay, self), MousePointer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_EditingMode(self: *const T, EditingMode: ?*InkOverlayEditingMode) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_EditingMode(@ptrCast(*const IInkOverlay, self), EditingMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_put_EditingMode(self: *const T, EditingMode: InkOverlayEditingMode) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_EditingMode(@ptrCast(*const IInkOverlay, self), EditingMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_Selection(self: *const T, Selection: ?*?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_Selection(@ptrCast(*const IInkOverlay, self), Selection);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_put_Selection(self: *const T, Selection: ?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_Selection(@ptrCast(*const IInkOverlay, self), Selection);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_EraserMode(self: *const T, EraserMode: ?*InkOverlayEraserMode) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_EraserMode(@ptrCast(*const IInkOverlay, self), EraserMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_put_EraserMode(self: *const T, EraserMode: InkOverlayEraserMode) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_EraserMode(@ptrCast(*const IInkOverlay, self), EraserMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_EraserWidth(self: *const T, EraserWidth: ?*i32) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_EraserWidth(@ptrCast(*const IInkOverlay, self), EraserWidth);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_put_EraserWidth(self: *const T, newEraserWidth: i32) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_EraserWidth(@ptrCast(*const IInkOverlay, self), newEraserWidth);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_AttachMode(self: *const T, AttachMode: ?*InkOverlayAttachMode) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_AttachMode(@ptrCast(*const IInkOverlay, self), AttachMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_put_AttachMode(self: *const T, AttachMode: InkOverlayAttachMode) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_AttachMode(@ptrCast(*const IInkOverlay, self), AttachMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_Cursors(self: *const T, Cursors: ?*?*IInkCursors) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_Cursors(@ptrCast(*const IInkOverlay, self), Cursors);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_MarginX(self: *const T, MarginX: ?*i32) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_MarginX(@ptrCast(*const IInkOverlay, self), MarginX);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_put_MarginX(self: *const T, MarginX: i32) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_MarginX(@ptrCast(*const IInkOverlay, self), MarginX);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_MarginY(self: *const T, MarginY: ?*i32) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_MarginY(@ptrCast(*const IInkOverlay, self), MarginY);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_put_MarginY(self: *const T, MarginY: i32) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_MarginY(@ptrCast(*const IInkOverlay, self), MarginY);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_Tablet(self: *const T, SingleTablet: ?*?*IInkTablet) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_Tablet(@ptrCast(*const IInkOverlay, self), SingleTablet);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_SupportHighContrastInk(self: *const T, Support: ?*i16) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_SupportHighContrastInk(@ptrCast(*const IInkOverlay, self), Support);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_put_SupportHighContrastInk(self: *const T, Support: i16) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_SupportHighContrastInk(@ptrCast(*const IInkOverlay, self), Support);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_get_SupportHighContrastSelectionUI(self: *const T, Support: ?*i16) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).get_SupportHighContrastSelectionUI(@ptrCast(*const IInkOverlay, self), Support);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_put_SupportHighContrastSelectionUI(self: *const T, Support: i16) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).put_SupportHighContrastSelectionUI(@ptrCast(*const IInkOverlay, self), Support);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_HitTestSelection(self: *const T, x: i32, y: i32, SelArea: ?*SelectionHitResult) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).HitTestSelection(@ptrCast(*const IInkOverlay, self), x, y, SelArea);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_Draw(self: *const T, Rect: ?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).Draw(@ptrCast(*const IInkOverlay, self), Rect);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_SetGestureStatus(self: *const T, Gesture: InkApplicationGesture, Listen: i16) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).SetGestureStatus(@ptrCast(*const IInkOverlay, self), Gesture, Listen);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_GetGestureStatus(self: *const T, Gesture: InkApplicationGesture, Listening: ?*i16) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).GetGestureStatus(@ptrCast(*const IInkOverlay, self), Gesture, Listening);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_GetWindowInputRectangle(self: *const T, WindowInputRectangle: ?*?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).GetWindowInputRectangle(@ptrCast(*const IInkOverlay, self), WindowInputRectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_SetWindowInputRectangle(self: *const T, WindowInputRectangle: ?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).SetWindowInputRectangle(@ptrCast(*const IInkOverlay, self), WindowInputRectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_SetAllTabletsMode(self: *const T, UseMouseForInput: i16) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).SetAllTabletsMode(@ptrCast(*const IInkOverlay, self), UseMouseForInput);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_SetSingleTabletIntegratedMode(self: *const T, Tablet: ?*IInkTablet) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).SetSingleTabletIntegratedMode(@ptrCast(*const IInkOverlay, self), Tablet);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_GetEventInterest(self: *const T, EventId: InkCollectorEventInterest, Listen: ?*i16) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).GetEventInterest(@ptrCast(*const IInkOverlay, self), EventId, Listen);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkOverlay_SetEventInterest(self: *const T, EventId: InkCollectorEventInterest, Listen: i16) HRESULT {
+                return @ptrCast(*const IInkOverlay.VTable, self.vtable).SetEventInterest(@ptrCast(*const IInkOverlay, self), EventId, Listen);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4721,9 +4769,11 @@ pub const _IInkOverlayEvents = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4733,533 +4783,535 @@ pub const IInkPicture = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_hWnd: fn(
+        get_hWnd: fn (
             self: *const IInkPicture,
             CurrentWindow: ?*isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DefaultDrawingAttributes: fn(
+        get_DefaultDrawingAttributes: fn (
             self: *const IInkPicture,
             CurrentAttributes: ?*?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_DefaultDrawingAttributes: fn(
+        putref_DefaultDrawingAttributes: fn (
             self: *const IInkPicture,
             NewAttributes: ?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Renderer: fn(
+        get_Renderer: fn (
             self: *const IInkPicture,
             CurrentInkRenderer: ?*?*IInkRenderer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_Renderer: fn(
+        putref_Renderer: fn (
             self: *const IInkPicture,
             NewInkRenderer: ?*IInkRenderer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Ink: fn(
+        get_Ink: fn (
             self: *const IInkPicture,
             Ink: ?*?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_Ink: fn(
+        putref_Ink: fn (
             self: *const IInkPicture,
             NewInk: ?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AutoRedraw: fn(
+        get_AutoRedraw: fn (
             self: *const IInkPicture,
             AutoRedraw: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AutoRedraw: fn(
+        put_AutoRedraw: fn (
             self: *const IInkPicture,
             AutoRedraw: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CollectingInk: fn(
+        get_CollectingInk: fn (
             self: *const IInkPicture,
             Collecting: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CollectionMode: fn(
+        get_CollectionMode: fn (
             self: *const IInkPicture,
             Mode: ?*InkCollectionMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_CollectionMode: fn(
+        put_CollectionMode: fn (
             self: *const IInkPicture,
             Mode: InkCollectionMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DynamicRendering: fn(
+        get_DynamicRendering: fn (
             self: *const IInkPicture,
             Enabled: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DynamicRendering: fn(
+        put_DynamicRendering: fn (
             self: *const IInkPicture,
             Enabled: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DesiredPacketDescription: fn(
+        get_DesiredPacketDescription: fn (
             self: *const IInkPicture,
             PacketGuids: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DesiredPacketDescription: fn(
+        put_DesiredPacketDescription: fn (
             self: *const IInkPicture,
             PacketGuids: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MouseIcon: fn(
+        get_MouseIcon: fn (
             self: *const IInkPicture,
             MouseIcon: ?*?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MouseIcon: fn(
+        put_MouseIcon: fn (
             self: *const IInkPicture,
             MouseIcon: ?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_MouseIcon: fn(
+        putref_MouseIcon: fn (
             self: *const IInkPicture,
             MouseIcon: ?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MousePointer: fn(
+        get_MousePointer: fn (
             self: *const IInkPicture,
             MousePointer: ?*InkMousePointer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MousePointer: fn(
+        put_MousePointer: fn (
             self: *const IInkPicture,
             MousePointer: InkMousePointer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EditingMode: fn(
+        get_EditingMode: fn (
             self: *const IInkPicture,
             EditingMode: ?*InkOverlayEditingMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EditingMode: fn(
+        put_EditingMode: fn (
             self: *const IInkPicture,
             EditingMode: InkOverlayEditingMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Selection: fn(
+        get_Selection: fn (
             self: *const IInkPicture,
             Selection: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Selection: fn(
+        put_Selection: fn (
             self: *const IInkPicture,
             Selection: ?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EraserMode: fn(
+        get_EraserMode: fn (
             self: *const IInkPicture,
             EraserMode: ?*InkOverlayEraserMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EraserMode: fn(
+        put_EraserMode: fn (
             self: *const IInkPicture,
             EraserMode: InkOverlayEraserMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EraserWidth: fn(
+        get_EraserWidth: fn (
             self: *const IInkPicture,
             EraserWidth: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EraserWidth: fn(
+        put_EraserWidth: fn (
             self: *const IInkPicture,
             newEraserWidth: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_Picture: fn(
+        putref_Picture: fn (
             self: *const IInkPicture,
             pPicture: ?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Picture: fn(
+        put_Picture: fn (
             self: *const IInkPicture,
             pPicture: ?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Picture: fn(
+        get_Picture: fn (
             self: *const IInkPicture,
             ppPicture: ?*?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SizeMode: fn(
+        put_SizeMode: fn (
             self: *const IInkPicture,
             smNewSizeMode: InkPictureSizeMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SizeMode: fn(
+        get_SizeMode: fn (
             self: *const IInkPicture,
             smSizeMode: ?*InkPictureSizeMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BackColor: fn(
+        put_BackColor: fn (
             self: *const IInkPicture,
             newColor: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BackColor: fn(
+        get_BackColor: fn (
             self: *const IInkPicture,
             pColor: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cursors: fn(
+        get_Cursors: fn (
             self: *const IInkPicture,
             Cursors: ?*?*IInkCursors,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MarginX: fn(
+        get_MarginX: fn (
             self: *const IInkPicture,
             MarginX: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MarginX: fn(
+        put_MarginX: fn (
             self: *const IInkPicture,
             MarginX: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MarginY: fn(
+        get_MarginY: fn (
             self: *const IInkPicture,
             MarginY: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MarginY: fn(
+        put_MarginY: fn (
             self: *const IInkPicture,
             MarginY: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Tablet: fn(
+        get_Tablet: fn (
             self: *const IInkPicture,
             SingleTablet: ?*?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportHighContrastInk: fn(
+        get_SupportHighContrastInk: fn (
             self: *const IInkPicture,
             Support: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SupportHighContrastInk: fn(
+        put_SupportHighContrastInk: fn (
             self: *const IInkPicture,
             Support: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportHighContrastSelectionUI: fn(
+        get_SupportHighContrastSelectionUI: fn (
             self: *const IInkPicture,
             Support: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SupportHighContrastSelectionUI: fn(
+        put_SupportHighContrastSelectionUI: fn (
             self: *const IInkPicture,
             Support: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HitTestSelection: fn(
+        HitTestSelection: fn (
             self: *const IInkPicture,
             x: i32,
             y: i32,
             SelArea: ?*SelectionHitResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetGestureStatus: fn(
+        SetGestureStatus: fn (
             self: *const IInkPicture,
             Gesture: InkApplicationGesture,
             Listen: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetGestureStatus: fn(
+        GetGestureStatus: fn (
             self: *const IInkPicture,
             Gesture: InkApplicationGesture,
             Listening: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetWindowInputRectangle: fn(
+        GetWindowInputRectangle: fn (
             self: *const IInkPicture,
             WindowInputRectangle: ?*?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetWindowInputRectangle: fn(
+        SetWindowInputRectangle: fn (
             self: *const IInkPicture,
             WindowInputRectangle: ?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllTabletsMode: fn(
+        SetAllTabletsMode: fn (
             self: *const IInkPicture,
             UseMouseForInput: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSingleTabletIntegratedMode: fn(
+        SetSingleTabletIntegratedMode: fn (
             self: *const IInkPicture,
             Tablet: ?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEventInterest: fn(
+        GetEventInterest: fn (
             self: *const IInkPicture,
             EventId: InkCollectorEventInterest,
             Listen: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEventInterest: fn(
+        SetEventInterest: fn (
             self: *const IInkPicture,
             EventId: InkCollectorEventInterest,
             Listen: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InkEnabled: fn(
+        get_InkEnabled: fn (
             self: *const IInkPicture,
             Collecting: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_InkEnabled: fn(
+        put_InkEnabled: fn (
             self: *const IInkPicture,
             Collecting: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: fn(
+        get_Enabled: fn (
             self: *const IInkPicture,
             pbool: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: fn(
+        put_Enabled: fn (
             self: *const IInkPicture,
             vbool: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_hWnd(self: *const T, CurrentWindow: ?*isize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_hWnd(@ptrCast(*const IInkPicture, self), CurrentWindow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_DefaultDrawingAttributes(self: *const T, CurrentAttributes: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_DefaultDrawingAttributes(@ptrCast(*const IInkPicture, self), CurrentAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_putref_DefaultDrawingAttributes(self: *const T, NewAttributes: ?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).putref_DefaultDrawingAttributes(@ptrCast(*const IInkPicture, self), NewAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_Renderer(self: *const T, CurrentInkRenderer: ?*?*IInkRenderer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_Renderer(@ptrCast(*const IInkPicture, self), CurrentInkRenderer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_putref_Renderer(self: *const T, NewInkRenderer: ?*IInkRenderer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).putref_Renderer(@ptrCast(*const IInkPicture, self), NewInkRenderer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_Ink(self: *const T, Ink: ?*?*IInkDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_Ink(@ptrCast(*const IInkPicture, self), Ink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_putref_Ink(self: *const T, NewInk: ?*IInkDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).putref_Ink(@ptrCast(*const IInkPicture, self), NewInk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_AutoRedraw(self: *const T, AutoRedraw: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_AutoRedraw(@ptrCast(*const IInkPicture, self), AutoRedraw);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_put_AutoRedraw(self: *const T, AutoRedraw: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).put_AutoRedraw(@ptrCast(*const IInkPicture, self), AutoRedraw);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_CollectingInk(self: *const T, Collecting: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_CollectingInk(@ptrCast(*const IInkPicture, self), Collecting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_CollectionMode(self: *const T, Mode: ?*InkCollectionMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_CollectionMode(@ptrCast(*const IInkPicture, self), Mode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_put_CollectionMode(self: *const T, Mode: InkCollectionMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).put_CollectionMode(@ptrCast(*const IInkPicture, self), Mode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_DynamicRendering(self: *const T, Enabled: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_DynamicRendering(@ptrCast(*const IInkPicture, self), Enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_put_DynamicRendering(self: *const T, Enabled: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).put_DynamicRendering(@ptrCast(*const IInkPicture, self), Enabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_DesiredPacketDescription(self: *const T, PacketGuids: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_DesiredPacketDescription(@ptrCast(*const IInkPicture, self), PacketGuids);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_put_DesiredPacketDescription(self: *const T, PacketGuids: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).put_DesiredPacketDescription(@ptrCast(*const IInkPicture, self), PacketGuids);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_MouseIcon(self: *const T, MouseIcon: ?*?*IPictureDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_MouseIcon(@ptrCast(*const IInkPicture, self), MouseIcon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_put_MouseIcon(self: *const T, MouseIcon: ?*IPictureDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).put_MouseIcon(@ptrCast(*const IInkPicture, self), MouseIcon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_putref_MouseIcon(self: *const T, MouseIcon: ?*IPictureDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).putref_MouseIcon(@ptrCast(*const IInkPicture, self), MouseIcon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_MousePointer(self: *const T, MousePointer: ?*InkMousePointer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_MousePointer(@ptrCast(*const IInkPicture, self), MousePointer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_put_MousePointer(self: *const T, MousePointer: InkMousePointer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).put_MousePointer(@ptrCast(*const IInkPicture, self), MousePointer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_EditingMode(self: *const T, EditingMode: ?*InkOverlayEditingMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_EditingMode(@ptrCast(*const IInkPicture, self), EditingMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_put_EditingMode(self: *const T, EditingMode: InkOverlayEditingMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).put_EditingMode(@ptrCast(*const IInkPicture, self), EditingMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_Selection(self: *const T, Selection: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_Selection(@ptrCast(*const IInkPicture, self), Selection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_put_Selection(self: *const T, Selection: ?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).put_Selection(@ptrCast(*const IInkPicture, self), Selection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_EraserMode(self: *const T, EraserMode: ?*InkOverlayEraserMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_EraserMode(@ptrCast(*const IInkPicture, self), EraserMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_put_EraserMode(self: *const T, EraserMode: InkOverlayEraserMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).put_EraserMode(@ptrCast(*const IInkPicture, self), EraserMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_EraserWidth(self: *const T, EraserWidth: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_EraserWidth(@ptrCast(*const IInkPicture, self), EraserWidth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_put_EraserWidth(self: *const T, newEraserWidth: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).put_EraserWidth(@ptrCast(*const IInkPicture, self), newEraserWidth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_putref_Picture(self: *const T, pPicture: ?*IPictureDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).putref_Picture(@ptrCast(*const IInkPicture, self), pPicture);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_put_Picture(self: *const T, pPicture: ?*IPictureDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).put_Picture(@ptrCast(*const IInkPicture, self), pPicture);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_Picture(self: *const T, ppPicture: ?*?*IPictureDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_Picture(@ptrCast(*const IInkPicture, self), ppPicture);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_put_SizeMode(self: *const T, smNewSizeMode: InkPictureSizeMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).put_SizeMode(@ptrCast(*const IInkPicture, self), smNewSizeMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_SizeMode(self: *const T, smSizeMode: ?*InkPictureSizeMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_SizeMode(@ptrCast(*const IInkPicture, self), smSizeMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_put_BackColor(self: *const T, newColor: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).put_BackColor(@ptrCast(*const IInkPicture, self), newColor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_BackColor(self: *const T, pColor: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_BackColor(@ptrCast(*const IInkPicture, self), pColor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_Cursors(self: *const T, Cursors: ?*?*IInkCursors) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_Cursors(@ptrCast(*const IInkPicture, self), Cursors);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_MarginX(self: *const T, MarginX: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_MarginX(@ptrCast(*const IInkPicture, self), MarginX);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_put_MarginX(self: *const T, MarginX: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).put_MarginX(@ptrCast(*const IInkPicture, self), MarginX);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_MarginY(self: *const T, MarginY: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_MarginY(@ptrCast(*const IInkPicture, self), MarginY);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_put_MarginY(self: *const T, MarginY: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).put_MarginY(@ptrCast(*const IInkPicture, self), MarginY);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_Tablet(self: *const T, SingleTablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_Tablet(@ptrCast(*const IInkPicture, self), SingleTablet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_SupportHighContrastInk(self: *const T, Support: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_SupportHighContrastInk(@ptrCast(*const IInkPicture, self), Support);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_put_SupportHighContrastInk(self: *const T, Support: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).put_SupportHighContrastInk(@ptrCast(*const IInkPicture, self), Support);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_SupportHighContrastSelectionUI(self: *const T, Support: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_SupportHighContrastSelectionUI(@ptrCast(*const IInkPicture, self), Support);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_put_SupportHighContrastSelectionUI(self: *const T, Support: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).put_SupportHighContrastSelectionUI(@ptrCast(*const IInkPicture, self), Support);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_HitTestSelection(self: *const T, x: i32, y: i32, SelArea: ?*SelectionHitResult) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).HitTestSelection(@ptrCast(*const IInkPicture, self), x, y, SelArea);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_SetGestureStatus(self: *const T, Gesture: InkApplicationGesture, Listen: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).SetGestureStatus(@ptrCast(*const IInkPicture, self), Gesture, Listen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_GetGestureStatus(self: *const T, Gesture: InkApplicationGesture, Listening: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).GetGestureStatus(@ptrCast(*const IInkPicture, self), Gesture, Listening);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_GetWindowInputRectangle(self: *const T, WindowInputRectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).GetWindowInputRectangle(@ptrCast(*const IInkPicture, self), WindowInputRectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_SetWindowInputRectangle(self: *const T, WindowInputRectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).SetWindowInputRectangle(@ptrCast(*const IInkPicture, self), WindowInputRectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_SetAllTabletsMode(self: *const T, UseMouseForInput: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).SetAllTabletsMode(@ptrCast(*const IInkPicture, self), UseMouseForInput);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_SetSingleTabletIntegratedMode(self: *const T, Tablet: ?*IInkTablet) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).SetSingleTabletIntegratedMode(@ptrCast(*const IInkPicture, self), Tablet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_GetEventInterest(self: *const T, EventId: InkCollectorEventInterest, Listen: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).GetEventInterest(@ptrCast(*const IInkPicture, self), EventId, Listen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_SetEventInterest(self: *const T, EventId: InkCollectorEventInterest, Listen: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).SetEventInterest(@ptrCast(*const IInkPicture, self), EventId, Listen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_InkEnabled(self: *const T, Collecting: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_InkEnabled(@ptrCast(*const IInkPicture, self), Collecting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_put_InkEnabled(self: *const T, Collecting: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).put_InkEnabled(@ptrCast(*const IInkPicture, self), Collecting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_get_Enabled(self: *const T, pbool: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).get_Enabled(@ptrCast(*const IInkPicture, self), pbool);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkPicture_put_Enabled(self: *const T, vbool: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkPicture.VTable, self.vtable).put_Enabled(@ptrCast(*const IInkPicture, self), vbool);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_hWnd(self: *const T, CurrentWindow: ?*isize) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_hWnd(@ptrCast(*const IInkPicture, self), CurrentWindow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_DefaultDrawingAttributes(self: *const T, CurrentAttributes: ?*?*IInkDrawingAttributes) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_DefaultDrawingAttributes(@ptrCast(*const IInkPicture, self), CurrentAttributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_putref_DefaultDrawingAttributes(self: *const T, NewAttributes: ?*IInkDrawingAttributes) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).putref_DefaultDrawingAttributes(@ptrCast(*const IInkPicture, self), NewAttributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_Renderer(self: *const T, CurrentInkRenderer: ?*?*IInkRenderer) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_Renderer(@ptrCast(*const IInkPicture, self), CurrentInkRenderer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_putref_Renderer(self: *const T, NewInkRenderer: ?*IInkRenderer) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).putref_Renderer(@ptrCast(*const IInkPicture, self), NewInkRenderer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_Ink(self: *const T, Ink: ?*?*IInkDisp) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_Ink(@ptrCast(*const IInkPicture, self), Ink);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_putref_Ink(self: *const T, NewInk: ?*IInkDisp) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).putref_Ink(@ptrCast(*const IInkPicture, self), NewInk);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_AutoRedraw(self: *const T, AutoRedraw: ?*i16) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_AutoRedraw(@ptrCast(*const IInkPicture, self), AutoRedraw);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_put_AutoRedraw(self: *const T, AutoRedraw: i16) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).put_AutoRedraw(@ptrCast(*const IInkPicture, self), AutoRedraw);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_CollectingInk(self: *const T, Collecting: ?*i16) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_CollectingInk(@ptrCast(*const IInkPicture, self), Collecting);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_CollectionMode(self: *const T, Mode: ?*InkCollectionMode) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_CollectionMode(@ptrCast(*const IInkPicture, self), Mode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_put_CollectionMode(self: *const T, Mode: InkCollectionMode) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).put_CollectionMode(@ptrCast(*const IInkPicture, self), Mode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_DynamicRendering(self: *const T, Enabled: ?*i16) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_DynamicRendering(@ptrCast(*const IInkPicture, self), Enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_put_DynamicRendering(self: *const T, Enabled: i16) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).put_DynamicRendering(@ptrCast(*const IInkPicture, self), Enabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_DesiredPacketDescription(self: *const T, PacketGuids: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_DesiredPacketDescription(@ptrCast(*const IInkPicture, self), PacketGuids);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_put_DesiredPacketDescription(self: *const T, PacketGuids: VARIANT) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).put_DesiredPacketDescription(@ptrCast(*const IInkPicture, self), PacketGuids);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_MouseIcon(self: *const T, MouseIcon: ?*?*IPictureDisp) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_MouseIcon(@ptrCast(*const IInkPicture, self), MouseIcon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_put_MouseIcon(self: *const T, MouseIcon: ?*IPictureDisp) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).put_MouseIcon(@ptrCast(*const IInkPicture, self), MouseIcon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_putref_MouseIcon(self: *const T, MouseIcon: ?*IPictureDisp) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).putref_MouseIcon(@ptrCast(*const IInkPicture, self), MouseIcon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_MousePointer(self: *const T, MousePointer: ?*InkMousePointer) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_MousePointer(@ptrCast(*const IInkPicture, self), MousePointer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_put_MousePointer(self: *const T, MousePointer: InkMousePointer) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).put_MousePointer(@ptrCast(*const IInkPicture, self), MousePointer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_EditingMode(self: *const T, EditingMode: ?*InkOverlayEditingMode) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_EditingMode(@ptrCast(*const IInkPicture, self), EditingMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_put_EditingMode(self: *const T, EditingMode: InkOverlayEditingMode) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).put_EditingMode(@ptrCast(*const IInkPicture, self), EditingMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_Selection(self: *const T, Selection: ?*?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_Selection(@ptrCast(*const IInkPicture, self), Selection);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_put_Selection(self: *const T, Selection: ?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).put_Selection(@ptrCast(*const IInkPicture, self), Selection);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_EraserMode(self: *const T, EraserMode: ?*InkOverlayEraserMode) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_EraserMode(@ptrCast(*const IInkPicture, self), EraserMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_put_EraserMode(self: *const T, EraserMode: InkOverlayEraserMode) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).put_EraserMode(@ptrCast(*const IInkPicture, self), EraserMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_EraserWidth(self: *const T, EraserWidth: ?*i32) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_EraserWidth(@ptrCast(*const IInkPicture, self), EraserWidth);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_put_EraserWidth(self: *const T, newEraserWidth: i32) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).put_EraserWidth(@ptrCast(*const IInkPicture, self), newEraserWidth);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_putref_Picture(self: *const T, pPicture: ?*IPictureDisp) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).putref_Picture(@ptrCast(*const IInkPicture, self), pPicture);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_put_Picture(self: *const T, pPicture: ?*IPictureDisp) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).put_Picture(@ptrCast(*const IInkPicture, self), pPicture);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_Picture(self: *const T, ppPicture: ?*?*IPictureDisp) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_Picture(@ptrCast(*const IInkPicture, self), ppPicture);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_put_SizeMode(self: *const T, smNewSizeMode: InkPictureSizeMode) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).put_SizeMode(@ptrCast(*const IInkPicture, self), smNewSizeMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_SizeMode(self: *const T, smSizeMode: ?*InkPictureSizeMode) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_SizeMode(@ptrCast(*const IInkPicture, self), smSizeMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_put_BackColor(self: *const T, newColor: u32) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).put_BackColor(@ptrCast(*const IInkPicture, self), newColor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_BackColor(self: *const T, pColor: ?*u32) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_BackColor(@ptrCast(*const IInkPicture, self), pColor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_Cursors(self: *const T, Cursors: ?*?*IInkCursors) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_Cursors(@ptrCast(*const IInkPicture, self), Cursors);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_MarginX(self: *const T, MarginX: ?*i32) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_MarginX(@ptrCast(*const IInkPicture, self), MarginX);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_put_MarginX(self: *const T, MarginX: i32) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).put_MarginX(@ptrCast(*const IInkPicture, self), MarginX);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_MarginY(self: *const T, MarginY: ?*i32) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_MarginY(@ptrCast(*const IInkPicture, self), MarginY);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_put_MarginY(self: *const T, MarginY: i32) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).put_MarginY(@ptrCast(*const IInkPicture, self), MarginY);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_Tablet(self: *const T, SingleTablet: ?*?*IInkTablet) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_Tablet(@ptrCast(*const IInkPicture, self), SingleTablet);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_SupportHighContrastInk(self: *const T, Support: ?*i16) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_SupportHighContrastInk(@ptrCast(*const IInkPicture, self), Support);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_put_SupportHighContrastInk(self: *const T, Support: i16) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).put_SupportHighContrastInk(@ptrCast(*const IInkPicture, self), Support);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_SupportHighContrastSelectionUI(self: *const T, Support: ?*i16) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_SupportHighContrastSelectionUI(@ptrCast(*const IInkPicture, self), Support);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_put_SupportHighContrastSelectionUI(self: *const T, Support: i16) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).put_SupportHighContrastSelectionUI(@ptrCast(*const IInkPicture, self), Support);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_HitTestSelection(self: *const T, x: i32, y: i32, SelArea: ?*SelectionHitResult) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).HitTestSelection(@ptrCast(*const IInkPicture, self), x, y, SelArea);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_SetGestureStatus(self: *const T, Gesture: InkApplicationGesture, Listen: i16) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).SetGestureStatus(@ptrCast(*const IInkPicture, self), Gesture, Listen);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_GetGestureStatus(self: *const T, Gesture: InkApplicationGesture, Listening: ?*i16) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).GetGestureStatus(@ptrCast(*const IInkPicture, self), Gesture, Listening);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_GetWindowInputRectangle(self: *const T, WindowInputRectangle: ?*?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).GetWindowInputRectangle(@ptrCast(*const IInkPicture, self), WindowInputRectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_SetWindowInputRectangle(self: *const T, WindowInputRectangle: ?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).SetWindowInputRectangle(@ptrCast(*const IInkPicture, self), WindowInputRectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_SetAllTabletsMode(self: *const T, UseMouseForInput: i16) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).SetAllTabletsMode(@ptrCast(*const IInkPicture, self), UseMouseForInput);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_SetSingleTabletIntegratedMode(self: *const T, Tablet: ?*IInkTablet) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).SetSingleTabletIntegratedMode(@ptrCast(*const IInkPicture, self), Tablet);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_GetEventInterest(self: *const T, EventId: InkCollectorEventInterest, Listen: ?*i16) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).GetEventInterest(@ptrCast(*const IInkPicture, self), EventId, Listen);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_SetEventInterest(self: *const T, EventId: InkCollectorEventInterest, Listen: i16) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).SetEventInterest(@ptrCast(*const IInkPicture, self), EventId, Listen);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_InkEnabled(self: *const T, Collecting: ?*i16) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_InkEnabled(@ptrCast(*const IInkPicture, self), Collecting);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_put_InkEnabled(self: *const T, Collecting: i16) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).put_InkEnabled(@ptrCast(*const IInkPicture, self), Collecting);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_get_Enabled(self: *const T, pbool: ?*i16) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).get_Enabled(@ptrCast(*const IInkPicture, self), pbool);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkPicture_put_Enabled(self: *const T, vbool: i16) HRESULT {
+                return @ptrCast(*const IInkPicture.VTable, self.vtable).put_Enabled(@ptrCast(*const IInkPicture, self), vbool);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5270,9 +5322,11 @@ pub const _IInkPictureEvents = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5283,72 +5337,74 @@ pub const IInkRecognizer = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
+        get_Name: fn (
             self: *const IInkRecognizer,
             Name: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Vendor: fn(
+        get_Vendor: fn (
             self: *const IInkRecognizer,
             Vendor: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Capabilities: fn(
+        get_Capabilities: fn (
             self: *const IInkRecognizer,
             CapabilitiesFlags: ?*InkRecognizerCapabilities,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Languages: fn(
+        get_Languages: fn (
             self: *const IInkRecognizer,
             Languages: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportedProperties: fn(
+        get_SupportedProperties: fn (
             self: *const IInkRecognizer,
             SupportedProperties: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PreferredPacketDescription: fn(
+        get_PreferredPacketDescription: fn (
             self: *const IInkRecognizer,
             PreferredPacketDescription: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateRecognizerContext: fn(
+        CreateRecognizerContext: fn (
             self: *const IInkRecognizer,
             Context: ?*?*IInkRecognizerContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizer_get_Name(self: *const T, Name: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizer.VTable, self.vtable).get_Name(@ptrCast(*const IInkRecognizer, self), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizer_get_Vendor(self: *const T, Vendor: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizer.VTable, self.vtable).get_Vendor(@ptrCast(*const IInkRecognizer, self), Vendor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizer_get_Capabilities(self: *const T, CapabilitiesFlags: ?*InkRecognizerCapabilities) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizer.VTable, self.vtable).get_Capabilities(@ptrCast(*const IInkRecognizer, self), CapabilitiesFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizer_get_Languages(self: *const T, Languages: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizer.VTable, self.vtable).get_Languages(@ptrCast(*const IInkRecognizer, self), Languages);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizer_get_SupportedProperties(self: *const T, SupportedProperties: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizer.VTable, self.vtable).get_SupportedProperties(@ptrCast(*const IInkRecognizer, self), SupportedProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizer_get_PreferredPacketDescription(self: *const T, PreferredPacketDescription: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizer.VTable, self.vtable).get_PreferredPacketDescription(@ptrCast(*const IInkRecognizer, self), PreferredPacketDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizer_CreateRecognizerContext(self: *const T, Context: ?*?*IInkRecognizerContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizer.VTable, self.vtable).CreateRecognizerContext(@ptrCast(*const IInkRecognizer, self), Context);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizer_get_Name(self: *const T, Name: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkRecognizer.VTable, self.vtable).get_Name(@ptrCast(*const IInkRecognizer, self), Name);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizer_get_Vendor(self: *const T, Vendor: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkRecognizer.VTable, self.vtable).get_Vendor(@ptrCast(*const IInkRecognizer, self), Vendor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizer_get_Capabilities(self: *const T, CapabilitiesFlags: ?*InkRecognizerCapabilities) HRESULT {
+                return @ptrCast(*const IInkRecognizer.VTable, self.vtable).get_Capabilities(@ptrCast(*const IInkRecognizer, self), CapabilitiesFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizer_get_Languages(self: *const T, Languages: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkRecognizer.VTable, self.vtable).get_Languages(@ptrCast(*const IInkRecognizer, self), Languages);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizer_get_SupportedProperties(self: *const T, SupportedProperties: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkRecognizer.VTable, self.vtable).get_SupportedProperties(@ptrCast(*const IInkRecognizer, self), SupportedProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizer_get_PreferredPacketDescription(self: *const T, PreferredPacketDescription: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkRecognizer.VTable, self.vtable).get_PreferredPacketDescription(@ptrCast(*const IInkRecognizer, self), PreferredPacketDescription);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizer_CreateRecognizerContext(self: *const T, Context: ?*?*IInkRecognizerContext) HRESULT {
+                return @ptrCast(*const IInkRecognizer.VTable, self.vtable).CreateRecognizerContext(@ptrCast(*const IInkRecognizer, self), Context);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5359,28 +5415,30 @@ pub const IInkRecognizer2 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: fn(
+        get_Id: fn (
             self: *const IInkRecognizer2,
             pbstrId: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UnicodeRanges: fn(
+        get_UnicodeRanges: fn (
             self: *const IInkRecognizer2,
             UnicodeRanges: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizer2_get_Id(self: *const T, pbstrId: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizer2.VTable, self.vtable).get_Id(@ptrCast(*const IInkRecognizer2, self), pbstrId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizer2_get_UnicodeRanges(self: *const T, UnicodeRanges: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizer2.VTable, self.vtable).get_UnicodeRanges(@ptrCast(*const IInkRecognizer2, self), UnicodeRanges);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizer2_get_Id(self: *const T, pbstrId: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkRecognizer2.VTable, self.vtable).get_Id(@ptrCast(*const IInkRecognizer2, self), pbstrId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizer2_get_UnicodeRanges(self: *const T, UnicodeRanges: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkRecognizer2.VTable, self.vtable).get_UnicodeRanges(@ptrCast(*const IInkRecognizer2, self), UnicodeRanges);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5390,46 +5448,48 @@ pub const IInkRecognizers = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const IInkRecognizers,
             Count: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const IInkRecognizers,
             _NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDefaultRecognizer: fn(
+        GetDefaultRecognizer: fn (
             self: *const IInkRecognizers,
             lcid: i32,
             DefaultRecognizer: ?*?*IInkRecognizer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
+        Item: fn (
             self: *const IInkRecognizers,
             Index: i32,
             InkRecognizer: ?*?*IInkRecognizer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizers_get_Count(self: *const T, Count: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizers.VTable, self.vtable).get_Count(@ptrCast(*const IInkRecognizers, self), Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizers_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizers.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkRecognizers, self), _NewEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizers_GetDefaultRecognizer(self: *const T, lcid: i32, DefaultRecognizer: ?*?*IInkRecognizer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizers.VTable, self.vtable).GetDefaultRecognizer(@ptrCast(*const IInkRecognizers, self), lcid, DefaultRecognizer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizers_Item(self: *const T, Index: i32, InkRecognizer: ?*?*IInkRecognizer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizers.VTable, self.vtable).Item(@ptrCast(*const IInkRecognizers, self), Index, InkRecognizer);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizers_get_Count(self: *const T, Count: ?*i32) HRESULT {
+                return @ptrCast(*const IInkRecognizers.VTable, self.vtable).get_Count(@ptrCast(*const IInkRecognizers, self), Count);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizers_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IInkRecognizers.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkRecognizers, self), _NewEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizers_GetDefaultRecognizer(self: *const T, lcid: i32, DefaultRecognizer: ?*?*IInkRecognizer) HRESULT {
+                return @ptrCast(*const IInkRecognizers.VTable, self.vtable).GetDefaultRecognizer(@ptrCast(*const IInkRecognizers, self), lcid, DefaultRecognizer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizers_Item(self: *const T, Index: i32, InkRecognizer: ?*?*IInkRecognizer) HRESULT {
+                return @ptrCast(*const IInkRecognizers.VTable, self.vtable).Item(@ptrCast(*const IInkRecognizers, self), Index, InkRecognizer);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5440,9 +5500,11 @@ pub const _IInkRecognitionEvents = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5452,216 +5514,218 @@ pub const IInkRecognizerContext = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Strokes: fn(
+        get_Strokes: fn (
             self: *const IInkRecognizerContext,
             Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_Strokes: fn(
+        putref_Strokes: fn (
             self: *const IInkRecognizerContext,
             Strokes: ?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CharacterAutoCompletionMode: fn(
+        get_CharacterAutoCompletionMode: fn (
             self: *const IInkRecognizerContext,
             Mode: ?*InkRecognizerCharacterAutoCompletionMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_CharacterAutoCompletionMode: fn(
+        put_CharacterAutoCompletionMode: fn (
             self: *const IInkRecognizerContext,
             Mode: InkRecognizerCharacterAutoCompletionMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Factoid: fn(
+        get_Factoid: fn (
             self: *const IInkRecognizerContext,
             Factoid: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Factoid: fn(
+        put_Factoid: fn (
             self: *const IInkRecognizerContext,
             factoid: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Guide: fn(
+        get_Guide: fn (
             self: *const IInkRecognizerContext,
             RecognizerGuide: ?*?*IInkRecognizerGuide,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_Guide: fn(
+        putref_Guide: fn (
             self: *const IInkRecognizerContext,
             RecognizerGuide: ?*IInkRecognizerGuide,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrefixText: fn(
+        get_PrefixText: fn (
             self: *const IInkRecognizerContext,
             Prefix: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PrefixText: fn(
+        put_PrefixText: fn (
             self: *const IInkRecognizerContext,
             Prefix: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SuffixText: fn(
+        get_SuffixText: fn (
             self: *const IInkRecognizerContext,
             Suffix: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SuffixText: fn(
+        put_SuffixText: fn (
             self: *const IInkRecognizerContext,
             Suffix: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RecognitionFlags: fn(
+        get_RecognitionFlags: fn (
             self: *const IInkRecognizerContext,
             Modes: ?*InkRecognitionModes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RecognitionFlags: fn(
+        put_RecognitionFlags: fn (
             self: *const IInkRecognizerContext,
             Modes: InkRecognitionModes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_WordList: fn(
+        get_WordList: fn (
             self: *const IInkRecognizerContext,
             WordList: ?*?*IInkWordList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_WordList: fn(
+        putref_WordList: fn (
             self: *const IInkRecognizerContext,
             WordList: ?*IInkWordList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Recognizer: fn(
+        get_Recognizer: fn (
             self: *const IInkRecognizerContext,
             Recognizer: ?*?*IInkRecognizer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Recognize: fn(
+        Recognize: fn (
             self: *const IInkRecognizerContext,
             RecognitionStatus: ?*InkRecognitionStatus,
             RecognitionResult: ?*?*IInkRecognitionResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StopBackgroundRecognition: fn(
+        StopBackgroundRecognition: fn (
             self: *const IInkRecognizerContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndInkInput: fn(
+        EndInkInput: fn (
             self: *const IInkRecognizerContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BackgroundRecognize: fn(
-            self: *const IInkRecognizerContext,
-            CustomData: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BackgroundRecognizeWithAlternates: fn(
+        BackgroundRecognize: fn (
             self: *const IInkRecognizerContext,
             CustomData: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
+        BackgroundRecognizeWithAlternates: fn (
+            self: *const IInkRecognizerContext,
+            CustomData: VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: fn (
             self: *const IInkRecognizerContext,
             RecoContext: ?*?*IInkRecognizerContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsStringSupported: fn(
+        IsStringSupported: fn (
             self: *const IInkRecognizerContext,
             String: ?BSTR,
             Supported: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkRecognizerContext, self), Strokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_putref_Strokes(self: *const T, Strokes: ?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).putref_Strokes(@ptrCast(*const IInkRecognizerContext, self), Strokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_get_CharacterAutoCompletionMode(self: *const T, Mode: ?*InkRecognizerCharacterAutoCompletionMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_CharacterAutoCompletionMode(@ptrCast(*const IInkRecognizerContext, self), Mode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_put_CharacterAutoCompletionMode(self: *const T, Mode: InkRecognizerCharacterAutoCompletionMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).put_CharacterAutoCompletionMode(@ptrCast(*const IInkRecognizerContext, self), Mode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_get_Factoid(self: *const T, Factoid: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_Factoid(@ptrCast(*const IInkRecognizerContext, self), Factoid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_put_Factoid(self: *const T, factoid: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).put_Factoid(@ptrCast(*const IInkRecognizerContext, self), factoid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_get_Guide(self: *const T, RecognizerGuide: ?*?*IInkRecognizerGuide) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_Guide(@ptrCast(*const IInkRecognizerContext, self), RecognizerGuide);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_putref_Guide(self: *const T, RecognizerGuide: ?*IInkRecognizerGuide) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).putref_Guide(@ptrCast(*const IInkRecognizerContext, self), RecognizerGuide);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_get_PrefixText(self: *const T, Prefix: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_PrefixText(@ptrCast(*const IInkRecognizerContext, self), Prefix);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_put_PrefixText(self: *const T, Prefix: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).put_PrefixText(@ptrCast(*const IInkRecognizerContext, self), Prefix);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_get_SuffixText(self: *const T, Suffix: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_SuffixText(@ptrCast(*const IInkRecognizerContext, self), Suffix);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_put_SuffixText(self: *const T, Suffix: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).put_SuffixText(@ptrCast(*const IInkRecognizerContext, self), Suffix);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_get_RecognitionFlags(self: *const T, Modes: ?*InkRecognitionModes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_RecognitionFlags(@ptrCast(*const IInkRecognizerContext, self), Modes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_put_RecognitionFlags(self: *const T, Modes: InkRecognitionModes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).put_RecognitionFlags(@ptrCast(*const IInkRecognizerContext, self), Modes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_get_WordList(self: *const T, WordList: ?*?*IInkWordList) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_WordList(@ptrCast(*const IInkRecognizerContext, self), WordList);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_putref_WordList(self: *const T, WordList: ?*IInkWordList) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).putref_WordList(@ptrCast(*const IInkRecognizerContext, self), WordList);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_get_Recognizer(self: *const T, Recognizer: ?*?*IInkRecognizer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_Recognizer(@ptrCast(*const IInkRecognizerContext, self), Recognizer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_Recognize(self: *const T, RecognitionStatus: ?*InkRecognitionStatus, RecognitionResult: ?*?*IInkRecognitionResult) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).Recognize(@ptrCast(*const IInkRecognizerContext, self), RecognitionStatus, RecognitionResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_StopBackgroundRecognition(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).StopBackgroundRecognition(@ptrCast(*const IInkRecognizerContext, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_EndInkInput(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).EndInkInput(@ptrCast(*const IInkRecognizerContext, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_BackgroundRecognize(self: *const T, CustomData: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).BackgroundRecognize(@ptrCast(*const IInkRecognizerContext, self), CustomData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_BackgroundRecognizeWithAlternates(self: *const T, CustomData: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).BackgroundRecognizeWithAlternates(@ptrCast(*const IInkRecognizerContext, self), CustomData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_Clone(self: *const T, RecoContext: ?*?*IInkRecognizerContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).Clone(@ptrCast(*const IInkRecognizerContext, self), RecoContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext_IsStringSupported(self: *const T, String: ?BSTR, Supported: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).IsStringSupported(@ptrCast(*const IInkRecognizerContext, self), String, Supported);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkRecognizerContext, self), Strokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_putref_Strokes(self: *const T, Strokes: ?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).putref_Strokes(@ptrCast(*const IInkRecognizerContext, self), Strokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_get_CharacterAutoCompletionMode(self: *const T, Mode: ?*InkRecognizerCharacterAutoCompletionMode) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_CharacterAutoCompletionMode(@ptrCast(*const IInkRecognizerContext, self), Mode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_put_CharacterAutoCompletionMode(self: *const T, Mode: InkRecognizerCharacterAutoCompletionMode) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).put_CharacterAutoCompletionMode(@ptrCast(*const IInkRecognizerContext, self), Mode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_get_Factoid(self: *const T, Factoid: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_Factoid(@ptrCast(*const IInkRecognizerContext, self), Factoid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_put_Factoid(self: *const T, factoid: ?BSTR) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).put_Factoid(@ptrCast(*const IInkRecognizerContext, self), factoid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_get_Guide(self: *const T, RecognizerGuide: ?*?*IInkRecognizerGuide) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_Guide(@ptrCast(*const IInkRecognizerContext, self), RecognizerGuide);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_putref_Guide(self: *const T, RecognizerGuide: ?*IInkRecognizerGuide) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).putref_Guide(@ptrCast(*const IInkRecognizerContext, self), RecognizerGuide);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_get_PrefixText(self: *const T, Prefix: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_PrefixText(@ptrCast(*const IInkRecognizerContext, self), Prefix);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_put_PrefixText(self: *const T, Prefix: ?BSTR) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).put_PrefixText(@ptrCast(*const IInkRecognizerContext, self), Prefix);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_get_SuffixText(self: *const T, Suffix: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_SuffixText(@ptrCast(*const IInkRecognizerContext, self), Suffix);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_put_SuffixText(self: *const T, Suffix: ?BSTR) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).put_SuffixText(@ptrCast(*const IInkRecognizerContext, self), Suffix);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_get_RecognitionFlags(self: *const T, Modes: ?*InkRecognitionModes) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_RecognitionFlags(@ptrCast(*const IInkRecognizerContext, self), Modes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_put_RecognitionFlags(self: *const T, Modes: InkRecognitionModes) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).put_RecognitionFlags(@ptrCast(*const IInkRecognizerContext, self), Modes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_get_WordList(self: *const T, WordList: ?*?*IInkWordList) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_WordList(@ptrCast(*const IInkRecognizerContext, self), WordList);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_putref_WordList(self: *const T, WordList: ?*IInkWordList) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).putref_WordList(@ptrCast(*const IInkRecognizerContext, self), WordList);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_get_Recognizer(self: *const T, Recognizer: ?*?*IInkRecognizer) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).get_Recognizer(@ptrCast(*const IInkRecognizerContext, self), Recognizer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_Recognize(self: *const T, RecognitionStatus: ?*InkRecognitionStatus, RecognitionResult: ?*?*IInkRecognitionResult) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).Recognize(@ptrCast(*const IInkRecognizerContext, self), RecognitionStatus, RecognitionResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_StopBackgroundRecognition(self: *const T) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).StopBackgroundRecognition(@ptrCast(*const IInkRecognizerContext, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_EndInkInput(self: *const T) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).EndInkInput(@ptrCast(*const IInkRecognizerContext, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_BackgroundRecognize(self: *const T, CustomData: VARIANT) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).BackgroundRecognize(@ptrCast(*const IInkRecognizerContext, self), CustomData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_BackgroundRecognizeWithAlternates(self: *const T, CustomData: VARIANT) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).BackgroundRecognizeWithAlternates(@ptrCast(*const IInkRecognizerContext, self), CustomData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_Clone(self: *const T, RecoContext: ?*?*IInkRecognizerContext) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).Clone(@ptrCast(*const IInkRecognizerContext, self), RecoContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext_IsStringSupported(self: *const T, String: ?BSTR, Supported: ?*i16) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext.VTable, self.vtable).IsStringSupported(@ptrCast(*const IInkRecognizerContext, self), String, Supported);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5672,28 +5736,30 @@ pub const IInkRecognizerContext2 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EnabledUnicodeRanges: fn(
+        get_EnabledUnicodeRanges: fn (
             self: *const IInkRecognizerContext2,
             UnicodeRanges: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EnabledUnicodeRanges: fn(
+        put_EnabledUnicodeRanges: fn (
             self: *const IInkRecognizerContext2,
             UnicodeRanges: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext2_get_EnabledUnicodeRanges(self: *const T, UnicodeRanges: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext2.VTable, self.vtable).get_EnabledUnicodeRanges(@ptrCast(*const IInkRecognizerContext2, self), UnicodeRanges);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerContext2_put_EnabledUnicodeRanges(self: *const T, UnicodeRanges: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerContext2.VTable, self.vtable).put_EnabledUnicodeRanges(@ptrCast(*const IInkRecognizerContext2, self), UnicodeRanges);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext2_get_EnabledUnicodeRanges(self: *const T, UnicodeRanges: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext2.VTable, self.vtable).get_EnabledUnicodeRanges(@ptrCast(*const IInkRecognizerContext2, self), UnicodeRanges);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerContext2_put_EnabledUnicodeRanges(self: *const T, UnicodeRanges: VARIANT) HRESULT {
+                return @ptrCast(*const IInkRecognizerContext2.VTable, self.vtable).put_EnabledUnicodeRanges(@ptrCast(*const IInkRecognizerContext2, self), UnicodeRanges);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5704,72 +5770,74 @@ pub const IInkRecognitionResult = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TopString: fn(
+        get_TopString: fn (
             self: *const IInkRecognitionResult,
             TopString: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TopAlternate: fn(
+        get_TopAlternate: fn (
             self: *const IInkRecognitionResult,
             TopAlternate: ?*?*IInkRecognitionAlternate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TopConfidence: fn(
+        get_TopConfidence: fn (
             self: *const IInkRecognitionResult,
             TopConfidence: ?*InkRecognitionConfidence,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Strokes: fn(
+        get_Strokes: fn (
             self: *const IInkRecognitionResult,
             Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AlternatesFromSelection: fn(
+        AlternatesFromSelection: fn (
             self: *const IInkRecognitionResult,
             selectionStart: i32,
             selectionLength: i32,
             maximumAlternates: i32,
             AlternatesFromSelection: ?*?*IInkRecognitionAlternates,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ModifyTopAlternate: fn(
+        ModifyTopAlternate: fn (
             self: *const IInkRecognitionResult,
             Alternate: ?*IInkRecognitionAlternate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetResultOnStrokes: fn(
+        SetResultOnStrokes: fn (
             self: *const IInkRecognitionResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionResult_get_TopString(self: *const T, TopString: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionResult.VTable, self.vtable).get_TopString(@ptrCast(*const IInkRecognitionResult, self), TopString);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionResult_get_TopAlternate(self: *const T, TopAlternate: ?*?*IInkRecognitionAlternate) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionResult.VTable, self.vtable).get_TopAlternate(@ptrCast(*const IInkRecognitionResult, self), TopAlternate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionResult_get_TopConfidence(self: *const T, TopConfidence: ?*InkRecognitionConfidence) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionResult.VTable, self.vtable).get_TopConfidence(@ptrCast(*const IInkRecognitionResult, self), TopConfidence);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionResult_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionResult.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkRecognitionResult, self), Strokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionResult_AlternatesFromSelection(self: *const T, selectionStart: i32, selectionLength: i32, maximumAlternates: i32, AlternatesFromSelection: ?*?*IInkRecognitionAlternates) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionResult.VTable, self.vtable).AlternatesFromSelection(@ptrCast(*const IInkRecognitionResult, self), selectionStart, selectionLength, maximumAlternates, AlternatesFromSelection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionResult_ModifyTopAlternate(self: *const T, Alternate: ?*IInkRecognitionAlternate) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionResult.VTable, self.vtable).ModifyTopAlternate(@ptrCast(*const IInkRecognitionResult, self), Alternate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionResult_SetResultOnStrokes(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionResult.VTable, self.vtable).SetResultOnStrokes(@ptrCast(*const IInkRecognitionResult, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionResult_get_TopString(self: *const T, TopString: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkRecognitionResult.VTable, self.vtable).get_TopString(@ptrCast(*const IInkRecognitionResult, self), TopString);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionResult_get_TopAlternate(self: *const T, TopAlternate: ?*?*IInkRecognitionAlternate) HRESULT {
+                return @ptrCast(*const IInkRecognitionResult.VTable, self.vtable).get_TopAlternate(@ptrCast(*const IInkRecognitionResult, self), TopAlternate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionResult_get_TopConfidence(self: *const T, TopConfidence: ?*InkRecognitionConfidence) HRESULT {
+                return @ptrCast(*const IInkRecognitionResult.VTable, self.vtable).get_TopConfidence(@ptrCast(*const IInkRecognitionResult, self), TopConfidence);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionResult_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkRecognitionResult.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkRecognitionResult, self), Strokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionResult_AlternatesFromSelection(self: *const T, selectionStart: i32, selectionLength: i32, maximumAlternates: i32, AlternatesFromSelection: ?*?*IInkRecognitionAlternates) HRESULT {
+                return @ptrCast(*const IInkRecognitionResult.VTable, self.vtable).AlternatesFromSelection(@ptrCast(*const IInkRecognitionResult, self), selectionStart, selectionLength, maximumAlternates, AlternatesFromSelection);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionResult_ModifyTopAlternate(self: *const T, Alternate: ?*IInkRecognitionAlternate) HRESULT {
+                return @ptrCast(*const IInkRecognitionResult.VTable, self.vtable).ModifyTopAlternate(@ptrCast(*const IInkRecognitionResult, self), Alternate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionResult_SetResultOnStrokes(self: *const T) HRESULT {
+                return @ptrCast(*const IInkRecognitionResult.VTable, self.vtable).SetResultOnStrokes(@ptrCast(*const IInkRecognitionResult, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5780,147 +5848,149 @@ pub const IInkRecognitionAlternate = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_String: fn(
+        get_String: fn (
             self: *const IInkRecognitionAlternate,
             RecoString: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Confidence: fn(
+        get_Confidence: fn (
             self: *const IInkRecognitionAlternate,
             Confidence: ?*InkRecognitionConfidence,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Baseline: fn(
+        get_Baseline: fn (
             self: *const IInkRecognitionAlternate,
             Baseline: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Midline: fn(
+        get_Midline: fn (
             self: *const IInkRecognitionAlternate,
             Midline: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Ascender: fn(
+        get_Ascender: fn (
             self: *const IInkRecognitionAlternate,
             Ascender: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Descender: fn(
+        get_Descender: fn (
             self: *const IInkRecognitionAlternate,
             Descender: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LineNumber: fn(
+        get_LineNumber: fn (
             self: *const IInkRecognitionAlternate,
             LineNumber: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Strokes: fn(
+        get_Strokes: fn (
             self: *const IInkRecognitionAlternate,
             Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LineAlternates: fn(
+        get_LineAlternates: fn (
             self: *const IInkRecognitionAlternate,
             LineAlternates: ?*?*IInkRecognitionAlternates,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ConfidenceAlternates: fn(
+        get_ConfidenceAlternates: fn (
             self: *const IInkRecognitionAlternate,
             ConfidenceAlternates: ?*?*IInkRecognitionAlternates,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStrokesFromStrokeRanges: fn(
+        GetStrokesFromStrokeRanges: fn (
             self: *const IInkRecognitionAlternate,
             Strokes: ?*IInkStrokes,
             GetStrokesFromStrokeRanges: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStrokesFromTextRange: fn(
+        GetStrokesFromTextRange: fn (
             self: *const IInkRecognitionAlternate,
             selectionStart: ?*i32,
             selectionLength: ?*i32,
             GetStrokesFromTextRange: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTextRangeFromStrokes: fn(
+        GetTextRangeFromStrokes: fn (
             self: *const IInkRecognitionAlternate,
             Strokes: ?*IInkStrokes,
             selectionStart: ?*i32,
             selectionLength: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AlternatesWithConstantPropertyValues: fn(
+        AlternatesWithConstantPropertyValues: fn (
             self: *const IInkRecognitionAlternate,
             PropertyType: ?BSTR,
             AlternatesWithConstantPropertyValues: ?*?*IInkRecognitionAlternates,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyValue: fn(
+        GetPropertyValue: fn (
             self: *const IInkRecognitionAlternate,
             PropertyType: ?BSTR,
             PropertyValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_get_String(self: *const T, RecoString: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_String(@ptrCast(*const IInkRecognitionAlternate, self), RecoString);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_get_Confidence(self: *const T, Confidence: ?*InkRecognitionConfidence) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_Confidence(@ptrCast(*const IInkRecognitionAlternate, self), Confidence);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_get_Baseline(self: *const T, Baseline: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_Baseline(@ptrCast(*const IInkRecognitionAlternate, self), Baseline);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_get_Midline(self: *const T, Midline: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_Midline(@ptrCast(*const IInkRecognitionAlternate, self), Midline);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_get_Ascender(self: *const T, Ascender: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_Ascender(@ptrCast(*const IInkRecognitionAlternate, self), Ascender);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_get_Descender(self: *const T, Descender: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_Descender(@ptrCast(*const IInkRecognitionAlternate, self), Descender);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_get_LineNumber(self: *const T, LineNumber: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_LineNumber(@ptrCast(*const IInkRecognitionAlternate, self), LineNumber);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkRecognitionAlternate, self), Strokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_get_LineAlternates(self: *const T, LineAlternates: ?*?*IInkRecognitionAlternates) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_LineAlternates(@ptrCast(*const IInkRecognitionAlternate, self), LineAlternates);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_get_ConfidenceAlternates(self: *const T, ConfidenceAlternates: ?*?*IInkRecognitionAlternates) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_ConfidenceAlternates(@ptrCast(*const IInkRecognitionAlternate, self), ConfidenceAlternates);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_GetStrokesFromStrokeRanges(self: *const T, Strokes: ?*IInkStrokes, GetStrokesFromStrokeRanges: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).GetStrokesFromStrokeRanges(@ptrCast(*const IInkRecognitionAlternate, self), Strokes, GetStrokesFromStrokeRanges);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_GetStrokesFromTextRange(self: *const T, selectionStart: ?*i32, selectionLength: ?*i32, GetStrokesFromTextRange: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).GetStrokesFromTextRange(@ptrCast(*const IInkRecognitionAlternate, self), selectionStart, selectionLength, GetStrokesFromTextRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_GetTextRangeFromStrokes(self: *const T, Strokes: ?*IInkStrokes, selectionStart: ?*i32, selectionLength: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).GetTextRangeFromStrokes(@ptrCast(*const IInkRecognitionAlternate, self), Strokes, selectionStart, selectionLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_AlternatesWithConstantPropertyValues(self: *const T, PropertyType: ?BSTR, AlternatesWithConstantPropertyValues: ?*?*IInkRecognitionAlternates) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).AlternatesWithConstantPropertyValues(@ptrCast(*const IInkRecognitionAlternate, self), PropertyType, AlternatesWithConstantPropertyValues);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternate_GetPropertyValue(self: *const T, PropertyType: ?BSTR, PropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).GetPropertyValue(@ptrCast(*const IInkRecognitionAlternate, self), PropertyType, PropertyValue);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionAlternate_get_String(self: *const T, RecoString: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_String(@ptrCast(*const IInkRecognitionAlternate, self), RecoString);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionAlternate_get_Confidence(self: *const T, Confidence: ?*InkRecognitionConfidence) HRESULT {
+                return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_Confidence(@ptrCast(*const IInkRecognitionAlternate, self), Confidence);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionAlternate_get_Baseline(self: *const T, Baseline: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_Baseline(@ptrCast(*const IInkRecognitionAlternate, self), Baseline);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionAlternate_get_Midline(self: *const T, Midline: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_Midline(@ptrCast(*const IInkRecognitionAlternate, self), Midline);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionAlternate_get_Ascender(self: *const T, Ascender: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_Ascender(@ptrCast(*const IInkRecognitionAlternate, self), Ascender);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionAlternate_get_Descender(self: *const T, Descender: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_Descender(@ptrCast(*const IInkRecognitionAlternate, self), Descender);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionAlternate_get_LineNumber(self: *const T, LineNumber: ?*i32) HRESULT {
+                return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_LineNumber(@ptrCast(*const IInkRecognitionAlternate, self), LineNumber);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionAlternate_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkRecognitionAlternate, self), Strokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionAlternate_get_LineAlternates(self: *const T, LineAlternates: ?*?*IInkRecognitionAlternates) HRESULT {
+                return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_LineAlternates(@ptrCast(*const IInkRecognitionAlternate, self), LineAlternates);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionAlternate_get_ConfidenceAlternates(self: *const T, ConfidenceAlternates: ?*?*IInkRecognitionAlternates) HRESULT {
+                return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).get_ConfidenceAlternates(@ptrCast(*const IInkRecognitionAlternate, self), ConfidenceAlternates);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionAlternate_GetStrokesFromStrokeRanges(self: *const T, Strokes: ?*IInkStrokes, GetStrokesFromStrokeRanges: ?*?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).GetStrokesFromStrokeRanges(@ptrCast(*const IInkRecognitionAlternate, self), Strokes, GetStrokesFromStrokeRanges);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionAlternate_GetStrokesFromTextRange(self: *const T, selectionStart: ?*i32, selectionLength: ?*i32, GetStrokesFromTextRange: ?*?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).GetStrokesFromTextRange(@ptrCast(*const IInkRecognitionAlternate, self), selectionStart, selectionLength, GetStrokesFromTextRange);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionAlternate_GetTextRangeFromStrokes(self: *const T, Strokes: ?*IInkStrokes, selectionStart: ?*i32, selectionLength: ?*i32) HRESULT {
+                return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).GetTextRangeFromStrokes(@ptrCast(*const IInkRecognitionAlternate, self), Strokes, selectionStart, selectionLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionAlternate_AlternatesWithConstantPropertyValues(self: *const T, PropertyType: ?BSTR, AlternatesWithConstantPropertyValues: ?*?*IInkRecognitionAlternates) HRESULT {
+                return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).AlternatesWithConstantPropertyValues(@ptrCast(*const IInkRecognitionAlternate, self), PropertyType, AlternatesWithConstantPropertyValues);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionAlternate_GetPropertyValue(self: *const T, PropertyType: ?BSTR, PropertyValue: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkRecognitionAlternate.VTable, self.vtable).GetPropertyValue(@ptrCast(*const IInkRecognitionAlternate, self), PropertyType, PropertyValue);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5931,46 +6001,48 @@ pub const IInkRecognitionAlternates = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const IInkRecognitionAlternates,
             Count: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const IInkRecognitionAlternates,
             _NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Strokes: fn(
+        get_Strokes: fn (
             self: *const IInkRecognitionAlternates,
             Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
+        Item: fn (
             self: *const IInkRecognitionAlternates,
             Index: i32,
             InkRecoAlternate: ?*?*IInkRecognitionAlternate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternates_get_Count(self: *const T, Count: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionAlternates.VTable, self.vtable).get_Count(@ptrCast(*const IInkRecognitionAlternates, self), Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternates_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionAlternates.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkRecognitionAlternates, self), _NewEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternates_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionAlternates.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkRecognitionAlternates, self), Strokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognitionAlternates_Item(self: *const T, Index: i32, InkRecoAlternate: ?*?*IInkRecognitionAlternate) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognitionAlternates.VTable, self.vtable).Item(@ptrCast(*const IInkRecognitionAlternates, self), Index, InkRecoAlternate);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionAlternates_get_Count(self: *const T, Count: ?*i32) HRESULT {
+                return @ptrCast(*const IInkRecognitionAlternates.VTable, self.vtable).get_Count(@ptrCast(*const IInkRecognitionAlternates, self), Count);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionAlternates_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IInkRecognitionAlternates.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkRecognitionAlternates, self), _NewEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionAlternates_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkRecognitionAlternates.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkRecognitionAlternates, self), Strokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognitionAlternates_Item(self: *const T, Index: i32, InkRecoAlternate: ?*?*IInkRecognitionAlternate) HRESULT {
+                return @ptrCast(*const IInkRecognitionAlternates.VTable, self.vtable).Item(@ptrCast(*const IInkRecognitionAlternates, self), Index, InkRecoAlternate);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5980,118 +6052,120 @@ pub const IInkRecognizerGuide = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_WritingBox: fn(
+        get_WritingBox: fn (
             self: *const IInkRecognizerGuide,
             Rectangle: ?*?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_WritingBox: fn(
+        put_WritingBox: fn (
             self: *const IInkRecognizerGuide,
             Rectangle: ?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DrawnBox: fn(
+        get_DrawnBox: fn (
             self: *const IInkRecognizerGuide,
             Rectangle: ?*?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DrawnBox: fn(
+        put_DrawnBox: fn (
             self: *const IInkRecognizerGuide,
             Rectangle: ?*IInkRectangle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Rows: fn(
+        get_Rows: fn (
             self: *const IInkRecognizerGuide,
             Units: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Rows: fn(
+        put_Rows: fn (
             self: *const IInkRecognizerGuide,
             Units: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Columns: fn(
+        get_Columns: fn (
             self: *const IInkRecognizerGuide,
             Units: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Columns: fn(
+        put_Columns: fn (
             self: *const IInkRecognizerGuide,
             Units: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Midline: fn(
+        get_Midline: fn (
             self: *const IInkRecognizerGuide,
             Units: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Midline: fn(
+        put_Midline: fn (
             self: *const IInkRecognizerGuide,
             Units: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_GuideData: fn(
+        get_GuideData: fn (
             self: *const IInkRecognizerGuide,
             pRecoGuide: ?*InkRecoGuide,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_GuideData: fn(
+        put_GuideData: fn (
             self: *const IInkRecognizerGuide,
             recoGuide: InkRecoGuide,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerGuide_get_WritingBox(self: *const T, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).get_WritingBox(@ptrCast(*const IInkRecognizerGuide, self), Rectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerGuide_put_WritingBox(self: *const T, Rectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).put_WritingBox(@ptrCast(*const IInkRecognizerGuide, self), Rectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerGuide_get_DrawnBox(self: *const T, Rectangle: ?*?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).get_DrawnBox(@ptrCast(*const IInkRecognizerGuide, self), Rectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerGuide_put_DrawnBox(self: *const T, Rectangle: ?*IInkRectangle) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).put_DrawnBox(@ptrCast(*const IInkRecognizerGuide, self), Rectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerGuide_get_Rows(self: *const T, Units: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).get_Rows(@ptrCast(*const IInkRecognizerGuide, self), Units);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerGuide_put_Rows(self: *const T, Units: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).put_Rows(@ptrCast(*const IInkRecognizerGuide, self), Units);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerGuide_get_Columns(self: *const T, Units: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).get_Columns(@ptrCast(*const IInkRecognizerGuide, self), Units);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerGuide_put_Columns(self: *const T, Units: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).put_Columns(@ptrCast(*const IInkRecognizerGuide, self), Units);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerGuide_get_Midline(self: *const T, Units: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).get_Midline(@ptrCast(*const IInkRecognizerGuide, self), Units);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerGuide_put_Midline(self: *const T, Units: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).put_Midline(@ptrCast(*const IInkRecognizerGuide, self), Units);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerGuide_get_GuideData(self: *const T, pRecoGuide: ?*InkRecoGuide) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).get_GuideData(@ptrCast(*const IInkRecognizerGuide, self), pRecoGuide);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkRecognizerGuide_put_GuideData(self: *const T, recoGuide: InkRecoGuide) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).put_GuideData(@ptrCast(*const IInkRecognizerGuide, self), recoGuide);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerGuide_get_WritingBox(self: *const T, Rectangle: ?*?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).get_WritingBox(@ptrCast(*const IInkRecognizerGuide, self), Rectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerGuide_put_WritingBox(self: *const T, Rectangle: ?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).put_WritingBox(@ptrCast(*const IInkRecognizerGuide, self), Rectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerGuide_get_DrawnBox(self: *const T, Rectangle: ?*?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).get_DrawnBox(@ptrCast(*const IInkRecognizerGuide, self), Rectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerGuide_put_DrawnBox(self: *const T, Rectangle: ?*IInkRectangle) HRESULT {
+                return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).put_DrawnBox(@ptrCast(*const IInkRecognizerGuide, self), Rectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerGuide_get_Rows(self: *const T, Units: ?*i32) HRESULT {
+                return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).get_Rows(@ptrCast(*const IInkRecognizerGuide, self), Units);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerGuide_put_Rows(self: *const T, Units: i32) HRESULT {
+                return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).put_Rows(@ptrCast(*const IInkRecognizerGuide, self), Units);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerGuide_get_Columns(self: *const T, Units: ?*i32) HRESULT {
+                return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).get_Columns(@ptrCast(*const IInkRecognizerGuide, self), Units);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerGuide_put_Columns(self: *const T, Units: i32) HRESULT {
+                return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).put_Columns(@ptrCast(*const IInkRecognizerGuide, self), Units);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerGuide_get_Midline(self: *const T, Units: ?*i32) HRESULT {
+                return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).get_Midline(@ptrCast(*const IInkRecognizerGuide, self), Units);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerGuide_put_Midline(self: *const T, Units: i32) HRESULT {
+                return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).put_Midline(@ptrCast(*const IInkRecognizerGuide, self), Units);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerGuide_get_GuideData(self: *const T, pRecoGuide: ?*InkRecoGuide) HRESULT {
+                return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).get_GuideData(@ptrCast(*const IInkRecognizerGuide, self), pRecoGuide);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkRecognizerGuide_put_GuideData(self: *const T, recoGuide: InkRecoGuide) HRESULT {
+                return @ptrCast(*const IInkRecognizerGuide.VTable, self.vtable).put_GuideData(@ptrCast(*const IInkRecognizerGuide, self), recoGuide);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6100,35 +6174,37 @@ pub const IID_IInkWordList = &IID_IInkWordList_Value;
 pub const IInkWordList = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        AddWord: fn(
+        AddWord: fn (
             self: *const IInkWordList,
             NewWord: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveWord: fn(
+        RemoveWord: fn (
             self: *const IInkWordList,
             RemoveWord: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Merge: fn(
+        Merge: fn (
             self: *const IInkWordList,
             MergeWordList: ?*IInkWordList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkWordList_AddWord(self: *const T, NewWord: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkWordList.VTable, self.vtable).AddWord(@ptrCast(*const IInkWordList, self), NewWord);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkWordList_RemoveWord(self: *const T, RemoveWord: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkWordList.VTable, self.vtable).RemoveWord(@ptrCast(*const IInkWordList, self), RemoveWord);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkWordList_Merge(self: *const T, MergeWordList: ?*IInkWordList) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkWordList.VTable, self.vtable).Merge(@ptrCast(*const IInkWordList, self), MergeWordList);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkWordList_AddWord(self: *const T, NewWord: ?BSTR) HRESULT {
+                return @ptrCast(*const IInkWordList.VTable, self.vtable).AddWord(@ptrCast(*const IInkWordList, self), NewWord);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkWordList_RemoveWord(self: *const T, RemoveWord: ?BSTR) HRESULT {
+                return @ptrCast(*const IInkWordList.VTable, self.vtable).RemoveWord(@ptrCast(*const IInkWordList, self), RemoveWord);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkWordList_Merge(self: *const T, MergeWordList: ?*IInkWordList) HRESULT {
+                return @ptrCast(*const IInkWordList.VTable, self.vtable).Merge(@ptrCast(*const IInkWordList, self), MergeWordList);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6138,19 +6214,21 @@ pub const IID_IInkWordList2 = &IID_IInkWordList2_Value;
 pub const IInkWordList2 = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        AddWords: fn(
+        AddWords: fn (
             self: *const IInkWordList2,
             NewWords: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkWordList2_AddWords(self: *const T, NewWords: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkWordList2.VTable, self.vtable).AddWords(@ptrCast(*const IInkWordList2, self), NewWords);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkWordList2_AddWords(self: *const T, NewWords: ?BSTR) HRESULT {
+                return @ptrCast(*const IInkWordList2.VTable, self.vtable).AddWords(@ptrCast(*const IInkWordList2, self), NewWords);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6161,9 +6239,11 @@ pub const IInk = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6173,63 +6253,65 @@ pub const IID_IInkLineInfo = &IID_IInkLineInfo_Value;
 pub const IInkLineInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetFormat: fn(
+        SetFormat: fn (
             self: *const IInkLineInfo,
             pim: ?*INKMETRIC,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFormat: fn(
+        GetFormat: fn (
             self: *const IInkLineInfo,
             pim: ?*INKMETRIC,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInkExtent: fn(
+        GetInkExtent: fn (
             self: *const IInkLineInfo,
             pim: ?*INKMETRIC,
             pnWidth: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCandidate: fn(
+        GetCandidate: fn (
             self: *const IInkLineInfo,
             nCandidateNum: u32,
             pwcRecogWord: ?PWSTR,
             pcwcRecogWord: ?*u32,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCandidate: fn(
+        SetCandidate: fn (
             self: *const IInkLineInfo,
             nCandidateNum: u32,
             strRecogWord: ?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Recognize: fn(
+        Recognize: fn (
             self: *const IInkLineInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkLineInfo_SetFormat(self: *const T, pim: ?*INKMETRIC) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkLineInfo.VTable, self.vtable).SetFormat(@ptrCast(*const IInkLineInfo, self), pim);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkLineInfo_GetFormat(self: *const T, pim: ?*INKMETRIC) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkLineInfo.VTable, self.vtable).GetFormat(@ptrCast(*const IInkLineInfo, self), pim);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkLineInfo_GetInkExtent(self: *const T, pim: ?*INKMETRIC, pnWidth: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkLineInfo.VTable, self.vtable).GetInkExtent(@ptrCast(*const IInkLineInfo, self), pim, pnWidth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkLineInfo_GetCandidate(self: *const T, nCandidateNum: u32, pwcRecogWord: ?PWSTR, pcwcRecogWord: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkLineInfo.VTable, self.vtable).GetCandidate(@ptrCast(*const IInkLineInfo, self), nCandidateNum, pwcRecogWord, pcwcRecogWord, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkLineInfo_SetCandidate(self: *const T, nCandidateNum: u32, strRecogWord: ?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkLineInfo.VTable, self.vtable).SetCandidate(@ptrCast(*const IInkLineInfo, self), nCandidateNum, strRecogWord);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkLineInfo_Recognize(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkLineInfo.VTable, self.vtable).Recognize(@ptrCast(*const IInkLineInfo, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkLineInfo_SetFormat(self: *const T, pim: ?*INKMETRIC) HRESULT {
+                return @ptrCast(*const IInkLineInfo.VTable, self.vtable).SetFormat(@ptrCast(*const IInkLineInfo, self), pim);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkLineInfo_GetFormat(self: *const T, pim: ?*INKMETRIC) HRESULT {
+                return @ptrCast(*const IInkLineInfo.VTable, self.vtable).GetFormat(@ptrCast(*const IInkLineInfo, self), pim);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkLineInfo_GetInkExtent(self: *const T, pim: ?*INKMETRIC, pnWidth: ?*u32) HRESULT {
+                return @ptrCast(*const IInkLineInfo.VTable, self.vtable).GetInkExtent(@ptrCast(*const IInkLineInfo, self), pim, pnWidth);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkLineInfo_GetCandidate(self: *const T, nCandidateNum: u32, pwcRecogWord: ?PWSTR, pcwcRecogWord: ?*u32, dwFlags: u32) HRESULT {
+                return @ptrCast(*const IInkLineInfo.VTable, self.vtable).GetCandidate(@ptrCast(*const IInkLineInfo, self), nCandidateNum, pwcRecogWord, pcwcRecogWord, dwFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkLineInfo_SetCandidate(self: *const T, nCandidateNum: u32, strRecogWord: ?PWSTR) HRESULT {
+                return @ptrCast(*const IInkLineInfo.VTable, self.vtable).SetCandidate(@ptrCast(*const IInkLineInfo, self), nCandidateNum, strRecogWord);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkLineInfo_Recognize(self: *const T) HRESULT {
+                return @ptrCast(*const IInkLineInfo.VTable, self.vtable).Recognize(@ptrCast(*const IInkLineInfo, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6240,9 +6322,11 @@ pub const ISketchInk = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6304,70 +6388,72 @@ pub const IInkDivider = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Strokes: fn(
+        get_Strokes: fn (
             self: *const IInkDivider,
             Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_Strokes: fn(
+        putref_Strokes: fn (
             self: *const IInkDivider,
             Strokes: ?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RecognizerContext: fn(
+        get_RecognizerContext: fn (
             self: *const IInkDivider,
             RecognizerContext: ?*?*IInkRecognizerContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_RecognizerContext: fn(
+        putref_RecognizerContext: fn (
             self: *const IInkDivider,
             RecognizerContext: ?*IInkRecognizerContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LineHeight: fn(
+        get_LineHeight: fn (
             self: *const IInkDivider,
             LineHeight: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LineHeight: fn(
+        put_LineHeight: fn (
             self: *const IInkDivider,
             LineHeight: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Divide: fn(
+        Divide: fn (
             self: *const IInkDivider,
             InkDivisionResult: ?*?*IInkDivisionResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivider_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDivider.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkDivider, self), Strokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivider_putref_Strokes(self: *const T, Strokes: ?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDivider.VTable, self.vtable).putref_Strokes(@ptrCast(*const IInkDivider, self), Strokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivider_get_RecognizerContext(self: *const T, RecognizerContext: ?*?*IInkRecognizerContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDivider.VTable, self.vtable).get_RecognizerContext(@ptrCast(*const IInkDivider, self), RecognizerContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivider_putref_RecognizerContext(self: *const T, RecognizerContext: ?*IInkRecognizerContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDivider.VTable, self.vtable).putref_RecognizerContext(@ptrCast(*const IInkDivider, self), RecognizerContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivider_get_LineHeight(self: *const T, LineHeight: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDivider.VTable, self.vtable).get_LineHeight(@ptrCast(*const IInkDivider, self), LineHeight);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivider_put_LineHeight(self: *const T, LineHeight: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDivider.VTable, self.vtable).put_LineHeight(@ptrCast(*const IInkDivider, self), LineHeight);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivider_Divide(self: *const T, InkDivisionResult: ?*?*IInkDivisionResult) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDivider.VTable, self.vtable).Divide(@ptrCast(*const IInkDivider, self), InkDivisionResult);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDivider_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkDivider.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkDivider, self), Strokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDivider_putref_Strokes(self: *const T, Strokes: ?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkDivider.VTable, self.vtable).putref_Strokes(@ptrCast(*const IInkDivider, self), Strokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDivider_get_RecognizerContext(self: *const T, RecognizerContext: ?*?*IInkRecognizerContext) HRESULT {
+                return @ptrCast(*const IInkDivider.VTable, self.vtable).get_RecognizerContext(@ptrCast(*const IInkDivider, self), RecognizerContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDivider_putref_RecognizerContext(self: *const T, RecognizerContext: ?*IInkRecognizerContext) HRESULT {
+                return @ptrCast(*const IInkDivider.VTable, self.vtable).putref_RecognizerContext(@ptrCast(*const IInkDivider, self), RecognizerContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDivider_get_LineHeight(self: *const T, LineHeight: ?*i32) HRESULT {
+                return @ptrCast(*const IInkDivider.VTable, self.vtable).get_LineHeight(@ptrCast(*const IInkDivider, self), LineHeight);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDivider_put_LineHeight(self: *const T, LineHeight: i32) HRESULT {
+                return @ptrCast(*const IInkDivider.VTable, self.vtable).put_LineHeight(@ptrCast(*const IInkDivider, self), LineHeight);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDivider_Divide(self: *const T, InkDivisionResult: ?*?*IInkDivisionResult) HRESULT {
+                return @ptrCast(*const IInkDivider.VTable, self.vtable).Divide(@ptrCast(*const IInkDivider, self), InkDivisionResult);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6378,28 +6464,30 @@ pub const IInkDivisionResult = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Strokes: fn(
+        get_Strokes: fn (
             self: *const IInkDivisionResult,
             Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ResultByType: fn(
+        ResultByType: fn (
             self: *const IInkDivisionResult,
             divisionType: InkDivisionType,
             InkDivisionUnits: ?*?*IInkDivisionUnits,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivisionResult_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDivisionResult.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkDivisionResult, self), Strokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivisionResult_ResultByType(self: *const T, divisionType: InkDivisionType, InkDivisionUnits: ?*?*IInkDivisionUnits) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDivisionResult.VTable, self.vtable).ResultByType(@ptrCast(*const IInkDivisionResult, self), divisionType, InkDivisionUnits);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDivisionResult_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkDivisionResult.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkDivisionResult, self), Strokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDivisionResult_ResultByType(self: *const T, divisionType: InkDivisionType, InkDivisionUnits: ?*?*IInkDivisionUnits) HRESULT {
+                return @ptrCast(*const IInkDivisionResult.VTable, self.vtable).ResultByType(@ptrCast(*const IInkDivisionResult, self), divisionType, InkDivisionUnits);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6410,46 +6498,48 @@ pub const IInkDivisionUnit = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Strokes: fn(
+        get_Strokes: fn (
             self: *const IInkDivisionUnit,
             Strokes: ?*?*IInkStrokes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DivisionType: fn(
+        get_DivisionType: fn (
             self: *const IInkDivisionUnit,
             divisionType: ?*InkDivisionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RecognizedString: fn(
+        get_RecognizedString: fn (
             self: *const IInkDivisionUnit,
             RecoString: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RotationTransform: fn(
+        get_RotationTransform: fn (
             self: *const IInkDivisionUnit,
             RotationTransform: ?*?*IInkTransform,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivisionUnit_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDivisionUnit.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkDivisionUnit, self), Strokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivisionUnit_get_DivisionType(self: *const T, divisionType: ?*InkDivisionType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDivisionUnit.VTable, self.vtable).get_DivisionType(@ptrCast(*const IInkDivisionUnit, self), divisionType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivisionUnit_get_RecognizedString(self: *const T, RecoString: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDivisionUnit.VTable, self.vtable).get_RecognizedString(@ptrCast(*const IInkDivisionUnit, self), RecoString);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivisionUnit_get_RotationTransform(self: *const T, RotationTransform: ?*?*IInkTransform) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDivisionUnit.VTable, self.vtable).get_RotationTransform(@ptrCast(*const IInkDivisionUnit, self), RotationTransform);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDivisionUnit_get_Strokes(self: *const T, Strokes: ?*?*IInkStrokes) HRESULT {
+                return @ptrCast(*const IInkDivisionUnit.VTable, self.vtable).get_Strokes(@ptrCast(*const IInkDivisionUnit, self), Strokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDivisionUnit_get_DivisionType(self: *const T, divisionType: ?*InkDivisionType) HRESULT {
+                return @ptrCast(*const IInkDivisionUnit.VTable, self.vtable).get_DivisionType(@ptrCast(*const IInkDivisionUnit, self), divisionType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDivisionUnit_get_RecognizedString(self: *const T, RecoString: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkDivisionUnit.VTable, self.vtable).get_RecognizedString(@ptrCast(*const IInkDivisionUnit, self), RecoString);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDivisionUnit_get_RotationTransform(self: *const T, RotationTransform: ?*?*IInkTransform) HRESULT {
+                return @ptrCast(*const IInkDivisionUnit.VTable, self.vtable).get_RotationTransform(@ptrCast(*const IInkDivisionUnit, self), RotationTransform);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6460,37 +6550,39 @@ pub const IInkDivisionUnits = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const IInkDivisionUnits,
             Count: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const IInkDivisionUnits,
             _NewEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
+        Item: fn (
             self: *const IInkDivisionUnits,
             Index: i32,
             InkDivisionUnit: ?*?*IInkDivisionUnit,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivisionUnits_get_Count(self: *const T, Count: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDivisionUnits.VTable, self.vtable).get_Count(@ptrCast(*const IInkDivisionUnits, self), Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivisionUnits_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDivisionUnits.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkDivisionUnits, self), _NewEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDivisionUnits_Item(self: *const T, Index: i32, InkDivisionUnit: ?*?*IInkDivisionUnit) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkDivisionUnits.VTable, self.vtable).Item(@ptrCast(*const IInkDivisionUnits, self), Index, InkDivisionUnit);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDivisionUnits_get_Count(self: *const T, Count: ?*i32) HRESULT {
+                return @ptrCast(*const IInkDivisionUnits.VTable, self.vtable).get_Count(@ptrCast(*const IInkDivisionUnits, self), Count);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDivisionUnits_get__NewEnum(self: *const T, _NewEnum: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IInkDivisionUnits.VTable, self.vtable).get__NewEnum(@ptrCast(*const IInkDivisionUnits, self), _NewEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkDivisionUnits_Item(self: *const T, Index: i32, InkDivisionUnit: ?*?*IInkDivisionUnit) HRESULT {
+                return @ptrCast(*const IInkDivisionUnits.VTable, self.vtable).Item(@ptrCast(*const IInkDivisionUnits, self), Index, InkDivisionUnit);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6673,230 +6765,232 @@ pub const IPenInputPanel = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Busy: fn(
+        get_Busy: fn (
             self: *const IPenInputPanel,
             Busy: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Factoid: fn(
+        get_Factoid: fn (
             self: *const IPenInputPanel,
             Factoid: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Factoid: fn(
+        put_Factoid: fn (
             self: *const IPenInputPanel,
             Factoid: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AttachedEditWindow: fn(
+        get_AttachedEditWindow: fn (
             self: *const IPenInputPanel,
             AttachedEditWindow: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AttachedEditWindow: fn(
+        put_AttachedEditWindow: fn (
             self: *const IPenInputPanel,
             AttachedEditWindow: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentPanel: fn(
+        get_CurrentPanel: fn (
             self: *const IPenInputPanel,
             CurrentPanel: ?*PanelType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_CurrentPanel: fn(
+        put_CurrentPanel: fn (
             self: *const IPenInputPanel,
             CurrentPanel: PanelType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DefaultPanel: fn(
+        get_DefaultPanel: fn (
             self: *const IPenInputPanel,
             pDefaultPanel: ?*PanelType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DefaultPanel: fn(
+        put_DefaultPanel: fn (
             self: *const IPenInputPanel,
             DefaultPanel: PanelType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Visible: fn(
+        get_Visible: fn (
             self: *const IPenInputPanel,
             Visible: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Visible: fn(
+        put_Visible: fn (
             self: *const IPenInputPanel,
             Visible: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Top: fn(
+        get_Top: fn (
             self: *const IPenInputPanel,
             Top: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Left: fn(
+        get_Left: fn (
             self: *const IPenInputPanel,
             Left: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Width: fn(
+        get_Width: fn (
             self: *const IPenInputPanel,
             Width: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Height: fn(
+        get_Height: fn (
             self: *const IPenInputPanel,
             Height: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_VerticalOffset: fn(
+        get_VerticalOffset: fn (
             self: *const IPenInputPanel,
             VerticalOffset: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_VerticalOffset: fn(
+        put_VerticalOffset: fn (
             self: *const IPenInputPanel,
             VerticalOffset: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HorizontalOffset: fn(
+        get_HorizontalOffset: fn (
             self: *const IPenInputPanel,
             HorizontalOffset: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_HorizontalOffset: fn(
+        put_HorizontalOffset: fn (
             self: *const IPenInputPanel,
             HorizontalOffset: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AutoShow: fn(
+        get_AutoShow: fn (
             self: *const IPenInputPanel,
             pAutoShow: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AutoShow: fn(
+        put_AutoShow: fn (
             self: *const IPenInputPanel,
             AutoShow: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MoveTo: fn(
+        MoveTo: fn (
             self: *const IPenInputPanel,
             Left: i32,
             Top: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CommitPendingInput: fn(
+        CommitPendingInput: fn (
             self: *const IPenInputPanel,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const IPenInputPanel,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnableTsf: fn(
+        EnableTsf: fn (
             self: *const IPenInputPanel,
             Enable: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_get_Busy(self: *const T, Busy: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_Busy(@ptrCast(*const IPenInputPanel, self), Busy);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_get_Factoid(self: *const T, Factoid: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_Factoid(@ptrCast(*const IPenInputPanel, self), Factoid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_put_Factoid(self: *const T, Factoid: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).put_Factoid(@ptrCast(*const IPenInputPanel, self), Factoid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_get_AttachedEditWindow(self: *const T, AttachedEditWindow: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_AttachedEditWindow(@ptrCast(*const IPenInputPanel, self), AttachedEditWindow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_put_AttachedEditWindow(self: *const T, AttachedEditWindow: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).put_AttachedEditWindow(@ptrCast(*const IPenInputPanel, self), AttachedEditWindow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_get_CurrentPanel(self: *const T, CurrentPanel: ?*PanelType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_CurrentPanel(@ptrCast(*const IPenInputPanel, self), CurrentPanel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_put_CurrentPanel(self: *const T, CurrentPanel: PanelType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).put_CurrentPanel(@ptrCast(*const IPenInputPanel, self), CurrentPanel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_get_DefaultPanel(self: *const T, pDefaultPanel: ?*PanelType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_DefaultPanel(@ptrCast(*const IPenInputPanel, self), pDefaultPanel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_put_DefaultPanel(self: *const T, DefaultPanel: PanelType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).put_DefaultPanel(@ptrCast(*const IPenInputPanel, self), DefaultPanel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_get_Visible(self: *const T, Visible: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_Visible(@ptrCast(*const IPenInputPanel, self), Visible);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_put_Visible(self: *const T, Visible: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).put_Visible(@ptrCast(*const IPenInputPanel, self), Visible);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_get_Top(self: *const T, Top: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_Top(@ptrCast(*const IPenInputPanel, self), Top);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_get_Left(self: *const T, Left: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_Left(@ptrCast(*const IPenInputPanel, self), Left);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_get_Width(self: *const T, Width: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_Width(@ptrCast(*const IPenInputPanel, self), Width);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_get_Height(self: *const T, Height: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_Height(@ptrCast(*const IPenInputPanel, self), Height);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_get_VerticalOffset(self: *const T, VerticalOffset: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_VerticalOffset(@ptrCast(*const IPenInputPanel, self), VerticalOffset);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_put_VerticalOffset(self: *const T, VerticalOffset: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).put_VerticalOffset(@ptrCast(*const IPenInputPanel, self), VerticalOffset);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_get_HorizontalOffset(self: *const T, HorizontalOffset: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_HorizontalOffset(@ptrCast(*const IPenInputPanel, self), HorizontalOffset);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_put_HorizontalOffset(self: *const T, HorizontalOffset: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).put_HorizontalOffset(@ptrCast(*const IPenInputPanel, self), HorizontalOffset);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_get_AutoShow(self: *const T, pAutoShow: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_AutoShow(@ptrCast(*const IPenInputPanel, self), pAutoShow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_put_AutoShow(self: *const T, AutoShow: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).put_AutoShow(@ptrCast(*const IPenInputPanel, self), AutoShow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_MoveTo(self: *const T, Left: i32, Top: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).MoveTo(@ptrCast(*const IPenInputPanel, self), Left, Top);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_CommitPendingInput(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).CommitPendingInput(@ptrCast(*const IPenInputPanel, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).Refresh(@ptrCast(*const IPenInputPanel, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPenInputPanel_EnableTsf(self: *const T, Enable: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPenInputPanel.VTable, self.vtable).EnableTsf(@ptrCast(*const IPenInputPanel, self), Enable);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_get_Busy(self: *const T, Busy: ?*i16) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_Busy(@ptrCast(*const IPenInputPanel, self), Busy);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_get_Factoid(self: *const T, Factoid: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_Factoid(@ptrCast(*const IPenInputPanel, self), Factoid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_put_Factoid(self: *const T, Factoid: ?BSTR) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).put_Factoid(@ptrCast(*const IPenInputPanel, self), Factoid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_get_AttachedEditWindow(self: *const T, AttachedEditWindow: ?*i32) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_AttachedEditWindow(@ptrCast(*const IPenInputPanel, self), AttachedEditWindow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_put_AttachedEditWindow(self: *const T, AttachedEditWindow: i32) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).put_AttachedEditWindow(@ptrCast(*const IPenInputPanel, self), AttachedEditWindow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_get_CurrentPanel(self: *const T, CurrentPanel: ?*PanelType) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_CurrentPanel(@ptrCast(*const IPenInputPanel, self), CurrentPanel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_put_CurrentPanel(self: *const T, CurrentPanel: PanelType) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).put_CurrentPanel(@ptrCast(*const IPenInputPanel, self), CurrentPanel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_get_DefaultPanel(self: *const T, pDefaultPanel: ?*PanelType) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_DefaultPanel(@ptrCast(*const IPenInputPanel, self), pDefaultPanel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_put_DefaultPanel(self: *const T, DefaultPanel: PanelType) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).put_DefaultPanel(@ptrCast(*const IPenInputPanel, self), DefaultPanel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_get_Visible(self: *const T, Visible: ?*i16) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_Visible(@ptrCast(*const IPenInputPanel, self), Visible);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_put_Visible(self: *const T, Visible: i16) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).put_Visible(@ptrCast(*const IPenInputPanel, self), Visible);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_get_Top(self: *const T, Top: ?*i32) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_Top(@ptrCast(*const IPenInputPanel, self), Top);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_get_Left(self: *const T, Left: ?*i32) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_Left(@ptrCast(*const IPenInputPanel, self), Left);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_get_Width(self: *const T, Width: ?*i32) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_Width(@ptrCast(*const IPenInputPanel, self), Width);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_get_Height(self: *const T, Height: ?*i32) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_Height(@ptrCast(*const IPenInputPanel, self), Height);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_get_VerticalOffset(self: *const T, VerticalOffset: ?*i32) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_VerticalOffset(@ptrCast(*const IPenInputPanel, self), VerticalOffset);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_put_VerticalOffset(self: *const T, VerticalOffset: i32) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).put_VerticalOffset(@ptrCast(*const IPenInputPanel, self), VerticalOffset);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_get_HorizontalOffset(self: *const T, HorizontalOffset: ?*i32) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_HorizontalOffset(@ptrCast(*const IPenInputPanel, self), HorizontalOffset);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_put_HorizontalOffset(self: *const T, HorizontalOffset: i32) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).put_HorizontalOffset(@ptrCast(*const IPenInputPanel, self), HorizontalOffset);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_get_AutoShow(self: *const T, pAutoShow: ?*i16) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).get_AutoShow(@ptrCast(*const IPenInputPanel, self), pAutoShow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_put_AutoShow(self: *const T, AutoShow: i16) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).put_AutoShow(@ptrCast(*const IPenInputPanel, self), AutoShow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_MoveTo(self: *const T, Left: i32, Top: i32) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).MoveTo(@ptrCast(*const IPenInputPanel, self), Left, Top);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_CommitPendingInput(self: *const T) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).CommitPendingInput(@ptrCast(*const IPenInputPanel, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).Refresh(@ptrCast(*const IPenInputPanel, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPenInputPanel_EnableTsf(self: *const T, Enable: i16) HRESULT {
+                return @ptrCast(*const IPenInputPanel.VTable, self.vtable).EnableTsf(@ptrCast(*const IPenInputPanel, self), Enable);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6907,9 +7001,11 @@ pub const _IPenInputPanelEvents = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6919,13 +7015,13 @@ pub const IID_IHandwrittenTextInsertion = &IID_IHandwrittenTextInsertion_Value;
 pub const IHandwrittenTextInsertion = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        InsertRecognitionResultsArray: fn(
+        InsertRecognitionResultsArray: fn (
             self: *const IHandwrittenTextInsertion,
             psaAlternates: ?*SAFEARRAY,
             locale: u32,
             fAlternateContainsAutoSpacingInformation: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InsertInkRecognitionResult: fn(
+        InsertInkRecognitionResult: fn (
             self: *const IHandwrittenTextInsertion,
             pIInkRecoResult: ?*IInkRecognitionResult,
             locale: u32,
@@ -6933,17 +7029,19 @@ pub const IHandwrittenTextInsertion = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IHandwrittenTextInsertion_InsertRecognitionResultsArray(self: *const T, psaAlternates: ?*SAFEARRAY, locale: u32, fAlternateContainsAutoSpacingInformation: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IHandwrittenTextInsertion.VTable, self.vtable).InsertRecognitionResultsArray(@ptrCast(*const IHandwrittenTextInsertion, self), psaAlternates, locale, fAlternateContainsAutoSpacingInformation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IHandwrittenTextInsertion_InsertInkRecognitionResult(self: *const T, pIInkRecoResult: ?*IInkRecognitionResult, locale: u32, fAlternateContainsAutoSpacingInformation: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IHandwrittenTextInsertion.VTable, self.vtable).InsertInkRecognitionResult(@ptrCast(*const IHandwrittenTextInsertion, self), pIInkRecoResult, locale, fAlternateContainsAutoSpacingInformation);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IHandwrittenTextInsertion_InsertRecognitionResultsArray(self: *const T, psaAlternates: ?*SAFEARRAY, locale: u32, fAlternateContainsAutoSpacingInformation: BOOL) HRESULT {
+                return @ptrCast(*const IHandwrittenTextInsertion.VTable, self.vtable).InsertRecognitionResultsArray(@ptrCast(*const IHandwrittenTextInsertion, self), psaAlternates, locale, fAlternateContainsAutoSpacingInformation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IHandwrittenTextInsertion_InsertInkRecognitionResult(self: *const T, pIInkRecoResult: ?*IInkRecognitionResult, locale: u32, fAlternateContainsAutoSpacingInformation: BOOL) HRESULT {
+                return @ptrCast(*const IHandwrittenTextInsertion.VTable, self.vtable).InsertInkRecognitionResult(@ptrCast(*const IHandwrittenTextInsertion, self), pIInkRecoResult, locale, fAlternateContainsAutoSpacingInformation);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6953,117 +7051,119 @@ pub const IID_ITextInputPanelEventSink = &IID_ITextInputPanelEventSink_Value;
 pub const ITextInputPanelEventSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        InPlaceStateChanging: fn(
+        InPlaceStateChanging: fn (
             self: *const ITextInputPanelEventSink,
             oldInPlaceState: InPlaceState,
             newInPlaceState: InPlaceState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InPlaceStateChanged: fn(
+        InPlaceStateChanged: fn (
             self: *const ITextInputPanelEventSink,
             oldInPlaceState: InPlaceState,
             newInPlaceState: InPlaceState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InPlaceSizeChanging: fn(
+        InPlaceSizeChanging: fn (
             self: *const ITextInputPanelEventSink,
             oldBoundingRectangle: RECT,
             newBoundingRectangle: RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InPlaceSizeChanged: fn(
+        InPlaceSizeChanged: fn (
             self: *const ITextInputPanelEventSink,
             oldBoundingRectangle: RECT,
             newBoundingRectangle: RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InputAreaChanging: fn(
+        InputAreaChanging: fn (
             self: *const ITextInputPanelEventSink,
             oldInputArea: PanelInputArea,
             newInputArea: PanelInputArea,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InputAreaChanged: fn(
+        InputAreaChanged: fn (
             self: *const ITextInputPanelEventSink,
             oldInputArea: PanelInputArea,
             newInputArea: PanelInputArea,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CorrectionModeChanging: fn(
+        CorrectionModeChanging: fn (
             self: *const ITextInputPanelEventSink,
             oldCorrectionMode: CorrectionMode,
             newCorrectionMode: CorrectionMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CorrectionModeChanged: fn(
+        CorrectionModeChanged: fn (
             self: *const ITextInputPanelEventSink,
             oldCorrectionMode: CorrectionMode,
             newCorrectionMode: CorrectionMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InPlaceVisibilityChanging: fn(
+        InPlaceVisibilityChanging: fn (
             self: *const ITextInputPanelEventSink,
             oldVisible: BOOL,
             newVisible: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InPlaceVisibilityChanged: fn(
+        InPlaceVisibilityChanged: fn (
             self: *const ITextInputPanelEventSink,
             oldVisible: BOOL,
             newVisible: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TextInserting: fn(
+        TextInserting: fn (
             self: *const ITextInputPanelEventSink,
             Ink: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TextInserted: fn(
+        TextInserted: fn (
             self: *const ITextInputPanelEventSink,
             Ink: ?*SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanelEventSink_InPlaceStateChanging(self: *const T, oldInPlaceState: InPlaceState, newInPlaceState: InPlaceState) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).InPlaceStateChanging(@ptrCast(*const ITextInputPanelEventSink, self), oldInPlaceState, newInPlaceState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanelEventSink_InPlaceStateChanged(self: *const T, oldInPlaceState: InPlaceState, newInPlaceState: InPlaceState) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).InPlaceStateChanged(@ptrCast(*const ITextInputPanelEventSink, self), oldInPlaceState, newInPlaceState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanelEventSink_InPlaceSizeChanging(self: *const T, oldBoundingRectangle: RECT, newBoundingRectangle: RECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).InPlaceSizeChanging(@ptrCast(*const ITextInputPanelEventSink, self), oldBoundingRectangle, newBoundingRectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanelEventSink_InPlaceSizeChanged(self: *const T, oldBoundingRectangle: RECT, newBoundingRectangle: RECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).InPlaceSizeChanged(@ptrCast(*const ITextInputPanelEventSink, self), oldBoundingRectangle, newBoundingRectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanelEventSink_InputAreaChanging(self: *const T, oldInputArea: PanelInputArea, newInputArea: PanelInputArea) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).InputAreaChanging(@ptrCast(*const ITextInputPanelEventSink, self), oldInputArea, newInputArea);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanelEventSink_InputAreaChanged(self: *const T, oldInputArea: PanelInputArea, newInputArea: PanelInputArea) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).InputAreaChanged(@ptrCast(*const ITextInputPanelEventSink, self), oldInputArea, newInputArea);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanelEventSink_CorrectionModeChanging(self: *const T, oldCorrectionMode: CorrectionMode, newCorrectionMode: CorrectionMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).CorrectionModeChanging(@ptrCast(*const ITextInputPanelEventSink, self), oldCorrectionMode, newCorrectionMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanelEventSink_CorrectionModeChanged(self: *const T, oldCorrectionMode: CorrectionMode, newCorrectionMode: CorrectionMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).CorrectionModeChanged(@ptrCast(*const ITextInputPanelEventSink, self), oldCorrectionMode, newCorrectionMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanelEventSink_InPlaceVisibilityChanging(self: *const T, oldVisible: BOOL, newVisible: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).InPlaceVisibilityChanging(@ptrCast(*const ITextInputPanelEventSink, self), oldVisible, newVisible);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanelEventSink_InPlaceVisibilityChanged(self: *const T, oldVisible: BOOL, newVisible: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).InPlaceVisibilityChanged(@ptrCast(*const ITextInputPanelEventSink, self), oldVisible, newVisible);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanelEventSink_TextInserting(self: *const T, Ink: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).TextInserting(@ptrCast(*const ITextInputPanelEventSink, self), Ink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanelEventSink_TextInserted(self: *const T, Ink: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).TextInserted(@ptrCast(*const ITextInputPanelEventSink, self), Ink);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanelEventSink_InPlaceStateChanging(self: *const T, oldInPlaceState: InPlaceState, newInPlaceState: InPlaceState) HRESULT {
+                return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).InPlaceStateChanging(@ptrCast(*const ITextInputPanelEventSink, self), oldInPlaceState, newInPlaceState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanelEventSink_InPlaceStateChanged(self: *const T, oldInPlaceState: InPlaceState, newInPlaceState: InPlaceState) HRESULT {
+                return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).InPlaceStateChanged(@ptrCast(*const ITextInputPanelEventSink, self), oldInPlaceState, newInPlaceState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanelEventSink_InPlaceSizeChanging(self: *const T, oldBoundingRectangle: RECT, newBoundingRectangle: RECT) HRESULT {
+                return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).InPlaceSizeChanging(@ptrCast(*const ITextInputPanelEventSink, self), oldBoundingRectangle, newBoundingRectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanelEventSink_InPlaceSizeChanged(self: *const T, oldBoundingRectangle: RECT, newBoundingRectangle: RECT) HRESULT {
+                return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).InPlaceSizeChanged(@ptrCast(*const ITextInputPanelEventSink, self), oldBoundingRectangle, newBoundingRectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanelEventSink_InputAreaChanging(self: *const T, oldInputArea: PanelInputArea, newInputArea: PanelInputArea) HRESULT {
+                return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).InputAreaChanging(@ptrCast(*const ITextInputPanelEventSink, self), oldInputArea, newInputArea);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanelEventSink_InputAreaChanged(self: *const T, oldInputArea: PanelInputArea, newInputArea: PanelInputArea) HRESULT {
+                return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).InputAreaChanged(@ptrCast(*const ITextInputPanelEventSink, self), oldInputArea, newInputArea);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanelEventSink_CorrectionModeChanging(self: *const T, oldCorrectionMode: CorrectionMode, newCorrectionMode: CorrectionMode) HRESULT {
+                return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).CorrectionModeChanging(@ptrCast(*const ITextInputPanelEventSink, self), oldCorrectionMode, newCorrectionMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanelEventSink_CorrectionModeChanged(self: *const T, oldCorrectionMode: CorrectionMode, newCorrectionMode: CorrectionMode) HRESULT {
+                return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).CorrectionModeChanged(@ptrCast(*const ITextInputPanelEventSink, self), oldCorrectionMode, newCorrectionMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanelEventSink_InPlaceVisibilityChanging(self: *const T, oldVisible: BOOL, newVisible: BOOL) HRESULT {
+                return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).InPlaceVisibilityChanging(@ptrCast(*const ITextInputPanelEventSink, self), oldVisible, newVisible);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanelEventSink_InPlaceVisibilityChanged(self: *const T, oldVisible: BOOL, newVisible: BOOL) HRESULT {
+                return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).InPlaceVisibilityChanged(@ptrCast(*const ITextInputPanelEventSink, self), oldVisible, newVisible);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanelEventSink_TextInserting(self: *const T, Ink: ?*SAFEARRAY) HRESULT {
+                return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).TextInserting(@ptrCast(*const ITextInputPanelEventSink, self), Ink);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanelEventSink_TextInserted(self: *const T, Ink: ?*SAFEARRAY) HRESULT {
+                return @ptrCast(*const ITextInputPanelEventSink.VTable, self.vtable).TextInserted(@ptrCast(*const ITextInputPanelEventSink, self), Ink);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7074,232 +7174,234 @@ pub const ITextInputPanel = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AttachedEditWindow: fn(
+        get_AttachedEditWindow: fn (
             self: *const ITextInputPanel,
             AttachedEditWindow: ?*?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AttachedEditWindow: fn(
+        put_AttachedEditWindow: fn (
             self: *const ITextInputPanel,
             AttachedEditWindow: ?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentInteractionMode: fn(
+        get_CurrentInteractionMode: fn (
             self: *const ITextInputPanel,
             CurrentInteractionMode: ?*InteractionMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DefaultInPlaceState: fn(
+        get_DefaultInPlaceState: fn (
             self: *const ITextInputPanel,
             State: ?*InPlaceState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DefaultInPlaceState: fn(
+        put_DefaultInPlaceState: fn (
             self: *const ITextInputPanel,
             State: InPlaceState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentInPlaceState: fn(
+        get_CurrentInPlaceState: fn (
             self: *const ITextInputPanel,
             State: ?*InPlaceState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DefaultInputArea: fn(
+        get_DefaultInputArea: fn (
             self: *const ITextInputPanel,
             Area: ?*PanelInputArea,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DefaultInputArea: fn(
+        put_DefaultInputArea: fn (
             self: *const ITextInputPanel,
             Area: PanelInputArea,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentInputArea: fn(
+        get_CurrentInputArea: fn (
             self: *const ITextInputPanel,
             Area: ?*PanelInputArea,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentCorrectionMode: fn(
+        get_CurrentCorrectionMode: fn (
             self: *const ITextInputPanel,
             Mode: ?*CorrectionMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PreferredInPlaceDirection: fn(
+        get_PreferredInPlaceDirection: fn (
             self: *const ITextInputPanel,
             Direction: ?*InPlaceDirection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PreferredInPlaceDirection: fn(
+        put_PreferredInPlaceDirection: fn (
             self: *const ITextInputPanel,
             Direction: InPlaceDirection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExpandPostInsertionCorrection: fn(
+        get_ExpandPostInsertionCorrection: fn (
             self: *const ITextInputPanel,
             Expand: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ExpandPostInsertionCorrection: fn(
+        put_ExpandPostInsertionCorrection: fn (
             self: *const ITextInputPanel,
             Expand: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InPlaceVisibleOnFocus: fn(
+        get_InPlaceVisibleOnFocus: fn (
             self: *const ITextInputPanel,
             Visible: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_InPlaceVisibleOnFocus: fn(
+        put_InPlaceVisibleOnFocus: fn (
             self: *const ITextInputPanel,
             Visible: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InPlaceBoundingRectangle: fn(
+        get_InPlaceBoundingRectangle: fn (
             self: *const ITextInputPanel,
             BoundingRectangle: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PopUpCorrectionHeight: fn(
+        get_PopUpCorrectionHeight: fn (
             self: *const ITextInputPanel,
             Height: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PopDownCorrectionHeight: fn(
+        get_PopDownCorrectionHeight: fn (
             self: *const ITextInputPanel,
             Height: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CommitPendingInput: fn(
+        CommitPendingInput: fn (
             self: *const ITextInputPanel,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetInPlaceVisibility: fn(
+        SetInPlaceVisibility: fn (
             self: *const ITextInputPanel,
             Visible: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetInPlacePosition: fn(
+        SetInPlacePosition: fn (
             self: *const ITextInputPanel,
             xPosition: i32,
             yPosition: i32,
             position: CorrectionPosition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetInPlaceHoverTargetPosition: fn(
+        SetInPlaceHoverTargetPosition: fn (
             self: *const ITextInputPanel,
             xPosition: i32,
             yPosition: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Advise: fn(
+        Advise: fn (
             self: *const ITextInputPanel,
             EventSink: ?*ITextInputPanelEventSink,
             EventMask: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Unadvise: fn(
+        Unadvise: fn (
             self: *const ITextInputPanel,
             EventSink: ?*ITextInputPanelEventSink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_get_AttachedEditWindow(self: *const T, AttachedEditWindow: ?*?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_AttachedEditWindow(@ptrCast(*const ITextInputPanel, self), AttachedEditWindow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_put_AttachedEditWindow(self: *const T, AttachedEditWindow: ?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).put_AttachedEditWindow(@ptrCast(*const ITextInputPanel, self), AttachedEditWindow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_get_CurrentInteractionMode(self: *const T, CurrentInteractionMode: ?*InteractionMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_CurrentInteractionMode(@ptrCast(*const ITextInputPanel, self), CurrentInteractionMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_get_DefaultInPlaceState(self: *const T, State: ?*InPlaceState) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_DefaultInPlaceState(@ptrCast(*const ITextInputPanel, self), State);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_put_DefaultInPlaceState(self: *const T, State: InPlaceState) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).put_DefaultInPlaceState(@ptrCast(*const ITextInputPanel, self), State);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_get_CurrentInPlaceState(self: *const T, State: ?*InPlaceState) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_CurrentInPlaceState(@ptrCast(*const ITextInputPanel, self), State);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_get_DefaultInputArea(self: *const T, Area: ?*PanelInputArea) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_DefaultInputArea(@ptrCast(*const ITextInputPanel, self), Area);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_put_DefaultInputArea(self: *const T, Area: PanelInputArea) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).put_DefaultInputArea(@ptrCast(*const ITextInputPanel, self), Area);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_get_CurrentInputArea(self: *const T, Area: ?*PanelInputArea) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_CurrentInputArea(@ptrCast(*const ITextInputPanel, self), Area);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_get_CurrentCorrectionMode(self: *const T, Mode: ?*CorrectionMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_CurrentCorrectionMode(@ptrCast(*const ITextInputPanel, self), Mode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_get_PreferredInPlaceDirection(self: *const T, Direction: ?*InPlaceDirection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_PreferredInPlaceDirection(@ptrCast(*const ITextInputPanel, self), Direction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_put_PreferredInPlaceDirection(self: *const T, Direction: InPlaceDirection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).put_PreferredInPlaceDirection(@ptrCast(*const ITextInputPanel, self), Direction);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_get_ExpandPostInsertionCorrection(self: *const T, Expand: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_ExpandPostInsertionCorrection(@ptrCast(*const ITextInputPanel, self), Expand);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_put_ExpandPostInsertionCorrection(self: *const T, Expand: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).put_ExpandPostInsertionCorrection(@ptrCast(*const ITextInputPanel, self), Expand);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_get_InPlaceVisibleOnFocus(self: *const T, Visible: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_InPlaceVisibleOnFocus(@ptrCast(*const ITextInputPanel, self), Visible);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_put_InPlaceVisibleOnFocus(self: *const T, Visible: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).put_InPlaceVisibleOnFocus(@ptrCast(*const ITextInputPanel, self), Visible);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_get_InPlaceBoundingRectangle(self: *const T, BoundingRectangle: ?*RECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_InPlaceBoundingRectangle(@ptrCast(*const ITextInputPanel, self), BoundingRectangle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_get_PopUpCorrectionHeight(self: *const T, Height: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_PopUpCorrectionHeight(@ptrCast(*const ITextInputPanel, self), Height);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_get_PopDownCorrectionHeight(self: *const T, Height: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_PopDownCorrectionHeight(@ptrCast(*const ITextInputPanel, self), Height);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_CommitPendingInput(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).CommitPendingInput(@ptrCast(*const ITextInputPanel, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_SetInPlaceVisibility(self: *const T, Visible: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).SetInPlaceVisibility(@ptrCast(*const ITextInputPanel, self), Visible);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_SetInPlacePosition(self: *const T, xPosition: i32, yPosition: i32, position: CorrectionPosition) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).SetInPlacePosition(@ptrCast(*const ITextInputPanel, self), xPosition, yPosition, position);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_SetInPlaceHoverTargetPosition(self: *const T, xPosition: i32, yPosition: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).SetInPlaceHoverTargetPosition(@ptrCast(*const ITextInputPanel, self), xPosition, yPosition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_Advise(self: *const T, EventSink: ?*ITextInputPanelEventSink, _param_EventMask: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).Advise(@ptrCast(*const ITextInputPanel, self), EventSink, _param_EventMask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_Unadvise(self: *const T, EventSink: ?*ITextInputPanelEventSink) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).Unadvise(@ptrCast(*const ITextInputPanel, self), EventSink);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_get_AttachedEditWindow(self: *const T, AttachedEditWindow: ?*?HWND) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_AttachedEditWindow(@ptrCast(*const ITextInputPanel, self), AttachedEditWindow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_put_AttachedEditWindow(self: *const T, AttachedEditWindow: ?HWND) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).put_AttachedEditWindow(@ptrCast(*const ITextInputPanel, self), AttachedEditWindow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_get_CurrentInteractionMode(self: *const T, CurrentInteractionMode: ?*InteractionMode) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_CurrentInteractionMode(@ptrCast(*const ITextInputPanel, self), CurrentInteractionMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_get_DefaultInPlaceState(self: *const T, State: ?*InPlaceState) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_DefaultInPlaceState(@ptrCast(*const ITextInputPanel, self), State);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_put_DefaultInPlaceState(self: *const T, State: InPlaceState) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).put_DefaultInPlaceState(@ptrCast(*const ITextInputPanel, self), State);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_get_CurrentInPlaceState(self: *const T, State: ?*InPlaceState) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_CurrentInPlaceState(@ptrCast(*const ITextInputPanel, self), State);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_get_DefaultInputArea(self: *const T, Area: ?*PanelInputArea) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_DefaultInputArea(@ptrCast(*const ITextInputPanel, self), Area);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_put_DefaultInputArea(self: *const T, Area: PanelInputArea) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).put_DefaultInputArea(@ptrCast(*const ITextInputPanel, self), Area);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_get_CurrentInputArea(self: *const T, Area: ?*PanelInputArea) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_CurrentInputArea(@ptrCast(*const ITextInputPanel, self), Area);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_get_CurrentCorrectionMode(self: *const T, Mode: ?*CorrectionMode) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_CurrentCorrectionMode(@ptrCast(*const ITextInputPanel, self), Mode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_get_PreferredInPlaceDirection(self: *const T, Direction: ?*InPlaceDirection) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_PreferredInPlaceDirection(@ptrCast(*const ITextInputPanel, self), Direction);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_put_PreferredInPlaceDirection(self: *const T, Direction: InPlaceDirection) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).put_PreferredInPlaceDirection(@ptrCast(*const ITextInputPanel, self), Direction);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_get_ExpandPostInsertionCorrection(self: *const T, Expand: ?*BOOL) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_ExpandPostInsertionCorrection(@ptrCast(*const ITextInputPanel, self), Expand);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_put_ExpandPostInsertionCorrection(self: *const T, Expand: BOOL) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).put_ExpandPostInsertionCorrection(@ptrCast(*const ITextInputPanel, self), Expand);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_get_InPlaceVisibleOnFocus(self: *const T, Visible: ?*BOOL) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_InPlaceVisibleOnFocus(@ptrCast(*const ITextInputPanel, self), Visible);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_put_InPlaceVisibleOnFocus(self: *const T, Visible: BOOL) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).put_InPlaceVisibleOnFocus(@ptrCast(*const ITextInputPanel, self), Visible);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_get_InPlaceBoundingRectangle(self: *const T, BoundingRectangle: ?*RECT) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_InPlaceBoundingRectangle(@ptrCast(*const ITextInputPanel, self), BoundingRectangle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_get_PopUpCorrectionHeight(self: *const T, Height: ?*i32) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_PopUpCorrectionHeight(@ptrCast(*const ITextInputPanel, self), Height);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_get_PopDownCorrectionHeight(self: *const T, Height: ?*i32) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).get_PopDownCorrectionHeight(@ptrCast(*const ITextInputPanel, self), Height);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_CommitPendingInput(self: *const T) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).CommitPendingInput(@ptrCast(*const ITextInputPanel, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_SetInPlaceVisibility(self: *const T, Visible: BOOL) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).SetInPlaceVisibility(@ptrCast(*const ITextInputPanel, self), Visible);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_SetInPlacePosition(self: *const T, xPosition: i32, yPosition: i32, position: CorrectionPosition) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).SetInPlacePosition(@ptrCast(*const ITextInputPanel, self), xPosition, yPosition, position);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_SetInPlaceHoverTargetPosition(self: *const T, xPosition: i32, yPosition: i32) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).SetInPlaceHoverTargetPosition(@ptrCast(*const ITextInputPanel, self), xPosition, yPosition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_Advise(self: *const T, EventSink: ?*ITextInputPanelEventSink, _param_EventMask: u32) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).Advise(@ptrCast(*const ITextInputPanel, self), EventSink, _param_EventMask);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanel_Unadvise(self: *const T, EventSink: ?*ITextInputPanelEventSink) HRESULT {
+                return @ptrCast(*const ITextInputPanel.VTable, self.vtable).Unadvise(@ptrCast(*const ITextInputPanel, self), EventSink);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7309,46 +7411,48 @@ pub const IInputPanelWindowHandle = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AttachedEditWindow32: fn(
+        get_AttachedEditWindow32: fn (
             self: *const IInputPanelWindowHandle,
             AttachedEditWindow: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AttachedEditWindow32: fn(
+        put_AttachedEditWindow32: fn (
             self: *const IInputPanelWindowHandle,
             AttachedEditWindow: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AttachedEditWindow64: fn(
+        get_AttachedEditWindow64: fn (
             self: *const IInputPanelWindowHandle,
             AttachedEditWindow: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AttachedEditWindow64: fn(
+        put_AttachedEditWindow64: fn (
             self: *const IInputPanelWindowHandle,
             AttachedEditWindow: i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInputPanelWindowHandle_get_AttachedEditWindow32(self: *const T, AttachedEditWindow: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInputPanelWindowHandle.VTable, self.vtable).get_AttachedEditWindow32(@ptrCast(*const IInputPanelWindowHandle, self), AttachedEditWindow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInputPanelWindowHandle_put_AttachedEditWindow32(self: *const T, AttachedEditWindow: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInputPanelWindowHandle.VTable, self.vtable).put_AttachedEditWindow32(@ptrCast(*const IInputPanelWindowHandle, self), AttachedEditWindow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInputPanelWindowHandle_get_AttachedEditWindow64(self: *const T, AttachedEditWindow: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInputPanelWindowHandle.VTable, self.vtable).get_AttachedEditWindow64(@ptrCast(*const IInputPanelWindowHandle, self), AttachedEditWindow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInputPanelWindowHandle_put_AttachedEditWindow64(self: *const T, AttachedEditWindow: i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInputPanelWindowHandle.VTable, self.vtable).put_AttachedEditWindow64(@ptrCast(*const IInputPanelWindowHandle, self), AttachedEditWindow);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInputPanelWindowHandle_get_AttachedEditWindow32(self: *const T, AttachedEditWindow: ?*i32) HRESULT {
+                return @ptrCast(*const IInputPanelWindowHandle.VTable, self.vtable).get_AttachedEditWindow32(@ptrCast(*const IInputPanelWindowHandle, self), AttachedEditWindow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInputPanelWindowHandle_put_AttachedEditWindow32(self: *const T, AttachedEditWindow: i32) HRESULT {
+                return @ptrCast(*const IInputPanelWindowHandle.VTable, self.vtable).put_AttachedEditWindow32(@ptrCast(*const IInputPanelWindowHandle, self), AttachedEditWindow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInputPanelWindowHandle_get_AttachedEditWindow64(self: *const T, AttachedEditWindow: ?*i64) HRESULT {
+                return @ptrCast(*const IInputPanelWindowHandle.VTable, self.vtable).get_AttachedEditWindow64(@ptrCast(*const IInputPanelWindowHandle, self), AttachedEditWindow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInputPanelWindowHandle_put_AttachedEditWindow64(self: *const T, AttachedEditWindow: i64) HRESULT {
+                return @ptrCast(*const IInputPanelWindowHandle.VTable, self.vtable).put_AttachedEditWindow64(@ptrCast(*const IInputPanelWindowHandle, self), AttachedEditWindow);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7358,19 +7462,21 @@ pub const IID_ITextInputPanelRunInfo = &IID_ITextInputPanelRunInfo_Value;
 pub const ITextInputPanelRunInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsTipRunning: fn(
+        IsTipRunning: fn (
             self: *const ITextInputPanelRunInfo,
             pfRunning: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanelRunInfo_IsTipRunning(self: *const T, pfRunning: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanelRunInfo.VTable, self.vtable).IsTipRunning(@ptrCast(*const ITextInputPanelRunInfo, self), pfRunning);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextInputPanelRunInfo_IsTipRunning(self: *const T, pfRunning: ?*BOOL) HRESULT {
+                return @ptrCast(*const ITextInputPanelRunInfo.VTable, self.vtable).IsTipRunning(@ptrCast(*const ITextInputPanelRunInfo, self), pfRunning);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7665,695 +7771,697 @@ pub const IInkEdit = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Status: fn(
+        get_Status: fn (
             self: *const IInkEdit,
             pStatus: ?*InkEditStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UseMouseForInput: fn(
+        get_UseMouseForInput: fn (
             self: *const IInkEdit,
             pVal: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_UseMouseForInput: fn(
+        put_UseMouseForInput: fn (
             self: *const IInkEdit,
             newVal: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InkMode: fn(
+        get_InkMode: fn (
             self: *const IInkEdit,
             pVal: ?*InkMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_InkMode: fn(
+        put_InkMode: fn (
             self: *const IInkEdit,
             newVal: InkMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InkInsertMode: fn(
+        get_InkInsertMode: fn (
             self: *const IInkEdit,
             pVal: ?*InkInsertMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_InkInsertMode: fn(
+        put_InkInsertMode: fn (
             self: *const IInkEdit,
             newVal: InkInsertMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DrawingAttributes: fn(
+        get_DrawingAttributes: fn (
             self: *const IInkEdit,
             pVal: ?*?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_DrawingAttributes: fn(
+        putref_DrawingAttributes: fn (
             self: *const IInkEdit,
             newVal: ?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RecognitionTimeout: fn(
+        get_RecognitionTimeout: fn (
             self: *const IInkEdit,
             pVal: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RecognitionTimeout: fn(
+        put_RecognitionTimeout: fn (
             self: *const IInkEdit,
             newVal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Recognizer: fn(
+        get_Recognizer: fn (
             self: *const IInkEdit,
             pVal: ?*?*IInkRecognizer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_Recognizer: fn(
+        putref_Recognizer: fn (
             self: *const IInkEdit,
             newVal: ?*IInkRecognizer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Factoid: fn(
+        get_Factoid: fn (
             self: *const IInkEdit,
             pVal: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Factoid: fn(
+        put_Factoid: fn (
             self: *const IInkEdit,
             newVal: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SelInks: fn(
+        get_SelInks: fn (
             self: *const IInkEdit,
             pSelInk: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SelInks: fn(
+        put_SelInks: fn (
             self: *const IInkEdit,
             SelInk: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SelInksDisplayMode: fn(
+        get_SelInksDisplayMode: fn (
             self: *const IInkEdit,
             pInkDisplayMode: ?*InkDisplayMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SelInksDisplayMode: fn(
+        put_SelInksDisplayMode: fn (
             self: *const IInkEdit,
             InkDisplayMode: InkDisplayMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Recognize: fn(
+        Recognize: fn (
             self: *const IInkEdit,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetGestureStatus: fn(
+        GetGestureStatus: fn (
             self: *const IInkEdit,
             Gesture: InkApplicationGesture,
             pListen: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetGestureStatus: fn(
+        SetGestureStatus: fn (
             self: *const IInkEdit,
             Gesture: InkApplicationGesture,
             Listen: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BackColor: fn(
+        put_BackColor: fn (
             self: *const IInkEdit,
             clr: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BackColor: fn(
+        get_BackColor: fn (
             self: *const IInkEdit,
             pclr: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Appearance: fn(
+        get_Appearance: fn (
             self: *const IInkEdit,
             pAppearance: ?*AppearanceConstants,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Appearance: fn(
+        put_Appearance: fn (
             self: *const IInkEdit,
             pAppearance: AppearanceConstants,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BorderStyle: fn(
+        get_BorderStyle: fn (
             self: *const IInkEdit,
             pBorderStyle: ?*BorderStyleConstants,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BorderStyle: fn(
+        put_BorderStyle: fn (
             self: *const IInkEdit,
             pBorderStyle: BorderStyleConstants,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Hwnd: fn(
+        get_Hwnd: fn (
             self: *const IInkEdit,
             pohHwnd: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Font: fn(
+        get_Font: fn (
             self: *const IInkEdit,
             ppFont: ?*?*IFontDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_Font: fn(
+        putref_Font: fn (
             self: *const IInkEdit,
             ppFont: ?*IFontDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Text: fn(
+        get_Text: fn (
             self: *const IInkEdit,
             pbstrText: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Text: fn(
+        put_Text: fn (
             self: *const IInkEdit,
             pbstrText: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MouseIcon: fn(
+        get_MouseIcon: fn (
             self: *const IInkEdit,
             MouseIcon: ?*?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MouseIcon: fn(
+        put_MouseIcon: fn (
             self: *const IInkEdit,
             MouseIcon: ?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_MouseIcon: fn(
+        putref_MouseIcon: fn (
             self: *const IInkEdit,
             MouseIcon: ?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MousePointer: fn(
+        get_MousePointer: fn (
             self: *const IInkEdit,
             MousePointer: ?*InkMousePointer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MousePointer: fn(
+        put_MousePointer: fn (
             self: *const IInkEdit,
             MousePointer: InkMousePointer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Locked: fn(
+        get_Locked: fn (
             self: *const IInkEdit,
             pVal: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Locked: fn(
+        put_Locked: fn (
             self: *const IInkEdit,
             newVal: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: fn(
+        get_Enabled: fn (
             self: *const IInkEdit,
             pVal: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: fn(
+        put_Enabled: fn (
             self: *const IInkEdit,
             newVal: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaxLength: fn(
+        get_MaxLength: fn (
             self: *const IInkEdit,
             plMaxLength: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MaxLength: fn(
+        put_MaxLength: fn (
             self: *const IInkEdit,
             lMaxLength: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MultiLine: fn(
+        get_MultiLine: fn (
             self: *const IInkEdit,
             pVal: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MultiLine: fn(
+        put_MultiLine: fn (
             self: *const IInkEdit,
             newVal: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ScrollBars: fn(
+        get_ScrollBars: fn (
             self: *const IInkEdit,
             pVal: ?*ScrollBarsConstants,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ScrollBars: fn(
+        put_ScrollBars: fn (
             self: *const IInkEdit,
             newVal: ScrollBarsConstants,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisableNoScroll: fn(
+        get_DisableNoScroll: fn (
             self: *const IInkEdit,
             pVal: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DisableNoScroll: fn(
+        put_DisableNoScroll: fn (
             self: *const IInkEdit,
             newVal: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SelAlignment: fn(
+        get_SelAlignment: fn (
             self: *const IInkEdit,
             pvarSelAlignment: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SelAlignment: fn(
+        put_SelAlignment: fn (
             self: *const IInkEdit,
             pvarSelAlignment: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SelBold: fn(
+        get_SelBold: fn (
             self: *const IInkEdit,
             pvarSelBold: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SelBold: fn(
+        put_SelBold: fn (
             self: *const IInkEdit,
             pvarSelBold: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SelItalic: fn(
+        get_SelItalic: fn (
             self: *const IInkEdit,
             pvarSelItalic: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SelItalic: fn(
+        put_SelItalic: fn (
             self: *const IInkEdit,
             pvarSelItalic: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SelUnderline: fn(
+        get_SelUnderline: fn (
             self: *const IInkEdit,
             pvarSelUnderline: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SelUnderline: fn(
+        put_SelUnderline: fn (
             self: *const IInkEdit,
             pvarSelUnderline: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SelColor: fn(
+        get_SelColor: fn (
             self: *const IInkEdit,
             pvarSelColor: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SelColor: fn(
+        put_SelColor: fn (
             self: *const IInkEdit,
             pvarSelColor: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SelFontName: fn(
+        get_SelFontName: fn (
             self: *const IInkEdit,
             pvarSelFontName: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SelFontName: fn(
+        put_SelFontName: fn (
             self: *const IInkEdit,
             pvarSelFontName: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SelFontSize: fn(
+        get_SelFontSize: fn (
             self: *const IInkEdit,
             pvarSelFontSize: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SelFontSize: fn(
+        put_SelFontSize: fn (
             self: *const IInkEdit,
             pvarSelFontSize: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SelCharOffset: fn(
+        get_SelCharOffset: fn (
             self: *const IInkEdit,
             pvarSelCharOffset: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SelCharOffset: fn(
+        put_SelCharOffset: fn (
             self: *const IInkEdit,
             pvarSelCharOffset: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TextRTF: fn(
+        get_TextRTF: fn (
             self: *const IInkEdit,
             pbstrTextRTF: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_TextRTF: fn(
+        put_TextRTF: fn (
             self: *const IInkEdit,
             pbstrTextRTF: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SelStart: fn(
+        get_SelStart: fn (
             self: *const IInkEdit,
             plSelStart: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SelStart: fn(
+        put_SelStart: fn (
             self: *const IInkEdit,
             plSelStart: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SelLength: fn(
+        get_SelLength: fn (
             self: *const IInkEdit,
             plSelLength: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SelLength: fn(
+        put_SelLength: fn (
             self: *const IInkEdit,
             plSelLength: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SelText: fn(
+        get_SelText: fn (
             self: *const IInkEdit,
             pbstrSelText: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SelText: fn(
+        put_SelText: fn (
             self: *const IInkEdit,
             pbstrSelText: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SelRTF: fn(
+        get_SelRTF: fn (
             self: *const IInkEdit,
             pbstrSelRTF: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SelRTF: fn(
+        put_SelRTF: fn (
             self: *const IInkEdit,
             pbstrSelRTF: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const IInkEdit,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_Status(self: *const T, pStatus: ?*InkEditStatus) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Status(@ptrCast(*const IInkEdit, self), pStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_UseMouseForInput(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_UseMouseForInput(@ptrCast(*const IInkEdit, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_UseMouseForInput(self: *const T, newVal: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_UseMouseForInput(@ptrCast(*const IInkEdit, self), newVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_InkMode(self: *const T, pVal: ?*InkMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_InkMode(@ptrCast(*const IInkEdit, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_InkMode(self: *const T, newVal: InkMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_InkMode(@ptrCast(*const IInkEdit, self), newVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_InkInsertMode(self: *const T, pVal: ?*InkInsertMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_InkInsertMode(@ptrCast(*const IInkEdit, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_InkInsertMode(self: *const T, newVal: InkInsertMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_InkInsertMode(@ptrCast(*const IInkEdit, self), newVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_DrawingAttributes(self: *const T, pVal: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_DrawingAttributes(@ptrCast(*const IInkEdit, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_putref_DrawingAttributes(self: *const T, newVal: ?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).putref_DrawingAttributes(@ptrCast(*const IInkEdit, self), newVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_RecognitionTimeout(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_RecognitionTimeout(@ptrCast(*const IInkEdit, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_RecognitionTimeout(self: *const T, newVal: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_RecognitionTimeout(@ptrCast(*const IInkEdit, self), newVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_Recognizer(self: *const T, pVal: ?*?*IInkRecognizer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Recognizer(@ptrCast(*const IInkEdit, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_putref_Recognizer(self: *const T, newVal: ?*IInkRecognizer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).putref_Recognizer(@ptrCast(*const IInkEdit, self), newVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_Factoid(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Factoid(@ptrCast(*const IInkEdit, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_Factoid(self: *const T, newVal: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_Factoid(@ptrCast(*const IInkEdit, self), newVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_SelInks(self: *const T, pSelInk: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelInks(@ptrCast(*const IInkEdit, self), pSelInk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_SelInks(self: *const T, SelInk: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelInks(@ptrCast(*const IInkEdit, self), SelInk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_SelInksDisplayMode(self: *const T, pInkDisplayMode: ?*InkDisplayMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelInksDisplayMode(@ptrCast(*const IInkEdit, self), pInkDisplayMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_SelInksDisplayMode(self: *const T, _param_InkDisplayMode: InkDisplayMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelInksDisplayMode(@ptrCast(*const IInkEdit, self), _param_InkDisplayMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_Recognize(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).Recognize(@ptrCast(*const IInkEdit, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_GetGestureStatus(self: *const T, Gesture: InkApplicationGesture, pListen: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).GetGestureStatus(@ptrCast(*const IInkEdit, self), Gesture, pListen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_SetGestureStatus(self: *const T, Gesture: InkApplicationGesture, Listen: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).SetGestureStatus(@ptrCast(*const IInkEdit, self), Gesture, Listen);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_BackColor(self: *const T, clr: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_BackColor(@ptrCast(*const IInkEdit, self), clr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_BackColor(self: *const T, pclr: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_BackColor(@ptrCast(*const IInkEdit, self), pclr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_Appearance(self: *const T, pAppearance: ?*AppearanceConstants) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Appearance(@ptrCast(*const IInkEdit, self), pAppearance);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_Appearance(self: *const T, pAppearance: AppearanceConstants) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_Appearance(@ptrCast(*const IInkEdit, self), pAppearance);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_BorderStyle(self: *const T, pBorderStyle: ?*BorderStyleConstants) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_BorderStyle(@ptrCast(*const IInkEdit, self), pBorderStyle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_BorderStyle(self: *const T, pBorderStyle: BorderStyleConstants) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_BorderStyle(@ptrCast(*const IInkEdit, self), pBorderStyle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_Hwnd(self: *const T, pohHwnd: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Hwnd(@ptrCast(*const IInkEdit, self), pohHwnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_Font(self: *const T, ppFont: ?*?*IFontDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Font(@ptrCast(*const IInkEdit, self), ppFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_putref_Font(self: *const T, ppFont: ?*IFontDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).putref_Font(@ptrCast(*const IInkEdit, self), ppFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_Text(self: *const T, pbstrText: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Text(@ptrCast(*const IInkEdit, self), pbstrText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_Text(self: *const T, pbstrText: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_Text(@ptrCast(*const IInkEdit, self), pbstrText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_MouseIcon(self: *const T, MouseIcon: ?*?*IPictureDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_MouseIcon(@ptrCast(*const IInkEdit, self), MouseIcon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_MouseIcon(self: *const T, MouseIcon: ?*IPictureDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_MouseIcon(@ptrCast(*const IInkEdit, self), MouseIcon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_putref_MouseIcon(self: *const T, MouseIcon: ?*IPictureDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).putref_MouseIcon(@ptrCast(*const IInkEdit, self), MouseIcon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_MousePointer(self: *const T, MousePointer: ?*InkMousePointer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_MousePointer(@ptrCast(*const IInkEdit, self), MousePointer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_MousePointer(self: *const T, MousePointer: InkMousePointer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_MousePointer(@ptrCast(*const IInkEdit, self), MousePointer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_Locked(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Locked(@ptrCast(*const IInkEdit, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_Locked(self: *const T, newVal: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_Locked(@ptrCast(*const IInkEdit, self), newVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_Enabled(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Enabled(@ptrCast(*const IInkEdit, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_Enabled(self: *const T, newVal: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_Enabled(@ptrCast(*const IInkEdit, self), newVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_MaxLength(self: *const T, plMaxLength: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_MaxLength(@ptrCast(*const IInkEdit, self), plMaxLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_MaxLength(self: *const T, lMaxLength: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_MaxLength(@ptrCast(*const IInkEdit, self), lMaxLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_MultiLine(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_MultiLine(@ptrCast(*const IInkEdit, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_MultiLine(self: *const T, newVal: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_MultiLine(@ptrCast(*const IInkEdit, self), newVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_ScrollBars(self: *const T, pVal: ?*ScrollBarsConstants) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_ScrollBars(@ptrCast(*const IInkEdit, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_ScrollBars(self: *const T, newVal: ScrollBarsConstants) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_ScrollBars(@ptrCast(*const IInkEdit, self), newVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_DisableNoScroll(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_DisableNoScroll(@ptrCast(*const IInkEdit, self), pVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_DisableNoScroll(self: *const T, newVal: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_DisableNoScroll(@ptrCast(*const IInkEdit, self), newVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_SelAlignment(self: *const T, pvarSelAlignment: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelAlignment(@ptrCast(*const IInkEdit, self), pvarSelAlignment);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_SelAlignment(self: *const T, pvarSelAlignment: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelAlignment(@ptrCast(*const IInkEdit, self), pvarSelAlignment);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_SelBold(self: *const T, pvarSelBold: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelBold(@ptrCast(*const IInkEdit, self), pvarSelBold);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_SelBold(self: *const T, pvarSelBold: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelBold(@ptrCast(*const IInkEdit, self), pvarSelBold);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_SelItalic(self: *const T, pvarSelItalic: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelItalic(@ptrCast(*const IInkEdit, self), pvarSelItalic);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_SelItalic(self: *const T, pvarSelItalic: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelItalic(@ptrCast(*const IInkEdit, self), pvarSelItalic);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_SelUnderline(self: *const T, pvarSelUnderline: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelUnderline(@ptrCast(*const IInkEdit, self), pvarSelUnderline);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_SelUnderline(self: *const T, pvarSelUnderline: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelUnderline(@ptrCast(*const IInkEdit, self), pvarSelUnderline);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_SelColor(self: *const T, pvarSelColor: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelColor(@ptrCast(*const IInkEdit, self), pvarSelColor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_SelColor(self: *const T, pvarSelColor: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelColor(@ptrCast(*const IInkEdit, self), pvarSelColor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_SelFontName(self: *const T, pvarSelFontName: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelFontName(@ptrCast(*const IInkEdit, self), pvarSelFontName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_SelFontName(self: *const T, pvarSelFontName: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelFontName(@ptrCast(*const IInkEdit, self), pvarSelFontName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_SelFontSize(self: *const T, pvarSelFontSize: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelFontSize(@ptrCast(*const IInkEdit, self), pvarSelFontSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_SelFontSize(self: *const T, pvarSelFontSize: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelFontSize(@ptrCast(*const IInkEdit, self), pvarSelFontSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_SelCharOffset(self: *const T, pvarSelCharOffset: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelCharOffset(@ptrCast(*const IInkEdit, self), pvarSelCharOffset);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_SelCharOffset(self: *const T, pvarSelCharOffset: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelCharOffset(@ptrCast(*const IInkEdit, self), pvarSelCharOffset);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_TextRTF(self: *const T, pbstrTextRTF: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_TextRTF(@ptrCast(*const IInkEdit, self), pbstrTextRTF);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_TextRTF(self: *const T, pbstrTextRTF: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_TextRTF(@ptrCast(*const IInkEdit, self), pbstrTextRTF);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_SelStart(self: *const T, plSelStart: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelStart(@ptrCast(*const IInkEdit, self), plSelStart);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_SelStart(self: *const T, plSelStart: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelStart(@ptrCast(*const IInkEdit, self), plSelStart);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_SelLength(self: *const T, plSelLength: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelLength(@ptrCast(*const IInkEdit, self), plSelLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_SelLength(self: *const T, plSelLength: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelLength(@ptrCast(*const IInkEdit, self), plSelLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_SelText(self: *const T, pbstrSelText: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelText(@ptrCast(*const IInkEdit, self), pbstrSelText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_SelText(self: *const T, pbstrSelText: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelText(@ptrCast(*const IInkEdit, self), pbstrSelText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_get_SelRTF(self: *const T, pbstrSelRTF: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelRTF(@ptrCast(*const IInkEdit, self), pbstrSelRTF);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_SelRTF(self: *const T, pbstrSelRTF: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelRTF(@ptrCast(*const IInkEdit, self), pbstrSelRTF);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).Refresh(@ptrCast(*const IInkEdit, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_Status(self: *const T, pStatus: ?*InkEditStatus) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Status(@ptrCast(*const IInkEdit, self), pStatus);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_UseMouseForInput(self: *const T, pVal: ?*i16) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_UseMouseForInput(@ptrCast(*const IInkEdit, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_UseMouseForInput(self: *const T, newVal: i16) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_UseMouseForInput(@ptrCast(*const IInkEdit, self), newVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_InkMode(self: *const T, pVal: ?*InkMode) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_InkMode(@ptrCast(*const IInkEdit, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_InkMode(self: *const T, newVal: InkMode) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_InkMode(@ptrCast(*const IInkEdit, self), newVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_InkInsertMode(self: *const T, pVal: ?*InkInsertMode) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_InkInsertMode(@ptrCast(*const IInkEdit, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_InkInsertMode(self: *const T, newVal: InkInsertMode) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_InkInsertMode(@ptrCast(*const IInkEdit, self), newVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_DrawingAttributes(self: *const T, pVal: ?*?*IInkDrawingAttributes) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_DrawingAttributes(@ptrCast(*const IInkEdit, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_putref_DrawingAttributes(self: *const T, newVal: ?*IInkDrawingAttributes) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).putref_DrawingAttributes(@ptrCast(*const IInkEdit, self), newVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_RecognitionTimeout(self: *const T, pVal: ?*i32) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_RecognitionTimeout(@ptrCast(*const IInkEdit, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_RecognitionTimeout(self: *const T, newVal: i32) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_RecognitionTimeout(@ptrCast(*const IInkEdit, self), newVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_Recognizer(self: *const T, pVal: ?*?*IInkRecognizer) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Recognizer(@ptrCast(*const IInkEdit, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_putref_Recognizer(self: *const T, newVal: ?*IInkRecognizer) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).putref_Recognizer(@ptrCast(*const IInkEdit, self), newVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_Factoid(self: *const T, pVal: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Factoid(@ptrCast(*const IInkEdit, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_Factoid(self: *const T, newVal: ?BSTR) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_Factoid(@ptrCast(*const IInkEdit, self), newVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_SelInks(self: *const T, pSelInk: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelInks(@ptrCast(*const IInkEdit, self), pSelInk);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_SelInks(self: *const T, SelInk: VARIANT) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelInks(@ptrCast(*const IInkEdit, self), SelInk);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_SelInksDisplayMode(self: *const T, pInkDisplayMode: ?*InkDisplayMode) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelInksDisplayMode(@ptrCast(*const IInkEdit, self), pInkDisplayMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_SelInksDisplayMode(self: *const T, _param_InkDisplayMode: InkDisplayMode) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelInksDisplayMode(@ptrCast(*const IInkEdit, self), _param_InkDisplayMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_Recognize(self: *const T) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).Recognize(@ptrCast(*const IInkEdit, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_GetGestureStatus(self: *const T, Gesture: InkApplicationGesture, pListen: ?*i16) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).GetGestureStatus(@ptrCast(*const IInkEdit, self), Gesture, pListen);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_SetGestureStatus(self: *const T, Gesture: InkApplicationGesture, Listen: i16) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).SetGestureStatus(@ptrCast(*const IInkEdit, self), Gesture, Listen);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_BackColor(self: *const T, clr: u32) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_BackColor(@ptrCast(*const IInkEdit, self), clr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_BackColor(self: *const T, pclr: ?*u32) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_BackColor(@ptrCast(*const IInkEdit, self), pclr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_Appearance(self: *const T, pAppearance: ?*AppearanceConstants) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Appearance(@ptrCast(*const IInkEdit, self), pAppearance);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_Appearance(self: *const T, pAppearance: AppearanceConstants) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_Appearance(@ptrCast(*const IInkEdit, self), pAppearance);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_BorderStyle(self: *const T, pBorderStyle: ?*BorderStyleConstants) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_BorderStyle(@ptrCast(*const IInkEdit, self), pBorderStyle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_BorderStyle(self: *const T, pBorderStyle: BorderStyleConstants) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_BorderStyle(@ptrCast(*const IInkEdit, self), pBorderStyle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_Hwnd(self: *const T, pohHwnd: ?*u32) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Hwnd(@ptrCast(*const IInkEdit, self), pohHwnd);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_Font(self: *const T, ppFont: ?*?*IFontDisp) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Font(@ptrCast(*const IInkEdit, self), ppFont);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_putref_Font(self: *const T, ppFont: ?*IFontDisp) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).putref_Font(@ptrCast(*const IInkEdit, self), ppFont);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_Text(self: *const T, pbstrText: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Text(@ptrCast(*const IInkEdit, self), pbstrText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_Text(self: *const T, pbstrText: ?BSTR) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_Text(@ptrCast(*const IInkEdit, self), pbstrText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_MouseIcon(self: *const T, MouseIcon: ?*?*IPictureDisp) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_MouseIcon(@ptrCast(*const IInkEdit, self), MouseIcon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_MouseIcon(self: *const T, MouseIcon: ?*IPictureDisp) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_MouseIcon(@ptrCast(*const IInkEdit, self), MouseIcon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_putref_MouseIcon(self: *const T, MouseIcon: ?*IPictureDisp) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).putref_MouseIcon(@ptrCast(*const IInkEdit, self), MouseIcon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_MousePointer(self: *const T, MousePointer: ?*InkMousePointer) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_MousePointer(@ptrCast(*const IInkEdit, self), MousePointer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_MousePointer(self: *const T, MousePointer: InkMousePointer) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_MousePointer(@ptrCast(*const IInkEdit, self), MousePointer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_Locked(self: *const T, pVal: ?*i16) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Locked(@ptrCast(*const IInkEdit, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_Locked(self: *const T, newVal: i16) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_Locked(@ptrCast(*const IInkEdit, self), newVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_Enabled(self: *const T, pVal: ?*i16) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_Enabled(@ptrCast(*const IInkEdit, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_Enabled(self: *const T, newVal: i16) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_Enabled(@ptrCast(*const IInkEdit, self), newVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_MaxLength(self: *const T, plMaxLength: ?*i32) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_MaxLength(@ptrCast(*const IInkEdit, self), plMaxLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_MaxLength(self: *const T, lMaxLength: i32) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_MaxLength(@ptrCast(*const IInkEdit, self), lMaxLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_MultiLine(self: *const T, pVal: ?*i16) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_MultiLine(@ptrCast(*const IInkEdit, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_MultiLine(self: *const T, newVal: i16) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_MultiLine(@ptrCast(*const IInkEdit, self), newVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_ScrollBars(self: *const T, pVal: ?*ScrollBarsConstants) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_ScrollBars(@ptrCast(*const IInkEdit, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_ScrollBars(self: *const T, newVal: ScrollBarsConstants) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_ScrollBars(@ptrCast(*const IInkEdit, self), newVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_DisableNoScroll(self: *const T, pVal: ?*i16) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_DisableNoScroll(@ptrCast(*const IInkEdit, self), pVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_DisableNoScroll(self: *const T, newVal: i16) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_DisableNoScroll(@ptrCast(*const IInkEdit, self), newVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_SelAlignment(self: *const T, pvarSelAlignment: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelAlignment(@ptrCast(*const IInkEdit, self), pvarSelAlignment);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_SelAlignment(self: *const T, pvarSelAlignment: VARIANT) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelAlignment(@ptrCast(*const IInkEdit, self), pvarSelAlignment);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_SelBold(self: *const T, pvarSelBold: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelBold(@ptrCast(*const IInkEdit, self), pvarSelBold);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_SelBold(self: *const T, pvarSelBold: VARIANT) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelBold(@ptrCast(*const IInkEdit, self), pvarSelBold);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_SelItalic(self: *const T, pvarSelItalic: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelItalic(@ptrCast(*const IInkEdit, self), pvarSelItalic);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_SelItalic(self: *const T, pvarSelItalic: VARIANT) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelItalic(@ptrCast(*const IInkEdit, self), pvarSelItalic);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_SelUnderline(self: *const T, pvarSelUnderline: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelUnderline(@ptrCast(*const IInkEdit, self), pvarSelUnderline);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_SelUnderline(self: *const T, pvarSelUnderline: VARIANT) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelUnderline(@ptrCast(*const IInkEdit, self), pvarSelUnderline);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_SelColor(self: *const T, pvarSelColor: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelColor(@ptrCast(*const IInkEdit, self), pvarSelColor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_SelColor(self: *const T, pvarSelColor: VARIANT) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelColor(@ptrCast(*const IInkEdit, self), pvarSelColor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_SelFontName(self: *const T, pvarSelFontName: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelFontName(@ptrCast(*const IInkEdit, self), pvarSelFontName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_SelFontName(self: *const T, pvarSelFontName: VARIANT) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelFontName(@ptrCast(*const IInkEdit, self), pvarSelFontName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_SelFontSize(self: *const T, pvarSelFontSize: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelFontSize(@ptrCast(*const IInkEdit, self), pvarSelFontSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_SelFontSize(self: *const T, pvarSelFontSize: VARIANT) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelFontSize(@ptrCast(*const IInkEdit, self), pvarSelFontSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_SelCharOffset(self: *const T, pvarSelCharOffset: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelCharOffset(@ptrCast(*const IInkEdit, self), pvarSelCharOffset);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_SelCharOffset(self: *const T, pvarSelCharOffset: VARIANT) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelCharOffset(@ptrCast(*const IInkEdit, self), pvarSelCharOffset);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_TextRTF(self: *const T, pbstrTextRTF: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_TextRTF(@ptrCast(*const IInkEdit, self), pbstrTextRTF);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_TextRTF(self: *const T, pbstrTextRTF: ?BSTR) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_TextRTF(@ptrCast(*const IInkEdit, self), pbstrTextRTF);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_SelStart(self: *const T, plSelStart: ?*i32) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelStart(@ptrCast(*const IInkEdit, self), plSelStart);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_SelStart(self: *const T, plSelStart: i32) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelStart(@ptrCast(*const IInkEdit, self), plSelStart);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_SelLength(self: *const T, plSelLength: ?*i32) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelLength(@ptrCast(*const IInkEdit, self), plSelLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_SelLength(self: *const T, plSelLength: i32) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelLength(@ptrCast(*const IInkEdit, self), plSelLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_SelText(self: *const T, pbstrSelText: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelText(@ptrCast(*const IInkEdit, self), pbstrSelText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_SelText(self: *const T, pbstrSelText: ?BSTR) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelText(@ptrCast(*const IInkEdit, self), pbstrSelText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_get_SelRTF(self: *const T, pbstrSelRTF: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelRTF(@ptrCast(*const IInkEdit, self), pbstrSelRTF);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_put_SelRTF(self: *const T, pbstrSelRTF: ?BSTR) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelRTF(@ptrCast(*const IInkEdit, self), pbstrSelRTF);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IInkEdit_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const IInkEdit.VTable, self.vtable).Refresh(@ptrCast(*const IInkEdit, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8364,9 +8472,11 @@ pub const _IInkEditEvents = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8423,151 +8533,153 @@ pub const IID_IMathInputControl = &IID_IMathInputControl_Value;
 pub const IMathInputControl = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Show: fn(
+        Show: fn (
             self: *const IMathInputControl,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Hide: fn(
+        Hide: fn (
             self: *const IMathInputControl,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsVisible: fn(
+        IsVisible: fn (
             self: *const IMathInputControl,
             pvbShown: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPosition: fn(
+        GetPosition: fn (
             self: *const IMathInputControl,
             Left: ?*i32,
             Top: ?*i32,
             Right: ?*i32,
             Bottom: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPosition: fn(
+        SetPosition: fn (
             self: *const IMathInputControl,
             Left: i32,
             Top: i32,
             Right: i32,
             Bottom: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clear: fn(
+        Clear: fn (
             self: *const IMathInputControl,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCustomPaint: fn(
+        SetCustomPaint: fn (
             self: *const IMathInputControl,
             Element: i32,
             Paint: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCaptionText: fn(
+        SetCaptionText: fn (
             self: *const IMathInputControl,
             CaptionText: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        LoadInk: fn(
+        LoadInk: fn (
             self: *const IMathInputControl,
             Ink: ?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOwnerWindow: fn(
+        SetOwnerWindow: fn (
             self: *const IMathInputControl,
             OwnerWindow: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnableExtendedButtons: fn(
+        EnableExtendedButtons: fn (
             self: *const IMathInputControl,
             Extended: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPreviewHeight: fn(
+        GetPreviewHeight: fn (
             self: *const IMathInputControl,
             Height: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPreviewHeight: fn(
+        SetPreviewHeight: fn (
             self: *const IMathInputControl,
             Height: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnableAutoGrow: fn(
+        EnableAutoGrow: fn (
             self: *const IMathInputControl,
             AutoGrow: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddFunctionName: fn(
+        AddFunctionName: fn (
             self: *const IMathInputControl,
             FunctionName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveFunctionName: fn(
+        RemoveFunctionName: fn (
             self: *const IMathInputControl,
             FunctionName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetHoverIcon: fn(
+        GetHoverIcon: fn (
             self: *const IMathInputControl,
             HoverImage: ?*?*IPictureDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMathInputControl_Show(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMathInputControl.VTable, self.vtable).Show(@ptrCast(*const IMathInputControl, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMathInputControl_Hide(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMathInputControl.VTable, self.vtable).Hide(@ptrCast(*const IMathInputControl, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMathInputControl_IsVisible(self: *const T, pvbShown: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMathInputControl.VTable, self.vtable).IsVisible(@ptrCast(*const IMathInputControl, self), pvbShown);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMathInputControl_GetPosition(self: *const T, Left: ?*i32, Top: ?*i32, Right: ?*i32, Bottom: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMathInputControl.VTable, self.vtable).GetPosition(@ptrCast(*const IMathInputControl, self), Left, Top, Right, Bottom);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMathInputControl_SetPosition(self: *const T, Left: i32, Top: i32, Right: i32, Bottom: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMathInputControl.VTable, self.vtable).SetPosition(@ptrCast(*const IMathInputControl, self), Left, Top, Right, Bottom);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMathInputControl_Clear(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMathInputControl.VTable, self.vtable).Clear(@ptrCast(*const IMathInputControl, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMathInputControl_SetCustomPaint(self: *const T, Element: i32, Paint: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMathInputControl.VTable, self.vtable).SetCustomPaint(@ptrCast(*const IMathInputControl, self), Element, Paint);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMathInputControl_SetCaptionText(self: *const T, CaptionText: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMathInputControl.VTable, self.vtable).SetCaptionText(@ptrCast(*const IMathInputControl, self), CaptionText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMathInputControl_LoadInk(self: *const T, Ink: ?*IInkDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMathInputControl.VTable, self.vtable).LoadInk(@ptrCast(*const IMathInputControl, self), Ink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMathInputControl_SetOwnerWindow(self: *const T, OwnerWindow: isize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMathInputControl.VTable, self.vtable).SetOwnerWindow(@ptrCast(*const IMathInputControl, self), OwnerWindow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMathInputControl_EnableExtendedButtons(self: *const T, Extended: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMathInputControl.VTable, self.vtable).EnableExtendedButtons(@ptrCast(*const IMathInputControl, self), Extended);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMathInputControl_GetPreviewHeight(self: *const T, Height: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMathInputControl.VTable, self.vtable).GetPreviewHeight(@ptrCast(*const IMathInputControl, self), Height);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMathInputControl_SetPreviewHeight(self: *const T, Height: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMathInputControl.VTable, self.vtable).SetPreviewHeight(@ptrCast(*const IMathInputControl, self), Height);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMathInputControl_EnableAutoGrow(self: *const T, AutoGrow: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMathInputControl.VTable, self.vtable).EnableAutoGrow(@ptrCast(*const IMathInputControl, self), AutoGrow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMathInputControl_AddFunctionName(self: *const T, FunctionName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMathInputControl.VTable, self.vtable).AddFunctionName(@ptrCast(*const IMathInputControl, self), FunctionName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMathInputControl_RemoveFunctionName(self: *const T, FunctionName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMathInputControl.VTable, self.vtable).RemoveFunctionName(@ptrCast(*const IMathInputControl, self), FunctionName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMathInputControl_GetHoverIcon(self: *const T, HoverImage: ?*?*IPictureDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMathInputControl.VTable, self.vtable).GetHoverIcon(@ptrCast(*const IMathInputControl, self), HoverImage);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMathInputControl_Show(self: *const T) HRESULT {
+                return @ptrCast(*const IMathInputControl.VTable, self.vtable).Show(@ptrCast(*const IMathInputControl, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMathInputControl_Hide(self: *const T) HRESULT {
+                return @ptrCast(*const IMathInputControl.VTable, self.vtable).Hide(@ptrCast(*const IMathInputControl, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMathInputControl_IsVisible(self: *const T, pvbShown: ?*i16) HRESULT {
+                return @ptrCast(*const IMathInputControl.VTable, self.vtable).IsVisible(@ptrCast(*const IMathInputControl, self), pvbShown);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMathInputControl_GetPosition(self: *const T, Left: ?*i32, Top: ?*i32, Right: ?*i32, Bottom: ?*i32) HRESULT {
+                return @ptrCast(*const IMathInputControl.VTable, self.vtable).GetPosition(@ptrCast(*const IMathInputControl, self), Left, Top, Right, Bottom);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMathInputControl_SetPosition(self: *const T, Left: i32, Top: i32, Right: i32, Bottom: i32) HRESULT {
+                return @ptrCast(*const IMathInputControl.VTable, self.vtable).SetPosition(@ptrCast(*const IMathInputControl, self), Left, Top, Right, Bottom);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMathInputControl_Clear(self: *const T) HRESULT {
+                return @ptrCast(*const IMathInputControl.VTable, self.vtable).Clear(@ptrCast(*const IMathInputControl, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMathInputControl_SetCustomPaint(self: *const T, Element: i32, Paint: i16) HRESULT {
+                return @ptrCast(*const IMathInputControl.VTable, self.vtable).SetCustomPaint(@ptrCast(*const IMathInputControl, self), Element, Paint);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMathInputControl_SetCaptionText(self: *const T, CaptionText: ?BSTR) HRESULT {
+                return @ptrCast(*const IMathInputControl.VTable, self.vtable).SetCaptionText(@ptrCast(*const IMathInputControl, self), CaptionText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMathInputControl_LoadInk(self: *const T, Ink: ?*IInkDisp) HRESULT {
+                return @ptrCast(*const IMathInputControl.VTable, self.vtable).LoadInk(@ptrCast(*const IMathInputControl, self), Ink);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMathInputControl_SetOwnerWindow(self: *const T, OwnerWindow: isize) HRESULT {
+                return @ptrCast(*const IMathInputControl.VTable, self.vtable).SetOwnerWindow(@ptrCast(*const IMathInputControl, self), OwnerWindow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMathInputControl_EnableExtendedButtons(self: *const T, Extended: i16) HRESULT {
+                return @ptrCast(*const IMathInputControl.VTable, self.vtable).EnableExtendedButtons(@ptrCast(*const IMathInputControl, self), Extended);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMathInputControl_GetPreviewHeight(self: *const T, Height: ?*i32) HRESULT {
+                return @ptrCast(*const IMathInputControl.VTable, self.vtable).GetPreviewHeight(@ptrCast(*const IMathInputControl, self), Height);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMathInputControl_SetPreviewHeight(self: *const T, Height: i32) HRESULT {
+                return @ptrCast(*const IMathInputControl.VTable, self.vtable).SetPreviewHeight(@ptrCast(*const IMathInputControl, self), Height);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMathInputControl_EnableAutoGrow(self: *const T, AutoGrow: i16) HRESULT {
+                return @ptrCast(*const IMathInputControl.VTable, self.vtable).EnableAutoGrow(@ptrCast(*const IMathInputControl, self), AutoGrow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMathInputControl_AddFunctionName(self: *const T, FunctionName: ?BSTR) HRESULT {
+                return @ptrCast(*const IMathInputControl.VTable, self.vtable).AddFunctionName(@ptrCast(*const IMathInputControl, self), FunctionName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMathInputControl_RemoveFunctionName(self: *const T, FunctionName: ?BSTR) HRESULT {
+                return @ptrCast(*const IMathInputControl.VTable, self.vtable).RemoveFunctionName(@ptrCast(*const IMathInputControl, self), FunctionName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMathInputControl_GetHoverIcon(self: *const T, HoverImage: ?*?*IPictureDisp) HRESULT {
+                return @ptrCast(*const IMathInputControl.VTable, self.vtable).GetHoverIcon(@ptrCast(*const IMathInputControl, self), HoverImage);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8578,9 +8690,11 @@ pub const _IMathInputControlEvents = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8687,145 +8801,145 @@ pub const IRealTimeStylus = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: fn(
+        get_Enabled: fn (
             self: *const IRealTimeStylus,
             pfEnable: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: fn(
+        put_Enabled: fn (
             self: *const IRealTimeStylus,
             fEnable: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HWND: fn(
+        get_HWND: fn (
             self: *const IRealTimeStylus,
             phwnd: ?*HANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_HWND: fn(
+        put_HWND: fn (
             self: *const IRealTimeStylus,
             hwnd: HANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_WindowInputRectangle: fn(
+        get_WindowInputRectangle: fn (
             self: *const IRealTimeStylus,
             prcWndInputRect: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_WindowInputRectangle: fn(
+        put_WindowInputRectangle: fn (
             self: *const IRealTimeStylus,
             prcWndInputRect: ?*const RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddStylusSyncPlugin: fn(
+        AddStylusSyncPlugin: fn (
             self: *const IRealTimeStylus,
             iIndex: u32,
             piPlugin: ?*IStylusSyncPlugin,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveStylusSyncPlugin: fn(
+        RemoveStylusSyncPlugin: fn (
             self: *const IRealTimeStylus,
             iIndex: u32,
             ppiPlugin: ?*?*IStylusSyncPlugin,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveAllStylusSyncPlugins: fn(
+        RemoveAllStylusSyncPlugins: fn (
             self: *const IRealTimeStylus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStylusSyncPlugin: fn(
+        GetStylusSyncPlugin: fn (
             self: *const IRealTimeStylus,
             iIndex: u32,
             ppiPlugin: ?*?*IStylusSyncPlugin,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStylusSyncPluginCount: fn(
+        GetStylusSyncPluginCount: fn (
             self: *const IRealTimeStylus,
             pcPlugins: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddStylusAsyncPlugin: fn(
+        AddStylusAsyncPlugin: fn (
             self: *const IRealTimeStylus,
             iIndex: u32,
             piPlugin: ?*IStylusAsyncPlugin,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveStylusAsyncPlugin: fn(
+        RemoveStylusAsyncPlugin: fn (
             self: *const IRealTimeStylus,
             iIndex: u32,
             ppiPlugin: ?*?*IStylusAsyncPlugin,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveAllStylusAsyncPlugins: fn(
+        RemoveAllStylusAsyncPlugins: fn (
             self: *const IRealTimeStylus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStylusAsyncPlugin: fn(
+        GetStylusAsyncPlugin: fn (
             self: *const IRealTimeStylus,
             iIndex: u32,
             ppiPlugin: ?*?*IStylusAsyncPlugin,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStylusAsyncPluginCount: fn(
+        GetStylusAsyncPluginCount: fn (
             self: *const IRealTimeStylus,
             pcPlugins: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ChildRealTimeStylusPlugin: fn(
+        get_ChildRealTimeStylusPlugin: fn (
             self: *const IRealTimeStylus,
             ppiRTS: ?*?*IRealTimeStylus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_ChildRealTimeStylusPlugin: fn(
+        putref_ChildRealTimeStylusPlugin: fn (
             self: *const IRealTimeStylus,
             piRTS: ?*IRealTimeStylus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddCustomStylusDataToQueue: fn(
+        AddCustomStylusDataToQueue: fn (
             self: *const IRealTimeStylus,
             sq: StylusQueue,
             pGuidId: ?*const Guid,
             cbData: u32,
             pbData: ?[*:0]u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ClearStylusQueues: fn(
+        ClearStylusQueues: fn (
             self: *const IRealTimeStylus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllTabletsMode: fn(
+        SetAllTabletsMode: fn (
             self: *const IRealTimeStylus,
             fUseMouseForInput: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSingleTabletMode: fn(
+        SetSingleTabletMode: fn (
             self: *const IRealTimeStylus,
             piTablet: ?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTablet: fn(
+        GetTablet: fn (
             self: *const IRealTimeStylus,
             ppiSingleTablet: ?*?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTabletContextIdFromTablet: fn(
+        GetTabletContextIdFromTablet: fn (
             self: *const IRealTimeStylus,
             piTablet: ?*IInkTablet,
             ptcid: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTabletFromTabletContextId: fn(
+        GetTabletFromTabletContextId: fn (
             self: *const IRealTimeStylus,
             tcid: u32,
             ppiTablet: ?*?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllTabletContextIds: fn(
+        GetAllTabletContextIds: fn (
             self: *const IRealTimeStylus,
             pcTcidCount: ?*u32,
             ppTcids: ?[*]?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStyluses: fn(
+        GetStyluses: fn (
             self: *const IRealTimeStylus,
             ppiInkCursors: ?*?*IInkCursors,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStylusForId: fn(
+        GetStylusForId: fn (
             self: *const IRealTimeStylus,
             sid: u32,
             ppiInkCursor: ?*?*IInkCursor,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDesiredPacketDescription: fn(
+        SetDesiredPacketDescription: fn (
             self: *const IRealTimeStylus,
             cProperties: u32,
             pPropertyGuids: [*]const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDesiredPacketDescription: fn(
+        GetDesiredPacketDescription: fn (
             self: *const IRealTimeStylus,
             pcProperties: ?*u32,
             ppPropertyGuids: ?[*]?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPacketDescriptionData: fn(
+        GetPacketDescriptionData: fn (
             self: *const IRealTimeStylus,
             tcid: u32,
             pfInkToDeviceScaleX: ?*f32,
@@ -8835,133 +8949,135 @@ pub const IRealTimeStylus = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_get_Enabled(self: *const T, pfEnable: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).get_Enabled(@ptrCast(*const IRealTimeStylus, self), pfEnable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_put_Enabled(self: *const T, fEnable: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).put_Enabled(@ptrCast(*const IRealTimeStylus, self), fEnable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_get_HWND(self: *const T, phwnd: ?*HANDLE_PTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).get_HWND(@ptrCast(*const IRealTimeStylus, self), phwnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_put_HWND(self: *const T, hwnd: HANDLE_PTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).put_HWND(@ptrCast(*const IRealTimeStylus, self), hwnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_get_WindowInputRectangle(self: *const T, prcWndInputRect: ?*RECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).get_WindowInputRectangle(@ptrCast(*const IRealTimeStylus, self), prcWndInputRect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_put_WindowInputRectangle(self: *const T, prcWndInputRect: ?*const RECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).put_WindowInputRectangle(@ptrCast(*const IRealTimeStylus, self), prcWndInputRect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_AddStylusSyncPlugin(self: *const T, iIndex: u32, piPlugin: ?*IStylusSyncPlugin) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).AddStylusSyncPlugin(@ptrCast(*const IRealTimeStylus, self), iIndex, piPlugin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_RemoveStylusSyncPlugin(self: *const T, iIndex: u32, ppiPlugin: ?*?*IStylusSyncPlugin) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).RemoveStylusSyncPlugin(@ptrCast(*const IRealTimeStylus, self), iIndex, ppiPlugin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_RemoveAllStylusSyncPlugins(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).RemoveAllStylusSyncPlugins(@ptrCast(*const IRealTimeStylus, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetStylusSyncPlugin(self: *const T, iIndex: u32, ppiPlugin: ?*?*IStylusSyncPlugin) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetStylusSyncPlugin(@ptrCast(*const IRealTimeStylus, self), iIndex, ppiPlugin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetStylusSyncPluginCount(self: *const T, pcPlugins: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetStylusSyncPluginCount(@ptrCast(*const IRealTimeStylus, self), pcPlugins);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_AddStylusAsyncPlugin(self: *const T, iIndex: u32, piPlugin: ?*IStylusAsyncPlugin) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).AddStylusAsyncPlugin(@ptrCast(*const IRealTimeStylus, self), iIndex, piPlugin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_RemoveStylusAsyncPlugin(self: *const T, iIndex: u32, ppiPlugin: ?*?*IStylusAsyncPlugin) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).RemoveStylusAsyncPlugin(@ptrCast(*const IRealTimeStylus, self), iIndex, ppiPlugin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_RemoveAllStylusAsyncPlugins(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).RemoveAllStylusAsyncPlugins(@ptrCast(*const IRealTimeStylus, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetStylusAsyncPlugin(self: *const T, iIndex: u32, ppiPlugin: ?*?*IStylusAsyncPlugin) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetStylusAsyncPlugin(@ptrCast(*const IRealTimeStylus, self), iIndex, ppiPlugin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetStylusAsyncPluginCount(self: *const T, pcPlugins: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetStylusAsyncPluginCount(@ptrCast(*const IRealTimeStylus, self), pcPlugins);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_get_ChildRealTimeStylusPlugin(self: *const T, ppiRTS: ?*?*IRealTimeStylus) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).get_ChildRealTimeStylusPlugin(@ptrCast(*const IRealTimeStylus, self), ppiRTS);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_putref_ChildRealTimeStylusPlugin(self: *const T, piRTS: ?*IRealTimeStylus) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).putref_ChildRealTimeStylusPlugin(@ptrCast(*const IRealTimeStylus, self), piRTS);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_AddCustomStylusDataToQueue(self: *const T, sq: StylusQueue, pGuidId: ?*const Guid, cbData: u32, pbData: ?[*:0]u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).AddCustomStylusDataToQueue(@ptrCast(*const IRealTimeStylus, self), sq, pGuidId, cbData, pbData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_ClearStylusQueues(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).ClearStylusQueues(@ptrCast(*const IRealTimeStylus, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_SetAllTabletsMode(self: *const T, fUseMouseForInput: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).SetAllTabletsMode(@ptrCast(*const IRealTimeStylus, self), fUseMouseForInput);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_SetSingleTabletMode(self: *const T, piTablet: ?*IInkTablet) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).SetSingleTabletMode(@ptrCast(*const IRealTimeStylus, self), piTablet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetTablet(self: *const T, ppiSingleTablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetTablet(@ptrCast(*const IRealTimeStylus, self), ppiSingleTablet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetTabletContextIdFromTablet(self: *const T, piTablet: ?*IInkTablet, ptcid: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetTabletContextIdFromTablet(@ptrCast(*const IRealTimeStylus, self), piTablet, ptcid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetTabletFromTabletContextId(self: *const T, tcid: u32, ppiTablet: ?*?*IInkTablet) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetTabletFromTabletContextId(@ptrCast(*const IRealTimeStylus, self), tcid, ppiTablet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetAllTabletContextIds(self: *const T, pcTcidCount: ?*u32, ppTcids: ?[*]?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetAllTabletContextIds(@ptrCast(*const IRealTimeStylus, self), pcTcidCount, ppTcids);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetStyluses(self: *const T, ppiInkCursors: ?*?*IInkCursors) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetStyluses(@ptrCast(*const IRealTimeStylus, self), ppiInkCursors);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetStylusForId(self: *const T, sid: u32, ppiInkCursor: ?*?*IInkCursor) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetStylusForId(@ptrCast(*const IRealTimeStylus, self), sid, ppiInkCursor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_SetDesiredPacketDescription(self: *const T, cProperties: u32, pPropertyGuids: [*]const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).SetDesiredPacketDescription(@ptrCast(*const IRealTimeStylus, self), cProperties, pPropertyGuids);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetDesiredPacketDescription(self: *const T, pcProperties: ?*u32, ppPropertyGuids: ?[*]?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetDesiredPacketDescription(@ptrCast(*const IRealTimeStylus, self), pcProperties, ppPropertyGuids);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetPacketDescriptionData(self: *const T, tcid: u32, pfInkToDeviceScaleX: ?*f32, pfInkToDeviceScaleY: ?*f32, pcPacketProperties: ?*u32, ppPacketProperties: ?[*]?*PACKET_PROPERTY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetPacketDescriptionData(@ptrCast(*const IRealTimeStylus, self), tcid, pfInkToDeviceScaleX, pfInkToDeviceScaleY, pcPacketProperties, ppPacketProperties);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_get_Enabled(self: *const T, pfEnable: ?*BOOL) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).get_Enabled(@ptrCast(*const IRealTimeStylus, self), pfEnable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_put_Enabled(self: *const T, fEnable: BOOL) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).put_Enabled(@ptrCast(*const IRealTimeStylus, self), fEnable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_get_HWND(self: *const T, phwnd: ?*HANDLE_PTR) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).get_HWND(@ptrCast(*const IRealTimeStylus, self), phwnd);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_put_HWND(self: *const T, hwnd: HANDLE_PTR) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).put_HWND(@ptrCast(*const IRealTimeStylus, self), hwnd);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_get_WindowInputRectangle(self: *const T, prcWndInputRect: ?*RECT) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).get_WindowInputRectangle(@ptrCast(*const IRealTimeStylus, self), prcWndInputRect);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_put_WindowInputRectangle(self: *const T, prcWndInputRect: ?*const RECT) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).put_WindowInputRectangle(@ptrCast(*const IRealTimeStylus, self), prcWndInputRect);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_AddStylusSyncPlugin(self: *const T, iIndex: u32, piPlugin: ?*IStylusSyncPlugin) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).AddStylusSyncPlugin(@ptrCast(*const IRealTimeStylus, self), iIndex, piPlugin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_RemoveStylusSyncPlugin(self: *const T, iIndex: u32, ppiPlugin: ?*?*IStylusSyncPlugin) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).RemoveStylusSyncPlugin(@ptrCast(*const IRealTimeStylus, self), iIndex, ppiPlugin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_RemoveAllStylusSyncPlugins(self: *const T) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).RemoveAllStylusSyncPlugins(@ptrCast(*const IRealTimeStylus, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_GetStylusSyncPlugin(self: *const T, iIndex: u32, ppiPlugin: ?*?*IStylusSyncPlugin) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetStylusSyncPlugin(@ptrCast(*const IRealTimeStylus, self), iIndex, ppiPlugin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_GetStylusSyncPluginCount(self: *const T, pcPlugins: ?*u32) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetStylusSyncPluginCount(@ptrCast(*const IRealTimeStylus, self), pcPlugins);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_AddStylusAsyncPlugin(self: *const T, iIndex: u32, piPlugin: ?*IStylusAsyncPlugin) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).AddStylusAsyncPlugin(@ptrCast(*const IRealTimeStylus, self), iIndex, piPlugin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_RemoveStylusAsyncPlugin(self: *const T, iIndex: u32, ppiPlugin: ?*?*IStylusAsyncPlugin) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).RemoveStylusAsyncPlugin(@ptrCast(*const IRealTimeStylus, self), iIndex, ppiPlugin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_RemoveAllStylusAsyncPlugins(self: *const T) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).RemoveAllStylusAsyncPlugins(@ptrCast(*const IRealTimeStylus, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_GetStylusAsyncPlugin(self: *const T, iIndex: u32, ppiPlugin: ?*?*IStylusAsyncPlugin) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetStylusAsyncPlugin(@ptrCast(*const IRealTimeStylus, self), iIndex, ppiPlugin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_GetStylusAsyncPluginCount(self: *const T, pcPlugins: ?*u32) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetStylusAsyncPluginCount(@ptrCast(*const IRealTimeStylus, self), pcPlugins);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_get_ChildRealTimeStylusPlugin(self: *const T, ppiRTS: ?*?*IRealTimeStylus) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).get_ChildRealTimeStylusPlugin(@ptrCast(*const IRealTimeStylus, self), ppiRTS);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_putref_ChildRealTimeStylusPlugin(self: *const T, piRTS: ?*IRealTimeStylus) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).putref_ChildRealTimeStylusPlugin(@ptrCast(*const IRealTimeStylus, self), piRTS);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_AddCustomStylusDataToQueue(self: *const T, sq: StylusQueue, pGuidId: ?*const Guid, cbData: u32, pbData: ?[*:0]u8) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).AddCustomStylusDataToQueue(@ptrCast(*const IRealTimeStylus, self), sq, pGuidId, cbData, pbData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_ClearStylusQueues(self: *const T) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).ClearStylusQueues(@ptrCast(*const IRealTimeStylus, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_SetAllTabletsMode(self: *const T, fUseMouseForInput: BOOL) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).SetAllTabletsMode(@ptrCast(*const IRealTimeStylus, self), fUseMouseForInput);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_SetSingleTabletMode(self: *const T, piTablet: ?*IInkTablet) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).SetSingleTabletMode(@ptrCast(*const IRealTimeStylus, self), piTablet);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_GetTablet(self: *const T, ppiSingleTablet: ?*?*IInkTablet) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetTablet(@ptrCast(*const IRealTimeStylus, self), ppiSingleTablet);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_GetTabletContextIdFromTablet(self: *const T, piTablet: ?*IInkTablet, ptcid: ?*u32) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetTabletContextIdFromTablet(@ptrCast(*const IRealTimeStylus, self), piTablet, ptcid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_GetTabletFromTabletContextId(self: *const T, tcid: u32, ppiTablet: ?*?*IInkTablet) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetTabletFromTabletContextId(@ptrCast(*const IRealTimeStylus, self), tcid, ppiTablet);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_GetAllTabletContextIds(self: *const T, pcTcidCount: ?*u32, ppTcids: ?[*]?*u32) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetAllTabletContextIds(@ptrCast(*const IRealTimeStylus, self), pcTcidCount, ppTcids);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_GetStyluses(self: *const T, ppiInkCursors: ?*?*IInkCursors) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetStyluses(@ptrCast(*const IRealTimeStylus, self), ppiInkCursors);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_GetStylusForId(self: *const T, sid: u32, ppiInkCursor: ?*?*IInkCursor) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetStylusForId(@ptrCast(*const IRealTimeStylus, self), sid, ppiInkCursor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_SetDesiredPacketDescription(self: *const T, cProperties: u32, pPropertyGuids: [*]const Guid) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).SetDesiredPacketDescription(@ptrCast(*const IRealTimeStylus, self), cProperties, pPropertyGuids);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_GetDesiredPacketDescription(self: *const T, pcProperties: ?*u32, ppPropertyGuids: ?[*]?*Guid) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetDesiredPacketDescription(@ptrCast(*const IRealTimeStylus, self), pcProperties, ppPropertyGuids);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus_GetPacketDescriptionData(self: *const T, tcid: u32, pfInkToDeviceScaleX: ?*f32, pfInkToDeviceScaleY: ?*f32, pcPacketProperties: ?*u32, ppPacketProperties: ?[*]?*PACKET_PROPERTY) HRESULT {
+                return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).GetPacketDescriptionData(@ptrCast(*const IRealTimeStylus, self), tcid, pfInkToDeviceScaleX, pfInkToDeviceScaleY, pcPacketProperties, ppPacketProperties);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8972,28 +9088,30 @@ pub const IRealTimeStylus2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FlicksEnabled: fn(
+        get_FlicksEnabled: fn (
             self: *const IRealTimeStylus2,
             pfEnable: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FlicksEnabled: fn(
+        put_FlicksEnabled: fn (
             self: *const IRealTimeStylus2,
             fEnable: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus2_get_FlicksEnabled(self: *const T, pfEnable: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus2.VTable, self.vtable).get_FlicksEnabled(@ptrCast(*const IRealTimeStylus2, self), pfEnable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus2_put_FlicksEnabled(self: *const T, fEnable: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus2.VTable, self.vtable).put_FlicksEnabled(@ptrCast(*const IRealTimeStylus2, self), fEnable);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus2_get_FlicksEnabled(self: *const T, pfEnable: ?*BOOL) HRESULT {
+                return @ptrCast(*const IRealTimeStylus2.VTable, self.vtable).get_FlicksEnabled(@ptrCast(*const IRealTimeStylus2, self), pfEnable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus2_put_FlicksEnabled(self: *const T, fEnable: BOOL) HRESULT {
+                return @ptrCast(*const IRealTimeStylus2.VTable, self.vtable).put_FlicksEnabled(@ptrCast(*const IRealTimeStylus2, self), fEnable);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9004,28 +9122,30 @@ pub const IRealTimeStylus3 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MultiTouchEnabled: fn(
+        get_MultiTouchEnabled: fn (
             self: *const IRealTimeStylus3,
             pfEnable: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MultiTouchEnabled: fn(
+        put_MultiTouchEnabled: fn (
             self: *const IRealTimeStylus3,
             fEnable: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus3_get_MultiTouchEnabled(self: *const T, pfEnable: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus3.VTable, self.vtable).get_MultiTouchEnabled(@ptrCast(*const IRealTimeStylus3, self), pfEnable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus3_put_MultiTouchEnabled(self: *const T, fEnable: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylus3.VTable, self.vtable).put_MultiTouchEnabled(@ptrCast(*const IRealTimeStylus3, self), fEnable);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus3_get_MultiTouchEnabled(self: *const T, pfEnable: ?*BOOL) HRESULT {
+                return @ptrCast(*const IRealTimeStylus3.VTable, self.vtable).get_MultiTouchEnabled(@ptrCast(*const IRealTimeStylus3, self), pfEnable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylus3_put_MultiTouchEnabled(self: *const T, fEnable: BOOL) HRESULT {
+                return @ptrCast(*const IRealTimeStylus3.VTable, self.vtable).put_MultiTouchEnabled(@ptrCast(*const IRealTimeStylus3, self), fEnable);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9035,27 +9155,29 @@ pub const IID_IRealTimeStylusSynchronization = &IID_IRealTimeStylusSynchronizati
 pub const IRealTimeStylusSynchronization = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AcquireLock: fn(
+        AcquireLock: fn (
             self: *const IRealTimeStylusSynchronization,
             lock: RealTimeStylusLockType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseLock: fn(
+        ReleaseLock: fn (
             self: *const IRealTimeStylusSynchronization,
             lock: RealTimeStylusLockType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylusSynchronization_AcquireLock(self: *const T, lock: RealTimeStylusLockType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylusSynchronization.VTable, self.vtable).AcquireLock(@ptrCast(*const IRealTimeStylusSynchronization, self), lock);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylusSynchronization_ReleaseLock(self: *const T, lock: RealTimeStylusLockType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRealTimeStylusSynchronization.VTable, self.vtable).ReleaseLock(@ptrCast(*const IRealTimeStylusSynchronization, self), lock);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylusSynchronization_AcquireLock(self: *const T, lock: RealTimeStylusLockType) HRESULT {
+                return @ptrCast(*const IRealTimeStylusSynchronization.VTable, self.vtable).AcquireLock(@ptrCast(*const IRealTimeStylusSynchronization, self), lock);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRealTimeStylusSynchronization_ReleaseLock(self: *const T, lock: RealTimeStylusLockType) HRESULT {
+                return @ptrCast(*const IRealTimeStylusSynchronization.VTable, self.vtable).ReleaseLock(@ptrCast(*const IRealTimeStylusSynchronization, self), lock);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9065,7 +9187,7 @@ pub const IID_IStrokeBuilder = &IID_IStrokeBuilder_Value;
 pub const IStrokeBuilder = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateStroke: fn(
+        CreateStroke: fn (
             self: *const IStrokeBuilder,
             cPktBuffLength: u32,
             pPackets: [*]const i32,
@@ -9075,7 +9197,7 @@ pub const IStrokeBuilder = extern struct {
             fInkToDeviceScaleY: f32,
             ppIInkStroke: ?*?*IInkStrokeDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BeginStroke: fn(
+        BeginStroke: fn (
             self: *const IStrokeBuilder,
             tcid: u32,
             sid: u32,
@@ -9086,14 +9208,14 @@ pub const IStrokeBuilder = extern struct {
             fInkToDeviceScaleY: f32,
             ppIInkStroke: ?*?*IInkStrokeDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AppendPackets: fn(
+        AppendPackets: fn (
             self: *const IStrokeBuilder,
             tcid: u32,
             sid: u32,
             cPktBuffLength: u32,
             pPackets: [*]const i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndStroke: fn(
+        EndStroke: fn (
             self: *const IStrokeBuilder,
             tcid: u32,
             sid: u32,
@@ -9101,43 +9223,45 @@ pub const IStrokeBuilder = extern struct {
             pDirtyRect: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Ink: fn(
+        get_Ink: fn (
             self: *const IStrokeBuilder,
             ppiInkObj: ?*?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_Ink: fn(
+        putref_Ink: fn (
             self: *const IStrokeBuilder,
             piInkObj: ?*IInkDisp,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStrokeBuilder_CreateStroke(self: *const T, cPktBuffLength: u32, pPackets: [*]const i32, cPacketProperties: u32, pPacketProperties: [*]const PACKET_PROPERTY, fInkToDeviceScaleX: f32, fInkToDeviceScaleY: f32, ppIInkStroke: ?*?*IInkStrokeDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStrokeBuilder.VTable, self.vtable).CreateStroke(@ptrCast(*const IStrokeBuilder, self), cPktBuffLength, pPackets, cPacketProperties, pPacketProperties, fInkToDeviceScaleX, fInkToDeviceScaleY, ppIInkStroke);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStrokeBuilder_BeginStroke(self: *const T, tcid: u32, sid: u32, pPacket: ?*const i32, cPacketProperties: u32, pPacketProperties: [*]PACKET_PROPERTY, fInkToDeviceScaleX: f32, fInkToDeviceScaleY: f32, ppIInkStroke: ?*?*IInkStrokeDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStrokeBuilder.VTable, self.vtable).BeginStroke(@ptrCast(*const IStrokeBuilder, self), tcid, sid, pPacket, cPacketProperties, pPacketProperties, fInkToDeviceScaleX, fInkToDeviceScaleY, ppIInkStroke);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStrokeBuilder_AppendPackets(self: *const T, tcid: u32, sid: u32, cPktBuffLength: u32, pPackets: [*]const i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStrokeBuilder.VTable, self.vtable).AppendPackets(@ptrCast(*const IStrokeBuilder, self), tcid, sid, cPktBuffLength, pPackets);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStrokeBuilder_EndStroke(self: *const T, tcid: u32, sid: u32, ppIInkStroke: ?*?*IInkStrokeDisp, pDirtyRect: ?*RECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStrokeBuilder.VTable, self.vtable).EndStroke(@ptrCast(*const IStrokeBuilder, self), tcid, sid, ppIInkStroke, pDirtyRect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStrokeBuilder_get_Ink(self: *const T, ppiInkObj: ?*?*IInkDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStrokeBuilder.VTable, self.vtable).get_Ink(@ptrCast(*const IStrokeBuilder, self), ppiInkObj);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStrokeBuilder_putref_Ink(self: *const T, piInkObj: ?*IInkDisp) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStrokeBuilder.VTable, self.vtable).putref_Ink(@ptrCast(*const IStrokeBuilder, self), piInkObj);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStrokeBuilder_CreateStroke(self: *const T, cPktBuffLength: u32, pPackets: [*]const i32, cPacketProperties: u32, pPacketProperties: [*]const PACKET_PROPERTY, fInkToDeviceScaleX: f32, fInkToDeviceScaleY: f32, ppIInkStroke: ?*?*IInkStrokeDisp) HRESULT {
+                return @ptrCast(*const IStrokeBuilder.VTable, self.vtable).CreateStroke(@ptrCast(*const IStrokeBuilder, self), cPktBuffLength, pPackets, cPacketProperties, pPacketProperties, fInkToDeviceScaleX, fInkToDeviceScaleY, ppIInkStroke);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStrokeBuilder_BeginStroke(self: *const T, tcid: u32, sid: u32, pPacket: ?*const i32, cPacketProperties: u32, pPacketProperties: [*]PACKET_PROPERTY, fInkToDeviceScaleX: f32, fInkToDeviceScaleY: f32, ppIInkStroke: ?*?*IInkStrokeDisp) HRESULT {
+                return @ptrCast(*const IStrokeBuilder.VTable, self.vtable).BeginStroke(@ptrCast(*const IStrokeBuilder, self), tcid, sid, pPacket, cPacketProperties, pPacketProperties, fInkToDeviceScaleX, fInkToDeviceScaleY, ppIInkStroke);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStrokeBuilder_AppendPackets(self: *const T, tcid: u32, sid: u32, cPktBuffLength: u32, pPackets: [*]const i32) HRESULT {
+                return @ptrCast(*const IStrokeBuilder.VTable, self.vtable).AppendPackets(@ptrCast(*const IStrokeBuilder, self), tcid, sid, cPktBuffLength, pPackets);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStrokeBuilder_EndStroke(self: *const T, tcid: u32, sid: u32, ppIInkStroke: ?*?*IInkStrokeDisp, pDirtyRect: ?*RECT) HRESULT {
+                return @ptrCast(*const IStrokeBuilder.VTable, self.vtable).EndStroke(@ptrCast(*const IStrokeBuilder, self), tcid, sid, ppIInkStroke, pDirtyRect);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStrokeBuilder_get_Ink(self: *const T, ppiInkObj: ?*?*IInkDisp) HRESULT {
+                return @ptrCast(*const IStrokeBuilder.VTable, self.vtable).get_Ink(@ptrCast(*const IStrokeBuilder, self), ppiInkObj);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStrokeBuilder_putref_Ink(self: *const T, piInkObj: ?*IInkDisp) HRESULT {
+                return @ptrCast(*const IStrokeBuilder.VTable, self.vtable).putref_Ink(@ptrCast(*const IStrokeBuilder, self), piInkObj);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9147,31 +9271,31 @@ pub const IID_IStylusPlugin = &IID_IStylusPlugin_Value;
 pub const IStylusPlugin = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RealTimeStylusEnabled: fn(
+        RealTimeStylusEnabled: fn (
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             cTcidCount: u32,
             pTcids: [*]const u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RealTimeStylusDisabled: fn(
+        RealTimeStylusDisabled: fn (
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             cTcidCount: u32,
             pTcids: [*]const u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StylusInRange: fn(
+        StylusInRange: fn (
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             tcid: u32,
             sid: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StylusOutOfRange: fn(
+        StylusOutOfRange: fn (
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             tcid: u32,
             sid: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StylusDown: fn(
+        StylusDown: fn (
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             pStylusInfo: ?*const StylusInfo,
@@ -9179,7 +9303,7 @@ pub const IStylusPlugin = extern struct {
             pPacket: [*]i32,
             ppInOutPkt: ?*?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StylusUp: fn(
+        StylusUp: fn (
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             pStylusInfo: ?*const StylusInfo,
@@ -9187,21 +9311,21 @@ pub const IStylusPlugin = extern struct {
             pPacket: [*]i32,
             ppInOutPkt: ?*?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StylusButtonDown: fn(
+        StylusButtonDown: fn (
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             sid: u32,
             pGuidStylusButton: ?*const Guid,
             pStylusPos: ?*POINT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StylusButtonUp: fn(
+        StylusButtonUp: fn (
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             sid: u32,
             pGuidStylusButton: ?*const Guid,
             pStylusPos: ?*POINT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InAirPackets: fn(
+        InAirPackets: fn (
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             pStylusInfo: ?*const StylusInfo,
@@ -9211,7 +9335,7 @@ pub const IStylusPlugin = extern struct {
             pcInOutPkts: ?*u32,
             ppInOutPkts: ?*?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Packets: fn(
+        Packets: fn (
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             pStylusInfo: ?*const StylusInfo,
@@ -9221,14 +9345,14 @@ pub const IStylusPlugin = extern struct {
             pcInOutPkts: ?*u32,
             ppInOutPkts: ?*?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CustomStylusDataAdded: fn(
+        CustomStylusDataAdded: fn (
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             pGuidId: ?*const Guid,
             cbData: u32,
             pbData: ?[*:0]const u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SystemEvent: fn(
+        SystemEvent: fn (
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             tcid: u32,
@@ -9236,17 +9360,17 @@ pub const IStylusPlugin = extern struct {
             event: u16,
             eventdata: SYSTEM_EVENT_DATA,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TabletAdded: fn(
+        TabletAdded: fn (
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             piTablet: ?*IInkTablet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TabletRemoved: fn(
+        TabletRemoved: fn (
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             iTabletIndex: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Error: fn(
+        Error: fn (
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
             piPlugin: ?*IStylusPlugin,
@@ -9254,87 +9378,89 @@ pub const IStylusPlugin = extern struct {
             hrErrorCode: HRESULT,
             lptrKey: ?*isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateMapping: fn(
+        UpdateMapping: fn (
             self: *const IStylusPlugin,
             piRtsSrc: ?*IRealTimeStylus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DataInterest: fn(
+        DataInterest: fn (
             self: *const IStylusPlugin,
             pDataInterest: ?*RealTimeStylusDataInterest,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylusPlugin_RealTimeStylusEnabled(self: *const T, piRtsSrc: ?*IRealTimeStylus, cTcidCount: u32, pTcids: [*]const u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStylusPlugin.VTable, self.vtable).RealTimeStylusEnabled(@ptrCast(*const IStylusPlugin, self), piRtsSrc, cTcidCount, pTcids);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylusPlugin_RealTimeStylusDisabled(self: *const T, piRtsSrc: ?*IRealTimeStylus, cTcidCount: u32, pTcids: [*]const u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStylusPlugin.VTable, self.vtable).RealTimeStylusDisabled(@ptrCast(*const IStylusPlugin, self), piRtsSrc, cTcidCount, pTcids);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylusPlugin_StylusInRange(self: *const T, piRtsSrc: ?*IRealTimeStylus, tcid: u32, sid: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStylusPlugin.VTable, self.vtable).StylusInRange(@ptrCast(*const IStylusPlugin, self), piRtsSrc, tcid, sid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylusPlugin_StylusOutOfRange(self: *const T, piRtsSrc: ?*IRealTimeStylus, tcid: u32, sid: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStylusPlugin.VTable, self.vtable).StylusOutOfRange(@ptrCast(*const IStylusPlugin, self), piRtsSrc, tcid, sid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylusPlugin_StylusDown(self: *const T, piRtsSrc: ?*IRealTimeStylus, pStylusInfo: ?*const StylusInfo, cPropCountPerPkt: u32, pPacket: [*]i32, ppInOutPkt: ?*?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStylusPlugin.VTable, self.vtable).StylusDown(@ptrCast(*const IStylusPlugin, self), piRtsSrc, pStylusInfo, cPropCountPerPkt, pPacket, ppInOutPkt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylusPlugin_StylusUp(self: *const T, piRtsSrc: ?*IRealTimeStylus, pStylusInfo: ?*const StylusInfo, cPropCountPerPkt: u32, pPacket: [*]i32, ppInOutPkt: ?*?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStylusPlugin.VTable, self.vtable).StylusUp(@ptrCast(*const IStylusPlugin, self), piRtsSrc, pStylusInfo, cPropCountPerPkt, pPacket, ppInOutPkt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylusPlugin_StylusButtonDown(self: *const T, piRtsSrc: ?*IRealTimeStylus, sid: u32, pGuidStylusButton: ?*const Guid, pStylusPos: ?*POINT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStylusPlugin.VTable, self.vtable).StylusButtonDown(@ptrCast(*const IStylusPlugin, self), piRtsSrc, sid, pGuidStylusButton, pStylusPos);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylusPlugin_StylusButtonUp(self: *const T, piRtsSrc: ?*IRealTimeStylus, sid: u32, pGuidStylusButton: ?*const Guid, pStylusPos: ?*POINT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStylusPlugin.VTable, self.vtable).StylusButtonUp(@ptrCast(*const IStylusPlugin, self), piRtsSrc, sid, pGuidStylusButton, pStylusPos);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylusPlugin_InAirPackets(self: *const T, piRtsSrc: ?*IRealTimeStylus, pStylusInfo: ?*const StylusInfo, cPktCount: u32, cPktBuffLength: u32, pPackets: [*]i32, pcInOutPkts: ?*u32, ppInOutPkts: ?*?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStylusPlugin.VTable, self.vtable).InAirPackets(@ptrCast(*const IStylusPlugin, self), piRtsSrc, pStylusInfo, cPktCount, cPktBuffLength, pPackets, pcInOutPkts, ppInOutPkts);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylusPlugin_Packets(self: *const T, piRtsSrc: ?*IRealTimeStylus, pStylusInfo: ?*const StylusInfo, cPktCount: u32, cPktBuffLength: u32, pPackets: [*]i32, pcInOutPkts: ?*u32, ppInOutPkts: ?*?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStylusPlugin.VTable, self.vtable).Packets(@ptrCast(*const IStylusPlugin, self), piRtsSrc, pStylusInfo, cPktCount, cPktBuffLength, pPackets, pcInOutPkts, ppInOutPkts);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylusPlugin_CustomStylusDataAdded(self: *const T, piRtsSrc: ?*IRealTimeStylus, pGuidId: ?*const Guid, cbData: u32, pbData: ?[*:0]const u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStylusPlugin.VTable, self.vtable).CustomStylusDataAdded(@ptrCast(*const IStylusPlugin, self), piRtsSrc, pGuidId, cbData, pbData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylusPlugin_SystemEvent(self: *const T, piRtsSrc: ?*IRealTimeStylus, tcid: u32, sid: u32, event: u16, eventdata: SYSTEM_EVENT_DATA) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStylusPlugin.VTable, self.vtable).SystemEvent(@ptrCast(*const IStylusPlugin, self), piRtsSrc, tcid, sid, event, eventdata);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylusPlugin_TabletAdded(self: *const T, piRtsSrc: ?*IRealTimeStylus, piTablet: ?*IInkTablet) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStylusPlugin.VTable, self.vtable).TabletAdded(@ptrCast(*const IStylusPlugin, self), piRtsSrc, piTablet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylusPlugin_TabletRemoved(self: *const T, piRtsSrc: ?*IRealTimeStylus, iTabletIndex: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStylusPlugin.VTable, self.vtable).TabletRemoved(@ptrCast(*const IStylusPlugin, self), piRtsSrc, iTabletIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylusPlugin_Error(self: *const T, piRtsSrc: ?*IRealTimeStylus, piPlugin: ?*IStylusPlugin, dataInterest: RealTimeStylusDataInterest, hrErrorCode: HRESULT, lptrKey: ?*isize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStylusPlugin.VTable, self.vtable).Error(@ptrCast(*const IStylusPlugin, self), piRtsSrc, piPlugin, dataInterest, hrErrorCode, lptrKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylusPlugin_UpdateMapping(self: *const T, piRtsSrc: ?*IRealTimeStylus) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStylusPlugin.VTable, self.vtable).UpdateMapping(@ptrCast(*const IStylusPlugin, self), piRtsSrc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStylusPlugin_DataInterest(self: *const T, pDataInterest: ?*RealTimeStylusDataInterest) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStylusPlugin.VTable, self.vtable).DataInterest(@ptrCast(*const IStylusPlugin, self), pDataInterest);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStylusPlugin_RealTimeStylusEnabled(self: *const T, piRtsSrc: ?*IRealTimeStylus, cTcidCount: u32, pTcids: [*]const u32) HRESULT {
+                return @ptrCast(*const IStylusPlugin.VTable, self.vtable).RealTimeStylusEnabled(@ptrCast(*const IStylusPlugin, self), piRtsSrc, cTcidCount, pTcids);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStylusPlugin_RealTimeStylusDisabled(self: *const T, piRtsSrc: ?*IRealTimeStylus, cTcidCount: u32, pTcids: [*]const u32) HRESULT {
+                return @ptrCast(*const IStylusPlugin.VTable, self.vtable).RealTimeStylusDisabled(@ptrCast(*const IStylusPlugin, self), piRtsSrc, cTcidCount, pTcids);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStylusPlugin_StylusInRange(self: *const T, piRtsSrc: ?*IRealTimeStylus, tcid: u32, sid: u32) HRESULT {
+                return @ptrCast(*const IStylusPlugin.VTable, self.vtable).StylusInRange(@ptrCast(*const IStylusPlugin, self), piRtsSrc, tcid, sid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStylusPlugin_StylusOutOfRange(self: *const T, piRtsSrc: ?*IRealTimeStylus, tcid: u32, sid: u32) HRESULT {
+                return @ptrCast(*const IStylusPlugin.VTable, self.vtable).StylusOutOfRange(@ptrCast(*const IStylusPlugin, self), piRtsSrc, tcid, sid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStylusPlugin_StylusDown(self: *const T, piRtsSrc: ?*IRealTimeStylus, pStylusInfo: ?*const StylusInfo, cPropCountPerPkt: u32, pPacket: [*]i32, ppInOutPkt: ?*?*i32) HRESULT {
+                return @ptrCast(*const IStylusPlugin.VTable, self.vtable).StylusDown(@ptrCast(*const IStylusPlugin, self), piRtsSrc, pStylusInfo, cPropCountPerPkt, pPacket, ppInOutPkt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStylusPlugin_StylusUp(self: *const T, piRtsSrc: ?*IRealTimeStylus, pStylusInfo: ?*const StylusInfo, cPropCountPerPkt: u32, pPacket: [*]i32, ppInOutPkt: ?*?*i32) HRESULT {
+                return @ptrCast(*const IStylusPlugin.VTable, self.vtable).StylusUp(@ptrCast(*const IStylusPlugin, self), piRtsSrc, pStylusInfo, cPropCountPerPkt, pPacket, ppInOutPkt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStylusPlugin_StylusButtonDown(self: *const T, piRtsSrc: ?*IRealTimeStylus, sid: u32, pGuidStylusButton: ?*const Guid, pStylusPos: ?*POINT) HRESULT {
+                return @ptrCast(*const IStylusPlugin.VTable, self.vtable).StylusButtonDown(@ptrCast(*const IStylusPlugin, self), piRtsSrc, sid, pGuidStylusButton, pStylusPos);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStylusPlugin_StylusButtonUp(self: *const T, piRtsSrc: ?*IRealTimeStylus, sid: u32, pGuidStylusButton: ?*const Guid, pStylusPos: ?*POINT) HRESULT {
+                return @ptrCast(*const IStylusPlugin.VTable, self.vtable).StylusButtonUp(@ptrCast(*const IStylusPlugin, self), piRtsSrc, sid, pGuidStylusButton, pStylusPos);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStylusPlugin_InAirPackets(self: *const T, piRtsSrc: ?*IRealTimeStylus, pStylusInfo: ?*const StylusInfo, cPktCount: u32, cPktBuffLength: u32, pPackets: [*]i32, pcInOutPkts: ?*u32, ppInOutPkts: ?*?*i32) HRESULT {
+                return @ptrCast(*const IStylusPlugin.VTable, self.vtable).InAirPackets(@ptrCast(*const IStylusPlugin, self), piRtsSrc, pStylusInfo, cPktCount, cPktBuffLength, pPackets, pcInOutPkts, ppInOutPkts);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStylusPlugin_Packets(self: *const T, piRtsSrc: ?*IRealTimeStylus, pStylusInfo: ?*const StylusInfo, cPktCount: u32, cPktBuffLength: u32, pPackets: [*]i32, pcInOutPkts: ?*u32, ppInOutPkts: ?*?*i32) HRESULT {
+                return @ptrCast(*const IStylusPlugin.VTable, self.vtable).Packets(@ptrCast(*const IStylusPlugin, self), piRtsSrc, pStylusInfo, cPktCount, cPktBuffLength, pPackets, pcInOutPkts, ppInOutPkts);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStylusPlugin_CustomStylusDataAdded(self: *const T, piRtsSrc: ?*IRealTimeStylus, pGuidId: ?*const Guid, cbData: u32, pbData: ?[*:0]const u8) HRESULT {
+                return @ptrCast(*const IStylusPlugin.VTable, self.vtable).CustomStylusDataAdded(@ptrCast(*const IStylusPlugin, self), piRtsSrc, pGuidId, cbData, pbData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStylusPlugin_SystemEvent(self: *const T, piRtsSrc: ?*IRealTimeStylus, tcid: u32, sid: u32, event: u16, eventdata: SYSTEM_EVENT_DATA) HRESULT {
+                return @ptrCast(*const IStylusPlugin.VTable, self.vtable).SystemEvent(@ptrCast(*const IStylusPlugin, self), piRtsSrc, tcid, sid, event, eventdata);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStylusPlugin_TabletAdded(self: *const T, piRtsSrc: ?*IRealTimeStylus, piTablet: ?*IInkTablet) HRESULT {
+                return @ptrCast(*const IStylusPlugin.VTable, self.vtable).TabletAdded(@ptrCast(*const IStylusPlugin, self), piRtsSrc, piTablet);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStylusPlugin_TabletRemoved(self: *const T, piRtsSrc: ?*IRealTimeStylus, iTabletIndex: i32) HRESULT {
+                return @ptrCast(*const IStylusPlugin.VTable, self.vtable).TabletRemoved(@ptrCast(*const IStylusPlugin, self), piRtsSrc, iTabletIndex);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStylusPlugin_Error(self: *const T, piRtsSrc: ?*IRealTimeStylus, piPlugin: ?*IStylusPlugin, dataInterest: RealTimeStylusDataInterest, hrErrorCode: HRESULT, lptrKey: ?*isize) HRESULT {
+                return @ptrCast(*const IStylusPlugin.VTable, self.vtable).Error(@ptrCast(*const IStylusPlugin, self), piRtsSrc, piPlugin, dataInterest, hrErrorCode, lptrKey);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStylusPlugin_UpdateMapping(self: *const T, piRtsSrc: ?*IRealTimeStylus) HRESULT {
+                return @ptrCast(*const IStylusPlugin.VTable, self.vtable).UpdateMapping(@ptrCast(*const IStylusPlugin, self), piRtsSrc);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStylusPlugin_DataInterest(self: *const T, pDataInterest: ?*RealTimeStylusDataInterest) HRESULT {
+                return @ptrCast(*const IStylusPlugin.VTable, self.vtable).DataInterest(@ptrCast(*const IStylusPlugin, self), pDataInterest);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9346,9 +9472,11 @@ pub const IStylusSyncPlugin = extern struct {
         base: IStylusPlugin.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IStylusPlugin.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IStylusPlugin.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9360,9 +9488,11 @@ pub const IStylusAsyncPlugin = extern struct {
         base: IStylusPlugin.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IStylusPlugin.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IStylusPlugin.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9373,140 +9503,142 @@ pub const IDynamicRenderer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: fn(
+        get_Enabled: fn (
             self: *const IDynamicRenderer,
             bEnabled: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: fn(
+        put_Enabled: fn (
             self: *const IDynamicRenderer,
             bEnabled: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HWND: fn(
+        get_HWND: fn (
             self: *const IDynamicRenderer,
             hwnd: ?*HANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_HWND: fn(
+        put_HWND: fn (
             self: *const IDynamicRenderer,
             hwnd: HANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClipRectangle: fn(
+        get_ClipRectangle: fn (
             self: *const IDynamicRenderer,
             prcClipRect: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ClipRectangle: fn(
+        put_ClipRectangle: fn (
             self: *const IDynamicRenderer,
             prcClipRect: ?*const RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClipRegion: fn(
+        get_ClipRegion: fn (
             self: *const IDynamicRenderer,
             phClipRgn: ?*HANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ClipRegion: fn(
+        put_ClipRegion: fn (
             self: *const IDynamicRenderer,
             hClipRgn: HANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DrawingAttributes: fn(
+        get_DrawingAttributes: fn (
             self: *const IDynamicRenderer,
             ppiDA: ?*?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        putref_DrawingAttributes: fn(
+        putref_DrawingAttributes: fn (
             self: *const IDynamicRenderer,
             piDA: ?*IInkDrawingAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DataCacheEnabled: fn(
+        get_DataCacheEnabled: fn (
             self: *const IDynamicRenderer,
             pfCacheData: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DataCacheEnabled: fn(
+        put_DataCacheEnabled: fn (
             self: *const IDynamicRenderer,
             fCacheData: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseCachedData: fn(
+        ReleaseCachedData: fn (
             self: *const IDynamicRenderer,
             strokeId: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const IDynamicRenderer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Draw: fn(
+        Draw: fn (
             self: *const IDynamicRenderer,
             hDC: HANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_get_Enabled(self: *const T, bEnabled: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).get_Enabled(@ptrCast(*const IDynamicRenderer, self), bEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_put_Enabled(self: *const T, bEnabled: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).put_Enabled(@ptrCast(*const IDynamicRenderer, self), bEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_get_HWND(self: *const T, hwnd: ?*HANDLE_PTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).get_HWND(@ptrCast(*const IDynamicRenderer, self), hwnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_put_HWND(self: *const T, hwnd: HANDLE_PTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).put_HWND(@ptrCast(*const IDynamicRenderer, self), hwnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_get_ClipRectangle(self: *const T, prcClipRect: ?*RECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).get_ClipRectangle(@ptrCast(*const IDynamicRenderer, self), prcClipRect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_put_ClipRectangle(self: *const T, prcClipRect: ?*const RECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).put_ClipRectangle(@ptrCast(*const IDynamicRenderer, self), prcClipRect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_get_ClipRegion(self: *const T, phClipRgn: ?*HANDLE_PTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).get_ClipRegion(@ptrCast(*const IDynamicRenderer, self), phClipRgn);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_put_ClipRegion(self: *const T, hClipRgn: HANDLE_PTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).put_ClipRegion(@ptrCast(*const IDynamicRenderer, self), hClipRgn);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_get_DrawingAttributes(self: *const T, ppiDA: ?*?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).get_DrawingAttributes(@ptrCast(*const IDynamicRenderer, self), ppiDA);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_putref_DrawingAttributes(self: *const T, piDA: ?*IInkDrawingAttributes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).putref_DrawingAttributes(@ptrCast(*const IDynamicRenderer, self), piDA);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_get_DataCacheEnabled(self: *const T, pfCacheData: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).get_DataCacheEnabled(@ptrCast(*const IDynamicRenderer, self), pfCacheData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_put_DataCacheEnabled(self: *const T, fCacheData: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).put_DataCacheEnabled(@ptrCast(*const IDynamicRenderer, self), fCacheData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_ReleaseCachedData(self: *const T, strokeId: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).ReleaseCachedData(@ptrCast(*const IDynamicRenderer, self), strokeId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).Refresh(@ptrCast(*const IDynamicRenderer, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_Draw(self: *const T, hDC: HANDLE_PTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).Draw(@ptrCast(*const IDynamicRenderer, self), hDC);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicRenderer_get_Enabled(self: *const T, bEnabled: ?*BOOL) HRESULT {
+                return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).get_Enabled(@ptrCast(*const IDynamicRenderer, self), bEnabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicRenderer_put_Enabled(self: *const T, bEnabled: BOOL) HRESULT {
+                return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).put_Enabled(@ptrCast(*const IDynamicRenderer, self), bEnabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicRenderer_get_HWND(self: *const T, hwnd: ?*HANDLE_PTR) HRESULT {
+                return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).get_HWND(@ptrCast(*const IDynamicRenderer, self), hwnd);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicRenderer_put_HWND(self: *const T, hwnd: HANDLE_PTR) HRESULT {
+                return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).put_HWND(@ptrCast(*const IDynamicRenderer, self), hwnd);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicRenderer_get_ClipRectangle(self: *const T, prcClipRect: ?*RECT) HRESULT {
+                return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).get_ClipRectangle(@ptrCast(*const IDynamicRenderer, self), prcClipRect);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicRenderer_put_ClipRectangle(self: *const T, prcClipRect: ?*const RECT) HRESULT {
+                return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).put_ClipRectangle(@ptrCast(*const IDynamicRenderer, self), prcClipRect);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicRenderer_get_ClipRegion(self: *const T, phClipRgn: ?*HANDLE_PTR) HRESULT {
+                return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).get_ClipRegion(@ptrCast(*const IDynamicRenderer, self), phClipRgn);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicRenderer_put_ClipRegion(self: *const T, hClipRgn: HANDLE_PTR) HRESULT {
+                return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).put_ClipRegion(@ptrCast(*const IDynamicRenderer, self), hClipRgn);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicRenderer_get_DrawingAttributes(self: *const T, ppiDA: ?*?*IInkDrawingAttributes) HRESULT {
+                return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).get_DrawingAttributes(@ptrCast(*const IDynamicRenderer, self), ppiDA);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicRenderer_putref_DrawingAttributes(self: *const T, piDA: ?*IInkDrawingAttributes) HRESULT {
+                return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).putref_DrawingAttributes(@ptrCast(*const IDynamicRenderer, self), piDA);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicRenderer_get_DataCacheEnabled(self: *const T, pfCacheData: ?*BOOL) HRESULT {
+                return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).get_DataCacheEnabled(@ptrCast(*const IDynamicRenderer, self), pfCacheData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicRenderer_put_DataCacheEnabled(self: *const T, fCacheData: BOOL) HRESULT {
+                return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).put_DataCacheEnabled(@ptrCast(*const IDynamicRenderer, self), fCacheData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicRenderer_ReleaseCachedData(self: *const T, strokeId: u32) HRESULT {
+                return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).ReleaseCachedData(@ptrCast(*const IDynamicRenderer, self), strokeId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicRenderer_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).Refresh(@ptrCast(*const IDynamicRenderer, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDynamicRenderer_Draw(self: *const T, hDC: HANDLE_PTR) HRESULT {
+                return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).Draw(@ptrCast(*const IDynamicRenderer, self), hDC);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9517,62 +9649,64 @@ pub const IGestureRecognizer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: fn(
+        get_Enabled: fn (
             self: *const IGestureRecognizer,
             pfEnabled: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: fn(
+        put_Enabled: fn (
             self: *const IGestureRecognizer,
             fEnabled: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaxStrokeCount: fn(
+        get_MaxStrokeCount: fn (
             self: *const IGestureRecognizer,
             pcStrokes: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MaxStrokeCount: fn(
+        put_MaxStrokeCount: fn (
             self: *const IGestureRecognizer,
             cStrokes: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnableGestures: fn(
+        EnableGestures: fn (
             self: *const IGestureRecognizer,
             cGestures: u32,
             pGestures: [*]const i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
+        Reset: fn (
             self: *const IGestureRecognizer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGestureRecognizer_get_Enabled(self: *const T, pfEnabled: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGestureRecognizer.VTable, self.vtable).get_Enabled(@ptrCast(*const IGestureRecognizer, self), pfEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGestureRecognizer_put_Enabled(self: *const T, fEnabled: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGestureRecognizer.VTable, self.vtable).put_Enabled(@ptrCast(*const IGestureRecognizer, self), fEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGestureRecognizer_get_MaxStrokeCount(self: *const T, pcStrokes: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGestureRecognizer.VTable, self.vtable).get_MaxStrokeCount(@ptrCast(*const IGestureRecognizer, self), pcStrokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGestureRecognizer_put_MaxStrokeCount(self: *const T, cStrokes: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGestureRecognizer.VTable, self.vtable).put_MaxStrokeCount(@ptrCast(*const IGestureRecognizer, self), cStrokes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGestureRecognizer_EnableGestures(self: *const T, cGestures: u32, pGestures: [*]const i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGestureRecognizer.VTable, self.vtable).EnableGestures(@ptrCast(*const IGestureRecognizer, self), cGestures, pGestures);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGestureRecognizer_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGestureRecognizer.VTable, self.vtable).Reset(@ptrCast(*const IGestureRecognizer, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGestureRecognizer_get_Enabled(self: *const T, pfEnabled: ?*BOOL) HRESULT {
+                return @ptrCast(*const IGestureRecognizer.VTable, self.vtable).get_Enabled(@ptrCast(*const IGestureRecognizer, self), pfEnabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGestureRecognizer_put_Enabled(self: *const T, fEnabled: BOOL) HRESULT {
+                return @ptrCast(*const IGestureRecognizer.VTable, self.vtable).put_Enabled(@ptrCast(*const IGestureRecognizer, self), fEnabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGestureRecognizer_get_MaxStrokeCount(self: *const T, pcStrokes: ?*i32) HRESULT {
+                return @ptrCast(*const IGestureRecognizer.VTable, self.vtable).get_MaxStrokeCount(@ptrCast(*const IGestureRecognizer, self), pcStrokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGestureRecognizer_put_MaxStrokeCount(self: *const T, cStrokes: i32) HRESULT {
+                return @ptrCast(*const IGestureRecognizer.VTable, self.vtable).put_MaxStrokeCount(@ptrCast(*const IGestureRecognizer, self), cStrokes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGestureRecognizer_EnableGestures(self: *const T, cGestures: u32, pGestures: [*]const i32) HRESULT {
+                return @ptrCast(*const IGestureRecognizer.VTable, self.vtable).EnableGestures(@ptrCast(*const IGestureRecognizer, self), cGestures, pGestures);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGestureRecognizer_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IGestureRecognizer.VTable, self.vtable).Reset(@ptrCast(*const IGestureRecognizer, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9698,27 +9832,29 @@ pub const IID_ITipAutoCompleteProvider = &IID_ITipAutoCompleteProvider_Value;
 pub const ITipAutoCompleteProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        UpdatePendingText: fn(
+        UpdatePendingText: fn (
             self: *const ITipAutoCompleteProvider,
             bstrPendingText: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Show: fn(
+        Show: fn (
             self: *const ITipAutoCompleteProvider,
             fShow: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITipAutoCompleteProvider_UpdatePendingText(self: *const T, bstrPendingText: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITipAutoCompleteProvider.VTable, self.vtable).UpdatePendingText(@ptrCast(*const ITipAutoCompleteProvider, self), bstrPendingText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITipAutoCompleteProvider_Show(self: *const T, fShow: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITipAutoCompleteProvider.VTable, self.vtable).Show(@ptrCast(*const ITipAutoCompleteProvider, self), fShow);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITipAutoCompleteProvider_UpdatePendingText(self: *const T, bstrPendingText: ?BSTR) HRESULT {
+                return @ptrCast(*const ITipAutoCompleteProvider.VTable, self.vtable).UpdatePendingText(@ptrCast(*const ITipAutoCompleteProvider, self), bstrPendingText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITipAutoCompleteProvider_Show(self: *const T, fShow: BOOL) HRESULT {
+                return @ptrCast(*const ITipAutoCompleteProvider.VTable, self.vtable).Show(@ptrCast(*const ITipAutoCompleteProvider, self), fShow);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9727,59 +9863,60 @@ pub const IID_ITipAutoCompleteClient = &IID_ITipAutoCompleteClient_Value;
 pub const ITipAutoCompleteClient = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AdviseProvider: fn(
+        AdviseProvider: fn (
             self: *const ITipAutoCompleteClient,
             hWndField: ?HWND,
             pIProvider: ?*ITipAutoCompleteProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnadviseProvider: fn(
+        UnadviseProvider: fn (
             self: *const ITipAutoCompleteClient,
             hWndField: ?HWND,
             pIProvider: ?*ITipAutoCompleteProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UserSelection: fn(
+        UserSelection: fn (
             self: *const ITipAutoCompleteClient,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PreferredRects: fn(
+        PreferredRects: fn (
             self: *const ITipAutoCompleteClient,
             prcACList: ?*RECT,
             prcField: ?*RECT,
             prcModifiedACList: ?*RECT,
             pfShownAboveTip: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RequestShowUI: fn(
+        RequestShowUI: fn (
             self: *const ITipAutoCompleteClient,
             hWndList: ?HWND,
             pfAllowShowing: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITipAutoCompleteClient_AdviseProvider(self: *const T, hWndField: ?HWND, pIProvider: ?*ITipAutoCompleteProvider) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITipAutoCompleteClient.VTable, self.vtable).AdviseProvider(@ptrCast(*const ITipAutoCompleteClient, self), hWndField, pIProvider);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITipAutoCompleteClient_UnadviseProvider(self: *const T, hWndField: ?HWND, pIProvider: ?*ITipAutoCompleteProvider) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITipAutoCompleteClient.VTable, self.vtable).UnadviseProvider(@ptrCast(*const ITipAutoCompleteClient, self), hWndField, pIProvider);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITipAutoCompleteClient_UserSelection(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITipAutoCompleteClient.VTable, self.vtable).UserSelection(@ptrCast(*const ITipAutoCompleteClient, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITipAutoCompleteClient_PreferredRects(self: *const T, prcACList: ?*RECT, prcField: ?*RECT, prcModifiedACList: ?*RECT, pfShownAboveTip: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITipAutoCompleteClient.VTable, self.vtable).PreferredRects(@ptrCast(*const ITipAutoCompleteClient, self), prcACList, prcField, prcModifiedACList, pfShownAboveTip);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITipAutoCompleteClient_RequestShowUI(self: *const T, hWndList: ?HWND, pfAllowShowing: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITipAutoCompleteClient.VTable, self.vtable).RequestShowUI(@ptrCast(*const ITipAutoCompleteClient, self), hWndList, pfAllowShowing);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITipAutoCompleteClient_AdviseProvider(self: *const T, hWndField: ?HWND, pIProvider: ?*ITipAutoCompleteProvider) HRESULT {
+                return @ptrCast(*const ITipAutoCompleteClient.VTable, self.vtable).AdviseProvider(@ptrCast(*const ITipAutoCompleteClient, self), hWndField, pIProvider);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITipAutoCompleteClient_UnadviseProvider(self: *const T, hWndField: ?HWND, pIProvider: ?*ITipAutoCompleteProvider) HRESULT {
+                return @ptrCast(*const ITipAutoCompleteClient.VTable, self.vtable).UnadviseProvider(@ptrCast(*const ITipAutoCompleteClient, self), hWndField, pIProvider);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITipAutoCompleteClient_UserSelection(self: *const T) HRESULT {
+                return @ptrCast(*const ITipAutoCompleteClient.VTable, self.vtable).UserSelection(@ptrCast(*const ITipAutoCompleteClient, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITipAutoCompleteClient_PreferredRects(self: *const T, prcACList: ?*RECT, prcField: ?*RECT, prcModifiedACList: ?*RECT, pfShownAboveTip: ?*BOOL) HRESULT {
+                return @ptrCast(*const ITipAutoCompleteClient.VTable, self.vtable).PreferredRects(@ptrCast(*const ITipAutoCompleteClient, self), prcACList, prcField, prcModifiedACList, pfShownAboveTip);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITipAutoCompleteClient_RequestShowUI(self: *const T, hWndList: ?HWND, pfAllowShowing: ?*BOOL) HRESULT {
+                return @ptrCast(*const ITipAutoCompleteClient.VTable, self.vtable).RequestShowUI(@ptrCast(*const ITipAutoCompleteClient, self), hWndList, pfAllowShowing);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (27)
@@ -9958,19 +10095,14 @@ pub extern "inkobjcore" fn LoadCachedAttributes(
     pRecoAttributes: ?*RECO_ATTRS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (18)
@@ -9996,11 +10128,11 @@ const XFORM = @import("../graphics/gdi.zig").XFORM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PfnRecoCallback")) { _ = PfnRecoCallback; }
+    if (@hasDecl(@This(), "PfnRecoCallback")) {
+        _ = PfnRecoCallback;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

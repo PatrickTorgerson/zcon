@@ -119,13 +119,7 @@ pub const WNET_OPEN_ENUM_USAGE = enum(u32) {
         ATTACHED: u1 = 0,
         ALL: u1 = 0,
     }) WNET_OPEN_ENUM_USAGE {
-        return @intToEnum(WNET_OPEN_ENUM_USAGE,
-              (if (o.NONE == 1) @enumToInt(WNET_OPEN_ENUM_USAGE.NONE) else 0)
-            | (if (o.CONNECTABLE == 1) @enumToInt(WNET_OPEN_ENUM_USAGE.CONNECTABLE) else 0)
-            | (if (o.CONTAINER == 1) @enumToInt(WNET_OPEN_ENUM_USAGE.CONTAINER) else 0)
-            | (if (o.ATTACHED == 1) @enumToInt(WNET_OPEN_ENUM_USAGE.ATTACHED) else 0)
-            | (if (o.ALL == 1) @enumToInt(WNET_OPEN_ENUM_USAGE.ALL) else 0)
-        );
+        return @intToEnum(WNET_OPEN_ENUM_USAGE, (if (o.NONE == 1) @enumToInt(WNET_OPEN_ENUM_USAGE.NONE) else 0) | (if (o.CONNECTABLE == 1) @enumToInt(WNET_OPEN_ENUM_USAGE.CONNECTABLE) else 0) | (if (o.CONTAINER == 1) @enumToInt(WNET_OPEN_ENUM_USAGE.CONTAINER) else 0) | (if (o.ATTACHED == 1) @enumToInt(WNET_OPEN_ENUM_USAGE.ATTACHED) else 0) | (if (o.ALL == 1) @enumToInt(WNET_OPEN_ENUM_USAGE.ALL) else 0));
     }
 };
 pub const RESOURCEUSAGE_NONE = WNET_OPEN_ENUM_USAGE.NONE;
@@ -156,17 +150,7 @@ pub const NET_USE_CONNECT_FLAGS = enum(u32) {
         DEFERRED: u1 = 0,
         UPDATE_RECENT: u1 = 0,
     }) NET_USE_CONNECT_FLAGS {
-        return @intToEnum(NET_USE_CONNECT_FLAGS,
-              (if (o.INTERACTIVE == 1) @enumToInt(NET_USE_CONNECT_FLAGS.INTERACTIVE) else 0)
-            | (if (o.PROMPT == 1) @enumToInt(NET_USE_CONNECT_FLAGS.PROMPT) else 0)
-            | (if (o.REDIRECT == 1) @enumToInt(NET_USE_CONNECT_FLAGS.REDIRECT) else 0)
-            | (if (o.UPDATE_PROFILE == 1) @enumToInt(NET_USE_CONNECT_FLAGS.UPDATE_PROFILE) else 0)
-            | (if (o.COMMANDLINE == 1) @enumToInt(NET_USE_CONNECT_FLAGS.COMMANDLINE) else 0)
-            | (if (o.CMD_SAVECRED == 1) @enumToInt(NET_USE_CONNECT_FLAGS.CMD_SAVECRED) else 0)
-            | (if (o.TEMPORARY == 1) @enumToInt(NET_USE_CONNECT_FLAGS.TEMPORARY) else 0)
-            | (if (o.DEFERRED == 1) @enumToInt(NET_USE_CONNECT_FLAGS.DEFERRED) else 0)
-            | (if (o.UPDATE_RECENT == 1) @enumToInt(NET_USE_CONNECT_FLAGS.UPDATE_RECENT) else 0)
-        );
+        return @intToEnum(NET_USE_CONNECT_FLAGS, (if (o.INTERACTIVE == 1) @enumToInt(NET_USE_CONNECT_FLAGS.INTERACTIVE) else 0) | (if (o.PROMPT == 1) @enumToInt(NET_USE_CONNECT_FLAGS.PROMPT) else 0) | (if (o.REDIRECT == 1) @enumToInt(NET_USE_CONNECT_FLAGS.REDIRECT) else 0) | (if (o.UPDATE_PROFILE == 1) @enumToInt(NET_USE_CONNECT_FLAGS.UPDATE_PROFILE) else 0) | (if (o.COMMANDLINE == 1) @enumToInt(NET_USE_CONNECT_FLAGS.COMMANDLINE) else 0) | (if (o.CMD_SAVECRED == 1) @enumToInt(NET_USE_CONNECT_FLAGS.CMD_SAVECRED) else 0) | (if (o.TEMPORARY == 1) @enumToInt(NET_USE_CONNECT_FLAGS.TEMPORARY) else 0) | (if (o.DEFERRED == 1) @enumToInt(NET_USE_CONNECT_FLAGS.DEFERRED) else 0) | (if (o.UPDATE_RECENT == 1) @enumToInt(NET_USE_CONNECT_FLAGS.UPDATE_RECENT) else 0));
     }
 };
 pub const CONNECT_INTERACTIVE = NET_USE_CONNECT_FLAGS.INTERACTIVE;
@@ -207,11 +191,7 @@ pub const NET_RESOURCE_TYPE = enum(u32) {
         DISK: u1 = 0,
         PRINT: u1 = 0,
     }) NET_RESOURCE_TYPE {
-        return @intToEnum(NET_RESOURCE_TYPE,
-              (if (o.ANY == 1) @enumToInt(NET_RESOURCE_TYPE.ANY) else 0)
-            | (if (o.DISK == 1) @enumToInt(NET_RESOURCE_TYPE.DISK) else 0)
-            | (if (o.PRINT == 1) @enumToInt(NET_RESOURCE_TYPE.PRINT) else 0)
-        );
+        return @intToEnum(NET_RESOURCE_TYPE, (if (o.ANY == 1) @enumToInt(NET_RESOURCE_TYPE.ANY) else 0) | (if (o.DISK == 1) @enumToInt(NET_RESOURCE_TYPE.DISK) else 0) | (if (o.PRINT == 1) @enumToInt(NET_RESOURCE_TYPE.PRINT) else 0));
     }
 };
 pub const RESOURCETYPE_ANY = NET_RESOURCE_TYPE.ANY;
@@ -246,11 +226,7 @@ pub const NETINFOSTRUCT_CHARACTERISTICS = enum(u32) {
         DISKRED: u1 = 0,
         PRINTERRED: u1 = 0,
     }) NETINFOSTRUCT_CHARACTERISTICS {
-        return @intToEnum(NETINFOSTRUCT_CHARACTERISTICS,
-              (if (o.DLL16 == 1) @enumToInt(NETINFOSTRUCT_CHARACTERISTICS.DLL16) else 0)
-            | (if (o.DISKRED == 1) @enumToInt(NETINFOSTRUCT_CHARACTERISTICS.DISKRED) else 0)
-            | (if (o.PRINTERRED == 1) @enumToInt(NETINFOSTRUCT_CHARACTERISTICS.PRINTERRED) else 0)
-        );
+        return @intToEnum(NETINFOSTRUCT_CHARACTERISTICS, (if (o.DLL16 == 1) @enumToInt(NETINFOSTRUCT_CHARACTERISTICS.DLL16) else 0) | (if (o.DISKRED == 1) @enumToInt(NETINFOSTRUCT_CHARACTERISTICS.DISKRED) else 0) | (if (o.PRINTERRED == 1) @enumToInt(NETINFOSTRUCT_CHARACTERISTICS.PRINTERRED) else 0));
     }
 };
 pub const NETINFO_DLL16 = NETINFOSTRUCT_CHARACTERISTICS.DLL16;
@@ -273,14 +249,7 @@ pub const CONNECTDLGSTRUCT_FLAGS = enum(u32) {
         PERSIST: u1 = 0,
         NOT_PERSIST: u1 = 0,
     }) CONNECTDLGSTRUCT_FLAGS {
-        return @intToEnum(CONNECTDLGSTRUCT_FLAGS,
-              (if (o.RO_PATH == 1) @enumToInt(CONNECTDLGSTRUCT_FLAGS.RO_PATH) else 0)
-            | (if (o.CONN_POINT == 1) @enumToInt(CONNECTDLGSTRUCT_FLAGS.CONN_POINT) else 0)
-            | (if (o.USE_MRU == 1) @enumToInt(CONNECTDLGSTRUCT_FLAGS.USE_MRU) else 0)
-            | (if (o.HIDE_BOX == 1) @enumToInt(CONNECTDLGSTRUCT_FLAGS.HIDE_BOX) else 0)
-            | (if (o.PERSIST == 1) @enumToInt(CONNECTDLGSTRUCT_FLAGS.PERSIST) else 0)
-            | (if (o.NOT_PERSIST == 1) @enumToInt(CONNECTDLGSTRUCT_FLAGS.NOT_PERSIST) else 0)
-        );
+        return @intToEnum(CONNECTDLGSTRUCT_FLAGS, (if (o.RO_PATH == 1) @enumToInt(CONNECTDLGSTRUCT_FLAGS.RO_PATH) else 0) | (if (o.CONN_POINT == 1) @enumToInt(CONNECTDLGSTRUCT_FLAGS.CONN_POINT) else 0) | (if (o.USE_MRU == 1) @enumToInt(CONNECTDLGSTRUCT_FLAGS.USE_MRU) else 0) | (if (o.HIDE_BOX == 1) @enumToInt(CONNECTDLGSTRUCT_FLAGS.HIDE_BOX) else 0) | (if (o.PERSIST == 1) @enumToInt(CONNECTDLGSTRUCT_FLAGS.PERSIST) else 0) | (if (o.NOT_PERSIST == 1) @enumToInt(CONNECTDLGSTRUCT_FLAGS.NOT_PERSIST) else 0));
     }
 };
 pub const CONNDLG_RO_PATH = CONNECTDLGSTRUCT_FLAGS.RO_PATH;
@@ -298,10 +267,7 @@ pub const DISCDLGSTRUCT_FLAGS = enum(u32) {
         UPDATE_PROFILE: u1 = 0,
         NO_FORCE: u1 = 0,
     }) DISCDLGSTRUCT_FLAGS {
-        return @intToEnum(DISCDLGSTRUCT_FLAGS,
-              (if (o.UPDATE_PROFILE == 1) @enumToInt(DISCDLGSTRUCT_FLAGS.UPDATE_PROFILE) else 0)
-            | (if (o.NO_FORCE == 1) @enumToInt(DISCDLGSTRUCT_FLAGS.NO_FORCE) else 0)
-        );
+        return @intToEnum(DISCDLGSTRUCT_FLAGS, (if (o.UPDATE_PROFILE == 1) @enumToInt(DISCDLGSTRUCT_FLAGS.UPDATE_PROFILE) else 0) | (if (o.NO_FORCE == 1) @enumToInt(DISCDLGSTRUCT_FLAGS.NO_FORCE) else 0));
     }
 };
 pub const DISC_UPDATE_PROFILE = DISCDLGSTRUCT_FLAGS.UPDATE_PROFILE;
@@ -403,13 +369,13 @@ pub const NETCONNECTINFOSTRUCT = extern struct {
     dwOptDataSize: u32,
 };
 
-pub const PF_NPAddConnection = fn(
+pub const PF_NPAddConnection = fn (
     lpNetResource: ?*NETRESOURCEW,
     lpPassword: ?PWSTR,
     lpUserName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPAddConnection3 = fn(
+pub const PF_NPAddConnection3 = fn (
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEW,
     lpPassword: ?PWSTR,
@@ -417,7 +383,7 @@ pub const PF_NPAddConnection3 = fn(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPAddConnection4 = fn(
+pub const PF_NPAddConnection4 = fn (
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 3?
@@ -429,24 +395,24 @@ pub const PF_NPAddConnection4 = fn(
     cbUseOptions: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPCancelConnection = fn(
+pub const PF_NPCancelConnection = fn (
     lpName: ?PWSTR,
     fForce: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPCancelConnection2 = fn(
+pub const PF_NPCancelConnection2 = fn (
     lpName: ?PWSTR,
     fForce: BOOL,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPGetConnection = fn(
+pub const PF_NPGetConnection = fn (
     lpLocalName: ?PWSTR,
     lpRemoteName: ?[*:0]u16,
     lpnBufferLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPGetConnection3 = fn(
+pub const PF_NPGetConnection3 = fn (
     lpLocalName: ?[*:0]const u16,
     dwLevel: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -454,7 +420,7 @@ pub const PF_NPGetConnection3 = fn(
     lpBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPGetUniversalName = fn(
+pub const PF_NPGetUniversalName = fn (
     lpLocalPath: ?[*:0]const u16,
     dwInfoLevel: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -462,12 +428,12 @@ pub const PF_NPGetUniversalName = fn(
     lpnBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPGetConnectionPerformance = fn(
+pub const PF_NPGetConnectionPerformance = fn (
     lpRemoteName: ?[*:0]const u16,
     lpNetConnectInfo: ?*NETCONNECTINFOSTRUCT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPOpenEnum = fn(
+pub const PF_NPOpenEnum = fn (
     dwScope: u32,
     dwType: u32,
     dwUsage: u32,
@@ -475,7 +441,7 @@ pub const PF_NPOpenEnum = fn(
     lphEnum: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPEnumResource = fn(
+pub const PF_NPEnumResource = fn (
     hEnum: ?HANDLE,
     lpcCount: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -483,21 +449,21 @@ pub const PF_NPEnumResource = fn(
     lpBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPCloseEnum = fn(
+pub const PF_NPCloseEnum = fn (
     hEnum: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPGetCaps = fn(
+pub const PF_NPGetCaps = fn (
     ndex: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPGetUser = fn(
+pub const PF_NPGetUser = fn (
     lpName: ?PWSTR,
     lpUserName: [*:0]u16,
     lpnBufferLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPGetPersistentUseOptionsForConnection = fn(
+pub const PF_NPGetPersistentUseOptionsForConnection = fn (
     lpRemotePath: ?PWSTR,
     // TODO: what to do with BytesParamIndex 2?
     lpReadUseOptions: ?*u8,
@@ -507,11 +473,11 @@ pub const PF_NPGetPersistentUseOptionsForConnection = fn(
     lpSizeWriteUseOptions: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPDeviceMode = fn(
+pub const PF_NPDeviceMode = fn (
     hParent: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPSearchDialog = fn(
+pub const PF_NPSearchDialog = fn (
     hwndParent: ?HWND,
     lpNetResource: ?*NETRESOURCEW,
     lpBuffer: [*]u8,
@@ -519,14 +485,14 @@ pub const PF_NPSearchDialog = fn(
     lpnFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPGetResourceParent = fn(
+pub const PF_NPGetResourceParent = fn (
     lpNetResource: ?*NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPGetResourceInformation = fn(
+pub const PF_NPGetResourceInformation = fn (
     lpNetResource: ?*NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 2?
     lpBuffer: ?*anyopaque,
@@ -534,7 +500,7 @@ pub const PF_NPGetResourceInformation = fn(
     lplpSystem: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPFormatNetworkName = fn(
+pub const PF_NPFormatNetworkName = fn (
     lpRemoteName: ?PWSTR,
     lpFormattedName: [*:0]u16,
     lpnLength: ?*u32,
@@ -542,7 +508,7 @@ pub const PF_NPFormatNetworkName = fn(
     dwAveCharPerLine: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPGetPropertyText = fn(
+pub const PF_NPGetPropertyText = fn (
     iButton: u32,
     nPropSel: u32,
     lpName: ?PWSTR,
@@ -551,7 +517,7 @@ pub const PF_NPGetPropertyText = fn(
     nType: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPPropertyDialog = fn(
+pub const PF_NPPropertyDialog = fn (
     hwndParent: ?HWND,
     iButtonDlg: u32,
     nPropSel: u32,
@@ -559,19 +525,19 @@ pub const PF_NPPropertyDialog = fn(
     nType: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPGetDirectoryType = fn(
+pub const PF_NPGetDirectoryType = fn (
     lpName: ?PWSTR,
     lpType: ?*i32,
     bFlushCache: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPDirectoryNotify = fn(
+pub const PF_NPDirectoryNotify = fn (
     hwnd: ?HWND,
     lpDir: ?PWSTR,
     dwOper: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPLogonNotify = fn(
+pub const PF_NPLogonNotify = fn (
     lpLogonId: ?*LUID,
     lpAuthentInfoType: ?[*:0]const u16,
     lpAuthentInfo: ?*anyopaque,
@@ -582,7 +548,7 @@ pub const PF_NPLogonNotify = fn(
     lpLogonScript: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPPasswordChangeNotify = fn(
+pub const PF_NPPasswordChangeNotify = fn (
     lpAuthentInfoType: ?[*:0]const u16,
     lpAuthentInfo: ?*anyopaque,
     lpPreviousAuthentInfoType: ?[*:0]const u16,
@@ -611,27 +577,27 @@ pub const NOTIFYCANCEL = extern struct {
     fForce: BOOL,
 };
 
-pub const PF_AddConnectNotify = fn(
+pub const PF_AddConnectNotify = fn (
     lpNotifyInfo: ?*NOTIFYINFO,
     lpAddInfo: ?*NOTIFYADD,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_CancelConnectNotify = fn(
+pub const PF_CancelConnectNotify = fn (
     lpNotifyInfo: ?*NOTIFYINFO,
     lpCancelInfo: ?*NOTIFYCANCEL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPFMXGetPermCaps = fn(
+pub const PF_NPFMXGetPermCaps = fn (
     lpDriveName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPFMXEditPerm = fn(
+pub const PF_NPFMXEditPerm = fn (
     lpDriveName: ?PWSTR,
     hwndFMX: ?HWND,
     nDialogType: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_NPFMXGetPermHelp = fn(
+pub const PF_NPFMXGetPermHelp = fn (
     lpDriveName: ?PWSTR,
     nDialogType: u32,
     fDirectory: BOOL,
@@ -639,7 +605,6 @@ pub const PF_NPFMXGetPermHelp = fn(
     lpBufferSize: ?*u32,
     lpnHelpContext: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (65)
@@ -1160,7 +1125,6 @@ pub extern "mpr" fn WNetSetLastErrorW(
     lpProviders: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (27)
 //--------------------------------------------------------------------------------
@@ -1225,33 +1189,33 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const WNetSetLastError = thismodule.WNetSetLastErrorW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const NETRESOURCE = *opaque{};
-        pub const CONNECTDLGSTRUCT = *opaque{};
-        pub const DISCDLGSTRUCT = *opaque{};
-        pub const UNIVERSAL_NAME_INFO = *opaque{};
-        pub const REMOTE_NAME_INFO = *opaque{};
-        pub const WNetAddConnection = *opaque{};
-        pub const WNetAddConnection2 = *opaque{};
-        pub const WNetAddConnection3 = *opaque{};
-        pub const WNetAddConnection4 = *opaque{};
-        pub const WNetCancelConnection = *opaque{};
-        pub const WNetCancelConnection2 = *opaque{};
-        pub const WNetGetConnection = *opaque{};
-        pub const WNetUseConnection = *opaque{};
-        pub const WNetUseConnection4 = *opaque{};
-        pub const WNetConnectionDialog1 = *opaque{};
-        pub const WNetDisconnectDialog1 = *opaque{};
-        pub const WNetOpenEnum = *opaque{};
-        pub const WNetEnumResource = *opaque{};
-        pub const WNetGetResourceParent = *opaque{};
-        pub const WNetGetResourceInformation = *opaque{};
-        pub const WNetGetUniversalName = *opaque{};
-        pub const WNetGetUser = *opaque{};
-        pub const WNetGetProviderName = *opaque{};
-        pub const WNetGetNetworkInformation = *opaque{};
-        pub const WNetGetLastError = *opaque{};
-        pub const MultinetGetConnectionPerformance = *opaque{};
-        pub const WNetSetLastError = *opaque{};
+        pub const NETRESOURCE = *opaque {};
+        pub const CONNECTDLGSTRUCT = *opaque {};
+        pub const DISCDLGSTRUCT = *opaque {};
+        pub const UNIVERSAL_NAME_INFO = *opaque {};
+        pub const REMOTE_NAME_INFO = *opaque {};
+        pub const WNetAddConnection = *opaque {};
+        pub const WNetAddConnection2 = *opaque {};
+        pub const WNetAddConnection3 = *opaque {};
+        pub const WNetAddConnection4 = *opaque {};
+        pub const WNetCancelConnection = *opaque {};
+        pub const WNetCancelConnection2 = *opaque {};
+        pub const WNetGetConnection = *opaque {};
+        pub const WNetUseConnection = *opaque {};
+        pub const WNetUseConnection4 = *opaque {};
+        pub const WNetConnectionDialog1 = *opaque {};
+        pub const WNetDisconnectDialog1 = *opaque {};
+        pub const WNetOpenEnum = *opaque {};
+        pub const WNetEnumResource = *opaque {};
+        pub const WNetGetResourceParent = *opaque {};
+        pub const WNetGetResourceInformation = *opaque {};
+        pub const WNetGetUniversalName = *opaque {};
+        pub const WNetGetUser = *opaque {};
+        pub const WNetGetProviderName = *opaque {};
+        pub const WNetGetNetworkInformation = *opaque {};
+        pub const WNetGetLastError = *opaque {};
+        pub const MultinetGetConnectionPerformance = *opaque {};
+        pub const WNetSetLastError = *opaque {};
     } else struct {
         pub const NETRESOURCE = @compileError("'NETRESOURCE' requires that UNICODE be set to true or false in the root module");
         pub const CONNECTDLGSTRUCT = @compileError("'CONNECTDLGSTRUCT' requires that UNICODE be set to true or false in the root module");
@@ -1295,41 +1259,101 @@ const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PF_NPAddConnection")) { _ = PF_NPAddConnection; }
-    if (@hasDecl(@This(), "PF_NPAddConnection3")) { _ = PF_NPAddConnection3; }
-    if (@hasDecl(@This(), "PF_NPAddConnection4")) { _ = PF_NPAddConnection4; }
-    if (@hasDecl(@This(), "PF_NPCancelConnection")) { _ = PF_NPCancelConnection; }
-    if (@hasDecl(@This(), "PF_NPCancelConnection2")) { _ = PF_NPCancelConnection2; }
-    if (@hasDecl(@This(), "PF_NPGetConnection")) { _ = PF_NPGetConnection; }
-    if (@hasDecl(@This(), "PF_NPGetConnection3")) { _ = PF_NPGetConnection3; }
-    if (@hasDecl(@This(), "PF_NPGetUniversalName")) { _ = PF_NPGetUniversalName; }
-    if (@hasDecl(@This(), "PF_NPGetConnectionPerformance")) { _ = PF_NPGetConnectionPerformance; }
-    if (@hasDecl(@This(), "PF_NPOpenEnum")) { _ = PF_NPOpenEnum; }
-    if (@hasDecl(@This(), "PF_NPEnumResource")) { _ = PF_NPEnumResource; }
-    if (@hasDecl(@This(), "PF_NPCloseEnum")) { _ = PF_NPCloseEnum; }
-    if (@hasDecl(@This(), "PF_NPGetCaps")) { _ = PF_NPGetCaps; }
-    if (@hasDecl(@This(), "PF_NPGetUser")) { _ = PF_NPGetUser; }
-    if (@hasDecl(@This(), "PF_NPGetPersistentUseOptionsForConnection")) { _ = PF_NPGetPersistentUseOptionsForConnection; }
-    if (@hasDecl(@This(), "PF_NPDeviceMode")) { _ = PF_NPDeviceMode; }
-    if (@hasDecl(@This(), "PF_NPSearchDialog")) { _ = PF_NPSearchDialog; }
-    if (@hasDecl(@This(), "PF_NPGetResourceParent")) { _ = PF_NPGetResourceParent; }
-    if (@hasDecl(@This(), "PF_NPGetResourceInformation")) { _ = PF_NPGetResourceInformation; }
-    if (@hasDecl(@This(), "PF_NPFormatNetworkName")) { _ = PF_NPFormatNetworkName; }
-    if (@hasDecl(@This(), "PF_NPGetPropertyText")) { _ = PF_NPGetPropertyText; }
-    if (@hasDecl(@This(), "PF_NPPropertyDialog")) { _ = PF_NPPropertyDialog; }
-    if (@hasDecl(@This(), "PF_NPGetDirectoryType")) { _ = PF_NPGetDirectoryType; }
-    if (@hasDecl(@This(), "PF_NPDirectoryNotify")) { _ = PF_NPDirectoryNotify; }
-    if (@hasDecl(@This(), "PF_NPLogonNotify")) { _ = PF_NPLogonNotify; }
-    if (@hasDecl(@This(), "PF_NPPasswordChangeNotify")) { _ = PF_NPPasswordChangeNotify; }
-    if (@hasDecl(@This(), "PF_AddConnectNotify")) { _ = PF_AddConnectNotify; }
-    if (@hasDecl(@This(), "PF_CancelConnectNotify")) { _ = PF_CancelConnectNotify; }
-    if (@hasDecl(@This(), "PF_NPFMXGetPermCaps")) { _ = PF_NPFMXGetPermCaps; }
-    if (@hasDecl(@This(), "PF_NPFMXEditPerm")) { _ = PF_NPFMXEditPerm; }
-    if (@hasDecl(@This(), "PF_NPFMXGetPermHelp")) { _ = PF_NPFMXGetPermHelp; }
+    if (@hasDecl(@This(), "PF_NPAddConnection")) {
+        _ = PF_NPAddConnection;
+    }
+    if (@hasDecl(@This(), "PF_NPAddConnection3")) {
+        _ = PF_NPAddConnection3;
+    }
+    if (@hasDecl(@This(), "PF_NPAddConnection4")) {
+        _ = PF_NPAddConnection4;
+    }
+    if (@hasDecl(@This(), "PF_NPCancelConnection")) {
+        _ = PF_NPCancelConnection;
+    }
+    if (@hasDecl(@This(), "PF_NPCancelConnection2")) {
+        _ = PF_NPCancelConnection2;
+    }
+    if (@hasDecl(@This(), "PF_NPGetConnection")) {
+        _ = PF_NPGetConnection;
+    }
+    if (@hasDecl(@This(), "PF_NPGetConnection3")) {
+        _ = PF_NPGetConnection3;
+    }
+    if (@hasDecl(@This(), "PF_NPGetUniversalName")) {
+        _ = PF_NPGetUniversalName;
+    }
+    if (@hasDecl(@This(), "PF_NPGetConnectionPerformance")) {
+        _ = PF_NPGetConnectionPerformance;
+    }
+    if (@hasDecl(@This(), "PF_NPOpenEnum")) {
+        _ = PF_NPOpenEnum;
+    }
+    if (@hasDecl(@This(), "PF_NPEnumResource")) {
+        _ = PF_NPEnumResource;
+    }
+    if (@hasDecl(@This(), "PF_NPCloseEnum")) {
+        _ = PF_NPCloseEnum;
+    }
+    if (@hasDecl(@This(), "PF_NPGetCaps")) {
+        _ = PF_NPGetCaps;
+    }
+    if (@hasDecl(@This(), "PF_NPGetUser")) {
+        _ = PF_NPGetUser;
+    }
+    if (@hasDecl(@This(), "PF_NPGetPersistentUseOptionsForConnection")) {
+        _ = PF_NPGetPersistentUseOptionsForConnection;
+    }
+    if (@hasDecl(@This(), "PF_NPDeviceMode")) {
+        _ = PF_NPDeviceMode;
+    }
+    if (@hasDecl(@This(), "PF_NPSearchDialog")) {
+        _ = PF_NPSearchDialog;
+    }
+    if (@hasDecl(@This(), "PF_NPGetResourceParent")) {
+        _ = PF_NPGetResourceParent;
+    }
+    if (@hasDecl(@This(), "PF_NPGetResourceInformation")) {
+        _ = PF_NPGetResourceInformation;
+    }
+    if (@hasDecl(@This(), "PF_NPFormatNetworkName")) {
+        _ = PF_NPFormatNetworkName;
+    }
+    if (@hasDecl(@This(), "PF_NPGetPropertyText")) {
+        _ = PF_NPGetPropertyText;
+    }
+    if (@hasDecl(@This(), "PF_NPPropertyDialog")) {
+        _ = PF_NPPropertyDialog;
+    }
+    if (@hasDecl(@This(), "PF_NPGetDirectoryType")) {
+        _ = PF_NPGetDirectoryType;
+    }
+    if (@hasDecl(@This(), "PF_NPDirectoryNotify")) {
+        _ = PF_NPDirectoryNotify;
+    }
+    if (@hasDecl(@This(), "PF_NPLogonNotify")) {
+        _ = PF_NPLogonNotify;
+    }
+    if (@hasDecl(@This(), "PF_NPPasswordChangeNotify")) {
+        _ = PF_NPPasswordChangeNotify;
+    }
+    if (@hasDecl(@This(), "PF_AddConnectNotify")) {
+        _ = PF_AddConnectNotify;
+    }
+    if (@hasDecl(@This(), "PF_CancelConnectNotify")) {
+        _ = PF_CancelConnectNotify;
+    }
+    if (@hasDecl(@This(), "PF_NPFMXGetPermCaps")) {
+        _ = PF_NPFMXGetPermCaps;
+    }
+    if (@hasDecl(@This(), "PF_NPFMXEditPerm")) {
+        _ = PF_NPFMXEditPerm;
+    }
+    if (@hasDecl(@This(), "PF_NPFMXGetPermHelp")) {
+        _ = PF_NPFMXGetPermHelp;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

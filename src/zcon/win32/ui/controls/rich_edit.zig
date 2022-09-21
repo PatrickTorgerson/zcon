@@ -541,44 +541,7 @@ pub const CFM_MASK = enum(u32) {
         ALL2: u1 = 0,
         ALLEFFECTS: u1 = 0,
     }) CFM_MASK {
-        return @intToEnum(CFM_MASK,
-              (if (o.SUBSCRIPT == 1) @enumToInt(CFM_MASK.SUBSCRIPT) else 0)
-            | (if (o.EFFECTS == 1) @enumToInt(CFM_MASK.EFFECTS) else 0)
-            | (if (o.ALL == 1) @enumToInt(CFM_MASK.ALL) else 0)
-            | (if (o.BOLD == 1) @enumToInt(CFM_MASK.BOLD) else 0)
-            | (if (o.CHARSET == 1) @enumToInt(CFM_MASK.CHARSET) else 0)
-            | (if (o.COLOR == 1) @enumToInt(CFM_MASK.COLOR) else 0)
-            | (if (o.FACE == 1) @enumToInt(CFM_MASK.FACE) else 0)
-            | (if (o.ITALIC == 1) @enumToInt(CFM_MASK.ITALIC) else 0)
-            | (if (o.OFFSET == 1) @enumToInt(CFM_MASK.OFFSET) else 0)
-            | (if (o.PROTECTED == 1) @enumToInt(CFM_MASK.PROTECTED) else 0)
-            | (if (o.SIZE == 1) @enumToInt(CFM_MASK.SIZE) else 0)
-            | (if (o.STRIKEOUT == 1) @enumToInt(CFM_MASK.STRIKEOUT) else 0)
-            | (if (o.UNDERLINE == 1) @enumToInt(CFM_MASK.UNDERLINE) else 0)
-            | (if (o.LINK == 1) @enumToInt(CFM_MASK.LINK) else 0)
-            | (if (o.SMALLCAPS == 1) @enumToInt(CFM_MASK.SMALLCAPS) else 0)
-            | (if (o.ALLCAPS == 1) @enumToInt(CFM_MASK.ALLCAPS) else 0)
-            | (if (o.HIDDEN == 1) @enumToInt(CFM_MASK.HIDDEN) else 0)
-            | (if (o.OUTLINE == 1) @enumToInt(CFM_MASK.OUTLINE) else 0)
-            | (if (o.SHADOW == 1) @enumToInt(CFM_MASK.SHADOW) else 0)
-            | (if (o.EMBOSS == 1) @enumToInt(CFM_MASK.EMBOSS) else 0)
-            | (if (o.IMPRINT == 1) @enumToInt(CFM_MASK.IMPRINT) else 0)
-            | (if (o.DISABLED == 1) @enumToInt(CFM_MASK.DISABLED) else 0)
-            | (if (o.REVISED == 1) @enumToInt(CFM_MASK.REVISED) else 0)
-            | (if (o.REVAUTHOR == 1) @enumToInt(CFM_MASK.REVAUTHOR) else 0)
-            | (if (o.ANIMATION == 1) @enumToInt(CFM_MASK.ANIMATION) else 0)
-            | (if (o.STYLE == 1) @enumToInt(CFM_MASK.STYLE) else 0)
-            | (if (o.KERNING == 1) @enumToInt(CFM_MASK.KERNING) else 0)
-            | (if (o.SPACING == 1) @enumToInt(CFM_MASK.SPACING) else 0)
-            | (if (o.WEIGHT == 1) @enumToInt(CFM_MASK.WEIGHT) else 0)
-            | (if (o.UNDERLINETYPE == 1) @enumToInt(CFM_MASK.UNDERLINETYPE) else 0)
-            | (if (o.COOKIE == 1) @enumToInt(CFM_MASK.COOKIE) else 0)
-            | (if (o.LCID == 1) @enumToInt(CFM_MASK.LCID) else 0)
-            | (if (o.BACKCOLOR == 1) @enumToInt(CFM_MASK.BACKCOLOR) else 0)
-            | (if (o.EFFECTS2 == 1) @enumToInt(CFM_MASK.EFFECTS2) else 0)
-            | (if (o.ALL2 == 1) @enumToInt(CFM_MASK.ALL2) else 0)
-            | (if (o.ALLEFFECTS == 1) @enumToInt(CFM_MASK.ALLEFFECTS) else 0)
-        );
+        return @intToEnum(CFM_MASK, (if (o.SUBSCRIPT == 1) @enumToInt(CFM_MASK.SUBSCRIPT) else 0) | (if (o.EFFECTS == 1) @enumToInt(CFM_MASK.EFFECTS) else 0) | (if (o.ALL == 1) @enumToInt(CFM_MASK.ALL) else 0) | (if (o.BOLD == 1) @enumToInt(CFM_MASK.BOLD) else 0) | (if (o.CHARSET == 1) @enumToInt(CFM_MASK.CHARSET) else 0) | (if (o.COLOR == 1) @enumToInt(CFM_MASK.COLOR) else 0) | (if (o.FACE == 1) @enumToInt(CFM_MASK.FACE) else 0) | (if (o.ITALIC == 1) @enumToInt(CFM_MASK.ITALIC) else 0) | (if (o.OFFSET == 1) @enumToInt(CFM_MASK.OFFSET) else 0) | (if (o.PROTECTED == 1) @enumToInt(CFM_MASK.PROTECTED) else 0) | (if (o.SIZE == 1) @enumToInt(CFM_MASK.SIZE) else 0) | (if (o.STRIKEOUT == 1) @enumToInt(CFM_MASK.STRIKEOUT) else 0) | (if (o.UNDERLINE == 1) @enumToInt(CFM_MASK.UNDERLINE) else 0) | (if (o.LINK == 1) @enumToInt(CFM_MASK.LINK) else 0) | (if (o.SMALLCAPS == 1) @enumToInt(CFM_MASK.SMALLCAPS) else 0) | (if (o.ALLCAPS == 1) @enumToInt(CFM_MASK.ALLCAPS) else 0) | (if (o.HIDDEN == 1) @enumToInt(CFM_MASK.HIDDEN) else 0) | (if (o.OUTLINE == 1) @enumToInt(CFM_MASK.OUTLINE) else 0) | (if (o.SHADOW == 1) @enumToInt(CFM_MASK.SHADOW) else 0) | (if (o.EMBOSS == 1) @enumToInt(CFM_MASK.EMBOSS) else 0) | (if (o.IMPRINT == 1) @enumToInt(CFM_MASK.IMPRINT) else 0) | (if (o.DISABLED == 1) @enumToInt(CFM_MASK.DISABLED) else 0) | (if (o.REVISED == 1) @enumToInt(CFM_MASK.REVISED) else 0) | (if (o.REVAUTHOR == 1) @enumToInt(CFM_MASK.REVAUTHOR) else 0) | (if (o.ANIMATION == 1) @enumToInt(CFM_MASK.ANIMATION) else 0) | (if (o.STYLE == 1) @enumToInt(CFM_MASK.STYLE) else 0) | (if (o.KERNING == 1) @enumToInt(CFM_MASK.KERNING) else 0) | (if (o.SPACING == 1) @enumToInt(CFM_MASK.SPACING) else 0) | (if (o.WEIGHT == 1) @enumToInt(CFM_MASK.WEIGHT) else 0) | (if (o.UNDERLINETYPE == 1) @enumToInt(CFM_MASK.UNDERLINETYPE) else 0) | (if (o.COOKIE == 1) @enumToInt(CFM_MASK.COOKIE) else 0) | (if (o.LCID == 1) @enumToInt(CFM_MASK.LCID) else 0) | (if (o.BACKCOLOR == 1) @enumToInt(CFM_MASK.BACKCOLOR) else 0) | (if (o.EFFECTS2 == 1) @enumToInt(CFM_MASK.EFFECTS2) else 0) | (if (o.ALL2 == 1) @enumToInt(CFM_MASK.ALL2) else 0) | (if (o.ALLEFFECTS == 1) @enumToInt(CFM_MASK.ALLEFFECTS) else 0));
     }
 };
 pub const CFM_SUBSCRIPT = CFM_MASK.SUBSCRIPT;
@@ -679,33 +642,7 @@ pub const CFE_EFFECTS = enum(u32) {
         MATH: u1 = 0,
         MATHORDINARY: u1 = 0,
     }) CFE_EFFECTS {
-        return @intToEnum(CFE_EFFECTS,
-              (if (o.ALLCAPS == 1) @enumToInt(CFE_EFFECTS.ALLCAPS) else 0)
-            | (if (o.AUTOBACKCOLOR == 1) @enumToInt(CFE_EFFECTS.AUTOBACKCOLOR) else 0)
-            | (if (o.DISABLED == 1) @enumToInt(CFE_EFFECTS.DISABLED) else 0)
-            | (if (o.EMBOSS == 1) @enumToInt(CFE_EFFECTS.EMBOSS) else 0)
-            | (if (o.HIDDEN == 1) @enumToInt(CFE_EFFECTS.HIDDEN) else 0)
-            | (if (o.IMPRINT == 1) @enumToInt(CFE_EFFECTS.IMPRINT) else 0)
-            | (if (o.OUTLINE == 1) @enumToInt(CFE_EFFECTS.OUTLINE) else 0)
-            | (if (o.REVISED == 1) @enumToInt(CFE_EFFECTS.REVISED) else 0)
-            | (if (o.SHADOW == 1) @enumToInt(CFE_EFFECTS.SHADOW) else 0)
-            | (if (o.SMALLCAPS == 1) @enumToInt(CFE_EFFECTS.SMALLCAPS) else 0)
-            | (if (o.AUTOCOLOR == 1) @enumToInt(CFE_EFFECTS.AUTOCOLOR) else 0)
-            | (if (o.BOLD == 1) @enumToInt(CFE_EFFECTS.BOLD) else 0)
-            | (if (o.ITALIC == 1) @enumToInt(CFE_EFFECTS.ITALIC) else 0)
-            | (if (o.STRIKEOUT == 1) @enumToInt(CFE_EFFECTS.STRIKEOUT) else 0)
-            | (if (o.UNDERLINE == 1) @enumToInt(CFE_EFFECTS.UNDERLINE) else 0)
-            | (if (o.PROTECTED == 1) @enumToInt(CFE_EFFECTS.PROTECTED) else 0)
-            | (if (o.LINK == 1) @enumToInt(CFE_EFFECTS.LINK) else 0)
-            | (if (o.SUBSCRIPT == 1) @enumToInt(CFE_EFFECTS.SUBSCRIPT) else 0)
-            | (if (o.SUPERSCRIPT == 1) @enumToInt(CFE_EFFECTS.SUPERSCRIPT) else 0)
-            | (if (o.FONTBOUND == 1) @enumToInt(CFE_EFFECTS.FONTBOUND) else 0)
-            | (if (o.LINKPROTECTED == 1) @enumToInt(CFE_EFFECTS.LINKPROTECTED) else 0)
-            | (if (o.EXTENDED == 1) @enumToInt(CFE_EFFECTS.EXTENDED) else 0)
-            | (if (o.MATHNOBUILDUP == 1) @enumToInt(CFE_EFFECTS.MATHNOBUILDUP) else 0)
-            | (if (o.MATH == 1) @enumToInt(CFE_EFFECTS.MATH) else 0)
-            | (if (o.MATHORDINARY == 1) @enumToInt(CFE_EFFECTS.MATHORDINARY) else 0)
-        );
+        return @intToEnum(CFE_EFFECTS, (if (o.ALLCAPS == 1) @enumToInt(CFE_EFFECTS.ALLCAPS) else 0) | (if (o.AUTOBACKCOLOR == 1) @enumToInt(CFE_EFFECTS.AUTOBACKCOLOR) else 0) | (if (o.DISABLED == 1) @enumToInt(CFE_EFFECTS.DISABLED) else 0) | (if (o.EMBOSS == 1) @enumToInt(CFE_EFFECTS.EMBOSS) else 0) | (if (o.HIDDEN == 1) @enumToInt(CFE_EFFECTS.HIDDEN) else 0) | (if (o.IMPRINT == 1) @enumToInt(CFE_EFFECTS.IMPRINT) else 0) | (if (o.OUTLINE == 1) @enumToInt(CFE_EFFECTS.OUTLINE) else 0) | (if (o.REVISED == 1) @enumToInt(CFE_EFFECTS.REVISED) else 0) | (if (o.SHADOW == 1) @enumToInt(CFE_EFFECTS.SHADOW) else 0) | (if (o.SMALLCAPS == 1) @enumToInt(CFE_EFFECTS.SMALLCAPS) else 0) | (if (o.AUTOCOLOR == 1) @enumToInt(CFE_EFFECTS.AUTOCOLOR) else 0) | (if (o.BOLD == 1) @enumToInt(CFE_EFFECTS.BOLD) else 0) | (if (o.ITALIC == 1) @enumToInt(CFE_EFFECTS.ITALIC) else 0) | (if (o.STRIKEOUT == 1) @enumToInt(CFE_EFFECTS.STRIKEOUT) else 0) | (if (o.UNDERLINE == 1) @enumToInt(CFE_EFFECTS.UNDERLINE) else 0) | (if (o.PROTECTED == 1) @enumToInt(CFE_EFFECTS.PROTECTED) else 0) | (if (o.LINK == 1) @enumToInt(CFE_EFFECTS.LINK) else 0) | (if (o.SUBSCRIPT == 1) @enumToInt(CFE_EFFECTS.SUBSCRIPT) else 0) | (if (o.SUPERSCRIPT == 1) @enumToInt(CFE_EFFECTS.SUPERSCRIPT) else 0) | (if (o.FONTBOUND == 1) @enumToInt(CFE_EFFECTS.FONTBOUND) else 0) | (if (o.LINKPROTECTED == 1) @enumToInt(CFE_EFFECTS.LINKPROTECTED) else 0) | (if (o.EXTENDED == 1) @enumToInt(CFE_EFFECTS.EXTENDED) else 0) | (if (o.MATHNOBUILDUP == 1) @enumToInt(CFE_EFFECTS.MATHNOBUILDUP) else 0) | (if (o.MATH == 1) @enumToInt(CFE_EFFECTS.MATH) else 0) | (if (o.MATHORDINARY == 1) @enumToInt(CFE_EFFECTS.MATHORDINARY) else 0));
     }
 };
 // TODO: enum 'CFE_EFFECTS' has known issues with its value aliases
@@ -730,16 +667,7 @@ pub const PARAFORMAT_MASK = enum(u32) {
         STARTINDENT: u1 = 0,
         TABSTOPS: u1 = 0,
     }) PARAFORMAT_MASK {
-        return @intToEnum(PARAFORMAT_MASK,
-              (if (o.ALIGNMENT == 1) @enumToInt(PARAFORMAT_MASK.ALIGNMENT) else 0)
-            | (if (o.NUMBERING == 1) @enumToInt(PARAFORMAT_MASK.NUMBERING) else 0)
-            | (if (o.OFFSET == 1) @enumToInt(PARAFORMAT_MASK.OFFSET) else 0)
-            | (if (o.OFFSETINDENT == 1) @enumToInt(PARAFORMAT_MASK.OFFSETINDENT) else 0)
-            | (if (o.RIGHTINDENT == 1) @enumToInt(PARAFORMAT_MASK.RIGHTINDENT) else 0)
-            | (if (o.RTLPARA == 1) @enumToInt(PARAFORMAT_MASK.RTLPARA) else 0)
-            | (if (o.STARTINDENT == 1) @enumToInt(PARAFORMAT_MASK.STARTINDENT) else 0)
-            | (if (o.TABSTOPS == 1) @enumToInt(PARAFORMAT_MASK.TABSTOPS) else 0)
-        );
+        return @intToEnum(PARAFORMAT_MASK, (if (o.ALIGNMENT == 1) @enumToInt(PARAFORMAT_MASK.ALIGNMENT) else 0) | (if (o.NUMBERING == 1) @enumToInt(PARAFORMAT_MASK.NUMBERING) else 0) | (if (o.OFFSET == 1) @enumToInt(PARAFORMAT_MASK.OFFSET) else 0) | (if (o.OFFSETINDENT == 1) @enumToInt(PARAFORMAT_MASK.OFFSETINDENT) else 0) | (if (o.RIGHTINDENT == 1) @enumToInt(PARAFORMAT_MASK.RIGHTINDENT) else 0) | (if (o.RTLPARA == 1) @enumToInt(PARAFORMAT_MASK.RTLPARA) else 0) | (if (o.STARTINDENT == 1) @enumToInt(PARAFORMAT_MASK.STARTINDENT) else 0) | (if (o.TABSTOPS == 1) @enumToInt(PARAFORMAT_MASK.TABSTOPS) else 0));
     }
 };
 pub const PFM_ALIGNMENT = PARAFORMAT_MASK.ALIGNMENT;
@@ -767,14 +695,7 @@ pub const RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE = enum(u16) {
         SEL_MULTIOBJECT: u1 = 0,
         GCM_RIGHTMOUSEDROP: u1 = 0,
     }) RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE {
-        return @intToEnum(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE,
-              (if (o.SEL_EMPTY == 1) @enumToInt(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_EMPTY) else 0)
-            | (if (o.SEL_TEXT == 1) @enumToInt(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_TEXT) else 0)
-            | (if (o.SEL_OBJECT == 1) @enumToInt(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_OBJECT) else 0)
-            | (if (o.SEL_MULTICHAR == 1) @enumToInt(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_MULTICHAR) else 0)
-            | (if (o.SEL_MULTIOBJECT == 1) @enumToInt(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_MULTIOBJECT) else 0)
-            | (if (o.GCM_RIGHTMOUSEDROP == 1) @enumToInt(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.GCM_RIGHTMOUSEDROP) else 0)
-        );
+        return @intToEnum(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE, (if (o.SEL_EMPTY == 1) @enumToInt(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_EMPTY) else 0) | (if (o.SEL_TEXT == 1) @enumToInt(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_TEXT) else 0) | (if (o.SEL_OBJECT == 1) @enumToInt(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_OBJECT) else 0) | (if (o.SEL_MULTICHAR == 1) @enumToInt(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_MULTICHAR) else 0) | (if (o.SEL_MULTIOBJECT == 1) @enumToInt(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_MULTIOBJECT) else 0) | (if (o.GCM_RIGHTMOUSEDROP == 1) @enumToInt(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.GCM_RIGHTMOUSEDROP) else 0));
     }
 };
 pub const SEL_EMPTY = RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_EMPTY;
@@ -798,13 +719,7 @@ pub const RICH_EDIT_GET_OBJECT_FLAGS = enum(u32) {
         NO_INTERFACES: u1 = 0,
         ALL_INTERFACES: u1 = 0,
     }) RICH_EDIT_GET_OBJECT_FLAGS {
-        return @intToEnum(RICH_EDIT_GET_OBJECT_FLAGS,
-              (if (o.POLEOBJ == 1) @enumToInt(RICH_EDIT_GET_OBJECT_FLAGS.POLEOBJ) else 0)
-            | (if (o.PSTG == 1) @enumToInt(RICH_EDIT_GET_OBJECT_FLAGS.PSTG) else 0)
-            | (if (o.POLESITE == 1) @enumToInt(RICH_EDIT_GET_OBJECT_FLAGS.POLESITE) else 0)
-            | (if (o.NO_INTERFACES == 1) @enumToInt(RICH_EDIT_GET_OBJECT_FLAGS.NO_INTERFACES) else 0)
-            | (if (o.ALL_INTERFACES == 1) @enumToInt(RICH_EDIT_GET_OBJECT_FLAGS.ALL_INTERFACES) else 0)
-        );
+        return @intToEnum(RICH_EDIT_GET_OBJECT_FLAGS, (if (o.POLEOBJ == 1) @enumToInt(RICH_EDIT_GET_OBJECT_FLAGS.POLEOBJ) else 0) | (if (o.PSTG == 1) @enumToInt(RICH_EDIT_GET_OBJECT_FLAGS.PSTG) else 0) | (if (o.POLESITE == 1) @enumToInt(RICH_EDIT_GET_OBJECT_FLAGS.POLESITE) else 0) | (if (o.NO_INTERFACES == 1) @enumToInt(RICH_EDIT_GET_OBJECT_FLAGS.NO_INTERFACES) else 0) | (if (o.ALL_INTERFACES == 1) @enumToInt(RICH_EDIT_GET_OBJECT_FLAGS.ALL_INTERFACES) else 0));
     }
 };
 pub const REO_GETOBJ_POLEOBJ = RICH_EDIT_GET_OBJECT_FLAGS.POLEOBJ;
@@ -831,15 +746,7 @@ pub const PARAFORMAT_BORDERS = enum(u16) {
         OUTSIDE: u1 = 0,
         AUTOCOLOR: u1 = 0,
     }) PARAFORMAT_BORDERS {
-        return @intToEnum(PARAFORMAT_BORDERS,
-              (if (o.LEFT == 1) @enumToInt(PARAFORMAT_BORDERS.LEFT) else 0)
-            | (if (o.RIGHT == 1) @enumToInt(PARAFORMAT_BORDERS.RIGHT) else 0)
-            | (if (o.TOP == 1) @enumToInt(PARAFORMAT_BORDERS.TOP) else 0)
-            | (if (o.BOTTOM == 1) @enumToInt(PARAFORMAT_BORDERS.BOTTOM) else 0)
-            | (if (o.INSIDE == 1) @enumToInt(PARAFORMAT_BORDERS.INSIDE) else 0)
-            | (if (o.OUTSIDE == 1) @enumToInt(PARAFORMAT_BORDERS.OUTSIDE) else 0)
-            | (if (o.AUTOCOLOR == 1) @enumToInt(PARAFORMAT_BORDERS.AUTOCOLOR) else 0)
-        );
+        return @intToEnum(PARAFORMAT_BORDERS, (if (o.LEFT == 1) @enumToInt(PARAFORMAT_BORDERS.LEFT) else 0) | (if (o.RIGHT == 1) @enumToInt(PARAFORMAT_BORDERS.RIGHT) else 0) | (if (o.TOP == 1) @enumToInt(PARAFORMAT_BORDERS.TOP) else 0) | (if (o.BOTTOM == 1) @enumToInt(PARAFORMAT_BORDERS.BOTTOM) else 0) | (if (o.INSIDE == 1) @enumToInt(PARAFORMAT_BORDERS.INSIDE) else 0) | (if (o.OUTSIDE == 1) @enumToInt(PARAFORMAT_BORDERS.OUTSIDE) else 0) | (if (o.AUTOCOLOR == 1) @enumToInt(PARAFORMAT_BORDERS.AUTOCOLOR) else 0));
     }
 };
 pub const PARAFORMAT_BORDERS_LEFT = PARAFORMAT_BORDERS.LEFT;
@@ -920,14 +827,7 @@ pub const GETTEXTLENGTHEX_FLAGS = enum(u32) {
         NUMCHARS: u1 = 0,
         NUMBYTES: u1 = 0,
     }) GETTEXTLENGTHEX_FLAGS {
-        return @intToEnum(GETTEXTLENGTHEX_FLAGS,
-              (if (o.DEFAULT == 1) @enumToInt(GETTEXTLENGTHEX_FLAGS.DEFAULT) else 0)
-            | (if (o.USECRLF == 1) @enumToInt(GETTEXTLENGTHEX_FLAGS.USECRLF) else 0)
-            | (if (o.PRECISE == 1) @enumToInt(GETTEXTLENGTHEX_FLAGS.PRECISE) else 0)
-            | (if (o.CLOSE == 1) @enumToInt(GETTEXTLENGTHEX_FLAGS.CLOSE) else 0)
-            | (if (o.NUMCHARS == 1) @enumToInt(GETTEXTLENGTHEX_FLAGS.NUMCHARS) else 0)
-            | (if (o.NUMBYTES == 1) @enumToInt(GETTEXTLENGTHEX_FLAGS.NUMBYTES) else 0)
-        );
+        return @intToEnum(GETTEXTLENGTHEX_FLAGS, (if (o.DEFAULT == 1) @enumToInt(GETTEXTLENGTHEX_FLAGS.DEFAULT) else 0) | (if (o.USECRLF == 1) @enumToInt(GETTEXTLENGTHEX_FLAGS.USECRLF) else 0) | (if (o.PRECISE == 1) @enumToInt(GETTEXTLENGTHEX_FLAGS.PRECISE) else 0) | (if (o.CLOSE == 1) @enumToInt(GETTEXTLENGTHEX_FLAGS.CLOSE) else 0) | (if (o.NUMCHARS == 1) @enumToInt(GETTEXTLENGTHEX_FLAGS.NUMCHARS) else 0) | (if (o.NUMBYTES == 1) @enumToInt(GETTEXTLENGTHEX_FLAGS.NUMBYTES) else 0));
     }
 };
 pub const GTL_DEFAULT = GETTEXTLENGTHEX_FLAGS.DEFAULT;
@@ -979,27 +879,7 @@ pub const REOBJECT_FLAGS = enum(u32) {
         USEASBACKGROUND: u1 = 0,
         WRAPTEXTAROUND: u1 = 0,
     }) REOBJECT_FLAGS {
-        return @intToEnum(REOBJECT_FLAGS,
-              (if (o.ALIGNTORIGHT == 1) @enumToInt(REOBJECT_FLAGS.ALIGNTORIGHT) else 0)
-            | (if (o.BELOWBASELINE == 1) @enumToInt(REOBJECT_FLAGS.BELOWBASELINE) else 0)
-            | (if (o.BLANK == 1) @enumToInt(REOBJECT_FLAGS.BLANK) else 0)
-            | (if (o.CANROTATE == 1) @enumToInt(REOBJECT_FLAGS.CANROTATE) else 0)
-            | (if (o.DONTNEEDPALETTE == 1) @enumToInt(REOBJECT_FLAGS.DONTNEEDPALETTE) else 0)
-            | (if (o.DYNAMICSIZE == 1) @enumToInt(REOBJECT_FLAGS.DYNAMICSIZE) else 0)
-            | (if (o.GETMETAFILE == 1) @enumToInt(REOBJECT_FLAGS.GETMETAFILE) else 0)
-            | (if (o.HILITED == 1) @enumToInt(REOBJECT_FLAGS.HILITED) else 0)
-            | (if (o.INPLACEACTIVE == 1) @enumToInt(REOBJECT_FLAGS.INPLACEACTIVE) else 0)
-            | (if (o.INVERTEDSELECT == 1) @enumToInt(REOBJECT_FLAGS.INVERTEDSELECT) else 0)
-            | (if (o.LINK == 1) @enumToInt(REOBJECT_FLAGS.LINK) else 0)
-            | (if (o.LINKAVAILABLE == 1) @enumToInt(REOBJECT_FLAGS.LINKAVAILABLE) else 0)
-            | (if (o.OPEN == 1) @enumToInt(REOBJECT_FLAGS.OPEN) else 0)
-            | (if (o.OWNERDRAWSELECT == 1) @enumToInt(REOBJECT_FLAGS.OWNERDRAWSELECT) else 0)
-            | (if (o.RESIZABLE == 1) @enumToInt(REOBJECT_FLAGS.RESIZABLE) else 0)
-            | (if (o.SELECTED == 1) @enumToInt(REOBJECT_FLAGS.SELECTED) else 0)
-            | (if (o.STATIC == 1) @enumToInt(REOBJECT_FLAGS.STATIC) else 0)
-            | (if (o.USEASBACKGROUND == 1) @enumToInt(REOBJECT_FLAGS.USEASBACKGROUND) else 0)
-            | (if (o.WRAPTEXTAROUND == 1) @enumToInt(REOBJECT_FLAGS.WRAPTEXTAROUND) else 0)
-        );
+        return @intToEnum(REOBJECT_FLAGS, (if (o.ALIGNTORIGHT == 1) @enumToInt(REOBJECT_FLAGS.ALIGNTORIGHT) else 0) | (if (o.BELOWBASELINE == 1) @enumToInt(REOBJECT_FLAGS.BELOWBASELINE) else 0) | (if (o.BLANK == 1) @enumToInt(REOBJECT_FLAGS.BLANK) else 0) | (if (o.CANROTATE == 1) @enumToInt(REOBJECT_FLAGS.CANROTATE) else 0) | (if (o.DONTNEEDPALETTE == 1) @enumToInt(REOBJECT_FLAGS.DONTNEEDPALETTE) else 0) | (if (o.DYNAMICSIZE == 1) @enumToInt(REOBJECT_FLAGS.DYNAMICSIZE) else 0) | (if (o.GETMETAFILE == 1) @enumToInt(REOBJECT_FLAGS.GETMETAFILE) else 0) | (if (o.HILITED == 1) @enumToInt(REOBJECT_FLAGS.HILITED) else 0) | (if (o.INPLACEACTIVE == 1) @enumToInt(REOBJECT_FLAGS.INPLACEACTIVE) else 0) | (if (o.INVERTEDSELECT == 1) @enumToInt(REOBJECT_FLAGS.INVERTEDSELECT) else 0) | (if (o.LINK == 1) @enumToInt(REOBJECT_FLAGS.LINK) else 0) | (if (o.LINKAVAILABLE == 1) @enumToInt(REOBJECT_FLAGS.LINKAVAILABLE) else 0) | (if (o.OPEN == 1) @enumToInt(REOBJECT_FLAGS.OPEN) else 0) | (if (o.OWNERDRAWSELECT == 1) @enumToInt(REOBJECT_FLAGS.OWNERDRAWSELECT) else 0) | (if (o.RESIZABLE == 1) @enumToInt(REOBJECT_FLAGS.RESIZABLE) else 0) | (if (o.SELECTED == 1) @enumToInt(REOBJECT_FLAGS.SELECTED) else 0) | (if (o.STATIC == 1) @enumToInt(REOBJECT_FLAGS.STATIC) else 0) | (if (o.USEASBACKGROUND == 1) @enumToInt(REOBJECT_FLAGS.USEASBACKGROUND) else 0) | (if (o.WRAPTEXTAROUND == 1) @enumToInt(REOBJECT_FLAGS.WRAPTEXTAROUND) else 0));
     }
 };
 pub const REO_ALIGNTORIGHT = REOBJECT_FLAGS.ALIGNTORIGHT;
@@ -1096,7 +976,7 @@ pub const TABLECELLPARMS = extern struct {
     crForePat: u32,
 };
 
-pub const AutoCorrectProc = fn(
+pub const AutoCorrectProc = fn (
     langid: u16,
     pszBefore: ?[*:0]const u16,
     pszAfter: ?PWSTR,
@@ -1120,7 +1000,7 @@ pub const ENDCOMPOSITIONNOTIFY = extern struct {
     dwCode: ENDCOMPOSITIONNOTIFY_CODE,
 };
 
-pub const EDITWORDBREAKPROCEX = fn(
+pub const EDITWORDBREAKPROCEX = fn (
     pchText: ?PSTR,
     cchText: i32,
     bCharSet: u8,
@@ -1204,7 +1084,7 @@ pub const TEXTRANGEW = extern struct {
     lpstrText: ?PWSTR,
 };
 
-pub const EDITSTREAMCALLBACK = fn(
+pub const EDITSTREAMCALLBACK = fn (
     dwCookie: usize,
     pbBuff: ?*u8,
     cb: i32,
@@ -1540,14 +1420,14 @@ pub const CHANGENOTIFY = extern struct {
 pub const ITextServices = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        TxSendMessage: fn(
+        TxSendMessage: fn (
             self: *const ITextServices,
             msg: u32,
             wparam: WPARAM,
             lparam: LPARAM,
             plresult: ?*LRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxDraw: fn(
+        TxDraw: fn (
             self: *const ITextServices,
             dwDrawAspect: DVASPECT,
             lindex: i32,
@@ -1562,7 +1442,7 @@ pub const ITextServices = extern struct {
             dwContinue: u32,
             lViewId: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetHScroll: fn(
+        TxGetHScroll: fn (
             self: *const ITextServices,
             plMin: ?*i32,
             plMax: ?*i32,
@@ -1570,7 +1450,7 @@ pub const ITextServices = extern struct {
             plPage: ?*i32,
             pfEnabled: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetVScroll: fn(
+        TxGetVScroll: fn (
             self: *const ITextServices,
             plMin: ?*i32,
             plMax: ?*i32,
@@ -1578,7 +1458,7 @@ pub const ITextServices = extern struct {
             plPage: ?*i32,
             pfEnabled: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnTxSetCursor: fn(
+        OnTxSetCursor: fn (
             self: *const ITextServices,
             dwDrawAspect: DVASPECT,
             lindex: i32,
@@ -1590,7 +1470,7 @@ pub const ITextServices = extern struct {
             x: i32,
             y: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxQueryHitPoint: fn(
+        TxQueryHitPoint: fn (
             self: *const ITextServices,
             dwDrawAspect: DVASPECT,
             lindex: i32,
@@ -1603,36 +1483,36 @@ pub const ITextServices = extern struct {
             y: i32,
             pHitResult: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnTxInPlaceActivate: fn(
+        OnTxInPlaceActivate: fn (
             self: *const ITextServices,
             prcClient: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnTxInPlaceDeactivate: fn(
+        OnTxInPlaceDeactivate: fn (
             self: *const ITextServices,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnTxUIActivate: fn(
+        OnTxUIActivate: fn (
             self: *const ITextServices,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnTxUIDeactivate: fn(
+        OnTxUIDeactivate: fn (
             self: *const ITextServices,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetText: fn(
+        TxGetText: fn (
             self: *const ITextServices,
             pbstrText: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxSetText: fn(
+        TxSetText: fn (
             self: *const ITextServices,
             pszText: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetCurTargetX: fn(
+        TxGetCurTargetX: fn (
             self: *const ITextServices,
             param0: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetBaseLinePos: fn(
+        TxGetBaseLinePos: fn (
             self: *const ITextServices,
             param0: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetNaturalSize: fn(
+        TxGetNaturalSize: fn (
             self: *const ITextServices,
             dwAspect: u32,
             hdcDraw: ?HDC,
@@ -1643,97 +1523,99 @@ pub const ITextServices = extern struct {
             pwidth: ?*i32,
             pheight: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetDropTarget: fn(
+        TxGetDropTarget: fn (
             self: *const ITextServices,
             ppDropTarget: ?*?*IDropTarget,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnTxPropertyBitsChange: fn(
+        OnTxPropertyBitsChange: fn (
             self: *const ITextServices,
             dwMask: u32,
             dwBits: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetCachedSize: fn(
+        TxGetCachedSize: fn (
             self: *const ITextServices,
             pdwWidth: ?*u32,
             pdwHeight: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_TxSendMessage(self: *const T, msg: u32, wparam: WPARAM, lparam: LPARAM, plresult: ?*LRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextServices.VTable, self.vtable).TxSendMessage(@ptrCast(*const ITextServices, self), msg, wparam, lparam, plresult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_TxDraw(self: *const T, dwDrawAspect: DVASPECT, lindex: i32, pvAspect: ?*anyopaque, ptd: ?*DVTARGETDEVICE, hdcDraw: ?HDC, hicTargetDev: ?HDC, lprcBounds: ?*RECTL, lprcWBounds: ?*RECTL, lprcUpdate: ?*RECT, pfnContinue: isize, dwContinue: u32, lViewId: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextServices.VTable, self.vtable).TxDraw(@ptrCast(*const ITextServices, self), dwDrawAspect, lindex, pvAspect, ptd, hdcDraw, hicTargetDev, lprcBounds, lprcWBounds, lprcUpdate, pfnContinue, dwContinue, lViewId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_TxGetHScroll(self: *const T, plMin: ?*i32, plMax: ?*i32, plPos: ?*i32, plPage: ?*i32, pfEnabled: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextServices.VTable, self.vtable).TxGetHScroll(@ptrCast(*const ITextServices, self), plMin, plMax, plPos, plPage, pfEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_TxGetVScroll(self: *const T, plMin: ?*i32, plMax: ?*i32, plPos: ?*i32, plPage: ?*i32, pfEnabled: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextServices.VTable, self.vtable).TxGetVScroll(@ptrCast(*const ITextServices, self), plMin, plMax, plPos, plPage, pfEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_OnTxSetCursor(self: *const T, dwDrawAspect: DVASPECT, lindex: i32, pvAspect: ?*anyopaque, ptd: ?*DVTARGETDEVICE, hdcDraw: ?HDC, hicTargetDev: ?HDC, lprcClient: ?*RECT, x: i32, y: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextServices.VTable, self.vtable).OnTxSetCursor(@ptrCast(*const ITextServices, self), dwDrawAspect, lindex, pvAspect, ptd, hdcDraw, hicTargetDev, lprcClient, x, y);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_TxQueryHitPoint(self: *const T, dwDrawAspect: DVASPECT, lindex: i32, pvAspect: ?*anyopaque, ptd: ?*DVTARGETDEVICE, hdcDraw: ?HDC, hicTargetDev: ?HDC, lprcClient: ?*RECT, x: i32, y: i32, pHitResult: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextServices.VTable, self.vtable).TxQueryHitPoint(@ptrCast(*const ITextServices, self), dwDrawAspect, lindex, pvAspect, ptd, hdcDraw, hicTargetDev, lprcClient, x, y, pHitResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_OnTxInPlaceActivate(self: *const T, prcClient: ?*RECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextServices.VTable, self.vtable).OnTxInPlaceActivate(@ptrCast(*const ITextServices, self), prcClient);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_OnTxInPlaceDeactivate(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextServices.VTable, self.vtable).OnTxInPlaceDeactivate(@ptrCast(*const ITextServices, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_OnTxUIActivate(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextServices.VTable, self.vtable).OnTxUIActivate(@ptrCast(*const ITextServices, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_OnTxUIDeactivate(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextServices.VTable, self.vtable).OnTxUIDeactivate(@ptrCast(*const ITextServices, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_TxGetText(self: *const T, pbstrText: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextServices.VTable, self.vtable).TxGetText(@ptrCast(*const ITextServices, self), pbstrText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_TxSetText(self: *const T, pszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextServices.VTable, self.vtable).TxSetText(@ptrCast(*const ITextServices, self), pszText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_TxGetCurTargetX(self: *const T, param0: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextServices.VTable, self.vtable).TxGetCurTargetX(@ptrCast(*const ITextServices, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_TxGetBaseLinePos(self: *const T, param0: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextServices.VTable, self.vtable).TxGetBaseLinePos(@ptrCast(*const ITextServices, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_TxGetNaturalSize(self: *const T, dwAspect: u32, hdcDraw: ?HDC, hicTargetDev: ?HDC, ptd: ?*DVTARGETDEVICE, dwMode: u32, psizelExtent: ?*const SIZE, pwidth: ?*i32, pheight: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextServices.VTable, self.vtable).TxGetNaturalSize(@ptrCast(*const ITextServices, self), dwAspect, hdcDraw, hicTargetDev, ptd, dwMode, psizelExtent, pwidth, pheight);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_TxGetDropTarget(self: *const T, ppDropTarget: ?*?*IDropTarget) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextServices.VTable, self.vtable).TxGetDropTarget(@ptrCast(*const ITextServices, self), ppDropTarget);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_OnTxPropertyBitsChange(self: *const T, dwMask: u32, dwBits: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextServices.VTable, self.vtable).OnTxPropertyBitsChange(@ptrCast(*const ITextServices, self), dwMask, dwBits);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices_TxGetCachedSize(self: *const T, pdwWidth: ?*u32, pdwHeight: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextServices.VTable, self.vtable).TxGetCachedSize(@ptrCast(*const ITextServices, self), pdwWidth, pdwHeight);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextServices_TxSendMessage(self: *const T, msg: u32, wparam: WPARAM, lparam: LPARAM, plresult: ?*LRESULT) HRESULT {
+                return @ptrCast(*const ITextServices.VTable, self.vtable).TxSendMessage(@ptrCast(*const ITextServices, self), msg, wparam, lparam, plresult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextServices_TxDraw(self: *const T, dwDrawAspect: DVASPECT, lindex: i32, pvAspect: ?*anyopaque, ptd: ?*DVTARGETDEVICE, hdcDraw: ?HDC, hicTargetDev: ?HDC, lprcBounds: ?*RECTL, lprcWBounds: ?*RECTL, lprcUpdate: ?*RECT, pfnContinue: isize, dwContinue: u32, lViewId: i32) HRESULT {
+                return @ptrCast(*const ITextServices.VTable, self.vtable).TxDraw(@ptrCast(*const ITextServices, self), dwDrawAspect, lindex, pvAspect, ptd, hdcDraw, hicTargetDev, lprcBounds, lprcWBounds, lprcUpdate, pfnContinue, dwContinue, lViewId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextServices_TxGetHScroll(self: *const T, plMin: ?*i32, plMax: ?*i32, plPos: ?*i32, plPage: ?*i32, pfEnabled: ?*BOOL) HRESULT {
+                return @ptrCast(*const ITextServices.VTable, self.vtable).TxGetHScroll(@ptrCast(*const ITextServices, self), plMin, plMax, plPos, plPage, pfEnabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextServices_TxGetVScroll(self: *const T, plMin: ?*i32, plMax: ?*i32, plPos: ?*i32, plPage: ?*i32, pfEnabled: ?*BOOL) HRESULT {
+                return @ptrCast(*const ITextServices.VTable, self.vtable).TxGetVScroll(@ptrCast(*const ITextServices, self), plMin, plMax, plPos, plPage, pfEnabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextServices_OnTxSetCursor(self: *const T, dwDrawAspect: DVASPECT, lindex: i32, pvAspect: ?*anyopaque, ptd: ?*DVTARGETDEVICE, hdcDraw: ?HDC, hicTargetDev: ?HDC, lprcClient: ?*RECT, x: i32, y: i32) HRESULT {
+                return @ptrCast(*const ITextServices.VTable, self.vtable).OnTxSetCursor(@ptrCast(*const ITextServices, self), dwDrawAspect, lindex, pvAspect, ptd, hdcDraw, hicTargetDev, lprcClient, x, y);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextServices_TxQueryHitPoint(self: *const T, dwDrawAspect: DVASPECT, lindex: i32, pvAspect: ?*anyopaque, ptd: ?*DVTARGETDEVICE, hdcDraw: ?HDC, hicTargetDev: ?HDC, lprcClient: ?*RECT, x: i32, y: i32, pHitResult: ?*u32) HRESULT {
+                return @ptrCast(*const ITextServices.VTable, self.vtable).TxQueryHitPoint(@ptrCast(*const ITextServices, self), dwDrawAspect, lindex, pvAspect, ptd, hdcDraw, hicTargetDev, lprcClient, x, y, pHitResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextServices_OnTxInPlaceActivate(self: *const T, prcClient: ?*RECT) HRESULT {
+                return @ptrCast(*const ITextServices.VTable, self.vtable).OnTxInPlaceActivate(@ptrCast(*const ITextServices, self), prcClient);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextServices_OnTxInPlaceDeactivate(self: *const T) HRESULT {
+                return @ptrCast(*const ITextServices.VTable, self.vtable).OnTxInPlaceDeactivate(@ptrCast(*const ITextServices, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextServices_OnTxUIActivate(self: *const T) HRESULT {
+                return @ptrCast(*const ITextServices.VTable, self.vtable).OnTxUIActivate(@ptrCast(*const ITextServices, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextServices_OnTxUIDeactivate(self: *const T) HRESULT {
+                return @ptrCast(*const ITextServices.VTable, self.vtable).OnTxUIDeactivate(@ptrCast(*const ITextServices, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextServices_TxGetText(self: *const T, pbstrText: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ITextServices.VTable, self.vtable).TxGetText(@ptrCast(*const ITextServices, self), pbstrText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextServices_TxSetText(self: *const T, pszText: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const ITextServices.VTable, self.vtable).TxSetText(@ptrCast(*const ITextServices, self), pszText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextServices_TxGetCurTargetX(self: *const T, param0: ?*i32) HRESULT {
+                return @ptrCast(*const ITextServices.VTable, self.vtable).TxGetCurTargetX(@ptrCast(*const ITextServices, self), param0);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextServices_TxGetBaseLinePos(self: *const T, param0: ?*i32) HRESULT {
+                return @ptrCast(*const ITextServices.VTable, self.vtable).TxGetBaseLinePos(@ptrCast(*const ITextServices, self), param0);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextServices_TxGetNaturalSize(self: *const T, dwAspect: u32, hdcDraw: ?HDC, hicTargetDev: ?HDC, ptd: ?*DVTARGETDEVICE, dwMode: u32, psizelExtent: ?*const SIZE, pwidth: ?*i32, pheight: ?*i32) HRESULT {
+                return @ptrCast(*const ITextServices.VTable, self.vtable).TxGetNaturalSize(@ptrCast(*const ITextServices, self), dwAspect, hdcDraw, hicTargetDev, ptd, dwMode, psizelExtent, pwidth, pheight);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextServices_TxGetDropTarget(self: *const T, ppDropTarget: ?*?*IDropTarget) HRESULT {
+                return @ptrCast(*const ITextServices.VTable, self.vtable).TxGetDropTarget(@ptrCast(*const ITextServices, self), ppDropTarget);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextServices_OnTxPropertyBitsChange(self: *const T, dwMask: u32, dwBits: u32) HRESULT {
+                return @ptrCast(*const ITextServices.VTable, self.vtable).OnTxPropertyBitsChange(@ptrCast(*const ITextServices, self), dwMask, dwBits);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextServices_TxGetCachedSize(self: *const T, pdwWidth: ?*u32, pdwHeight: ?*u32) HRESULT {
+                return @ptrCast(*const ITextServices.VTable, self.vtable).TxGetCachedSize(@ptrCast(*const ITextServices, self), pdwWidth, pdwHeight);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1760,70 +1642,70 @@ pub const CARET_INFO = extern union {
 pub const ITextHost = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        TxGetDC: fn(
+        TxGetDC: fn (
             self: *const ITextHost,
         ) callconv(@import("std").os.windows.WINAPI) ?HDC,
-        TxReleaseDC: fn(
+        TxReleaseDC: fn (
             self: *const ITextHost,
             hdc: ?HDC,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-        TxShowScrollBar: fn(
+        TxShowScrollBar: fn (
             self: *const ITextHost,
             fnBar: i32,
             fShow: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        TxEnableScrollBar: fn(
+        TxEnableScrollBar: fn (
             self: *const ITextHost,
             fuSBFlags: SCROLLBAR_CONSTANTS,
             fuArrowflags: ENABLE_SCROLL_BAR_ARROWS,
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        TxSetScrollRange: fn(
+        TxSetScrollRange: fn (
             self: *const ITextHost,
             fnBar: i32,
             nMinPos: i32,
             nMaxPos: i32,
             fRedraw: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        TxSetScrollPos: fn(
+        TxSetScrollPos: fn (
             self: *const ITextHost,
             fnBar: i32,
             nPos: i32,
             fRedraw: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        TxInvalidateRect: fn(
+        TxInvalidateRect: fn (
             self: *const ITextHost,
             prc: ?*RECT,
             fMode: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) void,
-        TxViewChange: fn(
+        TxViewChange: fn (
             self: *const ITextHost,
             fUpdate: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) void,
-        TxCreateCaret: fn(
+        TxCreateCaret: fn (
             self: *const ITextHost,
             hbmp: ?HBITMAP,
             xWidth: i32,
             yHeight: i32,
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        TxShowCaret: fn(
+        TxShowCaret: fn (
             self: *const ITextHost,
             fShow: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        TxSetCaretPos: fn(
+        TxSetCaretPos: fn (
             self: *const ITextHost,
             x: i32,
             y: i32,
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        TxSetTimer: fn(
+        TxSetTimer: fn (
             self: *const ITextHost,
             idTimer: u32,
             uTimeout: u32,
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        TxKillTimer: fn(
+        TxKillTimer: fn (
             self: *const ITextHost,
             idTimer: u32,
         ) callconv(@import("std").os.windows.WINAPI) void,
-        TxScrollWindowEx: fn(
+        TxScrollWindowEx: fn (
             self: *const ITextHost,
             dx: i32,
             dy: i32,
@@ -1833,268 +1715,270 @@ pub const ITextHost = extern struct {
             lprcUpdate: ?*RECT,
             fuScroll: SHOW_WINDOW_CMD,
         ) callconv(@import("std").os.windows.WINAPI) void,
-        TxSetCapture: fn(
+        TxSetCapture: fn (
             self: *const ITextHost,
             fCapture: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) void,
-        TxSetFocus: fn(
+        TxSetFocus: fn (
             self: *const ITextHost,
         ) callconv(@import("std").os.windows.WINAPI) void,
-        TxSetCursor: fn(
+        TxSetCursor: fn (
             self: *const ITextHost,
             hcur: ?HCURSOR,
             fText: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) void,
-        TxScreenToClient: fn(
+        TxScreenToClient: fn (
             self: *const ITextHost,
             lppt: ?*POINT,
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        TxClientToScreen: fn(
+        TxClientToScreen: fn (
             self: *const ITextHost,
             lppt: ?*POINT,
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        TxActivate: fn(
+        TxActivate: fn (
             self: *const ITextHost,
             plOldState: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxDeactivate: fn(
+        TxDeactivate: fn (
             self: *const ITextHost,
             lNewState: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetClientRect: fn(
+        TxGetClientRect: fn (
             self: *const ITextHost,
             prc: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetViewInset: fn(
+        TxGetViewInset: fn (
             self: *const ITextHost,
             prc: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetCharFormat: fn(
+        TxGetCharFormat: fn (
             self: *const ITextHost,
             ppCF: ?*const ?*CHARFORMATW,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetParaFormat: fn(
+        TxGetParaFormat: fn (
             self: *const ITextHost,
             ppPF: ?*const ?*PARAFORMAT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetSysColor: fn(
+        TxGetSysColor: fn (
             self: *const ITextHost,
             nIndex: i32,
         ) callconv(@import("std").os.windows.WINAPI) u32,
-        TxGetBackStyle: fn(
+        TxGetBackStyle: fn (
             self: *const ITextHost,
             pstyle: ?*TXTBACKSTYLE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetMaxLength: fn(
+        TxGetMaxLength: fn (
             self: *const ITextHost,
             plength: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetScrollBars: fn(
+        TxGetScrollBars: fn (
             self: *const ITextHost,
             pdwScrollBar: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetPasswordChar: fn(
+        TxGetPasswordChar: fn (
             self: *const ITextHost,
             pch: ?*i8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetAcceleratorPos: fn(
+        TxGetAcceleratorPos: fn (
             self: *const ITextHost,
             pcp: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetExtent: fn(
+        TxGetExtent: fn (
             self: *const ITextHost,
             lpExtent: ?*SIZE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnTxCharFormatChange: fn(
+        OnTxCharFormatChange: fn (
             self: *const ITextHost,
             pCF: ?*const CHARFORMATW,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnTxParaFormatChange: fn(
+        OnTxParaFormatChange: fn (
             self: *const ITextHost,
             pPF: ?*const PARAFORMAT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetPropertyBits: fn(
+        TxGetPropertyBits: fn (
             self: *const ITextHost,
             dwMask: u32,
             pdwBits: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxNotify: fn(
+        TxNotify: fn (
             self: *const ITextHost,
             iNotify: u32,
             pv: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxImmGetContext: fn(
+        TxImmGetContext: fn (
             self: *const ITextHost,
         ) callconv(@import("std").os.windows.WINAPI) ?HIMC,
-        TxImmReleaseContext: fn(
+        TxImmReleaseContext: fn (
             self: *const ITextHost,
             himc: ?HIMC,
         ) callconv(@import("std").os.windows.WINAPI) void,
-        TxGetSelectionBarWidth: fn(
+        TxGetSelectionBarWidth: fn (
             self: *const ITextHost,
             lSelBarWidth: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxGetDC(self: *const T) callconv(.Inline) ?HDC {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetDC(@ptrCast(*const ITextHost, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxReleaseDC(self: *const T, hdc: ?HDC) callconv(.Inline) i32 {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxReleaseDC(@ptrCast(*const ITextHost, self), hdc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxShowScrollBar(self: *const T, fnBar: i32, fShow: BOOL) callconv(.Inline) BOOL {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxShowScrollBar(@ptrCast(*const ITextHost, self), fnBar, fShow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxEnableScrollBar(self: *const T, fuSBFlags: SCROLLBAR_CONSTANTS, fuArrowflags: ENABLE_SCROLL_BAR_ARROWS) callconv(.Inline) BOOL {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxEnableScrollBar(@ptrCast(*const ITextHost, self), fuSBFlags, fuArrowflags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxSetScrollRange(self: *const T, fnBar: i32, nMinPos: i32, nMaxPos: i32, fRedraw: BOOL) callconv(.Inline) BOOL {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxSetScrollRange(@ptrCast(*const ITextHost, self), fnBar, nMinPos, nMaxPos, fRedraw);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxSetScrollPos(self: *const T, fnBar: i32, nPos: i32, fRedraw: BOOL) callconv(.Inline) BOOL {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxSetScrollPos(@ptrCast(*const ITextHost, self), fnBar, nPos, fRedraw);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxInvalidateRect(self: *const T, prc: ?*RECT, fMode: BOOL) callconv(.Inline) void {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxInvalidateRect(@ptrCast(*const ITextHost, self), prc, fMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxViewChange(self: *const T, fUpdate: BOOL) callconv(.Inline) void {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxViewChange(@ptrCast(*const ITextHost, self), fUpdate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxCreateCaret(self: *const T, hbmp: ?HBITMAP, xWidth: i32, yHeight: i32) callconv(.Inline) BOOL {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxCreateCaret(@ptrCast(*const ITextHost, self), hbmp, xWidth, yHeight);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxShowCaret(self: *const T, fShow: BOOL) callconv(.Inline) BOOL {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxShowCaret(@ptrCast(*const ITextHost, self), fShow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxSetCaretPos(self: *const T, x: i32, y: i32) callconv(.Inline) BOOL {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxSetCaretPos(@ptrCast(*const ITextHost, self), x, y);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxSetTimer(self: *const T, idTimer: u32, uTimeout: u32) callconv(.Inline) BOOL {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxSetTimer(@ptrCast(*const ITextHost, self), idTimer, uTimeout);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxKillTimer(self: *const T, idTimer: u32) callconv(.Inline) void {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxKillTimer(@ptrCast(*const ITextHost, self), idTimer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxScrollWindowEx(self: *const T, dx: i32, dy: i32, lprcScroll: ?*RECT, lprcClip: ?*RECT, hrgnUpdate: ?HRGN, lprcUpdate: ?*RECT, fuScroll: SHOW_WINDOW_CMD) callconv(.Inline) void {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxScrollWindowEx(@ptrCast(*const ITextHost, self), dx, dy, lprcScroll, lprcClip, hrgnUpdate, lprcUpdate, fuScroll);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxSetCapture(self: *const T, fCapture: BOOL) callconv(.Inline) void {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxSetCapture(@ptrCast(*const ITextHost, self), fCapture);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxSetFocus(self: *const T) callconv(.Inline) void {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxSetFocus(@ptrCast(*const ITextHost, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxSetCursor(self: *const T, hcur: ?HCURSOR, fText: BOOL) callconv(.Inline) void {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxSetCursor(@ptrCast(*const ITextHost, self), hcur, fText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxScreenToClient(self: *const T, lppt: ?*POINT) callconv(.Inline) BOOL {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxScreenToClient(@ptrCast(*const ITextHost, self), lppt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxClientToScreen(self: *const T, lppt: ?*POINT) callconv(.Inline) BOOL {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxClientToScreen(@ptrCast(*const ITextHost, self), lppt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxActivate(self: *const T, plOldState: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxActivate(@ptrCast(*const ITextHost, self), plOldState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxDeactivate(self: *const T, lNewState: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxDeactivate(@ptrCast(*const ITextHost, self), lNewState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxGetClientRect(self: *const T, prc: ?*RECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetClientRect(@ptrCast(*const ITextHost, self), prc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxGetViewInset(self: *const T, prc: ?*RECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetViewInset(@ptrCast(*const ITextHost, self), prc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxGetCharFormat(self: *const T, ppCF: ?*const ?*CHARFORMATW) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetCharFormat(@ptrCast(*const ITextHost, self), ppCF);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxGetParaFormat(self: *const T, ppPF: ?*const ?*PARAFORMAT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetParaFormat(@ptrCast(*const ITextHost, self), ppPF);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxGetSysColor(self: *const T, nIndex: i32) callconv(.Inline) u32 {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetSysColor(@ptrCast(*const ITextHost, self), nIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxGetBackStyle(self: *const T, pstyle: ?*TXTBACKSTYLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetBackStyle(@ptrCast(*const ITextHost, self), pstyle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxGetMaxLength(self: *const T, plength: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetMaxLength(@ptrCast(*const ITextHost, self), plength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxGetScrollBars(self: *const T, pdwScrollBar: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetScrollBars(@ptrCast(*const ITextHost, self), pdwScrollBar);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxGetPasswordChar(self: *const T, pch: ?*i8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetPasswordChar(@ptrCast(*const ITextHost, self), pch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxGetAcceleratorPos(self: *const T, pcp: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetAcceleratorPos(@ptrCast(*const ITextHost, self), pcp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxGetExtent(self: *const T, lpExtent: ?*SIZE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetExtent(@ptrCast(*const ITextHost, self), lpExtent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_OnTxCharFormatChange(self: *const T, pCF: ?*const CHARFORMATW) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).OnTxCharFormatChange(@ptrCast(*const ITextHost, self), pCF);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_OnTxParaFormatChange(self: *const T, pPF: ?*const PARAFORMAT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).OnTxParaFormatChange(@ptrCast(*const ITextHost, self), pPF);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxGetPropertyBits(self: *const T, dwMask: u32, pdwBits: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetPropertyBits(@ptrCast(*const ITextHost, self), dwMask, pdwBits);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxNotify(self: *const T, iNotify: u32, pv: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxNotify(@ptrCast(*const ITextHost, self), iNotify, pv);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxImmGetContext(self: *const T) callconv(.Inline) ?HIMC {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxImmGetContext(@ptrCast(*const ITextHost, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxImmReleaseContext(self: *const T, himc: ?HIMC) callconv(.Inline) void {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxImmReleaseContext(@ptrCast(*const ITextHost, self), himc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost_TxGetSelectionBarWidth(self: *const T, lSelBarWidth: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetSelectionBarWidth(@ptrCast(*const ITextHost, self), lSelBarWidth);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxGetDC(self: *const T) ?HDC {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetDC(@ptrCast(*const ITextHost, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxReleaseDC(self: *const T, hdc: ?HDC) i32 {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxReleaseDC(@ptrCast(*const ITextHost, self), hdc);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxShowScrollBar(self: *const T, fnBar: i32, fShow: BOOL) BOOL {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxShowScrollBar(@ptrCast(*const ITextHost, self), fnBar, fShow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxEnableScrollBar(self: *const T, fuSBFlags: SCROLLBAR_CONSTANTS, fuArrowflags: ENABLE_SCROLL_BAR_ARROWS) BOOL {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxEnableScrollBar(@ptrCast(*const ITextHost, self), fuSBFlags, fuArrowflags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxSetScrollRange(self: *const T, fnBar: i32, nMinPos: i32, nMaxPos: i32, fRedraw: BOOL) BOOL {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxSetScrollRange(@ptrCast(*const ITextHost, self), fnBar, nMinPos, nMaxPos, fRedraw);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxSetScrollPos(self: *const T, fnBar: i32, nPos: i32, fRedraw: BOOL) BOOL {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxSetScrollPos(@ptrCast(*const ITextHost, self), fnBar, nPos, fRedraw);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxInvalidateRect(self: *const T, prc: ?*RECT, fMode: BOOL) void {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxInvalidateRect(@ptrCast(*const ITextHost, self), prc, fMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxViewChange(self: *const T, fUpdate: BOOL) void {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxViewChange(@ptrCast(*const ITextHost, self), fUpdate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxCreateCaret(self: *const T, hbmp: ?HBITMAP, xWidth: i32, yHeight: i32) BOOL {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxCreateCaret(@ptrCast(*const ITextHost, self), hbmp, xWidth, yHeight);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxShowCaret(self: *const T, fShow: BOOL) BOOL {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxShowCaret(@ptrCast(*const ITextHost, self), fShow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxSetCaretPos(self: *const T, x: i32, y: i32) BOOL {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxSetCaretPos(@ptrCast(*const ITextHost, self), x, y);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxSetTimer(self: *const T, idTimer: u32, uTimeout: u32) BOOL {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxSetTimer(@ptrCast(*const ITextHost, self), idTimer, uTimeout);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxKillTimer(self: *const T, idTimer: u32) void {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxKillTimer(@ptrCast(*const ITextHost, self), idTimer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxScrollWindowEx(self: *const T, dx: i32, dy: i32, lprcScroll: ?*RECT, lprcClip: ?*RECT, hrgnUpdate: ?HRGN, lprcUpdate: ?*RECT, fuScroll: SHOW_WINDOW_CMD) void {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxScrollWindowEx(@ptrCast(*const ITextHost, self), dx, dy, lprcScroll, lprcClip, hrgnUpdate, lprcUpdate, fuScroll);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxSetCapture(self: *const T, fCapture: BOOL) void {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxSetCapture(@ptrCast(*const ITextHost, self), fCapture);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxSetFocus(self: *const T) void {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxSetFocus(@ptrCast(*const ITextHost, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxSetCursor(self: *const T, hcur: ?HCURSOR, fText: BOOL) void {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxSetCursor(@ptrCast(*const ITextHost, self), hcur, fText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxScreenToClient(self: *const T, lppt: ?*POINT) BOOL {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxScreenToClient(@ptrCast(*const ITextHost, self), lppt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxClientToScreen(self: *const T, lppt: ?*POINT) BOOL {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxClientToScreen(@ptrCast(*const ITextHost, self), lppt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxActivate(self: *const T, plOldState: ?*i32) HRESULT {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxActivate(@ptrCast(*const ITextHost, self), plOldState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxDeactivate(self: *const T, lNewState: i32) HRESULT {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxDeactivate(@ptrCast(*const ITextHost, self), lNewState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxGetClientRect(self: *const T, prc: ?*RECT) HRESULT {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetClientRect(@ptrCast(*const ITextHost, self), prc);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxGetViewInset(self: *const T, prc: ?*RECT) HRESULT {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetViewInset(@ptrCast(*const ITextHost, self), prc);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxGetCharFormat(self: *const T, ppCF: ?*const ?*CHARFORMATW) HRESULT {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetCharFormat(@ptrCast(*const ITextHost, self), ppCF);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxGetParaFormat(self: *const T, ppPF: ?*const ?*PARAFORMAT) HRESULT {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetParaFormat(@ptrCast(*const ITextHost, self), ppPF);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxGetSysColor(self: *const T, nIndex: i32) u32 {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetSysColor(@ptrCast(*const ITextHost, self), nIndex);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxGetBackStyle(self: *const T, pstyle: ?*TXTBACKSTYLE) HRESULT {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetBackStyle(@ptrCast(*const ITextHost, self), pstyle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxGetMaxLength(self: *const T, plength: ?*u32) HRESULT {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetMaxLength(@ptrCast(*const ITextHost, self), plength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxGetScrollBars(self: *const T, pdwScrollBar: ?*u32) HRESULT {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetScrollBars(@ptrCast(*const ITextHost, self), pdwScrollBar);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxGetPasswordChar(self: *const T, pch: ?*i8) HRESULT {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetPasswordChar(@ptrCast(*const ITextHost, self), pch);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxGetAcceleratorPos(self: *const T, pcp: ?*i32) HRESULT {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetAcceleratorPos(@ptrCast(*const ITextHost, self), pcp);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxGetExtent(self: *const T, lpExtent: ?*SIZE) HRESULT {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetExtent(@ptrCast(*const ITextHost, self), lpExtent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_OnTxCharFormatChange(self: *const T, pCF: ?*const CHARFORMATW) HRESULT {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).OnTxCharFormatChange(@ptrCast(*const ITextHost, self), pCF);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_OnTxParaFormatChange(self: *const T, pPF: ?*const PARAFORMAT) HRESULT {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).OnTxParaFormatChange(@ptrCast(*const ITextHost, self), pPF);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxGetPropertyBits(self: *const T, dwMask: u32, pdwBits: ?*u32) HRESULT {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetPropertyBits(@ptrCast(*const ITextHost, self), dwMask, pdwBits);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxNotify(self: *const T, iNotify: u32, pv: ?*anyopaque) HRESULT {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxNotify(@ptrCast(*const ITextHost, self), iNotify, pv);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxImmGetContext(self: *const T) ?HIMC {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxImmGetContext(@ptrCast(*const ITextHost, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxImmReleaseContext(self: *const T, himc: ?HIMC) void {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxImmReleaseContext(@ptrCast(*const ITextHost, self), himc);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost_TxGetSelectionBarWidth(self: *const T, lSelBarWidth: ?*i32) HRESULT {
+                return @ptrCast(*const ITextHost.VTable, self.vtable).TxGetSelectionBarWidth(@ptrCast(*const ITextHost, self), lSelBarWidth);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2102,144 +1986,148 @@ pub const ITextHost = extern struct {
 pub const IRicheditUiaOverrides = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPropertyOverrideValue: fn(
+        GetPropertyOverrideValue: fn (
             self: *const IRicheditUiaOverrides,
             propertyId: i32,
             pRetValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRicheditUiaOverrides_GetPropertyOverrideValue(self: *const T, propertyId: i32, pRetValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRicheditUiaOverrides.VTable, self.vtable).GetPropertyOverrideValue(@ptrCast(*const IRicheditUiaOverrides, self), propertyId, pRetValue);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRicheditUiaOverrides_GetPropertyOverrideValue(self: *const T, propertyId: i32, pRetValue: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IRicheditUiaOverrides.VTable, self.vtable).GetPropertyOverrideValue(@ptrCast(*const IRicheditUiaOverrides, self), propertyId, pRetValue);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PCreateTextServices = fn(
+pub const PCreateTextServices = fn (
     punkOuter: ?*IUnknown,
     pITextHost: ?*ITextHost,
     ppUnk: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PShutdownTextServices = fn(
+pub const PShutdownTextServices = fn (
     pTextServices: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const ITextHost2 = extern struct {
     pub const VTable = extern struct {
         base: ITextHost.VTable,
-        TxIsDoubleClickPending: fn(
+        TxIsDoubleClickPending: fn (
             self: *const ITextHost2,
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        TxGetWindow: fn(
+        TxGetWindow: fn (
             self: *const ITextHost2,
             phwnd: ?*?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxSetForegroundWindow: fn(
+        TxSetForegroundWindow: fn (
             self: *const ITextHost2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetPalette: fn(
+        TxGetPalette: fn (
             self: *const ITextHost2,
         ) callconv(@import("std").os.windows.WINAPI) ?HPALETTE,
-        TxGetEastAsianFlags: fn(
+        TxGetEastAsianFlags: fn (
             self: *const ITextHost2,
             pFlags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxSetCursor2: fn(
+        TxSetCursor2: fn (
             self: *const ITextHost2,
             hcur: ?HCURSOR,
             bText: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) ?HCURSOR,
-        TxFreeTextServicesNotification: fn(
+        TxFreeTextServicesNotification: fn (
             self: *const ITextHost2,
         ) callconv(@import("std").os.windows.WINAPI) void,
-        TxGetEditStyle: fn(
+        TxGetEditStyle: fn (
             self: *const ITextHost2,
             dwItem: u32,
             pdwData: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetWindowStyles: fn(
+        TxGetWindowStyles: fn (
             self: *const ITextHost2,
             pdwStyle: ?*u32,
             pdwExStyle: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxShowDropCaret: fn(
+        TxShowDropCaret: fn (
             self: *const ITextHost2,
             fShow: BOOL,
             hdc: ?HDC,
             prc: ?*RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxDestroyCaret: fn(
+        TxDestroyCaret: fn (
             self: *const ITextHost2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxGetHorzExtent: fn(
+        TxGetHorzExtent: fn (
             self: *const ITextHost2,
             plHorzExtent: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ITextHost.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost2_TxIsDoubleClickPending(self: *const T) callconv(.Inline) BOOL {
-            return @ptrCast(*const ITextHost2.VTable, self.vtable).TxIsDoubleClickPending(@ptrCast(*const ITextHost2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost2_TxGetWindow(self: *const T, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost2.VTable, self.vtable).TxGetWindow(@ptrCast(*const ITextHost2, self), phwnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost2_TxSetForegroundWindow(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost2.VTable, self.vtable).TxSetForegroundWindow(@ptrCast(*const ITextHost2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost2_TxGetPalette(self: *const T) callconv(.Inline) ?HPALETTE {
-            return @ptrCast(*const ITextHost2.VTable, self.vtable).TxGetPalette(@ptrCast(*const ITextHost2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost2_TxGetEastAsianFlags(self: *const T, pFlags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost2.VTable, self.vtable).TxGetEastAsianFlags(@ptrCast(*const ITextHost2, self), pFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost2_TxSetCursor2(self: *const T, hcur: ?HCURSOR, bText: BOOL) callconv(.Inline) ?HCURSOR {
-            return @ptrCast(*const ITextHost2.VTable, self.vtable).TxSetCursor2(@ptrCast(*const ITextHost2, self), hcur, bText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost2_TxFreeTextServicesNotification(self: *const T) callconv(.Inline) void {
-            return @ptrCast(*const ITextHost2.VTable, self.vtable).TxFreeTextServicesNotification(@ptrCast(*const ITextHost2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost2_TxGetEditStyle(self: *const T, dwItem: u32, pdwData: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost2.VTable, self.vtable).TxGetEditStyle(@ptrCast(*const ITextHost2, self), dwItem, pdwData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost2_TxGetWindowStyles(self: *const T, pdwStyle: ?*u32, pdwExStyle: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost2.VTable, self.vtable).TxGetWindowStyles(@ptrCast(*const ITextHost2, self), pdwStyle, pdwExStyle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost2_TxShowDropCaret(self: *const T, fShow: BOOL, hdc: ?HDC, prc: ?*RECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost2.VTable, self.vtable).TxShowDropCaret(@ptrCast(*const ITextHost2, self), fShow, hdc, prc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost2_TxDestroyCaret(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost2.VTable, self.vtable).TxDestroyCaret(@ptrCast(*const ITextHost2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextHost2_TxGetHorzExtent(self: *const T, plHorzExtent: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextHost2.VTable, self.vtable).TxGetHorzExtent(@ptrCast(*const ITextHost2, self), plHorzExtent);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ITextHost.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost2_TxIsDoubleClickPending(self: *const T) BOOL {
+                return @ptrCast(*const ITextHost2.VTable, self.vtable).TxIsDoubleClickPending(@ptrCast(*const ITextHost2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost2_TxGetWindow(self: *const T, phwnd: ?*?HWND) HRESULT {
+                return @ptrCast(*const ITextHost2.VTable, self.vtable).TxGetWindow(@ptrCast(*const ITextHost2, self), phwnd);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost2_TxSetForegroundWindow(self: *const T) HRESULT {
+                return @ptrCast(*const ITextHost2.VTable, self.vtable).TxSetForegroundWindow(@ptrCast(*const ITextHost2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost2_TxGetPalette(self: *const T) ?HPALETTE {
+                return @ptrCast(*const ITextHost2.VTable, self.vtable).TxGetPalette(@ptrCast(*const ITextHost2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost2_TxGetEastAsianFlags(self: *const T, pFlags: ?*i32) HRESULT {
+                return @ptrCast(*const ITextHost2.VTable, self.vtable).TxGetEastAsianFlags(@ptrCast(*const ITextHost2, self), pFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost2_TxSetCursor2(self: *const T, hcur: ?HCURSOR, bText: BOOL) ?HCURSOR {
+                return @ptrCast(*const ITextHost2.VTable, self.vtable).TxSetCursor2(@ptrCast(*const ITextHost2, self), hcur, bText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost2_TxFreeTextServicesNotification(self: *const T) void {
+                return @ptrCast(*const ITextHost2.VTable, self.vtable).TxFreeTextServicesNotification(@ptrCast(*const ITextHost2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost2_TxGetEditStyle(self: *const T, dwItem: u32, pdwData: ?*u32) HRESULT {
+                return @ptrCast(*const ITextHost2.VTable, self.vtable).TxGetEditStyle(@ptrCast(*const ITextHost2, self), dwItem, pdwData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost2_TxGetWindowStyles(self: *const T, pdwStyle: ?*u32, pdwExStyle: ?*u32) HRESULT {
+                return @ptrCast(*const ITextHost2.VTable, self.vtable).TxGetWindowStyles(@ptrCast(*const ITextHost2, self), pdwStyle, pdwExStyle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost2_TxShowDropCaret(self: *const T, fShow: BOOL, hdc: ?HDC, prc: ?*RECT) HRESULT {
+                return @ptrCast(*const ITextHost2.VTable, self.vtable).TxShowDropCaret(@ptrCast(*const ITextHost2, self), fShow, hdc, prc);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost2_TxDestroyCaret(self: *const T) HRESULT {
+                return @ptrCast(*const ITextHost2.VTable, self.vtable).TxDestroyCaret(@ptrCast(*const ITextHost2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextHost2_TxGetHorzExtent(self: *const T, plHorzExtent: ?*i32) HRESULT {
+                return @ptrCast(*const ITextHost2.VTable, self.vtable).TxGetHorzExtent(@ptrCast(*const ITextHost2, self), plHorzExtent);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
 pub const ITextServices2 = extern struct {
     pub const VTable = extern struct {
         base: ITextServices.VTable,
-        TxGetNaturalSize2: fn(
+        TxGetNaturalSize2: fn (
             self: *const ITextServices2,
             dwAspect: u32,
             hdcDraw: ?HDC,
@@ -2251,7 +2139,7 @@ pub const ITextServices2 = extern struct {
             pheight: ?*i32,
             pascent: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TxDrawD2D: fn(
+        TxDrawD2D: fn (
             self: *const ITextServices2,
             pRenderTarget: ?*ID2D1RenderTarget,
             lprcBounds: ?*RECTL,
@@ -2260,17 +2148,19 @@ pub const ITextServices2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ITextServices.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices2_TxGetNaturalSize2(self: *const T, dwAspect: u32, hdcDraw: ?HDC, hicTargetDev: ?HDC, ptd: ?*DVTARGETDEVICE, dwMode: u32, psizelExtent: ?*const SIZE, pwidth: ?*i32, pheight: ?*i32, pascent: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextServices2.VTable, self.vtable).TxGetNaturalSize2(@ptrCast(*const ITextServices2, self), dwAspect, hdcDraw, hicTargetDev, ptd, dwMode, psizelExtent, pwidth, pheight, pascent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextServices2_TxDrawD2D(self: *const T, pRenderTarget: ?*ID2D1RenderTarget, lprcBounds: ?*RECTL, lprcUpdate: ?*RECT, lViewId: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextServices2.VTable, self.vtable).TxDrawD2D(@ptrCast(*const ITextServices2, self), pRenderTarget, lprcBounds, lprcUpdate, lViewId);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ITextServices.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextServices2_TxGetNaturalSize2(self: *const T, dwAspect: u32, hdcDraw: ?HDC, hicTargetDev: ?HDC, ptd: ?*DVTARGETDEVICE, dwMode: u32, psizelExtent: ?*const SIZE, pwidth: ?*i32, pheight: ?*i32, pascent: ?*i32) HRESULT {
+                return @ptrCast(*const ITextServices2.VTable, self.vtable).TxGetNaturalSize2(@ptrCast(*const ITextServices2, self), dwAspect, hdcDraw, hicTargetDev, ptd, dwMode, psizelExtent, pwidth, pheight, pascent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextServices2_TxDrawD2D(self: *const T, pRenderTarget: ?*ID2D1RenderTarget, lprcBounds: ?*RECTL, lprcUpdate: ?*RECT, lViewId: i32) HRESULT {
+                return @ptrCast(*const ITextServices2.VTable, self.vtable).TxDrawD2D(@ptrCast(*const ITextServices2, self), pRenderTarget, lprcBounds, lprcUpdate, lViewId);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2293,75 +2183,75 @@ pub const IID_IRichEditOle = &IID_IRichEditOle_Value;
 pub const IRichEditOle = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetClientSite: fn(
+        GetClientSite: fn (
             self: *const IRichEditOle,
             lplpolesite: ?*?*IOleClientSite,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetObjectCount: fn(
+        GetObjectCount: fn (
             self: *const IRichEditOle,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-        GetLinkCount: fn(
+        GetLinkCount: fn (
             self: *const IRichEditOle,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-        GetObject: fn(
+        GetObject: fn (
             self: *const IRichEditOle,
             iob: i32,
             lpreobject: ?*REOBJECT,
             dwFlags: RICH_EDIT_GET_OBJECT_FLAGS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InsertObject: fn(
+        InsertObject: fn (
             self: *const IRichEditOle,
             lpreobject: ?*REOBJECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ConvertObject: fn(
+        ConvertObject: fn (
             self: *const IRichEditOle,
             iob: i32,
             rclsidNew: ?*const Guid,
             lpstrUserTypeNew: ?[*:0]const u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ActivateAs: fn(
+        ActivateAs: fn (
             self: *const IRichEditOle,
             rclsid: ?*const Guid,
             rclsidAs: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetHostNames: fn(
+        SetHostNames: fn (
             self: *const IRichEditOle,
             lpstrContainerApp: ?[*:0]const u8,
             lpstrContainerObj: ?[*:0]const u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetLinkAvailable: fn(
+        SetLinkAvailable: fn (
             self: *const IRichEditOle,
             iob: i32,
             fAvailable: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDvaspect: fn(
+        SetDvaspect: fn (
             self: *const IRichEditOle,
             iob: i32,
             dvaspect: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HandsOffStorage: fn(
+        HandsOffStorage: fn (
             self: *const IRichEditOle,
             iob: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SaveCompleted: fn(
+        SaveCompleted: fn (
             self: *const IRichEditOle,
             iob: i32,
             lpstg: ?*IStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InPlaceDeactivate: fn(
+        InPlaceDeactivate: fn (
             self: *const IRichEditOle,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ContextSensitiveHelp: fn(
+        ContextSensitiveHelp: fn (
             self: *const IRichEditOle,
             fEnterMode: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetClipboardData: fn(
+        GetClipboardData: fn (
             self: *const IRichEditOle,
             lpchrg: ?*CHARRANGE,
             reco: u32,
             lplpdataobj: ?*?*IDataObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ImportDataObject: fn(
+        ImportDataObject: fn (
             self: *const IRichEditOle,
             lpdataobj: ?*IDataObject,
             cf: u16,
@@ -2369,73 +2259,75 @@ pub const IRichEditOle = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOle_GetClientSite(self: *const T, lplpolesite: ?*?*IOleClientSite) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOle.VTable, self.vtable).GetClientSite(@ptrCast(*const IRichEditOle, self), lplpolesite);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOle_GetObjectCount(self: *const T) callconv(.Inline) i32 {
-            return @ptrCast(*const IRichEditOle.VTable, self.vtable).GetObjectCount(@ptrCast(*const IRichEditOle, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOle_GetLinkCount(self: *const T) callconv(.Inline) i32 {
-            return @ptrCast(*const IRichEditOle.VTable, self.vtable).GetLinkCount(@ptrCast(*const IRichEditOle, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOle_GetObject(self: *const T, iob: i32, lpreobject: ?*REOBJECT, dwFlags: RICH_EDIT_GET_OBJECT_FLAGS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOle.VTable, self.vtable).GetObject(@ptrCast(*const IRichEditOle, self), iob, lpreobject, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOle_InsertObject(self: *const T, lpreobject: ?*REOBJECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOle.VTable, self.vtable).InsertObject(@ptrCast(*const IRichEditOle, self), lpreobject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOle_ConvertObject(self: *const T, iob: i32, rclsidNew: ?*const Guid, lpstrUserTypeNew: ?[*:0]const u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOle.VTable, self.vtable).ConvertObject(@ptrCast(*const IRichEditOle, self), iob, rclsidNew, lpstrUserTypeNew);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOle_ActivateAs(self: *const T, rclsid: ?*const Guid, rclsidAs: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOle.VTable, self.vtable).ActivateAs(@ptrCast(*const IRichEditOle, self), rclsid, rclsidAs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOle_SetHostNames(self: *const T, lpstrContainerApp: ?[*:0]const u8, lpstrContainerObj: ?[*:0]const u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOle.VTable, self.vtable).SetHostNames(@ptrCast(*const IRichEditOle, self), lpstrContainerApp, lpstrContainerObj);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOle_SetLinkAvailable(self: *const T, iob: i32, fAvailable: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOle.VTable, self.vtable).SetLinkAvailable(@ptrCast(*const IRichEditOle, self), iob, fAvailable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOle_SetDvaspect(self: *const T, iob: i32, dvaspect: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOle.VTable, self.vtable).SetDvaspect(@ptrCast(*const IRichEditOle, self), iob, dvaspect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOle_HandsOffStorage(self: *const T, iob: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOle.VTable, self.vtable).HandsOffStorage(@ptrCast(*const IRichEditOle, self), iob);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOle_SaveCompleted(self: *const T, iob: i32, lpstg: ?*IStorage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOle.VTable, self.vtable).SaveCompleted(@ptrCast(*const IRichEditOle, self), iob, lpstg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOle_InPlaceDeactivate(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOle.VTable, self.vtable).InPlaceDeactivate(@ptrCast(*const IRichEditOle, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOle_ContextSensitiveHelp(self: *const T, fEnterMode: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOle.VTable, self.vtable).ContextSensitiveHelp(@ptrCast(*const IRichEditOle, self), fEnterMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOle_GetClipboardData(self: *const T, lpchrg: ?*CHARRANGE, reco: u32, lplpdataobj: ?*?*IDataObject) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOle.VTable, self.vtable).GetClipboardData(@ptrCast(*const IRichEditOle, self), lpchrg, reco, lplpdataobj);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOle_ImportDataObject(self: *const T, lpdataobj: ?*IDataObject, cf: u16, hMetaPict: isize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOle.VTable, self.vtable).ImportDataObject(@ptrCast(*const IRichEditOle, self), lpdataobj, cf, hMetaPict);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOle_GetClientSite(self: *const T, lplpolesite: ?*?*IOleClientSite) HRESULT {
+                return @ptrCast(*const IRichEditOle.VTable, self.vtable).GetClientSite(@ptrCast(*const IRichEditOle, self), lplpolesite);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOle_GetObjectCount(self: *const T) i32 {
+                return @ptrCast(*const IRichEditOle.VTable, self.vtable).GetObjectCount(@ptrCast(*const IRichEditOle, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOle_GetLinkCount(self: *const T) i32 {
+                return @ptrCast(*const IRichEditOle.VTable, self.vtable).GetLinkCount(@ptrCast(*const IRichEditOle, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOle_GetObject(self: *const T, iob: i32, lpreobject: ?*REOBJECT, dwFlags: RICH_EDIT_GET_OBJECT_FLAGS) HRESULT {
+                return @ptrCast(*const IRichEditOle.VTable, self.vtable).GetObject(@ptrCast(*const IRichEditOle, self), iob, lpreobject, dwFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOle_InsertObject(self: *const T, lpreobject: ?*REOBJECT) HRESULT {
+                return @ptrCast(*const IRichEditOle.VTable, self.vtable).InsertObject(@ptrCast(*const IRichEditOle, self), lpreobject);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOle_ConvertObject(self: *const T, iob: i32, rclsidNew: ?*const Guid, lpstrUserTypeNew: ?[*:0]const u8) HRESULT {
+                return @ptrCast(*const IRichEditOle.VTable, self.vtable).ConvertObject(@ptrCast(*const IRichEditOle, self), iob, rclsidNew, lpstrUserTypeNew);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOle_ActivateAs(self: *const T, rclsid: ?*const Guid, rclsidAs: ?*const Guid) HRESULT {
+                return @ptrCast(*const IRichEditOle.VTable, self.vtable).ActivateAs(@ptrCast(*const IRichEditOle, self), rclsid, rclsidAs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOle_SetHostNames(self: *const T, lpstrContainerApp: ?[*:0]const u8, lpstrContainerObj: ?[*:0]const u8) HRESULT {
+                return @ptrCast(*const IRichEditOle.VTable, self.vtable).SetHostNames(@ptrCast(*const IRichEditOle, self), lpstrContainerApp, lpstrContainerObj);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOle_SetLinkAvailable(self: *const T, iob: i32, fAvailable: BOOL) HRESULT {
+                return @ptrCast(*const IRichEditOle.VTable, self.vtable).SetLinkAvailable(@ptrCast(*const IRichEditOle, self), iob, fAvailable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOle_SetDvaspect(self: *const T, iob: i32, dvaspect: u32) HRESULT {
+                return @ptrCast(*const IRichEditOle.VTable, self.vtable).SetDvaspect(@ptrCast(*const IRichEditOle, self), iob, dvaspect);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOle_HandsOffStorage(self: *const T, iob: i32) HRESULT {
+                return @ptrCast(*const IRichEditOle.VTable, self.vtable).HandsOffStorage(@ptrCast(*const IRichEditOle, self), iob);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOle_SaveCompleted(self: *const T, iob: i32, lpstg: ?*IStorage) HRESULT {
+                return @ptrCast(*const IRichEditOle.VTable, self.vtable).SaveCompleted(@ptrCast(*const IRichEditOle, self), iob, lpstg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOle_InPlaceDeactivate(self: *const T) HRESULT {
+                return @ptrCast(*const IRichEditOle.VTable, self.vtable).InPlaceDeactivate(@ptrCast(*const IRichEditOle, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOle_ContextSensitiveHelp(self: *const T, fEnterMode: BOOL) HRESULT {
+                return @ptrCast(*const IRichEditOle.VTable, self.vtable).ContextSensitiveHelp(@ptrCast(*const IRichEditOle, self), fEnterMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOle_GetClipboardData(self: *const T, lpchrg: ?*CHARRANGE, reco: u32, lplpdataobj: ?*?*IDataObject) HRESULT {
+                return @ptrCast(*const IRichEditOle.VTable, self.vtable).GetClipboardData(@ptrCast(*const IRichEditOle, self), lpchrg, reco, lplpdataobj);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOle_ImportDataObject(self: *const T, lpdataobj: ?*IDataObject, cf: u16, hMetaPict: isize) HRESULT {
+                return @ptrCast(*const IRichEditOle.VTable, self.vtable).ImportDataObject(@ptrCast(*const IRichEditOle, self), lpdataobj, cf, hMetaPict);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2445,31 +2337,31 @@ pub const IID_IRichEditOleCallback = &IID_IRichEditOleCallback_Value;
 pub const IRichEditOleCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetNewStorage: fn(
+        GetNewStorage: fn (
             self: *const IRichEditOleCallback,
             lplpstg: ?*?*IStorage,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInPlaceContext: fn(
+        GetInPlaceContext: fn (
             self: *const IRichEditOleCallback,
             lplpFrame: ?*?*IOleInPlaceFrame,
             lplpDoc: ?*?*IOleInPlaceUIWindow,
             lpFrameInfo: ?*OIFI,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ShowContainerUI: fn(
+        ShowContainerUI: fn (
             self: *const IRichEditOleCallback,
             fShow: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        QueryInsertObject: fn(
+        QueryInsertObject: fn (
             self: *const IRichEditOleCallback,
             lpclsid: ?*Guid,
             lpstg: ?*IStorage,
             cp: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteObject: fn(
+        DeleteObject: fn (
             self: *const IRichEditOleCallback,
             lpoleobj: ?*IOleObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        QueryAcceptData: fn(
+        QueryAcceptData: fn (
             self: *const IRichEditOleCallback,
             lpdataobj: ?*IDataObject,
             lpcfFormat: ?*u16,
@@ -2477,23 +2369,23 @@ pub const IRichEditOleCallback = extern struct {
             fReally: BOOL,
             hMetaPict: isize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ContextSensitiveHelp: fn(
+        ContextSensitiveHelp: fn (
             self: *const IRichEditOleCallback,
             fEnterMode: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetClipboardData: fn(
+        GetClipboardData: fn (
             self: *const IRichEditOleCallback,
             lpchrg: ?*CHARRANGE,
             reco: u32,
             lplpdataobj: ?*?*IDataObject,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDragDropEffect: fn(
+        GetDragDropEffect: fn (
             self: *const IRichEditOleCallback,
             fDrag: BOOL,
             grfKeyState: u32,
             pdwEffect: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetContextMenu: fn(
+        GetContextMenu: fn (
             self: *const IRichEditOleCallback,
             seltype: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE,
             lpoleobj: ?*IOleObject,
@@ -2502,49 +2394,51 @@ pub const IRichEditOleCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOleCallback_GetNewStorage(self: *const T, lplpstg: ?*?*IStorage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).GetNewStorage(@ptrCast(*const IRichEditOleCallback, self), lplpstg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOleCallback_GetInPlaceContext(self: *const T, lplpFrame: ?*?*IOleInPlaceFrame, lplpDoc: ?*?*IOleInPlaceUIWindow, lpFrameInfo: ?*OIFI) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).GetInPlaceContext(@ptrCast(*const IRichEditOleCallback, self), lplpFrame, lplpDoc, lpFrameInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOleCallback_ShowContainerUI(self: *const T, fShow: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).ShowContainerUI(@ptrCast(*const IRichEditOleCallback, self), fShow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOleCallback_QueryInsertObject(self: *const T, lpclsid: ?*Guid, lpstg: ?*IStorage, cp: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).QueryInsertObject(@ptrCast(*const IRichEditOleCallback, self), lpclsid, lpstg, cp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOleCallback_DeleteObject(self: *const T, lpoleobj: ?*IOleObject) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).DeleteObject(@ptrCast(*const IRichEditOleCallback, self), lpoleobj);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOleCallback_QueryAcceptData(self: *const T, lpdataobj: ?*IDataObject, lpcfFormat: ?*u16, reco: u32, fReally: BOOL, hMetaPict: isize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).QueryAcceptData(@ptrCast(*const IRichEditOleCallback, self), lpdataobj, lpcfFormat, reco, fReally, hMetaPict);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOleCallback_ContextSensitiveHelp(self: *const T, fEnterMode: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).ContextSensitiveHelp(@ptrCast(*const IRichEditOleCallback, self), fEnterMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOleCallback_GetClipboardData(self: *const T, lpchrg: ?*CHARRANGE, reco: u32, lplpdataobj: ?*?*IDataObject) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).GetClipboardData(@ptrCast(*const IRichEditOleCallback, self), lpchrg, reco, lplpdataobj);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOleCallback_GetDragDropEffect(self: *const T, fDrag: BOOL, grfKeyState: u32, pdwEffect: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).GetDragDropEffect(@ptrCast(*const IRichEditOleCallback, self), fDrag, grfKeyState, pdwEffect);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRichEditOleCallback_GetContextMenu(self: *const T, seltype: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE, lpoleobj: ?*IOleObject, lpchrg: ?*CHARRANGE, lphmenu: ?*?HMENU) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).GetContextMenu(@ptrCast(*const IRichEditOleCallback, self), seltype, lpoleobj, lpchrg, lphmenu);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOleCallback_GetNewStorage(self: *const T, lplpstg: ?*?*IStorage) HRESULT {
+                return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).GetNewStorage(@ptrCast(*const IRichEditOleCallback, self), lplpstg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOleCallback_GetInPlaceContext(self: *const T, lplpFrame: ?*?*IOleInPlaceFrame, lplpDoc: ?*?*IOleInPlaceUIWindow, lpFrameInfo: ?*OIFI) HRESULT {
+                return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).GetInPlaceContext(@ptrCast(*const IRichEditOleCallback, self), lplpFrame, lplpDoc, lpFrameInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOleCallback_ShowContainerUI(self: *const T, fShow: BOOL) HRESULT {
+                return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).ShowContainerUI(@ptrCast(*const IRichEditOleCallback, self), fShow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOleCallback_QueryInsertObject(self: *const T, lpclsid: ?*Guid, lpstg: ?*IStorage, cp: i32) HRESULT {
+                return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).QueryInsertObject(@ptrCast(*const IRichEditOleCallback, self), lpclsid, lpstg, cp);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOleCallback_DeleteObject(self: *const T, lpoleobj: ?*IOleObject) HRESULT {
+                return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).DeleteObject(@ptrCast(*const IRichEditOleCallback, self), lpoleobj);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOleCallback_QueryAcceptData(self: *const T, lpdataobj: ?*IDataObject, lpcfFormat: ?*u16, reco: u32, fReally: BOOL, hMetaPict: isize) HRESULT {
+                return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).QueryAcceptData(@ptrCast(*const IRichEditOleCallback, self), lpdataobj, lpcfFormat, reco, fReally, hMetaPict);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOleCallback_ContextSensitiveHelp(self: *const T, fEnterMode: BOOL) HRESULT {
+                return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).ContextSensitiveHelp(@ptrCast(*const IRichEditOleCallback, self), fEnterMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOleCallback_GetClipboardData(self: *const T, lpchrg: ?*CHARRANGE, reco: u32, lplpdataobj: ?*?*IDataObject) HRESULT {
+                return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).GetClipboardData(@ptrCast(*const IRichEditOleCallback, self), lpchrg, reco, lplpdataobj);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOleCallback_GetDragDropEffect(self: *const T, fDrag: BOOL, grfKeyState: u32, pdwEffect: ?*u32) HRESULT {
+                return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).GetDragDropEffect(@ptrCast(*const IRichEditOleCallback, self), fDrag, grfKeyState, pdwEffect);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRichEditOleCallback_GetContextMenu(self: *const T, seltype: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE, lpoleobj: ?*IOleObject, lpchrg: ?*CHARRANGE, lphmenu: ?*?HMENU) HRESULT {
+                return @ptrCast(*const IRichEditOleCallback.VTable, self.vtable).GetContextMenu(@ptrCast(*const IRichEditOleCallback, self), seltype, lpoleobj, lpchrg, lphmenu);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3825,84 +3719,84 @@ pub const IID_ITextDocument = &IID_ITextDocument_Value;
 pub const ITextDocument = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        GetName: fn(
+        GetName: fn (
             self: *const ITextDocument,
             pName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSelection: fn(
+        GetSelection: fn (
             self: *const ITextDocument,
             ppSel: ?*?*ITextSelection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStoryCount: fn(
+        GetStoryCount: fn (
             self: *const ITextDocument,
             pCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStoryRanges: fn(
+        GetStoryRanges: fn (
             self: *const ITextDocument,
             ppStories: ?*?*ITextStoryRanges,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSaved: fn(
+        GetSaved: fn (
             self: *const ITextDocument,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSaved: fn(
+        SetSaved: fn (
             self: *const ITextDocument,
             Value: tomConstants,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDefaultTabStop: fn(
+        GetDefaultTabStop: fn (
             self: *const ITextDocument,
             pValue: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDefaultTabStop: fn(
+        SetDefaultTabStop: fn (
             self: *const ITextDocument,
             Value: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        New: fn(
+        New: fn (
             self: *const ITextDocument,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Open: fn(
-            self: *const ITextDocument,
-            pVar: ?*VARIANT,
-            Flags: i32,
-            CodePage: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Save: fn(
+        Open: fn (
             self: *const ITextDocument,
             pVar: ?*VARIANT,
             Flags: i32,
             CodePage: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Freeze: fn(
+        Save: fn (
+            self: *const ITextDocument,
+            pVar: ?*VARIANT,
+            Flags: i32,
+            CodePage: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Freeze: fn (
             self: *const ITextDocument,
             pCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Unfreeze: fn(
+        Unfreeze: fn (
             self: *const ITextDocument,
             pCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BeginEditCollection: fn(
+        BeginEditCollection: fn (
             self: *const ITextDocument,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndEditCollection: fn(
+        EndEditCollection: fn (
             self: *const ITextDocument,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Undo: fn(
+        Undo: fn (
             self: *const ITextDocument,
             Count: i32,
             pCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Redo: fn(
+        Redo: fn (
             self: *const ITextDocument,
             Count: i32,
             pCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Range: fn(
+        Range: fn (
             self: *const ITextDocument,
             cpActive: i32,
             cpAnchor: i32,
             ppRange: ?*?*ITextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RangeFromPoint: fn(
+        RangeFromPoint: fn (
             self: *const ITextDocument,
             x: i32,
             y: i32,
@@ -3910,85 +3804,87 @@ pub const ITextDocument = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument_GetName(self: *const T, pName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument.VTable, self.vtable).GetName(@ptrCast(*const ITextDocument, self), pName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument_GetSelection(self: *const T, ppSel: ?*?*ITextSelection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument.VTable, self.vtable).GetSelection(@ptrCast(*const ITextDocument, self), ppSel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument_GetStoryCount(self: *const T, pCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument.VTable, self.vtable).GetStoryCount(@ptrCast(*const ITextDocument, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument_GetStoryRanges(self: *const T, ppStories: ?*?*ITextStoryRanges) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument.VTable, self.vtable).GetStoryRanges(@ptrCast(*const ITextDocument, self), ppStories);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument_GetSaved(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument.VTable, self.vtable).GetSaved(@ptrCast(*const ITextDocument, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument_SetSaved(self: *const T, Value: tomConstants) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument.VTable, self.vtable).SetSaved(@ptrCast(*const ITextDocument, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument_GetDefaultTabStop(self: *const T, pValue: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument.VTable, self.vtable).GetDefaultTabStop(@ptrCast(*const ITextDocument, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument_SetDefaultTabStop(self: *const T, Value: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument.VTable, self.vtable).SetDefaultTabStop(@ptrCast(*const ITextDocument, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument_New(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument.VTable, self.vtable).New(@ptrCast(*const ITextDocument, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument_Open(self: *const T, pVar: ?*VARIANT, Flags: i32, CodePage: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument.VTable, self.vtable).Open(@ptrCast(*const ITextDocument, self), pVar, Flags, CodePage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument_Save(self: *const T, pVar: ?*VARIANT, Flags: i32, CodePage: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument.VTable, self.vtable).Save(@ptrCast(*const ITextDocument, self), pVar, Flags, CodePage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument_Freeze(self: *const T, pCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument.VTable, self.vtable).Freeze(@ptrCast(*const ITextDocument, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument_Unfreeze(self: *const T, pCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument.VTable, self.vtable).Unfreeze(@ptrCast(*const ITextDocument, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument_BeginEditCollection(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument.VTable, self.vtable).BeginEditCollection(@ptrCast(*const ITextDocument, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument_EndEditCollection(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument.VTable, self.vtable).EndEditCollection(@ptrCast(*const ITextDocument, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument_Undo(self: *const T, Count: i32, pCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument.VTable, self.vtable).Undo(@ptrCast(*const ITextDocument, self), Count, pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument_Redo(self: *const T, Count: i32, pCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument.VTable, self.vtable).Redo(@ptrCast(*const ITextDocument, self), Count, pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument_Range(self: *const T, cpActive: i32, cpAnchor: i32, ppRange: ?*?*ITextRange) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument.VTable, self.vtable).Range(@ptrCast(*const ITextDocument, self), cpActive, cpAnchor, ppRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument_RangeFromPoint(self: *const T, x: i32, y: i32, ppRange: ?*?*ITextRange) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument.VTable, self.vtable).RangeFromPoint(@ptrCast(*const ITextDocument, self), x, y, ppRange);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument_GetName(self: *const T, pName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ITextDocument.VTable, self.vtable).GetName(@ptrCast(*const ITextDocument, self), pName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument_GetSelection(self: *const T, ppSel: ?*?*ITextSelection) HRESULT {
+                return @ptrCast(*const ITextDocument.VTable, self.vtable).GetSelection(@ptrCast(*const ITextDocument, self), ppSel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument_GetStoryCount(self: *const T, pCount: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument.VTable, self.vtable).GetStoryCount(@ptrCast(*const ITextDocument, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument_GetStoryRanges(self: *const T, ppStories: ?*?*ITextStoryRanges) HRESULT {
+                return @ptrCast(*const ITextDocument.VTable, self.vtable).GetStoryRanges(@ptrCast(*const ITextDocument, self), ppStories);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument_GetSaved(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument.VTable, self.vtable).GetSaved(@ptrCast(*const ITextDocument, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument_SetSaved(self: *const T, Value: tomConstants) HRESULT {
+                return @ptrCast(*const ITextDocument.VTable, self.vtable).SetSaved(@ptrCast(*const ITextDocument, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument_GetDefaultTabStop(self: *const T, pValue: ?*f32) HRESULT {
+                return @ptrCast(*const ITextDocument.VTable, self.vtable).GetDefaultTabStop(@ptrCast(*const ITextDocument, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument_SetDefaultTabStop(self: *const T, Value: f32) HRESULT {
+                return @ptrCast(*const ITextDocument.VTable, self.vtable).SetDefaultTabStop(@ptrCast(*const ITextDocument, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument_New(self: *const T) HRESULT {
+                return @ptrCast(*const ITextDocument.VTable, self.vtable).New(@ptrCast(*const ITextDocument, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument_Open(self: *const T, pVar: ?*VARIANT, Flags: i32, CodePage: i32) HRESULT {
+                return @ptrCast(*const ITextDocument.VTable, self.vtable).Open(@ptrCast(*const ITextDocument, self), pVar, Flags, CodePage);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument_Save(self: *const T, pVar: ?*VARIANT, Flags: i32, CodePage: i32) HRESULT {
+                return @ptrCast(*const ITextDocument.VTable, self.vtable).Save(@ptrCast(*const ITextDocument, self), pVar, Flags, CodePage);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument_Freeze(self: *const T, pCount: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument.VTable, self.vtable).Freeze(@ptrCast(*const ITextDocument, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument_Unfreeze(self: *const T, pCount: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument.VTable, self.vtable).Unfreeze(@ptrCast(*const ITextDocument, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument_BeginEditCollection(self: *const T) HRESULT {
+                return @ptrCast(*const ITextDocument.VTable, self.vtable).BeginEditCollection(@ptrCast(*const ITextDocument, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument_EndEditCollection(self: *const T) HRESULT {
+                return @ptrCast(*const ITextDocument.VTable, self.vtable).EndEditCollection(@ptrCast(*const ITextDocument, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument_Undo(self: *const T, Count: i32, pCount: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument.VTable, self.vtable).Undo(@ptrCast(*const ITextDocument, self), Count, pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument_Redo(self: *const T, Count: i32, pCount: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument.VTable, self.vtable).Redo(@ptrCast(*const ITextDocument, self), Count, pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument_Range(self: *const T, cpActive: i32, cpAnchor: i32, ppRange: ?*?*ITextRange) HRESULT {
+                return @ptrCast(*const ITextDocument.VTable, self.vtable).Range(@ptrCast(*const ITextDocument, self), cpActive, cpAnchor, ppRange);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument_RangeFromPoint(self: *const T, x: i32, y: i32, ppRange: ?*?*ITextRange) HRESULT {
+                return @ptrCast(*const ITextDocument.VTable, self.vtable).RangeFromPoint(@ptrCast(*const ITextDocument, self), x, y, ppRange);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3998,467 +3894,469 @@ pub const IID_ITextRange = &IID_ITextRange_Value;
 pub const ITextRange = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        GetText: fn(
+        GetText: fn (
             self: *const ITextRange,
             pbstr: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetText: fn(
+        SetText: fn (
             self: *const ITextRange,
             bstr: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetChar: fn(
+        GetChar: fn (
             self: *const ITextRange,
             pChar: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetChar: fn(
+        SetChar: fn (
             self: *const ITextRange,
             Char: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDuplicate: fn(
+        GetDuplicate: fn (
             self: *const ITextRange,
             ppRange: ?*?*ITextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFormattedText: fn(
+        GetFormattedText: fn (
             self: *const ITextRange,
             ppRange: ?*?*ITextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetFormattedText: fn(
+        SetFormattedText: fn (
             self: *const ITextRange,
             pRange: ?*ITextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStart: fn(
+        GetStart: fn (
             self: *const ITextRange,
             pcpFirst: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetStart: fn(
+        SetStart: fn (
             self: *const ITextRange,
             cpFirst: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEnd: fn(
+        GetEnd: fn (
             self: *const ITextRange,
             pcpLim: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEnd: fn(
+        SetEnd: fn (
             self: *const ITextRange,
             cpLim: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFont: fn(
+        GetFont: fn (
             self: *const ITextRange,
             ppFont: ?*?*ITextFont,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetFont: fn(
+        SetFont: fn (
             self: *const ITextRange,
             pFont: ?*ITextFont,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPara: fn(
+        GetPara: fn (
             self: *const ITextRange,
             ppPara: ?*?*ITextPara,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPara: fn(
+        SetPara: fn (
             self: *const ITextRange,
             pPara: ?*ITextPara,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStoryLength: fn(
+        GetStoryLength: fn (
             self: *const ITextRange,
             pCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStoryType: fn(
+        GetStoryType: fn (
             self: *const ITextRange,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Collapse: fn(
+        Collapse: fn (
             self: *const ITextRange,
             bStart: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Expand: fn(
+        Expand: fn (
             self: *const ITextRange,
             Unit: i32,
             pDelta: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetIndex: fn(
+        GetIndex: fn (
             self: *const ITextRange,
             Unit: i32,
             pIndex: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetIndex: fn(
+        SetIndex: fn (
             self: *const ITextRange,
             Unit: i32,
             Index: i32,
             Extend: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetRange: fn(
+        SetRange: fn (
             self: *const ITextRange,
             cpAnchor: i32,
             cpActive: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InRange: fn(
+        InRange: fn (
             self: *const ITextRange,
             pRange: ?*ITextRange,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InStory: fn(
+        InStory: fn (
             self: *const ITextRange,
             pRange: ?*ITextRange,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsEqual: fn(
+        IsEqual: fn (
             self: *const ITextRange,
             pRange: ?*ITextRange,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Select: fn(
+        Select: fn (
             self: *const ITextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StartOf: fn(
+        StartOf: fn (
             self: *const ITextRange,
             Unit: i32,
             Extend: i32,
             pDelta: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndOf: fn(
+        EndOf: fn (
             self: *const ITextRange,
             Unit: i32,
             Extend: i32,
             pDelta: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Move: fn(
+        Move: fn (
             self: *const ITextRange,
             Unit: i32,
             Count: i32,
             pDelta: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MoveStart: fn(
+        MoveStart: fn (
             self: *const ITextRange,
             Unit: i32,
             Count: i32,
             pDelta: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MoveEnd: fn(
+        MoveEnd: fn (
             self: *const ITextRange,
             Unit: i32,
             Count: i32,
             pDelta: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MoveWhile: fn(
+        MoveWhile: fn (
             self: *const ITextRange,
             Cset: ?*VARIANT,
             Count: i32,
             pDelta: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MoveStartWhile: fn(
+        MoveStartWhile: fn (
             self: *const ITextRange,
             Cset: ?*VARIANT,
             Count: i32,
             pDelta: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MoveEndWhile: fn(
+        MoveEndWhile: fn (
             self: *const ITextRange,
             Cset: ?*VARIANT,
             Count: i32,
             pDelta: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MoveUntil: fn(
+        MoveUntil: fn (
             self: *const ITextRange,
             Cset: ?*VARIANT,
             Count: i32,
             pDelta: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MoveStartUntil: fn(
+        MoveStartUntil: fn (
             self: *const ITextRange,
             Cset: ?*VARIANT,
             Count: i32,
             pDelta: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MoveEndUntil: fn(
+        MoveEndUntil: fn (
             self: *const ITextRange,
             Cset: ?*VARIANT,
             Count: i32,
             pDelta: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindText: fn(
+        FindText: fn (
             self: *const ITextRange,
             bstr: ?BSTR,
             Count: i32,
             Flags: i32,
             pLength: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindTextStart: fn(
+        FindTextStart: fn (
             self: *const ITextRange,
             bstr: ?BSTR,
             Count: i32,
             Flags: i32,
             pLength: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindTextEnd: fn(
+        FindTextEnd: fn (
             self: *const ITextRange,
             bstr: ?BSTR,
             Count: i32,
             Flags: i32,
             pLength: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
+        Delete: fn (
             self: *const ITextRange,
             Unit: i32,
             Count: i32,
             pDelta: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Cut: fn(
+        Cut: fn (
             self: *const ITextRange,
             pVar: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Copy: fn(
+        Copy: fn (
             self: *const ITextRange,
             pVar: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Paste: fn(
+        Paste: fn (
             self: *const ITextRange,
             pVar: ?*VARIANT,
             Format: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CanPaste: fn(
+        CanPaste: fn (
             self: *const ITextRange,
             pVar: ?*VARIANT,
             Format: i32,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CanEdit: fn(
+        CanEdit: fn (
             self: *const ITextRange,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ChangeCase: fn(
+        ChangeCase: fn (
             self: *const ITextRange,
             Type: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPoint: fn(
+        GetPoint: fn (
             self: *const ITextRange,
             Type: i32,
             px: ?*i32,
             py: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPoint: fn(
+        SetPoint: fn (
             self: *const ITextRange,
             x: i32,
             y: i32,
             Type: i32,
             Extend: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ScrollIntoView: fn(
+        ScrollIntoView: fn (
             self: *const ITextRange,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEmbeddedObject: fn(
+        GetEmbeddedObject: fn (
             self: *const ITextRange,
             ppObject: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_GetText(self: *const T, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).GetText(@ptrCast(*const ITextRange, self), pbstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_SetText(self: *const T, bstr: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).SetText(@ptrCast(*const ITextRange, self), bstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_GetChar(self: *const T, pChar: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).GetChar(@ptrCast(*const ITextRange, self), pChar);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_SetChar(self: *const T, Char: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).SetChar(@ptrCast(*const ITextRange, self), Char);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_GetDuplicate(self: *const T, ppRange: ?*?*ITextRange) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).GetDuplicate(@ptrCast(*const ITextRange, self), ppRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_GetFormattedText(self: *const T, ppRange: ?*?*ITextRange) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).GetFormattedText(@ptrCast(*const ITextRange, self), ppRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_SetFormattedText(self: *const T, pRange: ?*ITextRange) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).SetFormattedText(@ptrCast(*const ITextRange, self), pRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_GetStart(self: *const T, pcpFirst: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).GetStart(@ptrCast(*const ITextRange, self), pcpFirst);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_SetStart(self: *const T, cpFirst: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).SetStart(@ptrCast(*const ITextRange, self), cpFirst);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_GetEnd(self: *const T, pcpLim: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).GetEnd(@ptrCast(*const ITextRange, self), pcpLim);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_SetEnd(self: *const T, cpLim: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).SetEnd(@ptrCast(*const ITextRange, self), cpLim);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_GetFont(self: *const T, ppFont: ?*?*ITextFont) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).GetFont(@ptrCast(*const ITextRange, self), ppFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_SetFont(self: *const T, pFont: ?*ITextFont) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).SetFont(@ptrCast(*const ITextRange, self), pFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_GetPara(self: *const T, ppPara: ?*?*ITextPara) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).GetPara(@ptrCast(*const ITextRange, self), ppPara);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_SetPara(self: *const T, pPara: ?*ITextPara) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).SetPara(@ptrCast(*const ITextRange, self), pPara);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_GetStoryLength(self: *const T, pCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).GetStoryLength(@ptrCast(*const ITextRange, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_GetStoryType(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).GetStoryType(@ptrCast(*const ITextRange, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_Collapse(self: *const T, bStart: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).Collapse(@ptrCast(*const ITextRange, self), bStart);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_Expand(self: *const T, Unit: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).Expand(@ptrCast(*const ITextRange, self), Unit, pDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_GetIndex(self: *const T, Unit: i32, pIndex: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).GetIndex(@ptrCast(*const ITextRange, self), Unit, pIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_SetIndex(self: *const T, Unit: i32, Index: i32, Extend: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).SetIndex(@ptrCast(*const ITextRange, self), Unit, Index, Extend);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_SetRange(self: *const T, cpAnchor: i32, cpActive: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).SetRange(@ptrCast(*const ITextRange, self), cpAnchor, cpActive);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_InRange(self: *const T, pRange: ?*ITextRange, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).InRange(@ptrCast(*const ITextRange, self), pRange, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_InStory(self: *const T, pRange: ?*ITextRange, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).InStory(@ptrCast(*const ITextRange, self), pRange, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_IsEqual(self: *const T, pRange: ?*ITextRange, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).IsEqual(@ptrCast(*const ITextRange, self), pRange, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_Select(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).Select(@ptrCast(*const ITextRange, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_StartOf(self: *const T, Unit: i32, Extend: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).StartOf(@ptrCast(*const ITextRange, self), Unit, Extend, pDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_EndOf(self: *const T, Unit: i32, Extend: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).EndOf(@ptrCast(*const ITextRange, self), Unit, Extend, pDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_Move(self: *const T, Unit: i32, Count: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).Move(@ptrCast(*const ITextRange, self), Unit, Count, pDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_MoveStart(self: *const T, Unit: i32, Count: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).MoveStart(@ptrCast(*const ITextRange, self), Unit, Count, pDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_MoveEnd(self: *const T, Unit: i32, Count: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).MoveEnd(@ptrCast(*const ITextRange, self), Unit, Count, pDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_MoveWhile(self: *const T, Cset: ?*VARIANT, Count: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).MoveWhile(@ptrCast(*const ITextRange, self), Cset, Count, pDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_MoveStartWhile(self: *const T, Cset: ?*VARIANT, Count: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).MoveStartWhile(@ptrCast(*const ITextRange, self), Cset, Count, pDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_MoveEndWhile(self: *const T, Cset: ?*VARIANT, Count: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).MoveEndWhile(@ptrCast(*const ITextRange, self), Cset, Count, pDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_MoveUntil(self: *const T, Cset: ?*VARIANT, Count: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).MoveUntil(@ptrCast(*const ITextRange, self), Cset, Count, pDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_MoveStartUntil(self: *const T, Cset: ?*VARIANT, Count: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).MoveStartUntil(@ptrCast(*const ITextRange, self), Cset, Count, pDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_MoveEndUntil(self: *const T, Cset: ?*VARIANT, Count: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).MoveEndUntil(@ptrCast(*const ITextRange, self), Cset, Count, pDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_FindText(self: *const T, bstr: ?BSTR, Count: i32, Flags: i32, pLength: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).FindText(@ptrCast(*const ITextRange, self), bstr, Count, Flags, pLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_FindTextStart(self: *const T, bstr: ?BSTR, Count: i32, Flags: i32, pLength: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).FindTextStart(@ptrCast(*const ITextRange, self), bstr, Count, Flags, pLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_FindTextEnd(self: *const T, bstr: ?BSTR, Count: i32, Flags: i32, pLength: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).FindTextEnd(@ptrCast(*const ITextRange, self), bstr, Count, Flags, pLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_Delete(self: *const T, Unit: i32, Count: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).Delete(@ptrCast(*const ITextRange, self), Unit, Count, pDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_Cut(self: *const T, pVar: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).Cut(@ptrCast(*const ITextRange, self), pVar);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_Copy(self: *const T, pVar: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).Copy(@ptrCast(*const ITextRange, self), pVar);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_Paste(self: *const T, pVar: ?*VARIANT, Format: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).Paste(@ptrCast(*const ITextRange, self), pVar, Format);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_CanPaste(self: *const T, pVar: ?*VARIANT, Format: i32, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).CanPaste(@ptrCast(*const ITextRange, self), pVar, Format, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_CanEdit(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).CanEdit(@ptrCast(*const ITextRange, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_ChangeCase(self: *const T, Type: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).ChangeCase(@ptrCast(*const ITextRange, self), Type);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_GetPoint(self: *const T, Type: i32, px: ?*i32, py: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).GetPoint(@ptrCast(*const ITextRange, self), Type, px, py);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_SetPoint(self: *const T, x: i32, y: i32, Type: i32, Extend: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).SetPoint(@ptrCast(*const ITextRange, self), x, y, Type, Extend);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_ScrollIntoView(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).ScrollIntoView(@ptrCast(*const ITextRange, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange_GetEmbeddedObject(self: *const T, ppObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange.VTable, self.vtable).GetEmbeddedObject(@ptrCast(*const ITextRange, self), ppObject);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_GetText(self: *const T, pbstr: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).GetText(@ptrCast(*const ITextRange, self), pbstr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_SetText(self: *const T, bstr: ?BSTR) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).SetText(@ptrCast(*const ITextRange, self), bstr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_GetChar(self: *const T, pChar: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).GetChar(@ptrCast(*const ITextRange, self), pChar);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_SetChar(self: *const T, Char: i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).SetChar(@ptrCast(*const ITextRange, self), Char);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_GetDuplicate(self: *const T, ppRange: ?*?*ITextRange) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).GetDuplicate(@ptrCast(*const ITextRange, self), ppRange);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_GetFormattedText(self: *const T, ppRange: ?*?*ITextRange) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).GetFormattedText(@ptrCast(*const ITextRange, self), ppRange);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_SetFormattedText(self: *const T, pRange: ?*ITextRange) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).SetFormattedText(@ptrCast(*const ITextRange, self), pRange);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_GetStart(self: *const T, pcpFirst: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).GetStart(@ptrCast(*const ITextRange, self), pcpFirst);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_SetStart(self: *const T, cpFirst: i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).SetStart(@ptrCast(*const ITextRange, self), cpFirst);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_GetEnd(self: *const T, pcpLim: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).GetEnd(@ptrCast(*const ITextRange, self), pcpLim);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_SetEnd(self: *const T, cpLim: i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).SetEnd(@ptrCast(*const ITextRange, self), cpLim);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_GetFont(self: *const T, ppFont: ?*?*ITextFont) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).GetFont(@ptrCast(*const ITextRange, self), ppFont);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_SetFont(self: *const T, pFont: ?*ITextFont) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).SetFont(@ptrCast(*const ITextRange, self), pFont);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_GetPara(self: *const T, ppPara: ?*?*ITextPara) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).GetPara(@ptrCast(*const ITextRange, self), ppPara);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_SetPara(self: *const T, pPara: ?*ITextPara) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).SetPara(@ptrCast(*const ITextRange, self), pPara);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_GetStoryLength(self: *const T, pCount: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).GetStoryLength(@ptrCast(*const ITextRange, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_GetStoryType(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).GetStoryType(@ptrCast(*const ITextRange, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_Collapse(self: *const T, bStart: i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).Collapse(@ptrCast(*const ITextRange, self), bStart);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_Expand(self: *const T, Unit: i32, pDelta: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).Expand(@ptrCast(*const ITextRange, self), Unit, pDelta);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_GetIndex(self: *const T, Unit: i32, pIndex: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).GetIndex(@ptrCast(*const ITextRange, self), Unit, pIndex);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_SetIndex(self: *const T, Unit: i32, Index: i32, Extend: i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).SetIndex(@ptrCast(*const ITextRange, self), Unit, Index, Extend);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_SetRange(self: *const T, cpAnchor: i32, cpActive: i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).SetRange(@ptrCast(*const ITextRange, self), cpAnchor, cpActive);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_InRange(self: *const T, pRange: ?*ITextRange, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).InRange(@ptrCast(*const ITextRange, self), pRange, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_InStory(self: *const T, pRange: ?*ITextRange, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).InStory(@ptrCast(*const ITextRange, self), pRange, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_IsEqual(self: *const T, pRange: ?*ITextRange, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).IsEqual(@ptrCast(*const ITextRange, self), pRange, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_Select(self: *const T) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).Select(@ptrCast(*const ITextRange, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_StartOf(self: *const T, Unit: i32, Extend: i32, pDelta: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).StartOf(@ptrCast(*const ITextRange, self), Unit, Extend, pDelta);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_EndOf(self: *const T, Unit: i32, Extend: i32, pDelta: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).EndOf(@ptrCast(*const ITextRange, self), Unit, Extend, pDelta);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_Move(self: *const T, Unit: i32, Count: i32, pDelta: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).Move(@ptrCast(*const ITextRange, self), Unit, Count, pDelta);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_MoveStart(self: *const T, Unit: i32, Count: i32, pDelta: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).MoveStart(@ptrCast(*const ITextRange, self), Unit, Count, pDelta);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_MoveEnd(self: *const T, Unit: i32, Count: i32, pDelta: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).MoveEnd(@ptrCast(*const ITextRange, self), Unit, Count, pDelta);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_MoveWhile(self: *const T, Cset: ?*VARIANT, Count: i32, pDelta: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).MoveWhile(@ptrCast(*const ITextRange, self), Cset, Count, pDelta);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_MoveStartWhile(self: *const T, Cset: ?*VARIANT, Count: i32, pDelta: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).MoveStartWhile(@ptrCast(*const ITextRange, self), Cset, Count, pDelta);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_MoveEndWhile(self: *const T, Cset: ?*VARIANT, Count: i32, pDelta: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).MoveEndWhile(@ptrCast(*const ITextRange, self), Cset, Count, pDelta);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_MoveUntil(self: *const T, Cset: ?*VARIANT, Count: i32, pDelta: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).MoveUntil(@ptrCast(*const ITextRange, self), Cset, Count, pDelta);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_MoveStartUntil(self: *const T, Cset: ?*VARIANT, Count: i32, pDelta: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).MoveStartUntil(@ptrCast(*const ITextRange, self), Cset, Count, pDelta);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_MoveEndUntil(self: *const T, Cset: ?*VARIANT, Count: i32, pDelta: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).MoveEndUntil(@ptrCast(*const ITextRange, self), Cset, Count, pDelta);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_FindText(self: *const T, bstr: ?BSTR, Count: i32, Flags: i32, pLength: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).FindText(@ptrCast(*const ITextRange, self), bstr, Count, Flags, pLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_FindTextStart(self: *const T, bstr: ?BSTR, Count: i32, Flags: i32, pLength: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).FindTextStart(@ptrCast(*const ITextRange, self), bstr, Count, Flags, pLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_FindTextEnd(self: *const T, bstr: ?BSTR, Count: i32, Flags: i32, pLength: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).FindTextEnd(@ptrCast(*const ITextRange, self), bstr, Count, Flags, pLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_Delete(self: *const T, Unit: i32, Count: i32, pDelta: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).Delete(@ptrCast(*const ITextRange, self), Unit, Count, pDelta);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_Cut(self: *const T, pVar: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).Cut(@ptrCast(*const ITextRange, self), pVar);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_Copy(self: *const T, pVar: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).Copy(@ptrCast(*const ITextRange, self), pVar);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_Paste(self: *const T, pVar: ?*VARIANT, Format: i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).Paste(@ptrCast(*const ITextRange, self), pVar, Format);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_CanPaste(self: *const T, pVar: ?*VARIANT, Format: i32, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).CanPaste(@ptrCast(*const ITextRange, self), pVar, Format, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_CanEdit(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).CanEdit(@ptrCast(*const ITextRange, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_ChangeCase(self: *const T, Type: i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).ChangeCase(@ptrCast(*const ITextRange, self), Type);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_GetPoint(self: *const T, Type: i32, px: ?*i32, py: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).GetPoint(@ptrCast(*const ITextRange, self), Type, px, py);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_SetPoint(self: *const T, x: i32, y: i32, Type: i32, Extend: i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).SetPoint(@ptrCast(*const ITextRange, self), x, y, Type, Extend);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_ScrollIntoView(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).ScrollIntoView(@ptrCast(*const ITextRange, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange_GetEmbeddedObject(self: *const T, ppObject: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ITextRange.VTable, self.vtable).GetEmbeddedObject(@ptrCast(*const ITextRange, self), ppObject);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4468,107 +4366,109 @@ pub const IID_ITextSelection = &IID_ITextSelection_Value;
 pub const ITextSelection = extern struct {
     pub const VTable = extern struct {
         base: ITextRange.VTable,
-        GetFlags: fn(
+        GetFlags: fn (
             self: *const ITextSelection,
             pFlags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetFlags: fn(
+        SetFlags: fn (
             self: *const ITextSelection,
             Flags: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetType: fn(
+        GetType: fn (
             self: *const ITextSelection,
             pType: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MoveLeft: fn(
+        MoveLeft: fn (
             self: *const ITextSelection,
             Unit: i32,
             Count: i32,
             Extend: i32,
             pDelta: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MoveRight: fn(
+        MoveRight: fn (
             self: *const ITextSelection,
             Unit: i32,
             Count: i32,
             Extend: i32,
             pDelta: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MoveUp: fn(
+        MoveUp: fn (
             self: *const ITextSelection,
             Unit: i32,
             Count: i32,
             Extend: i32,
             pDelta: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MoveDown: fn(
+        MoveDown: fn (
             self: *const ITextSelection,
             Unit: i32,
             Count: i32,
             Extend: i32,
             pDelta: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HomeKey: fn(
+        HomeKey: fn (
             self: *const ITextSelection,
             Unit: tomConstants,
             Extend: i32,
             pDelta: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndKey: fn(
+        EndKey: fn (
             self: *const ITextSelection,
             Unit: i32,
             Extend: i32,
             pDelta: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TypeText: fn(
+        TypeText: fn (
             self: *const ITextSelection,
             bstr: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ITextRange.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextSelection_GetFlags(self: *const T, pFlags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextSelection.VTable, self.vtable).GetFlags(@ptrCast(*const ITextSelection, self), pFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextSelection_SetFlags(self: *const T, Flags: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextSelection.VTable, self.vtable).SetFlags(@ptrCast(*const ITextSelection, self), Flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextSelection_GetType(self: *const T, pType: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextSelection.VTable, self.vtable).GetType(@ptrCast(*const ITextSelection, self), pType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextSelection_MoveLeft(self: *const T, Unit: i32, Count: i32, Extend: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextSelection.VTable, self.vtable).MoveLeft(@ptrCast(*const ITextSelection, self), Unit, Count, Extend, pDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextSelection_MoveRight(self: *const T, Unit: i32, Count: i32, Extend: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextSelection.VTable, self.vtable).MoveRight(@ptrCast(*const ITextSelection, self), Unit, Count, Extend, pDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextSelection_MoveUp(self: *const T, Unit: i32, Count: i32, Extend: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextSelection.VTable, self.vtable).MoveUp(@ptrCast(*const ITextSelection, self), Unit, Count, Extend, pDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextSelection_MoveDown(self: *const T, Unit: i32, Count: i32, Extend: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextSelection.VTable, self.vtable).MoveDown(@ptrCast(*const ITextSelection, self), Unit, Count, Extend, pDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextSelection_HomeKey(self: *const T, Unit: tomConstants, Extend: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextSelection.VTable, self.vtable).HomeKey(@ptrCast(*const ITextSelection, self), Unit, Extend, pDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextSelection_EndKey(self: *const T, Unit: i32, Extend: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextSelection.VTable, self.vtable).EndKey(@ptrCast(*const ITextSelection, self), Unit, Extend, pDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextSelection_TypeText(self: *const T, bstr: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextSelection.VTable, self.vtable).TypeText(@ptrCast(*const ITextSelection, self), bstr);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ITextRange.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextSelection_GetFlags(self: *const T, pFlags: ?*i32) HRESULT {
+                return @ptrCast(*const ITextSelection.VTable, self.vtable).GetFlags(@ptrCast(*const ITextSelection, self), pFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextSelection_SetFlags(self: *const T, Flags: i32) HRESULT {
+                return @ptrCast(*const ITextSelection.VTable, self.vtable).SetFlags(@ptrCast(*const ITextSelection, self), Flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextSelection_GetType(self: *const T, pType: ?*i32) HRESULT {
+                return @ptrCast(*const ITextSelection.VTable, self.vtable).GetType(@ptrCast(*const ITextSelection, self), pType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextSelection_MoveLeft(self: *const T, Unit: i32, Count: i32, Extend: i32, pDelta: ?*i32) HRESULT {
+                return @ptrCast(*const ITextSelection.VTable, self.vtable).MoveLeft(@ptrCast(*const ITextSelection, self), Unit, Count, Extend, pDelta);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextSelection_MoveRight(self: *const T, Unit: i32, Count: i32, Extend: i32, pDelta: ?*i32) HRESULT {
+                return @ptrCast(*const ITextSelection.VTable, self.vtable).MoveRight(@ptrCast(*const ITextSelection, self), Unit, Count, Extend, pDelta);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextSelection_MoveUp(self: *const T, Unit: i32, Count: i32, Extend: i32, pDelta: ?*i32) HRESULT {
+                return @ptrCast(*const ITextSelection.VTable, self.vtable).MoveUp(@ptrCast(*const ITextSelection, self), Unit, Count, Extend, pDelta);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextSelection_MoveDown(self: *const T, Unit: i32, Count: i32, Extend: i32, pDelta: ?*i32) HRESULT {
+                return @ptrCast(*const ITextSelection.VTable, self.vtable).MoveDown(@ptrCast(*const ITextSelection, self), Unit, Count, Extend, pDelta);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextSelection_HomeKey(self: *const T, Unit: tomConstants, Extend: i32, pDelta: ?*i32) HRESULT {
+                return @ptrCast(*const ITextSelection.VTable, self.vtable).HomeKey(@ptrCast(*const ITextSelection, self), Unit, Extend, pDelta);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextSelection_EndKey(self: *const T, Unit: i32, Extend: i32, pDelta: ?*i32) HRESULT {
+                return @ptrCast(*const ITextSelection.VTable, self.vtable).EndKey(@ptrCast(*const ITextSelection, self), Unit, Extend, pDelta);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextSelection_TypeText(self: *const T, bstr: ?BSTR) HRESULT {
+                return @ptrCast(*const ITextSelection.VTable, self.vtable).TypeText(@ptrCast(*const ITextSelection, self), bstr);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4578,452 +4478,454 @@ pub const IID_ITextFont = &IID_ITextFont_Value;
 pub const ITextFont = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        GetDuplicate: fn(
+        GetDuplicate: fn (
             self: *const ITextFont,
             ppFont: ?*?*ITextFont,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDuplicate: fn(
+        SetDuplicate: fn (
             self: *const ITextFont,
             pFont: ?*ITextFont,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CanChange: fn(
+        CanChange: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsEqual: fn(
+        IsEqual: fn (
             self: *const ITextFont,
             pFont: ?*ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
+        Reset: fn (
             self: *const ITextFont,
             Value: tomConstants,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStyle: fn(
+        GetStyle: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetStyle: fn(
+        SetStyle: fn (
             self: *const ITextFont,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllCaps: fn(
+        GetAllCaps: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllCaps: fn(
+        SetAllCaps: fn (
             self: *const ITextFont,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAnimation: fn(
+        GetAnimation: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAnimation: fn(
+        SetAnimation: fn (
             self: *const ITextFont,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBackColor: fn(
+        GetBackColor: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetBackColor: fn(
+        SetBackColor: fn (
             self: *const ITextFont,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBold: fn(
+        GetBold: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetBold: fn(
+        SetBold: fn (
             self: *const ITextFont,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEmboss: fn(
+        GetEmboss: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEmboss: fn(
+        SetEmboss: fn (
             self: *const ITextFont,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetForeColor: fn(
+        GetForeColor: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetForeColor: fn(
+        SetForeColor: fn (
             self: *const ITextFont,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetHidden: fn(
+        GetHidden: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetHidden: fn(
+        SetHidden: fn (
             self: *const ITextFont,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEngrave: fn(
+        GetEngrave: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEngrave: fn(
+        SetEngrave: fn (
             self: *const ITextFont,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetItalic: fn(
+        GetItalic: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetItalic: fn(
+        SetItalic: fn (
             self: *const ITextFont,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetKerning: fn(
+        GetKerning: fn (
             self: *const ITextFont,
             pValue: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetKerning: fn(
+        SetKerning: fn (
             self: *const ITextFont,
             Value: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLanguageID: fn(
+        GetLanguageID: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetLanguageID: fn(
+        SetLanguageID: fn (
             self: *const ITextFont,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetName: fn(
+        GetName: fn (
             self: *const ITextFont,
             pbstr: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetName: fn(
+        SetName: fn (
             self: *const ITextFont,
             bstr: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutline: fn(
+        GetOutline: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOutline: fn(
+        SetOutline: fn (
             self: *const ITextFont,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPosition: fn(
+        GetPosition: fn (
             self: *const ITextFont,
             pValue: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPosition: fn(
+        SetPosition: fn (
             self: *const ITextFont,
             Value: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProtected: fn(
+        GetProtected: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProtected: fn(
+        SetProtected: fn (
             self: *const ITextFont,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetShadow: fn(
+        GetShadow: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetShadow: fn(
+        SetShadow: fn (
             self: *const ITextFont,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSize: fn(
+        GetSize: fn (
             self: *const ITextFont,
             pValue: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSize: fn(
+        SetSize: fn (
             self: *const ITextFont,
             Value: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSmallCaps: fn(
+        GetSmallCaps: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSmallCaps: fn(
+        SetSmallCaps: fn (
             self: *const ITextFont,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSpacing: fn(
+        GetSpacing: fn (
             self: *const ITextFont,
             pValue: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSpacing: fn(
+        SetSpacing: fn (
             self: *const ITextFont,
             Value: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStrikeThrough: fn(
+        GetStrikeThrough: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetStrikeThrough: fn(
+        SetStrikeThrough: fn (
             self: *const ITextFont,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSubscript: fn(
+        GetSubscript: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSubscript: fn(
+        SetSubscript: fn (
             self: *const ITextFont,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSuperscript: fn(
+        GetSuperscript: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSuperscript: fn(
+        SetSuperscript: fn (
             self: *const ITextFont,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetUnderline: fn(
+        GetUnderline: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetUnderline: fn(
+        SetUnderline: fn (
             self: *const ITextFont,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetWeight: fn(
+        GetWeight: fn (
             self: *const ITextFont,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetWeight: fn(
+        SetWeight: fn (
             self: *const ITextFont,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetDuplicate(self: *const T, ppFont: ?*?*ITextFont) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetDuplicate(@ptrCast(*const ITextFont, self), ppFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetDuplicate(self: *const T, pFont: ?*ITextFont) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetDuplicate(@ptrCast(*const ITextFont, self), pFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_CanChange(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).CanChange(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_IsEqual(self: *const T, pFont: ?*ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).IsEqual(@ptrCast(*const ITextFont, self), pFont, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_Reset(self: *const T, Value: tomConstants) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).Reset(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetStyle(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetStyle(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetStyle(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetStyle(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetAllCaps(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetAllCaps(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetAllCaps(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetAllCaps(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetAnimation(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetAnimation(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetAnimation(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetAnimation(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetBackColor(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetBackColor(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetBackColor(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetBackColor(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetBold(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetBold(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetBold(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetBold(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetEmboss(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetEmboss(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetEmboss(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetEmboss(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetForeColor(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetForeColor(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetForeColor(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetForeColor(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetHidden(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetHidden(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetHidden(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetHidden(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetEngrave(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetEngrave(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetEngrave(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetEngrave(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetItalic(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetItalic(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetItalic(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetItalic(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetKerning(self: *const T, pValue: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetKerning(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetKerning(self: *const T, Value: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetKerning(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetLanguageID(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetLanguageID(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetLanguageID(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetLanguageID(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetName(self: *const T, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetName(@ptrCast(*const ITextFont, self), pbstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetName(self: *const T, bstr: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetName(@ptrCast(*const ITextFont, self), bstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetOutline(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetOutline(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetOutline(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetOutline(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetPosition(self: *const T, pValue: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetPosition(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetPosition(self: *const T, Value: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetPosition(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetProtected(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetProtected(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetProtected(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetProtected(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetShadow(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetShadow(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetShadow(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetShadow(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetSize(self: *const T, pValue: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetSize(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetSize(self: *const T, Value: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetSize(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetSmallCaps(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetSmallCaps(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetSmallCaps(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetSmallCaps(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetSpacing(self: *const T, pValue: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetSpacing(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetSpacing(self: *const T, Value: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetSpacing(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetStrikeThrough(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetStrikeThrough(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetStrikeThrough(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetStrikeThrough(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetSubscript(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetSubscript(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetSubscript(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetSubscript(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetSuperscript(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetSuperscript(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetSuperscript(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetSuperscript(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetUnderline(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetUnderline(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetUnderline(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetUnderline(@ptrCast(*const ITextFont, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_GetWeight(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).GetWeight(@ptrCast(*const ITextFont, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont_SetWeight(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont.VTable, self.vtable).SetWeight(@ptrCast(*const ITextFont, self), Value);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetDuplicate(self: *const T, ppFont: ?*?*ITextFont) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetDuplicate(@ptrCast(*const ITextFont, self), ppFont);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetDuplicate(self: *const T, pFont: ?*ITextFont) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetDuplicate(@ptrCast(*const ITextFont, self), pFont);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_CanChange(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).CanChange(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_IsEqual(self: *const T, pFont: ?*ITextFont, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).IsEqual(@ptrCast(*const ITextFont, self), pFont, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_Reset(self: *const T, Value: tomConstants) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).Reset(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetStyle(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetStyle(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetStyle(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetStyle(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetAllCaps(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetAllCaps(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetAllCaps(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetAllCaps(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetAnimation(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetAnimation(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetAnimation(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetAnimation(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetBackColor(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetBackColor(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetBackColor(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetBackColor(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetBold(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetBold(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetBold(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetBold(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetEmboss(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetEmboss(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetEmboss(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetEmboss(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetForeColor(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetForeColor(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetForeColor(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetForeColor(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetHidden(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetHidden(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetHidden(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetHidden(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetEngrave(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetEngrave(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetEngrave(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetEngrave(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetItalic(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetItalic(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetItalic(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetItalic(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetKerning(self: *const T, pValue: ?*f32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetKerning(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetKerning(self: *const T, Value: f32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetKerning(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetLanguageID(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetLanguageID(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetLanguageID(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetLanguageID(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetName(self: *const T, pbstr: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetName(@ptrCast(*const ITextFont, self), pbstr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetName(self: *const T, bstr: ?BSTR) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetName(@ptrCast(*const ITextFont, self), bstr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetOutline(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetOutline(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetOutline(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetOutline(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetPosition(self: *const T, pValue: ?*f32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetPosition(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetPosition(self: *const T, Value: f32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetPosition(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetProtected(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetProtected(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetProtected(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetProtected(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetShadow(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetShadow(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetShadow(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetShadow(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetSize(self: *const T, pValue: ?*f32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetSize(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetSize(self: *const T, Value: f32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetSize(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetSmallCaps(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetSmallCaps(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetSmallCaps(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetSmallCaps(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetSpacing(self: *const T, pValue: ?*f32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetSpacing(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetSpacing(self: *const T, Value: f32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetSpacing(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetStrikeThrough(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetStrikeThrough(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetStrikeThrough(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetStrikeThrough(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetSubscript(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetSubscript(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetSubscript(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetSubscript(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetSuperscript(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetSuperscript(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetSuperscript(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetSuperscript(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetUnderline(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetUnderline(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetUnderline(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetUnderline(@ptrCast(*const ITextFont, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_GetWeight(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).GetWeight(@ptrCast(*const ITextFont, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont_SetWeight(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont.VTable, self.vtable).SetWeight(@ptrCast(*const ITextFont, self), Value);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5033,200 +4935,200 @@ pub const IID_ITextPara = &IID_ITextPara_Value;
 pub const ITextPara = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        GetDuplicate: fn(
+        GetDuplicate: fn (
             self: *const ITextPara,
             ppPara: ?*?*ITextPara,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDuplicate: fn(
+        SetDuplicate: fn (
             self: *const ITextPara,
             pPara: ?*ITextPara,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CanChange: fn(
+        CanChange: fn (
             self: *const ITextPara,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsEqual: fn(
+        IsEqual: fn (
             self: *const ITextPara,
             pPara: ?*ITextPara,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
+        Reset: fn (
             self: *const ITextPara,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStyle: fn(
+        GetStyle: fn (
             self: *const ITextPara,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetStyle: fn(
+        SetStyle: fn (
             self: *const ITextPara,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAlignment: fn(
+        GetAlignment: fn (
             self: *const ITextPara,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAlignment: fn(
+        SetAlignment: fn (
             self: *const ITextPara,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetHyphenation: fn(
+        GetHyphenation: fn (
             self: *const ITextPara,
             pValue: ?*tomConstants,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetHyphenation: fn(
+        SetHyphenation: fn (
             self: *const ITextPara,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFirstLineIndent: fn(
+        GetFirstLineIndent: fn (
             self: *const ITextPara,
             pValue: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetKeepTogether: fn(
+        GetKeepTogether: fn (
             self: *const ITextPara,
             pValue: ?*tomConstants,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetKeepTogether: fn(
+        SetKeepTogether: fn (
             self: *const ITextPara,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetKeepWithNext: fn(
+        GetKeepWithNext: fn (
             self: *const ITextPara,
             pValue: ?*tomConstants,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetKeepWithNext: fn(
+        SetKeepWithNext: fn (
             self: *const ITextPara,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLeftIndent: fn(
+        GetLeftIndent: fn (
             self: *const ITextPara,
             pValue: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLineSpacing: fn(
+        GetLineSpacing: fn (
             self: *const ITextPara,
             pValue: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLineSpacingRule: fn(
+        GetLineSpacingRule: fn (
             self: *const ITextPara,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetListAlignment: fn(
+        GetListAlignment: fn (
             self: *const ITextPara,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetListAlignment: fn(
+        SetListAlignment: fn (
             self: *const ITextPara,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetListLevelIndex: fn(
+        GetListLevelIndex: fn (
             self: *const ITextPara,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetListLevelIndex: fn(
+        SetListLevelIndex: fn (
             self: *const ITextPara,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetListStart: fn(
+        GetListStart: fn (
             self: *const ITextPara,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetListStart: fn(
+        SetListStart: fn (
             self: *const ITextPara,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetListTab: fn(
+        GetListTab: fn (
             self: *const ITextPara,
             pValue: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetListTab: fn(
+        SetListTab: fn (
             self: *const ITextPara,
             Value: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetListType: fn(
+        GetListType: fn (
             self: *const ITextPara,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetListType: fn(
+        SetListType: fn (
             self: *const ITextPara,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNoLineNumber: fn(
+        GetNoLineNumber: fn (
             self: *const ITextPara,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNoLineNumber: fn(
+        SetNoLineNumber: fn (
             self: *const ITextPara,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPageBreakBefore: fn(
+        GetPageBreakBefore: fn (
             self: *const ITextPara,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPageBreakBefore: fn(
+        SetPageBreakBefore: fn (
             self: *const ITextPara,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRightIndent: fn(
+        GetRightIndent: fn (
             self: *const ITextPara,
             pValue: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetRightIndent: fn(
+        SetRightIndent: fn (
             self: *const ITextPara,
             Value: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetIndents: fn(
+        SetIndents: fn (
             self: *const ITextPara,
             First: f32,
             Left: f32,
             Right: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetLineSpacing: fn(
+        SetLineSpacing: fn (
             self: *const ITextPara,
             Rule: i32,
             Spacing: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSpaceAfter: fn(
+        GetSpaceAfter: fn (
             self: *const ITextPara,
             pValue: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSpaceAfter: fn(
+        SetSpaceAfter: fn (
             self: *const ITextPara,
             Value: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSpaceBefore: fn(
+        GetSpaceBefore: fn (
             self: *const ITextPara,
             pValue: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSpaceBefore: fn(
+        SetSpaceBefore: fn (
             self: *const ITextPara,
             Value: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetWidowControl: fn(
+        GetWidowControl: fn (
             self: *const ITextPara,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetWidowControl: fn(
+        SetWidowControl: fn (
             self: *const ITextPara,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTabCount: fn(
+        GetTabCount: fn (
             self: *const ITextPara,
             pCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddTab: fn(
+        AddTab: fn (
             self: *const ITextPara,
             tbPos: f32,
             tbAlign: i32,
             tbLeader: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ClearAllTabs: fn(
+        ClearAllTabs: fn (
             self: *const ITextPara,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteTab: fn(
+        DeleteTab: fn (
             self: *const ITextPara,
             tbPos: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTab: fn(
+        GetTab: fn (
             self: *const ITextPara,
             iTab: i32,
             ptbPos: ?*f32,
@@ -5235,201 +5137,203 @@ pub const ITextPara = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetDuplicate(self: *const T, ppPara: ?*?*ITextPara) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetDuplicate(@ptrCast(*const ITextPara, self), ppPara);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_SetDuplicate(self: *const T, pPara: ?*ITextPara) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).SetDuplicate(@ptrCast(*const ITextPara, self), pPara);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_CanChange(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).CanChange(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_IsEqual(self: *const T, pPara: ?*ITextPara, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).IsEqual(@ptrCast(*const ITextPara, self), pPara, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_Reset(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).Reset(@ptrCast(*const ITextPara, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetStyle(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetStyle(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_SetStyle(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).SetStyle(@ptrCast(*const ITextPara, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetAlignment(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetAlignment(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_SetAlignment(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).SetAlignment(@ptrCast(*const ITextPara, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetHyphenation(self: *const T, pValue: ?*tomConstants) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetHyphenation(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_SetHyphenation(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).SetHyphenation(@ptrCast(*const ITextPara, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetFirstLineIndent(self: *const T, pValue: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetFirstLineIndent(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetKeepTogether(self: *const T, pValue: ?*tomConstants) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetKeepTogether(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_SetKeepTogether(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).SetKeepTogether(@ptrCast(*const ITextPara, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetKeepWithNext(self: *const T, pValue: ?*tomConstants) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetKeepWithNext(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_SetKeepWithNext(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).SetKeepWithNext(@ptrCast(*const ITextPara, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetLeftIndent(self: *const T, pValue: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetLeftIndent(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetLineSpacing(self: *const T, pValue: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetLineSpacing(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetLineSpacingRule(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetLineSpacingRule(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetListAlignment(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetListAlignment(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_SetListAlignment(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).SetListAlignment(@ptrCast(*const ITextPara, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetListLevelIndex(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetListLevelIndex(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_SetListLevelIndex(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).SetListLevelIndex(@ptrCast(*const ITextPara, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetListStart(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetListStart(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_SetListStart(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).SetListStart(@ptrCast(*const ITextPara, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetListTab(self: *const T, pValue: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetListTab(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_SetListTab(self: *const T, Value: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).SetListTab(@ptrCast(*const ITextPara, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetListType(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetListType(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_SetListType(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).SetListType(@ptrCast(*const ITextPara, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetNoLineNumber(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetNoLineNumber(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_SetNoLineNumber(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).SetNoLineNumber(@ptrCast(*const ITextPara, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetPageBreakBefore(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetPageBreakBefore(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_SetPageBreakBefore(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).SetPageBreakBefore(@ptrCast(*const ITextPara, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetRightIndent(self: *const T, pValue: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetRightIndent(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_SetRightIndent(self: *const T, Value: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).SetRightIndent(@ptrCast(*const ITextPara, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_SetIndents(self: *const T, First: f32, Left: f32, Right: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).SetIndents(@ptrCast(*const ITextPara, self), First, Left, Right);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_SetLineSpacing(self: *const T, Rule: i32, Spacing: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).SetLineSpacing(@ptrCast(*const ITextPara, self), Rule, Spacing);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetSpaceAfter(self: *const T, pValue: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetSpaceAfter(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_SetSpaceAfter(self: *const T, Value: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).SetSpaceAfter(@ptrCast(*const ITextPara, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetSpaceBefore(self: *const T, pValue: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetSpaceBefore(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_SetSpaceBefore(self: *const T, Value: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).SetSpaceBefore(@ptrCast(*const ITextPara, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetWidowControl(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetWidowControl(@ptrCast(*const ITextPara, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_SetWidowControl(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).SetWidowControl(@ptrCast(*const ITextPara, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetTabCount(self: *const T, pCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetTabCount(@ptrCast(*const ITextPara, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_AddTab(self: *const T, tbPos: f32, tbAlign: i32, tbLeader: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).AddTab(@ptrCast(*const ITextPara, self), tbPos, tbAlign, tbLeader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_ClearAllTabs(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).ClearAllTabs(@ptrCast(*const ITextPara, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_DeleteTab(self: *const T, tbPos: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).DeleteTab(@ptrCast(*const ITextPara, self), tbPos);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara_GetTab(self: *const T, iTab: i32, ptbPos: ?*f32, ptbAlign: ?*i32, ptbLeader: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara.VTable, self.vtable).GetTab(@ptrCast(*const ITextPara, self), iTab, ptbPos, ptbAlign, ptbLeader);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetDuplicate(self: *const T, ppPara: ?*?*ITextPara) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetDuplicate(@ptrCast(*const ITextPara, self), ppPara);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_SetDuplicate(self: *const T, pPara: ?*ITextPara) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).SetDuplicate(@ptrCast(*const ITextPara, self), pPara);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_CanChange(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).CanChange(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_IsEqual(self: *const T, pPara: ?*ITextPara, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).IsEqual(@ptrCast(*const ITextPara, self), pPara, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_Reset(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).Reset(@ptrCast(*const ITextPara, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetStyle(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetStyle(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_SetStyle(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).SetStyle(@ptrCast(*const ITextPara, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetAlignment(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetAlignment(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_SetAlignment(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).SetAlignment(@ptrCast(*const ITextPara, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetHyphenation(self: *const T, pValue: ?*tomConstants) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetHyphenation(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_SetHyphenation(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).SetHyphenation(@ptrCast(*const ITextPara, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetFirstLineIndent(self: *const T, pValue: ?*f32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetFirstLineIndent(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetKeepTogether(self: *const T, pValue: ?*tomConstants) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetKeepTogether(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_SetKeepTogether(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).SetKeepTogether(@ptrCast(*const ITextPara, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetKeepWithNext(self: *const T, pValue: ?*tomConstants) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetKeepWithNext(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_SetKeepWithNext(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).SetKeepWithNext(@ptrCast(*const ITextPara, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetLeftIndent(self: *const T, pValue: ?*f32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetLeftIndent(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetLineSpacing(self: *const T, pValue: ?*f32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetLineSpacing(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetLineSpacingRule(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetLineSpacingRule(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetListAlignment(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetListAlignment(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_SetListAlignment(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).SetListAlignment(@ptrCast(*const ITextPara, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetListLevelIndex(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetListLevelIndex(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_SetListLevelIndex(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).SetListLevelIndex(@ptrCast(*const ITextPara, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetListStart(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetListStart(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_SetListStart(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).SetListStart(@ptrCast(*const ITextPara, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetListTab(self: *const T, pValue: ?*f32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetListTab(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_SetListTab(self: *const T, Value: f32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).SetListTab(@ptrCast(*const ITextPara, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetListType(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetListType(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_SetListType(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).SetListType(@ptrCast(*const ITextPara, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetNoLineNumber(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetNoLineNumber(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_SetNoLineNumber(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).SetNoLineNumber(@ptrCast(*const ITextPara, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetPageBreakBefore(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetPageBreakBefore(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_SetPageBreakBefore(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).SetPageBreakBefore(@ptrCast(*const ITextPara, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetRightIndent(self: *const T, pValue: ?*f32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetRightIndent(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_SetRightIndent(self: *const T, Value: f32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).SetRightIndent(@ptrCast(*const ITextPara, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_SetIndents(self: *const T, First: f32, Left: f32, Right: f32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).SetIndents(@ptrCast(*const ITextPara, self), First, Left, Right);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_SetLineSpacing(self: *const T, Rule: i32, Spacing: f32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).SetLineSpacing(@ptrCast(*const ITextPara, self), Rule, Spacing);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetSpaceAfter(self: *const T, pValue: ?*f32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetSpaceAfter(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_SetSpaceAfter(self: *const T, Value: f32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).SetSpaceAfter(@ptrCast(*const ITextPara, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetSpaceBefore(self: *const T, pValue: ?*f32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetSpaceBefore(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_SetSpaceBefore(self: *const T, Value: f32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).SetSpaceBefore(@ptrCast(*const ITextPara, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetWidowControl(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetWidowControl(@ptrCast(*const ITextPara, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_SetWidowControl(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).SetWidowControl(@ptrCast(*const ITextPara, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetTabCount(self: *const T, pCount: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetTabCount(@ptrCast(*const ITextPara, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_AddTab(self: *const T, tbPos: f32, tbAlign: i32, tbLeader: i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).AddTab(@ptrCast(*const ITextPara, self), tbPos, tbAlign, tbLeader);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_ClearAllTabs(self: *const T) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).ClearAllTabs(@ptrCast(*const ITextPara, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_DeleteTab(self: *const T, tbPos: f32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).DeleteTab(@ptrCast(*const ITextPara, self), tbPos);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara_GetTab(self: *const T, iTab: i32, ptbPos: ?*f32, ptbAlign: ?*i32, ptbLeader: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara.VTable, self.vtable).GetTab(@ptrCast(*const ITextPara, self), iTab, ptbPos, ptbAlign, ptbLeader);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5439,36 +5343,38 @@ pub const IID_ITextStoryRanges = &IID_ITextStoryRanges_Value;
 pub const ITextStoryRanges = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        _NewEnum: fn(
+        _NewEnum: fn (
             self: *const ITextStoryRanges,
             ppunkEnum: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
+        Item: fn (
             self: *const ITextStoryRanges,
             Index: i32,
             ppRange: ?*?*ITextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCount: fn(
+        GetCount: fn (
             self: *const ITextStoryRanges,
             pCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoryRanges__NewEnum(self: *const T, ppunkEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStoryRanges.VTable, self.vtable)._NewEnum(@ptrCast(*const ITextStoryRanges, self), ppunkEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoryRanges_Item(self: *const T, Index: i32, ppRange: ?*?*ITextRange) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStoryRanges.VTable, self.vtable).Item(@ptrCast(*const ITextStoryRanges, self), Index, ppRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoryRanges_GetCount(self: *const T, pCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStoryRanges.VTable, self.vtable).GetCount(@ptrCast(*const ITextStoryRanges, self), pCount);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStoryRanges__NewEnum(self: *const T, ppunkEnum: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ITextStoryRanges.VTable, self.vtable)._NewEnum(@ptrCast(*const ITextStoryRanges, self), ppunkEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStoryRanges_Item(self: *const T, Index: i32, ppRange: ?*?*ITextRange) HRESULT {
+                return @ptrCast(*const ITextStoryRanges.VTable, self.vtable).Item(@ptrCast(*const ITextStoryRanges, self), Index, ppRange);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStoryRanges_GetCount(self: *const T, pCount: ?*i32) HRESULT {
+                return @ptrCast(*const ITextStoryRanges.VTable, self.vtable).GetCount(@ptrCast(*const ITextStoryRanges, self), pCount);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5478,88 +5384,88 @@ pub const IID_ITextDocument2 = &IID_ITextDocument2_Value;
 pub const ITextDocument2 = extern struct {
     pub const VTable = extern struct {
         base: ITextDocument.VTable,
-        GetCaretType: fn(
+        GetCaretType: fn (
             self: *const ITextDocument2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCaretType: fn(
+        SetCaretType: fn (
             self: *const ITextDocument2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDisplays: fn(
+        GetDisplays: fn (
             self: *const ITextDocument2,
             ppDisplays: ?*?*ITextDisplays,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDocumentFont: fn(
+        GetDocumentFont: fn (
             self: *const ITextDocument2,
             ppFont: ?*?*ITextFont2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDocumentFont: fn(
+        SetDocumentFont: fn (
             self: *const ITextDocument2,
             pFont: ?*ITextFont2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDocumentPara: fn(
+        GetDocumentPara: fn (
             self: *const ITextDocument2,
             ppPara: ?*?*ITextPara2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDocumentPara: fn(
+        SetDocumentPara: fn (
             self: *const ITextDocument2,
             pPara: ?*ITextPara2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEastAsianFlags: fn(
+        GetEastAsianFlags: fn (
             self: *const ITextDocument2,
             pFlags: ?*tomConstants,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetGenerator: fn(
+        GetGenerator: fn (
             self: *const ITextDocument2,
             pbstr: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetIMEInProgress: fn(
+        SetIMEInProgress: fn (
             self: *const ITextDocument2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNotificationMode: fn(
+        GetNotificationMode: fn (
             self: *const ITextDocument2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNotificationMode: fn(
+        SetNotificationMode: fn (
             self: *const ITextDocument2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSelection2: fn(
+        GetSelection2: fn (
             self: *const ITextDocument2,
             ppSel: ?*?*ITextSelection2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStoryRanges2: fn(
+        GetStoryRanges2: fn (
             self: *const ITextDocument2,
             ppStories: ?*?*ITextStoryRanges2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTypographyOptions: fn(
+        GetTypographyOptions: fn (
             self: *const ITextDocument2,
             pOptions: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVersion: fn(
+        GetVersion: fn (
             self: *const ITextDocument2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetWindow: fn(
+        GetWindow: fn (
             self: *const ITextDocument2,
             pHwnd: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AttachMsgFilter: fn(
+        AttachMsgFilter: fn (
             self: *const ITextDocument2,
             pFilter: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CheckTextLimit: fn(
+        CheckTextLimit: fn (
             self: *const ITextDocument2,
             cch: i32,
             pcch: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCallManager: fn(
+        GetCallManager: fn (
             self: *const ITextDocument2,
             ppVoid: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetClientRect: fn(
+        GetClientRect: fn (
             self: *const ITextDocument2,
             Type: tomConstants,
             pLeft: ?*i32,
@@ -5567,16 +5473,16 @@ pub const ITextDocument2 = extern struct {
             pRight: ?*i32,
             pBottom: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEffectColor: fn(
+        GetEffectColor: fn (
             self: *const ITextDocument2,
             Index: i32,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetImmContext: fn(
+        GetImmContext: fn (
             self: *const ITextDocument2,
             pContext: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPreferredFont: fn(
+        GetPreferredFont: fn (
             self: *const ITextDocument2,
             cp: i32,
             CharRep: i32,
@@ -5587,276 +5493,278 @@ pub const ITextDocument2 = extern struct {
             pPitchAndFamily: ?*i32,
             pNewFontSize: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProperty: fn(
+        GetProperty: fn (
             self: *const ITextDocument2,
             Type: i32,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStrings: fn(
+        GetStrings: fn (
             self: *const ITextDocument2,
             ppStrs: ?*?*ITextStrings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Notify: fn(
+        Notify: fn (
             self: *const ITextDocument2,
             Notify: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Range2: fn(
+        Range2: fn (
             self: *const ITextDocument2,
             cpActive: i32,
             cpAnchor: i32,
             ppRange: ?*?*ITextRange2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RangeFromPoint2: fn(
+        RangeFromPoint2: fn (
             self: *const ITextDocument2,
             x: i32,
             y: i32,
             Type: i32,
             ppRange: ?*?*ITextRange2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseCallManager: fn(
+        ReleaseCallManager: fn (
             self: *const ITextDocument2,
             pVoid: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseImmContext: fn(
+        ReleaseImmContext: fn (
             self: *const ITextDocument2,
             Context: i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEffectColor: fn(
+        SetEffectColor: fn (
             self: *const ITextDocument2,
             Index: i32,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProperty: fn(
+        SetProperty: fn (
             self: *const ITextDocument2,
             Type: i32,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetTypographyOptions: fn(
+        SetTypographyOptions: fn (
             self: *const ITextDocument2,
             Options: i32,
             Mask: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SysBeep: fn(
+        SysBeep: fn (
             self: *const ITextDocument2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Update: fn(
+        Update: fn (
             self: *const ITextDocument2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateWindow: fn(
+        UpdateWindow: fn (
             self: *const ITextDocument2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMathProperties: fn(
+        GetMathProperties: fn (
             self: *const ITextDocument2,
             pOptions: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetMathProperties: fn(
+        SetMathProperties: fn (
             self: *const ITextDocument2,
             Options: i32,
             Mask: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetActiveStory: fn(
+        GetActiveStory: fn (
             self: *const ITextDocument2,
             ppStory: ?*?*ITextStory,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetActiveStory: fn(
+        SetActiveStory: fn (
             self: *const ITextDocument2,
             pStory: ?*ITextStory,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMainStory: fn(
+        GetMainStory: fn (
             self: *const ITextDocument2,
             ppStory: ?*?*ITextStory,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNewStory: fn(
+        GetNewStory: fn (
             self: *const ITextDocument2,
             ppStory: ?*?*ITextStory,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStory: fn(
+        GetStory: fn (
             self: *const ITextDocument2,
             Index: i32,
             ppStory: ?*?*ITextStory,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ITextDocument.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetCaretType(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetCaretType(@ptrCast(*const ITextDocument2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_SetCaretType(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).SetCaretType(@ptrCast(*const ITextDocument2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetDisplays(self: *const T, ppDisplays: ?*?*ITextDisplays) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetDisplays(@ptrCast(*const ITextDocument2, self), ppDisplays);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetDocumentFont(self: *const T, ppFont: ?*?*ITextFont2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetDocumentFont(@ptrCast(*const ITextDocument2, self), ppFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_SetDocumentFont(self: *const T, pFont: ?*ITextFont2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).SetDocumentFont(@ptrCast(*const ITextDocument2, self), pFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetDocumentPara(self: *const T, ppPara: ?*?*ITextPara2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetDocumentPara(@ptrCast(*const ITextDocument2, self), ppPara);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_SetDocumentPara(self: *const T, pPara: ?*ITextPara2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).SetDocumentPara(@ptrCast(*const ITextDocument2, self), pPara);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetEastAsianFlags(self: *const T, pFlags: ?*tomConstants) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetEastAsianFlags(@ptrCast(*const ITextDocument2, self), pFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetGenerator(self: *const T, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetGenerator(@ptrCast(*const ITextDocument2, self), pbstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_SetIMEInProgress(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).SetIMEInProgress(@ptrCast(*const ITextDocument2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetNotificationMode(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetNotificationMode(@ptrCast(*const ITextDocument2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_SetNotificationMode(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).SetNotificationMode(@ptrCast(*const ITextDocument2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetSelection2(self: *const T, ppSel: ?*?*ITextSelection2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetSelection2(@ptrCast(*const ITextDocument2, self), ppSel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetStoryRanges2(self: *const T, ppStories: ?*?*ITextStoryRanges2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetStoryRanges2(@ptrCast(*const ITextDocument2, self), ppStories);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetTypographyOptions(self: *const T, pOptions: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetTypographyOptions(@ptrCast(*const ITextDocument2, self), pOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetVersion(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetVersion(@ptrCast(*const ITextDocument2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetWindow(self: *const T, pHwnd: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetWindow(@ptrCast(*const ITextDocument2, self), pHwnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_AttachMsgFilter(self: *const T, pFilter: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).AttachMsgFilter(@ptrCast(*const ITextDocument2, self), pFilter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_CheckTextLimit(self: *const T, cch: i32, pcch: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).CheckTextLimit(@ptrCast(*const ITextDocument2, self), cch, pcch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetCallManager(self: *const T, ppVoid: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetCallManager(@ptrCast(*const ITextDocument2, self), ppVoid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetClientRect(self: *const T, Type: tomConstants, pLeft: ?*i32, pTop: ?*i32, pRight: ?*i32, pBottom: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetClientRect(@ptrCast(*const ITextDocument2, self), Type, pLeft, pTop, pRight, pBottom);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetEffectColor(self: *const T, Index: i32, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetEffectColor(@ptrCast(*const ITextDocument2, self), Index, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetImmContext(self: *const T, pContext: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetImmContext(@ptrCast(*const ITextDocument2, self), pContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetPreferredFont(self: *const T, cp: i32, CharRep: i32, Options: i32, curCharRep: i32, curFontSize: i32, pbstr: ?*?BSTR, pPitchAndFamily: ?*i32, pNewFontSize: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetPreferredFont(@ptrCast(*const ITextDocument2, self), cp, CharRep, Options, curCharRep, curFontSize, pbstr, pPitchAndFamily, pNewFontSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetProperty(self: *const T, Type: i32, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetProperty(@ptrCast(*const ITextDocument2, self), Type, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetStrings(self: *const T, ppStrs: ?*?*ITextStrings) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetStrings(@ptrCast(*const ITextDocument2, self), ppStrs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_Notify(self: *const T, Notify: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).Notify(@ptrCast(*const ITextDocument2, self), Notify);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_Range2(self: *const T, cpActive: i32, cpAnchor: i32, ppRange: ?*?*ITextRange2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).Range2(@ptrCast(*const ITextDocument2, self), cpActive, cpAnchor, ppRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_RangeFromPoint2(self: *const T, x: i32, y: i32, Type: i32, ppRange: ?*?*ITextRange2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).RangeFromPoint2(@ptrCast(*const ITextDocument2, self), x, y, Type, ppRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_ReleaseCallManager(self: *const T, pVoid: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).ReleaseCallManager(@ptrCast(*const ITextDocument2, self), pVoid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_ReleaseImmContext(self: *const T, Context: i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).ReleaseImmContext(@ptrCast(*const ITextDocument2, self), Context);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_SetEffectColor(self: *const T, Index: i32, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).SetEffectColor(@ptrCast(*const ITextDocument2, self), Index, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_SetProperty(self: *const T, Type: i32, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).SetProperty(@ptrCast(*const ITextDocument2, self), Type, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_SetTypographyOptions(self: *const T, Options: i32, Mask: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).SetTypographyOptions(@ptrCast(*const ITextDocument2, self), Options, Mask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_SysBeep(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).SysBeep(@ptrCast(*const ITextDocument2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_Update(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).Update(@ptrCast(*const ITextDocument2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_UpdateWindow(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).UpdateWindow(@ptrCast(*const ITextDocument2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetMathProperties(self: *const T, pOptions: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetMathProperties(@ptrCast(*const ITextDocument2, self), pOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_SetMathProperties(self: *const T, Options: i32, Mask: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).SetMathProperties(@ptrCast(*const ITextDocument2, self), Options, Mask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetActiveStory(self: *const T, ppStory: ?*?*ITextStory) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetActiveStory(@ptrCast(*const ITextDocument2, self), ppStory);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_SetActiveStory(self: *const T, pStory: ?*ITextStory) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).SetActiveStory(@ptrCast(*const ITextDocument2, self), pStory);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetMainStory(self: *const T, ppStory: ?*?*ITextStory) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetMainStory(@ptrCast(*const ITextDocument2, self), ppStory);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetNewStory(self: *const T, ppStory: ?*?*ITextStory) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetNewStory(@ptrCast(*const ITextDocument2, self), ppStory);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2_GetStory(self: *const T, Index: i32, ppStory: ?*?*ITextStory) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetStory(@ptrCast(*const ITextDocument2, self), Index, ppStory);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ITextDocument.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetCaretType(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetCaretType(@ptrCast(*const ITextDocument2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_SetCaretType(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).SetCaretType(@ptrCast(*const ITextDocument2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetDisplays(self: *const T, ppDisplays: ?*?*ITextDisplays) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetDisplays(@ptrCast(*const ITextDocument2, self), ppDisplays);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetDocumentFont(self: *const T, ppFont: ?*?*ITextFont2) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetDocumentFont(@ptrCast(*const ITextDocument2, self), ppFont);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_SetDocumentFont(self: *const T, pFont: ?*ITextFont2) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).SetDocumentFont(@ptrCast(*const ITextDocument2, self), pFont);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetDocumentPara(self: *const T, ppPara: ?*?*ITextPara2) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetDocumentPara(@ptrCast(*const ITextDocument2, self), ppPara);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_SetDocumentPara(self: *const T, pPara: ?*ITextPara2) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).SetDocumentPara(@ptrCast(*const ITextDocument2, self), pPara);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetEastAsianFlags(self: *const T, pFlags: ?*tomConstants) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetEastAsianFlags(@ptrCast(*const ITextDocument2, self), pFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetGenerator(self: *const T, pbstr: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetGenerator(@ptrCast(*const ITextDocument2, self), pbstr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_SetIMEInProgress(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).SetIMEInProgress(@ptrCast(*const ITextDocument2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetNotificationMode(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetNotificationMode(@ptrCast(*const ITextDocument2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_SetNotificationMode(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).SetNotificationMode(@ptrCast(*const ITextDocument2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetSelection2(self: *const T, ppSel: ?*?*ITextSelection2) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetSelection2(@ptrCast(*const ITextDocument2, self), ppSel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetStoryRanges2(self: *const T, ppStories: ?*?*ITextStoryRanges2) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetStoryRanges2(@ptrCast(*const ITextDocument2, self), ppStories);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetTypographyOptions(self: *const T, pOptions: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetTypographyOptions(@ptrCast(*const ITextDocument2, self), pOptions);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetVersion(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetVersion(@ptrCast(*const ITextDocument2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetWindow(self: *const T, pHwnd: ?*i64) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetWindow(@ptrCast(*const ITextDocument2, self), pHwnd);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_AttachMsgFilter(self: *const T, pFilter: ?*IUnknown) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).AttachMsgFilter(@ptrCast(*const ITextDocument2, self), pFilter);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_CheckTextLimit(self: *const T, cch: i32, pcch: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).CheckTextLimit(@ptrCast(*const ITextDocument2, self), cch, pcch);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetCallManager(self: *const T, ppVoid: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetCallManager(@ptrCast(*const ITextDocument2, self), ppVoid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetClientRect(self: *const T, Type: tomConstants, pLeft: ?*i32, pTop: ?*i32, pRight: ?*i32, pBottom: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetClientRect(@ptrCast(*const ITextDocument2, self), Type, pLeft, pTop, pRight, pBottom);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetEffectColor(self: *const T, Index: i32, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetEffectColor(@ptrCast(*const ITextDocument2, self), Index, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetImmContext(self: *const T, pContext: ?*i64) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetImmContext(@ptrCast(*const ITextDocument2, self), pContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetPreferredFont(self: *const T, cp: i32, CharRep: i32, Options: i32, curCharRep: i32, curFontSize: i32, pbstr: ?*?BSTR, pPitchAndFamily: ?*i32, pNewFontSize: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetPreferredFont(@ptrCast(*const ITextDocument2, self), cp, CharRep, Options, curCharRep, curFontSize, pbstr, pPitchAndFamily, pNewFontSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetProperty(self: *const T, Type: i32, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetProperty(@ptrCast(*const ITextDocument2, self), Type, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetStrings(self: *const T, ppStrs: ?*?*ITextStrings) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetStrings(@ptrCast(*const ITextDocument2, self), ppStrs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_Notify(self: *const T, Notify: i32) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).Notify(@ptrCast(*const ITextDocument2, self), Notify);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_Range2(self: *const T, cpActive: i32, cpAnchor: i32, ppRange: ?*?*ITextRange2) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).Range2(@ptrCast(*const ITextDocument2, self), cpActive, cpAnchor, ppRange);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_RangeFromPoint2(self: *const T, x: i32, y: i32, Type: i32, ppRange: ?*?*ITextRange2) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).RangeFromPoint2(@ptrCast(*const ITextDocument2, self), x, y, Type, ppRange);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_ReleaseCallManager(self: *const T, pVoid: ?*IUnknown) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).ReleaseCallManager(@ptrCast(*const ITextDocument2, self), pVoid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_ReleaseImmContext(self: *const T, Context: i64) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).ReleaseImmContext(@ptrCast(*const ITextDocument2, self), Context);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_SetEffectColor(self: *const T, Index: i32, Value: i32) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).SetEffectColor(@ptrCast(*const ITextDocument2, self), Index, Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_SetProperty(self: *const T, Type: i32, Value: i32) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).SetProperty(@ptrCast(*const ITextDocument2, self), Type, Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_SetTypographyOptions(self: *const T, Options: i32, Mask: i32) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).SetTypographyOptions(@ptrCast(*const ITextDocument2, self), Options, Mask);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_SysBeep(self: *const T) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).SysBeep(@ptrCast(*const ITextDocument2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_Update(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).Update(@ptrCast(*const ITextDocument2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_UpdateWindow(self: *const T) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).UpdateWindow(@ptrCast(*const ITextDocument2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetMathProperties(self: *const T, pOptions: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetMathProperties(@ptrCast(*const ITextDocument2, self), pOptions);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_SetMathProperties(self: *const T, Options: i32, Mask: i32) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).SetMathProperties(@ptrCast(*const ITextDocument2, self), Options, Mask);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetActiveStory(self: *const T, ppStory: ?*?*ITextStory) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetActiveStory(@ptrCast(*const ITextDocument2, self), ppStory);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_SetActiveStory(self: *const T, pStory: ?*ITextStory) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).SetActiveStory(@ptrCast(*const ITextDocument2, self), pStory);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetMainStory(self: *const T, ppStory: ?*?*ITextStory) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetMainStory(@ptrCast(*const ITextDocument2, self), ppStory);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetNewStory(self: *const T, ppStory: ?*?*ITextStory) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetNewStory(@ptrCast(*const ITextDocument2, self), ppStory);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2_GetStory(self: *const T, Index: i32, ppStory: ?*?*ITextStory) HRESULT {
+                return @ptrCast(*const ITextDocument2.VTable, self.vtable).GetStory(@ptrCast(*const ITextDocument2, self), Index, ppStory);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5866,111 +5774,111 @@ pub const IID_ITextRange2 = &IID_ITextRange2_Value;
 pub const ITextRange2 = extern struct {
     pub const VTable = extern struct {
         base: ITextSelection.VTable,
-        GetCch: fn(
+        GetCch: fn (
             self: *const ITextRange2,
             pcch: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCells: fn(
+        GetCells: fn (
             self: *const ITextRange2,
             ppCells: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetColumn: fn(
+        GetColumn: fn (
             self: *const ITextRange2,
             ppColumn: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCount: fn(
+        GetCount: fn (
             self: *const ITextRange2,
             pCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDuplicate2: fn(
+        GetDuplicate2: fn (
             self: *const ITextRange2,
             ppRange: ?*?*ITextRange2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFont2: fn(
+        GetFont2: fn (
             self: *const ITextRange2,
             ppFont: ?*?*ITextFont2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetFont2: fn(
+        SetFont2: fn (
             self: *const ITextRange2,
             pFont: ?*ITextFont2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFormattedText2: fn(
+        GetFormattedText2: fn (
             self: *const ITextRange2,
             ppRange: ?*?*ITextRange2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetFormattedText2: fn(
+        SetFormattedText2: fn (
             self: *const ITextRange2,
             pRange: ?*ITextRange2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetGravity: fn(
+        GetGravity: fn (
             self: *const ITextRange2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetGravity: fn(
+        SetGravity: fn (
             self: *const ITextRange2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPara2: fn(
+        GetPara2: fn (
             self: *const ITextRange2,
             ppPara: ?*?*ITextPara2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPara2: fn(
+        SetPara2: fn (
             self: *const ITextRange2,
             pPara: ?*ITextPara2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRow: fn(
+        GetRow: fn (
             self: *const ITextRange2,
             ppRow: ?*?*ITextRow,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStartPara: fn(
+        GetStartPara: fn (
             self: *const ITextRange2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTable: fn(
+        GetTable: fn (
             self: *const ITextRange2,
             ppTable: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetURL: fn(
+        GetURL: fn (
             self: *const ITextRange2,
             pbstr: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetURL: fn(
+        SetURL: fn (
             self: *const ITextRange2,
             bstr: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddSubrange: fn(
+        AddSubrange: fn (
             self: *const ITextRange2,
             cp1: i32,
             cp2: i32,
             Activate: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BuildUpMath: fn(
+        BuildUpMath: fn (
             self: *const ITextRange2,
             Flags: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteSubrange: fn(
+        DeleteSubrange: fn (
             self: *const ITextRange2,
             cpFirst: i32,
             cpLim: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Find: fn(
+        Find: fn (
             self: *const ITextRange2,
             pRange: ?*ITextRange2,
             Count: i32,
             Flags: i32,
             pDelta: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetChar2: fn(
+        GetChar2: fn (
             self: *const ITextRange2,
             pChar: ?*i32,
             Offset: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDropCap: fn(
+        GetDropCap: fn (
             self: *const ITextRange2,
             pcLine: ?*i32,
             pPosition: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInlineObject: fn(
+        GetInlineObject: fn (
             self: *const ITextRange2,
             pType: ?*i32,
             pAlign: ?*i32,
@@ -5982,12 +5890,12 @@ pub const ITextRange2 = extern struct {
             pcCol: ?*i32,
             pLevel: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProperty: fn(
+        GetProperty: fn (
             self: *const ITextRange2,
             Type: i32,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRect: fn(
+        GetRect: fn (
             self: *const ITextRange2,
             Type: i32,
             pLeft: ?*i32,
@@ -5996,54 +5904,54 @@ pub const ITextRange2 = extern struct {
             pBottom: ?*i32,
             pHit: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSubrange: fn(
+        GetSubrange: fn (
             self: *const ITextRange2,
             iSubrange: i32,
             pcpFirst: ?*i32,
             pcpLim: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetText2: fn(
+        GetText2: fn (
             self: *const ITextRange2,
             Flags: i32,
             pbstr: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HexToUnicode: fn(
+        HexToUnicode: fn (
             self: *const ITextRange2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InsertTable: fn(
+        InsertTable: fn (
             self: *const ITextRange2,
             cCol: i32,
             cRow: i32,
             AutoFit: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Linearize: fn(
+        Linearize: fn (
             self: *const ITextRange2,
             Flags: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetActiveSubrange: fn(
+        SetActiveSubrange: fn (
             self: *const ITextRange2,
             cpAnchor: i32,
             cpActive: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDropCap: fn(
+        SetDropCap: fn (
             self: *const ITextRange2,
             cLine: i32,
             Position: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProperty: fn(
+        SetProperty: fn (
             self: *const ITextRange2,
             Type: i32,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetText2: fn(
+        SetText2: fn (
             self: *const ITextRange2,
             Flags: i32,
             bstr: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnicodeToHex: fn(
+        UnicodeToHex: fn (
             self: *const ITextRange2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetInlineObject: fn(
+        SetInlineObject: fn (
             self: *const ITextRange2,
             Type: i32,
             Align: i32,
@@ -6054,12 +5962,12 @@ pub const ITextRange2 = extern struct {
             TeXStyle: i32,
             cCol: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMathFunctionType: fn(
+        GetMathFunctionType: fn (
             self: *const ITextRange2,
             bstr: ?BSTR,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InsertImage: fn(
+        InsertImage: fn (
             self: *const ITextRange2,
             width: i32,
             height: i32,
@@ -6070,169 +5978,171 @@ pub const ITextRange2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ITextSelection.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetCch(self: *const T, pcch: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetCch(@ptrCast(*const ITextRange2, self), pcch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetCells(self: *const T, ppCells: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetCells(@ptrCast(*const ITextRange2, self), ppCells);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetColumn(self: *const T, ppColumn: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetColumn(@ptrCast(*const ITextRange2, self), ppColumn);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetCount(self: *const T, pCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetCount(@ptrCast(*const ITextRange2, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetDuplicate2(self: *const T, ppRange: ?*?*ITextRange2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetDuplicate2(@ptrCast(*const ITextRange2, self), ppRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetFont2(self: *const T, ppFont: ?*?*ITextFont2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetFont2(@ptrCast(*const ITextRange2, self), ppFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_SetFont2(self: *const T, pFont: ?*ITextFont2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).SetFont2(@ptrCast(*const ITextRange2, self), pFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetFormattedText2(self: *const T, ppRange: ?*?*ITextRange2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetFormattedText2(@ptrCast(*const ITextRange2, self), ppRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_SetFormattedText2(self: *const T, pRange: ?*ITextRange2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).SetFormattedText2(@ptrCast(*const ITextRange2, self), pRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetGravity(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetGravity(@ptrCast(*const ITextRange2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_SetGravity(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).SetGravity(@ptrCast(*const ITextRange2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetPara2(self: *const T, ppPara: ?*?*ITextPara2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetPara2(@ptrCast(*const ITextRange2, self), ppPara);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_SetPara2(self: *const T, pPara: ?*ITextPara2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).SetPara2(@ptrCast(*const ITextRange2, self), pPara);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetRow(self: *const T, ppRow: ?*?*ITextRow) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetRow(@ptrCast(*const ITextRange2, self), ppRow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetStartPara(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetStartPara(@ptrCast(*const ITextRange2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetTable(self: *const T, ppTable: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetTable(@ptrCast(*const ITextRange2, self), ppTable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetURL(self: *const T, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetURL(@ptrCast(*const ITextRange2, self), pbstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_SetURL(self: *const T, bstr: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).SetURL(@ptrCast(*const ITextRange2, self), bstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_AddSubrange(self: *const T, cp1: i32, cp2: i32, Activate: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).AddSubrange(@ptrCast(*const ITextRange2, self), cp1, cp2, Activate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_BuildUpMath(self: *const T, Flags: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).BuildUpMath(@ptrCast(*const ITextRange2, self), Flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_DeleteSubrange(self: *const T, cpFirst: i32, cpLim: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).DeleteSubrange(@ptrCast(*const ITextRange2, self), cpFirst, cpLim);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_Find(self: *const T, pRange: ?*ITextRange2, Count: i32, Flags: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).Find(@ptrCast(*const ITextRange2, self), pRange, Count, Flags, pDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetChar2(self: *const T, pChar: ?*i32, Offset: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetChar2(@ptrCast(*const ITextRange2, self), pChar, Offset);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetDropCap(self: *const T, pcLine: ?*i32, pPosition: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetDropCap(@ptrCast(*const ITextRange2, self), pcLine, pPosition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetInlineObject(self: *const T, pType: ?*i32, pAlign: ?*i32, pChar: ?*i32, pChar1: ?*i32, pChar2: ?*i32, pCount: ?*i32, pTeXStyle: ?*i32, pcCol: ?*i32, pLevel: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetInlineObject(@ptrCast(*const ITextRange2, self), pType, pAlign, pChar, pChar1, pChar2, pCount, pTeXStyle, pcCol, pLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetProperty(self: *const T, Type: i32, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetProperty(@ptrCast(*const ITextRange2, self), Type, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetRect(self: *const T, Type: i32, pLeft: ?*i32, pTop: ?*i32, pRight: ?*i32, pBottom: ?*i32, pHit: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetRect(@ptrCast(*const ITextRange2, self), Type, pLeft, pTop, pRight, pBottom, pHit);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetSubrange(self: *const T, iSubrange: i32, pcpFirst: ?*i32, pcpLim: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetSubrange(@ptrCast(*const ITextRange2, self), iSubrange, pcpFirst, pcpLim);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetText2(self: *const T, Flags: i32, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetText2(@ptrCast(*const ITextRange2, self), Flags, pbstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_HexToUnicode(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).HexToUnicode(@ptrCast(*const ITextRange2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_InsertTable(self: *const T, cCol: i32, cRow: i32, AutoFit: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).InsertTable(@ptrCast(*const ITextRange2, self), cCol, cRow, AutoFit);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_Linearize(self: *const T, Flags: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).Linearize(@ptrCast(*const ITextRange2, self), Flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_SetActiveSubrange(self: *const T, cpAnchor: i32, cpActive: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).SetActiveSubrange(@ptrCast(*const ITextRange2, self), cpAnchor, cpActive);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_SetDropCap(self: *const T, cLine: i32, Position: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).SetDropCap(@ptrCast(*const ITextRange2, self), cLine, Position);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_SetProperty(self: *const T, Type: i32, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).SetProperty(@ptrCast(*const ITextRange2, self), Type, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_SetText2(self: *const T, Flags: i32, bstr: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).SetText2(@ptrCast(*const ITextRange2, self), Flags, bstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_UnicodeToHex(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).UnicodeToHex(@ptrCast(*const ITextRange2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_SetInlineObject(self: *const T, Type: i32, Align: i32, Char: i32, Char1: i32, Char2: i32, Count: i32, TeXStyle: i32, cCol: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).SetInlineObject(@ptrCast(*const ITextRange2, self), Type, Align, Char, Char1, Char2, Count, TeXStyle, cCol);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_GetMathFunctionType(self: *const T, bstr: ?BSTR, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).GetMathFunctionType(@ptrCast(*const ITextRange2, self), bstr, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRange2_InsertImage(self: *const T, width: i32, height: i32, ascent: i32, Type: TEXT_ALIGN_OPTIONS, bstrAltText: ?BSTR, pStream: ?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRange2.VTable, self.vtable).InsertImage(@ptrCast(*const ITextRange2, self), width, height, ascent, Type, bstrAltText, pStream);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ITextSelection.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetCch(self: *const T, pcch: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetCch(@ptrCast(*const ITextRange2, self), pcch);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetCells(self: *const T, ppCells: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetCells(@ptrCast(*const ITextRange2, self), ppCells);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetColumn(self: *const T, ppColumn: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetColumn(@ptrCast(*const ITextRange2, self), ppColumn);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetCount(self: *const T, pCount: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetCount(@ptrCast(*const ITextRange2, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetDuplicate2(self: *const T, ppRange: ?*?*ITextRange2) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetDuplicate2(@ptrCast(*const ITextRange2, self), ppRange);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetFont2(self: *const T, ppFont: ?*?*ITextFont2) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetFont2(@ptrCast(*const ITextRange2, self), ppFont);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_SetFont2(self: *const T, pFont: ?*ITextFont2) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).SetFont2(@ptrCast(*const ITextRange2, self), pFont);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetFormattedText2(self: *const T, ppRange: ?*?*ITextRange2) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetFormattedText2(@ptrCast(*const ITextRange2, self), ppRange);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_SetFormattedText2(self: *const T, pRange: ?*ITextRange2) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).SetFormattedText2(@ptrCast(*const ITextRange2, self), pRange);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetGravity(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetGravity(@ptrCast(*const ITextRange2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_SetGravity(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).SetGravity(@ptrCast(*const ITextRange2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetPara2(self: *const T, ppPara: ?*?*ITextPara2) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetPara2(@ptrCast(*const ITextRange2, self), ppPara);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_SetPara2(self: *const T, pPara: ?*ITextPara2) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).SetPara2(@ptrCast(*const ITextRange2, self), pPara);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetRow(self: *const T, ppRow: ?*?*ITextRow) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetRow(@ptrCast(*const ITextRange2, self), ppRow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetStartPara(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetStartPara(@ptrCast(*const ITextRange2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetTable(self: *const T, ppTable: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetTable(@ptrCast(*const ITextRange2, self), ppTable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetURL(self: *const T, pbstr: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetURL(@ptrCast(*const ITextRange2, self), pbstr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_SetURL(self: *const T, bstr: ?BSTR) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).SetURL(@ptrCast(*const ITextRange2, self), bstr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_AddSubrange(self: *const T, cp1: i32, cp2: i32, Activate: i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).AddSubrange(@ptrCast(*const ITextRange2, self), cp1, cp2, Activate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_BuildUpMath(self: *const T, Flags: i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).BuildUpMath(@ptrCast(*const ITextRange2, self), Flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_DeleteSubrange(self: *const T, cpFirst: i32, cpLim: i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).DeleteSubrange(@ptrCast(*const ITextRange2, self), cpFirst, cpLim);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_Find(self: *const T, pRange: ?*ITextRange2, Count: i32, Flags: i32, pDelta: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).Find(@ptrCast(*const ITextRange2, self), pRange, Count, Flags, pDelta);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetChar2(self: *const T, pChar: ?*i32, Offset: i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetChar2(@ptrCast(*const ITextRange2, self), pChar, Offset);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetDropCap(self: *const T, pcLine: ?*i32, pPosition: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetDropCap(@ptrCast(*const ITextRange2, self), pcLine, pPosition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetInlineObject(self: *const T, pType: ?*i32, pAlign: ?*i32, pChar: ?*i32, pChar1: ?*i32, pChar2: ?*i32, pCount: ?*i32, pTeXStyle: ?*i32, pcCol: ?*i32, pLevel: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetInlineObject(@ptrCast(*const ITextRange2, self), pType, pAlign, pChar, pChar1, pChar2, pCount, pTeXStyle, pcCol, pLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetProperty(self: *const T, Type: i32, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetProperty(@ptrCast(*const ITextRange2, self), Type, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetRect(self: *const T, Type: i32, pLeft: ?*i32, pTop: ?*i32, pRight: ?*i32, pBottom: ?*i32, pHit: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetRect(@ptrCast(*const ITextRange2, self), Type, pLeft, pTop, pRight, pBottom, pHit);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetSubrange(self: *const T, iSubrange: i32, pcpFirst: ?*i32, pcpLim: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetSubrange(@ptrCast(*const ITextRange2, self), iSubrange, pcpFirst, pcpLim);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetText2(self: *const T, Flags: i32, pbstr: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetText2(@ptrCast(*const ITextRange2, self), Flags, pbstr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_HexToUnicode(self: *const T) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).HexToUnicode(@ptrCast(*const ITextRange2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_InsertTable(self: *const T, cCol: i32, cRow: i32, AutoFit: i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).InsertTable(@ptrCast(*const ITextRange2, self), cCol, cRow, AutoFit);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_Linearize(self: *const T, Flags: i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).Linearize(@ptrCast(*const ITextRange2, self), Flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_SetActiveSubrange(self: *const T, cpAnchor: i32, cpActive: i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).SetActiveSubrange(@ptrCast(*const ITextRange2, self), cpAnchor, cpActive);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_SetDropCap(self: *const T, cLine: i32, Position: i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).SetDropCap(@ptrCast(*const ITextRange2, self), cLine, Position);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_SetProperty(self: *const T, Type: i32, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).SetProperty(@ptrCast(*const ITextRange2, self), Type, Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_SetText2(self: *const T, Flags: i32, bstr: ?BSTR) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).SetText2(@ptrCast(*const ITextRange2, self), Flags, bstr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_UnicodeToHex(self: *const T) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).UnicodeToHex(@ptrCast(*const ITextRange2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_SetInlineObject(self: *const T, Type: i32, Align: i32, Char: i32, Char1: i32, Char2: i32, Count: i32, TeXStyle: i32, cCol: i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).SetInlineObject(@ptrCast(*const ITextRange2, self), Type, Align, Char, Char1, Char2, Count, TeXStyle, cCol);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_GetMathFunctionType(self: *const T, bstr: ?BSTR, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).GetMathFunctionType(@ptrCast(*const ITextRange2, self), bstr, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRange2_InsertImage(self: *const T, width: i32, height: i32, ascent: i32, Type: TEXT_ALIGN_OPTIONS, bstrAltText: ?BSTR, pStream: ?*IStream) HRESULT {
+                return @ptrCast(*const ITextRange2.VTable, self.vtable).InsertImage(@ptrCast(*const ITextRange2, self), width, height, ascent, Type, bstrAltText, pStream);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6244,9 +6154,11 @@ pub const ITextSelection2 = extern struct {
         base: ITextRange2.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ITextRange2.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ITextRange2.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6256,388 +6168,390 @@ pub const IID_ITextFont2 = &IID_ITextFont2_Value;
 pub const ITextFont2 = extern struct {
     pub const VTable = extern struct {
         base: ITextFont.VTable,
-        GetCount: fn(
+        GetCount: fn (
             self: *const ITextFont2,
             pCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAutoLigatures: fn(
+        GetAutoLigatures: fn (
             self: *const ITextFont2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAutoLigatures: fn(
+        SetAutoLigatures: fn (
             self: *const ITextFont2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAutospaceAlpha: fn(
+        GetAutospaceAlpha: fn (
             self: *const ITextFont2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAutospaceAlpha: fn(
+        SetAutospaceAlpha: fn (
             self: *const ITextFont2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAutospaceNumeric: fn(
+        GetAutospaceNumeric: fn (
             self: *const ITextFont2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAutospaceNumeric: fn(
+        SetAutospaceNumeric: fn (
             self: *const ITextFont2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAutospaceParens: fn(
+        GetAutospaceParens: fn (
             self: *const ITextFont2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAutospaceParens: fn(
+        SetAutospaceParens: fn (
             self: *const ITextFont2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCharRep: fn(
+        GetCharRep: fn (
             self: *const ITextFont2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCharRep: fn(
+        SetCharRep: fn (
             self: *const ITextFont2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCompressionMode: fn(
+        GetCompressionMode: fn (
             self: *const ITextFont2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCompressionMode: fn(
+        SetCompressionMode: fn (
             self: *const ITextFont2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCookie: fn(
+        GetCookie: fn (
             self: *const ITextFont2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCookie: fn(
+        SetCookie: fn (
             self: *const ITextFont2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDoubleStrike: fn(
+        GetDoubleStrike: fn (
             self: *const ITextFont2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDoubleStrike: fn(
+        SetDoubleStrike: fn (
             self: *const ITextFont2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDuplicate2: fn(
+        GetDuplicate2: fn (
             self: *const ITextFont2,
             ppFont: ?*?*ITextFont2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDuplicate2: fn(
+        SetDuplicate2: fn (
             self: *const ITextFont2,
             pFont: ?*ITextFont2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLinkType: fn(
+        GetLinkType: fn (
             self: *const ITextFont2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMathZone: fn(
+        GetMathZone: fn (
             self: *const ITextFont2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetMathZone: fn(
+        SetMathZone: fn (
             self: *const ITextFont2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetModWidthPairs: fn(
+        GetModWidthPairs: fn (
             self: *const ITextFont2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetModWidthPairs: fn(
+        SetModWidthPairs: fn (
             self: *const ITextFont2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetModWidthSpace: fn(
+        GetModWidthSpace: fn (
             self: *const ITextFont2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetModWidthSpace: fn(
+        SetModWidthSpace: fn (
             self: *const ITextFont2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOldNumbers: fn(
+        GetOldNumbers: fn (
             self: *const ITextFont2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOldNumbers: fn(
+        SetOldNumbers: fn (
             self: *const ITextFont2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOverlapping: fn(
+        GetOverlapping: fn (
             self: *const ITextFont2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOverlapping: fn(
+        SetOverlapping: fn (
             self: *const ITextFont2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPositionSubSuper: fn(
+        GetPositionSubSuper: fn (
             self: *const ITextFont2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPositionSubSuper: fn(
+        SetPositionSubSuper: fn (
             self: *const ITextFont2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScaling: fn(
+        GetScaling: fn (
             self: *const ITextFont2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetScaling: fn(
+        SetScaling: fn (
             self: *const ITextFont2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSpaceExtension: fn(
+        GetSpaceExtension: fn (
             self: *const ITextFont2,
             pValue: ?*f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSpaceExtension: fn(
+        SetSpaceExtension: fn (
             self: *const ITextFont2,
             Value: f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetUnderlinePositionMode: fn(
+        GetUnderlinePositionMode: fn (
             self: *const ITextFont2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetUnderlinePositionMode: fn(
+        SetUnderlinePositionMode: fn (
             self: *const ITextFont2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEffects: fn(
+        GetEffects: fn (
             self: *const ITextFont2,
             pValue: ?*i32,
             pMask: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEffects2: fn(
+        GetEffects2: fn (
             self: *const ITextFont2,
             pValue: ?*i32,
             pMask: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProperty: fn(
+        GetProperty: fn (
             self: *const ITextFont2,
             Type: i32,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyInfo: fn(
+        GetPropertyInfo: fn (
             self: *const ITextFont2,
             Index: i32,
             pType: ?*i32,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsEqual2: fn(
+        IsEqual2: fn (
             self: *const ITextFont2,
             pFont: ?*ITextFont2,
             pB: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEffects: fn(
+        SetEffects: fn (
             self: *const ITextFont2,
             Value: i32,
             Mask: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEffects2: fn(
+        SetEffects2: fn (
             self: *const ITextFont2,
             Value: i32,
             Mask: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProperty: fn(
+        SetProperty: fn (
             self: *const ITextFont2,
             Type: i32,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ITextFont.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetCount(self: *const T, pCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetCount(@ptrCast(*const ITextFont2, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetAutoLigatures(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetAutoLigatures(@ptrCast(*const ITextFont2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetAutoLigatures(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetAutoLigatures(@ptrCast(*const ITextFont2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetAutospaceAlpha(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetAutospaceAlpha(@ptrCast(*const ITextFont2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetAutospaceAlpha(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetAutospaceAlpha(@ptrCast(*const ITextFont2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetAutospaceNumeric(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetAutospaceNumeric(@ptrCast(*const ITextFont2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetAutospaceNumeric(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetAutospaceNumeric(@ptrCast(*const ITextFont2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetAutospaceParens(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetAutospaceParens(@ptrCast(*const ITextFont2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetAutospaceParens(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetAutospaceParens(@ptrCast(*const ITextFont2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetCharRep(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetCharRep(@ptrCast(*const ITextFont2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetCharRep(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetCharRep(@ptrCast(*const ITextFont2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetCompressionMode(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetCompressionMode(@ptrCast(*const ITextFont2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetCompressionMode(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetCompressionMode(@ptrCast(*const ITextFont2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetCookie(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetCookie(@ptrCast(*const ITextFont2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetCookie(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetCookie(@ptrCast(*const ITextFont2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetDoubleStrike(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetDoubleStrike(@ptrCast(*const ITextFont2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetDoubleStrike(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetDoubleStrike(@ptrCast(*const ITextFont2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetDuplicate2(self: *const T, ppFont: ?*?*ITextFont2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetDuplicate2(@ptrCast(*const ITextFont2, self), ppFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetDuplicate2(self: *const T, pFont: ?*ITextFont2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetDuplicate2(@ptrCast(*const ITextFont2, self), pFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetLinkType(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetLinkType(@ptrCast(*const ITextFont2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetMathZone(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetMathZone(@ptrCast(*const ITextFont2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetMathZone(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetMathZone(@ptrCast(*const ITextFont2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetModWidthPairs(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetModWidthPairs(@ptrCast(*const ITextFont2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetModWidthPairs(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetModWidthPairs(@ptrCast(*const ITextFont2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetModWidthSpace(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetModWidthSpace(@ptrCast(*const ITextFont2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetModWidthSpace(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetModWidthSpace(@ptrCast(*const ITextFont2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetOldNumbers(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetOldNumbers(@ptrCast(*const ITextFont2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetOldNumbers(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetOldNumbers(@ptrCast(*const ITextFont2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetOverlapping(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetOverlapping(@ptrCast(*const ITextFont2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetOverlapping(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetOverlapping(@ptrCast(*const ITextFont2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetPositionSubSuper(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetPositionSubSuper(@ptrCast(*const ITextFont2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetPositionSubSuper(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetPositionSubSuper(@ptrCast(*const ITextFont2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetScaling(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetScaling(@ptrCast(*const ITextFont2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetScaling(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetScaling(@ptrCast(*const ITextFont2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetSpaceExtension(self: *const T, pValue: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetSpaceExtension(@ptrCast(*const ITextFont2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetSpaceExtension(self: *const T, Value: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetSpaceExtension(@ptrCast(*const ITextFont2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetUnderlinePositionMode(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetUnderlinePositionMode(@ptrCast(*const ITextFont2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetUnderlinePositionMode(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetUnderlinePositionMode(@ptrCast(*const ITextFont2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetEffects(self: *const T, pValue: ?*i32, pMask: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetEffects(@ptrCast(*const ITextFont2, self), pValue, pMask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetEffects2(self: *const T, pValue: ?*i32, pMask: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetEffects2(@ptrCast(*const ITextFont2, self), pValue, pMask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetProperty(self: *const T, Type: i32, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetProperty(@ptrCast(*const ITextFont2, self), Type, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_GetPropertyInfo(self: *const T, Index: i32, pType: ?*i32, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).GetPropertyInfo(@ptrCast(*const ITextFont2, self), Index, pType, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_IsEqual2(self: *const T, pFont: ?*ITextFont2, pB: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).IsEqual2(@ptrCast(*const ITextFont2, self), pFont, pB);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetEffects(self: *const T, Value: i32, Mask: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetEffects(@ptrCast(*const ITextFont2, self), Value, Mask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetEffects2(self: *const T, Value: i32, Mask: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetEffects2(@ptrCast(*const ITextFont2, self), Value, Mask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextFont2_SetProperty(self: *const T, Type: i32, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextFont2.VTable, self.vtable).SetProperty(@ptrCast(*const ITextFont2, self), Type, Value);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ITextFont.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetCount(self: *const T, pCount: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetCount(@ptrCast(*const ITextFont2, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetAutoLigatures(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetAutoLigatures(@ptrCast(*const ITextFont2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetAutoLigatures(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetAutoLigatures(@ptrCast(*const ITextFont2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetAutospaceAlpha(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetAutospaceAlpha(@ptrCast(*const ITextFont2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetAutospaceAlpha(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetAutospaceAlpha(@ptrCast(*const ITextFont2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetAutospaceNumeric(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetAutospaceNumeric(@ptrCast(*const ITextFont2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetAutospaceNumeric(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetAutospaceNumeric(@ptrCast(*const ITextFont2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetAutospaceParens(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetAutospaceParens(@ptrCast(*const ITextFont2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetAutospaceParens(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetAutospaceParens(@ptrCast(*const ITextFont2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetCharRep(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetCharRep(@ptrCast(*const ITextFont2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetCharRep(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetCharRep(@ptrCast(*const ITextFont2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetCompressionMode(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetCompressionMode(@ptrCast(*const ITextFont2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetCompressionMode(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetCompressionMode(@ptrCast(*const ITextFont2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetCookie(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetCookie(@ptrCast(*const ITextFont2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetCookie(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetCookie(@ptrCast(*const ITextFont2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetDoubleStrike(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetDoubleStrike(@ptrCast(*const ITextFont2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetDoubleStrike(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetDoubleStrike(@ptrCast(*const ITextFont2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetDuplicate2(self: *const T, ppFont: ?*?*ITextFont2) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetDuplicate2(@ptrCast(*const ITextFont2, self), ppFont);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetDuplicate2(self: *const T, pFont: ?*ITextFont2) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetDuplicate2(@ptrCast(*const ITextFont2, self), pFont);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetLinkType(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetLinkType(@ptrCast(*const ITextFont2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetMathZone(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetMathZone(@ptrCast(*const ITextFont2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetMathZone(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetMathZone(@ptrCast(*const ITextFont2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetModWidthPairs(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetModWidthPairs(@ptrCast(*const ITextFont2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetModWidthPairs(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetModWidthPairs(@ptrCast(*const ITextFont2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetModWidthSpace(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetModWidthSpace(@ptrCast(*const ITextFont2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetModWidthSpace(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetModWidthSpace(@ptrCast(*const ITextFont2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetOldNumbers(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetOldNumbers(@ptrCast(*const ITextFont2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetOldNumbers(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetOldNumbers(@ptrCast(*const ITextFont2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetOverlapping(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetOverlapping(@ptrCast(*const ITextFont2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetOverlapping(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetOverlapping(@ptrCast(*const ITextFont2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetPositionSubSuper(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetPositionSubSuper(@ptrCast(*const ITextFont2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetPositionSubSuper(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetPositionSubSuper(@ptrCast(*const ITextFont2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetScaling(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetScaling(@ptrCast(*const ITextFont2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetScaling(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetScaling(@ptrCast(*const ITextFont2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetSpaceExtension(self: *const T, pValue: ?*f32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetSpaceExtension(@ptrCast(*const ITextFont2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetSpaceExtension(self: *const T, Value: f32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetSpaceExtension(@ptrCast(*const ITextFont2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetUnderlinePositionMode(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetUnderlinePositionMode(@ptrCast(*const ITextFont2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetUnderlinePositionMode(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetUnderlinePositionMode(@ptrCast(*const ITextFont2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetEffects(self: *const T, pValue: ?*i32, pMask: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetEffects(@ptrCast(*const ITextFont2, self), pValue, pMask);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetEffects2(self: *const T, pValue: ?*i32, pMask: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetEffects2(@ptrCast(*const ITextFont2, self), pValue, pMask);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetProperty(self: *const T, Type: i32, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetProperty(@ptrCast(*const ITextFont2, self), Type, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_GetPropertyInfo(self: *const T, Index: i32, pType: ?*i32, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).GetPropertyInfo(@ptrCast(*const ITextFont2, self), Index, pType, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_IsEqual2(self: *const T, pFont: ?*ITextFont2, pB: ?*i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).IsEqual2(@ptrCast(*const ITextFont2, self), pFont, pB);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetEffects(self: *const T, Value: i32, Mask: i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetEffects(@ptrCast(*const ITextFont2, self), Value, Mask);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetEffects2(self: *const T, Value: i32, Mask: i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetEffects2(@ptrCast(*const ITextFont2, self), Value, Mask);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextFont2_SetProperty(self: *const T, Type: i32, Value: i32) HRESULT {
+                return @ptrCast(*const ITextFont2.VTable, self.vtable).SetProperty(@ptrCast(*const ITextFont2, self), Type, Value);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6647,144 +6561,146 @@ pub const IID_ITextPara2 = &IID_ITextPara2_Value;
 pub const ITextPara2 = extern struct {
     pub const VTable = extern struct {
         base: ITextPara.VTable,
-        GetBorders: fn(
+        GetBorders: fn (
             self: *const ITextPara2,
             ppBorders: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDuplicate2: fn(
+        GetDuplicate2: fn (
             self: *const ITextPara2,
             ppPara: ?*?*ITextPara2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDuplicate2: fn(
+        SetDuplicate2: fn (
             self: *const ITextPara2,
             pPara: ?*ITextPara2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFontAlignment: fn(
+        GetFontAlignment: fn (
             self: *const ITextPara2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetFontAlignment: fn(
+        SetFontAlignment: fn (
             self: *const ITextPara2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetHangingPunctuation: fn(
+        GetHangingPunctuation: fn (
             self: *const ITextPara2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetHangingPunctuation: fn(
+        SetHangingPunctuation: fn (
             self: *const ITextPara2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSnapToGrid: fn(
+        GetSnapToGrid: fn (
             self: *const ITextPara2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSnapToGrid: fn(
+        SetSnapToGrid: fn (
             self: *const ITextPara2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTrimPunctuationAtStart: fn(
+        GetTrimPunctuationAtStart: fn (
             self: *const ITextPara2,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetTrimPunctuationAtStart: fn(
+        SetTrimPunctuationAtStart: fn (
             self: *const ITextPara2,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEffects: fn(
+        GetEffects: fn (
             self: *const ITextPara2,
             pValue: ?*i32,
             pMask: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProperty: fn(
+        GetProperty: fn (
             self: *const ITextPara2,
             Type: i32,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsEqual2: fn(
+        IsEqual2: fn (
             self: *const ITextPara2,
             pPara: ?*ITextPara2,
             pB: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEffects: fn(
+        SetEffects: fn (
             self: *const ITextPara2,
             Value: i32,
             Mask: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProperty: fn(
+        SetProperty: fn (
             self: *const ITextPara2,
             Type: i32,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ITextPara.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara2_GetBorders(self: *const T, ppBorders: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara2.VTable, self.vtable).GetBorders(@ptrCast(*const ITextPara2, self), ppBorders);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara2_GetDuplicate2(self: *const T, ppPara: ?*?*ITextPara2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara2.VTable, self.vtable).GetDuplicate2(@ptrCast(*const ITextPara2, self), ppPara);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara2_SetDuplicate2(self: *const T, pPara: ?*ITextPara2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara2.VTable, self.vtable).SetDuplicate2(@ptrCast(*const ITextPara2, self), pPara);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara2_GetFontAlignment(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara2.VTable, self.vtable).GetFontAlignment(@ptrCast(*const ITextPara2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara2_SetFontAlignment(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara2.VTable, self.vtable).SetFontAlignment(@ptrCast(*const ITextPara2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara2_GetHangingPunctuation(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara2.VTable, self.vtable).GetHangingPunctuation(@ptrCast(*const ITextPara2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara2_SetHangingPunctuation(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara2.VTable, self.vtable).SetHangingPunctuation(@ptrCast(*const ITextPara2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara2_GetSnapToGrid(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara2.VTable, self.vtable).GetSnapToGrid(@ptrCast(*const ITextPara2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara2_SetSnapToGrid(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara2.VTable, self.vtable).SetSnapToGrid(@ptrCast(*const ITextPara2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara2_GetTrimPunctuationAtStart(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara2.VTable, self.vtable).GetTrimPunctuationAtStart(@ptrCast(*const ITextPara2, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara2_SetTrimPunctuationAtStart(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara2.VTable, self.vtable).SetTrimPunctuationAtStart(@ptrCast(*const ITextPara2, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara2_GetEffects(self: *const T, pValue: ?*i32, pMask: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara2.VTable, self.vtable).GetEffects(@ptrCast(*const ITextPara2, self), pValue, pMask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara2_GetProperty(self: *const T, Type: i32, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara2.VTable, self.vtable).GetProperty(@ptrCast(*const ITextPara2, self), Type, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara2_IsEqual2(self: *const T, pPara: ?*ITextPara2, pB: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara2.VTable, self.vtable).IsEqual2(@ptrCast(*const ITextPara2, self), pPara, pB);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara2_SetEffects(self: *const T, Value: i32, Mask: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara2.VTable, self.vtable).SetEffects(@ptrCast(*const ITextPara2, self), Value, Mask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextPara2_SetProperty(self: *const T, Type: i32, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextPara2.VTable, self.vtable).SetProperty(@ptrCast(*const ITextPara2, self), Type, Value);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ITextPara.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara2_GetBorders(self: *const T, ppBorders: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ITextPara2.VTable, self.vtable).GetBorders(@ptrCast(*const ITextPara2, self), ppBorders);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara2_GetDuplicate2(self: *const T, ppPara: ?*?*ITextPara2) HRESULT {
+                return @ptrCast(*const ITextPara2.VTable, self.vtable).GetDuplicate2(@ptrCast(*const ITextPara2, self), ppPara);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara2_SetDuplicate2(self: *const T, pPara: ?*ITextPara2) HRESULT {
+                return @ptrCast(*const ITextPara2.VTable, self.vtable).SetDuplicate2(@ptrCast(*const ITextPara2, self), pPara);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara2_GetFontAlignment(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara2.VTable, self.vtable).GetFontAlignment(@ptrCast(*const ITextPara2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara2_SetFontAlignment(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextPara2.VTable, self.vtable).SetFontAlignment(@ptrCast(*const ITextPara2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara2_GetHangingPunctuation(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara2.VTable, self.vtable).GetHangingPunctuation(@ptrCast(*const ITextPara2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara2_SetHangingPunctuation(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextPara2.VTable, self.vtable).SetHangingPunctuation(@ptrCast(*const ITextPara2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara2_GetSnapToGrid(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara2.VTable, self.vtable).GetSnapToGrid(@ptrCast(*const ITextPara2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara2_SetSnapToGrid(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextPara2.VTable, self.vtable).SetSnapToGrid(@ptrCast(*const ITextPara2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara2_GetTrimPunctuationAtStart(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara2.VTable, self.vtable).GetTrimPunctuationAtStart(@ptrCast(*const ITextPara2, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara2_SetTrimPunctuationAtStart(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextPara2.VTable, self.vtable).SetTrimPunctuationAtStart(@ptrCast(*const ITextPara2, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara2_GetEffects(self: *const T, pValue: ?*i32, pMask: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara2.VTable, self.vtable).GetEffects(@ptrCast(*const ITextPara2, self), pValue, pMask);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara2_GetProperty(self: *const T, Type: i32, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara2.VTable, self.vtable).GetProperty(@ptrCast(*const ITextPara2, self), Type, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara2_IsEqual2(self: *const T, pPara: ?*ITextPara2, pB: ?*i32) HRESULT {
+                return @ptrCast(*const ITextPara2.VTable, self.vtable).IsEqual2(@ptrCast(*const ITextPara2, self), pPara, pB);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara2_SetEffects(self: *const T, Value: i32, Mask: i32) HRESULT {
+                return @ptrCast(*const ITextPara2.VTable, self.vtable).SetEffects(@ptrCast(*const ITextPara2, self), Value, Mask);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextPara2_SetProperty(self: *const T, Type: i32, Value: i32) HRESULT {
+                return @ptrCast(*const ITextPara2.VTable, self.vtable).SetProperty(@ptrCast(*const ITextPara2, self), Type, Value);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6794,20 +6710,22 @@ pub const IID_ITextStoryRanges2 = &IID_ITextStoryRanges2_Value;
 pub const ITextStoryRanges2 = extern struct {
     pub const VTable = extern struct {
         base: ITextStoryRanges.VTable,
-        Item2: fn(
+        Item2: fn (
             self: *const ITextStoryRanges2,
             Index: i32,
             ppRange: ?*?*ITextRange2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ITextStoryRanges.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStoryRanges2_Item2(self: *const T, Index: i32, ppRange: ?*?*ITextRange2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStoryRanges2.VTable, self.vtable).Item2(@ptrCast(*const ITextStoryRanges2, self), Index, ppRange);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ITextStoryRanges.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStoryRanges2_Item2(self: *const T, Index: i32, ppRange: ?*?*ITextRange2) HRESULT {
+                return @ptrCast(*const ITextStoryRanges2.VTable, self.vtable).Item2(@ptrCast(*const ITextStoryRanges2, self), Index, ppRange);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6817,113 +6735,115 @@ pub const IID_ITextStory = &IID_ITextStory_Value;
 pub const ITextStory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetActive: fn(
+        GetActive: fn (
             self: *const ITextStory,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetActive: fn(
+        SetActive: fn (
             self: *const ITextStory,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDisplay: fn(
+        GetDisplay: fn (
             self: *const ITextStory,
             ppDisplay: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetIndex: fn(
+        GetIndex: fn (
             self: *const ITextStory,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetType: fn(
+        GetType: fn (
             self: *const ITextStory,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetType: fn(
+        SetType: fn (
             self: *const ITextStory,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProperty: fn(
+        GetProperty: fn (
             self: *const ITextStory,
             Type: i32,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRange: fn(
+        GetRange: fn (
             self: *const ITextStory,
             cpActive: i32,
             cpAnchor: i32,
             ppRange: ?*?*ITextRange2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetText: fn(
+        GetText: fn (
             self: *const ITextStory,
             Flags: i32,
             pbstr: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetFormattedText: fn(
+        SetFormattedText: fn (
             self: *const ITextStory,
             pUnk: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProperty: fn(
+        SetProperty: fn (
             self: *const ITextStory,
             Type: i32,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetText: fn(
+        SetText: fn (
             self: *const ITextStory,
             Flags: i32,
             bstr: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStory_GetActive(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStory.VTable, self.vtable).GetActive(@ptrCast(*const ITextStory, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStory_SetActive(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStory.VTable, self.vtable).SetActive(@ptrCast(*const ITextStory, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStory_GetDisplay(self: *const T, ppDisplay: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStory.VTable, self.vtable).GetDisplay(@ptrCast(*const ITextStory, self), ppDisplay);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStory_GetIndex(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStory.VTable, self.vtable).GetIndex(@ptrCast(*const ITextStory, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStory_GetType(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStory.VTable, self.vtable).GetType(@ptrCast(*const ITextStory, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStory_SetType(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStory.VTable, self.vtable).SetType(@ptrCast(*const ITextStory, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStory_GetProperty(self: *const T, Type: i32, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStory.VTable, self.vtable).GetProperty(@ptrCast(*const ITextStory, self), Type, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStory_GetRange(self: *const T, cpActive: i32, cpAnchor: i32, ppRange: ?*?*ITextRange2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStory.VTable, self.vtable).GetRange(@ptrCast(*const ITextStory, self), cpActive, cpAnchor, ppRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStory_GetText(self: *const T, Flags: i32, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStory.VTable, self.vtable).GetText(@ptrCast(*const ITextStory, self), Flags, pbstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStory_SetFormattedText(self: *const T, pUnk: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStory.VTable, self.vtable).SetFormattedText(@ptrCast(*const ITextStory, self), pUnk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStory_SetProperty(self: *const T, Type: i32, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStory.VTable, self.vtable).SetProperty(@ptrCast(*const ITextStory, self), Type, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStory_SetText(self: *const T, Flags: i32, bstr: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStory.VTable, self.vtable).SetText(@ptrCast(*const ITextStory, self), Flags, bstr);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStory_GetActive(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextStory.VTable, self.vtable).GetActive(@ptrCast(*const ITextStory, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStory_SetActive(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextStory.VTable, self.vtable).SetActive(@ptrCast(*const ITextStory, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStory_GetDisplay(self: *const T, ppDisplay: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ITextStory.VTable, self.vtable).GetDisplay(@ptrCast(*const ITextStory, self), ppDisplay);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStory_GetIndex(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextStory.VTable, self.vtable).GetIndex(@ptrCast(*const ITextStory, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStory_GetType(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextStory.VTable, self.vtable).GetType(@ptrCast(*const ITextStory, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStory_SetType(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextStory.VTable, self.vtable).SetType(@ptrCast(*const ITextStory, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStory_GetProperty(self: *const T, Type: i32, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextStory.VTable, self.vtable).GetProperty(@ptrCast(*const ITextStory, self), Type, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStory_GetRange(self: *const T, cpActive: i32, cpAnchor: i32, ppRange: ?*?*ITextRange2) HRESULT {
+                return @ptrCast(*const ITextStory.VTable, self.vtable).GetRange(@ptrCast(*const ITextStory, self), cpActive, cpAnchor, ppRange);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStory_GetText(self: *const T, Flags: i32, pbstr: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ITextStory.VTable, self.vtable).GetText(@ptrCast(*const ITextStory, self), Flags, pbstr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStory_SetFormattedText(self: *const T, pUnk: ?*IUnknown) HRESULT {
+                return @ptrCast(*const ITextStory.VTable, self.vtable).SetFormattedText(@ptrCast(*const ITextStory, self), pUnk);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStory_SetProperty(self: *const T, Type: i32, Value: i32) HRESULT {
+                return @ptrCast(*const ITextStory.VTable, self.vtable).SetProperty(@ptrCast(*const ITextStory, self), Type, Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStory_SetText(self: *const T, Flags: i32, bstr: ?BSTR) HRESULT {
+                return @ptrCast(*const ITextStory.VTable, self.vtable).SetText(@ptrCast(*const ITextStory, self), Flags, bstr);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6933,37 +6853,37 @@ pub const IID_ITextStrings = &IID_ITextStrings_Value;
 pub const ITextStrings = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Item: fn(
+        Item: fn (
             self: *const ITextStrings,
             Index: i32,
             ppRange: ?*?*ITextRange2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCount: fn(
+        GetCount: fn (
             self: *const ITextStrings,
             pCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Add: fn(
+        Add: fn (
             self: *const ITextStrings,
             bstr: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Append: fn(
+        Append: fn (
             self: *const ITextStrings,
             pRange: ?*ITextRange2,
             iString: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Cat2: fn(
+        Cat2: fn (
             self: *const ITextStrings,
             iString: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CatTop2: fn(
+        CatTop2: fn (
             self: *const ITextStrings,
             bstr: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteRange: fn(
+        DeleteRange: fn (
             self: *const ITextStrings,
             pRange: ?*ITextRange2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EncodeFunction: fn(
+        EncodeFunction: fn (
             self: *const ITextStrings,
             Type: i32,
             Align: i32,
@@ -6975,120 +6895,122 @@ pub const ITextStrings = extern struct {
             cCol: i32,
             pRange: ?*ITextRange2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCch: fn(
+        GetCch: fn (
             self: *const ITextStrings,
             iString: i32,
             pcch: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InsertNullStr: fn(
+        InsertNullStr: fn (
             self: *const ITextStrings,
             iString: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MoveBoundary: fn(
+        MoveBoundary: fn (
             self: *const ITextStrings,
             iString: i32,
             cch: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PrefixTop: fn(
+        PrefixTop: fn (
             self: *const ITextStrings,
             bstr: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Remove: fn(
+        Remove: fn (
             self: *const ITextStrings,
             iString: i32,
             cString: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetFormattedText: fn(
+        SetFormattedText: fn (
             self: *const ITextStrings,
             pRangeD: ?*ITextRange2,
             pRangeS: ?*ITextRange2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOpCp: fn(
+        SetOpCp: fn (
             self: *const ITextStrings,
             iString: i32,
             cp: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SuffixTop: fn(
+        SuffixTop: fn (
             self: *const ITextStrings,
             bstr: ?BSTR,
             pRange: ?*ITextRange2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Swap: fn(
+        Swap: fn (
             self: *const ITextStrings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStrings_Item(self: *const T, Index: i32, ppRange: ?*?*ITextRange2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStrings.VTable, self.vtable).Item(@ptrCast(*const ITextStrings, self), Index, ppRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStrings_GetCount(self: *const T, pCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStrings.VTable, self.vtable).GetCount(@ptrCast(*const ITextStrings, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStrings_Add(self: *const T, bstr: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStrings.VTable, self.vtable).Add(@ptrCast(*const ITextStrings, self), bstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStrings_Append(self: *const T, pRange: ?*ITextRange2, iString: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStrings.VTable, self.vtable).Append(@ptrCast(*const ITextStrings, self), pRange, iString);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStrings_Cat2(self: *const T, iString: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStrings.VTable, self.vtable).Cat2(@ptrCast(*const ITextStrings, self), iString);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStrings_CatTop2(self: *const T, bstr: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStrings.VTable, self.vtable).CatTop2(@ptrCast(*const ITextStrings, self), bstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStrings_DeleteRange(self: *const T, pRange: ?*ITextRange2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStrings.VTable, self.vtable).DeleteRange(@ptrCast(*const ITextStrings, self), pRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStrings_EncodeFunction(self: *const T, Type: i32, Align: i32, Char: i32, Char1: i32, Char2: i32, Count: i32, TeXStyle: i32, cCol: i32, pRange: ?*ITextRange2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStrings.VTable, self.vtable).EncodeFunction(@ptrCast(*const ITextStrings, self), Type, Align, Char, Char1, Char2, Count, TeXStyle, cCol, pRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStrings_GetCch(self: *const T, iString: i32, pcch: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStrings.VTable, self.vtable).GetCch(@ptrCast(*const ITextStrings, self), iString, pcch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStrings_InsertNullStr(self: *const T, iString: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStrings.VTable, self.vtable).InsertNullStr(@ptrCast(*const ITextStrings, self), iString);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStrings_MoveBoundary(self: *const T, iString: i32, cch: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStrings.VTable, self.vtable).MoveBoundary(@ptrCast(*const ITextStrings, self), iString, cch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStrings_PrefixTop(self: *const T, bstr: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStrings.VTable, self.vtable).PrefixTop(@ptrCast(*const ITextStrings, self), bstr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStrings_Remove(self: *const T, iString: i32, cString: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStrings.VTable, self.vtable).Remove(@ptrCast(*const ITextStrings, self), iString, cString);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStrings_SetFormattedText(self: *const T, pRangeD: ?*ITextRange2, pRangeS: ?*ITextRange2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStrings.VTable, self.vtable).SetFormattedText(@ptrCast(*const ITextStrings, self), pRangeD, pRangeS);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStrings_SetOpCp(self: *const T, iString: i32, cp: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStrings.VTable, self.vtable).SetOpCp(@ptrCast(*const ITextStrings, self), iString, cp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStrings_SuffixTop(self: *const T, bstr: ?BSTR, pRange: ?*ITextRange2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStrings.VTable, self.vtable).SuffixTop(@ptrCast(*const ITextStrings, self), bstr, pRange);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextStrings_Swap(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextStrings.VTable, self.vtable).Swap(@ptrCast(*const ITextStrings, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStrings_Item(self: *const T, Index: i32, ppRange: ?*?*ITextRange2) HRESULT {
+                return @ptrCast(*const ITextStrings.VTable, self.vtable).Item(@ptrCast(*const ITextStrings, self), Index, ppRange);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStrings_GetCount(self: *const T, pCount: ?*i32) HRESULT {
+                return @ptrCast(*const ITextStrings.VTable, self.vtable).GetCount(@ptrCast(*const ITextStrings, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStrings_Add(self: *const T, bstr: ?BSTR) HRESULT {
+                return @ptrCast(*const ITextStrings.VTable, self.vtable).Add(@ptrCast(*const ITextStrings, self), bstr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStrings_Append(self: *const T, pRange: ?*ITextRange2, iString: i32) HRESULT {
+                return @ptrCast(*const ITextStrings.VTable, self.vtable).Append(@ptrCast(*const ITextStrings, self), pRange, iString);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStrings_Cat2(self: *const T, iString: i32) HRESULT {
+                return @ptrCast(*const ITextStrings.VTable, self.vtable).Cat2(@ptrCast(*const ITextStrings, self), iString);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStrings_CatTop2(self: *const T, bstr: ?BSTR) HRESULT {
+                return @ptrCast(*const ITextStrings.VTable, self.vtable).CatTop2(@ptrCast(*const ITextStrings, self), bstr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStrings_DeleteRange(self: *const T, pRange: ?*ITextRange2) HRESULT {
+                return @ptrCast(*const ITextStrings.VTable, self.vtable).DeleteRange(@ptrCast(*const ITextStrings, self), pRange);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStrings_EncodeFunction(self: *const T, Type: i32, Align: i32, Char: i32, Char1: i32, Char2: i32, Count: i32, TeXStyle: i32, cCol: i32, pRange: ?*ITextRange2) HRESULT {
+                return @ptrCast(*const ITextStrings.VTable, self.vtable).EncodeFunction(@ptrCast(*const ITextStrings, self), Type, Align, Char, Char1, Char2, Count, TeXStyle, cCol, pRange);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStrings_GetCch(self: *const T, iString: i32, pcch: ?*i32) HRESULT {
+                return @ptrCast(*const ITextStrings.VTable, self.vtable).GetCch(@ptrCast(*const ITextStrings, self), iString, pcch);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStrings_InsertNullStr(self: *const T, iString: i32) HRESULT {
+                return @ptrCast(*const ITextStrings.VTable, self.vtable).InsertNullStr(@ptrCast(*const ITextStrings, self), iString);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStrings_MoveBoundary(self: *const T, iString: i32, cch: i32) HRESULT {
+                return @ptrCast(*const ITextStrings.VTable, self.vtable).MoveBoundary(@ptrCast(*const ITextStrings, self), iString, cch);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStrings_PrefixTop(self: *const T, bstr: ?BSTR) HRESULT {
+                return @ptrCast(*const ITextStrings.VTable, self.vtable).PrefixTop(@ptrCast(*const ITextStrings, self), bstr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStrings_Remove(self: *const T, iString: i32, cString: i32) HRESULT {
+                return @ptrCast(*const ITextStrings.VTable, self.vtable).Remove(@ptrCast(*const ITextStrings, self), iString, cString);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStrings_SetFormattedText(self: *const T, pRangeD: ?*ITextRange2, pRangeS: ?*ITextRange2) HRESULT {
+                return @ptrCast(*const ITextStrings.VTable, self.vtable).SetFormattedText(@ptrCast(*const ITextStrings, self), pRangeD, pRangeS);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStrings_SetOpCp(self: *const T, iString: i32, cp: i32) HRESULT {
+                return @ptrCast(*const ITextStrings.VTable, self.vtable).SetOpCp(@ptrCast(*const ITextStrings, self), iString, cp);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStrings_SuffixTop(self: *const T, bstr: ?BSTR, pRange: ?*ITextRange2) HRESULT {
+                return @ptrCast(*const ITextStrings.VTable, self.vtable).SuffixTop(@ptrCast(*const ITextStrings, self), bstr, pRange);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextStrings_Swap(self: *const T) HRESULT {
+                return @ptrCast(*const ITextStrings.VTable, self.vtable).Swap(@ptrCast(*const ITextStrings, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7098,395 +7020,397 @@ pub const IID_ITextRow = &IID_ITextRow_Value;
 pub const ITextRow = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        GetAlignment: fn(
+        GetAlignment: fn (
             self: *const ITextRow,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAlignment: fn(
+        SetAlignment: fn (
             self: *const ITextRow,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCellCount: fn(
+        GetCellCount: fn (
             self: *const ITextRow,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCellCount: fn(
+        SetCellCount: fn (
             self: *const ITextRow,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCellCountCache: fn(
+        GetCellCountCache: fn (
             self: *const ITextRow,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCellCountCache: fn(
+        SetCellCountCache: fn (
             self: *const ITextRow,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCellIndex: fn(
+        GetCellIndex: fn (
             self: *const ITextRow,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCellIndex: fn(
+        SetCellIndex: fn (
             self: *const ITextRow,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCellMargin: fn(
+        GetCellMargin: fn (
             self: *const ITextRow,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCellMargin: fn(
+        SetCellMargin: fn (
             self: *const ITextRow,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetHeight: fn(
+        GetHeight: fn (
             self: *const ITextRow,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetHeight: fn(
+        SetHeight: fn (
             self: *const ITextRow,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetIndent: fn(
+        GetIndent: fn (
             self: *const ITextRow,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetIndent: fn(
+        SetIndent: fn (
             self: *const ITextRow,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetKeepTogether: fn(
+        GetKeepTogether: fn (
             self: *const ITextRow,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetKeepTogether: fn(
+        SetKeepTogether: fn (
             self: *const ITextRow,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetKeepWithNext: fn(
+        GetKeepWithNext: fn (
             self: *const ITextRow,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetKeepWithNext: fn(
+        SetKeepWithNext: fn (
             self: *const ITextRow,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNestLevel: fn(
+        GetNestLevel: fn (
             self: *const ITextRow,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRTL: fn(
+        GetRTL: fn (
             self: *const ITextRow,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetRTL: fn(
+        SetRTL: fn (
             self: *const ITextRow,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCellAlignment: fn(
+        GetCellAlignment: fn (
             self: *const ITextRow,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCellAlignment: fn(
+        SetCellAlignment: fn (
             self: *const ITextRow,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCellColorBack: fn(
+        GetCellColorBack: fn (
             self: *const ITextRow,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCellColorBack: fn(
+        SetCellColorBack: fn (
             self: *const ITextRow,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCellColorFore: fn(
+        GetCellColorFore: fn (
             self: *const ITextRow,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCellColorFore: fn(
+        SetCellColorFore: fn (
             self: *const ITextRow,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCellMergeFlags: fn(
+        GetCellMergeFlags: fn (
             self: *const ITextRow,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCellMergeFlags: fn(
+        SetCellMergeFlags: fn (
             self: *const ITextRow,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCellShading: fn(
+        GetCellShading: fn (
             self: *const ITextRow,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCellShading: fn(
+        SetCellShading: fn (
             self: *const ITextRow,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCellVerticalText: fn(
+        GetCellVerticalText: fn (
             self: *const ITextRow,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCellVerticalText: fn(
+        SetCellVerticalText: fn (
             self: *const ITextRow,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCellWidth: fn(
+        GetCellWidth: fn (
             self: *const ITextRow,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCellWidth: fn(
+        SetCellWidth: fn (
             self: *const ITextRow,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCellBorderColors: fn(
+        GetCellBorderColors: fn (
             self: *const ITextRow,
             pcrLeft: ?*i32,
             pcrTop: ?*i32,
             pcrRight: ?*i32,
             pcrBottom: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCellBorderWidths: fn(
+        GetCellBorderWidths: fn (
             self: *const ITextRow,
             pduLeft: ?*i32,
             pduTop: ?*i32,
             pduRight: ?*i32,
             pduBottom: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCellBorderColors: fn(
+        SetCellBorderColors: fn (
             self: *const ITextRow,
             crLeft: i32,
             crTop: i32,
             crRight: i32,
             crBottom: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCellBorderWidths: fn(
+        SetCellBorderWidths: fn (
             self: *const ITextRow,
             duLeft: i32,
             duTop: i32,
             duRight: i32,
             duBottom: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Apply: fn(
+        Apply: fn (
             self: *const ITextRow,
             cRow: i32,
             Flags: tomConstants,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CanChange: fn(
+        CanChange: fn (
             self: *const ITextRow,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProperty: fn(
+        GetProperty: fn (
             self: *const ITextRow,
             Type: i32,
             pValue: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Insert: fn(
+        Insert: fn (
             self: *const ITextRow,
             cRow: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsEqual: fn(
+        IsEqual: fn (
             self: *const ITextRow,
             pRow: ?*ITextRow,
             pB: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
+        Reset: fn (
             self: *const ITextRow,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProperty: fn(
+        SetProperty: fn (
             self: *const ITextRow,
             Type: i32,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetAlignment(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetAlignment(@ptrCast(*const ITextRow, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_SetAlignment(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).SetAlignment(@ptrCast(*const ITextRow, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetCellCount(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellCount(@ptrCast(*const ITextRow, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_SetCellCount(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellCount(@ptrCast(*const ITextRow, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetCellCountCache(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellCountCache(@ptrCast(*const ITextRow, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_SetCellCountCache(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellCountCache(@ptrCast(*const ITextRow, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetCellIndex(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellIndex(@ptrCast(*const ITextRow, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_SetCellIndex(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellIndex(@ptrCast(*const ITextRow, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetCellMargin(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellMargin(@ptrCast(*const ITextRow, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_SetCellMargin(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellMargin(@ptrCast(*const ITextRow, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetHeight(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetHeight(@ptrCast(*const ITextRow, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_SetHeight(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).SetHeight(@ptrCast(*const ITextRow, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetIndent(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetIndent(@ptrCast(*const ITextRow, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_SetIndent(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).SetIndent(@ptrCast(*const ITextRow, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetKeepTogether(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetKeepTogether(@ptrCast(*const ITextRow, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_SetKeepTogether(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).SetKeepTogether(@ptrCast(*const ITextRow, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetKeepWithNext(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetKeepWithNext(@ptrCast(*const ITextRow, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_SetKeepWithNext(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).SetKeepWithNext(@ptrCast(*const ITextRow, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetNestLevel(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetNestLevel(@ptrCast(*const ITextRow, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetRTL(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetRTL(@ptrCast(*const ITextRow, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_SetRTL(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).SetRTL(@ptrCast(*const ITextRow, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetCellAlignment(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellAlignment(@ptrCast(*const ITextRow, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_SetCellAlignment(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellAlignment(@ptrCast(*const ITextRow, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetCellColorBack(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellColorBack(@ptrCast(*const ITextRow, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_SetCellColorBack(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellColorBack(@ptrCast(*const ITextRow, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetCellColorFore(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellColorFore(@ptrCast(*const ITextRow, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_SetCellColorFore(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellColorFore(@ptrCast(*const ITextRow, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetCellMergeFlags(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellMergeFlags(@ptrCast(*const ITextRow, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_SetCellMergeFlags(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellMergeFlags(@ptrCast(*const ITextRow, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetCellShading(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellShading(@ptrCast(*const ITextRow, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_SetCellShading(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellShading(@ptrCast(*const ITextRow, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetCellVerticalText(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellVerticalText(@ptrCast(*const ITextRow, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_SetCellVerticalText(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellVerticalText(@ptrCast(*const ITextRow, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetCellWidth(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellWidth(@ptrCast(*const ITextRow, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_SetCellWidth(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellWidth(@ptrCast(*const ITextRow, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetCellBorderColors(self: *const T, pcrLeft: ?*i32, pcrTop: ?*i32, pcrRight: ?*i32, pcrBottom: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellBorderColors(@ptrCast(*const ITextRow, self), pcrLeft, pcrTop, pcrRight, pcrBottom);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetCellBorderWidths(self: *const T, pduLeft: ?*i32, pduTop: ?*i32, pduRight: ?*i32, pduBottom: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellBorderWidths(@ptrCast(*const ITextRow, self), pduLeft, pduTop, pduRight, pduBottom);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_SetCellBorderColors(self: *const T, crLeft: i32, crTop: i32, crRight: i32, crBottom: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellBorderColors(@ptrCast(*const ITextRow, self), crLeft, crTop, crRight, crBottom);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_SetCellBorderWidths(self: *const T, duLeft: i32, duTop: i32, duRight: i32, duBottom: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellBorderWidths(@ptrCast(*const ITextRow, self), duLeft, duTop, duRight, duBottom);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_Apply(self: *const T, cRow: i32, Flags: tomConstants) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).Apply(@ptrCast(*const ITextRow, self), cRow, Flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_CanChange(self: *const T, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).CanChange(@ptrCast(*const ITextRow, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_GetProperty(self: *const T, Type: i32, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).GetProperty(@ptrCast(*const ITextRow, self), Type, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_Insert(self: *const T, cRow: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).Insert(@ptrCast(*const ITextRow, self), cRow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_IsEqual(self: *const T, pRow: ?*ITextRow, pB: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).IsEqual(@ptrCast(*const ITextRow, self), pRow, pB);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_Reset(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).Reset(@ptrCast(*const ITextRow, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextRow_SetProperty(self: *const T, Type: i32, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextRow.VTable, self.vtable).SetProperty(@ptrCast(*const ITextRow, self), Type, Value);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetAlignment(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetAlignment(@ptrCast(*const ITextRow, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_SetAlignment(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).SetAlignment(@ptrCast(*const ITextRow, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetCellCount(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellCount(@ptrCast(*const ITextRow, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_SetCellCount(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellCount(@ptrCast(*const ITextRow, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetCellCountCache(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellCountCache(@ptrCast(*const ITextRow, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_SetCellCountCache(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellCountCache(@ptrCast(*const ITextRow, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetCellIndex(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellIndex(@ptrCast(*const ITextRow, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_SetCellIndex(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellIndex(@ptrCast(*const ITextRow, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetCellMargin(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellMargin(@ptrCast(*const ITextRow, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_SetCellMargin(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellMargin(@ptrCast(*const ITextRow, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetHeight(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetHeight(@ptrCast(*const ITextRow, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_SetHeight(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).SetHeight(@ptrCast(*const ITextRow, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetIndent(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetIndent(@ptrCast(*const ITextRow, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_SetIndent(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).SetIndent(@ptrCast(*const ITextRow, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetKeepTogether(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetKeepTogether(@ptrCast(*const ITextRow, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_SetKeepTogether(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).SetKeepTogether(@ptrCast(*const ITextRow, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetKeepWithNext(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetKeepWithNext(@ptrCast(*const ITextRow, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_SetKeepWithNext(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).SetKeepWithNext(@ptrCast(*const ITextRow, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetNestLevel(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetNestLevel(@ptrCast(*const ITextRow, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetRTL(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetRTL(@ptrCast(*const ITextRow, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_SetRTL(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).SetRTL(@ptrCast(*const ITextRow, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetCellAlignment(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellAlignment(@ptrCast(*const ITextRow, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_SetCellAlignment(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellAlignment(@ptrCast(*const ITextRow, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetCellColorBack(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellColorBack(@ptrCast(*const ITextRow, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_SetCellColorBack(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellColorBack(@ptrCast(*const ITextRow, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetCellColorFore(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellColorFore(@ptrCast(*const ITextRow, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_SetCellColorFore(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellColorFore(@ptrCast(*const ITextRow, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetCellMergeFlags(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellMergeFlags(@ptrCast(*const ITextRow, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_SetCellMergeFlags(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellMergeFlags(@ptrCast(*const ITextRow, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetCellShading(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellShading(@ptrCast(*const ITextRow, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_SetCellShading(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellShading(@ptrCast(*const ITextRow, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetCellVerticalText(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellVerticalText(@ptrCast(*const ITextRow, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_SetCellVerticalText(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellVerticalText(@ptrCast(*const ITextRow, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetCellWidth(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellWidth(@ptrCast(*const ITextRow, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_SetCellWidth(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellWidth(@ptrCast(*const ITextRow, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetCellBorderColors(self: *const T, pcrLeft: ?*i32, pcrTop: ?*i32, pcrRight: ?*i32, pcrBottom: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellBorderColors(@ptrCast(*const ITextRow, self), pcrLeft, pcrTop, pcrRight, pcrBottom);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetCellBorderWidths(self: *const T, pduLeft: ?*i32, pduTop: ?*i32, pduRight: ?*i32, pduBottom: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetCellBorderWidths(@ptrCast(*const ITextRow, self), pduLeft, pduTop, pduRight, pduBottom);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_SetCellBorderColors(self: *const T, crLeft: i32, crTop: i32, crRight: i32, crBottom: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellBorderColors(@ptrCast(*const ITextRow, self), crLeft, crTop, crRight, crBottom);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_SetCellBorderWidths(self: *const T, duLeft: i32, duTop: i32, duRight: i32, duBottom: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).SetCellBorderWidths(@ptrCast(*const ITextRow, self), duLeft, duTop, duRight, duBottom);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_Apply(self: *const T, cRow: i32, Flags: tomConstants) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).Apply(@ptrCast(*const ITextRow, self), cRow, Flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_CanChange(self: *const T, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).CanChange(@ptrCast(*const ITextRow, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_GetProperty(self: *const T, Type: i32, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).GetProperty(@ptrCast(*const ITextRow, self), Type, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_Insert(self: *const T, cRow: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).Insert(@ptrCast(*const ITextRow, self), cRow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_IsEqual(self: *const T, pRow: ?*ITextRow, pB: ?*i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).IsEqual(@ptrCast(*const ITextRow, self), pRow, pB);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_Reset(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).Reset(@ptrCast(*const ITextRow, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextRow_SetProperty(self: *const T, Type: i32, Value: i32) HRESULT {
+                return @ptrCast(*const ITextRow.VTable, self.vtable).SetProperty(@ptrCast(*const ITextRow, self), Type, Value);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7498,9 +7422,11 @@ pub const ITextDisplays = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7509,37 +7435,37 @@ pub const IID_ITextDocument2Old = &IID_ITextDocument2Old_Value;
 pub const ITextDocument2Old = extern struct {
     pub const VTable = extern struct {
         base: ITextDocument.VTable,
-        AttachMsgFilter: fn(
+        AttachMsgFilter: fn (
             self: *const ITextDocument2Old,
             pFilter: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEffectColor: fn(
+        SetEffectColor: fn (
             self: *const ITextDocument2Old,
             Index: i32,
             cr: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEffectColor: fn(
+        GetEffectColor: fn (
             self: *const ITextDocument2Old,
             Index: i32,
             pcr: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCaretType: fn(
+        GetCaretType: fn (
             self: *const ITextDocument2Old,
             pCaretType: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCaretType: fn(
+        SetCaretType: fn (
             self: *const ITextDocument2Old,
             CaretType: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetImmContext: fn(
+        GetImmContext: fn (
             self: *const ITextDocument2Old,
             pContext: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseImmContext: fn(
+        ReleaseImmContext: fn (
             self: *const ITextDocument2Old,
             Context: i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPreferredFont: fn(
+        GetPreferredFont: fn (
             self: *const ITextDocument2Old,
             cp: i32,
             CharRep: i32,
@@ -7550,15 +7476,15 @@ pub const ITextDocument2Old = extern struct {
             pPitchAndFamily: ?*i32,
             pNewFontSize: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNotificationMode: fn(
+        GetNotificationMode: fn (
             self: *const ITextDocument2Old,
             pMode: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNotificationMode: fn(
+        SetNotificationMode: fn (
             self: *const ITextDocument2Old,
             Mode: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetClientRect: fn(
+        GetClientRect: fn (
             self: *const ITextDocument2Old,
             Type: i32,
             pLeft: ?*i32,
@@ -7566,161 +7492,162 @@ pub const ITextDocument2Old = extern struct {
             pRight: ?*i32,
             pBottom: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSelection2: fn(
+        GetSelection2: fn (
             self: *const ITextDocument2Old,
             ppSel: ?*?*ITextSelection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetWindow: fn(
+        GetWindow: fn (
             self: *const ITextDocument2Old,
             phWnd: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFEFlags: fn(
+        GetFEFlags: fn (
             self: *const ITextDocument2Old,
             pFlags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateWindow: fn(
+        UpdateWindow: fn (
             self: *const ITextDocument2Old,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CheckTextLimit: fn(
+        CheckTextLimit: fn (
             self: *const ITextDocument2Old,
             cch: i32,
             pcch: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IMEInProgress: fn(
+        IMEInProgress: fn (
             self: *const ITextDocument2Old,
             Value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SysBeep: fn(
+        SysBeep: fn (
             self: *const ITextDocument2Old,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Update: fn(
+        Update: fn (
             self: *const ITextDocument2Old,
             Mode: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Notify: fn(
+        Notify: fn (
             self: *const ITextDocument2Old,
             Notify: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDocumentFont: fn(
+        GetDocumentFont: fn (
             self: *const ITextDocument2Old,
             ppITextFont: ?*?*ITextFont,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDocumentPara: fn(
+        GetDocumentPara: fn (
             self: *const ITextDocument2Old,
             ppITextPara: ?*?*ITextPara,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCallManager: fn(
+        GetCallManager: fn (
             self: *const ITextDocument2Old,
             ppVoid: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseCallManager: fn(
+        ReleaseCallManager: fn (
             self: *const ITextDocument2Old,
             pVoid: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ITextDocument.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_AttachMsgFilter(self: *const T, pFilter: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).AttachMsgFilter(@ptrCast(*const ITextDocument2Old, self), pFilter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_SetEffectColor(self: *const T, Index: i32, cr: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).SetEffectColor(@ptrCast(*const ITextDocument2Old, self), Index, cr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_GetEffectColor(self: *const T, Index: i32, pcr: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetEffectColor(@ptrCast(*const ITextDocument2Old, self), Index, pcr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_GetCaretType(self: *const T, pCaretType: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetCaretType(@ptrCast(*const ITextDocument2Old, self), pCaretType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_SetCaretType(self: *const T, CaretType: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).SetCaretType(@ptrCast(*const ITextDocument2Old, self), CaretType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_GetImmContext(self: *const T, pContext: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetImmContext(@ptrCast(*const ITextDocument2Old, self), pContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_ReleaseImmContext(self: *const T, Context: i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).ReleaseImmContext(@ptrCast(*const ITextDocument2Old, self), Context);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_GetPreferredFont(self: *const T, cp: i32, CharRep: i32, Option: i32, CharRepCur: i32, curFontSize: i32, pbstr: ?*?BSTR, pPitchAndFamily: ?*i32, pNewFontSize: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetPreferredFont(@ptrCast(*const ITextDocument2Old, self), cp, CharRep, Option, CharRepCur, curFontSize, pbstr, pPitchAndFamily, pNewFontSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_GetNotificationMode(self: *const T, pMode: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetNotificationMode(@ptrCast(*const ITextDocument2Old, self), pMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_SetNotificationMode(self: *const T, Mode: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).SetNotificationMode(@ptrCast(*const ITextDocument2Old, self), Mode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_GetClientRect(self: *const T, Type: i32, pLeft: ?*i32, pTop: ?*i32, pRight: ?*i32, pBottom: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetClientRect(@ptrCast(*const ITextDocument2Old, self), Type, pLeft, pTop, pRight, pBottom);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_GetSelection2(self: *const T, ppSel: ?*?*ITextSelection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetSelection2(@ptrCast(*const ITextDocument2Old, self), ppSel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_GetWindow(self: *const T, phWnd: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetWindow(@ptrCast(*const ITextDocument2Old, self), phWnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_GetFEFlags(self: *const T, pFlags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetFEFlags(@ptrCast(*const ITextDocument2Old, self), pFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_UpdateWindow(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).UpdateWindow(@ptrCast(*const ITextDocument2Old, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_CheckTextLimit(self: *const T, cch: i32, pcch: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).CheckTextLimit(@ptrCast(*const ITextDocument2Old, self), cch, pcch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_IMEInProgress(self: *const T, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).IMEInProgress(@ptrCast(*const ITextDocument2Old, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_SysBeep(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).SysBeep(@ptrCast(*const ITextDocument2Old, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_Update(self: *const T, Mode: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).Update(@ptrCast(*const ITextDocument2Old, self), Mode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_Notify(self: *const T, Notify: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).Notify(@ptrCast(*const ITextDocument2Old, self), Notify);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_GetDocumentFont(self: *const T, ppITextFont: ?*?*ITextFont) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetDocumentFont(@ptrCast(*const ITextDocument2Old, self), ppITextFont);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_GetDocumentPara(self: *const T, ppITextPara: ?*?*ITextPara) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetDocumentPara(@ptrCast(*const ITextDocument2Old, self), ppITextPara);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_GetCallManager(self: *const T, ppVoid: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetCallManager(@ptrCast(*const ITextDocument2Old, self), ppVoid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextDocument2Old_ReleaseCallManager(self: *const T, pVoid: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).ReleaseCallManager(@ptrCast(*const ITextDocument2Old, self), pVoid);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ITextDocument.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_AttachMsgFilter(self: *const T, pFilter: ?*IUnknown) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).AttachMsgFilter(@ptrCast(*const ITextDocument2Old, self), pFilter);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_SetEffectColor(self: *const T, Index: i32, cr: u32) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).SetEffectColor(@ptrCast(*const ITextDocument2Old, self), Index, cr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_GetEffectColor(self: *const T, Index: i32, pcr: ?*u32) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetEffectColor(@ptrCast(*const ITextDocument2Old, self), Index, pcr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_GetCaretType(self: *const T, pCaretType: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetCaretType(@ptrCast(*const ITextDocument2Old, self), pCaretType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_SetCaretType(self: *const T, CaretType: i32) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).SetCaretType(@ptrCast(*const ITextDocument2Old, self), CaretType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_GetImmContext(self: *const T, pContext: ?*i64) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetImmContext(@ptrCast(*const ITextDocument2Old, self), pContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_ReleaseImmContext(self: *const T, Context: i64) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).ReleaseImmContext(@ptrCast(*const ITextDocument2Old, self), Context);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_GetPreferredFont(self: *const T, cp: i32, CharRep: i32, Option: i32, CharRepCur: i32, curFontSize: i32, pbstr: ?*?BSTR, pPitchAndFamily: ?*i32, pNewFontSize: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetPreferredFont(@ptrCast(*const ITextDocument2Old, self), cp, CharRep, Option, CharRepCur, curFontSize, pbstr, pPitchAndFamily, pNewFontSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_GetNotificationMode(self: *const T, pMode: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetNotificationMode(@ptrCast(*const ITextDocument2Old, self), pMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_SetNotificationMode(self: *const T, Mode: i32) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).SetNotificationMode(@ptrCast(*const ITextDocument2Old, self), Mode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_GetClientRect(self: *const T, Type: i32, pLeft: ?*i32, pTop: ?*i32, pRight: ?*i32, pBottom: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetClientRect(@ptrCast(*const ITextDocument2Old, self), Type, pLeft, pTop, pRight, pBottom);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_GetSelection2(self: *const T, ppSel: ?*?*ITextSelection) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetSelection2(@ptrCast(*const ITextDocument2Old, self), ppSel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_GetWindow(self: *const T, phWnd: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetWindow(@ptrCast(*const ITextDocument2Old, self), phWnd);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_GetFEFlags(self: *const T, pFlags: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetFEFlags(@ptrCast(*const ITextDocument2Old, self), pFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_UpdateWindow(self: *const T) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).UpdateWindow(@ptrCast(*const ITextDocument2Old, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_CheckTextLimit(self: *const T, cch: i32, pcch: ?*i32) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).CheckTextLimit(@ptrCast(*const ITextDocument2Old, self), cch, pcch);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_IMEInProgress(self: *const T, Value: i32) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).IMEInProgress(@ptrCast(*const ITextDocument2Old, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_SysBeep(self: *const T) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).SysBeep(@ptrCast(*const ITextDocument2Old, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_Update(self: *const T, Mode: i32) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).Update(@ptrCast(*const ITextDocument2Old, self), Mode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_Notify(self: *const T, Notify: i32) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).Notify(@ptrCast(*const ITextDocument2Old, self), Notify);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_GetDocumentFont(self: *const T, ppITextFont: ?*?*ITextFont) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetDocumentFont(@ptrCast(*const ITextDocument2Old, self), ppITextFont);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_GetDocumentPara(self: *const T, ppITextPara: ?*?*ITextPara) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetDocumentPara(@ptrCast(*const ITextDocument2Old, self), ppITextPara);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_GetCallManager(self: *const T, ppVoid: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).GetCallManager(@ptrCast(*const ITextDocument2Old, self), ppVoid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITextDocument2Old_ReleaseCallManager(self: *const T, pVoid: ?*IUnknown) HRESULT {
+                return @ptrCast(*const ITextDocument2Old.VTable, self.vtable).ReleaseCallManager(@ptrCast(*const ITextDocument2Old, self), pVoid);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -7746,11 +7673,11 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
         pub const FINDTEXTEX = thismodule.FINDTEXTEXW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const CHARFORMAT = *opaque{};
-        pub const CHARFORMAT2 = *opaque{};
-        pub const TEXTRANGE = *opaque{};
-        pub const FINDTEXT = *opaque{};
-        pub const FINDTEXTEX = *opaque{};
+        pub const CHARFORMAT = *opaque {};
+        pub const CHARFORMAT2 = *opaque {};
+        pub const TEXTRANGE = *opaque {};
+        pub const FINDTEXT = *opaque {};
+        pub const FINDTEXTEX = *opaque {};
     } else struct {
         pub const CHARFORMAT = @compileError("'CHARFORMAT' requires that UNICODE be set to true or false in the root module");
         pub const CHARFORMAT2 = @compileError("'CHARFORMAT2' requires that UNICODE be set to true or false in the root module");
@@ -7808,15 +7735,23 @@ const WPARAM = @import("../../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "AutoCorrectProc")) { _ = AutoCorrectProc; }
-    if (@hasDecl(@This(), "EDITWORDBREAKPROCEX")) { _ = EDITWORDBREAKPROCEX; }
-    if (@hasDecl(@This(), "EDITSTREAMCALLBACK")) { _ = EDITSTREAMCALLBACK; }
-    if (@hasDecl(@This(), "PCreateTextServices")) { _ = PCreateTextServices; }
-    if (@hasDecl(@This(), "PShutdownTextServices")) { _ = PShutdownTextServices; }
+    if (@hasDecl(@This(), "AutoCorrectProc")) {
+        _ = AutoCorrectProc;
+    }
+    if (@hasDecl(@This(), "EDITWORDBREAKPROCEX")) {
+        _ = EDITWORDBREAKPROCEX;
+    }
+    if (@hasDecl(@This(), "EDITSTREAMCALLBACK")) {
+        _ = EDITSTREAMCALLBACK;
+    }
+    if (@hasDecl(@This(), "PCreateTextServices")) {
+        _ = PCreateTextServices;
+    }
+    if (@hasDecl(@This(), "PShutdownTextServices")) {
+        _ = PShutdownTextServices;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

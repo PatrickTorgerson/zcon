@@ -8,25 +8,22 @@ const std = @import("std");
 const assert = std.debug.assert;
 
 /// a type-erased Writer
-pub const GenericWriter = struct
-{
+pub const GenericWriter = struct {
     ptr: *const anyopaque,
     vtable: *const VTable,
 
     pub const Error = anyerror;
 
     ///
-    pub const VTable = struct
-    {
-        write:           fn(ptr: *const anyopaque, bytes: []const u8) Error!usize,
-        writeAll:        fn(ptr: *const anyopaque, bytes: []const u8) Error!void,
-        writeByte:       fn(ptr: *const anyopaque, byte: u8) Error!void,
-        writeByteNTimes: fn(ptr: *const anyopaque, byte: u8, n: usize) Error!void,
+    pub const VTable = struct {
+        write: fn (ptr: *const anyopaque, bytes: []const u8) Error!usize,
+        writeAll: fn (ptr: *const anyopaque, bytes: []const u8) Error!void,
+        writeByte: fn (ptr: *const anyopaque, byte: u8) Error!void,
+        writeByteNTimes: fn (ptr: *const anyopaque, byte: u8, n: usize) Error!void,
     };
 
     ///
-    pub fn init(pointer: anytype) GenericWriter
-    {
+    pub fn init(pointer: anytype) GenericWriter {
         comptime var ptr_info = @typeInfo(@TypeOf(pointer));
 
         comptime assert(ptr_info == .Pointer); // Must be a pointer
@@ -59,7 +56,7 @@ pub const GenericWriter = struct
                 return @call(.{ .modifier = .always_inline }, @field(Child, "writeByteNTimes"), .{ self.*, byte, n });
             }
 
-            const vtable = VTable {
+            const vtable = VTable{
                 .write = write_impl,
                 .writeAll = writeAll_impl,
                 .writeByte = writeByte_impl,
@@ -83,7 +80,7 @@ pub const GenericWriter = struct
         return self.vtable.writeAll(self.ptr, bytes);
     }
 
-     ///
+    ///
     pub fn writeByte(self: GenericWriter, byte: u8) !void {
         return self.vtable.writeByte(self.ptr, byte);
     }

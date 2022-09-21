@@ -104,7 +104,7 @@ pub const DXCoreAdapterMemoryBudget = extern struct {
     currentReservation: u64,
 };
 
-pub const PFN_DXCORE_NOTIFICATION_CALLBACK = fn(
+pub const PFN_DXCORE_NOTIFICATION_CALLBACK = fn (
     notificationType: DXCoreNotificationType,
     object: ?*IUnknown,
     context: ?*anyopaque,
@@ -115,34 +115,34 @@ pub const IID_IDXCoreAdapter = &IID_IDXCoreAdapter_Value;
 pub const IDXCoreAdapter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsValid: fn(
+        IsValid: fn (
             self: *const IDXCoreAdapter,
         ) callconv(@import("std").os.windows.WINAPI) bool,
-        IsAttributeSupported: fn(
+        IsAttributeSupported: fn (
             self: *const IDXCoreAdapter,
             attributeGUID: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) bool,
-        IsPropertySupported: fn(
+        IsPropertySupported: fn (
             self: *const IDXCoreAdapter,
             property: DXCoreAdapterProperty,
         ) callconv(@import("std").os.windows.WINAPI) bool,
-        GetProperty: fn(
+        GetProperty: fn (
             self: *const IDXCoreAdapter,
             property: DXCoreAdapterProperty,
             bufferSize: usize,
             // TODO: what to do with BytesParamIndex 1?
             propertyData: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertySize: fn(
+        GetPropertySize: fn (
             self: *const IDXCoreAdapter,
             property: DXCoreAdapterProperty,
             bufferSize: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsQueryStateSupported: fn(
+        IsQueryStateSupported: fn (
             self: *const IDXCoreAdapter,
             property: DXCoreAdapterState,
         ) callconv(@import("std").os.windows.WINAPI) bool,
-        QueryState: fn(
+        QueryState: fn (
             self: *const IDXCoreAdapter,
             state: DXCoreAdapterState,
             inputStateDetailsSize: usize,
@@ -152,11 +152,11 @@ pub const IDXCoreAdapter = extern struct {
             // TODO: what to do with BytesParamIndex 3?
             outputBuffer: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsSetStateSupported: fn(
+        IsSetStateSupported: fn (
             self: *const IDXCoreAdapter,
             property: DXCoreAdapterState,
         ) callconv(@import("std").os.windows.WINAPI) bool,
-        SetState: fn(
+        SetState: fn (
             self: *const IDXCoreAdapter,
             state: DXCoreAdapterState,
             inputStateDetailsSize: usize,
@@ -166,56 +166,58 @@ pub const IDXCoreAdapter = extern struct {
             // TODO: what to do with BytesParamIndex 3?
             inputData: ?*const anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFactory: fn(
+        GetFactory: fn (
             self: *const IDXCoreAdapter,
             riid: ?*const Guid,
             ppvFactory: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapter_IsValid(self: *const T) callconv(.Inline) bool {
-            return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).IsValid(@ptrCast(*const IDXCoreAdapter, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapter_IsAttributeSupported(self: *const T, attributeGUID: ?*const Guid) callconv(.Inline) bool {
-            return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).IsAttributeSupported(@ptrCast(*const IDXCoreAdapter, self), attributeGUID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapter_IsPropertySupported(self: *const T, property: DXCoreAdapterProperty) callconv(.Inline) bool {
-            return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).IsPropertySupported(@ptrCast(*const IDXCoreAdapter, self), property);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapter_GetProperty(self: *const T, property: DXCoreAdapterProperty, bufferSize: usize, propertyData: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).GetProperty(@ptrCast(*const IDXCoreAdapter, self), property, bufferSize, propertyData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapter_GetPropertySize(self: *const T, property: DXCoreAdapterProperty, bufferSize: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).GetPropertySize(@ptrCast(*const IDXCoreAdapter, self), property, bufferSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapter_IsQueryStateSupported(self: *const T, property: DXCoreAdapterState) callconv(.Inline) bool {
-            return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).IsQueryStateSupported(@ptrCast(*const IDXCoreAdapter, self), property);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapter_QueryState(self: *const T, state: DXCoreAdapterState, inputStateDetailsSize: usize, inputStateDetails: ?*const anyopaque, outputBufferSize: usize, outputBuffer: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).QueryState(@ptrCast(*const IDXCoreAdapter, self), state, inputStateDetailsSize, inputStateDetails, outputBufferSize, outputBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapter_IsSetStateSupported(self: *const T, property: DXCoreAdapterState) callconv(.Inline) bool {
-            return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).IsSetStateSupported(@ptrCast(*const IDXCoreAdapter, self), property);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapter_SetState(self: *const T, state: DXCoreAdapterState, inputStateDetailsSize: usize, inputStateDetails: ?*const anyopaque, inputDataSize: usize, inputData: ?*const anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).SetState(@ptrCast(*const IDXCoreAdapter, self), state, inputStateDetailsSize, inputStateDetails, inputDataSize, inputData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapter_GetFactory(self: *const T, riid: ?*const Guid, ppvFactory: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).GetFactory(@ptrCast(*const IDXCoreAdapter, self), riid, ppvFactory);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapter_IsValid(self: *const T) bool {
+                return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).IsValid(@ptrCast(*const IDXCoreAdapter, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapter_IsAttributeSupported(self: *const T, attributeGUID: ?*const Guid) bool {
+                return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).IsAttributeSupported(@ptrCast(*const IDXCoreAdapter, self), attributeGUID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapter_IsPropertySupported(self: *const T, property: DXCoreAdapterProperty) bool {
+                return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).IsPropertySupported(@ptrCast(*const IDXCoreAdapter, self), property);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapter_GetProperty(self: *const T, property: DXCoreAdapterProperty, bufferSize: usize, propertyData: ?*anyopaque) HRESULT {
+                return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).GetProperty(@ptrCast(*const IDXCoreAdapter, self), property, bufferSize, propertyData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapter_GetPropertySize(self: *const T, property: DXCoreAdapterProperty, bufferSize: ?*usize) HRESULT {
+                return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).GetPropertySize(@ptrCast(*const IDXCoreAdapter, self), property, bufferSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapter_IsQueryStateSupported(self: *const T, property: DXCoreAdapterState) bool {
+                return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).IsQueryStateSupported(@ptrCast(*const IDXCoreAdapter, self), property);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapter_QueryState(self: *const T, state: DXCoreAdapterState, inputStateDetailsSize: usize, inputStateDetails: ?*const anyopaque, outputBufferSize: usize, outputBuffer: ?*anyopaque) HRESULT {
+                return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).QueryState(@ptrCast(*const IDXCoreAdapter, self), state, inputStateDetailsSize, inputStateDetails, outputBufferSize, outputBuffer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapter_IsSetStateSupported(self: *const T, property: DXCoreAdapterState) bool {
+                return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).IsSetStateSupported(@ptrCast(*const IDXCoreAdapter, self), property);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapter_SetState(self: *const T, state: DXCoreAdapterState, inputStateDetailsSize: usize, inputStateDetails: ?*const anyopaque, inputDataSize: usize, inputData: ?*const anyopaque) HRESULT {
+                return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).SetState(@ptrCast(*const IDXCoreAdapter, self), state, inputStateDetailsSize, inputStateDetails, inputDataSize, inputData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapter_GetFactory(self: *const T, riid: ?*const Guid, ppvFactory: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).GetFactory(@ptrCast(*const IDXCoreAdapter, self), riid, ppvFactory);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -224,61 +226,63 @@ pub const IID_IDXCoreAdapterList = &IID_IDXCoreAdapterList_Value;
 pub const IDXCoreAdapterList = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetAdapter: fn(
+        GetAdapter: fn (
             self: *const IDXCoreAdapterList,
             index: u32,
             riid: ?*const Guid,
             ppvAdapter: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAdapterCount: fn(
+        GetAdapterCount: fn (
             self: *const IDXCoreAdapterList,
         ) callconv(@import("std").os.windows.WINAPI) u32,
-        IsStale: fn(
+        IsStale: fn (
             self: *const IDXCoreAdapterList,
         ) callconv(@import("std").os.windows.WINAPI) bool,
-        GetFactory: fn(
+        GetFactory: fn (
             self: *const IDXCoreAdapterList,
             riid: ?*const Guid,
             ppvFactory: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Sort: fn(
+        Sort: fn (
             self: *const IDXCoreAdapterList,
             numPreferences: u32,
             preferences: [*]const DXCoreAdapterPreference,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsAdapterPreferenceSupported: fn(
+        IsAdapterPreferenceSupported: fn (
             self: *const IDXCoreAdapterList,
             preference: DXCoreAdapterPreference,
         ) callconv(@import("std").os.windows.WINAPI) bool,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapterList_GetAdapter(self: *const T, index: u32, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).GetAdapter(@ptrCast(*const IDXCoreAdapterList, self), index, riid, ppvAdapter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapterList_GetAdapterCount(self: *const T) callconv(.Inline) u32 {
-            return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).GetAdapterCount(@ptrCast(*const IDXCoreAdapterList, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapterList_IsStale(self: *const T) callconv(.Inline) bool {
-            return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).IsStale(@ptrCast(*const IDXCoreAdapterList, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapterList_GetFactory(self: *const T, riid: ?*const Guid, ppvFactory: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).GetFactory(@ptrCast(*const IDXCoreAdapterList, self), riid, ppvFactory);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapterList_Sort(self: *const T, numPreferences: u32, preferences: [*]const DXCoreAdapterPreference) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).Sort(@ptrCast(*const IDXCoreAdapterList, self), numPreferences, preferences);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapterList_IsAdapterPreferenceSupported(self: *const T, preference: DXCoreAdapterPreference) callconv(.Inline) bool {
-            return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).IsAdapterPreferenceSupported(@ptrCast(*const IDXCoreAdapterList, self), preference);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapterList_GetAdapter(self: *const T, index: u32, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).GetAdapter(@ptrCast(*const IDXCoreAdapterList, self), index, riid, ppvAdapter);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapterList_GetAdapterCount(self: *const T) u32 {
+                return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).GetAdapterCount(@ptrCast(*const IDXCoreAdapterList, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapterList_IsStale(self: *const T) bool {
+                return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).IsStale(@ptrCast(*const IDXCoreAdapterList, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapterList_GetFactory(self: *const T, riid: ?*const Guid, ppvFactory: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).GetFactory(@ptrCast(*const IDXCoreAdapterList, self), riid, ppvFactory);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapterList_Sort(self: *const T, numPreferences: u32, preferences: [*]const DXCoreAdapterPreference) HRESULT {
+                return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).Sort(@ptrCast(*const IDXCoreAdapterList, self), numPreferences, preferences);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapterList_IsAdapterPreferenceSupported(self: *const T, preference: DXCoreAdapterPreference) bool {
+                return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).IsAdapterPreferenceSupported(@ptrCast(*const IDXCoreAdapterList, self), preference);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -287,24 +291,24 @@ pub const IID_IDXCoreAdapterFactory = &IID_IDXCoreAdapterFactory_Value;
 pub const IDXCoreAdapterFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateAdapterList: fn(
+        CreateAdapterList: fn (
             self: *const IDXCoreAdapterFactory,
             numAttributes: u32,
             filterAttributes: [*]const Guid,
             riid: ?*const Guid,
             ppvAdapterList: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAdapterByLuid: fn(
+        GetAdapterByLuid: fn (
             self: *const IDXCoreAdapterFactory,
             adapterLUID: ?*const LUID,
             riid: ?*const Guid,
             ppvAdapter: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsNotificationTypeSupported: fn(
+        IsNotificationTypeSupported: fn (
             self: *const IDXCoreAdapterFactory,
             notificationType: DXCoreNotificationType,
         ) callconv(@import("std").os.windows.WINAPI) bool,
-        RegisterEventNotification: fn(
+        RegisterEventNotification: fn (
             self: *const IDXCoreAdapterFactory,
             dxCoreObject: ?*IUnknown,
             notificationType: DXCoreNotificationType,
@@ -312,38 +316,39 @@ pub const IDXCoreAdapterFactory = extern struct {
             callbackContext: ?*anyopaque,
             eventCookie: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnregisterEventNotification: fn(
+        UnregisterEventNotification: fn (
             self: *const IDXCoreAdapterFactory,
             eventCookie: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapterFactory_CreateAdapterList(self: *const T, numAttributes: u32, filterAttributes: [*]const Guid, riid: ?*const Guid, ppvAdapterList: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDXCoreAdapterFactory.VTable, self.vtable).CreateAdapterList(@ptrCast(*const IDXCoreAdapterFactory, self), numAttributes, filterAttributes, riid, ppvAdapterList);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapterFactory_GetAdapterByLuid(self: *const T, adapterLUID: ?*const LUID, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDXCoreAdapterFactory.VTable, self.vtable).GetAdapterByLuid(@ptrCast(*const IDXCoreAdapterFactory, self), adapterLUID, riid, ppvAdapter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapterFactory_IsNotificationTypeSupported(self: *const T, notificationType: DXCoreNotificationType) callconv(.Inline) bool {
-            return @ptrCast(*const IDXCoreAdapterFactory.VTable, self.vtable).IsNotificationTypeSupported(@ptrCast(*const IDXCoreAdapterFactory, self), notificationType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapterFactory_RegisterEventNotification(self: *const T, dxCoreObject: ?*IUnknown, notificationType: DXCoreNotificationType, callbackFunction: ?PFN_DXCORE_NOTIFICATION_CALLBACK, callbackContext: ?*anyopaque, eventCookie: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDXCoreAdapterFactory.VTable, self.vtable).RegisterEventNotification(@ptrCast(*const IDXCoreAdapterFactory, self), dxCoreObject, notificationType, callbackFunction, callbackContext, eventCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapterFactory_UnregisterEventNotification(self: *const T, eventCookie: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDXCoreAdapterFactory.VTable, self.vtable).UnregisterEventNotification(@ptrCast(*const IDXCoreAdapterFactory, self), eventCookie);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapterFactory_CreateAdapterList(self: *const T, numAttributes: u32, filterAttributes: [*]const Guid, riid: ?*const Guid, ppvAdapterList: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IDXCoreAdapterFactory.VTable, self.vtable).CreateAdapterList(@ptrCast(*const IDXCoreAdapterFactory, self), numAttributes, filterAttributes, riid, ppvAdapterList);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapterFactory_GetAdapterByLuid(self: *const T, adapterLUID: ?*const LUID, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IDXCoreAdapterFactory.VTable, self.vtable).GetAdapterByLuid(@ptrCast(*const IDXCoreAdapterFactory, self), adapterLUID, riid, ppvAdapter);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapterFactory_IsNotificationTypeSupported(self: *const T, notificationType: DXCoreNotificationType) bool {
+                return @ptrCast(*const IDXCoreAdapterFactory.VTable, self.vtable).IsNotificationTypeSupported(@ptrCast(*const IDXCoreAdapterFactory, self), notificationType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapterFactory_RegisterEventNotification(self: *const T, dxCoreObject: ?*IUnknown, notificationType: DXCoreNotificationType, callbackFunction: ?PFN_DXCORE_NOTIFICATION_CALLBACK, callbackContext: ?*anyopaque, eventCookie: ?*u32) HRESULT {
+                return @ptrCast(*const IDXCoreAdapterFactory.VTable, self.vtable).RegisterEventNotification(@ptrCast(*const IDXCoreAdapterFactory, self), dxCoreObject, notificationType, callbackFunction, callbackContext, eventCookie);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDXCoreAdapterFactory_UnregisterEventNotification(self: *const T, eventCookie: u32) HRESULT {
+                return @ptrCast(*const IDXCoreAdapterFactory.VTable, self.vtable).UnregisterEventNotification(@ptrCast(*const IDXCoreAdapterFactory, self), eventCookie);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (1)
@@ -353,19 +358,14 @@ pub extern "dxcore" fn DXCoreCreateAdapterFactory(
     ppvFactory: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
@@ -377,11 +377,11 @@ const LUID = @import("../foundation.zig").LUID;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFN_DXCORE_NOTIFICATION_CALLBACK")) { _ = PFN_DXCORE_NOTIFICATION_CALLBACK; }
+    if (@hasDecl(@This(), "PFN_DXCORE_NOTIFICATION_CALLBACK")) {
+        _ = PFN_DXCORE_NOTIFICATION_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

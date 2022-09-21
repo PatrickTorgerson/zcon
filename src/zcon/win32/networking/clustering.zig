@@ -648,38 +648,38 @@ pub const CREATE_CLUSTER_NAME_ACCOUNT = extern struct {
     bUpgradeVCOs: BOOLEAN,
 };
 
-pub const PCLUSAPI_GET_NODE_CLUSTER_STATE = fn(
+pub const PCLUSAPI_GET_NODE_CLUSTER_STATE = fn (
     lpszNodeName: ?[*:0]const u16,
     pdwClusterState: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_OPEN_CLUSTER = fn(
+pub const PCLUSAPI_OPEN_CLUSTER = fn (
     lpszClusterName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
 
-pub const PCLUSAPI_OPEN_CLUSTER_EX = fn(
+pub const PCLUSAPI_OPEN_CLUSTER_EX = fn (
     lpszClusterName: ?[*:0]const u16,
     dwDesiredAccess: u32,
     lpdwGrantedAccess: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
 
-pub const PCLUSAPI_CLOSE_CLUSTER = fn(
+pub const PCLUSAPI_CLOSE_CLUSTER = fn (
     hCluster: ?*_HCLUSTER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PCLUSAPI_SetClusterName = fn(
+pub const PCLUSAPI_SetClusterName = fn (
     hCluster: ?*_HCLUSTER,
     lpszNewClusterName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_GET_CLUSTER_INFORMATION = fn(
+pub const PCLUSAPI_GET_CLUSTER_INFORMATION = fn (
     hCluster: ?*_HCLUSTER,
     lpszClusterName: [*:0]u16,
     lpcchClusterName: ?*u32,
     lpClusterInfo: ?*CLUSTERVERSIONINFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_GET_CLUSTER_QUORUM_RESOURCE = fn(
+pub const PCLUSAPI_GET_CLUSTER_QUORUM_RESOURCE = fn (
     hCluster: ?*_HCLUSTER,
     lpszResourceName: [*:0]u16,
     lpcchResourceName: ?*u32,
@@ -688,30 +688,30 @@ pub const PCLUSAPI_GET_CLUSTER_QUORUM_RESOURCE = fn(
     lpdwMaxQuorumLogSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_SET_CLUSTER_QUORUM_RESOURCE = fn(
+pub const PCLUSAPI_SET_CLUSTER_QUORUM_RESOURCE = fn (
     hResource: ?*_HRESOURCE,
     lpszDeviceName: ?[*:0]const u16,
     dwMaxQuoLogSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_BACKUP_CLUSTER_DATABASE = fn(
+pub const PCLUSAPI_BACKUP_CLUSTER_DATABASE = fn (
     hCluster: ?*_HCLUSTER,
     lpszPathName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_RESTORE_CLUSTER_DATABASE = fn(
+pub const PCLUSAPI_RESTORE_CLUSTER_DATABASE = fn (
     lpszPathName: ?[*:0]const u16,
     bForce: BOOL,
     lpszQuorumDriveLetter: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_SET_CLUSTER_NETWORK_PRIORITY_ORDER = fn(
+pub const PCLUSAPI_SET_CLUSTER_NETWORK_PRIORITY_ORDER = fn (
     hCluster: ?*_HCLUSTER,
     NetworkCount: u32,
     NetworkList: [*]?*_HNETWORK,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_SET_CLUSTER_SERVICE_ACCOUNT_PASSWORD = fn(
+pub const PCLUSAPI_SET_CLUSTER_SERVICE_ACCOUNT_PASSWORD = fn (
     lpszClusterName: ?[*:0]const u16,
     lpszNewPassword: ?[*:0]const u16,
     dwFlags: u32,
@@ -720,7 +720,7 @@ pub const PCLUSAPI_SET_CLUSTER_SERVICE_ACCOUNT_PASSWORD = fn(
     lpcbReturnStatusBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_CONTROL = fn(
+pub const PCLUSAPI_CLUSTER_CONTROL = fn (
     hCluster: ?*_HCLUSTER,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
@@ -746,12 +746,12 @@ pub const ClusterUpgradePhaseUpgradingComponents = CLUSTER_UPGRADE_PHASE.Upgradi
 pub const ClusterUpgradePhaseInstallingNewComponents = CLUSTER_UPGRADE_PHASE.InstallingNewComponents;
 pub const ClusterUpgradePhaseUpgradeComplete = CLUSTER_UPGRADE_PHASE.UpgradeComplete;
 
-pub const PCLUSTER_UPGRADE_PROGRESS_CALLBACK = fn(
+pub const PCLUSTER_UPGRADE_PROGRESS_CALLBACK = fn (
     pvCallbackArg: ?*anyopaque,
     eUpgradePhase: CLUSTER_UPGRADE_PHASE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PCLUSAPI_CLUSTER_UPGRADE = fn(
+pub const PCLUSAPI_CLUSTER_UPGRADE = fn (
     hCluster: ?*_HCLUSTER,
     perform: BOOL,
     pfnProgressCallback: ?PCLUSTER_UPGRADE_PROGRESS_CALLBACK,
@@ -1108,7 +1108,7 @@ pub const CLUSTER_MEMBERSHIP_INFO = extern struct {
     Upnodes: [1]u8,
 };
 
-pub const PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT_V2 = fn(
+pub const PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT_V2 = fn (
     hChange: ?*_HCHANGE,
     hCluster: ?*_HCLUSTER,
     Filters: ?*NOTIFY_FILTER_AND_TYPE,
@@ -1116,19 +1116,19 @@ pub const PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT_V2 = fn(
     dwNotifyKey: usize,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HCHANGE;
 
-pub const PCLUSAPI_REGISTER_CLUSTER_NOTIFY_V2 = fn(
+pub const PCLUSAPI_REGISTER_CLUSTER_NOTIFY_V2 = fn (
     hChange: ?*_HCHANGE,
     Filter: NOTIFY_FILTER_AND_TYPE,
     hObject: ?HANDLE,
     dwNotifyKey: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_GET_NOTIFY_EVENT_HANDLE_V2 = fn(
+pub const PCLUSAPI_GET_NOTIFY_EVENT_HANDLE_V2 = fn (
     hChange: ?*_HCHANGE,
     lphTargetEvent: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_GET_CLUSTER_NOTIFY_V2 = fn(
+pub const PCLUSAPI_GET_CLUSTER_NOTIFY_V2 = fn (
     hChange: ?*_HCHANGE,
     lpdwNotifyKey: ?*usize,
     pFilterAndType: ?*NOTIFY_FILTER_AND_TYPE,
@@ -1145,21 +1145,21 @@ pub const PCLUSAPI_GET_CLUSTER_NOTIFY_V2 = fn(
     dwMilliseconds: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT = fn(
+pub const PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT = fn (
     hChange: ?*_HCHANGE,
     hCluster: ?*_HCLUSTER,
     dwFilter: u32,
     dwNotifyKey: usize,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HCHANGE;
 
-pub const PCLUSAPI_REGISTER_CLUSTER_NOTIFY = fn(
+pub const PCLUSAPI_REGISTER_CLUSTER_NOTIFY = fn (
     hChange: ?*_HCHANGE,
     dwFilterType: u32,
     hObject: ?HANDLE,
     dwNotifyKey: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_GET_CLUSTER_NOTIFY = fn(
+pub const PCLUSAPI_GET_CLUSTER_NOTIFY = fn (
     hChange: ?*_HCHANGE,
     lpdwNotifyKey: ?*usize,
     lpdwFilterType: ?*u32,
@@ -1168,7 +1168,7 @@ pub const PCLUSAPI_GET_CLUSTER_NOTIFY = fn(
     dwMilliseconds: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLOSE_CLUSTER_NOTIFY_PORT = fn(
+pub const PCLUSAPI_CLOSE_CLUSTER_NOTIFY_PORT = fn (
     hChange: ?*_HCHANGE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1195,16 +1195,16 @@ pub const CLUSTER_ENUM_SHARED_VOLUME_RESOURCE = CLUSTER_ENUM.SHARED_VOLUME_RESOU
 pub const CLUSTER_ENUM_INTERNAL_NETWORK = CLUSTER_ENUM.INTERNAL_NETWORK;
 pub const CLUSTER_ENUM_ALL = CLUSTER_ENUM.ALL;
 
-pub const PCLUSAPI_CLUSTER_OPEN_ENUM = fn(
+pub const PCLUSAPI_CLUSTER_OPEN_ENUM = fn (
     hCluster: ?*_HCLUSTER,
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSENUM;
 
-pub const PCLUSAPI_CLUSTER_GET_ENUM_COUNT = fn(
+pub const PCLUSAPI_CLUSTER_GET_ENUM_COUNT = fn (
     hEnum: ?*_HCLUSENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_ENUM = fn(
+pub const PCLUSAPI_CLUSTER_ENUM = fn (
     hEnum: ?*_HCLUSENUM,
     dwIndex: u32,
     lpdwType: ?*u32,
@@ -1212,60 +1212,60 @@ pub const PCLUSAPI_CLUSTER_ENUM = fn(
     lpcchName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_CLOSE_ENUM = fn(
+pub const PCLUSAPI_CLUSTER_CLOSE_ENUM = fn (
     hEnum: ?*_HCLUSENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_OPEN_ENUM_EX = fn(
+pub const PCLUSAPI_CLUSTER_OPEN_ENUM_EX = fn (
     hCluster: ?*_HCLUSTER,
     dwType: u32,
     pOptions: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSENUMEX;
 
-pub const PCLUSAPI_CLUSTER_GET_ENUM_COUNT_EX = fn(
+pub const PCLUSAPI_CLUSTER_GET_ENUM_COUNT_EX = fn (
     hClusterEnum: ?*_HCLUSENUMEX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_ENUM_EX = fn(
+pub const PCLUSAPI_CLUSTER_ENUM_EX = fn (
     hClusterEnum: ?*_HCLUSENUMEX,
     dwIndex: u32,
     pItem: ?*CLUSTER_ENUM_ITEM,
     cbItem: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_CLOSE_ENUM_EX = fn(
+pub const PCLUSAPI_CLUSTER_CLOSE_ENUM_EX = fn (
     hClusterEnum: ?*_HCLUSENUMEX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CREATE_CLUSTER_GROUP_GROUPSET = fn(
+pub const PCLUSAPI_CREATE_CLUSTER_GROUP_GROUPSET = fn (
     hCluster: ?*_HCLUSTER,
     lpszGroupSetName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPSET;
 
-pub const PCLUSAPI_OPEN_CLUSTER_GROUP_GROUPSET = fn(
+pub const PCLUSAPI_OPEN_CLUSTER_GROUP_GROUPSET = fn (
     hCluster: ?*_HCLUSTER,
     lpszGroupSetName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPSET;
 
-pub const PCLUSAPI_CLOSE_CLUSTER_GROUP_GROUPSET = fn(
+pub const PCLUSAPI_CLOSE_CLUSTER_GROUP_GROUPSET = fn (
     hGroupSet: ?*_HGROUPSET,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PCLUSAPI_DELETE_CLUSTER_GROUP_GROUPSET = fn(
+pub const PCLUSAPI_DELETE_CLUSTER_GROUP_GROUPSET = fn (
     hGroupSet: ?*_HGROUPSET,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_ADD_GROUP_TO_GROUP_GROUPSET = fn(
+pub const PCLUSAPI_CLUSTER_ADD_GROUP_TO_GROUP_GROUPSET = fn (
     hGroupSet: ?*_HGROUPSET,
     hGroup: ?*_HGROUP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_GROUP_GROUPSET = fn(
+pub const PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_GROUP_GROUPSET = fn (
     hGroupSet: ?*_HGROUPSET,
     hGroupName: ?*_HGROUP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_GROUP_GROUPSET_CONTROL = fn(
+pub const PCLUSAPI_CLUSTER_GROUP_GROUPSET_CONTROL = fn (
     hGroupSet: ?*_HGROUPSET,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
@@ -1278,57 +1278,57 @@ pub const PCLUSAPI_CLUSTER_GROUP_GROUPSET_CONTROL = fn(
     lpBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_ADD_CLUSTER_GROUP_DEPENDENCY = fn(
+pub const PCLUSAPI_ADD_CLUSTER_GROUP_DEPENDENCY = fn (
     hDependentGroup: ?*_HGROUP,
     hProviderGroup: ?*_HGROUP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_SET_GROUP_DEPENDENCY_EXPRESSION = fn(
+pub const PCLUSAPI_SET_GROUP_DEPENDENCY_EXPRESSION = fn (
     hGroupSet: ?*_HGROUP,
     lpszDependencyExpression: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_DEPENDENCY = fn(
+pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_DEPENDENCY = fn (
     hGroup: ?*_HGROUP,
     hDependsOn: ?*_HGROUP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_ADD_CLUSTER_GROUP_GROUPSET_DEPENDENCY = fn(
+pub const PCLUSAPI_ADD_CLUSTER_GROUP_GROUPSET_DEPENDENCY = fn (
     hDependentGroupSet: ?*_HGROUPSET,
     hProviderGroupSet: ?*_HGROUPSET,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_SET_CLUSTER_GROUP_GROUPSET_DEPENDENCY_EXPRESSION = fn(
+pub const PCLUSAPI_SET_CLUSTER_GROUP_GROUPSET_DEPENDENCY_EXPRESSION = fn (
     hGroupSet: ?*_HGROUPSET,
     lpszDependencyExpression: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_GROUPSET_DEPENDENCY = fn(
+pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_GROUPSET_DEPENDENCY = fn (
     hGroupSet: ?*_HGROUPSET,
     hDependsOn: ?*_HGROUPSET,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_ADD_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY = fn(
+pub const PCLUSAPI_ADD_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY = fn (
     hDependentGroup: ?*_HGROUP,
     hProviderGroupSet: ?*_HGROUPSET,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY = fn(
+pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY = fn (
     hGroup: ?*_HGROUP,
     hDependsOn: ?*_HGROUPSET,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_GET_CLUSTER_FROM_GROUP_GROUPSET = fn(
+pub const PCLUSAPI_GET_CLUSTER_FROM_GROUP_GROUPSET = fn (
     hGroupSet: ?*_HGROUPSET,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
 
-pub const PCLUSAPI_ADD_CROSS_CLUSTER_GROUPSET_DEPENDENCY = fn(
+pub const PCLUSAPI_ADD_CROSS_CLUSTER_GROUPSET_DEPENDENCY = fn (
     hDependentGroupSet: ?*_HGROUPSET,
     lpRemoteClusterName: ?[*:0]const u16,
     lpRemoteGroupSetName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_REMOVE_CROSS_CLUSTER_GROUPSET_DEPENDENCY = fn(
+pub const PCLUSAPI_REMOVE_CROSS_CLUSTER_GROUPSET_DEPENDENCY = fn (
     hDependentGroupSet: ?*_HGROUPSET,
     lpRemoteClusterName: ?[*:0]const u16,
     lpRemoteGroupSetName: ?[*:0]const u16,
@@ -1341,36 +1341,36 @@ pub const CLUSTER_AVAILABILITY_SET_CONFIG = extern struct {
     bReserveSpareNode: BOOL,
 };
 
-pub const PCLUSAPI_CREATE_CLUSTER_AVAILABILITY_SET = fn(
+pub const PCLUSAPI_CREATE_CLUSTER_AVAILABILITY_SET = fn (
     hCluster: ?*_HCLUSTER,
     lpAvailabilitySetName: ?[*:0]const u16,
     pAvailabilitySetConfig: ?*CLUSTER_AVAILABILITY_SET_CONFIG,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPSET;
 
-pub const PCLUSAPI_CLUSTER_CREATE_AFFINITY_RULE = fn(
+pub const PCLUSAPI_CLUSTER_CREATE_AFFINITY_RULE = fn (
     hCluster: ?*_HCLUSTER,
     ruleName: ?[*:0]const u16,
     ruleType: CLUS_AFFINITY_RULE_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_REMOVE_AFFINITY_RULE = fn(
+pub const PCLUSAPI_CLUSTER_REMOVE_AFFINITY_RULE = fn (
     hCluster: ?*_HCLUSTER,
     ruleName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_ADD_GROUP_TO_AFFINITY_RULE = fn(
-    hCluster: ?*_HCLUSTER,
-    ruleName: ?[*:0]const u16,
-    hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_AFFINITY_RULE = fn(
+pub const PCLUSAPI_CLUSTER_ADD_GROUP_TO_AFFINITY_RULE = fn (
     hCluster: ?*_HCLUSTER,
     ruleName: ?[*:0]const u16,
     hGroup: ?*_HGROUP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_AFFINITY_RULE_CONTROL = fn(
+pub const PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_AFFINITY_RULE = fn (
+    hCluster: ?*_HCLUSTER,
+    ruleName: ?[*:0]const u16,
+    hGroup: ?*_HGROUP,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PCLUSAPI_CLUSTER_AFFINITY_RULE_CONTROL = fn (
     hCluster: ?*_HCLUSTER,
     affinityRuleName: ?[*:0]const u16,
     hHostNode: ?*_HNODE,
@@ -1455,88 +1455,88 @@ pub const NodeStatusDrainFailed = CLUSTER_NODE_STATUS.DrainFailed;
 pub const NodeStatusAvoidPlacement = CLUSTER_NODE_STATUS.AvoidPlacement;
 pub const NodeStatusMax = CLUSTER_NODE_STATUS.Max;
 
-pub const PCLUSAPI_OPEN_CLUSTER_NODE = fn(
+pub const PCLUSAPI_OPEN_CLUSTER_NODE = fn (
     hCluster: ?*_HCLUSTER,
     lpszNodeName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HNODE;
 
-pub const PCLUSAPI_OPEN_CLUSTER_NODE_EX = fn(
+pub const PCLUSAPI_OPEN_CLUSTER_NODE_EX = fn (
     hCluster: ?*_HCLUSTER,
     lpszNodeName: ?[*:0]const u16,
     dwDesiredAccess: u32,
     lpdwGrantedAccess: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HNODE;
 
-pub const PCLUSAPI_OPEN_NODE_BY_ID = fn(
+pub const PCLUSAPI_OPEN_NODE_BY_ID = fn (
     hCluster: ?*_HCLUSTER,
     nodeId: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HNODE;
 
-pub const PCLUSAPI_CLOSE_CLUSTER_NODE = fn(
+pub const PCLUSAPI_CLOSE_CLUSTER_NODE = fn (
     hNode: ?*_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PCLUSAPI_GET_CLUSTER_NODE_STATE = fn(
+pub const PCLUSAPI_GET_CLUSTER_NODE_STATE = fn (
     hNode: ?*_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) CLUSTER_NODE_STATE;
 
-pub const PCLUSAPI_GET_CLUSTER_NODE_ID = fn(
+pub const PCLUSAPI_GET_CLUSTER_NODE_ID = fn (
     hNode: ?*_HNODE,
     lpszNodeId: [*:0]u16,
     lpcchName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_GET_CLUSTER_FROM_NODE = fn(
+pub const PCLUSAPI_GET_CLUSTER_FROM_NODE = fn (
     hNode: ?*_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
 
-pub const PCLUSAPI_PAUSE_CLUSTER_NODE = fn(
+pub const PCLUSAPI_PAUSE_CLUSTER_NODE = fn (
     hNode: ?*_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_RESUME_CLUSTER_NODE = fn(
+pub const PCLUSAPI_RESUME_CLUSTER_NODE = fn (
     hNode: ?*_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_EVICT_CLUSTER_NODE = fn(
+pub const PCLUSAPI_EVICT_CLUSTER_NODE = fn (
     hNode: ?*_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_NODE_OPEN_ENUM = fn(
+pub const PCLUSAPI_CLUSTER_NODE_OPEN_ENUM = fn (
     hNode: ?*_HNODE,
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HNODEENUM;
 
-pub const PCLUSAPI_CLUSTER_NODE_OPEN_ENUM_EX = fn(
+pub const PCLUSAPI_CLUSTER_NODE_OPEN_ENUM_EX = fn (
     hNode: ?*_HNODE,
     dwType: u32,
     pOptions: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HNODEENUMEX;
 
-pub const PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT_EX = fn(
+pub const PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT_EX = fn (
     hNodeEnum: ?*_HNODEENUMEX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_NODE_ENUM_EX = fn(
+pub const PCLUSAPI_CLUSTER_NODE_ENUM_EX = fn (
     hNodeEnum: ?*_HNODEENUMEX,
     dwIndex: u32,
     pItem: ?*CLUSTER_ENUM_ITEM,
     cbItem: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM_EX = fn(
+pub const PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM_EX = fn (
     hNodeEnum: ?*_HNODEENUMEX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT = fn(
+pub const PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT = fn (
     hNodeEnum: ?*_HNODEENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM = fn(
+pub const PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM = fn (
     hNodeEnum: ?*_HNODEENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_NODE_ENUM = fn(
+pub const PCLUSAPI_CLUSTER_NODE_ENUM = fn (
     hNodeEnum: ?*_HNODEENUM,
     dwIndex: u32,
     lpdwType: ?*u32,
@@ -1544,13 +1544,13 @@ pub const PCLUSAPI_CLUSTER_NODE_ENUM = fn(
     lpcchName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_EVICT_CLUSTER_NODE_EX = fn(
+pub const PCLUSAPI_EVICT_CLUSTER_NODE_EX = fn (
     hNode: ?*_HNODE,
     dwTimeOut: u32,
     phrCleanupStatus: ?*HRESULT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_GET_CLUSTER_RESOURCE_TYPE_KEY = fn(
+pub const PCLUSAPI_GET_CLUSTER_RESOURCE_TYPE_KEY = fn (
     hCluster: ?*_HCLUSTER,
     lpszTypeName: ?[*:0]const u16,
     samDesired: u32,
@@ -1632,24 +1632,24 @@ pub const CLUSTER_RESOURCE_ENUM_ITEM = extern struct {
     pRoProperties: ?*anyopaque,
 };
 
-pub const PCLUSAPI_CREATE_CLUSTER_GROUP = fn(
+pub const PCLUSAPI_CREATE_CLUSTER_GROUP = fn (
     hCluster: ?*_HCLUSTER,
     lpszGroupName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP;
 
-pub const PCLUSAPI_OPEN_CLUSTER_GROUP = fn(
+pub const PCLUSAPI_OPEN_CLUSTER_GROUP = fn (
     hCluster: ?*_HCLUSTER,
     lpszGroupName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP;
 
-pub const PCLUSAPI_OPEN_CLUSTER_GROUP_EX = fn(
+pub const PCLUSAPI_OPEN_CLUSTER_GROUP_EX = fn (
     hCluster: ?*_HCLUSTER,
     lpszGroupName: ?[*:0]const u16,
     dwDesiredAccess: u32,
     lpdwGrantedAccess: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP;
 
-pub const PCLUSAPI_PAUSE_CLUSTER_NODE_EX = fn(
+pub const PCLUSAPI_PAUSE_CLUSTER_NODE_EX = fn (
     hNode: ?*_HNODE,
     bDrainNode: BOOL,
     dwPauseFlags: u32,
@@ -1667,19 +1667,19 @@ pub const FailbackGroupsImmediately = CLUSTER_NODE_RESUME_FAILBACK_TYPE.Failback
 pub const FailbackGroupsPerPolicy = CLUSTER_NODE_RESUME_FAILBACK_TYPE.FailbackGroupsPerPolicy;
 pub const ClusterNodeResumeFailbackTypeCount = CLUSTER_NODE_RESUME_FAILBACK_TYPE.ClusterNodeResumeFailbackTypeCount;
 
-pub const PCLUSAPI_RESUME_CLUSTER_NODE_EX = fn(
+pub const PCLUSAPI_RESUME_CLUSTER_NODE_EX = fn (
     hNode: ?*_HNODE,
     eResumeFailbackType: CLUSTER_NODE_RESUME_FAILBACK_TYPE,
     dwResumeFlagsReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CREATE_CLUSTER_GROUPEX = fn(
+pub const PCLUSAPI_CREATE_CLUSTER_GROUPEX = fn (
     hCluster: ?*_HCLUSTER,
     lpszGroupName: ?[*:0]const u16,
     pGroupInfo: ?*CLUSTER_CREATE_GROUP_INFO,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP;
 
-pub const PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM_EX = fn(
+pub const PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM_EX = fn (
     hCluster: ?*_HCLUSTER,
     // TODO: what to do with BytesParamIndex 2?
     lpszProperties: ?[*:0]const u16,
@@ -1690,22 +1690,22 @@ pub const PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM_EX = fn(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPENUMEX;
 
-pub const PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT_EX = fn(
+pub const PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT_EX = fn (
     hGroupEnumEx: ?*_HGROUPENUMEX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_GROUP_ENUM_EX = fn(
+pub const PCLUSAPI_CLUSTER_GROUP_ENUM_EX = fn (
     hGroupEnumEx: ?*_HGROUPENUMEX,
     dwIndex: u32,
     pItem: ?*CLUSTER_GROUP_ENUM_ITEM,
     cbItem: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM_EX = fn(
+pub const PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM_EX = fn (
     hGroupEnumEx: ?*_HGROUPENUMEX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM_EX = fn(
+pub const PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM_EX = fn (
     hCluster: ?*_HCLUSTER,
     // TODO: what to do with BytesParamIndex 2?
     lpszProperties: ?[*:0]const u16,
@@ -1716,83 +1716,83 @@ pub const PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM_EX = fn(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HRESENUMEX;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT_EX = fn(
+pub const PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT_EX = fn (
     hResourceEnumEx: ?*_HRESENUMEX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_ENUM_EX = fn(
+pub const PCLUSAPI_CLUSTER_RESOURCE_ENUM_EX = fn (
     hResourceEnumEx: ?*_HRESENUMEX,
     dwIndex: u32,
     pItem: ?*CLUSTER_RESOURCE_ENUM_ITEM,
     cbItem: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM_EX = fn(
+pub const PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM_EX = fn (
     hResourceEnumEx: ?*_HRESENUMEX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_RESTART_CLUSTER_RESOURCE = fn(
+pub const PCLUSAPI_RESTART_CLUSTER_RESOURCE = fn (
     hResource: ?*_HRESOURCE,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLOSE_CLUSTER_GROUP = fn(
+pub const PCLUSAPI_CLOSE_CLUSTER_GROUP = fn (
     hGroup: ?*_HGROUP,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PCLUSAPI_GET_CLUSTER_FROM_GROUP = fn(
+pub const PCLUSAPI_GET_CLUSTER_FROM_GROUP = fn (
     hGroup: ?*_HGROUP,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
 
-pub const PCLUSAPI_GET_CLUSTER_GROUP_STATE = fn(
+pub const PCLUSAPI_GET_CLUSTER_GROUP_STATE = fn (
     hGroup: ?*_HGROUP,
     lpszNodeName: ?[*:0]u16,
     lpcchNodeName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) CLUSTER_GROUP_STATE;
 
-pub const PCLUSAPI_SET_CLUSTER_GROUP_NAME = fn(
+pub const PCLUSAPI_SET_CLUSTER_GROUP_NAME = fn (
     hGroup: ?*_HGROUP,
     lpszGroupName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_SET_CLUSTER_GROUP_NODE_LIST = fn(
+pub const PCLUSAPI_SET_CLUSTER_GROUP_NODE_LIST = fn (
     hGroup: ?*_HGROUP,
     NodeCount: u32,
     NodeList: ?[*]?*_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_ONLINE_CLUSTER_GROUP = fn(
+pub const PCLUSAPI_ONLINE_CLUSTER_GROUP = fn (
     hGroup: ?*_HGROUP,
     hDestinationNode: ?*_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_MOVE_CLUSTER_GROUP = fn(
+pub const PCLUSAPI_MOVE_CLUSTER_GROUP = fn (
     hGroup: ?*_HGROUP,
     hDestinationNode: ?*_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_OFFLINE_CLUSTER_GROUP = fn(
+pub const PCLUSAPI_OFFLINE_CLUSTER_GROUP = fn (
     hGroup: ?*_HGROUP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_DELETE_CLUSTER_GROUP = fn(
+pub const PCLUSAPI_DELETE_CLUSTER_GROUP = fn (
     hGroup: ?*_HGROUP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_DESTROY_CLUSTER_GROUP = fn(
+pub const PCLUSAPI_DESTROY_CLUSTER_GROUP = fn (
     hGroup: ?*_HGROUP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM = fn(
+pub const PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM = fn (
     hGroup: ?*_HGROUP,
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPENUM;
 
-pub const PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT = fn(
+pub const PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT = fn (
     hGroupEnum: ?*_HGROUPENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_GROUP_ENUM = fn(
+pub const PCLUSAPI_CLUSTER_GROUP_ENUM = fn (
     hGroupEnum: ?*_HGROUPENUM,
     dwIndex: u32,
     lpdwType: ?*u32,
@@ -1800,7 +1800,7 @@ pub const PCLUSAPI_CLUSTER_GROUP_ENUM = fn(
     lpcchName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM = fn(
+pub const PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM = fn (
     hGroupEnum: ?*_HGROUPENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -1865,38 +1865,38 @@ pub const ClusterSharedVolumePrepareForHWSnapshot = CLUSTER_SHARED_VOLUME_SNAPSH
 pub const ClusterSharedVolumeHWSnapshotCompleted = CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE.HWSnapshotCompleted;
 pub const ClusterSharedVolumePrepareForFreeze = CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE.PrepareForFreeze;
 
-pub const PCLUSAPI_CREATE_CLUSTER_RESOURCE = fn(
+pub const PCLUSAPI_CREATE_CLUSTER_RESOURCE = fn (
     hGroup: ?*_HGROUP,
     lpszResourceName: ?[*:0]const u16,
     lpszResourceType: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
 
-pub const PCLUSAPI_OPEN_CLUSTER_RESOURCE = fn(
+pub const PCLUSAPI_OPEN_CLUSTER_RESOURCE = fn (
     hCluster: ?*_HCLUSTER,
     lpszResourceName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
 
-pub const PCLUSAPI_OPEN_CLUSTER_RESOURCE_EX = fn(
+pub const PCLUSAPI_OPEN_CLUSTER_RESOURCE_EX = fn (
     hCluster: ?*_HCLUSTER,
     lpszResourceName: ?[*:0]const u16,
     dwDesiredAccess: u32,
     lpdwGrantedAccess: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
 
-pub const PCLUSAPI_CLOSE_CLUSTER_RESOURCE = fn(
+pub const PCLUSAPI_CLOSE_CLUSTER_RESOURCE = fn (
     hResource: ?*_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PCLUSAPI_GET_CLUSTER_FROM_RESOURCE = fn(
+pub const PCLUSAPI_GET_CLUSTER_FROM_RESOURCE = fn (
     hResource: ?*_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
 
-pub const PCLUSAPI_DELETE_CLUSTER_RESOURCE = fn(
+pub const PCLUSAPI_DELETE_CLUSTER_RESOURCE = fn (
     hResource: ?*_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_GET_CLUSTER_RESOURCE_STATE = fn(
+pub const PCLUSAPI_GET_CLUSTER_RESOURCE_STATE = fn (
     hResource: ?*_HRESOURCE,
     lpszNodeName: ?[*:0]u16,
     lpcchNodeName: ?*u32,
@@ -1904,90 +1904,90 @@ pub const PCLUSAPI_GET_CLUSTER_RESOURCE_STATE = fn(
     lpcchGroupName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) CLUSTER_RESOURCE_STATE;
 
-pub const PCLUSAPI_SET_CLUSTER_RESOURCE_NAME = fn(
+pub const PCLUSAPI_SET_CLUSTER_RESOURCE_NAME = fn (
     hResource: ?*_HRESOURCE,
     lpszResourceName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_FAIL_CLUSTER_RESOURCE = fn(
+pub const PCLUSAPI_FAIL_CLUSTER_RESOURCE = fn (
     hResource: ?*_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_ONLINE_CLUSTER_RESOURCE = fn(
+pub const PCLUSAPI_ONLINE_CLUSTER_RESOURCE = fn (
     hResource: ?*_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_OFFLINE_CLUSTER_RESOURCE = fn(
+pub const PCLUSAPI_OFFLINE_CLUSTER_RESOURCE = fn (
     hResource: ?*_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP = fn(
+pub const PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP = fn (
     hResource: ?*_HRESOURCE,
     hGroup: ?*_HGROUP,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP_EX = fn(
+pub const PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP_EX = fn (
     hResource: ?*_HRESOURCE,
     hGroup: ?*_HGROUP,
     Flags: u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_ADD_CLUSTER_RESOURCE_NODE = fn(
+pub const PCLUSAPI_ADD_CLUSTER_RESOURCE_NODE = fn (
     hResource: ?*_HRESOURCE,
     hNode: ?*_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_REMOVE_CLUSTER_RESOURCE_NODE = fn(
+pub const PCLUSAPI_REMOVE_CLUSTER_RESOURCE_NODE = fn (
     hResource: ?*_HRESOURCE,
     hNode: ?*_HNODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_ADD_CLUSTER_RESOURCE_DEPENDENCY = fn(
+pub const PCLUSAPI_ADD_CLUSTER_RESOURCE_DEPENDENCY = fn (
     hResource: ?*_HRESOURCE,
     hDependsOn: ?*_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_REMOVE_CLUSTER_RESOURCE_DEPENDENCY = fn(
+pub const PCLUSAPI_REMOVE_CLUSTER_RESOURCE_DEPENDENCY = fn (
     hResource: ?*_HRESOURCE,
     hDependsOn: ?*_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_SET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION = fn(
+pub const PCLUSAPI_SET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION = fn (
     hResource: ?*_HRESOURCE,
     lpszDependencyExpression: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_GET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION = fn(
+pub const PCLUSAPI_GET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION = fn (
     hResource: ?*_HRESOURCE,
     lpszDependencyExpression: ?[*:0]u16,
     lpcchDependencyExpression: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_ADD_RESOURCE_TO_CLUSTER_SHARED_VOLUMES = fn(
+pub const PCLUSAPI_ADD_RESOURCE_TO_CLUSTER_SHARED_VOLUMES = fn (
     hResource: ?*_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_REMOVE_RESOURCE_FROM_CLUSTER_SHARED_VOLUMES = fn(
+pub const PCLUSAPI_REMOVE_RESOURCE_FROM_CLUSTER_SHARED_VOLUMES = fn (
     hResource: ?*_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_IS_FILE_ON_CLUSTER_SHARED_VOLUME = fn(
+pub const PCLUSAPI_IS_FILE_ON_CLUSTER_SHARED_VOLUME = fn (
     lpszPathName: ?[*:0]const u16,
     pbFileIsOnSharedVolume: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_SHARED_VOLUME_SET_SNAPSHOT_STATE = fn(
+pub const PCLUSAPI_SHARED_VOLUME_SET_SNAPSHOT_STATE = fn (
     guidSnapshotSet: Guid,
     lpszVolumeName: ?[*:0]const u16,
     state: CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CAN_RESOURCE_BE_DEPENDENT = fn(
+pub const PCLUSAPI_CAN_RESOURCE_BE_DEPENDENT = fn (
     hResource: ?*_HRESOURCE,
     hResourceDependent: ?*_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_CONTROL = fn(
+pub const PCLUSAPI_CLUSTER_RESOURCE_CONTROL = fn (
     hResource: ?*_HRESOURCE,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
@@ -2000,7 +2000,7 @@ pub const PCLUSAPI_CLUSTER_RESOURCE_CONTROL = fn(
     lpBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_CONTROL = fn(
+pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_CONTROL = fn (
     hCluster: ?*_HCLUSTER,
     lpszResourceTypeName: ?[*:0]const u16,
     hHostNode: ?*_HNODE,
@@ -2014,7 +2014,7 @@ pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_CONTROL = fn(
     lpBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_GROUP_CONTROL = fn(
+pub const PCLUSAPI_CLUSTER_GROUP_CONTROL = fn (
     hGroup: ?*_HGROUP,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
@@ -2027,7 +2027,7 @@ pub const PCLUSAPI_CLUSTER_GROUP_CONTROL = fn(
     lpBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_NODE_CONTROL = fn(
+pub const PCLUSAPI_CLUSTER_NODE_CONTROL = fn (
     hNode: ?*_HNODE,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
@@ -2040,7 +2040,7 @@ pub const PCLUSAPI_CLUSTER_NODE_CONTROL = fn(
     lpBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_GET_CLUSTER_RESOURCE_NETWORK_NAME = fn(
+pub const PCLUSAPI_GET_CLUSTER_RESOURCE_NETWORK_NAME = fn (
     hResource: ?*_HRESOURCE,
     lpBuffer: [*:0]u16,
     nSize: ?*u32,
@@ -3844,16 +3844,16 @@ pub const CLUSTER_RESOURCE_TYPE_ENUM_NODES = CLUSTER_RESOURCE_TYPE_ENUM.NODES;
 pub const CLUSTER_RESOURCE_TYPE_ENUM_RESOURCES = CLUSTER_RESOURCE_TYPE_ENUM.RESOURCES;
 pub const CLUSTER_RESOURCE_TYPE_ENUM_ALL = CLUSTER_RESOURCE_TYPE_ENUM.ALL;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM = fn(
+pub const PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM = fn (
     hResource: ?*_HRESOURCE,
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HRESENUM;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT = fn(
+pub const PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT = fn (
     hResEnum: ?*_HRESENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_ENUM = fn(
+pub const PCLUSAPI_CLUSTER_RESOURCE_ENUM = fn (
     hResEnum: ?*_HRESENUM,
     dwIndex: u32,
     lpdwType: ?*u32,
@@ -3861,11 +3861,11 @@ pub const PCLUSAPI_CLUSTER_RESOURCE_ENUM = fn(
     lpcchName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM = fn(
+pub const PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM = fn (
     hResEnum: ?*_HRESENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CREATE_CLUSTER_RESOURCE_TYPE = fn(
+pub const PCLUSAPI_CREATE_CLUSTER_RESOURCE_TYPE = fn (
     hCluster: ?*_HCLUSTER,
     lpszResourceTypeName: ?[*:0]const u16,
     lpszDisplayName: ?[*:0]const u16,
@@ -3874,22 +3874,22 @@ pub const PCLUSAPI_CREATE_CLUSTER_RESOURCE_TYPE = fn(
     dwIsAlivePollInterval: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_DELETE_CLUSTER_RESOURCE_TYPE = fn(
+pub const PCLUSAPI_DELETE_CLUSTER_RESOURCE_TYPE = fn (
     hCluster: ?*_HCLUSTER,
     lpszResourceTypeName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_OPEN_ENUM = fn(
+pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_OPEN_ENUM = fn (
     hCluster: ?*_HCLUSTER,
     lpszResourceTypeName: ?[*:0]const u16,
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HRESTYPEENUM;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_GET_ENUM_COUNT = fn(
+pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_GET_ENUM_COUNT = fn (
     hResTypeEnum: ?*_HRESTYPEENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_ENUM = fn(
+pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_ENUM = fn (
     hResTypeEnum: ?*_HRESTYPEENUM,
     dwIndex: u32,
     lpdwType: ?*u32,
@@ -3897,7 +3897,7 @@ pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_ENUM = fn(
     lpcchName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_CLOSE_ENUM = fn(
+pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_CLOSE_ENUM = fn (
     hResTypeEnum: ?*_HRESTYPEENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3932,36 +3932,36 @@ pub const ClusterNetworkRoleInternalUse = CLUSTER_NETWORK_ROLE.InternalUse;
 pub const ClusterNetworkRoleClientAccess = CLUSTER_NETWORK_ROLE.ClientAccess;
 pub const ClusterNetworkRoleInternalAndClient = CLUSTER_NETWORK_ROLE.InternalAndClient;
 
-pub const PCLUSAPI_OPEN_CLUSTER_NETWORK = fn(
+pub const PCLUSAPI_OPEN_CLUSTER_NETWORK = fn (
     hCluster: ?*_HCLUSTER,
     lpszNetworkName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORK;
 
-pub const PCLUSAPI_OPEN_CLUSTER_NETWORK_EX = fn(
+pub const PCLUSAPI_OPEN_CLUSTER_NETWORK_EX = fn (
     hCluster: ?*_HCLUSTER,
     lpszNetworkName: ?[*:0]const u16,
     dwDesiredAccess: u32,
     lpdwGrantedAccess: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORK;
 
-pub const PCLUSAPI_CLOSE_CLUSTER_NETWORK = fn(
+pub const PCLUSAPI_CLOSE_CLUSTER_NETWORK = fn (
     hNetwork: ?*_HNETWORK,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PCLUSAPI_GET_CLUSTER_FROM_NETWORK = fn(
+pub const PCLUSAPI_GET_CLUSTER_FROM_NETWORK = fn (
     hNetwork: ?*_HNETWORK,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
 
-pub const PCLUSAPI_CLUSTER_NETWORK_OPEN_ENUM = fn(
+pub const PCLUSAPI_CLUSTER_NETWORK_OPEN_ENUM = fn (
     hNetwork: ?*_HNETWORK,
     dwType: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORKENUM;
 
-pub const PCLUSAPI_CLUSTER_NETWORK_GET_ENUM_COUNT = fn(
+pub const PCLUSAPI_CLUSTER_NETWORK_GET_ENUM_COUNT = fn (
     hNetworkEnum: ?*_HNETWORKENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_NETWORK_ENUM = fn(
+pub const PCLUSAPI_CLUSTER_NETWORK_ENUM = fn (
     hNetworkEnum: ?*_HNETWORKENUM,
     dwIndex: u32,
     lpdwType: ?*u32,
@@ -3969,26 +3969,26 @@ pub const PCLUSAPI_CLUSTER_NETWORK_ENUM = fn(
     lpcchName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_NETWORK_CLOSE_ENUM = fn(
+pub const PCLUSAPI_CLUSTER_NETWORK_CLOSE_ENUM = fn (
     hNetworkEnum: ?*_HNETWORKENUM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_GET_CLUSTER_NETWORK_STATE = fn(
+pub const PCLUSAPI_GET_CLUSTER_NETWORK_STATE = fn (
     hNetwork: ?*_HNETWORK,
 ) callconv(@import("std").os.windows.WINAPI) CLUSTER_NETWORK_STATE;
 
-pub const PCLUSAPI_SET_CLUSTER_NETWORK_NAME = fn(
+pub const PCLUSAPI_SET_CLUSTER_NETWORK_NAME = fn (
     hNetwork: ?*_HNETWORK,
     lpszName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_GET_CLUSTER_NETWORK_ID = fn(
+pub const PCLUSAPI_GET_CLUSTER_NETWORK_ID = fn (
     hNetwork: ?*_HNETWORK,
     lpszNetworkId: [*:0]u16,
     lpcchName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_NETWORK_CONTROL = fn(
+pub const PCLUSAPI_CLUSTER_NETWORK_CONTROL = fn (
     hNetwork: ?*_HNETWORK,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
@@ -4014,19 +4014,19 @@ pub const ClusterNetInterfaceFailed = CLUSTER_NETINTERFACE_STATE.Failed;
 pub const ClusterNetInterfaceUnreachable = CLUSTER_NETINTERFACE_STATE.Unreachable;
 pub const ClusterNetInterfaceUp = CLUSTER_NETINTERFACE_STATE.Up;
 
-pub const PCLUSAPI_OPEN_CLUSTER_NET_INTERFACE = fn(
+pub const PCLUSAPI_OPEN_CLUSTER_NET_INTERFACE = fn (
     hCluster: ?*_HCLUSTER,
     lpszInterfaceName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HNETINTERFACE;
 
-pub const PCLUSAPI_OPEN_CLUSTER_NETINTERFACE_EX = fn(
+pub const PCLUSAPI_OPEN_CLUSTER_NETINTERFACE_EX = fn (
     hCluster: ?*_HCLUSTER,
     lpszNetInterfaceName: ?[*:0]const u16,
     dwDesiredAccess: u32,
     lpdwGrantedAccess: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HNETINTERFACE;
 
-pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE = fn(
+pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE = fn (
     hCluster: ?*_HCLUSTER,
     lpszNodeName: ?[*:0]const u16,
     lpszNetworkName: ?[*:0]const u16,
@@ -4034,19 +4034,19 @@ pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE = fn(
     lpcchInterfaceName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLOSE_CLUSTER_NET_INTERFACE = fn(
+pub const PCLUSAPI_CLOSE_CLUSTER_NET_INTERFACE = fn (
     hNetInterface: ?*_HNETINTERFACE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PCLUSAPI_GET_CLUSTER_FROM_NET_INTERFACE = fn(
+pub const PCLUSAPI_GET_CLUSTER_FROM_NET_INTERFACE = fn (
     hNetInterface: ?*_HNETINTERFACE,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
 
-pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE_STATE = fn(
+pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE_STATE = fn (
     hNetInterface: ?*_HNETINTERFACE,
 ) callconv(@import("std").os.windows.WINAPI) CLUSTER_NETINTERFACE_STATE;
 
-pub const PCLUSAPI_CLUSTER_NET_INTERFACE_CONTROL = fn(
+pub const PCLUSAPI_CLUSTER_NET_INTERFACE_CONTROL = fn (
     hNetInterface: ?*_HNETINTERFACE,
     hHostNode: ?*_HNODE,
     dwControlCode: u32,
@@ -4059,37 +4059,37 @@ pub const PCLUSAPI_CLUSTER_NET_INTERFACE_CONTROL = fn(
     lpBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_GET_CLUSTER_KEY = fn(
+pub const PCLUSAPI_GET_CLUSTER_KEY = fn (
     hCluster: ?*_HCLUSTER,
     samDesired: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HKEY;
 
-pub const PCLUSAPI_GET_CLUSTER_GROUP_KEY = fn(
+pub const PCLUSAPI_GET_CLUSTER_GROUP_KEY = fn (
     hGroup: ?*_HGROUP,
     samDesired: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HKEY;
 
-pub const PCLUSAPI_GET_CLUSTER_RESOURCE_KEY = fn(
+pub const PCLUSAPI_GET_CLUSTER_RESOURCE_KEY = fn (
     hResource: ?*_HRESOURCE,
     samDesired: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HKEY;
 
-pub const PCLUSAPI_GET_CLUSTER_NODE_KEY = fn(
+pub const PCLUSAPI_GET_CLUSTER_NODE_KEY = fn (
     hNode: ?*_HNODE,
     samDesired: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HKEY;
 
-pub const PCLUSAPI_GET_CLUSTER_NETWORK_KEY = fn(
+pub const PCLUSAPI_GET_CLUSTER_NETWORK_KEY = fn (
     hNetwork: ?*_HNETWORK,
     samDesired: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HKEY;
 
-pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE_KEY = fn(
+pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE_KEY = fn (
     hNetInterface: ?*_HNETINTERFACE,
     samDesired: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HKEY;
 
-pub const PCLUSAPI_CLUSTER_REG_CREATE_KEY = fn(
+pub const PCLUSAPI_CLUSTER_REG_CREATE_KEY = fn (
     hKey: ?HKEY,
     lpszSubKey: ?[*:0]const u16,
     dwOptions: u32,
@@ -4099,23 +4099,23 @@ pub const PCLUSAPI_CLUSTER_REG_CREATE_KEY = fn(
     lpdwDisposition: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSAPI_CLUSTER_REG_OPEN_KEY = fn(
+pub const PCLUSAPI_CLUSTER_REG_OPEN_KEY = fn (
     hKey: ?HKEY,
     lpszSubKey: ?[*:0]const u16,
     samDesired: u32,
     phkResult: ?*?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSAPI_CLUSTER_REG_DELETE_KEY = fn(
+pub const PCLUSAPI_CLUSTER_REG_DELETE_KEY = fn (
     hKey: ?HKEY,
     lpszSubKey: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSAPI_CLUSTER_REG_CLOSE_KEY = fn(
+pub const PCLUSAPI_CLUSTER_REG_CLOSE_KEY = fn (
     hKey: ?HKEY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSAPI_CLUSTER_REG_ENUM_KEY = fn(
+pub const PCLUSAPI_CLUSTER_REG_ENUM_KEY = fn (
     hKey: ?HKEY,
     dwIndex: u32,
     lpszName: [*:0]u16,
@@ -4123,7 +4123,7 @@ pub const PCLUSAPI_CLUSTER_REG_ENUM_KEY = fn(
     lpftLastWriteTime: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSAPI_CLUSTER_REG_SET_VALUE = fn(
+pub const PCLUSAPI_CLUSTER_REG_SET_VALUE = fn (
     hKey: ?HKEY,
     lpszValueName: ?[*:0]const u16,
     dwType: u32,
@@ -4131,12 +4131,12 @@ pub const PCLUSAPI_CLUSTER_REG_SET_VALUE = fn(
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_REG_DELETE_VALUE = fn(
+pub const PCLUSAPI_CLUSTER_REG_DELETE_VALUE = fn (
     hKey: ?HKEY,
     lpszValueName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_REG_QUERY_VALUE = fn(
+pub const PCLUSAPI_CLUSTER_REG_QUERY_VALUE = fn (
     hKey: ?HKEY,
     lpszValueName: ?[*:0]const u16,
     lpdwValueType: ?*u32,
@@ -4145,7 +4145,7 @@ pub const PCLUSAPI_CLUSTER_REG_QUERY_VALUE = fn(
     lpcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSAPI_CLUSTER_REG_ENUM_VALUE = fn(
+pub const PCLUSAPI_CLUSTER_REG_ENUM_VALUE = fn (
     hKey: ?HKEY,
     dwIndex: u32,
     lpszValueName: [*:0]u16,
@@ -4156,7 +4156,7 @@ pub const PCLUSAPI_CLUSTER_REG_ENUM_VALUE = fn(
     lpcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUSTER_REG_QUERY_INFO_KEY = fn(
+pub const PCLUSAPI_CLUSTER_REG_QUERY_INFO_KEY = fn (
     hKey: ?HKEY,
     lpcSubKeys: ?*u32,
     lpcbMaxSubKeyLen: ?*u32,
@@ -4167,7 +4167,7 @@ pub const PCLUSAPI_CLUSTER_REG_QUERY_INFO_KEY = fn(
     lpftLastWriteTime: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSAPI_CLUSTER_REG_GET_KEY_SECURITY = fn(
+pub const PCLUSAPI_CLUSTER_REG_GET_KEY_SECURITY = fn (
     hKey: ?HKEY,
     RequestedInformation: u32,
     // TODO: what to do with BytesParamIndex 3?
@@ -4175,23 +4175,23 @@ pub const PCLUSAPI_CLUSTER_REG_GET_KEY_SECURITY = fn(
     lpcbSecurityDescriptor: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSAPI_CLUSTER_REG_SET_KEY_SECURITY = fn(
+pub const PCLUSAPI_CLUSTER_REG_SET_KEY_SECURITY = fn (
     hKey: ?HKEY,
     SecurityInformation: u32,
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSAPI_CLUSTER_REG_SYNC_DATABASE = fn(
+pub const PCLUSAPI_CLUSTER_REG_SYNC_DATABASE = fn (
     hCluster: ?*_HCLUSTER,
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSAPI_CLUSTER_REG_CREATE_BATCH = fn(
+pub const PCLUSAPI_CLUSTER_REG_CREATE_BATCH = fn (
     hKey: ?HKEY,
     pHREGBATCH: ?*?*_HREGBATCH,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSTER_REG_BATCH_ADD_COMMAND = fn(
+pub const PCLUSTER_REG_BATCH_ADD_COMMAND = fn (
     hRegBatch: ?*_HREGBATCH,
     dwCommand: CLUSTER_REG_COMMAND,
     wzName: ?PWSTR,
@@ -4201,67 +4201,67 @@ pub const PCLUSTER_REG_BATCH_ADD_COMMAND = fn(
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSTER_REG_CLOSE_BATCH = fn(
+pub const PCLUSTER_REG_CLOSE_BATCH = fn (
     hRegBatch: ?*_HREGBATCH,
     bCommit: BOOL,
     failedCommandNumber: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSTER_REG_BATCH_READ_COMMAND = fn(
+pub const PCLUSTER_REG_BATCH_READ_COMMAND = fn (
     hBatchNotification: ?*_HREGBATCHNOTIFICATION,
     pBatchCommand: ?*CLUSTER_BATCH_COMMAND,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSTER_REG_BATCH_CLOSE_NOTIFICATION = fn(
+pub const PCLUSTER_REG_BATCH_CLOSE_NOTIFICATION = fn (
     hBatchNotification: ?*_HREGBATCHNOTIFICATION,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSTER_REG_CREATE_BATCH_NOTIFY_PORT = fn(
+pub const PCLUSTER_REG_CREATE_BATCH_NOTIFY_PORT = fn (
     hKey: ?HKEY,
     phBatchNotifyPort: ?*?*_HREGBATCHPORT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSTER_REG_CLOSE_BATCH_NOTIFY_PORT = fn(
+pub const PCLUSTER_REG_CLOSE_BATCH_NOTIFY_PORT = fn (
     hBatchNotifyPort: ?*_HREGBATCHPORT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSTER_REG_GET_BATCH_NOTIFICATION = fn(
+pub const PCLUSTER_REG_GET_BATCH_NOTIFICATION = fn (
     hBatchNotify: ?*_HREGBATCHPORT,
     phBatchNotification: ?*?*_HREGBATCHNOTIFICATION,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSTER_REG_CREATE_READ_BATCH = fn(
+pub const PCLUSTER_REG_CREATE_READ_BATCH = fn (
     hKey: ?HKEY,
     phRegReadBatch: ?*?*_HREGREADBATCH,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSTER_REG_READ_BATCH_ADD_COMMAND = fn(
+pub const PCLUSTER_REG_READ_BATCH_ADD_COMMAND = fn (
     hRegReadBatch: ?*_HREGREADBATCH,
     wzSubkeyName: ?[*:0]const u16,
     wzValueName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSTER_REG_CLOSE_READ_BATCH = fn(
+pub const PCLUSTER_REG_CLOSE_READ_BATCH = fn (
     hRegReadBatch: ?*_HREGREADBATCH,
     phRegReadBatchReply: ?*?*_HREGREADBATCHREPLY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSTER_REG_CLOSE_READ_BATCH_EX = fn(
+pub const PCLUSTER_REG_CLOSE_READ_BATCH_EX = fn (
     hRegReadBatch: ?*_HREGREADBATCH,
     flags: u32,
     phRegReadBatchReply: ?*?*_HREGREADBATCHREPLY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSTER_REG_READ_BATCH_REPLY_NEXT_COMMAND = fn(
+pub const PCLUSTER_REG_READ_BATCH_REPLY_NEXT_COMMAND = fn (
     hRegReadBatchReply: ?*_HREGREADBATCHREPLY,
     pBatchCommand: ?*CLUSTER_READ_BATCH_COMMAND,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSTER_REG_CLOSE_READ_BATCH_REPLY = fn(
+pub const PCLUSTER_REG_CLOSE_READ_BATCH_REPLY = fn (
     hRegReadBatchReply: ?*_HREGREADBATCHREPLY,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PCLUSTER_SET_ACCOUNT_ACCESS = fn(
+pub const PCLUSTER_SET_ACCOUNT_ACCESS = fn (
     hCluster: ?*_HCLUSTER,
     szAccountSID: ?[*:0]const u16,
     dwAccess: u32,
@@ -4347,7 +4347,7 @@ pub const ClusterSetupPhaseInformational = CLUSTER_SETUP_PHASE_SEVERITY.Informat
 pub const ClusterSetupPhaseWarning = CLUSTER_SETUP_PHASE_SEVERITY.Warning;
 pub const ClusterSetupPhaseFatal = CLUSTER_SETUP_PHASE_SEVERITY.Fatal;
 
-pub const PCLUSTER_SETUP_PROGRESS_CALLBACK = fn(
+pub const PCLUSTER_SETUP_PROGRESS_CALLBACK = fn (
     pvCallbackArg: ?*anyopaque,
     eSetupPhase: CLUSTER_SETUP_PHASE,
     ePhaseType: CLUSTER_SETUP_PHASE_TYPE,
@@ -4357,37 +4357,37 @@ pub const PCLUSTER_SETUP_PROGRESS_CALLBACK = fn(
     dwStatus: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PCLUSAPI_CREATE_CLUSTER = fn(
+pub const PCLUSAPI_CREATE_CLUSTER = fn (
     pConfig: ?*CREATE_CLUSTER_CONFIG,
     pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
     pvCallbackArg: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
 
-pub const PCLUSAPI_CREATE_CLUSTER_CNOLESS = fn(
+pub const PCLUSAPI_CREATE_CLUSTER_CNOLESS = fn (
     pConfig: ?*CREATE_CLUSTER_CONFIG,
     pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
     pvCallbackArg: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
 
-pub const PCLUSAPI_CREATE_CLUSTER_NAME_ACCOUNT = fn(
+pub const PCLUSAPI_CREATE_CLUSTER_NAME_ACCOUNT = fn (
     hCluster: ?*_HCLUSTER,
     pConfig: ?*CREATE_CLUSTER_NAME_ACCOUNT,
     pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
     pvCallbackArg: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_REMOVE_CLUSTER_NAME_ACCOUNT = fn(
+pub const PCLUSAPI_REMOVE_CLUSTER_NAME_ACCOUNT = fn (
     hCluster: ?*_HCLUSTER,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_ADD_CLUSTER_NODE = fn(
+pub const PCLUSAPI_ADD_CLUSTER_NODE = fn (
     hCluster: ?*_HCLUSTER,
     lpszNodeName: ?[*:0]const u16,
     pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
     pvCallbackArg: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HNODE;
 
-pub const PCLUSAPI_ADD_CLUSTER_NODE_EX = fn(
+pub const PCLUSAPI_ADD_CLUSTER_NODE_EX = fn (
     hCluster: ?*_HCLUSTER,
     lpszNodeName: ?[*:0]const u16,
     dwFlags: u32,
@@ -4395,7 +4395,7 @@ pub const PCLUSAPI_ADD_CLUSTER_NODE_EX = fn(
     pvCallbackArg: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HNODE;
 
-pub const PCLUSAPI_DESTROY_CLUSTER = fn(
+pub const PCLUSAPI_DESTROY_CLUSTER = fn (
     hCluster: ?*_HCLUSTER,
     pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
     pvCallbackArg: ?*anyopaque,
@@ -4626,17 +4626,17 @@ pub const RESOURCE_STATUS_EX = extern struct {
     WaitHint: u32,
 };
 
-pub const PSET_RESOURCE_STATUS_ROUTINE_EX = fn(
+pub const PSET_RESOURCE_STATUS_ROUTINE_EX = fn (
     ResourceHandle: isize,
     ResourceStatus: ?*RESOURCE_STATUS_EX,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PSET_RESOURCE_STATUS_ROUTINE = fn(
+pub const PSET_RESOURCE_STATUS_ROUTINE = fn (
     ResourceHandle: isize,
     ResourceStatus: ?*RESOURCE_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PQUORUM_RESOURCE_LOST = fn(
+pub const PQUORUM_RESOURCE_LOST = fn (
     Resource: isize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -4651,53 +4651,53 @@ pub const LOG_WARNING = LOG_LEVEL.WARNING;
 pub const LOG_ERROR = LOG_LEVEL.ERROR;
 pub const LOG_SEVERE = LOG_LEVEL.SEVERE;
 
-pub const PLOG_EVENT_ROUTINE = fn(
+pub const PLOG_EVENT_ROUTINE = fn (
     ResourceHandle: isize,
     LogLevel: LOG_LEVEL,
     FormatString: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const POPEN_ROUTINE = fn(
+pub const POPEN_ROUTINE = fn (
     ResourceName: ?[*:0]const u16,
     ResourceKey: ?HKEY,
     ResourceHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const PCLOSE_ROUTINE = fn(
+pub const PCLOSE_ROUTINE = fn (
     Resource: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PONLINE_ROUTINE = fn(
+pub const PONLINE_ROUTINE = fn (
     Resource: ?*anyopaque,
     EventHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const POFFLINE_ROUTINE = fn(
+pub const POFFLINE_ROUTINE = fn (
     Resource: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PTERMINATE_ROUTINE = fn(
+pub const PTERMINATE_ROUTINE = fn (
     Resource: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PIS_ALIVE_ROUTINE = fn(
+pub const PIS_ALIVE_ROUTINE = fn (
     Resource: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PLOOKS_ALIVE_ROUTINE = fn(
+pub const PLOOKS_ALIVE_ROUTINE = fn (
     Resource: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PARBITRATE_ROUTINE = fn(
+pub const PARBITRATE_ROUTINE = fn (
     Resource: ?*anyopaque,
     LostQuorumResource: ?PQUORUM_RESOURCE_LOST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRELEASE_ROUTINE = fn(
+pub const PRELEASE_ROUTINE = fn (
     Resource: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESOURCE_CONTROL_ROUTINE = fn(
+pub const PRESOURCE_CONTROL_ROUTINE = fn (
     Resource: ?*anyopaque,
     ControlCode: u32,
     InBuffer: ?*anyopaque,
@@ -4707,7 +4707,7 @@ pub const PRESOURCE_CONTROL_ROUTINE = fn(
     BytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESOURCE_TYPE_CONTROL_ROUTINE = fn(
+pub const PRESOURCE_TYPE_CONTROL_ROUTINE = fn (
     ResourceTypeName: ?[*:0]const u16,
     ControlCode: u32,
     InBuffer: ?*anyopaque,
@@ -4717,14 +4717,14 @@ pub const PRESOURCE_TYPE_CONTROL_ROUTINE = fn(
     BytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const POPEN_V2_ROUTINE = fn(
+pub const POPEN_V2_ROUTINE = fn (
     ResourceName: ?[*:0]const u16,
     ResourceKey: ?HKEY,
     ResourceHandle: isize,
     OpenFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const PONLINE_V2_ROUTINE = fn(
+pub const PONLINE_V2_ROUTINE = fn (
     Resource: ?*anyopaque,
     EventHandle: ?*?HANDLE,
     OnlineFlags: u32,
@@ -4734,7 +4734,7 @@ pub const PONLINE_V2_ROUTINE = fn(
     Reserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const POFFLINE_V2_ROUTINE = fn(
+pub const POFFLINE_V2_ROUTINE = fn (
     Resource: ?*anyopaque,
     DestinationNodeName: ?[*:0]const u16,
     OfflineFlags: u32,
@@ -4744,12 +4744,12 @@ pub const POFFLINE_V2_ROUTINE = fn(
     Reserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCANCEL_ROUTINE = fn(
+pub const PCANCEL_ROUTINE = fn (
     Resource: ?*anyopaque,
     CancelFlags_RESERVED: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PBEGIN_RESCALL_ROUTINE = fn(
+pub const PBEGIN_RESCALL_ROUTINE = fn (
     Resource: ?*anyopaque,
     ControlCode: u32,
     InBuffer: ?*anyopaque,
@@ -4761,7 +4761,7 @@ pub const PBEGIN_RESCALL_ROUTINE = fn(
     ReturnedAsynchronously: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PBEGIN_RESTYPECALL_ROUTINE = fn(
+pub const PBEGIN_RESTYPECALL_ROUTINE = fn (
     ResourceTypeName: ?[*:0]const u16,
     ControlCode: u32,
     InBuffer: ?*anyopaque,
@@ -4782,7 +4782,7 @@ pub const ResourceExitStateContinue = RESOURCE_EXIT_STATE.Continue;
 pub const ResourceExitStateTerminate = RESOURCE_EXIT_STATE.Terminate;
 pub const ResourceExitStateMax = RESOURCE_EXIT_STATE.Max;
 
-pub const PBEGIN_RESCALL_AS_USER_ROUTINE = fn(
+pub const PBEGIN_RESCALL_AS_USER_ROUTINE = fn (
     Resource: ?*anyopaque,
     TokenHandle: ?HANDLE,
     ControlCode: u32,
@@ -4795,7 +4795,7 @@ pub const PBEGIN_RESCALL_AS_USER_ROUTINE = fn(
     ReturnedAsynchronously: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PBEGIN_RESTYPECALL_AS_USER_ROUTINE = fn(
+pub const PBEGIN_RESTYPECALL_AS_USER_ROUTINE = fn (
     ResourceTypeName: ?[*:0]const u16,
     TokenHandle: ?HANDLE,
     ControlCode: u32,
@@ -4916,7 +4916,7 @@ pub const RESUTIL_PROPERTY_ITEM = extern struct {
     Offset: u32,
 };
 
-pub const PSTARTUP_ROUTINE = fn(
+pub const PSTARTUP_ROUTINE = fn (
     ResourceType: ?[*:0]const u16,
     MinVersionSupported: u32,
     MaxVersionSupported: u32,
@@ -4943,79 +4943,79 @@ pub const ClusterResourceApplicationStateUnknown = CLUSTER_RESOURCE_APPLICATION_
 pub const ClusterResourceApplicationOSHeartBeat = CLUSTER_RESOURCE_APPLICATION_STATE.OSHeartBeat;
 pub const ClusterResourceApplicationReady = CLUSTER_RESOURCE_APPLICATION_STATE.Ready;
 
-pub const PSET_RESOURCE_LOCKED_MODE_ROUTINE = fn(
+pub const PSET_RESOURCE_LOCKED_MODE_ROUTINE = fn (
     ResourceHandle: isize,
     LockedModeEnabled: BOOL,
     LockedModeReason: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PSIGNAL_FAILURE_ROUTINE = fn(
+pub const PSIGNAL_FAILURE_ROUTINE = fn (
     ResourceHandle: isize,
     FailureType: FAILURE_TYPE,
     ApplicationSpecificErrorCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PSET_RESOURCE_INMEMORY_NODELOCAL_PROPERTIES_ROUTINE = fn(
+pub const PSET_RESOURCE_INMEMORY_NODELOCAL_PROPERTIES_ROUTINE = fn (
     ResourceHandle: isize,
     propertyListBuffer: ?*u8,
     propertyListBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PEND_CONTROL_CALL = fn(
+pub const PEND_CONTROL_CALL = fn (
     context: i64,
     status: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PEND_TYPE_CONTROL_CALL = fn(
+pub const PEND_TYPE_CONTROL_CALL = fn (
     context: i64,
     status: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PEXTEND_RES_CONTROL_CALL = fn(
+pub const PEXTEND_RES_CONTROL_CALL = fn (
     context: i64,
     newTimeoutInMs: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PEXTEND_RES_TYPE_CONTROL_CALL = fn(
+pub const PEXTEND_RES_TYPE_CONTROL_CALL = fn (
     context: i64,
     newTimeoutInMs: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRAISE_RES_TYPE_NOTIFICATION = fn(
+pub const PRAISE_RES_TYPE_NOTIFICATION = fn (
     ResourceType: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 2?
     pPayload: ?*const u8,
     payloadSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCHANGE_RESOURCE_PROCESS_FOR_DUMPS = fn(
+pub const PCHANGE_RESOURCE_PROCESS_FOR_DUMPS = fn (
     resource: isize,
     processName: ?[*:0]const u16,
     processId: u32,
     isAdd: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCHANGE_RES_TYPE_PROCESS_FOR_DUMPS = fn(
+pub const PCHANGE_RES_TYPE_PROCESS_FOR_DUMPS = fn (
     resourceTypeName: ?[*:0]const u16,
     processName: ?[*:0]const u16,
     processId: u32,
     isAdd: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PSET_INTERNAL_STATE = fn(
+pub const PSET_INTERNAL_STATE = fn (
     param0: isize,
     stateType: CLUSTER_RESOURCE_APPLICATION_STATE,
     active: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PSET_RESOURCE_LOCKED_MODE_EX_ROUTINE = fn(
+pub const PSET_RESOURCE_LOCKED_MODE_EX_ROUTINE = fn (
     ResourceHandle: isize,
     LockedModeEnabled: BOOL,
     LockedModeReason: u32,
     LockedModeFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PREQUEST_DUMP_ROUTINE = fn(
+pub const PREQUEST_DUMP_ROUTINE = fn (
     ResourceHandle: isize,
     DumpDueToCallInProgress: BOOL,
     DumpDelayInMs: u32,
@@ -5039,7 +5039,7 @@ pub const CLRES_CALLBACK_FUNCTION_TABLE = extern struct {
     RequestDump: ?PREQUEST_DUMP_ROUTINE,
 };
 
-pub const PSTARTUP_EX_ROUTINE = fn(
+pub const PSTARTUP_EX_ROUTINE = fn (
     ResourceType: ?[*:0]const u16,
     MinVersionSupported: u32,
     MaxVersionSupported: u32,
@@ -5112,36 +5112,36 @@ pub const CLUSTER_HEALTH_FAULT_ARRAY = extern struct {
     faults: ?*CLUSTER_HEALTH_FAULT,
 };
 
-pub const PRESUTIL_START_RESOURCE_SERVICE = fn(
+pub const PRESUTIL_START_RESOURCE_SERVICE = fn (
     pszServiceName: ?[*:0]const u16,
     phServiceHandle: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_VERIFY_RESOURCE_SERVICE = fn(
+pub const PRESUTIL_VERIFY_RESOURCE_SERVICE = fn (
     pszServiceName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_STOP_RESOURCE_SERVICE = fn(
+pub const PRESUTIL_STOP_RESOURCE_SERVICE = fn (
     pszServiceName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_VERIFY_SERVICE = fn(
+pub const PRESUTIL_VERIFY_SERVICE = fn (
     hServiceHandle: SC_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_STOP_SERVICE = fn(
+pub const PRESUTIL_STOP_SERVICE = fn (
     hServiceHandle: SC_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_CREATE_DIRECTORY_TREE = fn(
+pub const PRESUTIL_CREATE_DIRECTORY_TREE = fn (
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_IS_PATH_VALID = fn(
+pub const PRESUTIL_IS_PATH_VALID = fn (
     pszPath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PRESUTIL_ENUM_PROPERTIES = fn(
+pub const PRESUTIL_ENUM_PROPERTIES = fn (
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     // TODO: what to do with BytesParamIndex 2?
     pszOutProperties: ?PWSTR,
@@ -5150,7 +5150,7 @@ pub const PRESUTIL_ENUM_PROPERTIES = fn(
     pcbRequired: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_ENUM_PRIVATE_PROPERTIES = fn(
+pub const PRESUTIL_ENUM_PRIVATE_PROPERTIES = fn (
     hkeyClusterKey: ?HKEY,
     // TODO: what to do with BytesParamIndex 2?
     pszOutProperties: ?PWSTR,
@@ -5159,7 +5159,7 @@ pub const PRESUTIL_ENUM_PRIVATE_PROPERTIES = fn(
     pcbRequired: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_GET_PROPERTIES = fn(
+pub const PRESUTIL_GET_PROPERTIES = fn (
     hkeyClusterKey: ?HKEY,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     // TODO: what to do with BytesParamIndex 3?
@@ -5169,7 +5169,7 @@ pub const PRESUTIL_GET_PROPERTIES = fn(
     pcbRequired: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_GET_ALL_PROPERTIES = fn(
+pub const PRESUTIL_GET_ALL_PROPERTIES = fn (
     hkeyClusterKey: ?HKEY,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     // TODO: what to do with BytesParamIndex 3?
@@ -5179,7 +5179,7 @@ pub const PRESUTIL_GET_ALL_PROPERTIES = fn(
     pcbRequired: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_GET_PRIVATE_PROPERTIES = fn(
+pub const PRESUTIL_GET_PRIVATE_PROPERTIES = fn (
     hkeyClusterKey: ?HKEY,
     // TODO: what to do with BytesParamIndex 2?
     pOutPropertyList: ?*anyopaque,
@@ -5188,14 +5188,14 @@ pub const PRESUTIL_GET_PRIVATE_PROPERTIES = fn(
     pcbRequired: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_GET_PROPERTY_SIZE = fn(
+pub const PRESUTIL_GET_PROPERTY_SIZE = fn (
     hkeyClusterKey: ?HKEY,
     pPropertyTableItem: ?*const RESUTIL_PROPERTY_ITEM,
     pcbOutPropertyListSize: ?*u32,
     pnPropertyCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_GET_PROPERTY = fn(
+pub const PRESUTIL_GET_PROPERTY = fn (
     hkeyClusterKey: ?HKEY,
     pPropertyTableItem: ?*const RESUTIL_PROPERTY_ITEM,
     // TODO: what to do with BytesParamIndex 3?
@@ -5203,7 +5203,7 @@ pub const PRESUTIL_GET_PROPERTY = fn(
     pcbOutPropertyItemSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_VERIFY_PROPERTY_TABLE = fn(
+pub const PRESUTIL_VERIFY_PROPERTY_TABLE = fn (
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     Reserved: ?*anyopaque,
     bAllowUnknownProperties: BOOL,
@@ -5213,7 +5213,7 @@ pub const PRESUTIL_VERIFY_PROPERTY_TABLE = fn(
     pOutParams: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_SET_PROPERTY_TABLE = fn(
+pub const PRESUTIL_SET_PROPERTY_TABLE = fn (
     hkeyClusterKey: ?HKEY,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     Reserved: ?*anyopaque,
@@ -5224,7 +5224,7 @@ pub const PRESUTIL_SET_PROPERTY_TABLE = fn(
     pOutParams: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_SET_PROPERTY_TABLE_EX = fn(
+pub const PRESUTIL_SET_PROPERTY_TABLE_EX = fn (
     hkeyClusterKey: ?HKEY,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     Reserved: ?*anyopaque,
@@ -5235,7 +5235,7 @@ pub const PRESUTIL_SET_PROPERTY_TABLE_EX = fn(
     pOutParams: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK = fn(
+pub const PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK = fn (
     hkeyClusterKey: ?HKEY,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     Reserved: ?*anyopaque,
@@ -5245,7 +5245,7 @@ pub const PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK = fn(
     pOutParams: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK_EX = fn(
+pub const PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK_EX = fn (
     hkeyClusterKey: ?HKEY,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     Reserved: ?*anyopaque,
@@ -5256,7 +5256,7 @@ pub const PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK_EX = fn(
     pOutParams: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_SET_UNKNOWN_PROPERTIES = fn(
+pub const PRESUTIL_SET_UNKNOWN_PROPERTIES = fn (
     hkeyClusterKey: ?HKEY,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     // TODO: what to do with BytesParamIndex 3?
@@ -5264,7 +5264,7 @@ pub const PRESUTIL_SET_UNKNOWN_PROPERTIES = fn(
     cbInPropertyListSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_GET_PROPERTIES_TO_PARAMETER_BLOCK = fn(
+pub const PRESUTIL_GET_PROPERTIES_TO_PARAMETER_BLOCK = fn (
     hkeyClusterKey: ?HKEY,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     pOutParams: ?*u8,
@@ -5272,7 +5272,7 @@ pub const PRESUTIL_GET_PROPERTIES_TO_PARAMETER_BLOCK = fn(
     pszNameOfPropInError: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_PROPERTY_LIST_FROM_PARAMETER_BLOCK = fn(
+pub const PRESUTIL_PROPERTY_LIST_FROM_PARAMETER_BLOCK = fn (
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     // TODO: what to do with BytesParamIndex 2?
     pOutPropertyList: ?*anyopaque,
@@ -5282,19 +5282,19 @@ pub const PRESUTIL_PROPERTY_LIST_FROM_PARAMETER_BLOCK = fn(
     pcbRequired: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_DUP_PARAMETER_BLOCK = fn(
+pub const PRESUTIL_DUP_PARAMETER_BLOCK = fn (
     pOutParams: ?*u8,
     pInParams: ?*const u8,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_FREE_PARAMETER_BLOCK = fn(
+pub const PRESUTIL_FREE_PARAMETER_BLOCK = fn (
     pOutParams: ?*u8,
     pInParams: ?*const u8,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PRESUTIL_ADD_UNKNOWN_PROPERTIES = fn(
+pub const PRESUTIL_ADD_UNKNOWN_PROPERTIES = fn (
     hkeyClusterKey: ?HKEY,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     pOutPropertyList: ?*anyopaque,
@@ -5303,24 +5303,24 @@ pub const PRESUTIL_ADD_UNKNOWN_PROPERTIES = fn(
     pcbRequired: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_SET_PRIVATE_PROPERTY_LIST = fn(
+pub const PRESUTIL_SET_PRIVATE_PROPERTY_LIST = fn (
     hkeyClusterKey: ?HKEY,
     // TODO: what to do with BytesParamIndex 2?
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_VERIFY_PRIVATE_PROPERTY_LIST = fn(
+pub const PRESUTIL_VERIFY_PRIVATE_PROPERTY_LIST = fn (
     // TODO: what to do with BytesParamIndex 1?
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_DUP_STRING = fn(
+pub const PRESUTIL_DUP_STRING = fn (
     pszInString: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
-pub const PRESUTIL_GET_BINARY_VALUE = fn(
+pub const PRESUTIL_GET_BINARY_VALUE = fn (
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
@@ -5328,32 +5328,32 @@ pub const PRESUTIL_GET_BINARY_VALUE = fn(
     pcbOutValueSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_GET_SZ_VALUE = fn(
+pub const PRESUTIL_GET_SZ_VALUE = fn (
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
-pub const PRESUTIL_GET_EXPAND_SZ_VALUE = fn(
+pub const PRESUTIL_GET_EXPAND_SZ_VALUE = fn (
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     bExpand: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
-pub const PRESUTIL_GET_DWORD_VALUE = fn(
+pub const PRESUTIL_GET_DWORD_VALUE = fn (
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     pdwOutValue: ?*u32,
     dwDefaultValue: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_GET_QWORD_VALUE = fn(
+pub const PRESUTIL_GET_QWORD_VALUE = fn (
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     pqwOutValue: ?*u64,
     qwDefaultValue: u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_SET_BINARY_VALUE = fn(
+pub const PRESUTIL_SET_BINARY_VALUE = fn (
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
@@ -5364,21 +5364,21 @@ pub const PRESUTIL_SET_BINARY_VALUE = fn(
     pcbOutValueSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_SET_SZ_VALUE = fn(
+pub const PRESUTIL_SET_SZ_VALUE = fn (
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     pszNewValue: ?[*:0]const u16,
     ppszOutString: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_SET_EXPAND_SZ_VALUE = fn(
+pub const PRESUTIL_SET_EXPAND_SZ_VALUE = fn (
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     pszNewValue: ?[*:0]const u16,
     ppszOutString: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_SET_MULTI_SZ_VALUE = fn(
+pub const PRESUTIL_SET_MULTI_SZ_VALUE = fn (
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
@@ -5389,21 +5389,21 @@ pub const PRESUTIL_SET_MULTI_SZ_VALUE = fn(
     pcbOutValueSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_SET_DWORD_VALUE = fn(
+pub const PRESUTIL_SET_DWORD_VALUE = fn (
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     dwNewValue: u32,
     pdwOutValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_SET_QWORD_VALUE = fn(
+pub const PRESUTIL_SET_QWORD_VALUE = fn (
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     qwNewValue: u64,
     pqwOutValue: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_GET_BINARY_PROPERTY = fn(
+pub const PRESUTIL_GET_BINARY_PROPERTY = fn (
     ppbOutValue: ?*?*u8,
     pcbOutValueSize: ?*u32,
     pValueStruct: ?*const CLUSPROP_BINARY,
@@ -5415,7 +5415,7 @@ pub const PRESUTIL_GET_BINARY_PROPERTY = fn(
     pcbPropertyListSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_GET_SZ_PROPERTY = fn(
+pub const PRESUTIL_GET_SZ_PROPERTY = fn (
     ppszOutValue: ?*?PWSTR,
     pValueStruct: ?*const CLUSPROP_SZ,
     pszOldValue: ?[*:0]const u16,
@@ -5424,7 +5424,7 @@ pub const PRESUTIL_GET_SZ_PROPERTY = fn(
     pcbPropertyListSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_GET_MULTI_SZ_PROPERTY = fn(
+pub const PRESUTIL_GET_MULTI_SZ_PROPERTY = fn (
     ppszOutValue: ?*?PWSTR,
     pcbOutValueSize: ?*u32,
     pValueStruct: ?*const CLUSPROP_SZ,
@@ -5436,7 +5436,7 @@ pub const PRESUTIL_GET_MULTI_SZ_PROPERTY = fn(
     pcbPropertyListSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_GET_DWORD_PROPERTY = fn(
+pub const PRESUTIL_GET_DWORD_PROPERTY = fn (
     pdwOutValue: ?*u32,
     pValueStruct: ?*const CLUSPROP_DWORD,
     dwOldValue: u32,
@@ -5446,7 +5446,7 @@ pub const PRESUTIL_GET_DWORD_PROPERTY = fn(
     pcbPropertyListSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_GET_LONG_PROPERTY = fn(
+pub const PRESUTIL_GET_LONG_PROPERTY = fn (
     plOutValue: ?*i32,
     pValueStruct: ?*const CLUSPROP_LONG,
     lOldValue: i32,
@@ -5456,7 +5456,7 @@ pub const PRESUTIL_GET_LONG_PROPERTY = fn(
     pcbPropertyListSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_GET_FILETIME_PROPERTY = fn(
+pub const PRESUTIL_GET_FILETIME_PROPERTY = fn (
     pftOutValue: ?*FILETIME,
     pValueStruct: ?*const CLUSPROP_FILETIME,
     ftOldValue: FILETIME,
@@ -5466,32 +5466,32 @@ pub const PRESUTIL_GET_FILETIME_PROPERTY = fn(
     pcbPropertyListSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_GET_ENVIRONMENT_WITH_NET_NAME = fn(
+pub const PRESUTIL_GET_ENVIRONMENT_WITH_NET_NAME = fn (
     hResource: ?*_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const PRESUTIL_FREE_ENVIRONMENT = fn(
+pub const PRESUTIL_FREE_ENVIRONMENT = fn (
     lpEnvironment: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_EXPAND_ENVIRONMENT_STRINGS = fn(
+pub const PRESUTIL_EXPAND_ENVIRONMENT_STRINGS = fn (
     pszSrc: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
-pub const PRESUTIL_SET_RESOURCE_SERVICE_ENVIRONMENT = fn(
+pub const PRESUTIL_SET_RESOURCE_SERVICE_ENVIRONMENT = fn (
     pszServiceName: ?[*:0]const u16,
     hResource: ?*_HRESOURCE,
     pfnLogEvent: ?PLOG_EVENT_ROUTINE,
     hResourceHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_REMOVE_RESOURCE_SERVICE_ENVIRONMENT = fn(
+pub const PRESUTIL_REMOVE_RESOURCE_SERVICE_ENVIRONMENT = fn (
     pszServiceName: ?[*:0]const u16,
     pfnLogEvent: ?PLOG_EVENT_ROUTINE,
     hResourceHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS = fn(
+pub const PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS = fn (
     pszServiceName: ?[*:0]const u16,
     schSCMHandle: SC_HANDLE,
     phService: ?*isize,
@@ -5499,7 +5499,7 @@ pub const PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS = fn(
     hResourceHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_FIND_SZ_PROPERTY = fn(
+pub const PRESUTIL_FIND_SZ_PROPERTY = fn (
     // TODO: what to do with BytesParamIndex 1?
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
@@ -5507,7 +5507,7 @@ pub const PRESUTIL_FIND_SZ_PROPERTY = fn(
     pszPropertyValue: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_FIND_EXPAND_SZ_PROPERTY = fn(
+pub const PRESUTIL_FIND_EXPAND_SZ_PROPERTY = fn (
     // TODO: what to do with BytesParamIndex 1?
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
@@ -5515,7 +5515,7 @@ pub const PRESUTIL_FIND_EXPAND_SZ_PROPERTY = fn(
     pszPropertyValue: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_FIND_EXPANDED_SZ_PROPERTY = fn(
+pub const PRESUTIL_FIND_EXPANDED_SZ_PROPERTY = fn (
     // TODO: what to do with BytesParamIndex 1?
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
@@ -5523,7 +5523,7 @@ pub const PRESUTIL_FIND_EXPANDED_SZ_PROPERTY = fn(
     pszPropertyValue: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_FIND_DWORD_PROPERTY = fn(
+pub const PRESUTIL_FIND_DWORD_PROPERTY = fn (
     // TODO: what to do with BytesParamIndex 1?
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
@@ -5531,7 +5531,7 @@ pub const PRESUTIL_FIND_DWORD_PROPERTY = fn(
     pdwPropertyValue: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_FIND_BINARY_PROPERTY = fn(
+pub const PRESUTIL_FIND_BINARY_PROPERTY = fn (
     // TODO: what to do with BytesParamIndex 1?
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
@@ -5541,7 +5541,7 @@ pub const PRESUTIL_FIND_BINARY_PROPERTY = fn(
     pcbPropertyValueSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_FIND_MULTI_SZ_PROPERTY = fn(
+pub const PRESUTIL_FIND_MULTI_SZ_PROPERTY = fn (
     // TODO: what to do with BytesParamIndex 1?
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
@@ -5551,7 +5551,7 @@ pub const PRESUTIL_FIND_MULTI_SZ_PROPERTY = fn(
     pcbPropertyValueSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_FIND_LONG_PROPERTY = fn(
+pub const PRESUTIL_FIND_LONG_PROPERTY = fn (
     // TODO: what to do with BytesParamIndex 1?
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
@@ -5559,7 +5559,7 @@ pub const PRESUTIL_FIND_LONG_PROPERTY = fn(
     plPropertyValue: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_FIND_ULARGEINTEGER_PROPERTY = fn(
+pub const PRESUTIL_FIND_ULARGEINTEGER_PROPERTY = fn (
     // TODO: what to do with BytesParamIndex 1?
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
@@ -5567,7 +5567,7 @@ pub const PRESUTIL_FIND_ULARGEINTEGER_PROPERTY = fn(
     plPropertyValue: ?*u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_FIND_FILETIME_PROPERTY = fn(
+pub const PRESUTIL_FIND_FILETIME_PROPERTY = fn (
     // TODO: what to do with BytesParamIndex 1?
     pPropertyList: ?*const anyopaque,
     cbPropertyListSize: u32,
@@ -5580,75 +5580,75 @@ pub const CLUS_WORKER = extern struct {
     Terminate: BOOL,
 };
 
-pub const PWORKER_START_ROUTINE = fn(
+pub const PWORKER_START_ROUTINE = fn (
     pWorker: ?*CLUS_WORKER,
     lpThreadParameter: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPI_CLUS_WORKER_CREATE = fn(
+pub const PCLUSAPI_CLUS_WORKER_CREATE = fn (
     lpWorker: ?*CLUS_WORKER,
     lpStartAddress: ?PWORKER_START_ROUTINE,
     lpParameter: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSAPIClusWorkerCheckTerminate = fn(
+pub const PCLUSAPIClusWorkerCheckTerminate = fn (
     lpWorker: ?*CLUS_WORKER,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PCLUSAPI_CLUS_WORKER_TERMINATE = fn(
+pub const PCLUSAPI_CLUS_WORKER_TERMINATE = fn (
     lpWorker: ?*CLUS_WORKER,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const LPRESOURCE_CALLBACK = fn(
+pub const LPRESOURCE_CALLBACK = fn (
     param0: ?*_HRESOURCE,
     param1: ?*_HRESOURCE,
     param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPRESOURCE_CALLBACK_EX = fn(
+pub const LPRESOURCE_CALLBACK_EX = fn (
     param0: ?*_HCLUSTER,
     param1: ?*_HRESOURCE,
     param2: ?*_HRESOURCE,
     param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPGROUP_CALLBACK_EX = fn(
+pub const LPGROUP_CALLBACK_EX = fn (
     param0: ?*_HCLUSTER,
     param1: ?*_HGROUP,
     param2: ?*_HGROUP,
     param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPNODE_CALLBACK = fn(
+pub const LPNODE_CALLBACK = fn (
     param0: ?*_HCLUSTER,
     param1: ?*_HNODE,
     param2: CLUSTER_NODE_STATE,
     param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_RESOURCES_EQUAL = fn(
+pub const PRESUTIL_RESOURCES_EQUAL = fn (
     hSelf: ?*_HRESOURCE,
     hResource: ?*_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PRESUTIL_RESOURCE_TYPES_EQUAL = fn(
+pub const PRESUTIL_RESOURCE_TYPES_EQUAL = fn (
     lpszResourceTypeName: ?[*:0]const u16,
     hResource: ?*_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PRESUTIL_IS_RESOURCE_CLASS_EQUAL = fn(
+pub const PRESUTIL_IS_RESOURCE_CLASS_EQUAL = fn (
     prci: ?*CLUS_RESOURCE_CLASS_INFO,
     hResource: ?*_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PRESUTIL_ENUM_RESOURCES = fn(
+pub const PRESUTIL_ENUM_RESOURCES = fn (
     hSelf: ?*_HRESOURCE,
     lpszResTypeName: ?[*:0]const u16,
     pResCallBack: ?LPRESOURCE_CALLBACK,
     pParameter: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_ENUM_RESOURCES_EX = fn(
+pub const PRESUTIL_ENUM_RESOURCES_EX = fn (
     hCluster: ?*_HCLUSTER,
     hSelf: ?*_HRESOURCE,
     lpszResTypeName: ?[*:0]const u16,
@@ -5656,31 +5656,31 @@ pub const PRESUTIL_ENUM_RESOURCES_EX = fn(
     pParameter: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_GET_RESOURCE_DEPENDENCY = fn(
+pub const PRESUTIL_GET_RESOURCE_DEPENDENCY = fn (
     hSelf: ?HANDLE,
     lpszResourceType: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
 
-pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME = fn(
+pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME = fn (
     hCluster: ?*_HCLUSTER,
     hSelf: ?HANDLE,
     lpszResourceType: ?[*:0]const u16,
     bRecurse: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
 
-pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS = fn(
+pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS = fn (
     hCluster: ?*_HCLUSTER,
     hSelf: ?HANDLE,
     prci: ?*CLUS_RESOURCE_CLASS_INFO,
     bRecurse: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
 
-pub const PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY = fn(
+pub const PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY = fn (
     lpszResourceName: ?[*:0]const u16,
     lpszResourceType: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
 
-pub const PRESUTIL_GET_RESOURCE_DEPENDENTIP_ADDRESS_PROPS = fn(
+pub const PRESUTIL_GET_RESOURCE_DEPENDENTIP_ADDRESS_PROPS = fn (
     hResource: ?*_HRESOURCE,
     pszAddress: [*:0]u16,
     pcchAddress: ?*u32,
@@ -5690,14 +5690,14 @@ pub const PRESUTIL_GET_RESOURCE_DEPENDENTIP_ADDRESS_PROPS = fn(
     pcchNetwork: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_FIND_DEPENDENT_DISK_RESOURCE_DRIVE_LETTER = fn(
+pub const PRESUTIL_FIND_DEPENDENT_DISK_RESOURCE_DRIVE_LETTER = fn (
     hCluster: ?*_HCLUSTER,
     hResource: ?*_HRESOURCE,
     pszDriveLetter: [*:0]u16,
     pcchDriveLetter: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_TERMINATE_SERVICE_PROCESS_FROM_RES_DLL = fn(
+pub const PRESUTIL_TERMINATE_SERVICE_PROCESS_FROM_RES_DLL = fn (
     dwServicePid: u32,
     bOffline: BOOL,
     pdwResourceState: ?*u32,
@@ -5705,7 +5705,7 @@ pub const PRESUTIL_TERMINATE_SERVICE_PROCESS_FROM_RES_DLL = fn(
     hResourceHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_GET_PROPERTY_FORMATS = fn(
+pub const PRESUTIL_GET_PROPERTY_FORMATS = fn (
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
     // TODO: what to do with BytesParamIndex 2?
     pOutPropertyFormatList: ?*anyopaque,
@@ -5714,14 +5714,14 @@ pub const PRESUTIL_GET_PROPERTY_FORMATS = fn(
     pcbRequired: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_GET_CORE_CLUSTER_RESOURCES = fn(
+pub const PRESUTIL_GET_CORE_CLUSTER_RESOURCES = fn (
     hCluster: ?*_HCLUSTER,
     phClusterNameResource: ?*?*_HRESOURCE,
     phClusterIPAddressResource: ?*?*_HRESOURCE,
     phClusterQuorumResource: ?*?*_HRESOURCE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_GET_RESOURCE_NAME = fn(
+pub const PRESUTIL_GET_RESOURCE_NAME = fn (
     hResource: ?*_HRESOURCE,
     pszResourceName: [*:0]u16,
     pcchResourceNameInOut: ?*u32,
@@ -5803,23 +5803,23 @@ pub const ClusterRoleUnknown = CLUSTER_ROLE_STATE.Unknown;
 pub const ClusterRoleClustered = CLUSTER_ROLE_STATE.Clustered;
 pub const ClusterRoleUnclustered = CLUSTER_ROLE_STATE.Unclustered;
 
-pub const PCLUSTER_IS_PATH_ON_SHARED_VOLUME = fn(
+pub const PCLUSTER_IS_PATH_ON_SHARED_VOLUME = fn (
     lpszPathName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PCLUSTER_GET_VOLUME_PATH_NAME = fn(
+pub const PCLUSTER_GET_VOLUME_PATH_NAME = fn (
     lpszFileName: ?[*:0]const u16,
     lpszVolumePathName: ?PWSTR,
     cchBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PCLUSTER_GET_VOLUME_NAME_FOR_VOLUME_MOUNT_POINT = fn(
+pub const PCLUSTER_GET_VOLUME_NAME_FOR_VOLUME_MOUNT_POINT = fn (
     lpszVolumeMountPoint: ?[*:0]const u16,
     lpszVolumeName: ?PWSTR,
     cchBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PCLUSTER_PREPARE_SHARED_VOLUME_FOR_BACKUP = fn(
+pub const PCLUSTER_PREPARE_SHARED_VOLUME_FOR_BACKUP = fn (
     lpszFileName: ?[*:0]const u16,
     lpszVolumePathName: ?PWSTR,
     lpcchVolumePathName: ?*u32,
@@ -5827,11 +5827,11 @@ pub const PCLUSTER_PREPARE_SHARED_VOLUME_FOR_BACKUP = fn(
     lpcchVolumeName: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSTER_CLEAR_BACKUP_STATE_FOR_SHARED_VOLUME = fn(
+pub const PCLUSTER_CLEAR_BACKUP_STATE_FOR_SHARED_VOLUME = fn (
     lpszVolumePathName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS_EX = fn(
+pub const PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS_EX = fn (
     pszServiceName: ?[*:0]const u16,
     schSCMHandle: SC_HANDLE,
     phService: ?*isize,
@@ -5840,7 +5840,7 @@ pub const PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS_EX = fn(
     hResourceHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_ENUM_RESOURCES_EX2 = fn(
+pub const PRESUTIL_ENUM_RESOURCES_EX2 = fn (
     hCluster: ?*_HCLUSTER,
     hSelf: ?*_HRESOURCE,
     lpszResTypeName: ?[*:0]const u16,
@@ -5849,13 +5849,13 @@ pub const PRESUTIL_ENUM_RESOURCES_EX2 = fn(
     dwDesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_EX = fn(
+pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_EX = fn (
     hSelf: ?HANDLE,
     lpszResourceType: ?[*:0]const u16,
     dwDesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
 
-pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME_EX = fn(
+pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME_EX = fn (
     hCluster: ?*_HCLUSTER,
     hSelf: ?HANDLE,
     lpszResourceType: ?[*:0]const u16,
@@ -5863,7 +5863,7 @@ pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME_EX = fn(
     dwDesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
 
-pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS_EX = fn(
+pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS_EX = fn (
     hCluster: ?*_HCLUSTER,
     hSelf: ?HANDLE,
     prci: ?*CLUS_RESOURCE_CLASS_INFO,
@@ -5871,13 +5871,13 @@ pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS_EX = fn(
     dwDesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
 
-pub const PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY_EX = fn(
+pub const PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY_EX = fn (
     lpszResourceName: ?[*:0]const u16,
     lpszResourceType: ?[*:0]const u16,
     dwDesiredAccess: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
 
-pub const PRESUTIL_GET_CORE_CLUSTER_RESOURCES_EX = fn(
+pub const PRESUTIL_GET_CORE_CLUSTER_RESOURCES_EX = fn (
     hClusterIn: ?*_HCLUSTER,
     phClusterNameResourceOut: ?*?*_HRESOURCE,
     phClusterIPAddressResourceOut: ?*?*_HRESOURCE,
@@ -5889,14 +5889,14 @@ pub const _HCLUSCRYPTPROVIDER = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const POPEN_CLUSTER_CRYPT_PROVIDER = fn(
+pub const POPEN_CLUSTER_CRYPT_PROVIDER = fn (
     lpszResource: ?[*:0]const u16,
     lpszProvider: ?*i8,
     dwType: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSCRYPTPROVIDER;
 
-pub const POPEN_CLUSTER_CRYPT_PROVIDEREX = fn(
+pub const POPEN_CLUSTER_CRYPT_PROVIDEREX = fn (
     lpszResource: ?[*:0]const u16,
     lpszKeyname: ?[*:0]const u16,
     lpszProvider: ?*i8,
@@ -5904,11 +5904,11 @@ pub const POPEN_CLUSTER_CRYPT_PROVIDEREX = fn(
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSCRYPTPROVIDER;
 
-pub const PCLOSE_CLUSTER_CRYPT_PROVIDER = fn(
+pub const PCLOSE_CLUSTER_CRYPT_PROVIDER = fn (
     hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSTER_ENCRYPT = fn(
+pub const PCLUSTER_ENCRYPT = fn (
     hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
     pData: [*:0]u8,
     cbData: u32,
@@ -5916,7 +5916,7 @@ pub const PCLUSTER_ENCRYPT = fn(
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PCLUSTER_DECRYPT = fn(
+pub const PCLUSTER_DECRYPT = fn (
     hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
     pCryptInput: ?*u8,
     cbCryptInput: u32,
@@ -5924,11 +5924,11 @@ pub const PCLUSTER_DECRYPT = fn(
     pcbCryptOutput: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFREE_CLUSTER_CRYPT = fn(
+pub const PFREE_CLUSTER_CRYPT = fn (
     pCryptInfo: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRES_UTIL_VERIFY_SHUTDOWN_SAFE = fn(
+pub const PRES_UTIL_VERIFY_SHUTDOWN_SAFE = fn (
     flags: u32,
     reason: u32,
     pResult: ?*u32,
@@ -5961,29 +5961,28 @@ pub const WitnessTagHelper = extern struct {
     paxosToValidate: PaxosTagCStruct,
 };
 
-pub const PREGISTER_APPINSTANCE = fn(
+pub const PREGISTER_APPINSTANCE = fn (
     ProcessHandle: ?HANDLE,
     AppInstanceId: ?*Guid,
     ChildrenInheritAppInstance: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PREGISTER_APPINSTANCE_VERSION = fn(
+pub const PREGISTER_APPINSTANCE_VERSION = fn (
     AppInstanceId: ?*Guid,
     InstanceVersionHigh: u64,
     InstanceVersionLow: u64,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PQUERY_APPINSTANCE_VERSION = fn(
+pub const PQUERY_APPINSTANCE_VERSION = fn (
     AppInstanceId: ?*Guid,
     InstanceVersionHigh: ?*u64,
     InstanceVersionLow: ?*u64,
     VersionStatus: ?*NTSTATUS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PRESET_ALL_APPINSTANCE_VERSIONS = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PRESET_ALL_APPINSTANCE_VERSIONS = fn () callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const SET_APP_INSTANCE_CSV_FLAGS = fn(
+pub const SET_APP_INSTANCE_CSV_FLAGS = fn (
     ProcessHandle: ?HANDLE,
     Mask: u32,
     Flags: u32,
@@ -6014,41 +6013,43 @@ pub const IID_IGetClusterUIInfo = &IID_IGetClusterUIInfo_Value;
 pub const IGetClusterUIInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetClusterName: fn(
+        GetClusterName: fn (
             self: *const IGetClusterUIInfo,
             lpszName: ?BSTR,
             pcchName: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLocale: fn(
+        GetLocale: fn (
             self: *const IGetClusterUIInfo,
         ) callconv(@import("std").os.windows.WINAPI) u32,
-        GetFont: fn(
+        GetFont: fn (
             self: *const IGetClusterUIInfo,
         ) callconv(@import("std").os.windows.WINAPI) ?HFONT,
-        GetIcon: fn(
+        GetIcon: fn (
             self: *const IGetClusterUIInfo,
         ) callconv(@import("std").os.windows.WINAPI) ?HICON,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetClusterUIInfo_GetClusterName(self: *const T, lpszName: ?BSTR, pcchName: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGetClusterUIInfo.VTable, self.vtable).GetClusterName(@ptrCast(*const IGetClusterUIInfo, self), lpszName, pcchName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetClusterUIInfo_GetLocale(self: *const T) callconv(.Inline) u32 {
-            return @ptrCast(*const IGetClusterUIInfo.VTable, self.vtable).GetLocale(@ptrCast(*const IGetClusterUIInfo, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetClusterUIInfo_GetFont(self: *const T) callconv(.Inline) ?HFONT {
-            return @ptrCast(*const IGetClusterUIInfo.VTable, self.vtable).GetFont(@ptrCast(*const IGetClusterUIInfo, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetClusterUIInfo_GetIcon(self: *const T) callconv(.Inline) ?HICON {
-            return @ptrCast(*const IGetClusterUIInfo.VTable, self.vtable).GetIcon(@ptrCast(*const IGetClusterUIInfo, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGetClusterUIInfo_GetClusterName(self: *const T, lpszName: ?BSTR, pcchName: ?*i32) HRESULT {
+                return @ptrCast(*const IGetClusterUIInfo.VTable, self.vtable).GetClusterName(@ptrCast(*const IGetClusterUIInfo, self), lpszName, pcchName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGetClusterUIInfo_GetLocale(self: *const T) u32 {
+                return @ptrCast(*const IGetClusterUIInfo.VTable, self.vtable).GetLocale(@ptrCast(*const IGetClusterUIInfo, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGetClusterUIInfo_GetFont(self: *const T) ?HFONT {
+                return @ptrCast(*const IGetClusterUIInfo.VTable, self.vtable).GetFont(@ptrCast(*const IGetClusterUIInfo, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGetClusterUIInfo_GetIcon(self: *const T) ?HICON {
+                return @ptrCast(*const IGetClusterUIInfo.VTable, self.vtable).GetIcon(@ptrCast(*const IGetClusterUIInfo, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6058,34 +6059,36 @@ pub const IID_IGetClusterDataInfo = &IID_IGetClusterDataInfo_Value;
 pub const IGetClusterDataInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetClusterName: fn(
+        GetClusterName: fn (
             self: *const IGetClusterDataInfo,
             lpszName: ?BSTR,
             pcchName: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetClusterHandle: fn(
+        GetClusterHandle: fn (
             self: *const IGetClusterDataInfo,
         ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
-        GetObjectCount: fn(
+        GetObjectCount: fn (
             self: *const IGetClusterDataInfo,
         ) callconv(@import("std").os.windows.WINAPI) i32,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetClusterDataInfo_GetClusterName(self: *const T, lpszName: ?BSTR, pcchName: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGetClusterDataInfo.VTable, self.vtable).GetClusterName(@ptrCast(*const IGetClusterDataInfo, self), lpszName, pcchName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetClusterDataInfo_GetClusterHandle(self: *const T) callconv(.Inline) ?*_HCLUSTER {
-            return @ptrCast(*const IGetClusterDataInfo.VTable, self.vtable).GetClusterHandle(@ptrCast(*const IGetClusterDataInfo, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetClusterDataInfo_GetObjectCount(self: *const T) callconv(.Inline) i32 {
-            return @ptrCast(*const IGetClusterDataInfo.VTable, self.vtable).GetObjectCount(@ptrCast(*const IGetClusterDataInfo, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGetClusterDataInfo_GetClusterName(self: *const T, lpszName: ?BSTR, pcchName: ?*i32) HRESULT {
+                return @ptrCast(*const IGetClusterDataInfo.VTable, self.vtable).GetClusterName(@ptrCast(*const IGetClusterDataInfo, self), lpszName, pcchName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGetClusterDataInfo_GetClusterHandle(self: *const T) ?*_HCLUSTER {
+                return @ptrCast(*const IGetClusterDataInfo.VTable, self.vtable).GetClusterHandle(@ptrCast(*const IGetClusterDataInfo, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGetClusterDataInfo_GetObjectCount(self: *const T) i32 {
+                return @ptrCast(*const IGetClusterDataInfo.VTable, self.vtable).GetObjectCount(@ptrCast(*const IGetClusterDataInfo, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6095,29 +6098,31 @@ pub const IID_IGetClusterObjectInfo = &IID_IGetClusterObjectInfo_Value;
 pub const IGetClusterObjectInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetObjectName: fn(
+        GetObjectName: fn (
             self: *const IGetClusterObjectInfo,
             lObjIndex: i32,
             lpszName: ?BSTR,
             pcchName: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetObjectType: fn(
+        GetObjectType: fn (
             self: *const IGetClusterObjectInfo,
             lObjIndex: i32,
         ) callconv(@import("std").os.windows.WINAPI) CLUADMEX_OBJECT_TYPE,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetClusterObjectInfo_GetObjectName(self: *const T, lObjIndex: i32, lpszName: ?BSTR, pcchName: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGetClusterObjectInfo.VTable, self.vtable).GetObjectName(@ptrCast(*const IGetClusterObjectInfo, self), lObjIndex, lpszName, pcchName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetClusterObjectInfo_GetObjectType(self: *const T, lObjIndex: i32) callconv(.Inline) CLUADMEX_OBJECT_TYPE {
-            return @ptrCast(*const IGetClusterObjectInfo.VTable, self.vtable).GetObjectType(@ptrCast(*const IGetClusterObjectInfo, self), lObjIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGetClusterObjectInfo_GetObjectName(self: *const T, lObjIndex: i32, lpszName: ?BSTR, pcchName: ?*i32) HRESULT {
+                return @ptrCast(*const IGetClusterObjectInfo.VTable, self.vtable).GetObjectName(@ptrCast(*const IGetClusterObjectInfo, self), lObjIndex, lpszName, pcchName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGetClusterObjectInfo_GetObjectType(self: *const T, lObjIndex: i32) CLUADMEX_OBJECT_TYPE {
+                return @ptrCast(*const IGetClusterObjectInfo.VTable, self.vtable).GetObjectType(@ptrCast(*const IGetClusterObjectInfo, self), lObjIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6127,19 +6132,21 @@ pub const IID_IGetClusterNodeInfo = &IID_IGetClusterNodeInfo_Value;
 pub const IGetClusterNodeInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetNodeHandle: fn(
+        GetNodeHandle: fn (
             self: *const IGetClusterNodeInfo,
             lObjIndex: i32,
         ) callconv(@import("std").os.windows.WINAPI) ?*_HNODE,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetClusterNodeInfo_GetNodeHandle(self: *const T, lObjIndex: i32) callconv(.Inline) ?*_HNODE {
-            return @ptrCast(*const IGetClusterNodeInfo.VTable, self.vtable).GetNodeHandle(@ptrCast(*const IGetClusterNodeInfo, self), lObjIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGetClusterNodeInfo_GetNodeHandle(self: *const T, lObjIndex: i32) ?*_HNODE {
+                return @ptrCast(*const IGetClusterNodeInfo.VTable, self.vtable).GetNodeHandle(@ptrCast(*const IGetClusterNodeInfo, self), lObjIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6149,19 +6156,21 @@ pub const IID_IGetClusterGroupInfo = &IID_IGetClusterGroupInfo_Value;
 pub const IGetClusterGroupInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetGroupHandle: fn(
+        GetGroupHandle: fn (
             self: *const IGetClusterGroupInfo,
             lObjIndex: i32,
         ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetClusterGroupInfo_GetGroupHandle(self: *const T, lObjIndex: i32) callconv(.Inline) ?*_HGROUP {
-            return @ptrCast(*const IGetClusterGroupInfo.VTable, self.vtable).GetGroupHandle(@ptrCast(*const IGetClusterGroupInfo, self), lObjIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGetClusterGroupInfo_GetGroupHandle(self: *const T, lObjIndex: i32) ?*_HGROUP {
+                return @ptrCast(*const IGetClusterGroupInfo.VTable, self.vtable).GetGroupHandle(@ptrCast(*const IGetClusterGroupInfo, self), lObjIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6171,17 +6180,17 @@ pub const IID_IGetClusterResourceInfo = &IID_IGetClusterResourceInfo_Value;
 pub const IGetClusterResourceInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetResourceHandle: fn(
+        GetResourceHandle: fn (
             self: *const IGetClusterResourceInfo,
             lObjIndex: i32,
         ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
-        GetResourceTypeName: fn(
+        GetResourceTypeName: fn (
             self: *const IGetClusterResourceInfo,
             lObjIndex: i32,
             lpszResTypeName: ?BSTR,
             pcchResTypeName: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetResourceNetworkName: fn(
+        GetResourceNetworkName: fn (
             self: *const IGetClusterResourceInfo,
             lObjIndex: i32,
             lpszNetName: ?BSTR,
@@ -6189,21 +6198,23 @@ pub const IGetClusterResourceInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetClusterResourceInfo_GetResourceHandle(self: *const T, lObjIndex: i32) callconv(.Inline) ?*_HRESOURCE {
-            return @ptrCast(*const IGetClusterResourceInfo.VTable, self.vtable).GetResourceHandle(@ptrCast(*const IGetClusterResourceInfo, self), lObjIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetClusterResourceInfo_GetResourceTypeName(self: *const T, lObjIndex: i32, lpszResTypeName: ?BSTR, pcchResTypeName: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGetClusterResourceInfo.VTable, self.vtable).GetResourceTypeName(@ptrCast(*const IGetClusterResourceInfo, self), lObjIndex, lpszResTypeName, pcchResTypeName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetClusterResourceInfo_GetResourceNetworkName(self: *const T, lObjIndex: i32, lpszNetName: ?BSTR, pcchNetName: ?*u32) callconv(.Inline) BOOL {
-            return @ptrCast(*const IGetClusterResourceInfo.VTable, self.vtable).GetResourceNetworkName(@ptrCast(*const IGetClusterResourceInfo, self), lObjIndex, lpszNetName, pcchNetName);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGetClusterResourceInfo_GetResourceHandle(self: *const T, lObjIndex: i32) ?*_HRESOURCE {
+                return @ptrCast(*const IGetClusterResourceInfo.VTable, self.vtable).GetResourceHandle(@ptrCast(*const IGetClusterResourceInfo, self), lObjIndex);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGetClusterResourceInfo_GetResourceTypeName(self: *const T, lObjIndex: i32, lpszResTypeName: ?BSTR, pcchResTypeName: ?*i32) HRESULT {
+                return @ptrCast(*const IGetClusterResourceInfo.VTable, self.vtable).GetResourceTypeName(@ptrCast(*const IGetClusterResourceInfo, self), lObjIndex, lpszResTypeName, pcchResTypeName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGetClusterResourceInfo_GetResourceNetworkName(self: *const T, lObjIndex: i32, lpszNetName: ?BSTR, pcchNetName: ?*u32) BOOL {
+                return @ptrCast(*const IGetClusterResourceInfo.VTable, self.vtable).GetResourceNetworkName(@ptrCast(*const IGetClusterResourceInfo, self), lObjIndex, lpszNetName, pcchNetName);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6213,19 +6224,21 @@ pub const IID_IGetClusterNetworkInfo = &IID_IGetClusterNetworkInfo_Value;
 pub const IGetClusterNetworkInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetNetworkHandle: fn(
+        GetNetworkHandle: fn (
             self: *const IGetClusterNetworkInfo,
             lObjIndex: i32,
         ) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORK,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetClusterNetworkInfo_GetNetworkHandle(self: *const T, lObjIndex: i32) callconv(.Inline) ?*_HNETWORK {
-            return @ptrCast(*const IGetClusterNetworkInfo.VTable, self.vtable).GetNetworkHandle(@ptrCast(*const IGetClusterNetworkInfo, self), lObjIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGetClusterNetworkInfo_GetNetworkHandle(self: *const T, lObjIndex: i32) ?*_HNETWORK {
+                return @ptrCast(*const IGetClusterNetworkInfo.VTable, self.vtable).GetNetworkHandle(@ptrCast(*const IGetClusterNetworkInfo, self), lObjIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6235,19 +6248,21 @@ pub const IID_IGetClusterNetInterfaceInfo = &IID_IGetClusterNetInterfaceInfo_Val
 pub const IGetClusterNetInterfaceInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetNetInterfaceHandle: fn(
+        GetNetInterfaceHandle: fn (
             self: *const IGetClusterNetInterfaceInfo,
             lObjIndex: i32,
         ) callconv(@import("std").os.windows.WINAPI) ?*_HNETINTERFACE,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetClusterNetInterfaceInfo_GetNetInterfaceHandle(self: *const T, lObjIndex: i32) callconv(.Inline) ?*_HNETINTERFACE {
-            return @ptrCast(*const IGetClusterNetInterfaceInfo.VTable, self.vtable).GetNetInterfaceHandle(@ptrCast(*const IGetClusterNetInterfaceInfo, self), lObjIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGetClusterNetInterfaceInfo_GetNetInterfaceHandle(self: *const T, lObjIndex: i32) ?*_HNETINTERFACE {
+                return @ptrCast(*const IGetClusterNetInterfaceInfo.VTable, self.vtable).GetNetInterfaceHandle(@ptrCast(*const IGetClusterNetInterfaceInfo, self), lObjIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6257,19 +6272,21 @@ pub const IID_IWCPropertySheetCallback = &IID_IWCPropertySheetCallback_Value;
 pub const IWCPropertySheetCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddPropertySheetPage: fn(
+        AddPropertySheetPage: fn (
             self: *const IWCPropertySheetCallback,
             hpage: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCPropertySheetCallback_AddPropertySheetPage(self: *const T, hpage: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWCPropertySheetCallback.VTable, self.vtable).AddPropertySheetPage(@ptrCast(*const IWCPropertySheetCallback, self), hpage);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWCPropertySheetCallback_AddPropertySheetPage(self: *const T, hpage: ?*i32) HRESULT {
+                return @ptrCast(*const IWCPropertySheetCallback.VTable, self.vtable).AddPropertySheetPage(@ptrCast(*const IWCPropertySheetCallback, self), hpage);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6279,20 +6296,22 @@ pub const IID_IWEExtendPropertySheet = &IID_IWEExtendPropertySheet_Value;
 pub const IWEExtendPropertySheet = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreatePropertySheetPages: fn(
+        CreatePropertySheetPages: fn (
             self: *const IWEExtendPropertySheet,
             piData: ?*IUnknown,
             piCallback: ?*IWCPropertySheetCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWEExtendPropertySheet_CreatePropertySheetPages(self: *const T, piData: ?*IUnknown, piCallback: ?*IWCPropertySheetCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWEExtendPropertySheet.VTable, self.vtable).CreatePropertySheetPages(@ptrCast(*const IWEExtendPropertySheet, self), piData, piCallback);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWEExtendPropertySheet_CreatePropertySheetPages(self: *const T, piData: ?*IUnknown, piCallback: ?*IWCPropertySheetCallback) HRESULT {
+                return @ptrCast(*const IWEExtendPropertySheet.VTable, self.vtable).CreatePropertySheetPages(@ptrCast(*const IWEExtendPropertySheet, self), piData, piCallback);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6302,28 +6321,30 @@ pub const IID_IWCWizardCallback = &IID_IWCWizardCallback_Value;
 pub const IWCWizardCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddWizardPage: fn(
+        AddWizardPage: fn (
             self: *const IWCWizardCallback,
             hpage: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnableNext: fn(
+        EnableNext: fn (
             self: *const IWCWizardCallback,
             hpage: ?*i32,
             bEnable: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCWizardCallback_AddWizardPage(self: *const T, hpage: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWCWizardCallback.VTable, self.vtable).AddWizardPage(@ptrCast(*const IWCWizardCallback, self), hpage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCWizardCallback_EnableNext(self: *const T, hpage: ?*i32, bEnable: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWCWizardCallback.VTable, self.vtable).EnableNext(@ptrCast(*const IWCWizardCallback, self), hpage, bEnable);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWCWizardCallback_AddWizardPage(self: *const T, hpage: ?*i32) HRESULT {
+                return @ptrCast(*const IWCWizardCallback.VTable, self.vtable).AddWizardPage(@ptrCast(*const IWCWizardCallback, self), hpage);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWCWizardCallback_EnableNext(self: *const T, hpage: ?*i32, bEnable: BOOL) HRESULT {
+                return @ptrCast(*const IWCWizardCallback.VTable, self.vtable).EnableNext(@ptrCast(*const IWCWizardCallback, self), hpage, bEnable);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6333,20 +6354,22 @@ pub const IID_IWEExtendWizard = &IID_IWEExtendWizard_Value;
 pub const IWEExtendWizard = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateWizardPages: fn(
+        CreateWizardPages: fn (
             self: *const IWEExtendWizard,
             piData: ?*IUnknown,
             piCallback: ?*IWCWizardCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWEExtendWizard_CreateWizardPages(self: *const T, piData: ?*IUnknown, piCallback: ?*IWCWizardCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWEExtendWizard.VTable, self.vtable).CreateWizardPages(@ptrCast(*const IWEExtendWizard, self), piData, piCallback);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWEExtendWizard_CreateWizardPages(self: *const T, piData: ?*IUnknown, piCallback: ?*IWCWizardCallback) HRESULT {
+                return @ptrCast(*const IWEExtendWizard.VTable, self.vtable).CreateWizardPages(@ptrCast(*const IWEExtendWizard, self), piData, piCallback);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6356,7 +6379,7 @@ pub const IID_IWCContextMenuCallback = &IID_IWCContextMenuCallback_Value;
 pub const IWCContextMenuCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddExtensionMenuItem: fn(
+        AddExtensionMenuItem: fn (
             self: *const IWCContextMenuCallback,
             lpszName: ?BSTR,
             lpszStatusBarText: ?BSTR,
@@ -6366,13 +6389,15 @@ pub const IWCContextMenuCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCContextMenuCallback_AddExtensionMenuItem(self: *const T, lpszName: ?BSTR, lpszStatusBarText: ?BSTR, nCommandID: u32, nSubmenuCommandID: u32, uFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWCContextMenuCallback.VTable, self.vtable).AddExtensionMenuItem(@ptrCast(*const IWCContextMenuCallback, self), lpszName, lpszStatusBarText, nCommandID, nSubmenuCommandID, uFlags);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWCContextMenuCallback_AddExtensionMenuItem(self: *const T, lpszName: ?BSTR, lpszStatusBarText: ?BSTR, nCommandID: u32, nSubmenuCommandID: u32, uFlags: u32) HRESULT {
+                return @ptrCast(*const IWCContextMenuCallback.VTable, self.vtable).AddExtensionMenuItem(@ptrCast(*const IWCContextMenuCallback, self), lpszName, lpszStatusBarText, nCommandID, nSubmenuCommandID, uFlags);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6382,20 +6407,22 @@ pub const IID_IWEExtendContextMenu = &IID_IWEExtendContextMenu_Value;
 pub const IWEExtendContextMenu = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddContextMenuItems: fn(
+        AddContextMenuItems: fn (
             self: *const IWEExtendContextMenu,
             piData: ?*IUnknown,
             piCallback: ?*IWCContextMenuCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWEExtendContextMenu_AddContextMenuItems(self: *const T, piData: ?*IUnknown, piCallback: ?*IWCContextMenuCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWEExtendContextMenu.VTable, self.vtable).AddContextMenuItems(@ptrCast(*const IWEExtendContextMenu, self), piData, piCallback);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWEExtendContextMenu_AddContextMenuItems(self: *const T, piData: ?*IUnknown, piCallback: ?*IWCContextMenuCallback) HRESULT {
+                return @ptrCast(*const IWEExtendContextMenu.VTable, self.vtable).AddContextMenuItems(@ptrCast(*const IWEExtendContextMenu, self), piData, piCallback);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6405,20 +6432,22 @@ pub const IID_IWEInvokeCommand = &IID_IWEInvokeCommand_Value;
 pub const IWEInvokeCommand = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        InvokeCommand: fn(
+        InvokeCommand: fn (
             self: *const IWEInvokeCommand,
             nCommandID: u32,
             piData: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWEInvokeCommand_InvokeCommand(self: *const T, nCommandID: u32, piData: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWEInvokeCommand.VTable, self.vtable).InvokeCommand(@ptrCast(*const IWEInvokeCommand, self), nCommandID, piData);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWEInvokeCommand_InvokeCommand(self: *const T, nCommandID: u32, piData: ?*IUnknown) HRESULT {
+                return @ptrCast(*const IWEInvokeCommand.VTable, self.vtable).InvokeCommand(@ptrCast(*const IWEInvokeCommand, self), nCommandID, piData);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6428,28 +6457,30 @@ pub const IID_IWCWizard97Callback = &IID_IWCWizard97Callback_Value;
 pub const IWCWizard97Callback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddWizard97Page: fn(
+        AddWizard97Page: fn (
             self: *const IWCWizard97Callback,
             hpage: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnableNext: fn(
+        EnableNext: fn (
             self: *const IWCWizard97Callback,
             hpage: ?*i32,
             bEnable: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCWizard97Callback_AddWizard97Page(self: *const T, hpage: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWCWizard97Callback.VTable, self.vtable).AddWizard97Page(@ptrCast(*const IWCWizard97Callback, self), hpage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCWizard97Callback_EnableNext(self: *const T, hpage: ?*i32, bEnable: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWCWizard97Callback.VTable, self.vtable).EnableNext(@ptrCast(*const IWCWizard97Callback, self), hpage, bEnable);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWCWizard97Callback_AddWizard97Page(self: *const T, hpage: ?*i32) HRESULT {
+                return @ptrCast(*const IWCWizard97Callback.VTable, self.vtable).AddWizard97Page(@ptrCast(*const IWCWizard97Callback, self), hpage);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWCWizard97Callback_EnableNext(self: *const T, hpage: ?*i32, bEnable: BOOL) HRESULT {
+                return @ptrCast(*const IWCWizard97Callback.VTable, self.vtable).EnableNext(@ptrCast(*const IWCWizard97Callback, self), hpage, bEnable);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6459,20 +6490,22 @@ pub const IID_IWEExtendWizard97 = &IID_IWEExtendWizard97_Value;
 pub const IWEExtendWizard97 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateWizard97Pages: fn(
+        CreateWizard97Pages: fn (
             self: *const IWEExtendWizard97,
             piData: ?*IUnknown,
             piCallback: ?*IWCWizard97Callback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWEExtendWizard97_CreateWizard97Pages(self: *const T, piData: ?*IUnknown, piCallback: ?*IWCWizard97Callback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWEExtendWizard97.VTable, self.vtable).CreateWizard97Pages(@ptrCast(*const IWEExtendWizard97, self), piData, piCallback);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWEExtendWizard97_CreateWizard97Pages(self: *const T, piData: ?*IUnknown, piCallback: ?*IWCWizard97Callback) HRESULT {
+                return @ptrCast(*const IWEExtendWizard97.VTable, self.vtable).CreateWizard97Pages(@ptrCast(*const IWEExtendWizard97, self), piData, piCallback);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6602,38 +6635,40 @@ pub const ISClusApplication = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DomainNames: fn(
+        get_DomainNames: fn (
             self: *const ISClusApplication,
             ppDomains: ?*?*ISDomainNames,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClusterNames: fn(
+        get_ClusterNames: fn (
             self: *const ISClusApplication,
             bstrDomainName: ?BSTR,
             ppClusters: ?*?*ISClusterNames,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OpenCluster: fn(
+        OpenCluster: fn (
             self: *const ISClusApplication,
             bstrClusterName: ?BSTR,
             pCluster: ?*?*ISCluster,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusApplication_get_DomainNames(self: *const T, ppDomains: ?*?*ISDomainNames) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusApplication.VTable, self.vtable).get_DomainNames(@ptrCast(*const ISClusApplication, self), ppDomains);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusApplication_get_ClusterNames(self: *const T, bstrDomainName: ?BSTR, ppClusters: ?*?*ISClusterNames) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusApplication.VTable, self.vtable).get_ClusterNames(@ptrCast(*const ISClusApplication, self), bstrDomainName, ppClusters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusApplication_OpenCluster(self: *const T, bstrClusterName: ?BSTR, pCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusApplication.VTable, self.vtable).OpenCluster(@ptrCast(*const ISClusApplication, self), bstrClusterName, pCluster);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusApplication_get_DomainNames(self: *const T, ppDomains: ?*?*ISDomainNames) HRESULT {
+                return @ptrCast(*const ISClusApplication.VTable, self.vtable).get_DomainNames(@ptrCast(*const ISClusApplication, self), ppDomains);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusApplication_get_ClusterNames(self: *const T, bstrDomainName: ?BSTR, ppClusters: ?*?*ISClusterNames) HRESULT {
+                return @ptrCast(*const ISClusApplication.VTable, self.vtable).get_ClusterNames(@ptrCast(*const ISClusApplication, self), bstrDomainName, ppClusters);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusApplication_OpenCluster(self: *const T, bstrClusterName: ?BSTR, pCluster: ?*?*ISCluster) HRESULT {
+                return @ptrCast(*const ISClusApplication.VTable, self.vtable).OpenCluster(@ptrCast(*const ISClusApplication, self), bstrClusterName, pCluster);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6643,45 +6678,47 @@ pub const ISDomainNames = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISDomainNames,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISDomainNames,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const ISDomainNames,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISDomainNames,
             varIndex: VARIANT,
             pbstrDomainName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISDomainNames_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISDomainNames.VTable, self.vtable).get_Count(@ptrCast(*const ISDomainNames, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISDomainNames_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISDomainNames.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISDomainNames, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISDomainNames_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISDomainNames.VTable, self.vtable).Refresh(@ptrCast(*const ISDomainNames, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISDomainNames_get_Item(self: *const T, varIndex: VARIANT, pbstrDomainName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISDomainNames.VTable, self.vtable).get_Item(@ptrCast(*const ISDomainNames, self), varIndex, pbstrDomainName);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISDomainNames_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISDomainNames.VTable, self.vtable).get_Count(@ptrCast(*const ISDomainNames, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISDomainNames_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISDomainNames.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISDomainNames, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISDomainNames_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const ISDomainNames.VTable, self.vtable).Refresh(@ptrCast(*const ISDomainNames, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISDomainNames_get_Item(self: *const T, varIndex: VARIANT, pbstrDomainName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISDomainNames.VTable, self.vtable).get_Item(@ptrCast(*const ISDomainNames, self), varIndex, pbstrDomainName);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6691,54 +6728,56 @@ pub const ISClusterNames = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusterNames,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusterNames,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const ISClusterNames,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusterNames,
             varIndex: VARIANT,
             pbstrClusterName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DomainName: fn(
+        get_DomainName: fn (
             self: *const ISClusterNames,
             pbstrDomainName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusterNames_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusterNames.VTable, self.vtable).get_Count(@ptrCast(*const ISClusterNames, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusterNames_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusterNames.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusterNames, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusterNames_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusterNames.VTable, self.vtable).Refresh(@ptrCast(*const ISClusterNames, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusterNames_get_Item(self: *const T, varIndex: VARIANT, pbstrClusterName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusterNames.VTable, self.vtable).get_Item(@ptrCast(*const ISClusterNames, self), varIndex, pbstrClusterName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusterNames_get_DomainName(self: *const T, pbstrDomainName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusterNames.VTable, self.vtable).get_DomainName(@ptrCast(*const ISClusterNames, self), pbstrDomainName);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusterNames_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusterNames.VTable, self.vtable).get_Count(@ptrCast(*const ISClusterNames, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusterNames_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusterNames.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusterNames, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusterNames_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusterNames.VTable, self.vtable).Refresh(@ptrCast(*const ISClusterNames, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusterNames_get_Item(self: *const T, varIndex: VARIANT, pbstrClusterName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusterNames.VTable, self.vtable).get_Item(@ptrCast(*const ISClusterNames, self), varIndex, pbstrClusterName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusterNames_get_DomainName(self: *const T, pbstrDomainName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusterNames.VTable, self.vtable).get_DomainName(@ptrCast(*const ISClusterNames, self), pbstrDomainName);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6748,19 +6787,21 @@ pub const ISClusRefObject = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: fn(
+        get_Handle: fn (
             self: *const ISClusRefObject,
             phandle: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusRefObject_get_Handle(self: *const T, phandle: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusRefObject.VTable, self.vtable).get_Handle(@ptrCast(*const ISClusRefObject, self), phandle);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusRefObject_get_Handle(self: *const T, phandle: ?*usize) HRESULT {
+                return @ptrCast(*const ISClusRefObject.VTable, self.vtable).get_Handle(@ptrCast(*const ISClusRefObject, self), phandle);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6770,100 +6811,102 @@ pub const ISClusVersion = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
+        get_Name: fn (
             self: *const ISClusVersion,
             pbstrClusterName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MajorVersion: fn(
+        get_MajorVersion: fn (
             self: *const ISClusVersion,
             pnMajorVersion: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MinorVersion: fn(
+        get_MinorVersion: fn (
             self: *const ISClusVersion,
             pnMinorVersion: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BuildNumber: fn(
+        get_BuildNumber: fn (
             self: *const ISClusVersion,
             pnBuildNumber: ?*i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_VendorId: fn(
+        get_VendorId: fn (
             self: *const ISClusVersion,
             pbstrVendorId: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CSDVersion: fn(
+        get_CSDVersion: fn (
             self: *const ISClusVersion,
             pbstrCSDVersion: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClusterHighestVersion: fn(
+        get_ClusterHighestVersion: fn (
             self: *const ISClusVersion,
             pnClusterHighestVersion: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClusterLowestVersion: fn(
+        get_ClusterLowestVersion: fn (
             self: *const ISClusVersion,
             pnClusterLowestVersion: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Flags: fn(
+        get_Flags: fn (
             self: *const ISClusVersion,
             pnFlags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MixedVersion: fn(
+        get_MixedVersion: fn (
             self: *const ISClusVersion,
             pvarMixedVersion: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusVersion_get_Name(self: *const T, pbstrClusterName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusVersion.VTable, self.vtable).get_Name(@ptrCast(*const ISClusVersion, self), pbstrClusterName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusVersion_get_MajorVersion(self: *const T, pnMajorVersion: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusVersion.VTable, self.vtable).get_MajorVersion(@ptrCast(*const ISClusVersion, self), pnMajorVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusVersion_get_MinorVersion(self: *const T, pnMinorVersion: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusVersion.VTable, self.vtable).get_MinorVersion(@ptrCast(*const ISClusVersion, self), pnMinorVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusVersion_get_BuildNumber(self: *const T, pnBuildNumber: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusVersion.VTable, self.vtable).get_BuildNumber(@ptrCast(*const ISClusVersion, self), pnBuildNumber);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusVersion_get_VendorId(self: *const T, pbstrVendorId: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusVersion.VTable, self.vtable).get_VendorId(@ptrCast(*const ISClusVersion, self), pbstrVendorId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusVersion_get_CSDVersion(self: *const T, pbstrCSDVersion: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusVersion.VTable, self.vtable).get_CSDVersion(@ptrCast(*const ISClusVersion, self), pbstrCSDVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusVersion_get_ClusterHighestVersion(self: *const T, pnClusterHighestVersion: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusVersion.VTable, self.vtable).get_ClusterHighestVersion(@ptrCast(*const ISClusVersion, self), pnClusterHighestVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusVersion_get_ClusterLowestVersion(self: *const T, pnClusterLowestVersion: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusVersion.VTable, self.vtable).get_ClusterLowestVersion(@ptrCast(*const ISClusVersion, self), pnClusterLowestVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusVersion_get_Flags(self: *const T, pnFlags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusVersion.VTable, self.vtable).get_Flags(@ptrCast(*const ISClusVersion, self), pnFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusVersion_get_MixedVersion(self: *const T, pvarMixedVersion: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusVersion.VTable, self.vtable).get_MixedVersion(@ptrCast(*const ISClusVersion, self), pvarMixedVersion);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusVersion_get_Name(self: *const T, pbstrClusterName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusVersion.VTable, self.vtable).get_Name(@ptrCast(*const ISClusVersion, self), pbstrClusterName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusVersion_get_MajorVersion(self: *const T, pnMajorVersion: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusVersion.VTable, self.vtable).get_MajorVersion(@ptrCast(*const ISClusVersion, self), pnMajorVersion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusVersion_get_MinorVersion(self: *const T, pnMinorVersion: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusVersion.VTable, self.vtable).get_MinorVersion(@ptrCast(*const ISClusVersion, self), pnMinorVersion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusVersion_get_BuildNumber(self: *const T, pnBuildNumber: ?*i16) HRESULT {
+                return @ptrCast(*const ISClusVersion.VTable, self.vtable).get_BuildNumber(@ptrCast(*const ISClusVersion, self), pnBuildNumber);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusVersion_get_VendorId(self: *const T, pbstrVendorId: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusVersion.VTable, self.vtable).get_VendorId(@ptrCast(*const ISClusVersion, self), pbstrVendorId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusVersion_get_CSDVersion(self: *const T, pbstrCSDVersion: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusVersion.VTable, self.vtable).get_CSDVersion(@ptrCast(*const ISClusVersion, self), pbstrCSDVersion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusVersion_get_ClusterHighestVersion(self: *const T, pnClusterHighestVersion: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusVersion.VTable, self.vtable).get_ClusterHighestVersion(@ptrCast(*const ISClusVersion, self), pnClusterHighestVersion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusVersion_get_ClusterLowestVersion(self: *const T, pnClusterLowestVersion: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusVersion.VTable, self.vtable).get_ClusterLowestVersion(@ptrCast(*const ISClusVersion, self), pnClusterLowestVersion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusVersion_get_Flags(self: *const T, pnFlags: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusVersion.VTable, self.vtable).get_Flags(@ptrCast(*const ISClusVersion, self), pnFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusVersion_get_MixedVersion(self: *const T, pvarMixedVersion: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusVersion.VTable, self.vtable).get_MixedVersion(@ptrCast(*const ISClusVersion, self), pvarMixedVersion);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6873,198 +6916,200 @@ pub const ISCluster = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonProperties: fn(
+        get_CommonProperties: fn (
             self: *const ISCluster,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateProperties: fn(
+        get_PrivateProperties: fn (
             self: *const ISCluster,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonROProperties: fn(
+        get_CommonROProperties: fn (
             self: *const ISCluster,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateROProperties: fn(
+        get_PrivateROProperties: fn (
             self: *const ISCluster,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: fn(
+        get_Handle: fn (
             self: *const ISCluster,
             phandle: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Open: fn(
+        Open: fn (
             self: *const ISCluster,
             bstrClusterName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
+        get_Name: fn (
             self: *const ISCluster,
             pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: fn(
+        put_Name: fn (
             self: *const ISCluster,
             bstrClusterName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Version: fn(
+        get_Version: fn (
             self: *const ISCluster,
             ppClusVersion: ?*?*ISClusVersion,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_QuorumResource: fn(
+        put_QuorumResource: fn (
             self: *const ISCluster,
             pClusterResource: ?*ISClusResource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QuorumResource: fn(
+        get_QuorumResource: fn (
             self: *const ISCluster,
             pClusterResource: ?*?*ISClusResource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QuorumLogSize: fn(
+        get_QuorumLogSize: fn (
             self: *const ISCluster,
             pnLogSize: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_QuorumLogSize: fn(
+        put_QuorumLogSize: fn (
             self: *const ISCluster,
             nLogSize: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QuorumPath: fn(
+        get_QuorumPath: fn (
             self: *const ISCluster,
             ppPath: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_QuorumPath: fn(
+        put_QuorumPath: fn (
             self: *const ISCluster,
             pPath: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Nodes: fn(
+        get_Nodes: fn (
             self: *const ISCluster,
             ppNodes: ?*?*ISClusNodes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResourceGroups: fn(
+        get_ResourceGroups: fn (
             self: *const ISCluster,
             ppClusterResourceGroups: ?*?*ISClusResGroups,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Resources: fn(
+        get_Resources: fn (
             self: *const ISCluster,
             ppClusterResources: ?*?*ISClusResources,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResourceTypes: fn(
+        get_ResourceTypes: fn (
             self: *const ISCluster,
             ppResourceTypes: ?*?*ISClusResTypes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Networks: fn(
+        get_Networks: fn (
             self: *const ISCluster,
             ppNetworks: ?*?*ISClusNetworks,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NetInterfaces: fn(
+        get_NetInterfaces: fn (
             self: *const ISCluster,
             ppNetInterfaces: ?*?*ISClusNetInterfaces,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_get_CommonProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).get_CommonProperties(@ptrCast(*const ISCluster, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_get_PrivateProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).get_PrivateProperties(@ptrCast(*const ISCluster, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_get_CommonROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).get_CommonROProperties(@ptrCast(*const ISCluster, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_get_PrivateROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).get_PrivateROProperties(@ptrCast(*const ISCluster, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_get_Handle(self: *const T, phandle: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).get_Handle(@ptrCast(*const ISCluster, self), phandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_Open(self: *const T, bstrClusterName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).Open(@ptrCast(*const ISCluster, self), bstrClusterName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).get_Name(@ptrCast(*const ISCluster, self), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_put_Name(self: *const T, bstrClusterName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).put_Name(@ptrCast(*const ISCluster, self), bstrClusterName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_get_Version(self: *const T, ppClusVersion: ?*?*ISClusVersion) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).get_Version(@ptrCast(*const ISCluster, self), ppClusVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_put_QuorumResource(self: *const T, pClusterResource: ?*ISClusResource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).put_QuorumResource(@ptrCast(*const ISCluster, self), pClusterResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_get_QuorumResource(self: *const T, pClusterResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).get_QuorumResource(@ptrCast(*const ISCluster, self), pClusterResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_get_QuorumLogSize(self: *const T, pnLogSize: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).get_QuorumLogSize(@ptrCast(*const ISCluster, self), pnLogSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_put_QuorumLogSize(self: *const T, nLogSize: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).put_QuorumLogSize(@ptrCast(*const ISCluster, self), nLogSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_get_QuorumPath(self: *const T, ppPath: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).get_QuorumPath(@ptrCast(*const ISCluster, self), ppPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_put_QuorumPath(self: *const T, pPath: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).put_QuorumPath(@ptrCast(*const ISCluster, self), pPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_get_Nodes(self: *const T, ppNodes: ?*?*ISClusNodes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).get_Nodes(@ptrCast(*const ISCluster, self), ppNodes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_get_ResourceGroups(self: *const T, ppClusterResourceGroups: ?*?*ISClusResGroups) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).get_ResourceGroups(@ptrCast(*const ISCluster, self), ppClusterResourceGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_get_Resources(self: *const T, ppClusterResources: ?*?*ISClusResources) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).get_Resources(@ptrCast(*const ISCluster, self), ppClusterResources);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_get_ResourceTypes(self: *const T, ppResourceTypes: ?*?*ISClusResTypes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).get_ResourceTypes(@ptrCast(*const ISCluster, self), ppResourceTypes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_get_Networks(self: *const T, ppNetworks: ?*?*ISClusNetworks) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).get_Networks(@ptrCast(*const ISCluster, self), ppNetworks);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCluster_get_NetInterfaces(self: *const T, ppNetInterfaces: ?*?*ISClusNetInterfaces) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISCluster.VTable, self.vtable).get_NetInterfaces(@ptrCast(*const ISCluster, self), ppNetInterfaces);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_get_CommonProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).get_CommonProperties(@ptrCast(*const ISCluster, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_get_PrivateProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).get_PrivateProperties(@ptrCast(*const ISCluster, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_get_CommonROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).get_CommonROProperties(@ptrCast(*const ISCluster, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_get_PrivateROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).get_PrivateROProperties(@ptrCast(*const ISCluster, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_get_Handle(self: *const T, phandle: ?*usize) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).get_Handle(@ptrCast(*const ISCluster, self), phandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_Open(self: *const T, bstrClusterName: ?BSTR) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).Open(@ptrCast(*const ISCluster, self), bstrClusterName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).get_Name(@ptrCast(*const ISCluster, self), pbstrName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_put_Name(self: *const T, bstrClusterName: ?BSTR) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).put_Name(@ptrCast(*const ISCluster, self), bstrClusterName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_get_Version(self: *const T, ppClusVersion: ?*?*ISClusVersion) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).get_Version(@ptrCast(*const ISCluster, self), ppClusVersion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_put_QuorumResource(self: *const T, pClusterResource: ?*ISClusResource) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).put_QuorumResource(@ptrCast(*const ISCluster, self), pClusterResource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_get_QuorumResource(self: *const T, pClusterResource: ?*?*ISClusResource) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).get_QuorumResource(@ptrCast(*const ISCluster, self), pClusterResource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_get_QuorumLogSize(self: *const T, pnLogSize: ?*i32) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).get_QuorumLogSize(@ptrCast(*const ISCluster, self), pnLogSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_put_QuorumLogSize(self: *const T, nLogSize: i32) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).put_QuorumLogSize(@ptrCast(*const ISCluster, self), nLogSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_get_QuorumPath(self: *const T, ppPath: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).get_QuorumPath(@ptrCast(*const ISCluster, self), ppPath);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_put_QuorumPath(self: *const T, pPath: ?BSTR) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).put_QuorumPath(@ptrCast(*const ISCluster, self), pPath);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_get_Nodes(self: *const T, ppNodes: ?*?*ISClusNodes) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).get_Nodes(@ptrCast(*const ISCluster, self), ppNodes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_get_ResourceGroups(self: *const T, ppClusterResourceGroups: ?*?*ISClusResGroups) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).get_ResourceGroups(@ptrCast(*const ISCluster, self), ppClusterResourceGroups);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_get_Resources(self: *const T, ppClusterResources: ?*?*ISClusResources) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).get_Resources(@ptrCast(*const ISCluster, self), ppClusterResources);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_get_ResourceTypes(self: *const T, ppResourceTypes: ?*?*ISClusResTypes) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).get_ResourceTypes(@ptrCast(*const ISCluster, self), ppResourceTypes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_get_Networks(self: *const T, ppNetworks: ?*?*ISClusNetworks) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).get_Networks(@ptrCast(*const ISCluster, self), ppNetworks);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISCluster_get_NetInterfaces(self: *const T, ppNetInterfaces: ?*?*ISClusNetInterfaces) HRESULT {
+                return @ptrCast(*const ISCluster.VTable, self.vtable).get_NetInterfaces(@ptrCast(*const ISCluster, self), ppNetInterfaces);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7074,130 +7119,132 @@ pub const ISClusNode = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonProperties: fn(
+        get_CommonProperties: fn (
             self: *const ISClusNode,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateProperties: fn(
+        get_PrivateProperties: fn (
             self: *const ISClusNode,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonROProperties: fn(
+        get_CommonROProperties: fn (
             self: *const ISClusNode,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateROProperties: fn(
+        get_PrivateROProperties: fn (
             self: *const ISClusNode,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
+        get_Name: fn (
             self: *const ISClusNode,
             pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: fn(
+        get_Handle: fn (
             self: *const ISClusNode,
             phandle: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NodeID: fn(
+        get_NodeID: fn (
             self: *const ISClusNode,
             pbstrNodeID: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
+        get_State: fn (
             self: *const ISClusNode,
             dwState: ?*CLUSTER_NODE_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Pause: fn(
+        Pause: fn (
             self: *const ISClusNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Resume: fn(
+        Resume: fn (
             self: *const ISClusNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Evict: fn(
+        Evict: fn (
             self: *const ISClusNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ResourceGroups: fn(
+        get_ResourceGroups: fn (
             self: *const ISClusNode,
             ppResourceGroups: ?*?*ISClusResGroups,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cluster: fn(
+        get_Cluster: fn (
             self: *const ISClusNode,
             ppCluster: ?*?*ISCluster,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NetInterfaces: fn(
+        get_NetInterfaces: fn (
             self: *const ISClusNode,
             ppClusNetInterfaces: ?*?*ISClusNodeNetInterfaces,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNode_get_CommonProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNode.VTable, self.vtable).get_CommonProperties(@ptrCast(*const ISClusNode, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNode_get_PrivateProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNode.VTable, self.vtable).get_PrivateProperties(@ptrCast(*const ISClusNode, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNode_get_CommonROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNode.VTable, self.vtable).get_CommonROProperties(@ptrCast(*const ISClusNode, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNode_get_PrivateROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNode.VTable, self.vtable).get_PrivateROProperties(@ptrCast(*const ISClusNode, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNode_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNode.VTable, self.vtable).get_Name(@ptrCast(*const ISClusNode, self), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNode_get_Handle(self: *const T, phandle: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNode.VTable, self.vtable).get_Handle(@ptrCast(*const ISClusNode, self), phandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNode_get_NodeID(self: *const T, pbstrNodeID: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNode.VTable, self.vtable).get_NodeID(@ptrCast(*const ISClusNode, self), pbstrNodeID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNode_get_State(self: *const T, dwState: ?*CLUSTER_NODE_STATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNode.VTable, self.vtable).get_State(@ptrCast(*const ISClusNode, self), dwState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNode_Pause(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNode.VTable, self.vtable).Pause(@ptrCast(*const ISClusNode, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNode_Resume(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNode.VTable, self.vtable).Resume(@ptrCast(*const ISClusNode, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNode_Evict(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNode.VTable, self.vtable).Evict(@ptrCast(*const ISClusNode, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNode_get_ResourceGroups(self: *const T, ppResourceGroups: ?*?*ISClusResGroups) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNode.VTable, self.vtable).get_ResourceGroups(@ptrCast(*const ISClusNode, self), ppResourceGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNode_get_Cluster(self: *const T, ppCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNode.VTable, self.vtable).get_Cluster(@ptrCast(*const ISClusNode, self), ppCluster);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNode_get_NetInterfaces(self: *const T, ppClusNetInterfaces: ?*?*ISClusNodeNetInterfaces) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNode.VTable, self.vtable).get_NetInterfaces(@ptrCast(*const ISClusNode, self), ppClusNetInterfaces);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNode_get_CommonProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusNode.VTable, self.vtable).get_CommonProperties(@ptrCast(*const ISClusNode, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNode_get_PrivateProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusNode.VTable, self.vtable).get_PrivateProperties(@ptrCast(*const ISClusNode, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNode_get_CommonROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusNode.VTable, self.vtable).get_CommonROProperties(@ptrCast(*const ISClusNode, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNode_get_PrivateROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusNode.VTable, self.vtable).get_PrivateROProperties(@ptrCast(*const ISClusNode, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNode_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusNode.VTable, self.vtable).get_Name(@ptrCast(*const ISClusNode, self), pbstrName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNode_get_Handle(self: *const T, phandle: ?*usize) HRESULT {
+                return @ptrCast(*const ISClusNode.VTable, self.vtable).get_Handle(@ptrCast(*const ISClusNode, self), phandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNode_get_NodeID(self: *const T, pbstrNodeID: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusNode.VTable, self.vtable).get_NodeID(@ptrCast(*const ISClusNode, self), pbstrNodeID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNode_get_State(self: *const T, dwState: ?*CLUSTER_NODE_STATE) HRESULT {
+                return @ptrCast(*const ISClusNode.VTable, self.vtable).get_State(@ptrCast(*const ISClusNode, self), dwState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNode_Pause(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusNode.VTable, self.vtable).Pause(@ptrCast(*const ISClusNode, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNode_Resume(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusNode.VTable, self.vtable).Resume(@ptrCast(*const ISClusNode, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNode_Evict(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusNode.VTable, self.vtable).Evict(@ptrCast(*const ISClusNode, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNode_get_ResourceGroups(self: *const T, ppResourceGroups: ?*?*ISClusResGroups) HRESULT {
+                return @ptrCast(*const ISClusNode.VTable, self.vtable).get_ResourceGroups(@ptrCast(*const ISClusNode, self), ppResourceGroups);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNode_get_Cluster(self: *const T, ppCluster: ?*?*ISCluster) HRESULT {
+                return @ptrCast(*const ISClusNode.VTable, self.vtable).get_Cluster(@ptrCast(*const ISClusNode, self), ppCluster);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNode_get_NetInterfaces(self: *const T, ppClusNetInterfaces: ?*?*ISClusNodeNetInterfaces) HRESULT {
+                return @ptrCast(*const ISClusNode.VTable, self.vtable).get_NetInterfaces(@ptrCast(*const ISClusNode, self), ppClusNetInterfaces);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7207,45 +7254,47 @@ pub const ISClusNodes = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusNodes,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusNodes,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const ISClusNodes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusNodes,
             varIndex: VARIANT,
             ppNode: ?*?*ISClusNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNodes_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNodes.VTable, self.vtable).get_Count(@ptrCast(*const ISClusNodes, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNodes_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNodes.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusNodes, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNodes_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNodes.VTable, self.vtable).Refresh(@ptrCast(*const ISClusNodes, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNodes_get_Item(self: *const T, varIndex: VARIANT, ppNode: ?*?*ISClusNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNodes.VTable, self.vtable).get_Item(@ptrCast(*const ISClusNodes, self), varIndex, ppNode);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNodes_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusNodes.VTable, self.vtable).get_Count(@ptrCast(*const ISClusNodes, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNodes_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusNodes.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusNodes, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNodes_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusNodes.VTable, self.vtable).Refresh(@ptrCast(*const ISClusNodes, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNodes_get_Item(self: *const T, varIndex: VARIANT, ppNode: ?*?*ISClusNode) HRESULT {
+                return @ptrCast(*const ISClusNodes.VTable, self.vtable).get_Item(@ptrCast(*const ISClusNodes, self), varIndex, ppNode);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7255,109 +7304,111 @@ pub const ISClusNetwork = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonProperties: fn(
+        get_CommonProperties: fn (
             self: *const ISClusNetwork,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateProperties: fn(
+        get_PrivateProperties: fn (
             self: *const ISClusNetwork,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonROProperties: fn(
+        get_CommonROProperties: fn (
             self: *const ISClusNetwork,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateROProperties: fn(
+        get_PrivateROProperties: fn (
             self: *const ISClusNetwork,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: fn(
+        get_Handle: fn (
             self: *const ISClusNetwork,
             phandle: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
+        get_Name: fn (
             self: *const ISClusNetwork,
             pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: fn(
+        put_Name: fn (
             self: *const ISClusNetwork,
             bstrNetworkName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NetworkID: fn(
+        get_NetworkID: fn (
             self: *const ISClusNetwork,
             pbstrNetworkID: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
+        get_State: fn (
             self: *const ISClusNetwork,
             dwState: ?*CLUSTER_NETWORK_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NetInterfaces: fn(
+        get_NetInterfaces: fn (
             self: *const ISClusNetwork,
             ppClusNetInterfaces: ?*?*ISClusNetworkNetInterfaces,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cluster: fn(
+        get_Cluster: fn (
             self: *const ISClusNetwork,
             ppCluster: ?*?*ISCluster,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetwork_get_CommonProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_CommonProperties(@ptrCast(*const ISClusNetwork, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetwork_get_PrivateProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_PrivateProperties(@ptrCast(*const ISClusNetwork, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetwork_get_CommonROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_CommonROProperties(@ptrCast(*const ISClusNetwork, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetwork_get_PrivateROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_PrivateROProperties(@ptrCast(*const ISClusNetwork, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetwork_get_Handle(self: *const T, phandle: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_Handle(@ptrCast(*const ISClusNetwork, self), phandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetwork_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_Name(@ptrCast(*const ISClusNetwork, self), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetwork_put_Name(self: *const T, bstrNetworkName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetwork.VTable, self.vtable).put_Name(@ptrCast(*const ISClusNetwork, self), bstrNetworkName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetwork_get_NetworkID(self: *const T, pbstrNetworkID: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_NetworkID(@ptrCast(*const ISClusNetwork, self), pbstrNetworkID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetwork_get_State(self: *const T, dwState: ?*CLUSTER_NETWORK_STATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_State(@ptrCast(*const ISClusNetwork, self), dwState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetwork_get_NetInterfaces(self: *const T, ppClusNetInterfaces: ?*?*ISClusNetworkNetInterfaces) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_NetInterfaces(@ptrCast(*const ISClusNetwork, self), ppClusNetInterfaces);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetwork_get_Cluster(self: *const T, ppCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_Cluster(@ptrCast(*const ISClusNetwork, self), ppCluster);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetwork_get_CommonProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_CommonProperties(@ptrCast(*const ISClusNetwork, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetwork_get_PrivateProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_PrivateProperties(@ptrCast(*const ISClusNetwork, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetwork_get_CommonROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_CommonROProperties(@ptrCast(*const ISClusNetwork, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetwork_get_PrivateROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_PrivateROProperties(@ptrCast(*const ISClusNetwork, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetwork_get_Handle(self: *const T, phandle: ?*usize) HRESULT {
+                return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_Handle(@ptrCast(*const ISClusNetwork, self), phandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetwork_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_Name(@ptrCast(*const ISClusNetwork, self), pbstrName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetwork_put_Name(self: *const T, bstrNetworkName: ?BSTR) HRESULT {
+                return @ptrCast(*const ISClusNetwork.VTable, self.vtable).put_Name(@ptrCast(*const ISClusNetwork, self), bstrNetworkName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetwork_get_NetworkID(self: *const T, pbstrNetworkID: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_NetworkID(@ptrCast(*const ISClusNetwork, self), pbstrNetworkID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetwork_get_State(self: *const T, dwState: ?*CLUSTER_NETWORK_STATE) HRESULT {
+                return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_State(@ptrCast(*const ISClusNetwork, self), dwState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetwork_get_NetInterfaces(self: *const T, ppClusNetInterfaces: ?*?*ISClusNetworkNetInterfaces) HRESULT {
+                return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_NetInterfaces(@ptrCast(*const ISClusNetwork, self), ppClusNetInterfaces);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetwork_get_Cluster(self: *const T, ppCluster: ?*?*ISCluster) HRESULT {
+                return @ptrCast(*const ISClusNetwork.VTable, self.vtable).get_Cluster(@ptrCast(*const ISClusNetwork, self), ppCluster);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7367,45 +7418,47 @@ pub const ISClusNetworks = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusNetworks,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusNetworks,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const ISClusNetworks,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusNetworks,
             varIndex: VARIANT,
             ppClusNetwork: ?*?*ISClusNetwork,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetworks_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetworks.VTable, self.vtable).get_Count(@ptrCast(*const ISClusNetworks, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetworks_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetworks.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusNetworks, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetworks_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetworks.VTable, self.vtable).Refresh(@ptrCast(*const ISClusNetworks, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetworks_get_Item(self: *const T, varIndex: VARIANT, ppClusNetwork: ?*?*ISClusNetwork) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetworks.VTable, self.vtable).get_Item(@ptrCast(*const ISClusNetworks, self), varIndex, ppClusNetwork);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetworks_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusNetworks.VTable, self.vtable).get_Count(@ptrCast(*const ISClusNetworks, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetworks_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusNetworks.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusNetworks, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetworks_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusNetworks.VTable, self.vtable).Refresh(@ptrCast(*const ISClusNetworks, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetworks_get_Item(self: *const T, varIndex: VARIANT, ppClusNetwork: ?*?*ISClusNetwork) HRESULT {
+                return @ptrCast(*const ISClusNetworks.VTable, self.vtable).get_Item(@ptrCast(*const ISClusNetworks, self), varIndex, ppClusNetwork);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7415,82 +7468,84 @@ pub const ISClusNetInterface = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonProperties: fn(
+        get_CommonProperties: fn (
             self: *const ISClusNetInterface,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateProperties: fn(
+        get_PrivateProperties: fn (
             self: *const ISClusNetInterface,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonROProperties: fn(
+        get_CommonROProperties: fn (
             self: *const ISClusNetInterface,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateROProperties: fn(
+        get_PrivateROProperties: fn (
             self: *const ISClusNetInterface,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
+        get_Name: fn (
             self: *const ISClusNetInterface,
             pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: fn(
+        get_Handle: fn (
             self: *const ISClusNetInterface,
             phandle: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
+        get_State: fn (
             self: *const ISClusNetInterface,
             dwState: ?*CLUSTER_NETINTERFACE_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cluster: fn(
+        get_Cluster: fn (
             self: *const ISClusNetInterface,
             ppCluster: ?*?*ISCluster,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetInterface_get_CommonProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetInterface.VTable, self.vtable).get_CommonProperties(@ptrCast(*const ISClusNetInterface, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetInterface_get_PrivateProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetInterface.VTable, self.vtable).get_PrivateProperties(@ptrCast(*const ISClusNetInterface, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetInterface_get_CommonROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetInterface.VTable, self.vtable).get_CommonROProperties(@ptrCast(*const ISClusNetInterface, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetInterface_get_PrivateROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetInterface.VTable, self.vtable).get_PrivateROProperties(@ptrCast(*const ISClusNetInterface, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetInterface_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetInterface.VTable, self.vtable).get_Name(@ptrCast(*const ISClusNetInterface, self), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetInterface_get_Handle(self: *const T, phandle: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetInterface.VTable, self.vtable).get_Handle(@ptrCast(*const ISClusNetInterface, self), phandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetInterface_get_State(self: *const T, dwState: ?*CLUSTER_NETINTERFACE_STATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetInterface.VTable, self.vtable).get_State(@ptrCast(*const ISClusNetInterface, self), dwState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetInterface_get_Cluster(self: *const T, ppCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetInterface.VTable, self.vtable).get_Cluster(@ptrCast(*const ISClusNetInterface, self), ppCluster);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetInterface_get_CommonProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusNetInterface.VTable, self.vtable).get_CommonProperties(@ptrCast(*const ISClusNetInterface, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetInterface_get_PrivateProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusNetInterface.VTable, self.vtable).get_PrivateProperties(@ptrCast(*const ISClusNetInterface, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetInterface_get_CommonROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusNetInterface.VTable, self.vtable).get_CommonROProperties(@ptrCast(*const ISClusNetInterface, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetInterface_get_PrivateROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusNetInterface.VTable, self.vtable).get_PrivateROProperties(@ptrCast(*const ISClusNetInterface, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetInterface_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusNetInterface.VTable, self.vtable).get_Name(@ptrCast(*const ISClusNetInterface, self), pbstrName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetInterface_get_Handle(self: *const T, phandle: ?*usize) HRESULT {
+                return @ptrCast(*const ISClusNetInterface.VTable, self.vtable).get_Handle(@ptrCast(*const ISClusNetInterface, self), phandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetInterface_get_State(self: *const T, dwState: ?*CLUSTER_NETINTERFACE_STATE) HRESULT {
+                return @ptrCast(*const ISClusNetInterface.VTable, self.vtable).get_State(@ptrCast(*const ISClusNetInterface, self), dwState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetInterface_get_Cluster(self: *const T, ppCluster: ?*?*ISCluster) HRESULT {
+                return @ptrCast(*const ISClusNetInterface.VTable, self.vtable).get_Cluster(@ptrCast(*const ISClusNetInterface, self), ppCluster);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7500,45 +7555,47 @@ pub const ISClusNetInterfaces = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusNetInterfaces,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusNetInterfaces,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const ISClusNetInterfaces,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusNetInterfaces,
             varIndex: VARIANT,
             ppClusNetInterface: ?*?*ISClusNetInterface,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetInterfaces_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetInterfaces.VTable, self.vtable).get_Count(@ptrCast(*const ISClusNetInterfaces, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetInterfaces_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetInterfaces.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusNetInterfaces, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetInterfaces_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetInterfaces.VTable, self.vtable).Refresh(@ptrCast(*const ISClusNetInterfaces, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetInterfaces_get_Item(self: *const T, varIndex: VARIANT, ppClusNetInterface: ?*?*ISClusNetInterface) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetInterfaces.VTable, self.vtable).get_Item(@ptrCast(*const ISClusNetInterfaces, self), varIndex, ppClusNetInterface);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetInterfaces_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusNetInterfaces.VTable, self.vtable).get_Count(@ptrCast(*const ISClusNetInterfaces, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetInterfaces_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusNetInterfaces.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusNetInterfaces, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetInterfaces_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusNetInterfaces.VTable, self.vtable).Refresh(@ptrCast(*const ISClusNetInterfaces, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetInterfaces_get_Item(self: *const T, varIndex: VARIANT, ppClusNetInterface: ?*?*ISClusNetInterface) HRESULT {
+                return @ptrCast(*const ISClusNetInterfaces.VTable, self.vtable).get_Item(@ptrCast(*const ISClusNetInterfaces, self), varIndex, ppClusNetInterface);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7548,45 +7605,47 @@ pub const ISClusNodeNetInterfaces = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusNodeNetInterfaces,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusNodeNetInterfaces,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const ISClusNodeNetInterfaces,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusNodeNetInterfaces,
             varIndex: VARIANT,
             ppClusNetInterface: ?*?*ISClusNetInterface,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNodeNetInterfaces_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNodeNetInterfaces.VTable, self.vtable).get_Count(@ptrCast(*const ISClusNodeNetInterfaces, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNodeNetInterfaces_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNodeNetInterfaces.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusNodeNetInterfaces, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNodeNetInterfaces_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNodeNetInterfaces.VTable, self.vtable).Refresh(@ptrCast(*const ISClusNodeNetInterfaces, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNodeNetInterfaces_get_Item(self: *const T, varIndex: VARIANT, ppClusNetInterface: ?*?*ISClusNetInterface) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNodeNetInterfaces.VTable, self.vtable).get_Item(@ptrCast(*const ISClusNodeNetInterfaces, self), varIndex, ppClusNetInterface);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNodeNetInterfaces_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusNodeNetInterfaces.VTable, self.vtable).get_Count(@ptrCast(*const ISClusNodeNetInterfaces, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNodeNetInterfaces_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusNodeNetInterfaces.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusNodeNetInterfaces, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNodeNetInterfaces_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusNodeNetInterfaces.VTable, self.vtable).Refresh(@ptrCast(*const ISClusNodeNetInterfaces, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNodeNetInterfaces_get_Item(self: *const T, varIndex: VARIANT, ppClusNetInterface: ?*?*ISClusNetInterface) HRESULT {
+                return @ptrCast(*const ISClusNodeNetInterfaces.VTable, self.vtable).get_Item(@ptrCast(*const ISClusNodeNetInterfaces, self), varIndex, ppClusNetInterface);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7596,45 +7655,47 @@ pub const ISClusNetworkNetInterfaces = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusNetworkNetInterfaces,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusNetworkNetInterfaces,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const ISClusNetworkNetInterfaces,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusNetworkNetInterfaces,
             varIndex: VARIANT,
             ppClusNetInterface: ?*?*ISClusNetInterface,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetworkNetInterfaces_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetworkNetInterfaces.VTable, self.vtable).get_Count(@ptrCast(*const ISClusNetworkNetInterfaces, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetworkNetInterfaces_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetworkNetInterfaces.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusNetworkNetInterfaces, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetworkNetInterfaces_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetworkNetInterfaces.VTable, self.vtable).Refresh(@ptrCast(*const ISClusNetworkNetInterfaces, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusNetworkNetInterfaces_get_Item(self: *const T, varIndex: VARIANT, ppClusNetInterface: ?*?*ISClusNetInterface) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusNetworkNetInterfaces.VTable, self.vtable).get_Item(@ptrCast(*const ISClusNetworkNetInterfaces, self), varIndex, ppClusNetInterface);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetworkNetInterfaces_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusNetworkNetInterfaces.VTable, self.vtable).get_Count(@ptrCast(*const ISClusNetworkNetInterfaces, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetworkNetInterfaces_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusNetworkNetInterfaces.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusNetworkNetInterfaces, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetworkNetInterfaces_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusNetworkNetInterfaces.VTable, self.vtable).Refresh(@ptrCast(*const ISClusNetworkNetInterfaces, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusNetworkNetInterfaces_get_Item(self: *const T, varIndex: VARIANT, ppClusNetInterface: ?*?*ISClusNetInterface) HRESULT {
+                return @ptrCast(*const ISClusNetworkNetInterfaces.VTable, self.vtable).get_Item(@ptrCast(*const ISClusNetworkNetInterfaces, self), varIndex, ppClusNetInterface);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7644,154 +7705,156 @@ pub const ISClusResGroup = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonProperties: fn(
+        get_CommonProperties: fn (
             self: *const ISClusResGroup,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateProperties: fn(
+        get_PrivateProperties: fn (
             self: *const ISClusResGroup,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonROProperties: fn(
+        get_CommonROProperties: fn (
             self: *const ISClusResGroup,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateROProperties: fn(
+        get_PrivateROProperties: fn (
             self: *const ISClusResGroup,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: fn(
+        get_Handle: fn (
             self: *const ISClusResGroup,
             phandle: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
+        get_Name: fn (
             self: *const ISClusResGroup,
             pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: fn(
+        put_Name: fn (
             self: *const ISClusResGroup,
             bstrGroupName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
+        get_State: fn (
             self: *const ISClusResGroup,
             dwState: ?*CLUSTER_GROUP_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_OwnerNode: fn(
+        get_OwnerNode: fn (
             self: *const ISClusResGroup,
             ppOwnerNode: ?*?*ISClusNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Resources: fn(
+        get_Resources: fn (
             self: *const ISClusResGroup,
             ppClusterGroupResources: ?*?*ISClusResGroupResources,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PreferredOwnerNodes: fn(
+        get_PreferredOwnerNodes: fn (
             self: *const ISClusResGroup,
             ppOwnerNodes: ?*?*ISClusResGroupPreferredOwnerNodes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
+        Delete: fn (
             self: *const ISClusResGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Online: fn(
-            self: *const ISClusResGroup,
-            varTimeout: VARIANT,
-            varNode: VARIANT,
-            pvarPending: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Move: fn(
+        Online: fn (
             self: *const ISClusResGroup,
             varTimeout: VARIANT,
             varNode: VARIANT,
             pvarPending: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Offline: fn(
+        Move: fn (
+            self: *const ISClusResGroup,
+            varTimeout: VARIANT,
+            varNode: VARIANT,
+            pvarPending: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Offline: fn (
             self: *const ISClusResGroup,
             varTimeout: VARIANT,
             pvarPending: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cluster: fn(
+        get_Cluster: fn (
             self: *const ISClusResGroup,
             ppCluster: ?*?*ISCluster,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroup_get_CommonProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_CommonProperties(@ptrCast(*const ISClusResGroup, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroup_get_PrivateProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_PrivateProperties(@ptrCast(*const ISClusResGroup, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroup_get_CommonROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_CommonROProperties(@ptrCast(*const ISClusResGroup, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroup_get_PrivateROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_PrivateROProperties(@ptrCast(*const ISClusResGroup, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroup_get_Handle(self: *const T, phandle: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_Handle(@ptrCast(*const ISClusResGroup, self), phandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroup_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_Name(@ptrCast(*const ISClusResGroup, self), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroup_put_Name(self: *const T, bstrGroupName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroup.VTable, self.vtable).put_Name(@ptrCast(*const ISClusResGroup, self), bstrGroupName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroup_get_State(self: *const T, dwState: ?*CLUSTER_GROUP_STATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_State(@ptrCast(*const ISClusResGroup, self), dwState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroup_get_OwnerNode(self: *const T, ppOwnerNode: ?*?*ISClusNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_OwnerNode(@ptrCast(*const ISClusResGroup, self), ppOwnerNode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroup_get_Resources(self: *const T, ppClusterGroupResources: ?*?*ISClusResGroupResources) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_Resources(@ptrCast(*const ISClusResGroup, self), ppClusterGroupResources);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroup_get_PreferredOwnerNodes(self: *const T, ppOwnerNodes: ?*?*ISClusResGroupPreferredOwnerNodes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_PreferredOwnerNodes(@ptrCast(*const ISClusResGroup, self), ppOwnerNodes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroup_Delete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroup.VTable, self.vtable).Delete(@ptrCast(*const ISClusResGroup, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroup_Online(self: *const T, varTimeout: VARIANT, varNode: VARIANT, pvarPending: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroup.VTable, self.vtable).Online(@ptrCast(*const ISClusResGroup, self), varTimeout, varNode, pvarPending);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroup_Move(self: *const T, varTimeout: VARIANT, varNode: VARIANT, pvarPending: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroup.VTable, self.vtable).Move(@ptrCast(*const ISClusResGroup, self), varTimeout, varNode, pvarPending);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroup_Offline(self: *const T, varTimeout: VARIANT, pvarPending: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroup.VTable, self.vtable).Offline(@ptrCast(*const ISClusResGroup, self), varTimeout, pvarPending);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroup_get_Cluster(self: *const T, ppCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_Cluster(@ptrCast(*const ISClusResGroup, self), ppCluster);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroup_get_CommonProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_CommonProperties(@ptrCast(*const ISClusResGroup, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroup_get_PrivateProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_PrivateProperties(@ptrCast(*const ISClusResGroup, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroup_get_CommonROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_CommonROProperties(@ptrCast(*const ISClusResGroup, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroup_get_PrivateROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_PrivateROProperties(@ptrCast(*const ISClusResGroup, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroup_get_Handle(self: *const T, phandle: ?*usize) HRESULT {
+                return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_Handle(@ptrCast(*const ISClusResGroup, self), phandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroup_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_Name(@ptrCast(*const ISClusResGroup, self), pbstrName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroup_put_Name(self: *const T, bstrGroupName: ?BSTR) HRESULT {
+                return @ptrCast(*const ISClusResGroup.VTable, self.vtable).put_Name(@ptrCast(*const ISClusResGroup, self), bstrGroupName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroup_get_State(self: *const T, dwState: ?*CLUSTER_GROUP_STATE) HRESULT {
+                return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_State(@ptrCast(*const ISClusResGroup, self), dwState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroup_get_OwnerNode(self: *const T, ppOwnerNode: ?*?*ISClusNode) HRESULT {
+                return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_OwnerNode(@ptrCast(*const ISClusResGroup, self), ppOwnerNode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroup_get_Resources(self: *const T, ppClusterGroupResources: ?*?*ISClusResGroupResources) HRESULT {
+                return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_Resources(@ptrCast(*const ISClusResGroup, self), ppClusterGroupResources);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroup_get_PreferredOwnerNodes(self: *const T, ppOwnerNodes: ?*?*ISClusResGroupPreferredOwnerNodes) HRESULT {
+                return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_PreferredOwnerNodes(@ptrCast(*const ISClusResGroup, self), ppOwnerNodes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroup_Delete(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusResGroup.VTable, self.vtable).Delete(@ptrCast(*const ISClusResGroup, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroup_Online(self: *const T, varTimeout: VARIANT, varNode: VARIANT, pvarPending: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusResGroup.VTable, self.vtable).Online(@ptrCast(*const ISClusResGroup, self), varTimeout, varNode, pvarPending);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroup_Move(self: *const T, varTimeout: VARIANT, varNode: VARIANT, pvarPending: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusResGroup.VTable, self.vtable).Move(@ptrCast(*const ISClusResGroup, self), varTimeout, varNode, pvarPending);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroup_Offline(self: *const T, varTimeout: VARIANT, pvarPending: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusResGroup.VTable, self.vtable).Offline(@ptrCast(*const ISClusResGroup, self), varTimeout, pvarPending);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroup_get_Cluster(self: *const T, ppCluster: ?*?*ISCluster) HRESULT {
+                return @ptrCast(*const ISClusResGroup.VTable, self.vtable).get_Cluster(@ptrCast(*const ISClusResGroup, self), ppCluster);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7801,62 +7864,64 @@ pub const ISClusResGroups = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusResGroups,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusResGroups,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const ISClusResGroups,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusResGroups,
             varIndex: VARIANT,
             ppClusResGroup: ?*?*ISClusResGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateItem: fn(
+        CreateItem: fn (
             self: *const ISClusResGroups,
             bstrResourceGroupName: ?BSTR,
             ppResourceGroup: ?*?*ISClusResGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteItem: fn(
+        DeleteItem: fn (
             self: *const ISClusResGroups,
             varIndex: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroups_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroups.VTable, self.vtable).get_Count(@ptrCast(*const ISClusResGroups, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroups_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroups.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusResGroups, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroups_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroups.VTable, self.vtable).Refresh(@ptrCast(*const ISClusResGroups, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroups_get_Item(self: *const T, varIndex: VARIANT, ppClusResGroup: ?*?*ISClusResGroup) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroups.VTable, self.vtable).get_Item(@ptrCast(*const ISClusResGroups, self), varIndex, ppClusResGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroups_CreateItem(self: *const T, bstrResourceGroupName: ?BSTR, ppResourceGroup: ?*?*ISClusResGroup) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroups.VTable, self.vtable).CreateItem(@ptrCast(*const ISClusResGroups, self), bstrResourceGroupName, ppResourceGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroups_DeleteItem(self: *const T, varIndex: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroups.VTable, self.vtable).DeleteItem(@ptrCast(*const ISClusResGroups, self), varIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroups_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusResGroups.VTable, self.vtable).get_Count(@ptrCast(*const ISClusResGroups, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroups_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusResGroups.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusResGroups, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroups_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusResGroups.VTable, self.vtable).Refresh(@ptrCast(*const ISClusResGroups, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroups_get_Item(self: *const T, varIndex: VARIANT, ppClusResGroup: ?*?*ISClusResGroup) HRESULT {
+                return @ptrCast(*const ISClusResGroups.VTable, self.vtable).get_Item(@ptrCast(*const ISClusResGroups, self), varIndex, ppClusResGroup);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroups_CreateItem(self: *const T, bstrResourceGroupName: ?BSTR, ppResourceGroup: ?*?*ISClusResGroup) HRESULT {
+                return @ptrCast(*const ISClusResGroups.VTable, self.vtable).CreateItem(@ptrCast(*const ISClusResGroups, self), bstrResourceGroupName, ppResourceGroup);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroups_DeleteItem(self: *const T, varIndex: VARIANT) HRESULT {
+                return @ptrCast(*const ISClusResGroups.VTable, self.vtable).DeleteItem(@ptrCast(*const ISClusResGroups, self), varIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7866,291 +7931,293 @@ pub const ISClusResource = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonProperties: fn(
+        get_CommonProperties: fn (
             self: *const ISClusResource,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateProperties: fn(
+        get_PrivateProperties: fn (
             self: *const ISClusResource,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonROProperties: fn(
+        get_CommonROProperties: fn (
             self: *const ISClusResource,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateROProperties: fn(
+        get_PrivateROProperties: fn (
             self: *const ISClusResource,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Handle: fn(
+        get_Handle: fn (
             self: *const ISClusResource,
             phandle: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
+        get_Name: fn (
             self: *const ISClusResource,
             pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: fn(
+        put_Name: fn (
             self: *const ISClusResource,
             bstrResourceName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
+        get_State: fn (
             self: *const ISClusResource,
             dwState: ?*CLUSTER_RESOURCE_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CoreFlag: fn(
+        get_CoreFlag: fn (
             self: *const ISClusResource,
             dwCoreFlag: ?*CLUS_FLAGS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BecomeQuorumResource: fn(
+        BecomeQuorumResource: fn (
             self: *const ISClusResource,
             bstrDevicePath: ?BSTR,
             lMaxLogSize: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
+        Delete: fn (
             self: *const ISClusResource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Fail: fn(
+        Fail: fn (
             self: *const ISClusResource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Online: fn(
-            self: *const ISClusResource,
-            nTimeout: i32,
-            pvarPending: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Offline: fn(
+        Online: fn (
             self: *const ISClusResource,
             nTimeout: i32,
             pvarPending: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ChangeResourceGroup: fn(
+        Offline: fn (
+            self: *const ISClusResource,
+            nTimeout: i32,
+            pvarPending: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ChangeResourceGroup: fn (
             self: *const ISClusResource,
             pResourceGroup: ?*ISClusResGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddResourceNode: fn(
+        AddResourceNode: fn (
             self: *const ISClusResource,
             pNode: ?*ISClusNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveResourceNode: fn(
+        RemoveResourceNode: fn (
             self: *const ISClusResource,
             pNode: ?*ISClusNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CanResourceBeDependent: fn(
+        CanResourceBeDependent: fn (
             self: *const ISClusResource,
             pResource: ?*ISClusResource,
             pvarDependent: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PossibleOwnerNodes: fn(
+        get_PossibleOwnerNodes: fn (
             self: *const ISClusResource,
             ppOwnerNodes: ?*?*ISClusResPossibleOwnerNodes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Dependencies: fn(
+        get_Dependencies: fn (
             self: *const ISClusResource,
             ppResDependencies: ?*?*ISClusResDependencies,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Dependents: fn(
+        get_Dependents: fn (
             self: *const ISClusResource,
             ppResDependents: ?*?*ISClusResDependents,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Group: fn(
+        get_Group: fn (
             self: *const ISClusResource,
             ppResGroup: ?*?*ISClusResGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_OwnerNode: fn(
+        get_OwnerNode: fn (
             self: *const ISClusResource,
             ppOwnerNode: ?*?*ISClusNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cluster: fn(
+        get_Cluster: fn (
             self: *const ISClusResource,
             ppCluster: ?*?*ISCluster,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClassInfo: fn(
+        get_ClassInfo: fn (
             self: *const ISClusResource,
             prcClassInfo: ?*CLUSTER_RESOURCE_CLASS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Disk: fn(
+        get_Disk: fn (
             self: *const ISClusResource,
             ppDisk: ?*?*ISClusDisk,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RegistryKeys: fn(
+        get_RegistryKeys: fn (
             self: *const ISClusResource,
             ppRegistryKeys: ?*?*ISClusRegistryKeys,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CryptoKeys: fn(
+        get_CryptoKeys: fn (
             self: *const ISClusResource,
             ppCryptoKeys: ?*?*ISClusCryptoKeys,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TypeName: fn(
+        get_TypeName: fn (
             self: *const ISClusResource,
             pbstrTypeName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: fn(
+        get_Type: fn (
             self: *const ISClusResource,
             ppResourceType: ?*?*ISClusResType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaintenanceMode: fn(
+        get_MaintenanceMode: fn (
             self: *const ISClusResource,
             pbMaintenanceMode: ?*BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MaintenanceMode: fn(
+        put_MaintenanceMode: fn (
             self: *const ISClusResource,
             bMaintenanceMode: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_CommonProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_CommonProperties(@ptrCast(*const ISClusResource, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_PrivateProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_PrivateProperties(@ptrCast(*const ISClusResource, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_CommonROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_CommonROProperties(@ptrCast(*const ISClusResource, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_PrivateROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_PrivateROProperties(@ptrCast(*const ISClusResource, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_Handle(self: *const T, phandle: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_Handle(@ptrCast(*const ISClusResource, self), phandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_Name(@ptrCast(*const ISClusResource, self), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_put_Name(self: *const T, bstrResourceName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).put_Name(@ptrCast(*const ISClusResource, self), bstrResourceName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_State(self: *const T, dwState: ?*CLUSTER_RESOURCE_STATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_State(@ptrCast(*const ISClusResource, self), dwState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_CoreFlag(self: *const T, dwCoreFlag: ?*CLUS_FLAGS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_CoreFlag(@ptrCast(*const ISClusResource, self), dwCoreFlag);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_BecomeQuorumResource(self: *const T, bstrDevicePath: ?BSTR, lMaxLogSize: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).BecomeQuorumResource(@ptrCast(*const ISClusResource, self), bstrDevicePath, lMaxLogSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_Delete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).Delete(@ptrCast(*const ISClusResource, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_Fail(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).Fail(@ptrCast(*const ISClusResource, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_Online(self: *const T, nTimeout: i32, pvarPending: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).Online(@ptrCast(*const ISClusResource, self), nTimeout, pvarPending);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_Offline(self: *const T, nTimeout: i32, pvarPending: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).Offline(@ptrCast(*const ISClusResource, self), nTimeout, pvarPending);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_ChangeResourceGroup(self: *const T, pResourceGroup: ?*ISClusResGroup) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).ChangeResourceGroup(@ptrCast(*const ISClusResource, self), pResourceGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_AddResourceNode(self: *const T, pNode: ?*ISClusNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).AddResourceNode(@ptrCast(*const ISClusResource, self), pNode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_RemoveResourceNode(self: *const T, pNode: ?*ISClusNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).RemoveResourceNode(@ptrCast(*const ISClusResource, self), pNode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_CanResourceBeDependent(self: *const T, pResource: ?*ISClusResource, pvarDependent: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).CanResourceBeDependent(@ptrCast(*const ISClusResource, self), pResource, pvarDependent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_PossibleOwnerNodes(self: *const T, ppOwnerNodes: ?*?*ISClusResPossibleOwnerNodes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_PossibleOwnerNodes(@ptrCast(*const ISClusResource, self), ppOwnerNodes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_Dependencies(self: *const T, ppResDependencies: ?*?*ISClusResDependencies) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_Dependencies(@ptrCast(*const ISClusResource, self), ppResDependencies);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_Dependents(self: *const T, ppResDependents: ?*?*ISClusResDependents) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_Dependents(@ptrCast(*const ISClusResource, self), ppResDependents);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_Group(self: *const T, ppResGroup: ?*?*ISClusResGroup) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_Group(@ptrCast(*const ISClusResource, self), ppResGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_OwnerNode(self: *const T, ppOwnerNode: ?*?*ISClusNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_OwnerNode(@ptrCast(*const ISClusResource, self), ppOwnerNode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_Cluster(self: *const T, ppCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_Cluster(@ptrCast(*const ISClusResource, self), ppCluster);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_ClassInfo(self: *const T, prcClassInfo: ?*CLUSTER_RESOURCE_CLASS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_ClassInfo(@ptrCast(*const ISClusResource, self), prcClassInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_Disk(self: *const T, ppDisk: ?*?*ISClusDisk) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_Disk(@ptrCast(*const ISClusResource, self), ppDisk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_RegistryKeys(self: *const T, ppRegistryKeys: ?*?*ISClusRegistryKeys) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_RegistryKeys(@ptrCast(*const ISClusResource, self), ppRegistryKeys);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_CryptoKeys(self: *const T, ppCryptoKeys: ?*?*ISClusCryptoKeys) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_CryptoKeys(@ptrCast(*const ISClusResource, self), ppCryptoKeys);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_TypeName(self: *const T, pbstrTypeName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_TypeName(@ptrCast(*const ISClusResource, self), pbstrTypeName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_Type(self: *const T, ppResourceType: ?*?*ISClusResType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_Type(@ptrCast(*const ISClusResource, self), ppResourceType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_get_MaintenanceMode(self: *const T, pbMaintenanceMode: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).get_MaintenanceMode(@ptrCast(*const ISClusResource, self), pbMaintenanceMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResource_put_MaintenanceMode(self: *const T, bMaintenanceMode: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResource.VTable, self.vtable).put_MaintenanceMode(@ptrCast(*const ISClusResource, self), bMaintenanceMode);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_CommonProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_CommonProperties(@ptrCast(*const ISClusResource, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_PrivateProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_PrivateProperties(@ptrCast(*const ISClusResource, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_CommonROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_CommonROProperties(@ptrCast(*const ISClusResource, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_PrivateROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_PrivateROProperties(@ptrCast(*const ISClusResource, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_Handle(self: *const T, phandle: ?*usize) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_Handle(@ptrCast(*const ISClusResource, self), phandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_Name(@ptrCast(*const ISClusResource, self), pbstrName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_put_Name(self: *const T, bstrResourceName: ?BSTR) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).put_Name(@ptrCast(*const ISClusResource, self), bstrResourceName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_State(self: *const T, dwState: ?*CLUSTER_RESOURCE_STATE) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_State(@ptrCast(*const ISClusResource, self), dwState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_CoreFlag(self: *const T, dwCoreFlag: ?*CLUS_FLAGS) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_CoreFlag(@ptrCast(*const ISClusResource, self), dwCoreFlag);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_BecomeQuorumResource(self: *const T, bstrDevicePath: ?BSTR, lMaxLogSize: i32) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).BecomeQuorumResource(@ptrCast(*const ISClusResource, self), bstrDevicePath, lMaxLogSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_Delete(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).Delete(@ptrCast(*const ISClusResource, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_Fail(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).Fail(@ptrCast(*const ISClusResource, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_Online(self: *const T, nTimeout: i32, pvarPending: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).Online(@ptrCast(*const ISClusResource, self), nTimeout, pvarPending);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_Offline(self: *const T, nTimeout: i32, pvarPending: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).Offline(@ptrCast(*const ISClusResource, self), nTimeout, pvarPending);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_ChangeResourceGroup(self: *const T, pResourceGroup: ?*ISClusResGroup) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).ChangeResourceGroup(@ptrCast(*const ISClusResource, self), pResourceGroup);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_AddResourceNode(self: *const T, pNode: ?*ISClusNode) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).AddResourceNode(@ptrCast(*const ISClusResource, self), pNode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_RemoveResourceNode(self: *const T, pNode: ?*ISClusNode) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).RemoveResourceNode(@ptrCast(*const ISClusResource, self), pNode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_CanResourceBeDependent(self: *const T, pResource: ?*ISClusResource, pvarDependent: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).CanResourceBeDependent(@ptrCast(*const ISClusResource, self), pResource, pvarDependent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_PossibleOwnerNodes(self: *const T, ppOwnerNodes: ?*?*ISClusResPossibleOwnerNodes) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_PossibleOwnerNodes(@ptrCast(*const ISClusResource, self), ppOwnerNodes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_Dependencies(self: *const T, ppResDependencies: ?*?*ISClusResDependencies) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_Dependencies(@ptrCast(*const ISClusResource, self), ppResDependencies);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_Dependents(self: *const T, ppResDependents: ?*?*ISClusResDependents) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_Dependents(@ptrCast(*const ISClusResource, self), ppResDependents);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_Group(self: *const T, ppResGroup: ?*?*ISClusResGroup) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_Group(@ptrCast(*const ISClusResource, self), ppResGroup);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_OwnerNode(self: *const T, ppOwnerNode: ?*?*ISClusNode) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_OwnerNode(@ptrCast(*const ISClusResource, self), ppOwnerNode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_Cluster(self: *const T, ppCluster: ?*?*ISCluster) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_Cluster(@ptrCast(*const ISClusResource, self), ppCluster);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_ClassInfo(self: *const T, prcClassInfo: ?*CLUSTER_RESOURCE_CLASS) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_ClassInfo(@ptrCast(*const ISClusResource, self), prcClassInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_Disk(self: *const T, ppDisk: ?*?*ISClusDisk) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_Disk(@ptrCast(*const ISClusResource, self), ppDisk);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_RegistryKeys(self: *const T, ppRegistryKeys: ?*?*ISClusRegistryKeys) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_RegistryKeys(@ptrCast(*const ISClusResource, self), ppRegistryKeys);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_CryptoKeys(self: *const T, ppCryptoKeys: ?*?*ISClusCryptoKeys) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_CryptoKeys(@ptrCast(*const ISClusResource, self), ppCryptoKeys);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_TypeName(self: *const T, pbstrTypeName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_TypeName(@ptrCast(*const ISClusResource, self), pbstrTypeName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_Type(self: *const T, ppResourceType: ?*?*ISClusResType) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_Type(@ptrCast(*const ISClusResource, self), ppResourceType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_get_MaintenanceMode(self: *const T, pbMaintenanceMode: ?*BOOL) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).get_MaintenanceMode(@ptrCast(*const ISClusResource, self), pbMaintenanceMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResource_put_MaintenanceMode(self: *const T, bMaintenanceMode: BOOL) HRESULT {
+                return @ptrCast(*const ISClusResource.VTable, self.vtable).put_MaintenanceMode(@ptrCast(*const ISClusResource, self), bMaintenanceMode);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8160,80 +8227,82 @@ pub const ISClusResDependencies = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusResDependencies,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusResDependencies,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const ISClusResDependencies,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusResDependencies,
             varIndex: VARIANT,
             ppClusResource: ?*?*ISClusResource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateItem: fn(
+        CreateItem: fn (
             self: *const ISClusResDependencies,
             bstrResourceName: ?BSTR,
             bstrResourceType: ?BSTR,
             dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
             ppClusterResource: ?*?*ISClusResource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteItem: fn(
+        DeleteItem: fn (
             self: *const ISClusResDependencies,
             varIndex: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddItem: fn(
+        AddItem: fn (
             self: *const ISClusResDependencies,
             pResource: ?*ISClusResource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveItem: fn(
+        RemoveItem: fn (
             self: *const ISClusResDependencies,
             varIndex: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResDependencies_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResDependencies.VTable, self.vtable).get_Count(@ptrCast(*const ISClusResDependencies, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResDependencies_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResDependencies.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusResDependencies, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResDependencies_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResDependencies.VTable, self.vtable).Refresh(@ptrCast(*const ISClusResDependencies, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResDependencies_get_Item(self: *const T, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResDependencies.VTable, self.vtable).get_Item(@ptrCast(*const ISClusResDependencies, self), varIndex, ppClusResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResDependencies_CreateItem(self: *const T, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResDependencies.VTable, self.vtable).CreateItem(@ptrCast(*const ISClusResDependencies, self), bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResDependencies_DeleteItem(self: *const T, varIndex: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResDependencies.VTable, self.vtable).DeleteItem(@ptrCast(*const ISClusResDependencies, self), varIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResDependencies_AddItem(self: *const T, pResource: ?*ISClusResource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResDependencies.VTable, self.vtable).AddItem(@ptrCast(*const ISClusResDependencies, self), pResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResDependencies_RemoveItem(self: *const T, varIndex: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResDependencies.VTable, self.vtable).RemoveItem(@ptrCast(*const ISClusResDependencies, self), varIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResDependencies_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusResDependencies.VTable, self.vtable).get_Count(@ptrCast(*const ISClusResDependencies, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResDependencies_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusResDependencies.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusResDependencies, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResDependencies_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusResDependencies.VTable, self.vtable).Refresh(@ptrCast(*const ISClusResDependencies, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResDependencies_get_Item(self: *const T, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) HRESULT {
+                return @ptrCast(*const ISClusResDependencies.VTable, self.vtable).get_Item(@ptrCast(*const ISClusResDependencies, self), varIndex, ppClusResource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResDependencies_CreateItem(self: *const T, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) HRESULT {
+                return @ptrCast(*const ISClusResDependencies.VTable, self.vtable).CreateItem(@ptrCast(*const ISClusResDependencies, self), bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResDependencies_DeleteItem(self: *const T, varIndex: VARIANT) HRESULT {
+                return @ptrCast(*const ISClusResDependencies.VTable, self.vtable).DeleteItem(@ptrCast(*const ISClusResDependencies, self), varIndex);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResDependencies_AddItem(self: *const T, pResource: ?*ISClusResource) HRESULT {
+                return @ptrCast(*const ISClusResDependencies.VTable, self.vtable).AddItem(@ptrCast(*const ISClusResDependencies, self), pResource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResDependencies_RemoveItem(self: *const T, varIndex: VARIANT) HRESULT {
+                return @ptrCast(*const ISClusResDependencies.VTable, self.vtable).RemoveItem(@ptrCast(*const ISClusResDependencies, self), varIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8243,64 +8312,66 @@ pub const ISClusResGroupResources = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusResGroupResources,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusResGroupResources,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const ISClusResGroupResources,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusResGroupResources,
             varIndex: VARIANT,
             ppClusResource: ?*?*ISClusResource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateItem: fn(
+        CreateItem: fn (
             self: *const ISClusResGroupResources,
             bstrResourceName: ?BSTR,
             bstrResourceType: ?BSTR,
             dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
             ppClusterResource: ?*?*ISClusResource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteItem: fn(
+        DeleteItem: fn (
             self: *const ISClusResGroupResources,
             varIndex: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroupResources_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroupResources.VTable, self.vtable).get_Count(@ptrCast(*const ISClusResGroupResources, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroupResources_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroupResources.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusResGroupResources, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroupResources_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroupResources.VTable, self.vtable).Refresh(@ptrCast(*const ISClusResGroupResources, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroupResources_get_Item(self: *const T, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroupResources.VTable, self.vtable).get_Item(@ptrCast(*const ISClusResGroupResources, self), varIndex, ppClusResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroupResources_CreateItem(self: *const T, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroupResources.VTable, self.vtable).CreateItem(@ptrCast(*const ISClusResGroupResources, self), bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroupResources_DeleteItem(self: *const T, varIndex: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroupResources.VTable, self.vtable).DeleteItem(@ptrCast(*const ISClusResGroupResources, self), varIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroupResources_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusResGroupResources.VTable, self.vtable).get_Count(@ptrCast(*const ISClusResGroupResources, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroupResources_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusResGroupResources.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusResGroupResources, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroupResources_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusResGroupResources.VTable, self.vtable).Refresh(@ptrCast(*const ISClusResGroupResources, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroupResources_get_Item(self: *const T, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) HRESULT {
+                return @ptrCast(*const ISClusResGroupResources.VTable, self.vtable).get_Item(@ptrCast(*const ISClusResGroupResources, self), varIndex, ppClusResource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroupResources_CreateItem(self: *const T, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) HRESULT {
+                return @ptrCast(*const ISClusResGroupResources.VTable, self.vtable).CreateItem(@ptrCast(*const ISClusResGroupResources, self), bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroupResources_DeleteItem(self: *const T, varIndex: VARIANT) HRESULT {
+                return @ptrCast(*const ISClusResGroupResources.VTable, self.vtable).DeleteItem(@ptrCast(*const ISClusResGroupResources, self), varIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8310,64 +8381,66 @@ pub const ISClusResTypeResources = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusResTypeResources,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusResTypeResources,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const ISClusResTypeResources,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusResTypeResources,
             varIndex: VARIANT,
             ppClusResource: ?*?*ISClusResource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateItem: fn(
+        CreateItem: fn (
             self: *const ISClusResTypeResources,
             bstrResourceName: ?BSTR,
             bstrGroupName: ?BSTR,
             dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
             ppClusterResource: ?*?*ISClusResource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteItem: fn(
+        DeleteItem: fn (
             self: *const ISClusResTypeResources,
             varIndex: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResTypeResources_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResTypeResources.VTable, self.vtable).get_Count(@ptrCast(*const ISClusResTypeResources, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResTypeResources_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResTypeResources.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusResTypeResources, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResTypeResources_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResTypeResources.VTable, self.vtable).Refresh(@ptrCast(*const ISClusResTypeResources, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResTypeResources_get_Item(self: *const T, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResTypeResources.VTable, self.vtable).get_Item(@ptrCast(*const ISClusResTypeResources, self), varIndex, ppClusResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResTypeResources_CreateItem(self: *const T, bstrResourceName: ?BSTR, bstrGroupName: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResTypeResources.VTable, self.vtable).CreateItem(@ptrCast(*const ISClusResTypeResources, self), bstrResourceName, bstrGroupName, dwFlags, ppClusterResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResTypeResources_DeleteItem(self: *const T, varIndex: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResTypeResources.VTable, self.vtable).DeleteItem(@ptrCast(*const ISClusResTypeResources, self), varIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResTypeResources_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusResTypeResources.VTable, self.vtable).get_Count(@ptrCast(*const ISClusResTypeResources, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResTypeResources_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusResTypeResources.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusResTypeResources, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResTypeResources_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusResTypeResources.VTable, self.vtable).Refresh(@ptrCast(*const ISClusResTypeResources, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResTypeResources_get_Item(self: *const T, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) HRESULT {
+                return @ptrCast(*const ISClusResTypeResources.VTable, self.vtable).get_Item(@ptrCast(*const ISClusResTypeResources, self), varIndex, ppClusResource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResTypeResources_CreateItem(self: *const T, bstrResourceName: ?BSTR, bstrGroupName: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) HRESULT {
+                return @ptrCast(*const ISClusResTypeResources.VTable, self.vtable).CreateItem(@ptrCast(*const ISClusResTypeResources, self), bstrResourceName, bstrGroupName, dwFlags, ppClusterResource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResTypeResources_DeleteItem(self: *const T, varIndex: VARIANT) HRESULT {
+                return @ptrCast(*const ISClusResTypeResources.VTable, self.vtable).DeleteItem(@ptrCast(*const ISClusResTypeResources, self), varIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8377,25 +8450,25 @@ pub const ISClusResources = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusResources,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusResources,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const ISClusResources,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusResources,
             varIndex: VARIANT,
             ppClusResource: ?*?*ISClusResource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateItem: fn(
+        CreateItem: fn (
             self: *const ISClusResources,
             bstrResourceName: ?BSTR,
             bstrResourceType: ?BSTR,
@@ -8403,39 +8476,41 @@ pub const ISClusResources = extern struct {
             dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
             ppClusterResource: ?*?*ISClusResource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteItem: fn(
+        DeleteItem: fn (
             self: *const ISClusResources,
             varIndex: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResources_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResources.VTable, self.vtable).get_Count(@ptrCast(*const ISClusResources, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResources_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResources.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusResources, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResources_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResources.VTable, self.vtable).Refresh(@ptrCast(*const ISClusResources, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResources_get_Item(self: *const T, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResources.VTable, self.vtable).get_Item(@ptrCast(*const ISClusResources, self), varIndex, ppClusResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResources_CreateItem(self: *const T, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, bstrGroupName: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResources.VTable, self.vtable).CreateItem(@ptrCast(*const ISClusResources, self), bstrResourceName, bstrResourceType, bstrGroupName, dwFlags, ppClusterResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResources_DeleteItem(self: *const T, varIndex: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResources.VTable, self.vtable).DeleteItem(@ptrCast(*const ISClusResources, self), varIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResources_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusResources.VTable, self.vtable).get_Count(@ptrCast(*const ISClusResources, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResources_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusResources.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusResources, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResources_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusResources.VTable, self.vtable).Refresh(@ptrCast(*const ISClusResources, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResources_get_Item(self: *const T, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) HRESULT {
+                return @ptrCast(*const ISClusResources.VTable, self.vtable).get_Item(@ptrCast(*const ISClusResources, self), varIndex, ppClusResource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResources_CreateItem(self: *const T, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, bstrGroupName: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) HRESULT {
+                return @ptrCast(*const ISClusResources.VTable, self.vtable).CreateItem(@ptrCast(*const ISClusResources, self), bstrResourceName, bstrResourceType, bstrGroupName, dwFlags, ppClusterResource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResources_DeleteItem(self: *const T, varIndex: VARIANT) HRESULT {
+                return @ptrCast(*const ISClusResources.VTable, self.vtable).DeleteItem(@ptrCast(*const ISClusResources, self), varIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8445,86 +8520,88 @@ pub const ISClusResGroupPreferredOwnerNodes = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusResGroupPreferredOwnerNodes,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusResGroupPreferredOwnerNodes,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const ISClusResGroupPreferredOwnerNodes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusResGroupPreferredOwnerNodes,
             varIndex: VARIANT,
             ppNode: ?*?*ISClusNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InsertItem: fn(
+        InsertItem: fn (
             self: *const ISClusResGroupPreferredOwnerNodes,
             pNode: ?*ISClusNode,
             nPosition: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveItem: fn(
+        RemoveItem: fn (
             self: *const ISClusResGroupPreferredOwnerNodes,
             varIndex: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Modified: fn(
+        get_Modified: fn (
             self: *const ISClusResGroupPreferredOwnerNodes,
             pvarModified: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SaveChanges: fn(
+        SaveChanges: fn (
             self: *const ISClusResGroupPreferredOwnerNodes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddItem: fn(
+        AddItem: fn (
             self: *const ISClusResGroupPreferredOwnerNodes,
             pNode: ?*ISClusNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroupPreferredOwnerNodes_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroupPreferredOwnerNodes.VTable, self.vtable).get_Count(@ptrCast(*const ISClusResGroupPreferredOwnerNodes, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroupPreferredOwnerNodes_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroupPreferredOwnerNodes.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusResGroupPreferredOwnerNodes, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroupPreferredOwnerNodes_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroupPreferredOwnerNodes.VTable, self.vtable).Refresh(@ptrCast(*const ISClusResGroupPreferredOwnerNodes, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroupPreferredOwnerNodes_get_Item(self: *const T, varIndex: VARIANT, ppNode: ?*?*ISClusNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroupPreferredOwnerNodes.VTable, self.vtable).get_Item(@ptrCast(*const ISClusResGroupPreferredOwnerNodes, self), varIndex, ppNode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroupPreferredOwnerNodes_InsertItem(self: *const T, pNode: ?*ISClusNode, nPosition: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroupPreferredOwnerNodes.VTable, self.vtable).InsertItem(@ptrCast(*const ISClusResGroupPreferredOwnerNodes, self), pNode, nPosition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroupPreferredOwnerNodes_RemoveItem(self: *const T, varIndex: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroupPreferredOwnerNodes.VTable, self.vtable).RemoveItem(@ptrCast(*const ISClusResGroupPreferredOwnerNodes, self), varIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroupPreferredOwnerNodes_get_Modified(self: *const T, pvarModified: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroupPreferredOwnerNodes.VTable, self.vtable).get_Modified(@ptrCast(*const ISClusResGroupPreferredOwnerNodes, self), pvarModified);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroupPreferredOwnerNodes_SaveChanges(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroupPreferredOwnerNodes.VTable, self.vtable).SaveChanges(@ptrCast(*const ISClusResGroupPreferredOwnerNodes, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResGroupPreferredOwnerNodes_AddItem(self: *const T, pNode: ?*ISClusNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResGroupPreferredOwnerNodes.VTable, self.vtable).AddItem(@ptrCast(*const ISClusResGroupPreferredOwnerNodes, self), pNode);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroupPreferredOwnerNodes_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusResGroupPreferredOwnerNodes.VTable, self.vtable).get_Count(@ptrCast(*const ISClusResGroupPreferredOwnerNodes, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroupPreferredOwnerNodes_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusResGroupPreferredOwnerNodes.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusResGroupPreferredOwnerNodes, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroupPreferredOwnerNodes_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusResGroupPreferredOwnerNodes.VTable, self.vtable).Refresh(@ptrCast(*const ISClusResGroupPreferredOwnerNodes, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroupPreferredOwnerNodes_get_Item(self: *const T, varIndex: VARIANT, ppNode: ?*?*ISClusNode) HRESULT {
+                return @ptrCast(*const ISClusResGroupPreferredOwnerNodes.VTable, self.vtable).get_Item(@ptrCast(*const ISClusResGroupPreferredOwnerNodes, self), varIndex, ppNode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroupPreferredOwnerNodes_InsertItem(self: *const T, pNode: ?*ISClusNode, nPosition: i32) HRESULT {
+                return @ptrCast(*const ISClusResGroupPreferredOwnerNodes.VTable, self.vtable).InsertItem(@ptrCast(*const ISClusResGroupPreferredOwnerNodes, self), pNode, nPosition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroupPreferredOwnerNodes_RemoveItem(self: *const T, varIndex: VARIANT) HRESULT {
+                return @ptrCast(*const ISClusResGroupPreferredOwnerNodes.VTable, self.vtable).RemoveItem(@ptrCast(*const ISClusResGroupPreferredOwnerNodes, self), varIndex);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroupPreferredOwnerNodes_get_Modified(self: *const T, pvarModified: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusResGroupPreferredOwnerNodes.VTable, self.vtable).get_Modified(@ptrCast(*const ISClusResGroupPreferredOwnerNodes, self), pvarModified);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroupPreferredOwnerNodes_SaveChanges(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusResGroupPreferredOwnerNodes.VTable, self.vtable).SaveChanges(@ptrCast(*const ISClusResGroupPreferredOwnerNodes, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResGroupPreferredOwnerNodes_AddItem(self: *const T, pNode: ?*ISClusNode) HRESULT {
+                return @ptrCast(*const ISClusResGroupPreferredOwnerNodes.VTable, self.vtable).AddItem(@ptrCast(*const ISClusResGroupPreferredOwnerNodes, self), pNode);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8534,70 +8611,72 @@ pub const ISClusResPossibleOwnerNodes = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusResPossibleOwnerNodes,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusResPossibleOwnerNodes,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const ISClusResPossibleOwnerNodes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusResPossibleOwnerNodes,
             varIndex: VARIANT,
             ppNode: ?*?*ISClusNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddItem: fn(
+        AddItem: fn (
             self: *const ISClusResPossibleOwnerNodes,
             pNode: ?*ISClusNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveItem: fn(
+        RemoveItem: fn (
             self: *const ISClusResPossibleOwnerNodes,
             varIndex: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Modified: fn(
+        get_Modified: fn (
             self: *const ISClusResPossibleOwnerNodes,
             pvarModified: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResPossibleOwnerNodes_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResPossibleOwnerNodes.VTable, self.vtable).get_Count(@ptrCast(*const ISClusResPossibleOwnerNodes, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResPossibleOwnerNodes_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResPossibleOwnerNodes.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusResPossibleOwnerNodes, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResPossibleOwnerNodes_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResPossibleOwnerNodes.VTable, self.vtable).Refresh(@ptrCast(*const ISClusResPossibleOwnerNodes, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResPossibleOwnerNodes_get_Item(self: *const T, varIndex: VARIANT, ppNode: ?*?*ISClusNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResPossibleOwnerNodes.VTable, self.vtable).get_Item(@ptrCast(*const ISClusResPossibleOwnerNodes, self), varIndex, ppNode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResPossibleOwnerNodes_AddItem(self: *const T, pNode: ?*ISClusNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResPossibleOwnerNodes.VTable, self.vtable).AddItem(@ptrCast(*const ISClusResPossibleOwnerNodes, self), pNode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResPossibleOwnerNodes_RemoveItem(self: *const T, varIndex: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResPossibleOwnerNodes.VTable, self.vtable).RemoveItem(@ptrCast(*const ISClusResPossibleOwnerNodes, self), varIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResPossibleOwnerNodes_get_Modified(self: *const T, pvarModified: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResPossibleOwnerNodes.VTable, self.vtable).get_Modified(@ptrCast(*const ISClusResPossibleOwnerNodes, self), pvarModified);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResPossibleOwnerNodes_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusResPossibleOwnerNodes.VTable, self.vtable).get_Count(@ptrCast(*const ISClusResPossibleOwnerNodes, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResPossibleOwnerNodes_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusResPossibleOwnerNodes.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusResPossibleOwnerNodes, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResPossibleOwnerNodes_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusResPossibleOwnerNodes.VTable, self.vtable).Refresh(@ptrCast(*const ISClusResPossibleOwnerNodes, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResPossibleOwnerNodes_get_Item(self: *const T, varIndex: VARIANT, ppNode: ?*?*ISClusNode) HRESULT {
+                return @ptrCast(*const ISClusResPossibleOwnerNodes.VTable, self.vtable).get_Item(@ptrCast(*const ISClusResPossibleOwnerNodes, self), varIndex, ppNode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResPossibleOwnerNodes_AddItem(self: *const T, pNode: ?*ISClusNode) HRESULT {
+                return @ptrCast(*const ISClusResPossibleOwnerNodes.VTable, self.vtable).AddItem(@ptrCast(*const ISClusResPossibleOwnerNodes, self), pNode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResPossibleOwnerNodes_RemoveItem(self: *const T, varIndex: VARIANT) HRESULT {
+                return @ptrCast(*const ISClusResPossibleOwnerNodes.VTable, self.vtable).RemoveItem(@ptrCast(*const ISClusResPossibleOwnerNodes, self), varIndex);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResPossibleOwnerNodes_get_Modified(self: *const T, pvarModified: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusResPossibleOwnerNodes.VTable, self.vtable).get_Modified(@ptrCast(*const ISClusResPossibleOwnerNodes, self), pvarModified);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8607,45 +8686,47 @@ pub const ISClusResTypePossibleOwnerNodes = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusResTypePossibleOwnerNodes,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusResTypePossibleOwnerNodes,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const ISClusResTypePossibleOwnerNodes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusResTypePossibleOwnerNodes,
             varIndex: VARIANT,
             ppNode: ?*?*ISClusNode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResTypePossibleOwnerNodes_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResTypePossibleOwnerNodes.VTable, self.vtable).get_Count(@ptrCast(*const ISClusResTypePossibleOwnerNodes, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResTypePossibleOwnerNodes_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResTypePossibleOwnerNodes.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusResTypePossibleOwnerNodes, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResTypePossibleOwnerNodes_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResTypePossibleOwnerNodes.VTable, self.vtable).Refresh(@ptrCast(*const ISClusResTypePossibleOwnerNodes, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResTypePossibleOwnerNodes_get_Item(self: *const T, varIndex: VARIANT, ppNode: ?*?*ISClusNode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResTypePossibleOwnerNodes.VTable, self.vtable).get_Item(@ptrCast(*const ISClusResTypePossibleOwnerNodes, self), varIndex, ppNode);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResTypePossibleOwnerNodes_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusResTypePossibleOwnerNodes.VTable, self.vtable).get_Count(@ptrCast(*const ISClusResTypePossibleOwnerNodes, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResTypePossibleOwnerNodes_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusResTypePossibleOwnerNodes.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusResTypePossibleOwnerNodes, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResTypePossibleOwnerNodes_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusResTypePossibleOwnerNodes.VTable, self.vtable).Refresh(@ptrCast(*const ISClusResTypePossibleOwnerNodes, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResTypePossibleOwnerNodes_get_Item(self: *const T, varIndex: VARIANT, ppNode: ?*?*ISClusNode) HRESULT {
+                return @ptrCast(*const ISClusResTypePossibleOwnerNodes.VTable, self.vtable).get_Item(@ptrCast(*const ISClusResTypePossibleOwnerNodes, self), varIndex, ppNode);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8655,98 +8736,100 @@ pub const ISClusResType = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonProperties: fn(
+        get_CommonProperties: fn (
             self: *const ISClusResType,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateProperties: fn(
+        get_PrivateProperties: fn (
             self: *const ISClusResType,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CommonROProperties: fn(
+        get_CommonROProperties: fn (
             self: *const ISClusResType,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivateROProperties: fn(
+        get_PrivateROProperties: fn (
             self: *const ISClusResType,
             ppProperties: ?*?*ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
+        get_Name: fn (
             self: *const ISClusResType,
             pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
+        Delete: fn (
             self: *const ISClusResType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cluster: fn(
+        get_Cluster: fn (
             self: *const ISClusResType,
             ppCluster: ?*?*ISCluster,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Resources: fn(
+        get_Resources: fn (
             self: *const ISClusResType,
             ppClusterResTypeResources: ?*?*ISClusResTypeResources,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PossibleOwnerNodes: fn(
+        get_PossibleOwnerNodes: fn (
             self: *const ISClusResType,
             ppOwnerNodes: ?*?*ISClusResTypePossibleOwnerNodes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AvailableDisks: fn(
+        get_AvailableDisks: fn (
             self: *const ISClusResType,
             ppAvailableDisks: ?*?*ISClusDisks,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResType_get_CommonProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResType.VTable, self.vtable).get_CommonProperties(@ptrCast(*const ISClusResType, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResType_get_PrivateProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResType.VTable, self.vtable).get_PrivateProperties(@ptrCast(*const ISClusResType, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResType_get_CommonROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResType.VTable, self.vtable).get_CommonROProperties(@ptrCast(*const ISClusResType, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResType_get_PrivateROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResType.VTable, self.vtable).get_PrivateROProperties(@ptrCast(*const ISClusResType, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResType_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResType.VTable, self.vtable).get_Name(@ptrCast(*const ISClusResType, self), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResType_Delete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResType.VTable, self.vtable).Delete(@ptrCast(*const ISClusResType, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResType_get_Cluster(self: *const T, ppCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResType.VTable, self.vtable).get_Cluster(@ptrCast(*const ISClusResType, self), ppCluster);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResType_get_Resources(self: *const T, ppClusterResTypeResources: ?*?*ISClusResTypeResources) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResType.VTable, self.vtable).get_Resources(@ptrCast(*const ISClusResType, self), ppClusterResTypeResources);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResType_get_PossibleOwnerNodes(self: *const T, ppOwnerNodes: ?*?*ISClusResTypePossibleOwnerNodes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResType.VTable, self.vtable).get_PossibleOwnerNodes(@ptrCast(*const ISClusResType, self), ppOwnerNodes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResType_get_AvailableDisks(self: *const T, ppAvailableDisks: ?*?*ISClusDisks) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResType.VTable, self.vtable).get_AvailableDisks(@ptrCast(*const ISClusResType, self), ppAvailableDisks);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResType_get_CommonProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusResType.VTable, self.vtable).get_CommonProperties(@ptrCast(*const ISClusResType, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResType_get_PrivateProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusResType.VTable, self.vtable).get_PrivateProperties(@ptrCast(*const ISClusResType, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResType_get_CommonROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusResType.VTable, self.vtable).get_CommonROProperties(@ptrCast(*const ISClusResType, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResType_get_PrivateROProperties(self: *const T, ppProperties: ?*?*ISClusProperties) HRESULT {
+                return @ptrCast(*const ISClusResType.VTable, self.vtable).get_PrivateROProperties(@ptrCast(*const ISClusResType, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResType_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusResType.VTable, self.vtable).get_Name(@ptrCast(*const ISClusResType, self), pbstrName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResType_Delete(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusResType.VTable, self.vtable).Delete(@ptrCast(*const ISClusResType, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResType_get_Cluster(self: *const T, ppCluster: ?*?*ISCluster) HRESULT {
+                return @ptrCast(*const ISClusResType.VTable, self.vtable).get_Cluster(@ptrCast(*const ISClusResType, self), ppCluster);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResType_get_Resources(self: *const T, ppClusterResTypeResources: ?*?*ISClusResTypeResources) HRESULT {
+                return @ptrCast(*const ISClusResType.VTable, self.vtable).get_Resources(@ptrCast(*const ISClusResType, self), ppClusterResTypeResources);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResType_get_PossibleOwnerNodes(self: *const T, ppOwnerNodes: ?*?*ISClusResTypePossibleOwnerNodes) HRESULT {
+                return @ptrCast(*const ISClusResType.VTable, self.vtable).get_PossibleOwnerNodes(@ptrCast(*const ISClusResType, self), ppOwnerNodes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResType_get_AvailableDisks(self: *const T, ppAvailableDisks: ?*?*ISClusDisks) HRESULT {
+                return @ptrCast(*const ISClusResType.VTable, self.vtable).get_AvailableDisks(@ptrCast(*const ISClusResType, self), ppAvailableDisks);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8756,25 +8839,25 @@ pub const ISClusResTypes = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusResTypes,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusResTypes,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const ISClusResTypes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusResTypes,
             varIndex: VARIANT,
             ppClusResType: ?*?*ISClusResType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateItem: fn(
+        CreateItem: fn (
             self: *const ISClusResTypes,
             bstrResourceTypeName: ?BSTR,
             bstrDisplayName: ?BSTR,
@@ -8783,39 +8866,41 @@ pub const ISClusResTypes = extern struct {
             dwIsAlivePollInterval: i32,
             ppResourceType: ?*?*ISClusResType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteItem: fn(
+        DeleteItem: fn (
             self: *const ISClusResTypes,
             varIndex: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResTypes_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResTypes.VTable, self.vtable).get_Count(@ptrCast(*const ISClusResTypes, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResTypes_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResTypes.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusResTypes, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResTypes_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResTypes.VTable, self.vtable).Refresh(@ptrCast(*const ISClusResTypes, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResTypes_get_Item(self: *const T, varIndex: VARIANT, ppClusResType: ?*?*ISClusResType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResTypes.VTable, self.vtable).get_Item(@ptrCast(*const ISClusResTypes, self), varIndex, ppClusResType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResTypes_CreateItem(self: *const T, bstrResourceTypeName: ?BSTR, bstrDisplayName: ?BSTR, bstrResourceTypeDll: ?BSTR, dwLooksAlivePollInterval: i32, dwIsAlivePollInterval: i32, ppResourceType: ?*?*ISClusResType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResTypes.VTable, self.vtable).CreateItem(@ptrCast(*const ISClusResTypes, self), bstrResourceTypeName, bstrDisplayName, bstrResourceTypeDll, dwLooksAlivePollInterval, dwIsAlivePollInterval, ppResourceType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResTypes_DeleteItem(self: *const T, varIndex: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResTypes.VTable, self.vtable).DeleteItem(@ptrCast(*const ISClusResTypes, self), varIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResTypes_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusResTypes.VTable, self.vtable).get_Count(@ptrCast(*const ISClusResTypes, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResTypes_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusResTypes.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusResTypes, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResTypes_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusResTypes.VTable, self.vtable).Refresh(@ptrCast(*const ISClusResTypes, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResTypes_get_Item(self: *const T, varIndex: VARIANT, ppClusResType: ?*?*ISClusResType) HRESULT {
+                return @ptrCast(*const ISClusResTypes.VTable, self.vtable).get_Item(@ptrCast(*const ISClusResTypes, self), varIndex, ppClusResType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResTypes_CreateItem(self: *const T, bstrResourceTypeName: ?BSTR, bstrDisplayName: ?BSTR, bstrResourceTypeDll: ?BSTR, dwLooksAlivePollInterval: i32, dwIsAlivePollInterval: i32, ppResourceType: ?*?*ISClusResType) HRESULT {
+                return @ptrCast(*const ISClusResTypes.VTable, self.vtable).CreateItem(@ptrCast(*const ISClusResTypes, self), bstrResourceTypeName, bstrDisplayName, bstrResourceTypeDll, dwLooksAlivePollInterval, dwIsAlivePollInterval, ppResourceType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResTypes_DeleteItem(self: *const T, varIndex: VARIANT) HRESULT {
+                return @ptrCast(*const ISClusResTypes.VTable, self.vtable).DeleteItem(@ptrCast(*const ISClusResTypes, self), varIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8825,143 +8910,145 @@ pub const ISClusProperty = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
+        get_Name: fn (
             self: *const ISClusProperty,
             pbstrName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Length: fn(
+        get_Length: fn (
             self: *const ISClusProperty,
             pLength: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ValueCount: fn(
+        get_ValueCount: fn (
             self: *const ISClusProperty,
             pCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Values: fn(
+        get_Values: fn (
             self: *const ISClusProperty,
             ppClusterPropertyValues: ?*?*ISClusPropertyValues,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: fn(
+        get_Value: fn (
             self: *const ISClusProperty,
             pvarValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Value: fn(
+        put_Value: fn (
             self: *const ISClusProperty,
             varValue: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: fn(
+        get_Type: fn (
             self: *const ISClusProperty,
             pType: ?*CLUSTER_PROPERTY_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Type: fn(
+        put_Type: fn (
             self: *const ISClusProperty,
             Type: CLUSTER_PROPERTY_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Format: fn(
+        get_Format: fn (
             self: *const ISClusProperty,
             pFormat: ?*CLUSTER_PROPERTY_FORMAT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Format: fn(
+        put_Format: fn (
             self: *const ISClusProperty,
             Format: CLUSTER_PROPERTY_FORMAT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReadOnly: fn(
+        get_ReadOnly: fn (
             self: *const ISClusProperty,
             pvarReadOnly: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Private: fn(
+        get_Private: fn (
             self: *const ISClusProperty,
             pvarPrivate: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Common: fn(
+        get_Common: fn (
             self: *const ISClusProperty,
             pvarCommon: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Modified: fn(
+        get_Modified: fn (
             self: *const ISClusProperty,
             pvarModified: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UseDefaultValue: fn(
+        UseDefaultValue: fn (
             self: *const ISClusProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperty_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_Name(@ptrCast(*const ISClusProperty, self), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperty_get_Length(self: *const T, pLength: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_Length(@ptrCast(*const ISClusProperty, self), pLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperty_get_ValueCount(self: *const T, pCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_ValueCount(@ptrCast(*const ISClusProperty, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperty_get_Values(self: *const T, ppClusterPropertyValues: ?*?*ISClusPropertyValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_Values(@ptrCast(*const ISClusProperty, self), ppClusterPropertyValues);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperty_get_Value(self: *const T, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_Value(@ptrCast(*const ISClusProperty, self), pvarValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperty_put_Value(self: *const T, varValue: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperty.VTable, self.vtable).put_Value(@ptrCast(*const ISClusProperty, self), varValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperty_get_Type(self: *const T, pType: ?*CLUSTER_PROPERTY_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_Type(@ptrCast(*const ISClusProperty, self), pType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperty_put_Type(self: *const T, Type: CLUSTER_PROPERTY_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperty.VTable, self.vtable).put_Type(@ptrCast(*const ISClusProperty, self), Type);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperty_get_Format(self: *const T, pFormat: ?*CLUSTER_PROPERTY_FORMAT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_Format(@ptrCast(*const ISClusProperty, self), pFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperty_put_Format(self: *const T, Format: CLUSTER_PROPERTY_FORMAT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperty.VTable, self.vtable).put_Format(@ptrCast(*const ISClusProperty, self), Format);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperty_get_ReadOnly(self: *const T, pvarReadOnly: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_ReadOnly(@ptrCast(*const ISClusProperty, self), pvarReadOnly);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperty_get_Private(self: *const T, pvarPrivate: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_Private(@ptrCast(*const ISClusProperty, self), pvarPrivate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperty_get_Common(self: *const T, pvarCommon: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_Common(@ptrCast(*const ISClusProperty, self), pvarCommon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperty_get_Modified(self: *const T, pvarModified: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_Modified(@ptrCast(*const ISClusProperty, self), pvarModified);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperty_UseDefaultValue(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperty.VTable, self.vtable).UseDefaultValue(@ptrCast(*const ISClusProperty, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperty_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_Name(@ptrCast(*const ISClusProperty, self), pbstrName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperty_get_Length(self: *const T, pLength: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_Length(@ptrCast(*const ISClusProperty, self), pLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperty_get_ValueCount(self: *const T, pCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_ValueCount(@ptrCast(*const ISClusProperty, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperty_get_Values(self: *const T, ppClusterPropertyValues: ?*?*ISClusPropertyValues) HRESULT {
+                return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_Values(@ptrCast(*const ISClusProperty, self), ppClusterPropertyValues);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperty_get_Value(self: *const T, pvarValue: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_Value(@ptrCast(*const ISClusProperty, self), pvarValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperty_put_Value(self: *const T, varValue: VARIANT) HRESULT {
+                return @ptrCast(*const ISClusProperty.VTable, self.vtable).put_Value(@ptrCast(*const ISClusProperty, self), varValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperty_get_Type(self: *const T, pType: ?*CLUSTER_PROPERTY_TYPE) HRESULT {
+                return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_Type(@ptrCast(*const ISClusProperty, self), pType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperty_put_Type(self: *const T, Type: CLUSTER_PROPERTY_TYPE) HRESULT {
+                return @ptrCast(*const ISClusProperty.VTable, self.vtable).put_Type(@ptrCast(*const ISClusProperty, self), Type);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperty_get_Format(self: *const T, pFormat: ?*CLUSTER_PROPERTY_FORMAT) HRESULT {
+                return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_Format(@ptrCast(*const ISClusProperty, self), pFormat);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperty_put_Format(self: *const T, Format: CLUSTER_PROPERTY_FORMAT) HRESULT {
+                return @ptrCast(*const ISClusProperty.VTable, self.vtable).put_Format(@ptrCast(*const ISClusProperty, self), Format);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperty_get_ReadOnly(self: *const T, pvarReadOnly: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_ReadOnly(@ptrCast(*const ISClusProperty, self), pvarReadOnly);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperty_get_Private(self: *const T, pvarPrivate: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_Private(@ptrCast(*const ISClusProperty, self), pvarPrivate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperty_get_Common(self: *const T, pvarCommon: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_Common(@ptrCast(*const ISClusProperty, self), pvarCommon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperty_get_Modified(self: *const T, pvarModified: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusProperty.VTable, self.vtable).get_Modified(@ptrCast(*const ISClusProperty, self), pvarModified);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperty_UseDefaultValue(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusProperty.VTable, self.vtable).UseDefaultValue(@ptrCast(*const ISClusProperty, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8971,91 +9058,93 @@ pub const ISClusPropertyValue = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: fn(
+        get_Value: fn (
             self: *const ISClusPropertyValue,
             pvarValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Value: fn(
+        put_Value: fn (
             self: *const ISClusPropertyValue,
             varValue: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: fn(
+        get_Type: fn (
             self: *const ISClusPropertyValue,
             pType: ?*CLUSTER_PROPERTY_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Type: fn(
+        put_Type: fn (
             self: *const ISClusPropertyValue,
             Type: CLUSTER_PROPERTY_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Format: fn(
+        get_Format: fn (
             self: *const ISClusPropertyValue,
             pFormat: ?*CLUSTER_PROPERTY_FORMAT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Format: fn(
+        put_Format: fn (
             self: *const ISClusPropertyValue,
             Format: CLUSTER_PROPERTY_FORMAT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Length: fn(
+        get_Length: fn (
             self: *const ISClusPropertyValue,
             pLength: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DataCount: fn(
+        get_DataCount: fn (
             self: *const ISClusPropertyValue,
             pCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Data: fn(
+        get_Data: fn (
             self: *const ISClusPropertyValue,
             ppClusterPropertyValueData: ?*?*ISClusPropertyValueData,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPropertyValue_get_Value(self: *const T, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPropertyValue.VTable, self.vtable).get_Value(@ptrCast(*const ISClusPropertyValue, self), pvarValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPropertyValue_put_Value(self: *const T, varValue: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPropertyValue.VTable, self.vtable).put_Value(@ptrCast(*const ISClusPropertyValue, self), varValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPropertyValue_get_Type(self: *const T, pType: ?*CLUSTER_PROPERTY_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPropertyValue.VTable, self.vtable).get_Type(@ptrCast(*const ISClusPropertyValue, self), pType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPropertyValue_put_Type(self: *const T, Type: CLUSTER_PROPERTY_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPropertyValue.VTable, self.vtable).put_Type(@ptrCast(*const ISClusPropertyValue, self), Type);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPropertyValue_get_Format(self: *const T, pFormat: ?*CLUSTER_PROPERTY_FORMAT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPropertyValue.VTable, self.vtable).get_Format(@ptrCast(*const ISClusPropertyValue, self), pFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPropertyValue_put_Format(self: *const T, Format: CLUSTER_PROPERTY_FORMAT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPropertyValue.VTable, self.vtable).put_Format(@ptrCast(*const ISClusPropertyValue, self), Format);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPropertyValue_get_Length(self: *const T, pLength: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPropertyValue.VTable, self.vtable).get_Length(@ptrCast(*const ISClusPropertyValue, self), pLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPropertyValue_get_DataCount(self: *const T, pCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPropertyValue.VTable, self.vtable).get_DataCount(@ptrCast(*const ISClusPropertyValue, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPropertyValue_get_Data(self: *const T, ppClusterPropertyValueData: ?*?*ISClusPropertyValueData) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPropertyValue.VTable, self.vtable).get_Data(@ptrCast(*const ISClusPropertyValue, self), ppClusterPropertyValueData);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPropertyValue_get_Value(self: *const T, pvarValue: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusPropertyValue.VTable, self.vtable).get_Value(@ptrCast(*const ISClusPropertyValue, self), pvarValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPropertyValue_put_Value(self: *const T, varValue: VARIANT) HRESULT {
+                return @ptrCast(*const ISClusPropertyValue.VTable, self.vtable).put_Value(@ptrCast(*const ISClusPropertyValue, self), varValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPropertyValue_get_Type(self: *const T, pType: ?*CLUSTER_PROPERTY_TYPE) HRESULT {
+                return @ptrCast(*const ISClusPropertyValue.VTable, self.vtable).get_Type(@ptrCast(*const ISClusPropertyValue, self), pType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPropertyValue_put_Type(self: *const T, Type: CLUSTER_PROPERTY_TYPE) HRESULT {
+                return @ptrCast(*const ISClusPropertyValue.VTable, self.vtable).put_Type(@ptrCast(*const ISClusPropertyValue, self), Type);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPropertyValue_get_Format(self: *const T, pFormat: ?*CLUSTER_PROPERTY_FORMAT) HRESULT {
+                return @ptrCast(*const ISClusPropertyValue.VTable, self.vtable).get_Format(@ptrCast(*const ISClusPropertyValue, self), pFormat);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPropertyValue_put_Format(self: *const T, Format: CLUSTER_PROPERTY_FORMAT) HRESULT {
+                return @ptrCast(*const ISClusPropertyValue.VTable, self.vtable).put_Format(@ptrCast(*const ISClusPropertyValue, self), Format);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPropertyValue_get_Length(self: *const T, pLength: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusPropertyValue.VTable, self.vtable).get_Length(@ptrCast(*const ISClusPropertyValue, self), pLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPropertyValue_get_DataCount(self: *const T, pCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusPropertyValue.VTable, self.vtable).get_DataCount(@ptrCast(*const ISClusPropertyValue, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPropertyValue_get_Data(self: *const T, ppClusterPropertyValueData: ?*?*ISClusPropertyValueData) HRESULT {
+                return @ptrCast(*const ISClusPropertyValue.VTable, self.vtable).get_Data(@ptrCast(*const ISClusPropertyValue, self), ppClusterPropertyValueData);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9065,56 +9154,58 @@ pub const ISClusPropertyValues = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusPropertyValues,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusPropertyValues,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusPropertyValues,
             varIndex: VARIANT,
             ppPropertyValue: ?*?*ISClusPropertyValue,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateItem: fn(
+        CreateItem: fn (
             self: *const ISClusPropertyValues,
             bstrName: ?BSTR,
             varValue: VARIANT,
             ppPropertyValue: ?*?*ISClusPropertyValue,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveItem: fn(
+        RemoveItem: fn (
             self: *const ISClusPropertyValues,
             varIndex: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPropertyValues_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPropertyValues.VTable, self.vtable).get_Count(@ptrCast(*const ISClusPropertyValues, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPropertyValues_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPropertyValues.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusPropertyValues, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPropertyValues_get_Item(self: *const T, varIndex: VARIANT, ppPropertyValue: ?*?*ISClusPropertyValue) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPropertyValues.VTable, self.vtable).get_Item(@ptrCast(*const ISClusPropertyValues, self), varIndex, ppPropertyValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPropertyValues_CreateItem(self: *const T, bstrName: ?BSTR, varValue: VARIANT, ppPropertyValue: ?*?*ISClusPropertyValue) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPropertyValues.VTable, self.vtable).CreateItem(@ptrCast(*const ISClusPropertyValues, self), bstrName, varValue, ppPropertyValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPropertyValues_RemoveItem(self: *const T, varIndex: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPropertyValues.VTable, self.vtable).RemoveItem(@ptrCast(*const ISClusPropertyValues, self), varIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPropertyValues_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusPropertyValues.VTable, self.vtable).get_Count(@ptrCast(*const ISClusPropertyValues, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPropertyValues_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusPropertyValues.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusPropertyValues, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPropertyValues_get_Item(self: *const T, varIndex: VARIANT, ppPropertyValue: ?*?*ISClusPropertyValue) HRESULT {
+                return @ptrCast(*const ISClusPropertyValues.VTable, self.vtable).get_Item(@ptrCast(*const ISClusPropertyValues, self), varIndex, ppPropertyValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPropertyValues_CreateItem(self: *const T, bstrName: ?BSTR, varValue: VARIANT, ppPropertyValue: ?*?*ISClusPropertyValue) HRESULT {
+                return @ptrCast(*const ISClusPropertyValues.VTable, self.vtable).CreateItem(@ptrCast(*const ISClusPropertyValues, self), bstrName, varValue, ppPropertyValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPropertyValues_RemoveItem(self: *const T, varIndex: VARIANT) HRESULT {
+                return @ptrCast(*const ISClusPropertyValues.VTable, self.vtable).RemoveItem(@ptrCast(*const ISClusPropertyValues, self), varIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9124,107 +9215,109 @@ pub const ISClusProperties = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusProperties,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusProperties,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const ISClusProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusProperties,
             varIndex: VARIANT,
             ppClusProperty: ?*?*ISClusProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateItem: fn(
+        CreateItem: fn (
             self: *const ISClusProperties,
             bstrName: ?BSTR,
             varValue: VARIANT,
             pProperty: ?*?*ISClusProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UseDefaultValue: fn(
+        UseDefaultValue: fn (
             self: *const ISClusProperties,
             varIndex: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SaveChanges: fn(
+        SaveChanges: fn (
             self: *const ISClusProperties,
             pvarStatusCode: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReadOnly: fn(
+        get_ReadOnly: fn (
             self: *const ISClusProperties,
             pvarReadOnly: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Private: fn(
+        get_Private: fn (
             self: *const ISClusProperties,
             pvarPrivate: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Common: fn(
+        get_Common: fn (
             self: *const ISClusProperties,
             pvarCommon: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Modified: fn(
+        get_Modified: fn (
             self: *const ISClusProperties,
             pvarModified: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperties_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperties.VTable, self.vtable).get_Count(@ptrCast(*const ISClusProperties, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperties_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperties.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusProperties, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperties_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperties.VTable, self.vtable).Refresh(@ptrCast(*const ISClusProperties, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperties_get_Item(self: *const T, varIndex: VARIANT, ppClusProperty: ?*?*ISClusProperty) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperties.VTable, self.vtable).get_Item(@ptrCast(*const ISClusProperties, self), varIndex, ppClusProperty);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperties_CreateItem(self: *const T, bstrName: ?BSTR, varValue: VARIANT, pProperty: ?*?*ISClusProperty) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperties.VTable, self.vtable).CreateItem(@ptrCast(*const ISClusProperties, self), bstrName, varValue, pProperty);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperties_UseDefaultValue(self: *const T, varIndex: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperties.VTable, self.vtable).UseDefaultValue(@ptrCast(*const ISClusProperties, self), varIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperties_SaveChanges(self: *const T, pvarStatusCode: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperties.VTable, self.vtable).SaveChanges(@ptrCast(*const ISClusProperties, self), pvarStatusCode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperties_get_ReadOnly(self: *const T, pvarReadOnly: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperties.VTable, self.vtable).get_ReadOnly(@ptrCast(*const ISClusProperties, self), pvarReadOnly);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperties_get_Private(self: *const T, pvarPrivate: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperties.VTable, self.vtable).get_Private(@ptrCast(*const ISClusProperties, self), pvarPrivate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperties_get_Common(self: *const T, pvarCommon: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperties.VTable, self.vtable).get_Common(@ptrCast(*const ISClusProperties, self), pvarCommon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusProperties_get_Modified(self: *const T, pvarModified: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusProperties.VTable, self.vtable).get_Modified(@ptrCast(*const ISClusProperties, self), pvarModified);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperties_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusProperties.VTable, self.vtable).get_Count(@ptrCast(*const ISClusProperties, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperties_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusProperties.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusProperties, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperties_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusProperties.VTable, self.vtable).Refresh(@ptrCast(*const ISClusProperties, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperties_get_Item(self: *const T, varIndex: VARIANT, ppClusProperty: ?*?*ISClusProperty) HRESULT {
+                return @ptrCast(*const ISClusProperties.VTable, self.vtable).get_Item(@ptrCast(*const ISClusProperties, self), varIndex, ppClusProperty);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperties_CreateItem(self: *const T, bstrName: ?BSTR, varValue: VARIANT, pProperty: ?*?*ISClusProperty) HRESULT {
+                return @ptrCast(*const ISClusProperties.VTable, self.vtable).CreateItem(@ptrCast(*const ISClusProperties, self), bstrName, varValue, pProperty);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperties_UseDefaultValue(self: *const T, varIndex: VARIANT) HRESULT {
+                return @ptrCast(*const ISClusProperties.VTable, self.vtable).UseDefaultValue(@ptrCast(*const ISClusProperties, self), varIndex);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperties_SaveChanges(self: *const T, pvarStatusCode: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusProperties.VTable, self.vtable).SaveChanges(@ptrCast(*const ISClusProperties, self), pvarStatusCode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperties_get_ReadOnly(self: *const T, pvarReadOnly: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusProperties.VTable, self.vtable).get_ReadOnly(@ptrCast(*const ISClusProperties, self), pvarReadOnly);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperties_get_Private(self: *const T, pvarPrivate: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusProperties.VTable, self.vtable).get_Private(@ptrCast(*const ISClusProperties, self), pvarPrivate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperties_get_Common(self: *const T, pvarCommon: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusProperties.VTable, self.vtable).get_Common(@ptrCast(*const ISClusProperties, self), pvarCommon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusProperties_get_Modified(self: *const T, pvarModified: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusProperties.VTable, self.vtable).get_Modified(@ptrCast(*const ISClusProperties, self), pvarModified);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9234,55 +9327,57 @@ pub const ISClusPropertyValueData = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusPropertyValueData,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusPropertyValueData,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusPropertyValueData,
             varIndex: VARIANT,
             pvarValue: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateItem: fn(
+        CreateItem: fn (
             self: *const ISClusPropertyValueData,
             varValue: VARIANT,
             pvarData: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveItem: fn(
+        RemoveItem: fn (
             self: *const ISClusPropertyValueData,
             varIndex: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPropertyValueData_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPropertyValueData.VTable, self.vtable).get_Count(@ptrCast(*const ISClusPropertyValueData, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPropertyValueData_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPropertyValueData.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusPropertyValueData, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPropertyValueData_get_Item(self: *const T, varIndex: VARIANT, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPropertyValueData.VTable, self.vtable).get_Item(@ptrCast(*const ISClusPropertyValueData, self), varIndex, pvarValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPropertyValueData_CreateItem(self: *const T, varValue: VARIANT, pvarData: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPropertyValueData.VTable, self.vtable).CreateItem(@ptrCast(*const ISClusPropertyValueData, self), varValue, pvarData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPropertyValueData_RemoveItem(self: *const T, varIndex: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPropertyValueData.VTable, self.vtable).RemoveItem(@ptrCast(*const ISClusPropertyValueData, self), varIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPropertyValueData_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusPropertyValueData.VTable, self.vtable).get_Count(@ptrCast(*const ISClusPropertyValueData, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPropertyValueData_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusPropertyValueData.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusPropertyValueData, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPropertyValueData_get_Item(self: *const T, varIndex: VARIANT, pvarValue: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusPropertyValueData.VTable, self.vtable).get_Item(@ptrCast(*const ISClusPropertyValueData, self), varIndex, pvarValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPropertyValueData_CreateItem(self: *const T, varValue: VARIANT, pvarData: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusPropertyValueData.VTable, self.vtable).CreateItem(@ptrCast(*const ISClusPropertyValueData, self), varValue, pvarData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPropertyValueData_RemoveItem(self: *const T, varIndex: VARIANT) HRESULT {
+                return @ptrCast(*const ISClusPropertyValueData.VTable, self.vtable).RemoveItem(@ptrCast(*const ISClusPropertyValueData, self), varIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9292,73 +9387,75 @@ pub const ISClusPartition = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Flags: fn(
+        get_Flags: fn (
             self: *const ISClusPartition,
             plFlags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DeviceName: fn(
+        get_DeviceName: fn (
             self: *const ISClusPartition,
             pbstrDeviceName: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_VolumeLabel: fn(
+        get_VolumeLabel: fn (
             self: *const ISClusPartition,
             pbstrVolumeLabel: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SerialNumber: fn(
+        get_SerialNumber: fn (
             self: *const ISClusPartition,
             plSerialNumber: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaximumComponentLength: fn(
+        get_MaximumComponentLength: fn (
             self: *const ISClusPartition,
             plMaximumComponentLength: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FileSystemFlags: fn(
+        get_FileSystemFlags: fn (
             self: *const ISClusPartition,
             plFileSystemFlags: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FileSystem: fn(
+        get_FileSystem: fn (
             self: *const ISClusPartition,
             pbstrFileSystem: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPartition_get_Flags(self: *const T, plFlags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPartition.VTable, self.vtable).get_Flags(@ptrCast(*const ISClusPartition, self), plFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPartition_get_DeviceName(self: *const T, pbstrDeviceName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPartition.VTable, self.vtable).get_DeviceName(@ptrCast(*const ISClusPartition, self), pbstrDeviceName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPartition_get_VolumeLabel(self: *const T, pbstrVolumeLabel: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPartition.VTable, self.vtable).get_VolumeLabel(@ptrCast(*const ISClusPartition, self), pbstrVolumeLabel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPartition_get_SerialNumber(self: *const T, plSerialNumber: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPartition.VTable, self.vtable).get_SerialNumber(@ptrCast(*const ISClusPartition, self), plSerialNumber);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPartition_get_MaximumComponentLength(self: *const T, plMaximumComponentLength: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPartition.VTable, self.vtable).get_MaximumComponentLength(@ptrCast(*const ISClusPartition, self), plMaximumComponentLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPartition_get_FileSystemFlags(self: *const T, plFileSystemFlags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPartition.VTable, self.vtable).get_FileSystemFlags(@ptrCast(*const ISClusPartition, self), plFileSystemFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPartition_get_FileSystem(self: *const T, pbstrFileSystem: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPartition.VTable, self.vtable).get_FileSystem(@ptrCast(*const ISClusPartition, self), pbstrFileSystem);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPartition_get_Flags(self: *const T, plFlags: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusPartition.VTable, self.vtable).get_Flags(@ptrCast(*const ISClusPartition, self), plFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPartition_get_DeviceName(self: *const T, pbstrDeviceName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusPartition.VTable, self.vtable).get_DeviceName(@ptrCast(*const ISClusPartition, self), pbstrDeviceName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPartition_get_VolumeLabel(self: *const T, pbstrVolumeLabel: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusPartition.VTable, self.vtable).get_VolumeLabel(@ptrCast(*const ISClusPartition, self), pbstrVolumeLabel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPartition_get_SerialNumber(self: *const T, plSerialNumber: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusPartition.VTable, self.vtable).get_SerialNumber(@ptrCast(*const ISClusPartition, self), plSerialNumber);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPartition_get_MaximumComponentLength(self: *const T, plMaximumComponentLength: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusPartition.VTable, self.vtable).get_MaximumComponentLength(@ptrCast(*const ISClusPartition, self), plMaximumComponentLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPartition_get_FileSystemFlags(self: *const T, plFileSystemFlags: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusPartition.VTable, self.vtable).get_FileSystemFlags(@ptrCast(*const ISClusPartition, self), plFileSystemFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPartition_get_FileSystem(self: *const T, pbstrFileSystem: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusPartition.VTable, self.vtable).get_FileSystem(@ptrCast(*const ISClusPartition, self), pbstrFileSystem);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9369,55 +9466,57 @@ pub const ISClusPartitionEx = extern struct {
     pub const VTable = extern struct {
         base: ISClusPartition.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TotalSize: fn(
+        get_TotalSize: fn (
             self: *const ISClusPartitionEx,
             plTotalSize: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FreeSpace: fn(
+        get_FreeSpace: fn (
             self: *const ISClusPartitionEx,
             plFreeSpace: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DeviceNumber: fn(
+        get_DeviceNumber: fn (
             self: *const ISClusPartitionEx,
             plDeviceNumber: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PartitionNumber: fn(
+        get_PartitionNumber: fn (
             self: *const ISClusPartitionEx,
             plPartitionNumber: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_VolumeGuid: fn(
+        get_VolumeGuid: fn (
             self: *const ISClusPartitionEx,
             pbstrVolumeGuid: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISClusPartition.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPartitionEx_get_TotalSize(self: *const T, plTotalSize: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPartitionEx.VTable, self.vtable).get_TotalSize(@ptrCast(*const ISClusPartitionEx, self), plTotalSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPartitionEx_get_FreeSpace(self: *const T, plFreeSpace: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPartitionEx.VTable, self.vtable).get_FreeSpace(@ptrCast(*const ISClusPartitionEx, self), plFreeSpace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPartitionEx_get_DeviceNumber(self: *const T, plDeviceNumber: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPartitionEx.VTable, self.vtable).get_DeviceNumber(@ptrCast(*const ISClusPartitionEx, self), plDeviceNumber);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPartitionEx_get_PartitionNumber(self: *const T, plPartitionNumber: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPartitionEx.VTable, self.vtable).get_PartitionNumber(@ptrCast(*const ISClusPartitionEx, self), plPartitionNumber);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPartitionEx_get_VolumeGuid(self: *const T, pbstrVolumeGuid: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPartitionEx.VTable, self.vtable).get_VolumeGuid(@ptrCast(*const ISClusPartitionEx, self), pbstrVolumeGuid);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ISClusPartition.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPartitionEx_get_TotalSize(self: *const T, plTotalSize: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusPartitionEx.VTable, self.vtable).get_TotalSize(@ptrCast(*const ISClusPartitionEx, self), plTotalSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPartitionEx_get_FreeSpace(self: *const T, plFreeSpace: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusPartitionEx.VTable, self.vtable).get_FreeSpace(@ptrCast(*const ISClusPartitionEx, self), plFreeSpace);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPartitionEx_get_DeviceNumber(self: *const T, plDeviceNumber: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusPartitionEx.VTable, self.vtable).get_DeviceNumber(@ptrCast(*const ISClusPartitionEx, self), plDeviceNumber);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPartitionEx_get_PartitionNumber(self: *const T, plPartitionNumber: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusPartitionEx.VTable, self.vtable).get_PartitionNumber(@ptrCast(*const ISClusPartitionEx, self), plPartitionNumber);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPartitionEx_get_VolumeGuid(self: *const T, pbstrVolumeGuid: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusPartitionEx.VTable, self.vtable).get_VolumeGuid(@ptrCast(*const ISClusPartitionEx, self), pbstrVolumeGuid);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9427,38 +9526,40 @@ pub const ISClusPartitions = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusPartitions,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusPartitions,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusPartitions,
             varIndex: VARIANT,
             ppPartition: ?*?*ISClusPartition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPartitions_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPartitions.VTable, self.vtable).get_Count(@ptrCast(*const ISClusPartitions, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPartitions_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPartitions.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusPartitions, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusPartitions_get_Item(self: *const T, varIndex: VARIANT, ppPartition: ?*?*ISClusPartition) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusPartitions.VTable, self.vtable).get_Item(@ptrCast(*const ISClusPartitions, self), varIndex, ppPartition);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPartitions_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusPartitions.VTable, self.vtable).get_Count(@ptrCast(*const ISClusPartitions, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPartitions_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusPartitions.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusPartitions, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusPartitions_get_Item(self: *const T, varIndex: VARIANT, ppPartition: ?*?*ISClusPartition) HRESULT {
+                return @ptrCast(*const ISClusPartitions.VTable, self.vtable).get_Item(@ptrCast(*const ISClusPartitions, self), varIndex, ppPartition);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9468,46 +9569,48 @@ pub const ISClusDisk = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Signature: fn(
+        get_Signature: fn (
             self: *const ISClusDisk,
             plSignature: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ScsiAddress: fn(
+        get_ScsiAddress: fn (
             self: *const ISClusDisk,
             ppScsiAddress: ?*?*ISClusScsiAddress,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DiskNumber: fn(
+        get_DiskNumber: fn (
             self: *const ISClusDisk,
             plDiskNumber: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Partitions: fn(
+        get_Partitions: fn (
             self: *const ISClusDisk,
             ppPartitions: ?*?*ISClusPartitions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusDisk_get_Signature(self: *const T, plSignature: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusDisk.VTable, self.vtable).get_Signature(@ptrCast(*const ISClusDisk, self), plSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusDisk_get_ScsiAddress(self: *const T, ppScsiAddress: ?*?*ISClusScsiAddress) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusDisk.VTable, self.vtable).get_ScsiAddress(@ptrCast(*const ISClusDisk, self), ppScsiAddress);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusDisk_get_DiskNumber(self: *const T, plDiskNumber: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusDisk.VTable, self.vtable).get_DiskNumber(@ptrCast(*const ISClusDisk, self), plDiskNumber);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusDisk_get_Partitions(self: *const T, ppPartitions: ?*?*ISClusPartitions) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusDisk.VTable, self.vtable).get_Partitions(@ptrCast(*const ISClusDisk, self), ppPartitions);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusDisk_get_Signature(self: *const T, plSignature: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusDisk.VTable, self.vtable).get_Signature(@ptrCast(*const ISClusDisk, self), plSignature);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusDisk_get_ScsiAddress(self: *const T, ppScsiAddress: ?*?*ISClusScsiAddress) HRESULT {
+                return @ptrCast(*const ISClusDisk.VTable, self.vtable).get_ScsiAddress(@ptrCast(*const ISClusDisk, self), ppScsiAddress);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusDisk_get_DiskNumber(self: *const T, plDiskNumber: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusDisk.VTable, self.vtable).get_DiskNumber(@ptrCast(*const ISClusDisk, self), plDiskNumber);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusDisk_get_Partitions(self: *const T, ppPartitions: ?*?*ISClusPartitions) HRESULT {
+                return @ptrCast(*const ISClusDisk.VTable, self.vtable).get_Partitions(@ptrCast(*const ISClusDisk, self), ppPartitions);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9517,38 +9620,40 @@ pub const ISClusDisks = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusDisks,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusDisks,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusDisks,
             varIndex: VARIANT,
             ppDisk: ?*?*ISClusDisk,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusDisks_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusDisks.VTable, self.vtable).get_Count(@ptrCast(*const ISClusDisks, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusDisks_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusDisks.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusDisks, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusDisks_get_Item(self: *const T, varIndex: VARIANT, ppDisk: ?*?*ISClusDisk) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusDisks.VTable, self.vtable).get_Item(@ptrCast(*const ISClusDisks, self), varIndex, ppDisk);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusDisks_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusDisks.VTable, self.vtable).get_Count(@ptrCast(*const ISClusDisks, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusDisks_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusDisks.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusDisks, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusDisks_get_Item(self: *const T, varIndex: VARIANT, ppDisk: ?*?*ISClusDisk) HRESULT {
+                return @ptrCast(*const ISClusDisks.VTable, self.vtable).get_Item(@ptrCast(*const ISClusDisks, self), varIndex, ppDisk);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9558,46 +9663,48 @@ pub const ISClusScsiAddress = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PortNumber: fn(
+        get_PortNumber: fn (
             self: *const ISClusScsiAddress,
             pvarPortNumber: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PathId: fn(
+        get_PathId: fn (
             self: *const ISClusScsiAddress,
             pvarPathId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TargetId: fn(
+        get_TargetId: fn (
             self: *const ISClusScsiAddress,
             pvarTargetId: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Lun: fn(
+        get_Lun: fn (
             self: *const ISClusScsiAddress,
             pvarLun: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusScsiAddress_get_PortNumber(self: *const T, pvarPortNumber: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusScsiAddress.VTable, self.vtable).get_PortNumber(@ptrCast(*const ISClusScsiAddress, self), pvarPortNumber);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusScsiAddress_get_PathId(self: *const T, pvarPathId: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusScsiAddress.VTable, self.vtable).get_PathId(@ptrCast(*const ISClusScsiAddress, self), pvarPathId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusScsiAddress_get_TargetId(self: *const T, pvarTargetId: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusScsiAddress.VTable, self.vtable).get_TargetId(@ptrCast(*const ISClusScsiAddress, self), pvarTargetId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusScsiAddress_get_Lun(self: *const T, pvarLun: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusScsiAddress.VTable, self.vtable).get_Lun(@ptrCast(*const ISClusScsiAddress, self), pvarLun);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusScsiAddress_get_PortNumber(self: *const T, pvarPortNumber: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusScsiAddress.VTable, self.vtable).get_PortNumber(@ptrCast(*const ISClusScsiAddress, self), pvarPortNumber);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusScsiAddress_get_PathId(self: *const T, pvarPathId: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusScsiAddress.VTable, self.vtable).get_PathId(@ptrCast(*const ISClusScsiAddress, self), pvarPathId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusScsiAddress_get_TargetId(self: *const T, pvarTargetId: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusScsiAddress.VTable, self.vtable).get_TargetId(@ptrCast(*const ISClusScsiAddress, self), pvarTargetId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusScsiAddress_get_Lun(self: *const T, pvarLun: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISClusScsiAddress.VTable, self.vtable).get_Lun(@ptrCast(*const ISClusScsiAddress, self), pvarLun);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9607,61 +9714,63 @@ pub const ISClusRegistryKeys = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusRegistryKeys,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusRegistryKeys,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const ISClusRegistryKeys,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusRegistryKeys,
             varIndex: VARIANT,
             pbstrRegistryKey: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddItem: fn(
+        AddItem: fn (
             self: *const ISClusRegistryKeys,
             bstrRegistryKey: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveItem: fn(
+        RemoveItem: fn (
             self: *const ISClusRegistryKeys,
             varIndex: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusRegistryKeys_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusRegistryKeys.VTable, self.vtable).get_Count(@ptrCast(*const ISClusRegistryKeys, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusRegistryKeys_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusRegistryKeys.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusRegistryKeys, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusRegistryKeys_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusRegistryKeys.VTable, self.vtable).Refresh(@ptrCast(*const ISClusRegistryKeys, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusRegistryKeys_get_Item(self: *const T, varIndex: VARIANT, pbstrRegistryKey: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusRegistryKeys.VTable, self.vtable).get_Item(@ptrCast(*const ISClusRegistryKeys, self), varIndex, pbstrRegistryKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusRegistryKeys_AddItem(self: *const T, bstrRegistryKey: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusRegistryKeys.VTable, self.vtable).AddItem(@ptrCast(*const ISClusRegistryKeys, self), bstrRegistryKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusRegistryKeys_RemoveItem(self: *const T, varIndex: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusRegistryKeys.VTable, self.vtable).RemoveItem(@ptrCast(*const ISClusRegistryKeys, self), varIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusRegistryKeys_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusRegistryKeys.VTable, self.vtable).get_Count(@ptrCast(*const ISClusRegistryKeys, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusRegistryKeys_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusRegistryKeys.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusRegistryKeys, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusRegistryKeys_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusRegistryKeys.VTable, self.vtable).Refresh(@ptrCast(*const ISClusRegistryKeys, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusRegistryKeys_get_Item(self: *const T, varIndex: VARIANT, pbstrRegistryKey: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusRegistryKeys.VTable, self.vtable).get_Item(@ptrCast(*const ISClusRegistryKeys, self), varIndex, pbstrRegistryKey);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusRegistryKeys_AddItem(self: *const T, bstrRegistryKey: ?BSTR) HRESULT {
+                return @ptrCast(*const ISClusRegistryKeys.VTable, self.vtable).AddItem(@ptrCast(*const ISClusRegistryKeys, self), bstrRegistryKey);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusRegistryKeys_RemoveItem(self: *const T, varIndex: VARIANT) HRESULT {
+                return @ptrCast(*const ISClusRegistryKeys.VTable, self.vtable).RemoveItem(@ptrCast(*const ISClusRegistryKeys, self), varIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9671,61 +9780,63 @@ pub const ISClusCryptoKeys = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusCryptoKeys,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusCryptoKeys,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const ISClusCryptoKeys,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusCryptoKeys,
             varIndex: VARIANT,
             pbstrCyrptoKey: ?*?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddItem: fn(
+        AddItem: fn (
             self: *const ISClusCryptoKeys,
             bstrCryptoKey: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveItem: fn(
+        RemoveItem: fn (
             self: *const ISClusCryptoKeys,
             varIndex: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusCryptoKeys_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusCryptoKeys.VTable, self.vtable).get_Count(@ptrCast(*const ISClusCryptoKeys, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusCryptoKeys_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusCryptoKeys.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusCryptoKeys, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusCryptoKeys_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusCryptoKeys.VTable, self.vtable).Refresh(@ptrCast(*const ISClusCryptoKeys, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusCryptoKeys_get_Item(self: *const T, varIndex: VARIANT, pbstrCyrptoKey: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusCryptoKeys.VTable, self.vtable).get_Item(@ptrCast(*const ISClusCryptoKeys, self), varIndex, pbstrCyrptoKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusCryptoKeys_AddItem(self: *const T, bstrCryptoKey: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusCryptoKeys.VTable, self.vtable).AddItem(@ptrCast(*const ISClusCryptoKeys, self), bstrCryptoKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusCryptoKeys_RemoveItem(self: *const T, varIndex: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusCryptoKeys.VTable, self.vtable).RemoveItem(@ptrCast(*const ISClusCryptoKeys, self), varIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusCryptoKeys_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusCryptoKeys.VTable, self.vtable).get_Count(@ptrCast(*const ISClusCryptoKeys, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusCryptoKeys_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusCryptoKeys.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusCryptoKeys, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusCryptoKeys_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusCryptoKeys.VTable, self.vtable).Refresh(@ptrCast(*const ISClusCryptoKeys, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusCryptoKeys_get_Item(self: *const T, varIndex: VARIANT, pbstrCyrptoKey: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISClusCryptoKeys.VTable, self.vtable).get_Item(@ptrCast(*const ISClusCryptoKeys, self), varIndex, pbstrCyrptoKey);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusCryptoKeys_AddItem(self: *const T, bstrCryptoKey: ?BSTR) HRESULT {
+                return @ptrCast(*const ISClusCryptoKeys.VTable, self.vtable).AddItem(@ptrCast(*const ISClusCryptoKeys, self), bstrCryptoKey);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusCryptoKeys_RemoveItem(self: *const T, varIndex: VARIANT) HRESULT {
+                return @ptrCast(*const ISClusCryptoKeys.VTable, self.vtable).RemoveItem(@ptrCast(*const ISClusCryptoKeys, self), varIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -9735,83 +9846,84 @@ pub const ISClusResDependents = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
+        get_Count: fn (
             self: *const ISClusResDependents,
             plCount: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
+        get__NewEnum: fn (
             self: *const ISClusResDependents,
             retval: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
+        Refresh: fn (
             self: *const ISClusResDependents,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
+        get_Item: fn (
             self: *const ISClusResDependents,
             varIndex: VARIANT,
             ppClusResource: ?*?*ISClusResource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateItem: fn(
+        CreateItem: fn (
             self: *const ISClusResDependents,
             bstrResourceName: ?BSTR,
             bstrResourceType: ?BSTR,
             dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
             ppClusterResource: ?*?*ISClusResource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteItem: fn(
+        DeleteItem: fn (
             self: *const ISClusResDependents,
             varIndex: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddItem: fn(
+        AddItem: fn (
             self: *const ISClusResDependents,
             pResource: ?*ISClusResource,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveItem: fn(
+        RemoveItem: fn (
             self: *const ISClusResDependents,
             varIndex: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResDependents_get_Count(self: *const T, plCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResDependents.VTable, self.vtable).get_Count(@ptrCast(*const ISClusResDependents, self), plCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResDependents_get__NewEnum(self: *const T, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResDependents.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusResDependents, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResDependents_Refresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResDependents.VTable, self.vtable).Refresh(@ptrCast(*const ISClusResDependents, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResDependents_get_Item(self: *const T, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResDependents.VTable, self.vtable).get_Item(@ptrCast(*const ISClusResDependents, self), varIndex, ppClusResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResDependents_CreateItem(self: *const T, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResDependents.VTable, self.vtable).CreateItem(@ptrCast(*const ISClusResDependents, self), bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResDependents_DeleteItem(self: *const T, varIndex: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResDependents.VTable, self.vtable).DeleteItem(@ptrCast(*const ISClusResDependents, self), varIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResDependents_AddItem(self: *const T, pResource: ?*ISClusResource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResDependents.VTable, self.vtable).AddItem(@ptrCast(*const ISClusResDependents, self), pResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISClusResDependents_RemoveItem(self: *const T, varIndex: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISClusResDependents.VTable, self.vtable).RemoveItem(@ptrCast(*const ISClusResDependents, self), varIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResDependents_get_Count(self: *const T, plCount: ?*i32) HRESULT {
+                return @ptrCast(*const ISClusResDependents.VTable, self.vtable).get_Count(@ptrCast(*const ISClusResDependents, self), plCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResDependents_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ISClusResDependents.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISClusResDependents, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResDependents_Refresh(self: *const T) HRESULT {
+                return @ptrCast(*const ISClusResDependents.VTable, self.vtable).Refresh(@ptrCast(*const ISClusResDependents, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResDependents_get_Item(self: *const T, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) HRESULT {
+                return @ptrCast(*const ISClusResDependents.VTable, self.vtable).get_Item(@ptrCast(*const ISClusResDependents, self), varIndex, ppClusResource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResDependents_CreateItem(self: *const T, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) HRESULT {
+                return @ptrCast(*const ISClusResDependents.VTable, self.vtable).CreateItem(@ptrCast(*const ISClusResDependents, self), bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResDependents_DeleteItem(self: *const T, varIndex: VARIANT) HRESULT {
+                return @ptrCast(*const ISClusResDependents.VTable, self.vtable).DeleteItem(@ptrCast(*const ISClusResDependents, self), varIndex);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResDependents_AddItem(self: *const T, pResource: ?*ISClusResource) HRESULT {
+                return @ptrCast(*const ISClusResDependents.VTable, self.vtable).AddItem(@ptrCast(*const ISClusResDependents, self), pResource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISClusResDependents_RemoveItem(self: *const T, varIndex: VARIANT) HRESULT {
+                return @ptrCast(*const ISClusResDependents.VTable, self.vtable).RemoveItem(@ptrCast(*const ISClusResDependents, self), varIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (351)
@@ -12358,8 +12470,7 @@ pub extern "ntlanman" fn QueryAppInstanceVersion(
     VersionStatus: ?*NTSTATUS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "ntlanman" fn ResetAllAppInstanceVersions(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "ntlanman" fn ResetAllAppInstanceVersions() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "ntlanman" fn SetAppInstanceCsvFlags(
@@ -12368,19 +12479,14 @@ pub extern "ntlanman" fn SetAppInstanceCsvFlags(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (22)
@@ -12410,359 +12516,1055 @@ const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PCLUSAPI_GET_NODE_CLUSTER_STATE")) { _ = PCLUSAPI_GET_NODE_CLUSTER_STATE; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER")) { _ = PCLUSAPI_OPEN_CLUSTER; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_EX")) { _ = PCLUSAPI_OPEN_CLUSTER_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER")) { _ = PCLUSAPI_CLOSE_CLUSTER; }
-    if (@hasDecl(@This(), "PCLUSAPI_SetClusterName")) { _ = PCLUSAPI_SetClusterName; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_INFORMATION")) { _ = PCLUSAPI_GET_CLUSTER_INFORMATION; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_QUORUM_RESOURCE")) { _ = PCLUSAPI_GET_CLUSTER_QUORUM_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_QUORUM_RESOURCE")) { _ = PCLUSAPI_SET_CLUSTER_QUORUM_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_BACKUP_CLUSTER_DATABASE")) { _ = PCLUSAPI_BACKUP_CLUSTER_DATABASE; }
-    if (@hasDecl(@This(), "PCLUSAPI_RESTORE_CLUSTER_DATABASE")) { _ = PCLUSAPI_RESTORE_CLUSTER_DATABASE; }
-    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_NETWORK_PRIORITY_ORDER")) { _ = PCLUSAPI_SET_CLUSTER_NETWORK_PRIORITY_ORDER; }
-    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_SERVICE_ACCOUNT_PASSWORD")) { _ = PCLUSAPI_SET_CLUSTER_SERVICE_ACCOUNT_PASSWORD; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_CONTROL")) { _ = PCLUSAPI_CLUSTER_CONTROL; }
-    if (@hasDecl(@This(), "PCLUSTER_UPGRADE_PROGRESS_CALLBACK")) { _ = PCLUSTER_UPGRADE_PROGRESS_CALLBACK; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_UPGRADE")) { _ = PCLUSAPI_CLUSTER_UPGRADE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT_V2")) { _ = PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT_V2; }
-    if (@hasDecl(@This(), "PCLUSAPI_REGISTER_CLUSTER_NOTIFY_V2")) { _ = PCLUSAPI_REGISTER_CLUSTER_NOTIFY_V2; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_NOTIFY_EVENT_HANDLE_V2")) { _ = PCLUSAPI_GET_NOTIFY_EVENT_HANDLE_V2; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NOTIFY_V2")) { _ = PCLUSAPI_GET_CLUSTER_NOTIFY_V2; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT")) { _ = PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT; }
-    if (@hasDecl(@This(), "PCLUSAPI_REGISTER_CLUSTER_NOTIFY")) { _ = PCLUSAPI_REGISTER_CLUSTER_NOTIFY; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NOTIFY")) { _ = PCLUSAPI_GET_CLUSTER_NOTIFY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_NOTIFY_PORT")) { _ = PCLUSAPI_CLOSE_CLUSTER_NOTIFY_PORT; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_OPEN_ENUM")) { _ = PCLUSAPI_CLUSTER_OPEN_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GET_ENUM_COUNT")) { _ = PCLUSAPI_CLUSTER_GET_ENUM_COUNT; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_ENUM")) { _ = PCLUSAPI_CLUSTER_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_CLOSE_ENUM")) { _ = PCLUSAPI_CLUSTER_CLOSE_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_OPEN_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_OPEN_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GET_ENUM_COUNT_EX")) { _ = PCLUSAPI_CLUSTER_GET_ENUM_COUNT_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_CLOSE_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_CLOSE_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_GROUP_GROUPSET")) { _ = PCLUSAPI_CREATE_CLUSTER_GROUP_GROUPSET; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_GROUP_GROUPSET")) { _ = PCLUSAPI_OPEN_CLUSTER_GROUP_GROUPSET; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_GROUP_GROUPSET")) { _ = PCLUSAPI_CLOSE_CLUSTER_GROUP_GROUPSET; }
-    if (@hasDecl(@This(), "PCLUSAPI_DELETE_CLUSTER_GROUP_GROUPSET")) { _ = PCLUSAPI_DELETE_CLUSTER_GROUP_GROUPSET; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_ADD_GROUP_TO_GROUP_GROUPSET")) { _ = PCLUSAPI_CLUSTER_ADD_GROUP_TO_GROUP_GROUPSET; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_GROUP_GROUPSET")) { _ = PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_GROUP_GROUPSET; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_GROUPSET_CONTROL")) { _ = PCLUSAPI_CLUSTER_GROUP_GROUPSET_CONTROL; }
-    if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_GROUP_DEPENDENCY")) { _ = PCLUSAPI_ADD_CLUSTER_GROUP_DEPENDENCY; }
-    if (@hasDecl(@This(), "PCLUSAPI_SET_GROUP_DEPENDENCY_EXPRESSION")) { _ = PCLUSAPI_SET_GROUP_DEPENDENCY_EXPRESSION; }
-    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_GROUP_DEPENDENCY")) { _ = PCLUSAPI_REMOVE_CLUSTER_GROUP_DEPENDENCY; }
-    if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_GROUP_GROUPSET_DEPENDENCY")) { _ = PCLUSAPI_ADD_CLUSTER_GROUP_GROUPSET_DEPENDENCY; }
-    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_GROUP_GROUPSET_DEPENDENCY_EXPRESSION")) { _ = PCLUSAPI_SET_CLUSTER_GROUP_GROUPSET_DEPENDENCY_EXPRESSION; }
-    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_GROUP_GROUPSET_DEPENDENCY")) { _ = PCLUSAPI_REMOVE_CLUSTER_GROUP_GROUPSET_DEPENDENCY; }
-    if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY")) { _ = PCLUSAPI_ADD_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY; }
-    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY")) { _ = PCLUSAPI_REMOVE_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_GROUP_GROUPSET")) { _ = PCLUSAPI_GET_CLUSTER_FROM_GROUP_GROUPSET; }
-    if (@hasDecl(@This(), "PCLUSAPI_ADD_CROSS_CLUSTER_GROUPSET_DEPENDENCY")) { _ = PCLUSAPI_ADD_CROSS_CLUSTER_GROUPSET_DEPENDENCY; }
-    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CROSS_CLUSTER_GROUPSET_DEPENDENCY")) { _ = PCLUSAPI_REMOVE_CROSS_CLUSTER_GROUPSET_DEPENDENCY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_AVAILABILITY_SET")) { _ = PCLUSAPI_CREATE_CLUSTER_AVAILABILITY_SET; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_CREATE_AFFINITY_RULE")) { _ = PCLUSAPI_CLUSTER_CREATE_AFFINITY_RULE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REMOVE_AFFINITY_RULE")) { _ = PCLUSAPI_CLUSTER_REMOVE_AFFINITY_RULE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_ADD_GROUP_TO_AFFINITY_RULE")) { _ = PCLUSAPI_CLUSTER_ADD_GROUP_TO_AFFINITY_RULE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_AFFINITY_RULE")) { _ = PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_AFFINITY_RULE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_AFFINITY_RULE_CONTROL")) { _ = PCLUSAPI_CLUSTER_AFFINITY_RULE_CONTROL; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NODE")) { _ = PCLUSAPI_OPEN_CLUSTER_NODE; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NODE_EX")) { _ = PCLUSAPI_OPEN_CLUSTER_NODE_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_NODE_BY_ID")) { _ = PCLUSAPI_OPEN_NODE_BY_ID; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_NODE")) { _ = PCLUSAPI_CLOSE_CLUSTER_NODE; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NODE_STATE")) { _ = PCLUSAPI_GET_CLUSTER_NODE_STATE; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NODE_ID")) { _ = PCLUSAPI_GET_CLUSTER_NODE_ID; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_NODE")) { _ = PCLUSAPI_GET_CLUSTER_FROM_NODE; }
-    if (@hasDecl(@This(), "PCLUSAPI_PAUSE_CLUSTER_NODE")) { _ = PCLUSAPI_PAUSE_CLUSTER_NODE; }
-    if (@hasDecl(@This(), "PCLUSAPI_RESUME_CLUSTER_NODE")) { _ = PCLUSAPI_RESUME_CLUSTER_NODE; }
-    if (@hasDecl(@This(), "PCLUSAPI_EVICT_CLUSTER_NODE")) { _ = PCLUSAPI_EVICT_CLUSTER_NODE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_OPEN_ENUM")) { _ = PCLUSAPI_CLUSTER_NODE_OPEN_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_OPEN_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_NODE_OPEN_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT_EX")) { _ = PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_NODE_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT")) { _ = PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM")) { _ = PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_ENUM")) { _ = PCLUSAPI_CLUSTER_NODE_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_EVICT_CLUSTER_NODE_EX")) { _ = PCLUSAPI_EVICT_CLUSTER_NODE_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_RESOURCE_TYPE_KEY")) { _ = PCLUSAPI_GET_CLUSTER_RESOURCE_TYPE_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_GROUP")) { _ = PCLUSAPI_CREATE_CLUSTER_GROUP; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_GROUP")) { _ = PCLUSAPI_OPEN_CLUSTER_GROUP; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_GROUP_EX")) { _ = PCLUSAPI_OPEN_CLUSTER_GROUP_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_PAUSE_CLUSTER_NODE_EX")) { _ = PCLUSAPI_PAUSE_CLUSTER_NODE_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_RESUME_CLUSTER_NODE_EX")) { _ = PCLUSAPI_RESUME_CLUSTER_NODE_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_GROUPEX")) { _ = PCLUSAPI_CREATE_CLUSTER_GROUPEX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT_EX")) { _ = PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_GROUP_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT_EX")) { _ = PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_RESOURCE_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM_EX")) { _ = PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_RESTART_CLUSTER_RESOURCE")) { _ = PCLUSAPI_RESTART_CLUSTER_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_GROUP")) { _ = PCLUSAPI_CLOSE_CLUSTER_GROUP; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_GROUP")) { _ = PCLUSAPI_GET_CLUSTER_FROM_GROUP; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_GROUP_STATE")) { _ = PCLUSAPI_GET_CLUSTER_GROUP_STATE; }
-    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_GROUP_NAME")) { _ = PCLUSAPI_SET_CLUSTER_GROUP_NAME; }
-    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_GROUP_NODE_LIST")) { _ = PCLUSAPI_SET_CLUSTER_GROUP_NODE_LIST; }
-    if (@hasDecl(@This(), "PCLUSAPI_ONLINE_CLUSTER_GROUP")) { _ = PCLUSAPI_ONLINE_CLUSTER_GROUP; }
-    if (@hasDecl(@This(), "PCLUSAPI_MOVE_CLUSTER_GROUP")) { _ = PCLUSAPI_MOVE_CLUSTER_GROUP; }
-    if (@hasDecl(@This(), "PCLUSAPI_OFFLINE_CLUSTER_GROUP")) { _ = PCLUSAPI_OFFLINE_CLUSTER_GROUP; }
-    if (@hasDecl(@This(), "PCLUSAPI_DELETE_CLUSTER_GROUP")) { _ = PCLUSAPI_DELETE_CLUSTER_GROUP; }
-    if (@hasDecl(@This(), "PCLUSAPI_DESTROY_CLUSTER_GROUP")) { _ = PCLUSAPI_DESTROY_CLUSTER_GROUP; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM")) { _ = PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT")) { _ = PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_ENUM")) { _ = PCLUSAPI_CLUSTER_GROUP_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM")) { _ = PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_RESOURCE")) { _ = PCLUSAPI_CREATE_CLUSTER_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_RESOURCE")) { _ = PCLUSAPI_OPEN_CLUSTER_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_RESOURCE_EX")) { _ = PCLUSAPI_OPEN_CLUSTER_RESOURCE_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_RESOURCE")) { _ = PCLUSAPI_CLOSE_CLUSTER_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_RESOURCE")) { _ = PCLUSAPI_GET_CLUSTER_FROM_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_DELETE_CLUSTER_RESOURCE")) { _ = PCLUSAPI_DELETE_CLUSTER_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_RESOURCE_STATE")) { _ = PCLUSAPI_GET_CLUSTER_RESOURCE_STATE; }
-    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_RESOURCE_NAME")) { _ = PCLUSAPI_SET_CLUSTER_RESOURCE_NAME; }
-    if (@hasDecl(@This(), "PCLUSAPI_FAIL_CLUSTER_RESOURCE")) { _ = PCLUSAPI_FAIL_CLUSTER_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_ONLINE_CLUSTER_RESOURCE")) { _ = PCLUSAPI_ONLINE_CLUSTER_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_OFFLINE_CLUSTER_RESOURCE")) { _ = PCLUSAPI_OFFLINE_CLUSTER_RESOURCE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP")) { _ = PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP; }
-    if (@hasDecl(@This(), "PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP_EX")) { _ = PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_RESOURCE_NODE")) { _ = PCLUSAPI_ADD_CLUSTER_RESOURCE_NODE; }
-    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_RESOURCE_NODE")) { _ = PCLUSAPI_REMOVE_CLUSTER_RESOURCE_NODE; }
-    if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_RESOURCE_DEPENDENCY")) { _ = PCLUSAPI_ADD_CLUSTER_RESOURCE_DEPENDENCY; }
-    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_RESOURCE_DEPENDENCY")) { _ = PCLUSAPI_REMOVE_CLUSTER_RESOURCE_DEPENDENCY; }
-    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION")) { _ = PCLUSAPI_SET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION")) { _ = PCLUSAPI_GET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION; }
-    if (@hasDecl(@This(), "PCLUSAPI_ADD_RESOURCE_TO_CLUSTER_SHARED_VOLUMES")) { _ = PCLUSAPI_ADD_RESOURCE_TO_CLUSTER_SHARED_VOLUMES; }
-    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_RESOURCE_FROM_CLUSTER_SHARED_VOLUMES")) { _ = PCLUSAPI_REMOVE_RESOURCE_FROM_CLUSTER_SHARED_VOLUMES; }
-    if (@hasDecl(@This(), "PCLUSAPI_IS_FILE_ON_CLUSTER_SHARED_VOLUME")) { _ = PCLUSAPI_IS_FILE_ON_CLUSTER_SHARED_VOLUME; }
-    if (@hasDecl(@This(), "PCLUSAPI_SHARED_VOLUME_SET_SNAPSHOT_STATE")) { _ = PCLUSAPI_SHARED_VOLUME_SET_SNAPSHOT_STATE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CAN_RESOURCE_BE_DEPENDENT")) { _ = PCLUSAPI_CAN_RESOURCE_BE_DEPENDENT; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_CONTROL")) { _ = PCLUSAPI_CLUSTER_RESOURCE_CONTROL; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_TYPE_CONTROL")) { _ = PCLUSAPI_CLUSTER_RESOURCE_TYPE_CONTROL; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_CONTROL")) { _ = PCLUSAPI_CLUSTER_GROUP_CONTROL; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_CONTROL")) { _ = PCLUSAPI_CLUSTER_NODE_CONTROL; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_RESOURCE_NETWORK_NAME")) { _ = PCLUSAPI_GET_CLUSTER_RESOURCE_NETWORK_NAME; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM")) { _ = PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT")) { _ = PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_ENUM")) { _ = PCLUSAPI_CLUSTER_RESOURCE_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM")) { _ = PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_RESOURCE_TYPE")) { _ = PCLUSAPI_CREATE_CLUSTER_RESOURCE_TYPE; }
-    if (@hasDecl(@This(), "PCLUSAPI_DELETE_CLUSTER_RESOURCE_TYPE")) { _ = PCLUSAPI_DELETE_CLUSTER_RESOURCE_TYPE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_TYPE_OPEN_ENUM")) { _ = PCLUSAPI_CLUSTER_RESOURCE_TYPE_OPEN_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_TYPE_GET_ENUM_COUNT")) { _ = PCLUSAPI_CLUSTER_RESOURCE_TYPE_GET_ENUM_COUNT; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_TYPE_ENUM")) { _ = PCLUSAPI_CLUSTER_RESOURCE_TYPE_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_TYPE_CLOSE_ENUM")) { _ = PCLUSAPI_CLUSTER_RESOURCE_TYPE_CLOSE_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NETWORK")) { _ = PCLUSAPI_OPEN_CLUSTER_NETWORK; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NETWORK_EX")) { _ = PCLUSAPI_OPEN_CLUSTER_NETWORK_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_NETWORK")) { _ = PCLUSAPI_CLOSE_CLUSTER_NETWORK; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_NETWORK")) { _ = PCLUSAPI_GET_CLUSTER_FROM_NETWORK; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NETWORK_OPEN_ENUM")) { _ = PCLUSAPI_CLUSTER_NETWORK_OPEN_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NETWORK_GET_ENUM_COUNT")) { _ = PCLUSAPI_CLUSTER_NETWORK_GET_ENUM_COUNT; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NETWORK_ENUM")) { _ = PCLUSAPI_CLUSTER_NETWORK_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NETWORK_CLOSE_ENUM")) { _ = PCLUSAPI_CLUSTER_NETWORK_CLOSE_ENUM; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NETWORK_STATE")) { _ = PCLUSAPI_GET_CLUSTER_NETWORK_STATE; }
-    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_NETWORK_NAME")) { _ = PCLUSAPI_SET_CLUSTER_NETWORK_NAME; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NETWORK_ID")) { _ = PCLUSAPI_GET_CLUSTER_NETWORK_ID; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NETWORK_CONTROL")) { _ = PCLUSAPI_CLUSTER_NETWORK_CONTROL; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NET_INTERFACE")) { _ = PCLUSAPI_OPEN_CLUSTER_NET_INTERFACE; }
-    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NETINTERFACE_EX")) { _ = PCLUSAPI_OPEN_CLUSTER_NETINTERFACE_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NET_INTERFACE")) { _ = PCLUSAPI_GET_CLUSTER_NET_INTERFACE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_NET_INTERFACE")) { _ = PCLUSAPI_CLOSE_CLUSTER_NET_INTERFACE; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_NET_INTERFACE")) { _ = PCLUSAPI_GET_CLUSTER_FROM_NET_INTERFACE; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NET_INTERFACE_STATE")) { _ = PCLUSAPI_GET_CLUSTER_NET_INTERFACE_STATE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NET_INTERFACE_CONTROL")) { _ = PCLUSAPI_CLUSTER_NET_INTERFACE_CONTROL; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_KEY")) { _ = PCLUSAPI_GET_CLUSTER_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_GROUP_KEY")) { _ = PCLUSAPI_GET_CLUSTER_GROUP_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_RESOURCE_KEY")) { _ = PCLUSAPI_GET_CLUSTER_RESOURCE_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NODE_KEY")) { _ = PCLUSAPI_GET_CLUSTER_NODE_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NETWORK_KEY")) { _ = PCLUSAPI_GET_CLUSTER_NETWORK_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NET_INTERFACE_KEY")) { _ = PCLUSAPI_GET_CLUSTER_NET_INTERFACE_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_CREATE_KEY")) { _ = PCLUSAPI_CLUSTER_REG_CREATE_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_OPEN_KEY")) { _ = PCLUSAPI_CLUSTER_REG_OPEN_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_DELETE_KEY")) { _ = PCLUSAPI_CLUSTER_REG_DELETE_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_CLOSE_KEY")) { _ = PCLUSAPI_CLUSTER_REG_CLOSE_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_ENUM_KEY")) { _ = PCLUSAPI_CLUSTER_REG_ENUM_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_SET_VALUE")) { _ = PCLUSAPI_CLUSTER_REG_SET_VALUE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_DELETE_VALUE")) { _ = PCLUSAPI_CLUSTER_REG_DELETE_VALUE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_QUERY_VALUE")) { _ = PCLUSAPI_CLUSTER_REG_QUERY_VALUE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_ENUM_VALUE")) { _ = PCLUSAPI_CLUSTER_REG_ENUM_VALUE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_QUERY_INFO_KEY")) { _ = PCLUSAPI_CLUSTER_REG_QUERY_INFO_KEY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_GET_KEY_SECURITY")) { _ = PCLUSAPI_CLUSTER_REG_GET_KEY_SECURITY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_SET_KEY_SECURITY")) { _ = PCLUSAPI_CLUSTER_REG_SET_KEY_SECURITY; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_SYNC_DATABASE")) { _ = PCLUSAPI_CLUSTER_REG_SYNC_DATABASE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_CREATE_BATCH")) { _ = PCLUSAPI_CLUSTER_REG_CREATE_BATCH; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_BATCH_ADD_COMMAND")) { _ = PCLUSTER_REG_BATCH_ADD_COMMAND; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_CLOSE_BATCH")) { _ = PCLUSTER_REG_CLOSE_BATCH; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_BATCH_READ_COMMAND")) { _ = PCLUSTER_REG_BATCH_READ_COMMAND; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_BATCH_CLOSE_NOTIFICATION")) { _ = PCLUSTER_REG_BATCH_CLOSE_NOTIFICATION; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_CREATE_BATCH_NOTIFY_PORT")) { _ = PCLUSTER_REG_CREATE_BATCH_NOTIFY_PORT; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_CLOSE_BATCH_NOTIFY_PORT")) { _ = PCLUSTER_REG_CLOSE_BATCH_NOTIFY_PORT; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_GET_BATCH_NOTIFICATION")) { _ = PCLUSTER_REG_GET_BATCH_NOTIFICATION; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_CREATE_READ_BATCH")) { _ = PCLUSTER_REG_CREATE_READ_BATCH; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_READ_BATCH_ADD_COMMAND")) { _ = PCLUSTER_REG_READ_BATCH_ADD_COMMAND; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_CLOSE_READ_BATCH")) { _ = PCLUSTER_REG_CLOSE_READ_BATCH; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_CLOSE_READ_BATCH_EX")) { _ = PCLUSTER_REG_CLOSE_READ_BATCH_EX; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_READ_BATCH_REPLY_NEXT_COMMAND")) { _ = PCLUSTER_REG_READ_BATCH_REPLY_NEXT_COMMAND; }
-    if (@hasDecl(@This(), "PCLUSTER_REG_CLOSE_READ_BATCH_REPLY")) { _ = PCLUSTER_REG_CLOSE_READ_BATCH_REPLY; }
-    if (@hasDecl(@This(), "PCLUSTER_SET_ACCOUNT_ACCESS")) { _ = PCLUSTER_SET_ACCOUNT_ACCESS; }
-    if (@hasDecl(@This(), "PCLUSTER_SETUP_PROGRESS_CALLBACK")) { _ = PCLUSTER_SETUP_PROGRESS_CALLBACK; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER")) { _ = PCLUSAPI_CREATE_CLUSTER; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_CNOLESS")) { _ = PCLUSAPI_CREATE_CLUSTER_CNOLESS; }
-    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_NAME_ACCOUNT")) { _ = PCLUSAPI_CREATE_CLUSTER_NAME_ACCOUNT; }
-    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_NAME_ACCOUNT")) { _ = PCLUSAPI_REMOVE_CLUSTER_NAME_ACCOUNT; }
-    if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_NODE")) { _ = PCLUSAPI_ADD_CLUSTER_NODE; }
-    if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_NODE_EX")) { _ = PCLUSAPI_ADD_CLUSTER_NODE_EX; }
-    if (@hasDecl(@This(), "PCLUSAPI_DESTROY_CLUSTER")) { _ = PCLUSAPI_DESTROY_CLUSTER; }
-    if (@hasDecl(@This(), "PSET_RESOURCE_STATUS_ROUTINE_EX")) { _ = PSET_RESOURCE_STATUS_ROUTINE_EX; }
-    if (@hasDecl(@This(), "PSET_RESOURCE_STATUS_ROUTINE")) { _ = PSET_RESOURCE_STATUS_ROUTINE; }
-    if (@hasDecl(@This(), "PQUORUM_RESOURCE_LOST")) { _ = PQUORUM_RESOURCE_LOST; }
-    if (@hasDecl(@This(), "PLOG_EVENT_ROUTINE")) { _ = PLOG_EVENT_ROUTINE; }
-    if (@hasDecl(@This(), "POPEN_ROUTINE")) { _ = POPEN_ROUTINE; }
-    if (@hasDecl(@This(), "PCLOSE_ROUTINE")) { _ = PCLOSE_ROUTINE; }
-    if (@hasDecl(@This(), "PONLINE_ROUTINE")) { _ = PONLINE_ROUTINE; }
-    if (@hasDecl(@This(), "POFFLINE_ROUTINE")) { _ = POFFLINE_ROUTINE; }
-    if (@hasDecl(@This(), "PTERMINATE_ROUTINE")) { _ = PTERMINATE_ROUTINE; }
-    if (@hasDecl(@This(), "PIS_ALIVE_ROUTINE")) { _ = PIS_ALIVE_ROUTINE; }
-    if (@hasDecl(@This(), "PLOOKS_ALIVE_ROUTINE")) { _ = PLOOKS_ALIVE_ROUTINE; }
-    if (@hasDecl(@This(), "PARBITRATE_ROUTINE")) { _ = PARBITRATE_ROUTINE; }
-    if (@hasDecl(@This(), "PRELEASE_ROUTINE")) { _ = PRELEASE_ROUTINE; }
-    if (@hasDecl(@This(), "PRESOURCE_CONTROL_ROUTINE")) { _ = PRESOURCE_CONTROL_ROUTINE; }
-    if (@hasDecl(@This(), "PRESOURCE_TYPE_CONTROL_ROUTINE")) { _ = PRESOURCE_TYPE_CONTROL_ROUTINE; }
-    if (@hasDecl(@This(), "POPEN_V2_ROUTINE")) { _ = POPEN_V2_ROUTINE; }
-    if (@hasDecl(@This(), "PONLINE_V2_ROUTINE")) { _ = PONLINE_V2_ROUTINE; }
-    if (@hasDecl(@This(), "POFFLINE_V2_ROUTINE")) { _ = POFFLINE_V2_ROUTINE; }
-    if (@hasDecl(@This(), "PCANCEL_ROUTINE")) { _ = PCANCEL_ROUTINE; }
-    if (@hasDecl(@This(), "PBEGIN_RESCALL_ROUTINE")) { _ = PBEGIN_RESCALL_ROUTINE; }
-    if (@hasDecl(@This(), "PBEGIN_RESTYPECALL_ROUTINE")) { _ = PBEGIN_RESTYPECALL_ROUTINE; }
-    if (@hasDecl(@This(), "PBEGIN_RESCALL_AS_USER_ROUTINE")) { _ = PBEGIN_RESCALL_AS_USER_ROUTINE; }
-    if (@hasDecl(@This(), "PBEGIN_RESTYPECALL_AS_USER_ROUTINE")) { _ = PBEGIN_RESTYPECALL_AS_USER_ROUTINE; }
-    if (@hasDecl(@This(), "PSTARTUP_ROUTINE")) { _ = PSTARTUP_ROUTINE; }
-    if (@hasDecl(@This(), "PSET_RESOURCE_LOCKED_MODE_ROUTINE")) { _ = PSET_RESOURCE_LOCKED_MODE_ROUTINE; }
-    if (@hasDecl(@This(), "PSIGNAL_FAILURE_ROUTINE")) { _ = PSIGNAL_FAILURE_ROUTINE; }
-    if (@hasDecl(@This(), "PSET_RESOURCE_INMEMORY_NODELOCAL_PROPERTIES_ROUTINE")) { _ = PSET_RESOURCE_INMEMORY_NODELOCAL_PROPERTIES_ROUTINE; }
-    if (@hasDecl(@This(), "PEND_CONTROL_CALL")) { _ = PEND_CONTROL_CALL; }
-    if (@hasDecl(@This(), "PEND_TYPE_CONTROL_CALL")) { _ = PEND_TYPE_CONTROL_CALL; }
-    if (@hasDecl(@This(), "PEXTEND_RES_CONTROL_CALL")) { _ = PEXTEND_RES_CONTROL_CALL; }
-    if (@hasDecl(@This(), "PEXTEND_RES_TYPE_CONTROL_CALL")) { _ = PEXTEND_RES_TYPE_CONTROL_CALL; }
-    if (@hasDecl(@This(), "PRAISE_RES_TYPE_NOTIFICATION")) { _ = PRAISE_RES_TYPE_NOTIFICATION; }
-    if (@hasDecl(@This(), "PCHANGE_RESOURCE_PROCESS_FOR_DUMPS")) { _ = PCHANGE_RESOURCE_PROCESS_FOR_DUMPS; }
-    if (@hasDecl(@This(), "PCHANGE_RES_TYPE_PROCESS_FOR_DUMPS")) { _ = PCHANGE_RES_TYPE_PROCESS_FOR_DUMPS; }
-    if (@hasDecl(@This(), "PSET_INTERNAL_STATE")) { _ = PSET_INTERNAL_STATE; }
-    if (@hasDecl(@This(), "PSET_RESOURCE_LOCKED_MODE_EX_ROUTINE")) { _ = PSET_RESOURCE_LOCKED_MODE_EX_ROUTINE; }
-    if (@hasDecl(@This(), "PREQUEST_DUMP_ROUTINE")) { _ = PREQUEST_DUMP_ROUTINE; }
-    if (@hasDecl(@This(), "PSTARTUP_EX_ROUTINE")) { _ = PSTARTUP_EX_ROUTINE; }
-    if (@hasDecl(@This(), "PRESUTIL_START_RESOURCE_SERVICE")) { _ = PRESUTIL_START_RESOURCE_SERVICE; }
-    if (@hasDecl(@This(), "PRESUTIL_VERIFY_RESOURCE_SERVICE")) { _ = PRESUTIL_VERIFY_RESOURCE_SERVICE; }
-    if (@hasDecl(@This(), "PRESUTIL_STOP_RESOURCE_SERVICE")) { _ = PRESUTIL_STOP_RESOURCE_SERVICE; }
-    if (@hasDecl(@This(), "PRESUTIL_VERIFY_SERVICE")) { _ = PRESUTIL_VERIFY_SERVICE; }
-    if (@hasDecl(@This(), "PRESUTIL_STOP_SERVICE")) { _ = PRESUTIL_STOP_SERVICE; }
-    if (@hasDecl(@This(), "PRESUTIL_CREATE_DIRECTORY_TREE")) { _ = PRESUTIL_CREATE_DIRECTORY_TREE; }
-    if (@hasDecl(@This(), "PRESUTIL_IS_PATH_VALID")) { _ = PRESUTIL_IS_PATH_VALID; }
-    if (@hasDecl(@This(), "PRESUTIL_ENUM_PROPERTIES")) { _ = PRESUTIL_ENUM_PROPERTIES; }
-    if (@hasDecl(@This(), "PRESUTIL_ENUM_PRIVATE_PROPERTIES")) { _ = PRESUTIL_ENUM_PRIVATE_PROPERTIES; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_PROPERTIES")) { _ = PRESUTIL_GET_PROPERTIES; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_ALL_PROPERTIES")) { _ = PRESUTIL_GET_ALL_PROPERTIES; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_PRIVATE_PROPERTIES")) { _ = PRESUTIL_GET_PRIVATE_PROPERTIES; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_PROPERTY_SIZE")) { _ = PRESUTIL_GET_PROPERTY_SIZE; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_PROPERTY")) { _ = PRESUTIL_GET_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_VERIFY_PROPERTY_TABLE")) { _ = PRESUTIL_VERIFY_PROPERTY_TABLE; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_PROPERTY_TABLE")) { _ = PRESUTIL_SET_PROPERTY_TABLE; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_PROPERTY_TABLE_EX")) { _ = PRESUTIL_SET_PROPERTY_TABLE_EX; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK")) { _ = PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK_EX")) { _ = PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK_EX; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_UNKNOWN_PROPERTIES")) { _ = PRESUTIL_SET_UNKNOWN_PROPERTIES; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_PROPERTIES_TO_PARAMETER_BLOCK")) { _ = PRESUTIL_GET_PROPERTIES_TO_PARAMETER_BLOCK; }
-    if (@hasDecl(@This(), "PRESUTIL_PROPERTY_LIST_FROM_PARAMETER_BLOCK")) { _ = PRESUTIL_PROPERTY_LIST_FROM_PARAMETER_BLOCK; }
-    if (@hasDecl(@This(), "PRESUTIL_DUP_PARAMETER_BLOCK")) { _ = PRESUTIL_DUP_PARAMETER_BLOCK; }
-    if (@hasDecl(@This(), "PRESUTIL_FREE_PARAMETER_BLOCK")) { _ = PRESUTIL_FREE_PARAMETER_BLOCK; }
-    if (@hasDecl(@This(), "PRESUTIL_ADD_UNKNOWN_PROPERTIES")) { _ = PRESUTIL_ADD_UNKNOWN_PROPERTIES; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_PRIVATE_PROPERTY_LIST")) { _ = PRESUTIL_SET_PRIVATE_PROPERTY_LIST; }
-    if (@hasDecl(@This(), "PRESUTIL_VERIFY_PRIVATE_PROPERTY_LIST")) { _ = PRESUTIL_VERIFY_PRIVATE_PROPERTY_LIST; }
-    if (@hasDecl(@This(), "PRESUTIL_DUP_STRING")) { _ = PRESUTIL_DUP_STRING; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_BINARY_VALUE")) { _ = PRESUTIL_GET_BINARY_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_SZ_VALUE")) { _ = PRESUTIL_GET_SZ_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_EXPAND_SZ_VALUE")) { _ = PRESUTIL_GET_EXPAND_SZ_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_DWORD_VALUE")) { _ = PRESUTIL_GET_DWORD_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_QWORD_VALUE")) { _ = PRESUTIL_GET_QWORD_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_BINARY_VALUE")) { _ = PRESUTIL_SET_BINARY_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_SZ_VALUE")) { _ = PRESUTIL_SET_SZ_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_EXPAND_SZ_VALUE")) { _ = PRESUTIL_SET_EXPAND_SZ_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_MULTI_SZ_VALUE")) { _ = PRESUTIL_SET_MULTI_SZ_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_DWORD_VALUE")) { _ = PRESUTIL_SET_DWORD_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_QWORD_VALUE")) { _ = PRESUTIL_SET_QWORD_VALUE; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_BINARY_PROPERTY")) { _ = PRESUTIL_GET_BINARY_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_SZ_PROPERTY")) { _ = PRESUTIL_GET_SZ_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_MULTI_SZ_PROPERTY")) { _ = PRESUTIL_GET_MULTI_SZ_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_DWORD_PROPERTY")) { _ = PRESUTIL_GET_DWORD_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_LONG_PROPERTY")) { _ = PRESUTIL_GET_LONG_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_FILETIME_PROPERTY")) { _ = PRESUTIL_GET_FILETIME_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_ENVIRONMENT_WITH_NET_NAME")) { _ = PRESUTIL_GET_ENVIRONMENT_WITH_NET_NAME; }
-    if (@hasDecl(@This(), "PRESUTIL_FREE_ENVIRONMENT")) { _ = PRESUTIL_FREE_ENVIRONMENT; }
-    if (@hasDecl(@This(), "PRESUTIL_EXPAND_ENVIRONMENT_STRINGS")) { _ = PRESUTIL_EXPAND_ENVIRONMENT_STRINGS; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_RESOURCE_SERVICE_ENVIRONMENT")) { _ = PRESUTIL_SET_RESOURCE_SERVICE_ENVIRONMENT; }
-    if (@hasDecl(@This(), "PRESUTIL_REMOVE_RESOURCE_SERVICE_ENVIRONMENT")) { _ = PRESUTIL_REMOVE_RESOURCE_SERVICE_ENVIRONMENT; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS")) { _ = PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS; }
-    if (@hasDecl(@This(), "PRESUTIL_FIND_SZ_PROPERTY")) { _ = PRESUTIL_FIND_SZ_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_FIND_EXPAND_SZ_PROPERTY")) { _ = PRESUTIL_FIND_EXPAND_SZ_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_FIND_EXPANDED_SZ_PROPERTY")) { _ = PRESUTIL_FIND_EXPANDED_SZ_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_FIND_DWORD_PROPERTY")) { _ = PRESUTIL_FIND_DWORD_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_FIND_BINARY_PROPERTY")) { _ = PRESUTIL_FIND_BINARY_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_FIND_MULTI_SZ_PROPERTY")) { _ = PRESUTIL_FIND_MULTI_SZ_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_FIND_LONG_PROPERTY")) { _ = PRESUTIL_FIND_LONG_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_FIND_ULARGEINTEGER_PROPERTY")) { _ = PRESUTIL_FIND_ULARGEINTEGER_PROPERTY; }
-    if (@hasDecl(@This(), "PRESUTIL_FIND_FILETIME_PROPERTY")) { _ = PRESUTIL_FIND_FILETIME_PROPERTY; }
-    if (@hasDecl(@This(), "PWORKER_START_ROUTINE")) { _ = PWORKER_START_ROUTINE; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUS_WORKER_CREATE")) { _ = PCLUSAPI_CLUS_WORKER_CREATE; }
-    if (@hasDecl(@This(), "PCLUSAPIClusWorkerCheckTerminate")) { _ = PCLUSAPIClusWorkerCheckTerminate; }
-    if (@hasDecl(@This(), "PCLUSAPI_CLUS_WORKER_TERMINATE")) { _ = PCLUSAPI_CLUS_WORKER_TERMINATE; }
-    if (@hasDecl(@This(), "LPRESOURCE_CALLBACK")) { _ = LPRESOURCE_CALLBACK; }
-    if (@hasDecl(@This(), "LPRESOURCE_CALLBACK_EX")) { _ = LPRESOURCE_CALLBACK_EX; }
-    if (@hasDecl(@This(), "LPGROUP_CALLBACK_EX")) { _ = LPGROUP_CALLBACK_EX; }
-    if (@hasDecl(@This(), "LPNODE_CALLBACK")) { _ = LPNODE_CALLBACK; }
-    if (@hasDecl(@This(), "PRESUTIL_RESOURCES_EQUAL")) { _ = PRESUTIL_RESOURCES_EQUAL; }
-    if (@hasDecl(@This(), "PRESUTIL_RESOURCE_TYPES_EQUAL")) { _ = PRESUTIL_RESOURCE_TYPES_EQUAL; }
-    if (@hasDecl(@This(), "PRESUTIL_IS_RESOURCE_CLASS_EQUAL")) { _ = PRESUTIL_IS_RESOURCE_CLASS_EQUAL; }
-    if (@hasDecl(@This(), "PRESUTIL_ENUM_RESOURCES")) { _ = PRESUTIL_ENUM_RESOURCES; }
-    if (@hasDecl(@This(), "PRESUTIL_ENUM_RESOURCES_EX")) { _ = PRESUTIL_ENUM_RESOURCES_EX; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENCY; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY")) { _ = PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENTIP_ADDRESS_PROPS")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENTIP_ADDRESS_PROPS; }
-    if (@hasDecl(@This(), "PRESUTIL_FIND_DEPENDENT_DISK_RESOURCE_DRIVE_LETTER")) { _ = PRESUTIL_FIND_DEPENDENT_DISK_RESOURCE_DRIVE_LETTER; }
-    if (@hasDecl(@This(), "PRESUTIL_TERMINATE_SERVICE_PROCESS_FROM_RES_DLL")) { _ = PRESUTIL_TERMINATE_SERVICE_PROCESS_FROM_RES_DLL; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_PROPERTY_FORMATS")) { _ = PRESUTIL_GET_PROPERTY_FORMATS; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_CORE_CLUSTER_RESOURCES")) { _ = PRESUTIL_GET_CORE_CLUSTER_RESOURCES; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_NAME")) { _ = PRESUTIL_GET_RESOURCE_NAME; }
-    if (@hasDecl(@This(), "PCLUSTER_IS_PATH_ON_SHARED_VOLUME")) { _ = PCLUSTER_IS_PATH_ON_SHARED_VOLUME; }
-    if (@hasDecl(@This(), "PCLUSTER_GET_VOLUME_PATH_NAME")) { _ = PCLUSTER_GET_VOLUME_PATH_NAME; }
-    if (@hasDecl(@This(), "PCLUSTER_GET_VOLUME_NAME_FOR_VOLUME_MOUNT_POINT")) { _ = PCLUSTER_GET_VOLUME_NAME_FOR_VOLUME_MOUNT_POINT; }
-    if (@hasDecl(@This(), "PCLUSTER_PREPARE_SHARED_VOLUME_FOR_BACKUP")) { _ = PCLUSTER_PREPARE_SHARED_VOLUME_FOR_BACKUP; }
-    if (@hasDecl(@This(), "PCLUSTER_CLEAR_BACKUP_STATE_FOR_SHARED_VOLUME")) { _ = PCLUSTER_CLEAR_BACKUP_STATE_FOR_SHARED_VOLUME; }
-    if (@hasDecl(@This(), "PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS_EX")) { _ = PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS_EX; }
-    if (@hasDecl(@This(), "PRESUTIL_ENUM_RESOURCES_EX2")) { _ = PRESUTIL_ENUM_RESOURCES_EX2; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY_EX")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENCY_EX; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME_EX")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME_EX; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS_EX")) { _ = PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS_EX; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY_EX")) { _ = PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY_EX; }
-    if (@hasDecl(@This(), "PRESUTIL_GET_CORE_CLUSTER_RESOURCES_EX")) { _ = PRESUTIL_GET_CORE_CLUSTER_RESOURCES_EX; }
-    if (@hasDecl(@This(), "POPEN_CLUSTER_CRYPT_PROVIDER")) { _ = POPEN_CLUSTER_CRYPT_PROVIDER; }
-    if (@hasDecl(@This(), "POPEN_CLUSTER_CRYPT_PROVIDEREX")) { _ = POPEN_CLUSTER_CRYPT_PROVIDEREX; }
-    if (@hasDecl(@This(), "PCLOSE_CLUSTER_CRYPT_PROVIDER")) { _ = PCLOSE_CLUSTER_CRYPT_PROVIDER; }
-    if (@hasDecl(@This(), "PCLUSTER_ENCRYPT")) { _ = PCLUSTER_ENCRYPT; }
-    if (@hasDecl(@This(), "PCLUSTER_DECRYPT")) { _ = PCLUSTER_DECRYPT; }
-    if (@hasDecl(@This(), "PFREE_CLUSTER_CRYPT")) { _ = PFREE_CLUSTER_CRYPT; }
-    if (@hasDecl(@This(), "PRES_UTIL_VERIFY_SHUTDOWN_SAFE")) { _ = PRES_UTIL_VERIFY_SHUTDOWN_SAFE; }
-    if (@hasDecl(@This(), "PREGISTER_APPINSTANCE")) { _ = PREGISTER_APPINSTANCE; }
-    if (@hasDecl(@This(), "PREGISTER_APPINSTANCE_VERSION")) { _ = PREGISTER_APPINSTANCE_VERSION; }
-    if (@hasDecl(@This(), "PQUERY_APPINSTANCE_VERSION")) { _ = PQUERY_APPINSTANCE_VERSION; }
-    if (@hasDecl(@This(), "PRESET_ALL_APPINSTANCE_VERSIONS")) { _ = PRESET_ALL_APPINSTANCE_VERSIONS; }
-    if (@hasDecl(@This(), "SET_APP_INSTANCE_CSV_FLAGS")) { _ = SET_APP_INSTANCE_CSV_FLAGS; }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_NODE_CLUSTER_STATE")) {
+        _ = PCLUSAPI_GET_NODE_CLUSTER_STATE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER")) {
+        _ = PCLUSAPI_OPEN_CLUSTER;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_EX")) {
+        _ = PCLUSAPI_OPEN_CLUSTER_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER")) {
+        _ = PCLUSAPI_CLOSE_CLUSTER;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_SetClusterName")) {
+        _ = PCLUSAPI_SetClusterName;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_INFORMATION")) {
+        _ = PCLUSAPI_GET_CLUSTER_INFORMATION;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_QUORUM_RESOURCE")) {
+        _ = PCLUSAPI_GET_CLUSTER_QUORUM_RESOURCE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_QUORUM_RESOURCE")) {
+        _ = PCLUSAPI_SET_CLUSTER_QUORUM_RESOURCE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_BACKUP_CLUSTER_DATABASE")) {
+        _ = PCLUSAPI_BACKUP_CLUSTER_DATABASE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_RESTORE_CLUSTER_DATABASE")) {
+        _ = PCLUSAPI_RESTORE_CLUSTER_DATABASE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_NETWORK_PRIORITY_ORDER")) {
+        _ = PCLUSAPI_SET_CLUSTER_NETWORK_PRIORITY_ORDER;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_SERVICE_ACCOUNT_PASSWORD")) {
+        _ = PCLUSAPI_SET_CLUSTER_SERVICE_ACCOUNT_PASSWORD;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_CONTROL")) {
+        _ = PCLUSAPI_CLUSTER_CONTROL;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_UPGRADE_PROGRESS_CALLBACK")) {
+        _ = PCLUSTER_UPGRADE_PROGRESS_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_UPGRADE")) {
+        _ = PCLUSAPI_CLUSTER_UPGRADE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT_V2")) {
+        _ = PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT_V2;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_REGISTER_CLUSTER_NOTIFY_V2")) {
+        _ = PCLUSAPI_REGISTER_CLUSTER_NOTIFY_V2;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_NOTIFY_EVENT_HANDLE_V2")) {
+        _ = PCLUSAPI_GET_NOTIFY_EVENT_HANDLE_V2;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NOTIFY_V2")) {
+        _ = PCLUSAPI_GET_CLUSTER_NOTIFY_V2;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT")) {
+        _ = PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_REGISTER_CLUSTER_NOTIFY")) {
+        _ = PCLUSAPI_REGISTER_CLUSTER_NOTIFY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NOTIFY")) {
+        _ = PCLUSAPI_GET_CLUSTER_NOTIFY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_NOTIFY_PORT")) {
+        _ = PCLUSAPI_CLOSE_CLUSTER_NOTIFY_PORT;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_OPEN_ENUM")) {
+        _ = PCLUSAPI_CLUSTER_OPEN_ENUM;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GET_ENUM_COUNT")) {
+        _ = PCLUSAPI_CLUSTER_GET_ENUM_COUNT;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_ENUM")) {
+        _ = PCLUSAPI_CLUSTER_ENUM;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_CLOSE_ENUM")) {
+        _ = PCLUSAPI_CLUSTER_CLOSE_ENUM;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_OPEN_ENUM_EX")) {
+        _ = PCLUSAPI_CLUSTER_OPEN_ENUM_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GET_ENUM_COUNT_EX")) {
+        _ = PCLUSAPI_CLUSTER_GET_ENUM_COUNT_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_ENUM_EX")) {
+        _ = PCLUSAPI_CLUSTER_ENUM_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_CLOSE_ENUM_EX")) {
+        _ = PCLUSAPI_CLUSTER_CLOSE_ENUM_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_GROUP_GROUPSET")) {
+        _ = PCLUSAPI_CREATE_CLUSTER_GROUP_GROUPSET;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_GROUP_GROUPSET")) {
+        _ = PCLUSAPI_OPEN_CLUSTER_GROUP_GROUPSET;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_GROUP_GROUPSET")) {
+        _ = PCLUSAPI_CLOSE_CLUSTER_GROUP_GROUPSET;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_DELETE_CLUSTER_GROUP_GROUPSET")) {
+        _ = PCLUSAPI_DELETE_CLUSTER_GROUP_GROUPSET;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_ADD_GROUP_TO_GROUP_GROUPSET")) {
+        _ = PCLUSAPI_CLUSTER_ADD_GROUP_TO_GROUP_GROUPSET;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_GROUP_GROUPSET")) {
+        _ = PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_GROUP_GROUPSET;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_GROUPSET_CONTROL")) {
+        _ = PCLUSAPI_CLUSTER_GROUP_GROUPSET_CONTROL;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_GROUP_DEPENDENCY")) {
+        _ = PCLUSAPI_ADD_CLUSTER_GROUP_DEPENDENCY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_SET_GROUP_DEPENDENCY_EXPRESSION")) {
+        _ = PCLUSAPI_SET_GROUP_DEPENDENCY_EXPRESSION;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_GROUP_DEPENDENCY")) {
+        _ = PCLUSAPI_REMOVE_CLUSTER_GROUP_DEPENDENCY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_GROUP_GROUPSET_DEPENDENCY")) {
+        _ = PCLUSAPI_ADD_CLUSTER_GROUP_GROUPSET_DEPENDENCY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_GROUP_GROUPSET_DEPENDENCY_EXPRESSION")) {
+        _ = PCLUSAPI_SET_CLUSTER_GROUP_GROUPSET_DEPENDENCY_EXPRESSION;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_GROUP_GROUPSET_DEPENDENCY")) {
+        _ = PCLUSAPI_REMOVE_CLUSTER_GROUP_GROUPSET_DEPENDENCY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY")) {
+        _ = PCLUSAPI_ADD_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY")) {
+        _ = PCLUSAPI_REMOVE_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_GROUP_GROUPSET")) {
+        _ = PCLUSAPI_GET_CLUSTER_FROM_GROUP_GROUPSET;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_ADD_CROSS_CLUSTER_GROUPSET_DEPENDENCY")) {
+        _ = PCLUSAPI_ADD_CROSS_CLUSTER_GROUPSET_DEPENDENCY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CROSS_CLUSTER_GROUPSET_DEPENDENCY")) {
+        _ = PCLUSAPI_REMOVE_CROSS_CLUSTER_GROUPSET_DEPENDENCY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_AVAILABILITY_SET")) {
+        _ = PCLUSAPI_CREATE_CLUSTER_AVAILABILITY_SET;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_CREATE_AFFINITY_RULE")) {
+        _ = PCLUSAPI_CLUSTER_CREATE_AFFINITY_RULE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REMOVE_AFFINITY_RULE")) {
+        _ = PCLUSAPI_CLUSTER_REMOVE_AFFINITY_RULE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_ADD_GROUP_TO_AFFINITY_RULE")) {
+        _ = PCLUSAPI_CLUSTER_ADD_GROUP_TO_AFFINITY_RULE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_AFFINITY_RULE")) {
+        _ = PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_AFFINITY_RULE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_AFFINITY_RULE_CONTROL")) {
+        _ = PCLUSAPI_CLUSTER_AFFINITY_RULE_CONTROL;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NODE")) {
+        _ = PCLUSAPI_OPEN_CLUSTER_NODE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NODE_EX")) {
+        _ = PCLUSAPI_OPEN_CLUSTER_NODE_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_NODE_BY_ID")) {
+        _ = PCLUSAPI_OPEN_NODE_BY_ID;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_NODE")) {
+        _ = PCLUSAPI_CLOSE_CLUSTER_NODE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NODE_STATE")) {
+        _ = PCLUSAPI_GET_CLUSTER_NODE_STATE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NODE_ID")) {
+        _ = PCLUSAPI_GET_CLUSTER_NODE_ID;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_NODE")) {
+        _ = PCLUSAPI_GET_CLUSTER_FROM_NODE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_PAUSE_CLUSTER_NODE")) {
+        _ = PCLUSAPI_PAUSE_CLUSTER_NODE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_RESUME_CLUSTER_NODE")) {
+        _ = PCLUSAPI_RESUME_CLUSTER_NODE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_EVICT_CLUSTER_NODE")) {
+        _ = PCLUSAPI_EVICT_CLUSTER_NODE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_OPEN_ENUM")) {
+        _ = PCLUSAPI_CLUSTER_NODE_OPEN_ENUM;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_OPEN_ENUM_EX")) {
+        _ = PCLUSAPI_CLUSTER_NODE_OPEN_ENUM_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT_EX")) {
+        _ = PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_ENUM_EX")) {
+        _ = PCLUSAPI_CLUSTER_NODE_ENUM_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM_EX")) {
+        _ = PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT")) {
+        _ = PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM")) {
+        _ = PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_ENUM")) {
+        _ = PCLUSAPI_CLUSTER_NODE_ENUM;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_EVICT_CLUSTER_NODE_EX")) {
+        _ = PCLUSAPI_EVICT_CLUSTER_NODE_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_RESOURCE_TYPE_KEY")) {
+        _ = PCLUSAPI_GET_CLUSTER_RESOURCE_TYPE_KEY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_GROUP")) {
+        _ = PCLUSAPI_CREATE_CLUSTER_GROUP;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_GROUP")) {
+        _ = PCLUSAPI_OPEN_CLUSTER_GROUP;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_GROUP_EX")) {
+        _ = PCLUSAPI_OPEN_CLUSTER_GROUP_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_PAUSE_CLUSTER_NODE_EX")) {
+        _ = PCLUSAPI_PAUSE_CLUSTER_NODE_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_RESUME_CLUSTER_NODE_EX")) {
+        _ = PCLUSAPI_RESUME_CLUSTER_NODE_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_GROUPEX")) {
+        _ = PCLUSAPI_CREATE_CLUSTER_GROUPEX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM_EX")) {
+        _ = PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT_EX")) {
+        _ = PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_ENUM_EX")) {
+        _ = PCLUSAPI_CLUSTER_GROUP_ENUM_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM_EX")) {
+        _ = PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM_EX")) {
+        _ = PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT_EX")) {
+        _ = PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_ENUM_EX")) {
+        _ = PCLUSAPI_CLUSTER_RESOURCE_ENUM_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM_EX")) {
+        _ = PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_RESTART_CLUSTER_RESOURCE")) {
+        _ = PCLUSAPI_RESTART_CLUSTER_RESOURCE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_GROUP")) {
+        _ = PCLUSAPI_CLOSE_CLUSTER_GROUP;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_GROUP")) {
+        _ = PCLUSAPI_GET_CLUSTER_FROM_GROUP;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_GROUP_STATE")) {
+        _ = PCLUSAPI_GET_CLUSTER_GROUP_STATE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_GROUP_NAME")) {
+        _ = PCLUSAPI_SET_CLUSTER_GROUP_NAME;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_GROUP_NODE_LIST")) {
+        _ = PCLUSAPI_SET_CLUSTER_GROUP_NODE_LIST;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_ONLINE_CLUSTER_GROUP")) {
+        _ = PCLUSAPI_ONLINE_CLUSTER_GROUP;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_MOVE_CLUSTER_GROUP")) {
+        _ = PCLUSAPI_MOVE_CLUSTER_GROUP;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_OFFLINE_CLUSTER_GROUP")) {
+        _ = PCLUSAPI_OFFLINE_CLUSTER_GROUP;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_DELETE_CLUSTER_GROUP")) {
+        _ = PCLUSAPI_DELETE_CLUSTER_GROUP;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_DESTROY_CLUSTER_GROUP")) {
+        _ = PCLUSAPI_DESTROY_CLUSTER_GROUP;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM")) {
+        _ = PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT")) {
+        _ = PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_ENUM")) {
+        _ = PCLUSAPI_CLUSTER_GROUP_ENUM;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM")) {
+        _ = PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_RESOURCE")) {
+        _ = PCLUSAPI_CREATE_CLUSTER_RESOURCE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_RESOURCE")) {
+        _ = PCLUSAPI_OPEN_CLUSTER_RESOURCE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_RESOURCE_EX")) {
+        _ = PCLUSAPI_OPEN_CLUSTER_RESOURCE_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_RESOURCE")) {
+        _ = PCLUSAPI_CLOSE_CLUSTER_RESOURCE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_RESOURCE")) {
+        _ = PCLUSAPI_GET_CLUSTER_FROM_RESOURCE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_DELETE_CLUSTER_RESOURCE")) {
+        _ = PCLUSAPI_DELETE_CLUSTER_RESOURCE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_RESOURCE_STATE")) {
+        _ = PCLUSAPI_GET_CLUSTER_RESOURCE_STATE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_RESOURCE_NAME")) {
+        _ = PCLUSAPI_SET_CLUSTER_RESOURCE_NAME;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_FAIL_CLUSTER_RESOURCE")) {
+        _ = PCLUSAPI_FAIL_CLUSTER_RESOURCE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_ONLINE_CLUSTER_RESOURCE")) {
+        _ = PCLUSAPI_ONLINE_CLUSTER_RESOURCE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_OFFLINE_CLUSTER_RESOURCE")) {
+        _ = PCLUSAPI_OFFLINE_CLUSTER_RESOURCE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP")) {
+        _ = PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP_EX")) {
+        _ = PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_RESOURCE_NODE")) {
+        _ = PCLUSAPI_ADD_CLUSTER_RESOURCE_NODE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_RESOURCE_NODE")) {
+        _ = PCLUSAPI_REMOVE_CLUSTER_RESOURCE_NODE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_RESOURCE_DEPENDENCY")) {
+        _ = PCLUSAPI_ADD_CLUSTER_RESOURCE_DEPENDENCY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_RESOURCE_DEPENDENCY")) {
+        _ = PCLUSAPI_REMOVE_CLUSTER_RESOURCE_DEPENDENCY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION")) {
+        _ = PCLUSAPI_SET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION")) {
+        _ = PCLUSAPI_GET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_ADD_RESOURCE_TO_CLUSTER_SHARED_VOLUMES")) {
+        _ = PCLUSAPI_ADD_RESOURCE_TO_CLUSTER_SHARED_VOLUMES;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_RESOURCE_FROM_CLUSTER_SHARED_VOLUMES")) {
+        _ = PCLUSAPI_REMOVE_RESOURCE_FROM_CLUSTER_SHARED_VOLUMES;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_IS_FILE_ON_CLUSTER_SHARED_VOLUME")) {
+        _ = PCLUSAPI_IS_FILE_ON_CLUSTER_SHARED_VOLUME;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_SHARED_VOLUME_SET_SNAPSHOT_STATE")) {
+        _ = PCLUSAPI_SHARED_VOLUME_SET_SNAPSHOT_STATE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CAN_RESOURCE_BE_DEPENDENT")) {
+        _ = PCLUSAPI_CAN_RESOURCE_BE_DEPENDENT;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_CONTROL")) {
+        _ = PCLUSAPI_CLUSTER_RESOURCE_CONTROL;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_TYPE_CONTROL")) {
+        _ = PCLUSAPI_CLUSTER_RESOURCE_TYPE_CONTROL;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_GROUP_CONTROL")) {
+        _ = PCLUSAPI_CLUSTER_GROUP_CONTROL;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NODE_CONTROL")) {
+        _ = PCLUSAPI_CLUSTER_NODE_CONTROL;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_RESOURCE_NETWORK_NAME")) {
+        _ = PCLUSAPI_GET_CLUSTER_RESOURCE_NETWORK_NAME;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM")) {
+        _ = PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT")) {
+        _ = PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_ENUM")) {
+        _ = PCLUSAPI_CLUSTER_RESOURCE_ENUM;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM")) {
+        _ = PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_RESOURCE_TYPE")) {
+        _ = PCLUSAPI_CREATE_CLUSTER_RESOURCE_TYPE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_DELETE_CLUSTER_RESOURCE_TYPE")) {
+        _ = PCLUSAPI_DELETE_CLUSTER_RESOURCE_TYPE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_TYPE_OPEN_ENUM")) {
+        _ = PCLUSAPI_CLUSTER_RESOURCE_TYPE_OPEN_ENUM;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_TYPE_GET_ENUM_COUNT")) {
+        _ = PCLUSAPI_CLUSTER_RESOURCE_TYPE_GET_ENUM_COUNT;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_TYPE_ENUM")) {
+        _ = PCLUSAPI_CLUSTER_RESOURCE_TYPE_ENUM;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_RESOURCE_TYPE_CLOSE_ENUM")) {
+        _ = PCLUSAPI_CLUSTER_RESOURCE_TYPE_CLOSE_ENUM;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NETWORK")) {
+        _ = PCLUSAPI_OPEN_CLUSTER_NETWORK;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NETWORK_EX")) {
+        _ = PCLUSAPI_OPEN_CLUSTER_NETWORK_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_NETWORK")) {
+        _ = PCLUSAPI_CLOSE_CLUSTER_NETWORK;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_NETWORK")) {
+        _ = PCLUSAPI_GET_CLUSTER_FROM_NETWORK;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NETWORK_OPEN_ENUM")) {
+        _ = PCLUSAPI_CLUSTER_NETWORK_OPEN_ENUM;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NETWORK_GET_ENUM_COUNT")) {
+        _ = PCLUSAPI_CLUSTER_NETWORK_GET_ENUM_COUNT;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NETWORK_ENUM")) {
+        _ = PCLUSAPI_CLUSTER_NETWORK_ENUM;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NETWORK_CLOSE_ENUM")) {
+        _ = PCLUSAPI_CLUSTER_NETWORK_CLOSE_ENUM;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NETWORK_STATE")) {
+        _ = PCLUSAPI_GET_CLUSTER_NETWORK_STATE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_SET_CLUSTER_NETWORK_NAME")) {
+        _ = PCLUSAPI_SET_CLUSTER_NETWORK_NAME;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NETWORK_ID")) {
+        _ = PCLUSAPI_GET_CLUSTER_NETWORK_ID;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NETWORK_CONTROL")) {
+        _ = PCLUSAPI_CLUSTER_NETWORK_CONTROL;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NET_INTERFACE")) {
+        _ = PCLUSAPI_OPEN_CLUSTER_NET_INTERFACE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_OPEN_CLUSTER_NETINTERFACE_EX")) {
+        _ = PCLUSAPI_OPEN_CLUSTER_NETINTERFACE_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NET_INTERFACE")) {
+        _ = PCLUSAPI_GET_CLUSTER_NET_INTERFACE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLOSE_CLUSTER_NET_INTERFACE")) {
+        _ = PCLUSAPI_CLOSE_CLUSTER_NET_INTERFACE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_FROM_NET_INTERFACE")) {
+        _ = PCLUSAPI_GET_CLUSTER_FROM_NET_INTERFACE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NET_INTERFACE_STATE")) {
+        _ = PCLUSAPI_GET_CLUSTER_NET_INTERFACE_STATE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_NET_INTERFACE_CONTROL")) {
+        _ = PCLUSAPI_CLUSTER_NET_INTERFACE_CONTROL;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_KEY")) {
+        _ = PCLUSAPI_GET_CLUSTER_KEY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_GROUP_KEY")) {
+        _ = PCLUSAPI_GET_CLUSTER_GROUP_KEY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_RESOURCE_KEY")) {
+        _ = PCLUSAPI_GET_CLUSTER_RESOURCE_KEY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NODE_KEY")) {
+        _ = PCLUSAPI_GET_CLUSTER_NODE_KEY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NETWORK_KEY")) {
+        _ = PCLUSAPI_GET_CLUSTER_NETWORK_KEY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_GET_CLUSTER_NET_INTERFACE_KEY")) {
+        _ = PCLUSAPI_GET_CLUSTER_NET_INTERFACE_KEY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_CREATE_KEY")) {
+        _ = PCLUSAPI_CLUSTER_REG_CREATE_KEY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_OPEN_KEY")) {
+        _ = PCLUSAPI_CLUSTER_REG_OPEN_KEY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_DELETE_KEY")) {
+        _ = PCLUSAPI_CLUSTER_REG_DELETE_KEY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_CLOSE_KEY")) {
+        _ = PCLUSAPI_CLUSTER_REG_CLOSE_KEY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_ENUM_KEY")) {
+        _ = PCLUSAPI_CLUSTER_REG_ENUM_KEY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_SET_VALUE")) {
+        _ = PCLUSAPI_CLUSTER_REG_SET_VALUE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_DELETE_VALUE")) {
+        _ = PCLUSAPI_CLUSTER_REG_DELETE_VALUE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_QUERY_VALUE")) {
+        _ = PCLUSAPI_CLUSTER_REG_QUERY_VALUE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_ENUM_VALUE")) {
+        _ = PCLUSAPI_CLUSTER_REG_ENUM_VALUE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_QUERY_INFO_KEY")) {
+        _ = PCLUSAPI_CLUSTER_REG_QUERY_INFO_KEY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_GET_KEY_SECURITY")) {
+        _ = PCLUSAPI_CLUSTER_REG_GET_KEY_SECURITY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_SET_KEY_SECURITY")) {
+        _ = PCLUSAPI_CLUSTER_REG_SET_KEY_SECURITY;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_SYNC_DATABASE")) {
+        _ = PCLUSAPI_CLUSTER_REG_SYNC_DATABASE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUSTER_REG_CREATE_BATCH")) {
+        _ = PCLUSAPI_CLUSTER_REG_CREATE_BATCH;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_REG_BATCH_ADD_COMMAND")) {
+        _ = PCLUSTER_REG_BATCH_ADD_COMMAND;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_REG_CLOSE_BATCH")) {
+        _ = PCLUSTER_REG_CLOSE_BATCH;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_REG_BATCH_READ_COMMAND")) {
+        _ = PCLUSTER_REG_BATCH_READ_COMMAND;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_REG_BATCH_CLOSE_NOTIFICATION")) {
+        _ = PCLUSTER_REG_BATCH_CLOSE_NOTIFICATION;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_REG_CREATE_BATCH_NOTIFY_PORT")) {
+        _ = PCLUSTER_REG_CREATE_BATCH_NOTIFY_PORT;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_REG_CLOSE_BATCH_NOTIFY_PORT")) {
+        _ = PCLUSTER_REG_CLOSE_BATCH_NOTIFY_PORT;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_REG_GET_BATCH_NOTIFICATION")) {
+        _ = PCLUSTER_REG_GET_BATCH_NOTIFICATION;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_REG_CREATE_READ_BATCH")) {
+        _ = PCLUSTER_REG_CREATE_READ_BATCH;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_REG_READ_BATCH_ADD_COMMAND")) {
+        _ = PCLUSTER_REG_READ_BATCH_ADD_COMMAND;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_REG_CLOSE_READ_BATCH")) {
+        _ = PCLUSTER_REG_CLOSE_READ_BATCH;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_REG_CLOSE_READ_BATCH_EX")) {
+        _ = PCLUSTER_REG_CLOSE_READ_BATCH_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_REG_READ_BATCH_REPLY_NEXT_COMMAND")) {
+        _ = PCLUSTER_REG_READ_BATCH_REPLY_NEXT_COMMAND;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_REG_CLOSE_READ_BATCH_REPLY")) {
+        _ = PCLUSTER_REG_CLOSE_READ_BATCH_REPLY;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_SET_ACCOUNT_ACCESS")) {
+        _ = PCLUSTER_SET_ACCOUNT_ACCESS;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_SETUP_PROGRESS_CALLBACK")) {
+        _ = PCLUSTER_SETUP_PROGRESS_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER")) {
+        _ = PCLUSAPI_CREATE_CLUSTER;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_CNOLESS")) {
+        _ = PCLUSAPI_CREATE_CLUSTER_CNOLESS;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CREATE_CLUSTER_NAME_ACCOUNT")) {
+        _ = PCLUSAPI_CREATE_CLUSTER_NAME_ACCOUNT;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_REMOVE_CLUSTER_NAME_ACCOUNT")) {
+        _ = PCLUSAPI_REMOVE_CLUSTER_NAME_ACCOUNT;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_NODE")) {
+        _ = PCLUSAPI_ADD_CLUSTER_NODE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_ADD_CLUSTER_NODE_EX")) {
+        _ = PCLUSAPI_ADD_CLUSTER_NODE_EX;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_DESTROY_CLUSTER")) {
+        _ = PCLUSAPI_DESTROY_CLUSTER;
+    }
+    if (@hasDecl(@This(), "PSET_RESOURCE_STATUS_ROUTINE_EX")) {
+        _ = PSET_RESOURCE_STATUS_ROUTINE_EX;
+    }
+    if (@hasDecl(@This(), "PSET_RESOURCE_STATUS_ROUTINE")) {
+        _ = PSET_RESOURCE_STATUS_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PQUORUM_RESOURCE_LOST")) {
+        _ = PQUORUM_RESOURCE_LOST;
+    }
+    if (@hasDecl(@This(), "PLOG_EVENT_ROUTINE")) {
+        _ = PLOG_EVENT_ROUTINE;
+    }
+    if (@hasDecl(@This(), "POPEN_ROUTINE")) {
+        _ = POPEN_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PCLOSE_ROUTINE")) {
+        _ = PCLOSE_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PONLINE_ROUTINE")) {
+        _ = PONLINE_ROUTINE;
+    }
+    if (@hasDecl(@This(), "POFFLINE_ROUTINE")) {
+        _ = POFFLINE_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PTERMINATE_ROUTINE")) {
+        _ = PTERMINATE_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PIS_ALIVE_ROUTINE")) {
+        _ = PIS_ALIVE_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PLOOKS_ALIVE_ROUTINE")) {
+        _ = PLOOKS_ALIVE_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PARBITRATE_ROUTINE")) {
+        _ = PARBITRATE_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PRELEASE_ROUTINE")) {
+        _ = PRELEASE_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PRESOURCE_CONTROL_ROUTINE")) {
+        _ = PRESOURCE_CONTROL_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PRESOURCE_TYPE_CONTROL_ROUTINE")) {
+        _ = PRESOURCE_TYPE_CONTROL_ROUTINE;
+    }
+    if (@hasDecl(@This(), "POPEN_V2_ROUTINE")) {
+        _ = POPEN_V2_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PONLINE_V2_ROUTINE")) {
+        _ = PONLINE_V2_ROUTINE;
+    }
+    if (@hasDecl(@This(), "POFFLINE_V2_ROUTINE")) {
+        _ = POFFLINE_V2_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PCANCEL_ROUTINE")) {
+        _ = PCANCEL_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PBEGIN_RESCALL_ROUTINE")) {
+        _ = PBEGIN_RESCALL_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PBEGIN_RESTYPECALL_ROUTINE")) {
+        _ = PBEGIN_RESTYPECALL_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PBEGIN_RESCALL_AS_USER_ROUTINE")) {
+        _ = PBEGIN_RESCALL_AS_USER_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PBEGIN_RESTYPECALL_AS_USER_ROUTINE")) {
+        _ = PBEGIN_RESTYPECALL_AS_USER_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PSTARTUP_ROUTINE")) {
+        _ = PSTARTUP_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PSET_RESOURCE_LOCKED_MODE_ROUTINE")) {
+        _ = PSET_RESOURCE_LOCKED_MODE_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PSIGNAL_FAILURE_ROUTINE")) {
+        _ = PSIGNAL_FAILURE_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PSET_RESOURCE_INMEMORY_NODELOCAL_PROPERTIES_ROUTINE")) {
+        _ = PSET_RESOURCE_INMEMORY_NODELOCAL_PROPERTIES_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PEND_CONTROL_CALL")) {
+        _ = PEND_CONTROL_CALL;
+    }
+    if (@hasDecl(@This(), "PEND_TYPE_CONTROL_CALL")) {
+        _ = PEND_TYPE_CONTROL_CALL;
+    }
+    if (@hasDecl(@This(), "PEXTEND_RES_CONTROL_CALL")) {
+        _ = PEXTEND_RES_CONTROL_CALL;
+    }
+    if (@hasDecl(@This(), "PEXTEND_RES_TYPE_CONTROL_CALL")) {
+        _ = PEXTEND_RES_TYPE_CONTROL_CALL;
+    }
+    if (@hasDecl(@This(), "PRAISE_RES_TYPE_NOTIFICATION")) {
+        _ = PRAISE_RES_TYPE_NOTIFICATION;
+    }
+    if (@hasDecl(@This(), "PCHANGE_RESOURCE_PROCESS_FOR_DUMPS")) {
+        _ = PCHANGE_RESOURCE_PROCESS_FOR_DUMPS;
+    }
+    if (@hasDecl(@This(), "PCHANGE_RES_TYPE_PROCESS_FOR_DUMPS")) {
+        _ = PCHANGE_RES_TYPE_PROCESS_FOR_DUMPS;
+    }
+    if (@hasDecl(@This(), "PSET_INTERNAL_STATE")) {
+        _ = PSET_INTERNAL_STATE;
+    }
+    if (@hasDecl(@This(), "PSET_RESOURCE_LOCKED_MODE_EX_ROUTINE")) {
+        _ = PSET_RESOURCE_LOCKED_MODE_EX_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PREQUEST_DUMP_ROUTINE")) {
+        _ = PREQUEST_DUMP_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PSTARTUP_EX_ROUTINE")) {
+        _ = PSTARTUP_EX_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_START_RESOURCE_SERVICE")) {
+        _ = PRESUTIL_START_RESOURCE_SERVICE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_VERIFY_RESOURCE_SERVICE")) {
+        _ = PRESUTIL_VERIFY_RESOURCE_SERVICE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_STOP_RESOURCE_SERVICE")) {
+        _ = PRESUTIL_STOP_RESOURCE_SERVICE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_VERIFY_SERVICE")) {
+        _ = PRESUTIL_VERIFY_SERVICE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_STOP_SERVICE")) {
+        _ = PRESUTIL_STOP_SERVICE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_CREATE_DIRECTORY_TREE")) {
+        _ = PRESUTIL_CREATE_DIRECTORY_TREE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_IS_PATH_VALID")) {
+        _ = PRESUTIL_IS_PATH_VALID;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_ENUM_PROPERTIES")) {
+        _ = PRESUTIL_ENUM_PROPERTIES;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_ENUM_PRIVATE_PROPERTIES")) {
+        _ = PRESUTIL_ENUM_PRIVATE_PROPERTIES;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_PROPERTIES")) {
+        _ = PRESUTIL_GET_PROPERTIES;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_ALL_PROPERTIES")) {
+        _ = PRESUTIL_GET_ALL_PROPERTIES;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_PRIVATE_PROPERTIES")) {
+        _ = PRESUTIL_GET_PRIVATE_PROPERTIES;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_PROPERTY_SIZE")) {
+        _ = PRESUTIL_GET_PROPERTY_SIZE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_PROPERTY")) {
+        _ = PRESUTIL_GET_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_VERIFY_PROPERTY_TABLE")) {
+        _ = PRESUTIL_VERIFY_PROPERTY_TABLE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_SET_PROPERTY_TABLE")) {
+        _ = PRESUTIL_SET_PROPERTY_TABLE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_SET_PROPERTY_TABLE_EX")) {
+        _ = PRESUTIL_SET_PROPERTY_TABLE_EX;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK")) {
+        _ = PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK_EX")) {
+        _ = PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK_EX;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_SET_UNKNOWN_PROPERTIES")) {
+        _ = PRESUTIL_SET_UNKNOWN_PROPERTIES;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_PROPERTIES_TO_PARAMETER_BLOCK")) {
+        _ = PRESUTIL_GET_PROPERTIES_TO_PARAMETER_BLOCK;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_PROPERTY_LIST_FROM_PARAMETER_BLOCK")) {
+        _ = PRESUTIL_PROPERTY_LIST_FROM_PARAMETER_BLOCK;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_DUP_PARAMETER_BLOCK")) {
+        _ = PRESUTIL_DUP_PARAMETER_BLOCK;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_FREE_PARAMETER_BLOCK")) {
+        _ = PRESUTIL_FREE_PARAMETER_BLOCK;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_ADD_UNKNOWN_PROPERTIES")) {
+        _ = PRESUTIL_ADD_UNKNOWN_PROPERTIES;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_SET_PRIVATE_PROPERTY_LIST")) {
+        _ = PRESUTIL_SET_PRIVATE_PROPERTY_LIST;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_VERIFY_PRIVATE_PROPERTY_LIST")) {
+        _ = PRESUTIL_VERIFY_PRIVATE_PROPERTY_LIST;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_DUP_STRING")) {
+        _ = PRESUTIL_DUP_STRING;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_BINARY_VALUE")) {
+        _ = PRESUTIL_GET_BINARY_VALUE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_SZ_VALUE")) {
+        _ = PRESUTIL_GET_SZ_VALUE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_EXPAND_SZ_VALUE")) {
+        _ = PRESUTIL_GET_EXPAND_SZ_VALUE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_DWORD_VALUE")) {
+        _ = PRESUTIL_GET_DWORD_VALUE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_QWORD_VALUE")) {
+        _ = PRESUTIL_GET_QWORD_VALUE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_SET_BINARY_VALUE")) {
+        _ = PRESUTIL_SET_BINARY_VALUE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_SET_SZ_VALUE")) {
+        _ = PRESUTIL_SET_SZ_VALUE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_SET_EXPAND_SZ_VALUE")) {
+        _ = PRESUTIL_SET_EXPAND_SZ_VALUE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_SET_MULTI_SZ_VALUE")) {
+        _ = PRESUTIL_SET_MULTI_SZ_VALUE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_SET_DWORD_VALUE")) {
+        _ = PRESUTIL_SET_DWORD_VALUE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_SET_QWORD_VALUE")) {
+        _ = PRESUTIL_SET_QWORD_VALUE;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_BINARY_PROPERTY")) {
+        _ = PRESUTIL_GET_BINARY_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_SZ_PROPERTY")) {
+        _ = PRESUTIL_GET_SZ_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_MULTI_SZ_PROPERTY")) {
+        _ = PRESUTIL_GET_MULTI_SZ_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_DWORD_PROPERTY")) {
+        _ = PRESUTIL_GET_DWORD_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_LONG_PROPERTY")) {
+        _ = PRESUTIL_GET_LONG_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_FILETIME_PROPERTY")) {
+        _ = PRESUTIL_GET_FILETIME_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_ENVIRONMENT_WITH_NET_NAME")) {
+        _ = PRESUTIL_GET_ENVIRONMENT_WITH_NET_NAME;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_FREE_ENVIRONMENT")) {
+        _ = PRESUTIL_FREE_ENVIRONMENT;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_EXPAND_ENVIRONMENT_STRINGS")) {
+        _ = PRESUTIL_EXPAND_ENVIRONMENT_STRINGS;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_SET_RESOURCE_SERVICE_ENVIRONMENT")) {
+        _ = PRESUTIL_SET_RESOURCE_SERVICE_ENVIRONMENT;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_REMOVE_RESOURCE_SERVICE_ENVIRONMENT")) {
+        _ = PRESUTIL_REMOVE_RESOURCE_SERVICE_ENVIRONMENT;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS")) {
+        _ = PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_FIND_SZ_PROPERTY")) {
+        _ = PRESUTIL_FIND_SZ_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_FIND_EXPAND_SZ_PROPERTY")) {
+        _ = PRESUTIL_FIND_EXPAND_SZ_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_FIND_EXPANDED_SZ_PROPERTY")) {
+        _ = PRESUTIL_FIND_EXPANDED_SZ_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_FIND_DWORD_PROPERTY")) {
+        _ = PRESUTIL_FIND_DWORD_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_FIND_BINARY_PROPERTY")) {
+        _ = PRESUTIL_FIND_BINARY_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_FIND_MULTI_SZ_PROPERTY")) {
+        _ = PRESUTIL_FIND_MULTI_SZ_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_FIND_LONG_PROPERTY")) {
+        _ = PRESUTIL_FIND_LONG_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_FIND_ULARGEINTEGER_PROPERTY")) {
+        _ = PRESUTIL_FIND_ULARGEINTEGER_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_FIND_FILETIME_PROPERTY")) {
+        _ = PRESUTIL_FIND_FILETIME_PROPERTY;
+    }
+    if (@hasDecl(@This(), "PWORKER_START_ROUTINE")) {
+        _ = PWORKER_START_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUS_WORKER_CREATE")) {
+        _ = PCLUSAPI_CLUS_WORKER_CREATE;
+    }
+    if (@hasDecl(@This(), "PCLUSAPIClusWorkerCheckTerminate")) {
+        _ = PCLUSAPIClusWorkerCheckTerminate;
+    }
+    if (@hasDecl(@This(), "PCLUSAPI_CLUS_WORKER_TERMINATE")) {
+        _ = PCLUSAPI_CLUS_WORKER_TERMINATE;
+    }
+    if (@hasDecl(@This(), "LPRESOURCE_CALLBACK")) {
+        _ = LPRESOURCE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "LPRESOURCE_CALLBACK_EX")) {
+        _ = LPRESOURCE_CALLBACK_EX;
+    }
+    if (@hasDecl(@This(), "LPGROUP_CALLBACK_EX")) {
+        _ = LPGROUP_CALLBACK_EX;
+    }
+    if (@hasDecl(@This(), "LPNODE_CALLBACK")) {
+        _ = LPNODE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_RESOURCES_EQUAL")) {
+        _ = PRESUTIL_RESOURCES_EQUAL;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_RESOURCE_TYPES_EQUAL")) {
+        _ = PRESUTIL_RESOURCE_TYPES_EQUAL;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_IS_RESOURCE_CLASS_EQUAL")) {
+        _ = PRESUTIL_IS_RESOURCE_CLASS_EQUAL;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_ENUM_RESOURCES")) {
+        _ = PRESUTIL_ENUM_RESOURCES;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_ENUM_RESOURCES_EX")) {
+        _ = PRESUTIL_ENUM_RESOURCES_EX;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY")) {
+        _ = PRESUTIL_GET_RESOURCE_DEPENDENCY;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME")) {
+        _ = PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS")) {
+        _ = PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY")) {
+        _ = PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENTIP_ADDRESS_PROPS")) {
+        _ = PRESUTIL_GET_RESOURCE_DEPENDENTIP_ADDRESS_PROPS;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_FIND_DEPENDENT_DISK_RESOURCE_DRIVE_LETTER")) {
+        _ = PRESUTIL_FIND_DEPENDENT_DISK_RESOURCE_DRIVE_LETTER;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_TERMINATE_SERVICE_PROCESS_FROM_RES_DLL")) {
+        _ = PRESUTIL_TERMINATE_SERVICE_PROCESS_FROM_RES_DLL;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_PROPERTY_FORMATS")) {
+        _ = PRESUTIL_GET_PROPERTY_FORMATS;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_CORE_CLUSTER_RESOURCES")) {
+        _ = PRESUTIL_GET_CORE_CLUSTER_RESOURCES;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_NAME")) {
+        _ = PRESUTIL_GET_RESOURCE_NAME;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_IS_PATH_ON_SHARED_VOLUME")) {
+        _ = PCLUSTER_IS_PATH_ON_SHARED_VOLUME;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_GET_VOLUME_PATH_NAME")) {
+        _ = PCLUSTER_GET_VOLUME_PATH_NAME;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_GET_VOLUME_NAME_FOR_VOLUME_MOUNT_POINT")) {
+        _ = PCLUSTER_GET_VOLUME_NAME_FOR_VOLUME_MOUNT_POINT;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_PREPARE_SHARED_VOLUME_FOR_BACKUP")) {
+        _ = PCLUSTER_PREPARE_SHARED_VOLUME_FOR_BACKUP;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_CLEAR_BACKUP_STATE_FOR_SHARED_VOLUME")) {
+        _ = PCLUSTER_CLEAR_BACKUP_STATE_FOR_SHARED_VOLUME;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS_EX")) {
+        _ = PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS_EX;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_ENUM_RESOURCES_EX2")) {
+        _ = PRESUTIL_ENUM_RESOURCES_EX2;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY_EX")) {
+        _ = PRESUTIL_GET_RESOURCE_DEPENDENCY_EX;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME_EX")) {
+        _ = PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME_EX;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS_EX")) {
+        _ = PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS_EX;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY_EX")) {
+        _ = PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY_EX;
+    }
+    if (@hasDecl(@This(), "PRESUTIL_GET_CORE_CLUSTER_RESOURCES_EX")) {
+        _ = PRESUTIL_GET_CORE_CLUSTER_RESOURCES_EX;
+    }
+    if (@hasDecl(@This(), "POPEN_CLUSTER_CRYPT_PROVIDER")) {
+        _ = POPEN_CLUSTER_CRYPT_PROVIDER;
+    }
+    if (@hasDecl(@This(), "POPEN_CLUSTER_CRYPT_PROVIDEREX")) {
+        _ = POPEN_CLUSTER_CRYPT_PROVIDEREX;
+    }
+    if (@hasDecl(@This(), "PCLOSE_CLUSTER_CRYPT_PROVIDER")) {
+        _ = PCLOSE_CLUSTER_CRYPT_PROVIDER;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_ENCRYPT")) {
+        _ = PCLUSTER_ENCRYPT;
+    }
+    if (@hasDecl(@This(), "PCLUSTER_DECRYPT")) {
+        _ = PCLUSTER_DECRYPT;
+    }
+    if (@hasDecl(@This(), "PFREE_CLUSTER_CRYPT")) {
+        _ = PFREE_CLUSTER_CRYPT;
+    }
+    if (@hasDecl(@This(), "PRES_UTIL_VERIFY_SHUTDOWN_SAFE")) {
+        _ = PRES_UTIL_VERIFY_SHUTDOWN_SAFE;
+    }
+    if (@hasDecl(@This(), "PREGISTER_APPINSTANCE")) {
+        _ = PREGISTER_APPINSTANCE;
+    }
+    if (@hasDecl(@This(), "PREGISTER_APPINSTANCE_VERSION")) {
+        _ = PREGISTER_APPINSTANCE_VERSION;
+    }
+    if (@hasDecl(@This(), "PQUERY_APPINSTANCE_VERSION")) {
+        _ = PQUERY_APPINSTANCE_VERSION;
+    }
+    if (@hasDecl(@This(), "PRESET_ALL_APPINSTANCE_VERSIONS")) {
+        _ = PRESET_ALL_APPINSTANCE_VERSIONS;
+    }
+    if (@hasDecl(@This(), "SET_APP_INSTANCE_CSV_FLAGS")) {
+        _ = SET_APP_INSTANCE_CSV_FLAGS;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

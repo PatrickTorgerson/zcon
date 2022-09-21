@@ -11,23 +11,24 @@ pub const IID_IIsolatedEnvironmentInterop = &IID_IIsolatedEnvironmentInterop_Val
 pub const IIsolatedEnvironmentInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetHostHwndInterop: fn(
+        GetHostHwndInterop: fn (
             self: *const IIsolatedEnvironmentInterop,
             containerHwnd: ?HWND,
             hostHwnd: ?*?HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIsolatedEnvironmentInterop_GetHostHwndInterop(self: *const T, containerHwnd: ?HWND, hostHwnd: ?*?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IIsolatedEnvironmentInterop.VTable, self.vtable).GetHostHwndInterop(@ptrCast(*const IIsolatedEnvironmentInterop, self), containerHwnd, hostHwnd);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IIsolatedEnvironmentInterop_GetHostHwndInterop(self: *const T, containerHwnd: ?HWND, hostHwnd: ?*?HWND) HRESULT {
+                return @ptrCast(*const IIsolatedEnvironmentInterop.VTable, self.vtable).GetHostHwndInterop(@ptrCast(*const IIsolatedEnvironmentInterop, self), containerHwnd, hostHwnd);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -38,13 +39,9 @@ pub const IIsolatedEnvironmentInterop = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
@@ -55,9 +52,7 @@ const HWND = @import("../../foundation.zig").HWND;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

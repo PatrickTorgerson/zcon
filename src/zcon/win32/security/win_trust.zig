@@ -90,19 +90,7 @@ pub const WINTRUST_POLICY_FLAGS = enum(u32) {
         IGNOREREVOCATIONONTS: u1 = 0,
         ALLOWONLYPERTRUST: u1 = 0,
     }) WINTRUST_POLICY_FLAGS {
-        return @intToEnum(WINTRUST_POLICY_FLAGS,
-              (if (o.TRUSTTEST == 1) @enumToInt(WINTRUST_POLICY_FLAGS.TRUSTTEST) else 0)
-            | (if (o.TESTCANBEVALID == 1) @enumToInt(WINTRUST_POLICY_FLAGS.TESTCANBEVALID) else 0)
-            | (if (o.IGNOREEXPIRATION == 1) @enumToInt(WINTRUST_POLICY_FLAGS.IGNOREEXPIRATION) else 0)
-            | (if (o.IGNOREREVOKATION == 1) @enumToInt(WINTRUST_POLICY_FLAGS.IGNOREREVOKATION) else 0)
-            | (if (o.OFFLINEOK_IND == 1) @enumToInt(WINTRUST_POLICY_FLAGS.OFFLINEOK_IND) else 0)
-            | (if (o.OFFLINEOK_COM == 1) @enumToInt(WINTRUST_POLICY_FLAGS.OFFLINEOK_COM) else 0)
-            | (if (o.OFFLINEOKNBU_IND == 1) @enumToInt(WINTRUST_POLICY_FLAGS.OFFLINEOKNBU_IND) else 0)
-            | (if (o.OFFLINEOKNBU_COM == 1) @enumToInt(WINTRUST_POLICY_FLAGS.OFFLINEOKNBU_COM) else 0)
-            | (if (o.VERIFY_V1_OFF == 1) @enumToInt(WINTRUST_POLICY_FLAGS.VERIFY_V1_OFF) else 0)
-            | (if (o.IGNOREREVOCATIONONTS == 1) @enumToInt(WINTRUST_POLICY_FLAGS.IGNOREREVOCATIONONTS) else 0)
-            | (if (o.ALLOWONLYPERTRUST == 1) @enumToInt(WINTRUST_POLICY_FLAGS.ALLOWONLYPERTRUST) else 0)
-        );
+        return @intToEnum(WINTRUST_POLICY_FLAGS, (if (o.TRUSTTEST == 1) @enumToInt(WINTRUST_POLICY_FLAGS.TRUSTTEST) else 0) | (if (o.TESTCANBEVALID == 1) @enumToInt(WINTRUST_POLICY_FLAGS.TESTCANBEVALID) else 0) | (if (o.IGNOREEXPIRATION == 1) @enumToInt(WINTRUST_POLICY_FLAGS.IGNOREEXPIRATION) else 0) | (if (o.IGNOREREVOKATION == 1) @enumToInt(WINTRUST_POLICY_FLAGS.IGNOREREVOKATION) else 0) | (if (o.OFFLINEOK_IND == 1) @enumToInt(WINTRUST_POLICY_FLAGS.OFFLINEOK_IND) else 0) | (if (o.OFFLINEOK_COM == 1) @enumToInt(WINTRUST_POLICY_FLAGS.OFFLINEOK_COM) else 0) | (if (o.OFFLINEOKNBU_IND == 1) @enumToInt(WINTRUST_POLICY_FLAGS.OFFLINEOKNBU_IND) else 0) | (if (o.OFFLINEOKNBU_COM == 1) @enumToInt(WINTRUST_POLICY_FLAGS.OFFLINEOKNBU_COM) else 0) | (if (o.VERIFY_V1_OFF == 1) @enumToInt(WINTRUST_POLICY_FLAGS.VERIFY_V1_OFF) else 0) | (if (o.IGNOREREVOCATIONONTS == 1) @enumToInt(WINTRUST_POLICY_FLAGS.IGNOREREVOCATIONONTS) else 0) | (if (o.ALLOWONLYPERTRUST == 1) @enumToInt(WINTRUST_POLICY_FLAGS.ALLOWONLYPERTRUST) else 0));
     }
 };
 pub const WTPF_TRUSTTEST = WINTRUST_POLICY_FLAGS.TRUSTTEST;
@@ -254,27 +242,27 @@ pub const WINTRUST_CERT_INFO = extern struct {
     psftVerifyAsOf: ?*FILETIME,
 };
 
-pub const PFN_CPD_MEM_ALLOC = fn(
+pub const PFN_CPD_MEM_ALLOC = fn (
     cbSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const PFN_CPD_MEM_FREE = fn(
+pub const PFN_CPD_MEM_FREE = fn (
     pvMem2Free: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFN_CPD_ADD_STORE = fn(
+pub const PFN_CPD_ADD_STORE = fn (
     pProvData: ?*CRYPT_PROVIDER_DATA,
     hStore2Add: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CPD_ADD_SGNR = fn(
+pub const PFN_CPD_ADD_SGNR = fn (
     pProvData: ?*CRYPT_PROVIDER_DATA,
     fCounterSigner: BOOL,
     idxSigner: u32,
     pSgnr2Add: ?*CRYPT_PROVIDER_SGNR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CPD_ADD_CERT = fn(
+pub const PFN_CPD_ADD_CERT = fn (
     pProvData: ?*CRYPT_PROVIDER_DATA,
     idxSigner: u32,
     fCounterSigner: BOOL,
@@ -282,40 +270,40 @@ pub const PFN_CPD_ADD_CERT = fn(
     pCert2Add: ?*const CERT_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_CPD_ADD_PRIVDATA = fn(
+pub const PFN_CPD_ADD_PRIVDATA = fn (
     pProvData: ?*CRYPT_PROVIDER_DATA,
     pPrivData2Add: ?*CRYPT_PROVIDER_PRIVDATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_PROVIDER_INIT_CALL = fn(
+pub const PFN_PROVIDER_INIT_CALL = fn (
     pProvData: ?*CRYPT_PROVIDER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PFN_PROVIDER_OBJTRUST_CALL = fn(
+pub const PFN_PROVIDER_OBJTRUST_CALL = fn (
     pProvData: ?*CRYPT_PROVIDER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PFN_PROVIDER_SIGTRUST_CALL = fn(
+pub const PFN_PROVIDER_SIGTRUST_CALL = fn (
     pProvData: ?*CRYPT_PROVIDER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PFN_PROVIDER_CERTTRUST_CALL = fn(
+pub const PFN_PROVIDER_CERTTRUST_CALL = fn (
     pProvData: ?*CRYPT_PROVIDER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PFN_PROVIDER_FINALPOLICY_CALL = fn(
+pub const PFN_PROVIDER_FINALPOLICY_CALL = fn (
     pProvData: ?*CRYPT_PROVIDER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PFN_PROVIDER_TESTFINALPOLICY_CALL = fn(
+pub const PFN_PROVIDER_TESTFINALPOLICY_CALL = fn (
     pProvData: ?*CRYPT_PROVIDER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PFN_PROVIDER_CLEANUP_CALL = fn(
+pub const PFN_PROVIDER_CLEANUP_CALL = fn (
     pProvData: ?*CRYPT_PROVIDER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PFN_PROVIDER_CERTCHKPOLICY_CALL = fn(
+pub const PFN_PROVIDER_CERTCHKPOLICY_CALL = fn (
     pProvData: ?*CRYPT_PROVIDER_DATA,
     idxSigner: u32,
     fCounterSignerChain: BOOL,
@@ -394,7 +382,7 @@ pub const CRYPT_PROVIDER_FUNCTIONS = extern struct {
     pfnCleanupPolicy: ?PFN_PROVIDER_CLEANUP_CALL,
 };
 
-pub const PFN_PROVUI_CALL = fn(
+pub const PFN_PROVUI_CALL = fn (
     hWndSecurityDialog: ?HWND,
     pProvData: ?*CRYPT_PROVIDER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -486,12 +474,12 @@ pub const CRYPT_REGISTER_ACTIONID = extern struct {
     sCleanupProvider: CRYPT_TRUST_REG_ENTRY,
 };
 
-pub const PFN_ALLOCANDFILLDEFUSAGE = fn(
+pub const PFN_ALLOCANDFILLDEFUSAGE = fn (
     pszUsageOID: ?[*:0]const u8,
     psDefUsage: ?*CRYPT_PROVIDER_DEFUSAGE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_FREEDEFUSAGE = fn(
+pub const PFN_FREEDEFUSAGE = fn (
     pszUsageOID: ?[*:0]const u8,
     psDefUsage: ?*CRYPT_PROVIDER_DEFUSAGE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -658,7 +646,7 @@ pub const WTD_GENERIC_CHAIN_POLICY_SIGNER_INFO = extern struct {
     rgpCounterSigner: ?*?*WTD_GENERIC_CHAIN_POLICY_SIGNER_INFO,
 };
 
-pub const PFN_WTD_GENERIC_CHAIN_POLICY_CALLBACK = fn(
+pub const PFN_WTD_GENERIC_CHAIN_POLICY_CALLBACK = fn (
     pProvData: ?*CRYPT_PROVIDER_DATA,
     dwStepError: u32,
     dwRegPolicySettings: u32,
@@ -723,7 +711,6 @@ pub const CONFIG_CI_PROV_INFO = extern struct {
     result: CONFIG_CI_PROV_INFO_RESULT,
     dwScenario: u32,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (18)
@@ -836,19 +823,14 @@ pub extern "wintrust" fn WintrustSetDefaultIncludePEPageHashes(
     fIncludePEPageHashes: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (26)
@@ -882,28 +864,62 @@ const SIP_SUBJECTINFO = @import("../security/cryptography/sip.zig").SIP_SUBJECTI
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFN_CPD_MEM_ALLOC")) { _ = PFN_CPD_MEM_ALLOC; }
-    if (@hasDecl(@This(), "PFN_CPD_MEM_FREE")) { _ = PFN_CPD_MEM_FREE; }
-    if (@hasDecl(@This(), "PFN_CPD_ADD_STORE")) { _ = PFN_CPD_ADD_STORE; }
-    if (@hasDecl(@This(), "PFN_CPD_ADD_SGNR")) { _ = PFN_CPD_ADD_SGNR; }
-    if (@hasDecl(@This(), "PFN_CPD_ADD_CERT")) { _ = PFN_CPD_ADD_CERT; }
-    if (@hasDecl(@This(), "PFN_CPD_ADD_PRIVDATA")) { _ = PFN_CPD_ADD_PRIVDATA; }
-    if (@hasDecl(@This(), "PFN_PROVIDER_INIT_CALL")) { _ = PFN_PROVIDER_INIT_CALL; }
-    if (@hasDecl(@This(), "PFN_PROVIDER_OBJTRUST_CALL")) { _ = PFN_PROVIDER_OBJTRUST_CALL; }
-    if (@hasDecl(@This(), "PFN_PROVIDER_SIGTRUST_CALL")) { _ = PFN_PROVIDER_SIGTRUST_CALL; }
-    if (@hasDecl(@This(), "PFN_PROVIDER_CERTTRUST_CALL")) { _ = PFN_PROVIDER_CERTTRUST_CALL; }
-    if (@hasDecl(@This(), "PFN_PROVIDER_FINALPOLICY_CALL")) { _ = PFN_PROVIDER_FINALPOLICY_CALL; }
-    if (@hasDecl(@This(), "PFN_PROVIDER_TESTFINALPOLICY_CALL")) { _ = PFN_PROVIDER_TESTFINALPOLICY_CALL; }
-    if (@hasDecl(@This(), "PFN_PROVIDER_CLEANUP_CALL")) { _ = PFN_PROVIDER_CLEANUP_CALL; }
-    if (@hasDecl(@This(), "PFN_PROVIDER_CERTCHKPOLICY_CALL")) { _ = PFN_PROVIDER_CERTCHKPOLICY_CALL; }
-    if (@hasDecl(@This(), "PFN_PROVUI_CALL")) { _ = PFN_PROVUI_CALL; }
-    if (@hasDecl(@This(), "PFN_ALLOCANDFILLDEFUSAGE")) { _ = PFN_ALLOCANDFILLDEFUSAGE; }
-    if (@hasDecl(@This(), "PFN_FREEDEFUSAGE")) { _ = PFN_FREEDEFUSAGE; }
-    if (@hasDecl(@This(), "PFN_WTD_GENERIC_CHAIN_POLICY_CALLBACK")) { _ = PFN_WTD_GENERIC_CHAIN_POLICY_CALLBACK; }
+    if (@hasDecl(@This(), "PFN_CPD_MEM_ALLOC")) {
+        _ = PFN_CPD_MEM_ALLOC;
+    }
+    if (@hasDecl(@This(), "PFN_CPD_MEM_FREE")) {
+        _ = PFN_CPD_MEM_FREE;
+    }
+    if (@hasDecl(@This(), "PFN_CPD_ADD_STORE")) {
+        _ = PFN_CPD_ADD_STORE;
+    }
+    if (@hasDecl(@This(), "PFN_CPD_ADD_SGNR")) {
+        _ = PFN_CPD_ADD_SGNR;
+    }
+    if (@hasDecl(@This(), "PFN_CPD_ADD_CERT")) {
+        _ = PFN_CPD_ADD_CERT;
+    }
+    if (@hasDecl(@This(), "PFN_CPD_ADD_PRIVDATA")) {
+        _ = PFN_CPD_ADD_PRIVDATA;
+    }
+    if (@hasDecl(@This(), "PFN_PROVIDER_INIT_CALL")) {
+        _ = PFN_PROVIDER_INIT_CALL;
+    }
+    if (@hasDecl(@This(), "PFN_PROVIDER_OBJTRUST_CALL")) {
+        _ = PFN_PROVIDER_OBJTRUST_CALL;
+    }
+    if (@hasDecl(@This(), "PFN_PROVIDER_SIGTRUST_CALL")) {
+        _ = PFN_PROVIDER_SIGTRUST_CALL;
+    }
+    if (@hasDecl(@This(), "PFN_PROVIDER_CERTTRUST_CALL")) {
+        _ = PFN_PROVIDER_CERTTRUST_CALL;
+    }
+    if (@hasDecl(@This(), "PFN_PROVIDER_FINALPOLICY_CALL")) {
+        _ = PFN_PROVIDER_FINALPOLICY_CALL;
+    }
+    if (@hasDecl(@This(), "PFN_PROVIDER_TESTFINALPOLICY_CALL")) {
+        _ = PFN_PROVIDER_TESTFINALPOLICY_CALL;
+    }
+    if (@hasDecl(@This(), "PFN_PROVIDER_CLEANUP_CALL")) {
+        _ = PFN_PROVIDER_CLEANUP_CALL;
+    }
+    if (@hasDecl(@This(), "PFN_PROVIDER_CERTCHKPOLICY_CALL")) {
+        _ = PFN_PROVIDER_CERTCHKPOLICY_CALL;
+    }
+    if (@hasDecl(@This(), "PFN_PROVUI_CALL")) {
+        _ = PFN_PROVUI_CALL;
+    }
+    if (@hasDecl(@This(), "PFN_ALLOCANDFILLDEFUSAGE")) {
+        _ = PFN_ALLOCANDFILLDEFUSAGE;
+    }
+    if (@hasDecl(@This(), "PFN_FREEDEFUSAGE")) {
+        _ = PFN_FREEDEFUSAGE;
+    }
+    if (@hasDecl(@This(), "PFN_WTD_GENERIC_CHAIN_POLICY_CALLBACK")) {
+        _ = PFN_WTD_GENERIC_CHAIN_POLICY_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

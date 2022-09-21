@@ -17,7 +17,7 @@ pub const IID_INotificationActivationCallback = &IID_INotificationActivationCall
 pub const INotificationActivationCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Activate: fn(
+        Activate: fn (
             self: *const INotificationActivationCallback,
             appUserModelId: ?[*:0]const u16,
             invokedArgs: ?[*:0]const u16,
@@ -26,16 +26,17 @@ pub const INotificationActivationCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INotificationActivationCallback_Activate(self: *const T, appUserModelId: ?[*:0]const u16, invokedArgs: ?[*:0]const u16, data: [*]const NOTIFICATION_USER_INPUT_DATA, count: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INotificationActivationCallback.VTable, self.vtable).Activate(@ptrCast(*const INotificationActivationCallback, self), appUserModelId, invokedArgs, data, count);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INotificationActivationCallback_Activate(self: *const T, appUserModelId: ?[*:0]const u16, invokedArgs: ?[*:0]const u16, data: [*]const NOTIFICATION_USER_INPUT_DATA, count: u32) HRESULT {
+                return @ptrCast(*const INotificationActivationCallback.VTable, self.vtable).Activate(@ptrCast(*const INotificationActivationCallback, self), appUserModelId, invokedArgs, data, count);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -46,13 +47,9 @@ pub const INotificationActivationCallback = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
@@ -63,9 +60,7 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

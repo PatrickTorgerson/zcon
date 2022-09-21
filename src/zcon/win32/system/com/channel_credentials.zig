@@ -11,7 +11,7 @@ pub const IID_IChannelCredentials = &IID_IChannelCredentials_Value;
 pub const IChannelCredentials = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        SetWindowsCredential: fn(
+        SetWindowsCredential: fn (
             self: *const IChannelCredentials,
             domain: ?BSTR,
             username: ?BSTR,
@@ -19,56 +19,56 @@ pub const IChannelCredentials = extern struct {
             impersonationLevel: i32,
             allowNtlm: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetUserNameCredential: fn(
+        SetUserNameCredential: fn (
             self: *const IChannelCredentials,
             username: ?BSTR,
             password: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetClientCertificateFromStore: fn(
+        SetClientCertificateFromStore: fn (
             self: *const IChannelCredentials,
             storeLocation: ?BSTR,
             storeName: ?BSTR,
             findYype: ?BSTR,
             findValue: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetClientCertificateFromStoreByName: fn(
+        SetClientCertificateFromStoreByName: fn (
             self: *const IChannelCredentials,
             subjectName: ?BSTR,
             storeLocation: ?BSTR,
             storeName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetClientCertificateFromFile: fn(
+        SetClientCertificateFromFile: fn (
             self: *const IChannelCredentials,
             filename: ?BSTR,
             password: ?BSTR,
             keystorageFlags: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDefaultServiceCertificateFromStore: fn(
+        SetDefaultServiceCertificateFromStore: fn (
             self: *const IChannelCredentials,
             storeLocation: ?BSTR,
             storeName: ?BSTR,
             findType: ?BSTR,
             findValue: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDefaultServiceCertificateFromStoreByName: fn(
+        SetDefaultServiceCertificateFromStoreByName: fn (
             self: *const IChannelCredentials,
             subjectName: ?BSTR,
             storeLocation: ?BSTR,
             storeName: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDefaultServiceCertificateFromFile: fn(
+        SetDefaultServiceCertificateFromFile: fn (
             self: *const IChannelCredentials,
             filename: ?BSTR,
             password: ?BSTR,
             keystorageFlags: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetServiceCertificateAuthentication: fn(
+        SetServiceCertificateAuthentication: fn (
             self: *const IChannelCredentials,
             storeLocation: ?BSTR,
             revocationMode: ?BSTR,
             certificateValidationMode: ?BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetIssuedToken: fn(
+        SetIssuedToken: fn (
             self: *const IChannelCredentials,
             localIssuerAddres: ?BSTR,
             localIssuerBindingType: ?BSTR,
@@ -76,52 +76,53 @@ pub const IChannelCredentials = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelCredentials_SetWindowsCredential(self: *const T, domain: ?BSTR, username: ?BSTR, password: ?BSTR, impersonationLevel: i32, allowNtlm: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetWindowsCredential(@ptrCast(*const IChannelCredentials, self), domain, username, password, impersonationLevel, allowNtlm);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelCredentials_SetUserNameCredential(self: *const T, username: ?BSTR, password: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetUserNameCredential(@ptrCast(*const IChannelCredentials, self), username, password);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelCredentials_SetClientCertificateFromStore(self: *const T, storeLocation: ?BSTR, storeName: ?BSTR, findYype: ?BSTR, findValue: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetClientCertificateFromStore(@ptrCast(*const IChannelCredentials, self), storeLocation, storeName, findYype, findValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelCredentials_SetClientCertificateFromStoreByName(self: *const T, subjectName: ?BSTR, storeLocation: ?BSTR, storeName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetClientCertificateFromStoreByName(@ptrCast(*const IChannelCredentials, self), subjectName, storeLocation, storeName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelCredentials_SetClientCertificateFromFile(self: *const T, filename: ?BSTR, password: ?BSTR, keystorageFlags: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetClientCertificateFromFile(@ptrCast(*const IChannelCredentials, self), filename, password, keystorageFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelCredentials_SetDefaultServiceCertificateFromStore(self: *const T, storeLocation: ?BSTR, storeName: ?BSTR, findType: ?BSTR, findValue: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetDefaultServiceCertificateFromStore(@ptrCast(*const IChannelCredentials, self), storeLocation, storeName, findType, findValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelCredentials_SetDefaultServiceCertificateFromStoreByName(self: *const T, subjectName: ?BSTR, storeLocation: ?BSTR, storeName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetDefaultServiceCertificateFromStoreByName(@ptrCast(*const IChannelCredentials, self), subjectName, storeLocation, storeName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelCredentials_SetDefaultServiceCertificateFromFile(self: *const T, filename: ?BSTR, password: ?BSTR, keystorageFlags: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetDefaultServiceCertificateFromFile(@ptrCast(*const IChannelCredentials, self), filename, password, keystorageFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelCredentials_SetServiceCertificateAuthentication(self: *const T, storeLocation: ?BSTR, revocationMode: ?BSTR, certificateValidationMode: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetServiceCertificateAuthentication(@ptrCast(*const IChannelCredentials, self), storeLocation, revocationMode, certificateValidationMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelCredentials_SetIssuedToken(self: *const T, localIssuerAddres: ?BSTR, localIssuerBindingType: ?BSTR, localIssuerBinding: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetIssuedToken(@ptrCast(*const IChannelCredentials, self), localIssuerAddres, localIssuerBindingType, localIssuerBinding);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IChannelCredentials_SetWindowsCredential(self: *const T, domain: ?BSTR, username: ?BSTR, password: ?BSTR, impersonationLevel: i32, allowNtlm: BOOL) HRESULT {
+                return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetWindowsCredential(@ptrCast(*const IChannelCredentials, self), domain, username, password, impersonationLevel, allowNtlm);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IChannelCredentials_SetUserNameCredential(self: *const T, username: ?BSTR, password: ?BSTR) HRESULT {
+                return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetUserNameCredential(@ptrCast(*const IChannelCredentials, self), username, password);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IChannelCredentials_SetClientCertificateFromStore(self: *const T, storeLocation: ?BSTR, storeName: ?BSTR, findYype: ?BSTR, findValue: VARIANT) HRESULT {
+                return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetClientCertificateFromStore(@ptrCast(*const IChannelCredentials, self), storeLocation, storeName, findYype, findValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IChannelCredentials_SetClientCertificateFromStoreByName(self: *const T, subjectName: ?BSTR, storeLocation: ?BSTR, storeName: ?BSTR) HRESULT {
+                return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetClientCertificateFromStoreByName(@ptrCast(*const IChannelCredentials, self), subjectName, storeLocation, storeName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IChannelCredentials_SetClientCertificateFromFile(self: *const T, filename: ?BSTR, password: ?BSTR, keystorageFlags: ?BSTR) HRESULT {
+                return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetClientCertificateFromFile(@ptrCast(*const IChannelCredentials, self), filename, password, keystorageFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IChannelCredentials_SetDefaultServiceCertificateFromStore(self: *const T, storeLocation: ?BSTR, storeName: ?BSTR, findType: ?BSTR, findValue: VARIANT) HRESULT {
+                return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetDefaultServiceCertificateFromStore(@ptrCast(*const IChannelCredentials, self), storeLocation, storeName, findType, findValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IChannelCredentials_SetDefaultServiceCertificateFromStoreByName(self: *const T, subjectName: ?BSTR, storeLocation: ?BSTR, storeName: ?BSTR) HRESULT {
+                return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetDefaultServiceCertificateFromStoreByName(@ptrCast(*const IChannelCredentials, self), subjectName, storeLocation, storeName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IChannelCredentials_SetDefaultServiceCertificateFromFile(self: *const T, filename: ?BSTR, password: ?BSTR, keystorageFlags: ?BSTR) HRESULT {
+                return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetDefaultServiceCertificateFromFile(@ptrCast(*const IChannelCredentials, self), filename, password, keystorageFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IChannelCredentials_SetServiceCertificateAuthentication(self: *const T, storeLocation: ?BSTR, revocationMode: ?BSTR, certificateValidationMode: ?BSTR) HRESULT {
+                return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetServiceCertificateAuthentication(@ptrCast(*const IChannelCredentials, self), storeLocation, revocationMode, certificateValidationMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IChannelCredentials_SetIssuedToken(self: *const T, localIssuerAddres: ?BSTR, localIssuerBindingType: ?BSTR, localIssuerBinding: ?BSTR) HRESULT {
+                return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetIssuedToken(@ptrCast(*const IChannelCredentials, self), localIssuerAddres, localIssuerBindingType, localIssuerBinding);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -132,13 +133,9 @@ pub const IChannelCredentials = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
@@ -151,9 +148,7 @@ const IDispatch = @import("../../system/com.zig").IDispatch;
 const VARIANT = @import("../../system/com.zig").VARIANT;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

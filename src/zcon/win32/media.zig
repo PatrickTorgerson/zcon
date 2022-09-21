@@ -117,18 +117,14 @@ pub const TIMECODE_SAMPLE_FLAGS = enum(u32) {
         ATN_READ: u1 = 0,
         RTC_READ: u1 = 0,
     }) TIMECODE_SAMPLE_FLAGS {
-        return @intToEnum(TIMECODE_SAMPLE_FLAGS,
-              (if (o.TIMECODE_READ == 1) @enumToInt(TIMECODE_SAMPLE_FLAGS.TIMECODE_READ) else 0)
-            | (if (o.ATN_READ == 1) @enumToInt(TIMECODE_SAMPLE_FLAGS.ATN_READ) else 0)
-            | (if (o.RTC_READ == 1) @enumToInt(TIMECODE_SAMPLE_FLAGS.RTC_READ) else 0)
-        );
+        return @intToEnum(TIMECODE_SAMPLE_FLAGS, (if (o.TIMECODE_READ == 1) @enumToInt(TIMECODE_SAMPLE_FLAGS.TIMECODE_READ) else 0) | (if (o.ATN_READ == 1) @enumToInt(TIMECODE_SAMPLE_FLAGS.ATN_READ) else 0) | (if (o.RTC_READ == 1) @enumToInt(TIMECODE_SAMPLE_FLAGS.RTC_READ) else 0));
     }
 };
 pub const ED_DEVCAP_TIMECODE_READ = TIMECODE_SAMPLE_FLAGS.TIMECODE_READ;
 pub const ED_DEVCAP_ATN_READ = TIMECODE_SAMPLE_FLAGS.ATN_READ;
 pub const ED_DEVCAP_RTC_READ = TIMECODE_SAMPLE_FLAGS.RTC_READ;
 
-pub const HTASK = *opaque{};
+pub const HTASK = *opaque {};
 
 pub const MMTIME = packed struct {
     wType: u32,
@@ -152,7 +148,7 @@ pub const MMTIME = packed struct {
     },
 };
 
-pub const LPDRVCALLBACK = fn(
+pub const LPDRVCALLBACK = fn (
     hdrvr: ?HDRVR,
     uMsg: u32,
     dwUser: usize,
@@ -165,7 +161,7 @@ pub const TIMECAPS = extern struct {
     wPeriodMax: u32,
 };
 
-pub const LPTIMECALLBACK = fn(
+pub const LPTIMECALLBACK = fn (
     uTimerID: u32,
     uMsg: u32,
     dwUser: usize,
@@ -179,49 +175,51 @@ pub const IID_IReferenceClock = &IID_IReferenceClock_Value;
 pub const IReferenceClock = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetTime: fn(
+        GetTime: fn (
             self: *const IReferenceClock,
             pTime: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AdviseTime: fn(
+        AdviseTime: fn (
             self: *const IReferenceClock,
             baseTime: i64,
             streamTime: i64,
             hEvent: ?HANDLE,
             pdwAdviseCookie: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AdvisePeriodic: fn(
+        AdvisePeriodic: fn (
             self: *const IReferenceClock,
             startTime: i64,
             periodTime: i64,
             hSemaphore: ?HANDLE,
             pdwAdviseCookie: ?*usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Unadvise: fn(
+        Unadvise: fn (
             self: *const IReferenceClock,
             dwAdviseCookie: usize,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReferenceClock_GetTime(self: *const T, pTime: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceClock.VTable, self.vtable).GetTime(@ptrCast(*const IReferenceClock, self), pTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReferenceClock_AdviseTime(self: *const T, baseTime: i64, streamTime: i64, hEvent: ?HANDLE, pdwAdviseCookie: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceClock.VTable, self.vtable).AdviseTime(@ptrCast(*const IReferenceClock, self), baseTime, streamTime, hEvent, pdwAdviseCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReferenceClock_AdvisePeriodic(self: *const T, startTime: i64, periodTime: i64, hSemaphore: ?HANDLE, pdwAdviseCookie: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceClock.VTable, self.vtable).AdvisePeriodic(@ptrCast(*const IReferenceClock, self), startTime, periodTime, hSemaphore, pdwAdviseCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReferenceClock_Unadvise(self: *const T, dwAdviseCookie: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceClock.VTable, self.vtable).Unadvise(@ptrCast(*const IReferenceClock, self), dwAdviseCookie);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IReferenceClock_GetTime(self: *const T, pTime: ?*i64) HRESULT {
+                return @ptrCast(*const IReferenceClock.VTable, self.vtable).GetTime(@ptrCast(*const IReferenceClock, self), pTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IReferenceClock_AdviseTime(self: *const T, baseTime: i64, streamTime: i64, hEvent: ?HANDLE, pdwAdviseCookie: ?*usize) HRESULT {
+                return @ptrCast(*const IReferenceClock.VTable, self.vtable).AdviseTime(@ptrCast(*const IReferenceClock, self), baseTime, streamTime, hEvent, pdwAdviseCookie);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IReferenceClock_AdvisePeriodic(self: *const T, startTime: i64, periodTime: i64, hSemaphore: ?HANDLE, pdwAdviseCookie: ?*usize) HRESULT {
+                return @ptrCast(*const IReferenceClock.VTable, self.vtable).AdvisePeriodic(@ptrCast(*const IReferenceClock, self), startTime, periodTime, hSemaphore, pdwAdviseCookie);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IReferenceClock_Unadvise(self: *const T, dwAdviseCookie: usize) HRESULT {
+                return @ptrCast(*const IReferenceClock.VTable, self.vtable).Unadvise(@ptrCast(*const IReferenceClock, self), dwAdviseCookie);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -231,27 +229,29 @@ pub const IID_IReferenceClockTimerControl = &IID_IReferenceClockTimerControl_Val
 pub const IReferenceClockTimerControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetDefaultTimerResolution: fn(
+        SetDefaultTimerResolution: fn (
             self: *const IReferenceClockTimerControl,
             timerResolution: i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDefaultTimerResolution: fn(
+        GetDefaultTimerResolution: fn (
             self: *const IReferenceClockTimerControl,
             pTimerResolution: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReferenceClockTimerControl_SetDefaultTimerResolution(self: *const T, timerResolution: i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceClockTimerControl.VTable, self.vtable).SetDefaultTimerResolution(@ptrCast(*const IReferenceClockTimerControl, self), timerResolution);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReferenceClockTimerControl_GetDefaultTimerResolution(self: *const T, pTimerResolution: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceClockTimerControl.VTable, self.vtable).GetDefaultTimerResolution(@ptrCast(*const IReferenceClockTimerControl, self), pTimerResolution);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IReferenceClockTimerControl_SetDefaultTimerResolution(self: *const T, timerResolution: i64) HRESULT {
+                return @ptrCast(*const IReferenceClockTimerControl.VTable, self.vtable).SetDefaultTimerResolution(@ptrCast(*const IReferenceClockTimerControl, self), timerResolution);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IReferenceClockTimerControl_GetDefaultTimerResolution(self: *const T, pTimerResolution: ?*i64) HRESULT {
+                return @ptrCast(*const IReferenceClockTimerControl.VTable, self.vtable).GetDefaultTimerResolution(@ptrCast(*const IReferenceClockTimerControl, self), pTimerResolution);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -262,9 +262,11 @@ pub const IReferenceClock2 = extern struct {
         base: IReferenceClock.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IReferenceClock.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IReferenceClock.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -284,7 +286,6 @@ pub const TIMECODE_SAMPLE = extern struct {
     dwFlags: TIMECODE_SAMPLE_FLAGS,
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (7)
 //--------------------------------------------------------------------------------
@@ -296,8 +297,7 @@ pub extern "winmm" fn timeGetSystemTime(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn timeGetTime(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "winmm" fn timeGetTime() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn timeGetDevCaps(
@@ -328,19 +328,14 @@ pub extern "winmm" fn timeKillEvent(
     uTimerID: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
@@ -353,12 +348,14 @@ const IUnknown = @import("system/com.zig").IUnknown;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "LPDRVCALLBACK")) { _ = LPDRVCALLBACK; }
-    if (@hasDecl(@This(), "LPTIMECALLBACK")) { _ = LPTIMECALLBACK; }
+    if (@hasDecl(@This(), "LPDRVCALLBACK")) {
+        _ = LPDRVCALLBACK;
+    }
+    if (@hasDecl(@This(), "LPTIMECALLBACK")) {
+        _ = LPTIMECALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

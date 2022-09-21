@@ -4648,13 +4648,13 @@ pub const MCI_OVLY_WHERE_VIDEO = @as(i32, 1048576);
 //--------------------------------------------------------------------------------
 // Section: Types (190)
 //--------------------------------------------------------------------------------
-pub const HMMIO = *opaque{};
+pub const HMMIO = *opaque {};
 
-pub const HDRVR = *opaque{};
+pub const HDRVR = *opaque {};
 
-pub const HIC = *opaque{};
+pub const HIC = *opaque {};
 
-pub const HVIDEO = *opaque{};
+pub const HVIDEO = *opaque {};
 
 const CLSID_KSDATAFORMAT_SUBTYPE_IEEE_FLOAT_Value = Guid.initString("00000003-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEEE_FLOAT = &CLSID_KSDATAFORMAT_SUBTYPE_IEEE_FLOAT_Value;
@@ -4884,7 +4884,7 @@ pub const JPEGINFOHEADER = packed struct {
     JPEGVSubSampling: u32,
 };
 
-pub const YIELDPROC = fn(
+pub const YIELDPROC = fn (
     mciId: u32,
     dwYieldData: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -5207,7 +5207,7 @@ pub const DRVCONFIGINFO = packed struct {
     lpszDCIAliasName: ?[*:0]const u16,
 };
 
-pub const DRIVERPROC = fn(
+pub const DRIVERPROC = fn (
     param0: usize,
     param1: ?HDRVR,
     param2: u32,
@@ -5215,7 +5215,7 @@ pub const DRIVERPROC = fn(
     param4: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const DRIVERMSGPROC = fn(
+pub const DRIVERMSGPROC = fn (
     param0: u32,
     param1: u32,
     param2: usize,
@@ -5223,7 +5223,7 @@ pub const DRIVERMSGPROC = fn(
     param4: usize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPMMIOPROC = fn(
+pub const LPMMIOPROC = fn (
     lpmmioinfo: ?PSTR,
     uMsg: u32,
     lParam1: LPARAM,
@@ -5899,7 +5899,7 @@ pub const AVIFILEINFOA = extern struct {
     szFileType: [64]CHAR,
 };
 
-pub const AVISAVECALLBACK = fn(
+pub const AVISAVECALLBACK = fn (
     param0: i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -5923,37 +5923,37 @@ pub const IID_IAVIStream = &IID_IAVIStream_Value;
 pub const IAVIStream = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Create: fn(
+        Create: fn (
             self: *const IAVIStream,
             lParam1: LPARAM,
             lParam2: LPARAM,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Info: fn(
+        Info: fn (
             self: *const IAVIStream,
             // TODO: what to do with BytesParamIndex 1?
             psi: ?*AVISTREAMINFOW,
             lSize: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindSample: fn(
+        FindSample: fn (
             self: *const IAVIStream,
             lPos: i32,
             lFlags: i32,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-        ReadFormat: fn(
+        ReadFormat: fn (
             self: *const IAVIStream,
             lPos: i32,
             // TODO: what to do with BytesParamIndex 2?
             lpFormat: ?*anyopaque,
             lpcbFormat: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetFormat: fn(
+        SetFormat: fn (
             self: *const IAVIStream,
             lPos: i32,
             // TODO: what to do with BytesParamIndex 2?
             lpFormat: ?*anyopaque,
             cbFormat: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Read: fn(
+        Read: fn (
             self: *const IAVIStream,
             lStart: i32,
             lSamples: i32,
@@ -5963,7 +5963,7 @@ pub const IAVIStream = extern struct {
             plBytes: ?*i32,
             plSamples: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Write: fn(
+        Write: fn (
             self: *const IAVIStream,
             lStart: i32,
             lSamples: i32,
@@ -5974,26 +5974,26 @@ pub const IAVIStream = extern struct {
             plSampWritten: ?*i32,
             plBytesWritten: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
+        Delete: fn (
             self: *const IAVIStream,
             lStart: i32,
             lSamples: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReadData: fn(
+        ReadData: fn (
             self: *const IAVIStream,
             fcc: u32,
             // TODO: what to do with BytesParamIndex 2?
             lp: ?*anyopaque,
             lpcb: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WriteData: fn(
+        WriteData: fn (
             self: *const IAVIStream,
             fcc: u32,
             // TODO: what to do with BytesParamIndex 2?
             lp: ?*anyopaque,
             cb: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetInfo: fn(
+        SetInfo: fn (
             self: *const IAVIStream,
             // TODO: what to do with BytesParamIndex 1?
             lpInfo: ?*AVISTREAMINFOW,
@@ -6001,53 +6001,55 @@ pub const IAVIStream = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIStream_Create(self: *const T, lParam1: LPARAM, lParam2: LPARAM) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIStream.VTable, self.vtable).Create(@ptrCast(*const IAVIStream, self), lParam1, lParam2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIStream_Info(self: *const T, psi: ?*AVISTREAMINFOW, lSize: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIStream.VTable, self.vtable).Info(@ptrCast(*const IAVIStream, self), psi, lSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIStream_FindSample(self: *const T, lPos: i32, lFlags: i32) callconv(.Inline) i32 {
-            return @ptrCast(*const IAVIStream.VTable, self.vtable).FindSample(@ptrCast(*const IAVIStream, self), lPos, lFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIStream_ReadFormat(self: *const T, lPos: i32, lpFormat: ?*anyopaque, lpcbFormat: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIStream.VTable, self.vtable).ReadFormat(@ptrCast(*const IAVIStream, self), lPos, lpFormat, lpcbFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIStream_SetFormat(self: *const T, lPos: i32, lpFormat: ?*anyopaque, cbFormat: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIStream.VTable, self.vtable).SetFormat(@ptrCast(*const IAVIStream, self), lPos, lpFormat, cbFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIStream_Read(self: *const T, lStart: i32, lSamples: i32, lpBuffer: ?*anyopaque, cbBuffer: i32, plBytes: ?*i32, plSamples: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIStream.VTable, self.vtable).Read(@ptrCast(*const IAVIStream, self), lStart, lSamples, lpBuffer, cbBuffer, plBytes, plSamples);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIStream_Write(self: *const T, lStart: i32, lSamples: i32, lpBuffer: ?*anyopaque, cbBuffer: i32, dwFlags: u32, plSampWritten: ?*i32, plBytesWritten: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIStream.VTable, self.vtable).Write(@ptrCast(*const IAVIStream, self), lStart, lSamples, lpBuffer, cbBuffer, dwFlags, plSampWritten, plBytesWritten);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIStream_Delete(self: *const T, lStart: i32, lSamples: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIStream.VTable, self.vtable).Delete(@ptrCast(*const IAVIStream, self), lStart, lSamples);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIStream_ReadData(self: *const T, fcc: u32, lp: ?*anyopaque, lpcb: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIStream.VTable, self.vtable).ReadData(@ptrCast(*const IAVIStream, self), fcc, lp, lpcb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIStream_WriteData(self: *const T, fcc: u32, lp: ?*anyopaque, cb: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIStream.VTable, self.vtable).WriteData(@ptrCast(*const IAVIStream, self), fcc, lp, cb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIStream_SetInfo(self: *const T, lpInfo: ?*AVISTREAMINFOW, cbInfo: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIStream.VTable, self.vtable).SetInfo(@ptrCast(*const IAVIStream, self), lpInfo, cbInfo);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIStream_Create(self: *const T, lParam1: LPARAM, lParam2: LPARAM) HRESULT {
+                return @ptrCast(*const IAVIStream.VTable, self.vtable).Create(@ptrCast(*const IAVIStream, self), lParam1, lParam2);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIStream_Info(self: *const T, psi: ?*AVISTREAMINFOW, lSize: i32) HRESULT {
+                return @ptrCast(*const IAVIStream.VTable, self.vtable).Info(@ptrCast(*const IAVIStream, self), psi, lSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIStream_FindSample(self: *const T, lPos: i32, lFlags: i32) i32 {
+                return @ptrCast(*const IAVIStream.VTable, self.vtable).FindSample(@ptrCast(*const IAVIStream, self), lPos, lFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIStream_ReadFormat(self: *const T, lPos: i32, lpFormat: ?*anyopaque, lpcbFormat: ?*i32) HRESULT {
+                return @ptrCast(*const IAVIStream.VTable, self.vtable).ReadFormat(@ptrCast(*const IAVIStream, self), lPos, lpFormat, lpcbFormat);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIStream_SetFormat(self: *const T, lPos: i32, lpFormat: ?*anyopaque, cbFormat: i32) HRESULT {
+                return @ptrCast(*const IAVIStream.VTable, self.vtable).SetFormat(@ptrCast(*const IAVIStream, self), lPos, lpFormat, cbFormat);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIStream_Read(self: *const T, lStart: i32, lSamples: i32, lpBuffer: ?*anyopaque, cbBuffer: i32, plBytes: ?*i32, plSamples: ?*i32) HRESULT {
+                return @ptrCast(*const IAVIStream.VTable, self.vtable).Read(@ptrCast(*const IAVIStream, self), lStart, lSamples, lpBuffer, cbBuffer, plBytes, plSamples);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIStream_Write(self: *const T, lStart: i32, lSamples: i32, lpBuffer: ?*anyopaque, cbBuffer: i32, dwFlags: u32, plSampWritten: ?*i32, plBytesWritten: ?*i32) HRESULT {
+                return @ptrCast(*const IAVIStream.VTable, self.vtable).Write(@ptrCast(*const IAVIStream, self), lStart, lSamples, lpBuffer, cbBuffer, dwFlags, plSampWritten, plBytesWritten);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIStream_Delete(self: *const T, lStart: i32, lSamples: i32) HRESULT {
+                return @ptrCast(*const IAVIStream.VTable, self.vtable).Delete(@ptrCast(*const IAVIStream, self), lStart, lSamples);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIStream_ReadData(self: *const T, fcc: u32, lp: ?*anyopaque, lpcb: ?*i32) HRESULT {
+                return @ptrCast(*const IAVIStream.VTable, self.vtable).ReadData(@ptrCast(*const IAVIStream, self), fcc, lp, lpcb);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIStream_WriteData(self: *const T, fcc: u32, lp: ?*anyopaque, cb: i32) HRESULT {
+                return @ptrCast(*const IAVIStream.VTable, self.vtable).WriteData(@ptrCast(*const IAVIStream, self), fcc, lp, cb);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIStream_SetInfo(self: *const T, lpInfo: ?*AVISTREAMINFOW, cbInfo: i32) HRESULT {
+                return @ptrCast(*const IAVIStream.VTable, self.vtable).SetInfo(@ptrCast(*const IAVIStream, self), lpInfo, cbInfo);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6057,28 +6059,30 @@ pub const IID_IAVIStreaming = &IID_IAVIStreaming_Value;
 pub const IAVIStreaming = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Begin: fn(
+        Begin: fn (
             self: *const IAVIStreaming,
             lStart: i32,
             lEnd: i32,
             lRate: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        End: fn(
+        End: fn (
             self: *const IAVIStreaming,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIStreaming_Begin(self: *const T, lStart: i32, lEnd: i32, lRate: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIStreaming.VTable, self.vtable).Begin(@ptrCast(*const IAVIStreaming, self), lStart, lEnd, lRate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIStreaming_End(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIStreaming.VTable, self.vtable).End(@ptrCast(*const IAVIStreaming, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIStreaming_Begin(self: *const T, lStart: i32, lEnd: i32, lRate: i32) HRESULT {
+                return @ptrCast(*const IAVIStreaming.VTable, self.vtable).Begin(@ptrCast(*const IAVIStreaming, self), lStart, lEnd, lRate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIStreaming_End(self: *const T) HRESULT {
+                return @ptrCast(*const IAVIStreaming.VTable, self.vtable).End(@ptrCast(*const IAVIStreaming, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6088,19 +6092,19 @@ pub const IID_IAVIEditStream = &IID_IAVIEditStream_Value;
 pub const IAVIEditStream = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Cut: fn(
+        Cut: fn (
             self: *const IAVIEditStream,
             plStart: ?*i32,
             plLength: ?*i32,
             ppResult: ?*?*IAVIStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Copy: fn(
+        Copy: fn (
             self: *const IAVIEditStream,
             plStart: ?*i32,
             plLength: ?*i32,
             ppResult: ?*?*IAVIStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Paste: fn(
+        Paste: fn (
             self: *const IAVIEditStream,
             plPos: ?*i32,
             plLength: ?*i32,
@@ -6108,11 +6112,11 @@ pub const IAVIEditStream = extern struct {
             lStart: i32,
             lEnd: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
+        Clone: fn (
             self: *const IAVIEditStream,
             ppResult: ?*?*IAVIStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetInfo: fn(
+        SetInfo: fn (
             self: *const IAVIEditStream,
             // TODO: what to do with BytesParamIndex 1?
             lpInfo: ?*AVISTREAMINFOW,
@@ -6120,29 +6124,31 @@ pub const IAVIEditStream = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIEditStream_Cut(self: *const T, plStart: ?*i32, plLength: ?*i32, ppResult: ?*?*IAVIStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIEditStream.VTable, self.vtable).Cut(@ptrCast(*const IAVIEditStream, self), plStart, plLength, ppResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIEditStream_Copy(self: *const T, plStart: ?*i32, plLength: ?*i32, ppResult: ?*?*IAVIStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIEditStream.VTable, self.vtable).Copy(@ptrCast(*const IAVIEditStream, self), plStart, plLength, ppResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIEditStream_Paste(self: *const T, plPos: ?*i32, plLength: ?*i32, pstream: ?*IAVIStream, lStart: i32, lEnd: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIEditStream.VTable, self.vtable).Paste(@ptrCast(*const IAVIEditStream, self), plPos, plLength, pstream, lStart, lEnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIEditStream_Clone(self: *const T, ppResult: ?*?*IAVIStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIEditStream.VTable, self.vtable).Clone(@ptrCast(*const IAVIEditStream, self), ppResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIEditStream_SetInfo(self: *const T, lpInfo: ?*AVISTREAMINFOW, cbInfo: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIEditStream.VTable, self.vtable).SetInfo(@ptrCast(*const IAVIEditStream, self), lpInfo, cbInfo);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIEditStream_Cut(self: *const T, plStart: ?*i32, plLength: ?*i32, ppResult: ?*?*IAVIStream) HRESULT {
+                return @ptrCast(*const IAVIEditStream.VTable, self.vtable).Cut(@ptrCast(*const IAVIEditStream, self), plStart, plLength, ppResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIEditStream_Copy(self: *const T, plStart: ?*i32, plLength: ?*i32, ppResult: ?*?*IAVIStream) HRESULT {
+                return @ptrCast(*const IAVIEditStream.VTable, self.vtable).Copy(@ptrCast(*const IAVIEditStream, self), plStart, plLength, ppResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIEditStream_Paste(self: *const T, plPos: ?*i32, plLength: ?*i32, pstream: ?*IAVIStream, lStart: i32, lEnd: i32) HRESULT {
+                return @ptrCast(*const IAVIEditStream.VTable, self.vtable).Paste(@ptrCast(*const IAVIEditStream, self), plPos, plLength, pstream, lStart, lEnd);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIEditStream_Clone(self: *const T, ppResult: ?*?*IAVIStream) HRESULT {
+                return @ptrCast(*const IAVIEditStream.VTable, self.vtable).Clone(@ptrCast(*const IAVIEditStream, self), ppResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIEditStream_SetInfo(self: *const T, lpInfo: ?*AVISTREAMINFOW, cbInfo: i32) HRESULT {
+                return @ptrCast(*const IAVIEditStream.VTable, self.vtable).SetInfo(@ptrCast(*const IAVIEditStream, self), lpInfo, cbInfo);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6151,18 +6157,20 @@ pub const IID_IAVIPersistFile = &IID_IAVIPersistFile_Value;
 pub const IAVIPersistFile = extern struct {
     pub const VTable = extern struct {
         base: IPersistFile.VTable,
-        Reserved1: fn(
+        Reserved1: fn (
             self: *const IAVIPersistFile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPersistFile.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIPersistFile_Reserved1(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIPersistFile.VTable, self.vtable).Reserved1(@ptrCast(*const IAVIPersistFile, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPersistFile.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIPersistFile_Reserved1(self: *const T) HRESULT {
+                return @ptrCast(*const IAVIPersistFile.VTable, self.vtable).Reserved1(@ptrCast(*const IAVIPersistFile, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6172,78 +6180,80 @@ pub const IID_IAVIFile = &IID_IAVIFile_Value;
 pub const IAVIFile = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Info: fn(
+        Info: fn (
             self: *const IAVIFile,
             // TODO: what to do with BytesParamIndex 1?
             pfi: ?*AVIFILEINFOW,
             lSize: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStream: fn(
+        GetStream: fn (
             self: *const IAVIFile,
             ppStream: ?*?*IAVIStream,
             fccType: u32,
             lParam: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateStream: fn(
+        CreateStream: fn (
             self: *const IAVIFile,
             ppStream: ?*?*IAVIStream,
             psi: ?*AVISTREAMINFOW,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WriteData: fn(
+        WriteData: fn (
             self: *const IAVIFile,
             ckid: u32,
             // TODO: what to do with BytesParamIndex 2?
             lpData: ?*anyopaque,
             cbData: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReadData: fn(
+        ReadData: fn (
             self: *const IAVIFile,
             ckid: u32,
             // TODO: what to do with BytesParamIndex 2?
             lpData: ?*anyopaque,
             lpcbData: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndRecord: fn(
+        EndRecord: fn (
             self: *const IAVIFile,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteStream: fn(
+        DeleteStream: fn (
             self: *const IAVIFile,
             fccType: u32,
             lParam: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIFile_Info(self: *const T, pfi: ?*AVIFILEINFOW, lSize: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIFile.VTable, self.vtable).Info(@ptrCast(*const IAVIFile, self), pfi, lSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIFile_GetStream(self: *const T, ppStream: ?*?*IAVIStream, fccType: u32, lParam: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIFile.VTable, self.vtable).GetStream(@ptrCast(*const IAVIFile, self), ppStream, fccType, lParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIFile_CreateStream(self: *const T, ppStream: ?*?*IAVIStream, psi: ?*AVISTREAMINFOW) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIFile.VTable, self.vtable).CreateStream(@ptrCast(*const IAVIFile, self), ppStream, psi);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIFile_WriteData(self: *const T, ckid: u32, lpData: ?*anyopaque, cbData: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIFile.VTable, self.vtable).WriteData(@ptrCast(*const IAVIFile, self), ckid, lpData, cbData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIFile_ReadData(self: *const T, ckid: u32, lpData: ?*anyopaque, lpcbData: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIFile.VTable, self.vtable).ReadData(@ptrCast(*const IAVIFile, self), ckid, lpData, lpcbData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIFile_EndRecord(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIFile.VTable, self.vtable).EndRecord(@ptrCast(*const IAVIFile, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAVIFile_DeleteStream(self: *const T, fccType: u32, lParam: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAVIFile.VTable, self.vtable).DeleteStream(@ptrCast(*const IAVIFile, self), fccType, lParam);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIFile_Info(self: *const T, pfi: ?*AVIFILEINFOW, lSize: i32) HRESULT {
+                return @ptrCast(*const IAVIFile.VTable, self.vtable).Info(@ptrCast(*const IAVIFile, self), pfi, lSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIFile_GetStream(self: *const T, ppStream: ?*?*IAVIStream, fccType: u32, lParam: i32) HRESULT {
+                return @ptrCast(*const IAVIFile.VTable, self.vtable).GetStream(@ptrCast(*const IAVIFile, self), ppStream, fccType, lParam);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIFile_CreateStream(self: *const T, ppStream: ?*?*IAVIStream, psi: ?*AVISTREAMINFOW) HRESULT {
+                return @ptrCast(*const IAVIFile.VTable, self.vtable).CreateStream(@ptrCast(*const IAVIFile, self), ppStream, psi);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIFile_WriteData(self: *const T, ckid: u32, lpData: ?*anyopaque, cbData: i32) HRESULT {
+                return @ptrCast(*const IAVIFile.VTable, self.vtable).WriteData(@ptrCast(*const IAVIFile, self), ckid, lpData, cbData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIFile_ReadData(self: *const T, ckid: u32, lpData: ?*anyopaque, lpcbData: ?*i32) HRESULT {
+                return @ptrCast(*const IAVIFile.VTable, self.vtable).ReadData(@ptrCast(*const IAVIFile, self), ckid, lpData, lpcbData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIFile_EndRecord(self: *const T) HRESULT {
+                return @ptrCast(*const IAVIFile.VTable, self.vtable).EndRecord(@ptrCast(*const IAVIFile, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAVIFile_DeleteStream(self: *const T, fccType: u32, lParam: i32) HRESULT {
+                return @ptrCast(*const IAVIFile.VTable, self.vtable).DeleteStream(@ptrCast(*const IAVIFile, self), fccType, lParam);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6253,20 +6263,20 @@ pub const IID_IGetFrame = &IID_IGetFrame_Value;
 pub const IGetFrame = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFrame: fn(
+        GetFrame: fn (
             self: *const IGetFrame,
             lPos: i32,
         ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-        Begin: fn(
+        Begin: fn (
             self: *const IGetFrame,
             lStart: i32,
             lEnd: i32,
             lRate: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        End: fn(
+        End: fn (
             self: *const IGetFrame,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetFormat: fn(
+        SetFormat: fn (
             self: *const IGetFrame,
             lpbi: ?*BITMAPINFOHEADER,
             lpBits: ?*anyopaque,
@@ -6277,25 +6287,27 @@ pub const IGetFrame = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetFrame_GetFrame(self: *const T, lPos: i32) callconv(.Inline) ?*anyopaque {
-            return @ptrCast(*const IGetFrame.VTable, self.vtable).GetFrame(@ptrCast(*const IGetFrame, self), lPos);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetFrame_Begin(self: *const T, lStart: i32, lEnd: i32, lRate: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGetFrame.VTable, self.vtable).Begin(@ptrCast(*const IGetFrame, self), lStart, lEnd, lRate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetFrame_End(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGetFrame.VTable, self.vtable).End(@ptrCast(*const IGetFrame, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetFrame_SetFormat(self: *const T, lpbi: ?*BITMAPINFOHEADER, lpBits: ?*anyopaque, x: i32, y: i32, dx: i32, dy: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGetFrame.VTable, self.vtable).SetFormat(@ptrCast(*const IGetFrame, self), lpbi, lpBits, x, y, dx, dy);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGetFrame_GetFrame(self: *const T, lPos: i32) ?*anyopaque {
+                return @ptrCast(*const IGetFrame.VTable, self.vtable).GetFrame(@ptrCast(*const IGetFrame, self), lPos);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGetFrame_Begin(self: *const T, lStart: i32, lEnd: i32, lRate: i32) HRESULT {
+                return @ptrCast(*const IGetFrame.VTable, self.vtable).Begin(@ptrCast(*const IGetFrame, self), lStart, lEnd, lRate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGetFrame_End(self: *const T) HRESULT {
+                return @ptrCast(*const IGetFrame.VTable, self.vtable).End(@ptrCast(*const IGetFrame, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IGetFrame_SetFormat(self: *const T, lpbi: ?*BITMAPINFOHEADER, lpBits: ?*anyopaque, x: i32, y: i32, dx: i32, dy: i32) HRESULT {
+                return @ptrCast(*const IGetFrame.VTable, self.vtable).SetFormat(@ptrCast(*const IGetFrame, self), lpbi, lpBits, x, y, dx, dy);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6389,45 +6401,45 @@ pub const CAPINFOCHUNK = extern struct {
     cbData: i32,
 };
 
-pub const CAPYIELDCALLBACK = fn(
+pub const CAPYIELDCALLBACK = fn (
     hWnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const CAPSTATUSCALLBACKW = fn(
-    hWnd: ?HWND,
-    nID: i32,
-    lpsz: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
-
-pub const CAPERRORCALLBACKW = fn(
+pub const CAPSTATUSCALLBACKW = fn (
     hWnd: ?HWND,
     nID: i32,
     lpsz: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const CAPSTATUSCALLBACKA = fn(
+pub const CAPERRORCALLBACKW = fn (
+    hWnd: ?HWND,
+    nID: i32,
+    lpsz: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
+
+pub const CAPSTATUSCALLBACKA = fn (
     hWnd: ?HWND,
     nID: i32,
     lpsz: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const CAPERRORCALLBACKA = fn(
+pub const CAPERRORCALLBACKA = fn (
     hWnd: ?HWND,
     nID: i32,
     lpsz: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const CAPVIDEOCALLBACK = fn(
+pub const CAPVIDEOCALLBACK = fn (
     hWnd: ?HWND,
     lpVHdr: ?*VIDEOHDR,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const CAPWAVECALLBACK = fn(
+pub const CAPWAVECALLBACK = fn (
     hWnd: ?HWND,
     lpWHdr: ?*WAVEHDR,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const CAPCONTROLCALLBACK = fn(
+pub const CAPCONTROLCALLBACK = fn (
     hWnd: ?HWND,
     nState: i32,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
@@ -6475,17 +6487,17 @@ pub const MCI_OPEN_DRIVER_PARMS = packed struct {
     wType: u32,
 };
 
-pub const LPTASKCALLBACK = fn(
+pub const LPTASKCALLBACK = fn (
     dwInst: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const VFWWDMExtensionProc = fn(
+pub const VFWWDMExtensionProc = fn (
     pfnDeviceIoControl: ?*anyopaque,
     pfnAddPropertyPage: ?LPFNSVADDPROPSHEETPAGE,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPFNEXTDEVIO = fn(
+pub const LPFNEXTDEVIO = fn (
     lParam: LPARAM,
     dwFlags: u32,
     dwIoControlCode: u32,
@@ -6496,7 +6508,6 @@ pub const LPFNEXTDEVIO = fn(
     lpBytesReturned: ?*u32,
     lpOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (170)
@@ -6827,8 +6838,7 @@ pub extern "winmm" fn joyGetPosEx(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn joyGetNumDevs(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "winmm" fn joyGetNumDevs() callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "winmm" fn joyGetDevCapsA(
     uJoyID: usize,
@@ -6876,8 +6886,7 @@ pub extern "winmm" fn joySetThreshold(
     uThreshold: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "msvfw32" fn VideoForWindowsVersion(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "msvfw32" fn VideoForWindowsVersion() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msvfw32" fn ICInfo(
@@ -7071,8 +7080,7 @@ pub extern "msvfw32" fn ICCompressorFree(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "msvfw32" fn DrawDibOpen(
-) callconv(@import("std").os.windows.WINAPI) isize;
+pub extern "msvfw32" fn DrawDibOpen() callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msvfw32" fn DrawDibClose(
@@ -7170,12 +7178,10 @@ pub extern "msvfw32" fn DrawDibProfileDisplay(
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "avifil32" fn AVIFileInit(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "avifil32" fn AVIFileInit() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "avifil32" fn AVIFileExit(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "avifil32" fn AVIFileExit() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "avifil32" fn AVIFileAddRef(
@@ -7540,8 +7546,7 @@ pub extern "avifil32" fn AVIGetFromClipboard(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "avifil32" fn AVIClearClipboard(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "avifil32" fn AVIClearClipboard() callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "avifil32" fn CreateEditableStream(
@@ -7626,8 +7631,7 @@ pub extern "msvfw32" fn MCIWndCreateW(
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "msvfw32" fn MCIWndRegisterClass(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "msvfw32" fn MCIWndRegisterClass() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "avicap32" fn capCreateCaptureWindowA(
@@ -7705,12 +7709,9 @@ pub extern "winmm" fn mmTaskSignal(
     h: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "winmm" fn mmTaskYield(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "winmm" fn mmTaskYield() callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "winmm" fn mmGetCurrentTask(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
+pub extern "winmm" fn mmGetCurrentTask() callconv(@import("std").os.windows.WINAPI) u32;
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (56)
@@ -7834,62 +7835,62 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetSaveFileNamePreview = thismodule.GetSaveFileNamePreviewW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const MCI_OPEN_PARMS = *opaque{};
-        pub const MCI_INFO_PARMS = *opaque{};
-        pub const MCI_SYSINFO_PARMS = *opaque{};
-        pub const MCI_SAVE_PARMS = *opaque{};
-        pub const MCI_LOAD_PARMS = *opaque{};
-        pub const MCI_VD_ESCAPE_PARMS = *opaque{};
-        pub const MCI_WAVE_OPEN_PARMS = *opaque{};
-        pub const MCI_ANIM_OPEN_PARMS = *opaque{};
-        pub const MCI_ANIM_WINDOW_PARMS = *opaque{};
-        pub const MCI_OVLY_OPEN_PARMS = *opaque{};
-        pub const MCI_OVLY_WINDOW_PARMS = *opaque{};
-        pub const MCI_OVLY_SAVE_PARMS = *opaque{};
-        pub const MCI_OVLY_LOAD_PARMS = *opaque{};
-        pub const JOYCAPS = *opaque{};
-        pub const JOYCAPS2 = *opaque{};
-        pub const MCI_DGV_CAPTURE_PARMS = *opaque{};
-        pub const MCI_DGV_INFO_PARMS = *opaque{};
-        pub const MCI_DGV_LIST_PARMS = *opaque{};
-        pub const MCI_DGV_OPEN_PARMS = *opaque{};
-        pub const MCI_DGV_QUALITY_PARMS = *opaque{};
-        pub const MCI_DGV_RESERVE_PARMS = *opaque{};
-        pub const MCI_DGV_RESTORE_PARMS = *opaque{};
-        pub const MCI_DGV_SAVE_PARMS = *opaque{};
-        pub const MCI_DGV_SETAUDIO_PARMS = *opaque{};
-        pub const MCI_DGV_SETVIDEO_PARMS = *opaque{};
-        pub const MCI_DGV_STATUS_PARMS = *opaque{};
-        pub const MCI_DGV_WINDOW_PARMS = *opaque{};
-        pub const AVISTREAMINFO = *opaque{};
-        pub const AVIFILEINFO = *opaque{};
-        pub const CAPSTATUSCALLBACK = *opaque{};
-        pub const CAPERRORCALLBACK = *opaque{};
-        pub const mciSendCommand = *opaque{};
-        pub const mciSendString = *opaque{};
-        pub const mciGetDeviceID = *opaque{};
-        pub const mciGetDeviceIDFromElementID = *opaque{};
-        pub const mciGetErrorString = *opaque{};
-        pub const mmioStringToFOURCC = *opaque{};
-        pub const mmioInstallIOProc = *opaque{};
-        pub const mmioOpen = *opaque{};
-        pub const mmioRename = *opaque{};
-        pub const joyGetDevCaps = *opaque{};
-        pub const AVIFileOpen = *opaque{};
-        pub const AVIFileInfo = *opaque{};
-        pub const AVIFileCreateStream = *opaque{};
-        pub const AVIStreamInfo = *opaque{};
-        pub const AVIStreamOpenFromFile = *opaque{};
-        pub const AVISave = *opaque{};
-        pub const AVISaveV = *opaque{};
-        pub const AVIBuildFilter = *opaque{};
-        pub const EditStreamSetName = *opaque{};
-        pub const EditStreamSetInfo = *opaque{};
-        pub const MCIWndCreate = *opaque{};
-        pub const capCreateCaptureWindow = *opaque{};
-        pub const capGetDriverDescription = *opaque{};
-        pub const GetOpenFileNamePreview = *opaque{};
-        pub const GetSaveFileNamePreview = *opaque{};
+        pub const MCI_OPEN_PARMS = *opaque {};
+        pub const MCI_INFO_PARMS = *opaque {};
+        pub const MCI_SYSINFO_PARMS = *opaque {};
+        pub const MCI_SAVE_PARMS = *opaque {};
+        pub const MCI_LOAD_PARMS = *opaque {};
+        pub const MCI_VD_ESCAPE_PARMS = *opaque {};
+        pub const MCI_WAVE_OPEN_PARMS = *opaque {};
+        pub const MCI_ANIM_OPEN_PARMS = *opaque {};
+        pub const MCI_ANIM_WINDOW_PARMS = *opaque {};
+        pub const MCI_OVLY_OPEN_PARMS = *opaque {};
+        pub const MCI_OVLY_WINDOW_PARMS = *opaque {};
+        pub const MCI_OVLY_SAVE_PARMS = *opaque {};
+        pub const MCI_OVLY_LOAD_PARMS = *opaque {};
+        pub const JOYCAPS = *opaque {};
+        pub const JOYCAPS2 = *opaque {};
+        pub const MCI_DGV_CAPTURE_PARMS = *opaque {};
+        pub const MCI_DGV_INFO_PARMS = *opaque {};
+        pub const MCI_DGV_LIST_PARMS = *opaque {};
+        pub const MCI_DGV_OPEN_PARMS = *opaque {};
+        pub const MCI_DGV_QUALITY_PARMS = *opaque {};
+        pub const MCI_DGV_RESERVE_PARMS = *opaque {};
+        pub const MCI_DGV_RESTORE_PARMS = *opaque {};
+        pub const MCI_DGV_SAVE_PARMS = *opaque {};
+        pub const MCI_DGV_SETAUDIO_PARMS = *opaque {};
+        pub const MCI_DGV_SETVIDEO_PARMS = *opaque {};
+        pub const MCI_DGV_STATUS_PARMS = *opaque {};
+        pub const MCI_DGV_WINDOW_PARMS = *opaque {};
+        pub const AVISTREAMINFO = *opaque {};
+        pub const AVIFILEINFO = *opaque {};
+        pub const CAPSTATUSCALLBACK = *opaque {};
+        pub const CAPERRORCALLBACK = *opaque {};
+        pub const mciSendCommand = *opaque {};
+        pub const mciSendString = *opaque {};
+        pub const mciGetDeviceID = *opaque {};
+        pub const mciGetDeviceIDFromElementID = *opaque {};
+        pub const mciGetErrorString = *opaque {};
+        pub const mmioStringToFOURCC = *opaque {};
+        pub const mmioInstallIOProc = *opaque {};
+        pub const mmioOpen = *opaque {};
+        pub const mmioRename = *opaque {};
+        pub const joyGetDevCaps = *opaque {};
+        pub const AVIFileOpen = *opaque {};
+        pub const AVIFileInfo = *opaque {};
+        pub const AVIFileCreateStream = *opaque {};
+        pub const AVIStreamInfo = *opaque {};
+        pub const AVIStreamOpenFromFile = *opaque {};
+        pub const AVISave = *opaque {};
+        pub const AVISaveV = *opaque {};
+        pub const AVIBuildFilter = *opaque {};
+        pub const EditStreamSetName = *opaque {};
+        pub const EditStreamSetInfo = *opaque {};
+        pub const MCIWndCreate = *opaque {};
+        pub const capCreateCaptureWindow = *opaque {};
+        pub const capGetDriverDescription = *opaque {};
+        pub const GetOpenFileNamePreview = *opaque {};
+        pub const GetSaveFileNamePreview = *opaque {};
     } else struct {
         pub const MCI_OPEN_PARMS = @compileError("'MCI_OPEN_PARMS' requires that UNICODE be set to true or false in the root module");
         pub const MCI_INFO_PARMS = @compileError("'MCI_INFO_PARMS' requires that UNICODE be set to true or false in the root module");
@@ -7987,26 +7988,56 @@ const WAVEHDR = @import("../media/audio.zig").WAVEHDR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "YIELDPROC")) { _ = YIELDPROC; }
-    if (@hasDecl(@This(), "DRIVERPROC")) { _ = DRIVERPROC; }
-    if (@hasDecl(@This(), "DRIVERMSGPROC")) { _ = DRIVERMSGPROC; }
-    if (@hasDecl(@This(), "LPMMIOPROC")) { _ = LPMMIOPROC; }
-    if (@hasDecl(@This(), "AVISAVECALLBACK")) { _ = AVISAVECALLBACK; }
-    if (@hasDecl(@This(), "CAPYIELDCALLBACK")) { _ = CAPYIELDCALLBACK; }
-    if (@hasDecl(@This(), "CAPSTATUSCALLBACKW")) { _ = CAPSTATUSCALLBACKW; }
-    if (@hasDecl(@This(), "CAPERRORCALLBACKW")) { _ = CAPERRORCALLBACKW; }
-    if (@hasDecl(@This(), "CAPSTATUSCALLBACKA")) { _ = CAPSTATUSCALLBACKA; }
-    if (@hasDecl(@This(), "CAPERRORCALLBACKA")) { _ = CAPERRORCALLBACKA; }
-    if (@hasDecl(@This(), "CAPVIDEOCALLBACK")) { _ = CAPVIDEOCALLBACK; }
-    if (@hasDecl(@This(), "CAPWAVECALLBACK")) { _ = CAPWAVECALLBACK; }
-    if (@hasDecl(@This(), "CAPCONTROLCALLBACK")) { _ = CAPCONTROLCALLBACK; }
-    if (@hasDecl(@This(), "LPTASKCALLBACK")) { _ = LPTASKCALLBACK; }
-    if (@hasDecl(@This(), "VFWWDMExtensionProc")) { _ = VFWWDMExtensionProc; }
-    if (@hasDecl(@This(), "LPFNEXTDEVIO")) { _ = LPFNEXTDEVIO; }
+    if (@hasDecl(@This(), "YIELDPROC")) {
+        _ = YIELDPROC;
+    }
+    if (@hasDecl(@This(), "DRIVERPROC")) {
+        _ = DRIVERPROC;
+    }
+    if (@hasDecl(@This(), "DRIVERMSGPROC")) {
+        _ = DRIVERMSGPROC;
+    }
+    if (@hasDecl(@This(), "LPMMIOPROC")) {
+        _ = LPMMIOPROC;
+    }
+    if (@hasDecl(@This(), "AVISAVECALLBACK")) {
+        _ = AVISAVECALLBACK;
+    }
+    if (@hasDecl(@This(), "CAPYIELDCALLBACK")) {
+        _ = CAPYIELDCALLBACK;
+    }
+    if (@hasDecl(@This(), "CAPSTATUSCALLBACKW")) {
+        _ = CAPSTATUSCALLBACKW;
+    }
+    if (@hasDecl(@This(), "CAPERRORCALLBACKW")) {
+        _ = CAPERRORCALLBACKW;
+    }
+    if (@hasDecl(@This(), "CAPSTATUSCALLBACKA")) {
+        _ = CAPSTATUSCALLBACKA;
+    }
+    if (@hasDecl(@This(), "CAPERRORCALLBACKA")) {
+        _ = CAPERRORCALLBACKA;
+    }
+    if (@hasDecl(@This(), "CAPVIDEOCALLBACK")) {
+        _ = CAPVIDEOCALLBACK;
+    }
+    if (@hasDecl(@This(), "CAPWAVECALLBACK")) {
+        _ = CAPWAVECALLBACK;
+    }
+    if (@hasDecl(@This(), "CAPCONTROLCALLBACK")) {
+        _ = CAPCONTROLCALLBACK;
+    }
+    if (@hasDecl(@This(), "LPTASKCALLBACK")) {
+        _ = LPTASKCALLBACK;
+    }
+    if (@hasDecl(@This(), "VFWWDMExtensionProc")) {
+        _ = VFWWDMExtensionProc;
+    }
+    if (@hasDecl(@This(), "LPFNEXTDEVIO")) {
+        _ = LPFNEXTDEVIO;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

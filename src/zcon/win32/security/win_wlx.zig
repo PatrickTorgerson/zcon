@@ -162,33 +162,33 @@ pub const WLX_DESKTOP = extern struct {
     pszDesktopName: ?PWSTR,
 };
 
-pub const PWLX_USE_CTRL_ALT_DEL = fn(
+pub const PWLX_USE_CTRL_ALT_DEL = fn (
     hWlx: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PWLX_SET_CONTEXT_POINTER = fn(
+pub const PWLX_SET_CONTEXT_POINTER = fn (
     hWlx: ?HANDLE,
     pWlxContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PWLX_SAS_NOTIFY = fn(
+pub const PWLX_SAS_NOTIFY = fn (
     hWlx: ?HANDLE,
     dwSasType: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PWLX_SET_TIMEOUT = fn(
+pub const PWLX_SET_TIMEOUT = fn (
     hWlx: ?HANDLE,
     Timeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_ASSIGN_SHELL_PROTECTION = fn(
+pub const PWLX_ASSIGN_SHELL_PROTECTION = fn (
     hWlx: ?HANDLE,
     hToken: ?HANDLE,
     hProcess: ?HANDLE,
     hThread: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PWLX_MESSAGE_BOX = fn(
+pub const PWLX_MESSAGE_BOX = fn (
     hWlx: ?HANDLE,
     hwndOwner: ?HWND,
     lpszText: ?PWSTR,
@@ -196,7 +196,7 @@ pub const PWLX_MESSAGE_BOX = fn(
     fuStyle: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PWLX_DIALOG_BOX = fn(
+pub const PWLX_DIALOG_BOX = fn (
     hWlx: ?HANDLE,
     hInst: ?HANDLE,
     lpszTemplate: ?PWSTR,
@@ -204,7 +204,7 @@ pub const PWLX_DIALOG_BOX = fn(
     dlgprc: ?DLGPROC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PWLX_DIALOG_BOX_INDIRECT = fn(
+pub const PWLX_DIALOG_BOX_INDIRECT = fn (
     hWlx: ?HANDLE,
     hInst: ?HANDLE,
     hDialogTemplate: ?*DLGTEMPLATE,
@@ -212,7 +212,7 @@ pub const PWLX_DIALOG_BOX_INDIRECT = fn(
     dlgprc: ?DLGPROC,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PWLX_DIALOG_BOX_PARAM = fn(
+pub const PWLX_DIALOG_BOX_PARAM = fn (
     hWlx: ?HANDLE,
     hInst: ?HANDLE,
     lpszTemplate: ?PWSTR,
@@ -221,7 +221,7 @@ pub const PWLX_DIALOG_BOX_PARAM = fn(
     dwInitParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PWLX_DIALOG_BOX_INDIRECT_PARAM = fn(
+pub const PWLX_DIALOG_BOX_INDIRECT_PARAM = fn (
     hWlx: ?HANDLE,
     hInst: ?HANDLE,
     hDialogTemplate: ?*DLGTEMPLATE,
@@ -230,31 +230,31 @@ pub const PWLX_DIALOG_BOX_INDIRECT_PARAM = fn(
     dwInitParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PWLX_SWITCH_DESKTOP_TO_USER = fn(
+pub const PWLX_SWITCH_DESKTOP_TO_USER = fn (
     hWlx: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PWLX_SWITCH_DESKTOP_TO_WINLOGON = fn(
+pub const PWLX_SWITCH_DESKTOP_TO_WINLOGON = fn (
     hWlx: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PWLX_CHANGE_PASSWORD_NOTIFY = fn(
+pub const PWLX_CHANGE_PASSWORD_NOTIFY = fn (
     hWlx: ?HANDLE,
     pMprInfo: ?*WLX_MPR_NOTIFY_INFO,
     dwChangeInfo: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PWLX_GET_SOURCE_DESKTOP = fn(
+pub const PWLX_GET_SOURCE_DESKTOP = fn (
     hWlx: ?HANDLE,
     ppDesktop: ?*?*WLX_DESKTOP,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_SET_RETURN_DESKTOP = fn(
+pub const PWLX_SET_RETURN_DESKTOP = fn (
     hWlx: ?HANDLE,
     pDesktop: ?*WLX_DESKTOP,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_CREATE_USER_DESKTOP = fn(
+pub const PWLX_CREATE_USER_DESKTOP = fn (
     hWlx: ?HANDLE,
     hToken: ?HANDLE,
     Flags: u32,
@@ -262,7 +262,7 @@ pub const PWLX_CREATE_USER_DESKTOP = fn(
     ppDesktop: ?*?*WLX_DESKTOP,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_CHANGE_PASSWORD_NOTIFY_EX = fn(
+pub const PWLX_CHANGE_PASSWORD_NOTIFY_EX = fn (
     hWlx: ?HANDLE,
     pMprInfo: ?*WLX_MPR_NOTIFY_INFO,
     dwChangeInfo: u32,
@@ -270,52 +270,51 @@ pub const PWLX_CHANGE_PASSWORD_NOTIFY_EX = fn(
     Reserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PWLX_CLOSE_USER_DESKTOP = fn(
+pub const PWLX_CLOSE_USER_DESKTOP = fn (
     hWlx: ?HANDLE,
     pDesktop: ?*WLX_DESKTOP,
     hToken: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_SET_OPTION = fn(
+pub const PWLX_SET_OPTION = fn (
     hWlx: ?HANDLE,
     Option: u32,
     Value: usize,
     OldValue: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_GET_OPTION = fn(
+pub const PWLX_GET_OPTION = fn (
     hWlx: ?HANDLE,
     Option: u32,
     Value: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_WIN31_MIGRATE = fn(
+pub const PWLX_WIN31_MIGRATE = fn (
     hWlx: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PWLX_QUERY_CLIENT_CREDENTIALS = fn(
+pub const PWLX_QUERY_CLIENT_CREDENTIALS = fn (
     pCred: ?*WLX_CLIENT_CREDENTIALS_INFO_V1_0,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_QUERY_IC_CREDENTIALS = fn(
+pub const PWLX_QUERY_IC_CREDENTIALS = fn (
     pCred: ?*WLX_CLIENT_CREDENTIALS_INFO_V1_0,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_QUERY_TS_LOGON_CREDENTIALS = fn(
+pub const PWLX_QUERY_TS_LOGON_CREDENTIALS = fn (
     pCred: ?*WLX_CLIENT_CREDENTIALS_INFO_V2_0,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_DISCONNECT = fn(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PWLX_DISCONNECT = fn () callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_QUERY_TERMINAL_SERVICES_DATA = fn(
+pub const PWLX_QUERY_TERMINAL_SERVICES_DATA = fn (
     hWlx: ?HANDLE,
     pTSData: ?*WLX_TERMINAL_SERVICES_DATA,
     UserName: ?PWSTR,
     Domain: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PWLX_QUERY_CONSOLESWITCH_CREDENTIALS = fn(
+pub const PWLX_QUERY_CONSOLESWITCH_CREDENTIALS = fn (
     pCred: ?*WLX_CONSOLESWITCH_CREDENTIALS_INFO_V1_0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -434,7 +433,7 @@ pub const WLX_DISPATCH_VERSION_1_4 = extern struct {
     WlxQueryTsLogonCredentials: ?PWLX_QUERY_TS_LOGON_CREDENTIALS,
 };
 
-pub const PFNMSGECALLBACK = fn(
+pub const PFNMSGECALLBACK = fn (
     bVerbose: BOOL,
     lpMessage: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -450,7 +449,6 @@ pub const WLX_NOTIFICATION_INFO = extern struct {
     pStatusCallback: ?PFNMSGECALLBACK,
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
 //--------------------------------------------------------------------------------
@@ -460,13 +458,9 @@ pub const WLX_NOTIFICATION_INFO = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (11)
@@ -485,38 +479,92 @@ const QUOTA_LIMITS = @import("../security.zig").QUOTA_LIMITS;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PWLX_USE_CTRL_ALT_DEL")) { _ = PWLX_USE_CTRL_ALT_DEL; }
-    if (@hasDecl(@This(), "PWLX_SET_CONTEXT_POINTER")) { _ = PWLX_SET_CONTEXT_POINTER; }
-    if (@hasDecl(@This(), "PWLX_SAS_NOTIFY")) { _ = PWLX_SAS_NOTIFY; }
-    if (@hasDecl(@This(), "PWLX_SET_TIMEOUT")) { _ = PWLX_SET_TIMEOUT; }
-    if (@hasDecl(@This(), "PWLX_ASSIGN_SHELL_PROTECTION")) { _ = PWLX_ASSIGN_SHELL_PROTECTION; }
-    if (@hasDecl(@This(), "PWLX_MESSAGE_BOX")) { _ = PWLX_MESSAGE_BOX; }
-    if (@hasDecl(@This(), "PWLX_DIALOG_BOX")) { _ = PWLX_DIALOG_BOX; }
-    if (@hasDecl(@This(), "PWLX_DIALOG_BOX_INDIRECT")) { _ = PWLX_DIALOG_BOX_INDIRECT; }
-    if (@hasDecl(@This(), "PWLX_DIALOG_BOX_PARAM")) { _ = PWLX_DIALOG_BOX_PARAM; }
-    if (@hasDecl(@This(), "PWLX_DIALOG_BOX_INDIRECT_PARAM")) { _ = PWLX_DIALOG_BOX_INDIRECT_PARAM; }
-    if (@hasDecl(@This(), "PWLX_SWITCH_DESKTOP_TO_USER")) { _ = PWLX_SWITCH_DESKTOP_TO_USER; }
-    if (@hasDecl(@This(), "PWLX_SWITCH_DESKTOP_TO_WINLOGON")) { _ = PWLX_SWITCH_DESKTOP_TO_WINLOGON; }
-    if (@hasDecl(@This(), "PWLX_CHANGE_PASSWORD_NOTIFY")) { _ = PWLX_CHANGE_PASSWORD_NOTIFY; }
-    if (@hasDecl(@This(), "PWLX_GET_SOURCE_DESKTOP")) { _ = PWLX_GET_SOURCE_DESKTOP; }
-    if (@hasDecl(@This(), "PWLX_SET_RETURN_DESKTOP")) { _ = PWLX_SET_RETURN_DESKTOP; }
-    if (@hasDecl(@This(), "PWLX_CREATE_USER_DESKTOP")) { _ = PWLX_CREATE_USER_DESKTOP; }
-    if (@hasDecl(@This(), "PWLX_CHANGE_PASSWORD_NOTIFY_EX")) { _ = PWLX_CHANGE_PASSWORD_NOTIFY_EX; }
-    if (@hasDecl(@This(), "PWLX_CLOSE_USER_DESKTOP")) { _ = PWLX_CLOSE_USER_DESKTOP; }
-    if (@hasDecl(@This(), "PWLX_SET_OPTION")) { _ = PWLX_SET_OPTION; }
-    if (@hasDecl(@This(), "PWLX_GET_OPTION")) { _ = PWLX_GET_OPTION; }
-    if (@hasDecl(@This(), "PWLX_WIN31_MIGRATE")) { _ = PWLX_WIN31_MIGRATE; }
-    if (@hasDecl(@This(), "PWLX_QUERY_CLIENT_CREDENTIALS")) { _ = PWLX_QUERY_CLIENT_CREDENTIALS; }
-    if (@hasDecl(@This(), "PWLX_QUERY_IC_CREDENTIALS")) { _ = PWLX_QUERY_IC_CREDENTIALS; }
-    if (@hasDecl(@This(), "PWLX_QUERY_TS_LOGON_CREDENTIALS")) { _ = PWLX_QUERY_TS_LOGON_CREDENTIALS; }
-    if (@hasDecl(@This(), "PWLX_DISCONNECT")) { _ = PWLX_DISCONNECT; }
-    if (@hasDecl(@This(), "PWLX_QUERY_TERMINAL_SERVICES_DATA")) { _ = PWLX_QUERY_TERMINAL_SERVICES_DATA; }
-    if (@hasDecl(@This(), "PWLX_QUERY_CONSOLESWITCH_CREDENTIALS")) { _ = PWLX_QUERY_CONSOLESWITCH_CREDENTIALS; }
-    if (@hasDecl(@This(), "PFNMSGECALLBACK")) { _ = PFNMSGECALLBACK; }
+    if (@hasDecl(@This(), "PWLX_USE_CTRL_ALT_DEL")) {
+        _ = PWLX_USE_CTRL_ALT_DEL;
+    }
+    if (@hasDecl(@This(), "PWLX_SET_CONTEXT_POINTER")) {
+        _ = PWLX_SET_CONTEXT_POINTER;
+    }
+    if (@hasDecl(@This(), "PWLX_SAS_NOTIFY")) {
+        _ = PWLX_SAS_NOTIFY;
+    }
+    if (@hasDecl(@This(), "PWLX_SET_TIMEOUT")) {
+        _ = PWLX_SET_TIMEOUT;
+    }
+    if (@hasDecl(@This(), "PWLX_ASSIGN_SHELL_PROTECTION")) {
+        _ = PWLX_ASSIGN_SHELL_PROTECTION;
+    }
+    if (@hasDecl(@This(), "PWLX_MESSAGE_BOX")) {
+        _ = PWLX_MESSAGE_BOX;
+    }
+    if (@hasDecl(@This(), "PWLX_DIALOG_BOX")) {
+        _ = PWLX_DIALOG_BOX;
+    }
+    if (@hasDecl(@This(), "PWLX_DIALOG_BOX_INDIRECT")) {
+        _ = PWLX_DIALOG_BOX_INDIRECT;
+    }
+    if (@hasDecl(@This(), "PWLX_DIALOG_BOX_PARAM")) {
+        _ = PWLX_DIALOG_BOX_PARAM;
+    }
+    if (@hasDecl(@This(), "PWLX_DIALOG_BOX_INDIRECT_PARAM")) {
+        _ = PWLX_DIALOG_BOX_INDIRECT_PARAM;
+    }
+    if (@hasDecl(@This(), "PWLX_SWITCH_DESKTOP_TO_USER")) {
+        _ = PWLX_SWITCH_DESKTOP_TO_USER;
+    }
+    if (@hasDecl(@This(), "PWLX_SWITCH_DESKTOP_TO_WINLOGON")) {
+        _ = PWLX_SWITCH_DESKTOP_TO_WINLOGON;
+    }
+    if (@hasDecl(@This(), "PWLX_CHANGE_PASSWORD_NOTIFY")) {
+        _ = PWLX_CHANGE_PASSWORD_NOTIFY;
+    }
+    if (@hasDecl(@This(), "PWLX_GET_SOURCE_DESKTOP")) {
+        _ = PWLX_GET_SOURCE_DESKTOP;
+    }
+    if (@hasDecl(@This(), "PWLX_SET_RETURN_DESKTOP")) {
+        _ = PWLX_SET_RETURN_DESKTOP;
+    }
+    if (@hasDecl(@This(), "PWLX_CREATE_USER_DESKTOP")) {
+        _ = PWLX_CREATE_USER_DESKTOP;
+    }
+    if (@hasDecl(@This(), "PWLX_CHANGE_PASSWORD_NOTIFY_EX")) {
+        _ = PWLX_CHANGE_PASSWORD_NOTIFY_EX;
+    }
+    if (@hasDecl(@This(), "PWLX_CLOSE_USER_DESKTOP")) {
+        _ = PWLX_CLOSE_USER_DESKTOP;
+    }
+    if (@hasDecl(@This(), "PWLX_SET_OPTION")) {
+        _ = PWLX_SET_OPTION;
+    }
+    if (@hasDecl(@This(), "PWLX_GET_OPTION")) {
+        _ = PWLX_GET_OPTION;
+    }
+    if (@hasDecl(@This(), "PWLX_WIN31_MIGRATE")) {
+        _ = PWLX_WIN31_MIGRATE;
+    }
+    if (@hasDecl(@This(), "PWLX_QUERY_CLIENT_CREDENTIALS")) {
+        _ = PWLX_QUERY_CLIENT_CREDENTIALS;
+    }
+    if (@hasDecl(@This(), "PWLX_QUERY_IC_CREDENTIALS")) {
+        _ = PWLX_QUERY_IC_CREDENTIALS;
+    }
+    if (@hasDecl(@This(), "PWLX_QUERY_TS_LOGON_CREDENTIALS")) {
+        _ = PWLX_QUERY_TS_LOGON_CREDENTIALS;
+    }
+    if (@hasDecl(@This(), "PWLX_DISCONNECT")) {
+        _ = PWLX_DISCONNECT;
+    }
+    if (@hasDecl(@This(), "PWLX_QUERY_TERMINAL_SERVICES_DATA")) {
+        _ = PWLX_QUERY_TERMINAL_SERVICES_DATA;
+    }
+    if (@hasDecl(@This(), "PWLX_QUERY_CONSOLESWITCH_CREDENTIALS")) {
+        _ = PWLX_QUERY_CONSOLESWITCH_CREDENTIALS;
+    }
+    if (@hasDecl(@This(), "PFNMSGECALLBACK")) {
+        _ = PFNMSGECALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
