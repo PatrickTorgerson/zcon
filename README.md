@@ -3,7 +3,7 @@
 ```zig
 const zcon = @import("zcon");
 
-pub fn main !void {
+pub fn main() !void {
 
     try zcon.enable_input_events();
 
@@ -14,7 +14,7 @@ pub fn main !void {
 
     zcon.set_color(zcon.bright_yellow);
 
-    zcon.write("yellow text #red red text #def default test");
+    zcon.write("yellow text #red red text #def default text");
 
     while(true)
     while(zcon.poll_input()) |input| {
