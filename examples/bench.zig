@@ -12,8 +12,9 @@ pub fn main() !void {
     try cli.add_option(.{
         .alias_long = "test-option",
         .alias_short = "t",
-        .desc = "#cyn print some useless information\nsecond line of informs",
+        .desc = "do box <W> by <H>",
         .help = "RIP",
+        .arguments = "<W> <H>"
     });
 
     try cli.add_option(.{
@@ -30,7 +31,11 @@ pub fn main() !void {
 fn do_option(cli: *zcon.Cli) !bool {
 
     if (cli.is_arg("test-option")) {
-        zcon.write("Goats are the best climbers of any mammel!\n");
+        const width  = try cli.read_arg(i16) orelse return false;
+        const height = try cli.read_arg(i16) orelse return false;
+        zcon.draw_box(.{.width = width , .height = height});
+        zcon.cursor_down(height);
+        zcon.write("\n");
     }
     else if (cli.is_arg("name")) {
         if (try cli.read_arg([]const u8)) |name| {

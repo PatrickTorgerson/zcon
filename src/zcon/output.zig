@@ -288,7 +288,7 @@ pub fn draw_box(size: input.Size) void {
     if (win32.GetConsoleScreenBufferInfo(stdout.handle, &csbi) == 0)
         return;
     const column = csbi.dwCursorPosition.X + 1;
-    const out = MarginWriter.init(column, stdout.writer());
+    const out = MarginWriter.init(column, GenericWriter.init(&stdout.writer()));
 
     out.writeAll("\x1b(0") catch return;
     defer out.writeAll("\x1b(B") catch {};
@@ -421,10 +421,10 @@ pub const MarginWriter = struct {
         return bytes.len;
     }
 
-    pub fn init(column: i16, out_writer: anytype) Writer {
+    pub fn init(column: i16, out_writer: GenericWriter) Writer {
         return .{
             .context = .{
-                .output = GenericWriter.init(&out_writer),
+                .output = out_writer,
                 .column = column,
             },
         };
