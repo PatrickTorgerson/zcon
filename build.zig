@@ -3,19 +3,20 @@ const Pkg = std.build.Pkg;
 
 const zcon = Pkg {
     .name = "zcon",
-    .path = .{ .path = "src/zcon.zig" },
+    .source = .{ .path = "src/zcon.zig" },
     .dependencies = &[_]Pkg{},
 };
 
 const win32 = Pkg {
     .name = "win32",
-    .path = .{ .path = "src/win32.zig" },
+    .source = .{ .path = "src/zigwin32/win32.zig" },
     .dependencies = &[_]Pkg{},
 };
 
 const examples = [_] struct { name: []const u8, source: []const u8 } {
     .{ .name = "paint", .source = "examples/paint.zig"},
     .{ .name = "todo", .source = "examples/todo.zig"},
+    .{ .name = "bench", .source = "examples/bench.zig"},
 };
 
 pub fn build(b: *std.build.Builder) void {

@@ -76,7 +76,6 @@ pub fn get_count(this: This, option: []const u8) Error!i32 {
         if (std.mem.eql(u8, opt.alias_long, option) or std.mem.eql(u8, opt.alias_short, option))
             return opt.count;
     }
-
     return Error.no_such_alias;
 }
 
@@ -123,7 +122,6 @@ pub fn print_help(this: This) void {
             print("  --{s}", .{option.alias_long})
         else if (option.alias_short.len > 0)
             print("  -{s}", .{option.alias_short});
-
         print("\n      {s}\n", .{option.desc});
     }
 }
@@ -204,5 +202,10 @@ fn help_arg(arg: []const u8) bool {
 
 ///
 fn primary_alias(option: Option) Error![]const u8 {
-    if (option.alias_long.len > 0) return option.alias_long else if (option.alias_short.len > 0) return option.alias_short else return Error.missing_alias;
+    return if (option.alias_long.len > 0)
+        option.alias_long
+    else if (option.alias_short.len > 0)
+        option.alias_short
+    else
+        Error.missing_alias;
 }

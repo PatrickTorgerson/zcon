@@ -4,18 +4,19 @@
 //! MIT license, see LICENSE for more information
 // ********************************************************************************
 
+/// #macro_name:args
 const std = @import("std");
 const root = @import("root");
 const GenericWriter = @import("generic_writer.zig").GenericWriter;
 
 ///
-pub const Macro = fn (GenericWriter, *ParamIterator) anyerror!bool;
+pub const Macro = *const fn (GenericWriter, *ParamIterator) anyerror!bool;
 
 /// maps macro names to macro functions
 /// just a type-erased std.ComptimeStringMap(Macro, ...);
 pub const MacroMap = struct {
-    has: fn (str: []const u8) bool,
-    get: fn (str: []const u8) ?Macro,
+    has: *const fn (str: []const u8) bool,
+    get: *const fn (str: []const u8) ?Macro,
 
     /// `kvs_list` expects a list literal containing list literals or an array/slice of structs
     /// where .@"0" is the macro name and .@"1" is the associated macro function
@@ -98,8 +99,8 @@ pub const MacroWriter = struct {
         return try expand_macros(this.macros, this.output, bytes);
     }
 
-    pub fn init(macros: ?MacroMap, out_writer: anytype) Writer {
-        return .{ .context = MacroWriter{ .macros = macros, .output = GenericWriter.init(&out_writer) } };
+    pub fn init(macros: ?MacroMap, out_writer: GenericWriter) Writer {
+        return .{ .context = MacroWriter{ .macros = macros, .output = out_writer } };
     }
 };
 

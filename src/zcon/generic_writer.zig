@@ -16,10 +16,10 @@ pub const GenericWriter = struct {
 
     ///
     pub const VTable = struct {
-        write: fn (ptr: *const anyopaque, bytes: []const u8) Error!usize,
-        writeAll: fn (ptr: *const anyopaque, bytes: []const u8) Error!void,
-        writeByte: fn (ptr: *const anyopaque, byte: u8) Error!void,
-        writeByteNTimes: fn (ptr: *const anyopaque, byte: u8, n: usize) Error!void,
+        write: *const fn (ptr: *const anyopaque, bytes: []const u8) Error!usize,
+        writeAll: *const fn (ptr: *const anyopaque, bytes: []const u8) Error!void,
+        writeByte: *const fn (ptr: *const anyopaque, byte: u8) Error!void,
+        writeByteNTimes: *const fn (ptr: *const anyopaque, byte: u8, n: usize) Error!void,
     };
 
     ///

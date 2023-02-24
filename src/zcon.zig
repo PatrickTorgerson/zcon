@@ -6,7 +6,7 @@
 
 const std = @import("std");
 const builtin = @import("builtin");
-const win32 = @import("zcon/win32.zig").system.console;
+const win32 = @import("zigwin32/win32.zig").system.console;
 
 pub const GenericWriter = @import("zcon/generic_writer.zig").GenericWriter;
 
@@ -247,8 +247,8 @@ pub fn backspace() void {
 pub fn write(str: []const u8) void {
     const out = std.io.getStdOut().writer();
 
-    var indent_writer = IndentWriter.init(&indent_lvl, &trailing_newline, indent_str, out);
-    const macro_writer = MacroWriter.init(zcon_macros, indent_writer);
+    var indent_writer = IndentWriter.init(&indent_lvl, &trailing_newline, indent_str, GenericWriter.init(&out));
+    var macro_writer = MacroWriter.init(zcon_macros, GenericWriter.init(&indent_writer));
     macro_writer.writeAll(str) catch return;
 }
 
@@ -256,8 +256,8 @@ pub fn write(str: []const u8) void {
 pub fn print(comptime fmt: []const u8, args: anytype) void {
     const out = std.io.getStdOut().writer();
 
-    var indent_writer = IndentWriter.init(&indent_lvl, &trailing_newline, indent_str, out);
-    const macro_writer = MacroWriter.init(zcon_macros, indent_writer);
+    var indent_writer = IndentWriter.init(&indent_lvl, &trailing_newline, indent_str, GenericWriter.init(&out));
+    var macro_writer = MacroWriter.init(zcon_macros, GenericWriter.init(&indent_writer));
     std.fmt.format(macro_writer, fmt, args) catch return;
 }
 
@@ -367,11 +367,11 @@ pub const IndentWriter = struct {
         return bytes.len;
     }
 
-    pub fn init(lvl: *i32, trailing: *bool, str: []const u8, out_writer: anytype) Writer {
+    pub fn init(lvl: *i32, trailing: *bool, str: []const u8, out_writer: GenericWriter) Writer {
         return .{ .context = IndentWriter{
             .lvl = lvl,
             .str = str,
-            .output = GenericWriter.init(&out_writer),
+            .output = out_writer,
             .trailing_newline = trailing,
         } };
     }

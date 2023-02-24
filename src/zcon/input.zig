@@ -5,7 +5,7 @@
 // ********************************************************************************
 
 const std = @import("std");
-const win32 = @import("win32.zig");
+const win32 = @import("../zigwin32/win32.zig");
 
 ///
 pub const Input = union(enum) {
