@@ -11,36 +11,39 @@ fn print(comptime fmt: []const u8, args: anytype) void {
     std.fmt.format(out, fmt, args) catch return;
 }
 
-const Option = struct { alias_long: []const u8, alias_short: []const u8, desc: []const u8, help: []const u8, count: i32 = 0 };
+const Option = struct {
+    alias_long: []const u8,
+    alias_short: []const u8,
+    desc: []const u8,
+    help: []const u8,
+    count: i32 = 0,
+};
 
 const Error = error{
     missing_alias,
     no_such_alias,
     invalid_arg_type,
-} || std.process.ArgIterator.NextError;
+};
 
 const This = @This();
-const Callback = fn (*This) anyerror!bool;
 
 allocator: std.mem.Allocator,
-arena: std.heap.ArenaAllocator,
 
 args: std.process.ArgIterator,
 options: std.ArrayList(Option),
 current_arg: []const u8,
 
-option_callback: Callback,
-input_callback: Callback,
-help_callback: ?Callback,
+option_callback: *const fn (*This) anyerror!bool,
+input_callback: *const fn (*This) anyerror!bool,
+help_callback: ?*const fn (*This) anyerror!bool,
 
 exe_path: ?[]const u8,
 
 /// must be deinited with @This().deinit();
-pub fn init(allocator: std.mem.Allocator, option_callback: Callback, input_callback: Callback) @This() {
+pub fn init(allocator: std.mem.Allocator, option_callback: *const fn (*This) anyerror!bool, input_callback: *const fn (*This) anyerror!bool) !This {
     return .{
         .allocator = allocator,
-        .arena = std.heap.ArenaAllocator.init(allocator),
-        .args = std.process.args(),
+        .args = try std.process.argsWithAllocator(allocator),
         .options = std.ArrayList(Option).init(allocator),
         .current_arg = "",
         .option_callback = option_callback,
@@ -52,7 +55,8 @@ pub fn init(allocator: std.mem.Allocator, option_callback: Callback, input_callb
 
 ///
 pub fn deinit(this: *This) void {
-    this.arena.deinit();
+    this.args.deinit();
+    this.options.deinit();
 }
 
 ///
@@ -80,17 +84,13 @@ pub fn get_count(this: This, option: []const u8) Error!i32 {
 }
 
 ///
-pub fn read_string(this: *This) Error!?[]const u8 {
-    const next_arg = this.args.next(this.allocator);
-    if (next_arg) |arg|
-        return try arg
-    else
-        return null;
+pub fn read_string(this: *This) ?[]const u8 {
+    return this.args.next();
 }
 
 ///
 pub fn read_arg(this: *This, comptime T: type) !?T {
-    const arg_or = try this.read_string();
+    const arg_or = this.read_string();
     if (arg_or) |arg| {
         switch (@typeInfo(T)) {
             .Bool => {
@@ -108,13 +108,19 @@ pub fn read_arg(this: *This, comptime T: type) !?T {
             .Float => {
                 return try std.fmt.parseFloat(T, arg);
             },
+            .Pointer => |ptr| {
+                if (ptr.size == .Slice and ptr.child == u8 and ptr.is_const) {
+                    return arg;
+                } else return Error.invalid_arg_type;
+            },
             else => return Error.invalid_arg_type,
         }
     } else return null;
 }
 
 ///
-pub fn print_help(this: This) void {
+pub fn print_help(this: This) bool {
+    // TODO: possibly generate usage statement
     for (this.options.items) |option| {
         if (option.alias_long.len > 0 and option.alias_short.len > 0)
             print("  --{s}, -{s}", .{ option.alias_long, option.alias_short })
@@ -124,23 +130,21 @@ pub fn print_help(this: This) void {
             print("  -{s}", .{option.alias_short});
         print("\n      {s}\n", .{option.desc});
     }
+    return true;
 }
 
 ///
 pub fn parse(this: *This) !bool {
-    var next_arg = try this.read_string();
-
     // first arg is exe path
-    this.exe_path = next_arg.?;
+    this.exe_path = this.read_string().?;
 
-    next_arg = try this.read_string();
-    while (next_arg) |arg| : (next_arg = try this.read_string()) {
+    while (this.read_string()) |arg| {
         if (arg.len <= 0) break;
 
         if (help_arg(arg)) {
             if (this.help_callback) |help_callback| {
                 return try help_callback(this);
-            } else this.print_help();
+            } else return this.print_help();
         }
 
         if (arg[0] == '-') {
