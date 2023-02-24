@@ -320,7 +320,7 @@ pub fn draw_box_at(pos: input.Position, size: input.Size) void {
 }
 
 var indent_lvl: i32 = 0;
-var indent_str: []const u8 = "  ";
+var indent_str: []const u8 = "    ";
 var trailing_newline: bool = false;
 
 ///

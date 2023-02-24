@@ -12,15 +12,16 @@ pub fn main() !void {
     try cli.add_option(.{
         .alias_long = "test-option",
         .alias_short = "t",
-        .desc = "print some useless information",
+        .desc = "#cyn print some useless information\nsecond line of informs",
         .help = "RIP",
     });
 
     try cli.add_option(.{
         .alias_long = "name",
         .alias_short = "n",
-        .desc = "<NAME> ; sets a name (just prints lol)",
+        .desc = "sets a name (just prints lol)",
         .help = "RIP",
+        .arguments = "<NAME>",
     });
 
     if (!try cli.parse()) {}

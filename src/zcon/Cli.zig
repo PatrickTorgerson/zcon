@@ -5,17 +5,14 @@
 // ********************************************************************************
 
 const std = @import("std");
-
-fn print(comptime fmt: []const u8, args: anytype) void {
-    const out = std.io.getStdOut().writer();
-    std.fmt.format(out, fmt, args) catch return;
-}
+const out = @import("output.zig");
 
 const Option = struct {
     alias_long: []const u8,
     alias_short: []const u8,
     desc: []const u8,
     help: []const u8,
+    arguments: []const u8 = "",
     count: i32 = 0,
 };
 
@@ -121,15 +118,25 @@ pub fn read_arg(this: *This, comptime T: type) !?T {
 ///
 pub fn print_help(this: This) bool {
     // TODO: possibly generate usage statement
+    out.write("\n");
+    out.indent(1);
     for (this.options.items) |option| {
         if (option.alias_long.len > 0 and option.alias_short.len > 0)
-            print("  --{s}, -{s}", .{ option.alias_long, option.alias_short })
+            out.print("--{s}, -{s}", .{ option.alias_long, option.alias_short })
         else if (option.alias_long.len > 0)
-            print("  --{s}", .{option.alias_long})
+            out.print("--{s}", .{option.alias_long})
         else if (option.alias_short.len > 0)
-            print("  -{s}", .{option.alias_short});
-        print("\n      {s}\n", .{option.desc});
+            out.print("-{s}", .{option.alias_short});
+
+        out.print("   {s}", .{option.arguments});
+
+        out.indent(1);
+        out.print("\n{s}\n", .{option.desc});
+        out.indent(-1);
+        out.set_color(.default);
     }
+    out.indent(-1);
+    out.write("\n");
     return true;
 }
 
@@ -173,7 +180,7 @@ fn do_option_from_short(this: *This, short: []const u8) !bool {
         }
     }
 
-    print("Unrecognized option '{s}'\n", .{short});
+    out.print("Unrecognized option '{s}'\n", .{short});
     return false;
 }
 
@@ -187,7 +194,7 @@ fn do_option_from_long(this: *This, long: []const u8) !bool {
         }
     }
 
-    print("Unrecognized option '{s}'\n", .{long});
+    out.print("Unrecognized option '{s}'\n", .{long});
     return false;
 }
 
