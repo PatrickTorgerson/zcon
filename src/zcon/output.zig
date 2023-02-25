@@ -157,6 +157,16 @@ pub fn set_margins(top: i16, bottom: i16) void {
 }
 
 ///
+pub fn save_cursor() void {
+    write("\x1b7");
+}
+
+///
+pub fn restore_cursor() void {
+    write("\x1b8");
+}
+
+///
 pub fn set_cursor(pos: input.Position) void {
     print("\x1b[{};{}H", .{ pos.y, pos.x });
 }
@@ -220,7 +230,7 @@ pub fn clear_buffer() void {
 /// clears the row the cursor is on with current bg color
 pub fn clear_line() void {
     const out = std.io.getStdOut();
-    out.writeAll("\x1b[1M") catch return;
+    out.writeAll("\x1b[2K") catch return;
 }
 
 /// windows only
