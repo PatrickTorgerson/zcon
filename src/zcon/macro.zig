@@ -124,7 +124,7 @@ pub fn expand_macro(macros: ?MacroMap, writer: anytype, name: []const u8, params
 pub fn expand_macros(macros: ?MacroMap, writer: anytype, fmt: []const u8) !usize {
     var i: usize = 0;
     while (i < fmt.len) {
-        const prefix_start = i;
+        var prefix_start = i;
 
         // locate next macro
         var escape_count: usize = 0;
@@ -134,6 +134,9 @@ pub fn expand_macros(macros: ?MacroMap, writer: anytype, fmt: []const u8) !usize
                     if (escape_count % 2 == 0) {
                         break;
                     } else {
+                        // write back slashes
+                        try writer.writeAll(fmt[prefix_start .. i - 1 - (escape_count - 1) / 2]);
+                        prefix_start = i;
                         escape_count = 0;
                     }
                 },
@@ -142,7 +145,7 @@ pub fn expand_macros(macros: ?MacroMap, writer: anytype, fmt: []const u8) !usize
             }
         }
 
-        const prefix_end = i;
+        const prefix_end = i - escape_count / 2;
 
         // write prefix
         if (prefix_start != prefix_end)
