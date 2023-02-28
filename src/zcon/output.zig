@@ -286,8 +286,8 @@ pub fn draw(pos: input.Position, comptime fmt: []const u8, args: anytype) void {
 
     set_cursor(pos);
     const column = pos.x;
-    const margin_writer = MarginWriter.init(column, out);
-    const macro_writer = MacroWriter.init(zcon_macros, margin_writer);
+    const margin_writer = MarginWriter.init(column, GenericWriter.init(&out));
+    const macro_writer = MacroWriter.init(zcon_macros, GenericWriter.init(&margin_writer));
     std.fmt.format(macro_writer, fmt, args) catch return;
 }
 
