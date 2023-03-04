@@ -1,7 +1,7 @@
 // ********************************************************************************
-//! https://github.com/PatrickTorgerson
-//! Copyright (c) 2022 Patrick Torgerson
-//! MIT license, see LICENSE for more information
+//  https://github.com/PatrickTorgerson
+//  Copyright (c) 2022 Patrick Torgerson
+//  MIT license, see LICENSE for more information
 // ********************************************************************************
 
 const std = @import("std");
@@ -262,6 +262,18 @@ pub const Key = struct {
         return this.code == code and this.modifiers.matches(modifiers);
     }
 };
+
+/// windows only
+pub fn enable_input_events() !void {
+    const stdin = std.io.getStdIn();
+    var mode: win32.CONSOLE_MODE = undefined;
+    mode = @intToEnum(win32.CONSOLE_MODE, @enumToInt(win32.ENABLE_MOUSE_INPUT) |
+        @enumToInt(win32.ENABLE_WINDOW_INPUT) |
+        @enumToInt(win32.ENABLE_INSERT_MODE) |
+        @enumToInt(win32.ENABLE_EXTENDED_FLAGS));
+    if (win32.system.console.SetConsoleMode(stdin.handle, mode) == 0)
+        return error.could_not_enable_input_events;
+}
 
 pub fn get_buffer_size() !Size {
     const out = std.io.getStdOut();

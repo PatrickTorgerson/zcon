@@ -1,16 +1,26 @@
 // ********************************************************************************
-//! https://github.com/PatrickTorgerson
-//! Copyright (c) 2022 Patrick Torgerson
-//! MIT license, see LICENSE for more information
+//  https://github.com/PatrickTorgerson
+//  Copyright (c) 2022 Patrick Torgerson
+//  MIT license, see LICENSE for more information
 // ********************************************************************************
 
-/// #macro_name:args
+//!
+//! Utility to resolve macros in strings
+//! the macros take the form `#macro-name:param1,param2...`
+//! define macros by constructing a macro.MacroMap, mapping macro names to callback functions
+//! callbacks take the form `fn (WriterProxy, *macro.ParamIterator) anyerror!bool`
+//! you can also provide a MacroMap declaration named `macros` in your root file
+//! these macros will be resolved in adition to the provided map, with priority given to
+//! the provided map
+//!
+
 const std = @import("std");
 const root = @import("root");
-const GenericWriter = @import("generic_writer.zig").GenericWriter;
+const WriterProxy = @import("WriterProxy.zig");
 
 ///
-pub const Macro = *const fn (GenericWriter, *ParamIterator) anyerror!bool;
+pub const Macro = *const fn (WriterProxy, *ParamIterator) anyerror!bool;
+pub const Error = error{macro_returned_error};
 
 /// maps macro names to macro functions
 /// just a type-erased std.ComptimeStringMap(Macro, ...);
@@ -90,32 +100,32 @@ pub const ParamIterator = struct {
 ///
 pub const MacroWriter = struct {
     pub const Error = anyerror;
-    pub const Writer = std.io.Writer(MacroWriter, Error, MacroWriter.write);
+    pub const WriterInterface = std.io.Writer(MacroWriter, MacroWriter.Error, MacroWriter.write);
 
     macros: ?MacroMap,
-    output: GenericWriter,
+    output: WriterProxy,
 
-    pub fn write(this: MacroWriter, bytes: []const u8) Error!usize {
+    pub fn write(this: MacroWriter, bytes: []const u8) MacroWriter.Error!usize {
         return try expand_macros(this.macros, this.output, bytes);
     }
 
-    pub fn init(macros: ?MacroMap, out_writer: GenericWriter) Writer {
+    pub fn init(macros: ?MacroMap, out_writer: WriterProxy) WriterInterface {
         return .{ .context = MacroWriter{ .macros = macros, .output = out_writer } };
     }
 };
 
 ///
-pub fn expand_macro(macros: ?MacroMap, writer: anytype, name: []const u8, params: []const u8) !bool {
+pub fn expand_macro(macros: ?MacroMap, writer: anytype, name: []const u8, params: []const u8) Error!bool {
     if (macros) |m|
         if (m.get(name)) |macro| {
-            return macro(GenericWriter.init(&writer), &ParamIterator{ .slice = params });
+            return macro(WriterProxy.init(&writer), &ParamIterator{ .slice = params }) catch return Error.macro_returned_error;
         };
 
     if (@hasDecl(root, "macros")) {
         if (@typeInfo(@TypeOf(root.macros)) != .Struct)
             return false;
         if (root.macros.get(name)) |macro| {
-            return macro(GenericWriter.init(&writer), &ParamIterator{ .slice = params });
+            return macro(WriterProxy.init(&writer), &ParamIterator{ .slice = params }) catch return Error.macro_returned_error;
         } else return false;
     } else return false;
 }
@@ -172,7 +182,7 @@ pub fn expand_macros(macros: ?MacroMap, writer: anytype, fmt: []const u8) !usize
 fn parse_tag(fmt: []const u8) Tag {
     // name
     var name_end: usize = 0;
-    while (name_end < fmt.len and (std.ascii.isAlpha(fmt[name_end]) or
+    while (name_end < fmt.len and (std.ascii.isAlphabetic(fmt[name_end]) or
         fmt[name_end] == '-' or
         fmt[name_end] == '_'))
     {

@@ -1,22 +1,23 @@
 const std = @import("std");
 const Pkg = std.build.Pkg;
 
-const zcon = Pkg {
+const zcon = Pkg{
     .name = "zcon",
     .source = .{ .path = "src/zcon.zig" },
     .dependencies = &[_]Pkg{},
 };
 
-const win32 = Pkg {
+const win32 = Pkg{
     .name = "win32",
     .source = .{ .path = "src/zigwin32/win32.zig" },
     .dependencies = &[_]Pkg{},
 };
 
-const examples = [_] struct { name: []const u8, source: []const u8 } {
-    .{ .name = "paint", .source = "examples/paint.zig"},
-    .{ .name = "todo", .source = "examples/todo.zig"},
-    .{ .name = "bench", .source = "examples/bench.zig"},
+const examples = [_]struct { name: []const u8, source: []const u8 }{
+    // .{ .name = "paint", .source = "examples/paint.zig"},
+    // .{ .name = "todo", .source = "examples/todo.zig"},
+    .{ .name = "cli", .source = "examples/cli.zig" },
+    .{ .name = "bench", .source = "examples/bench.zig" },
 };
 
 pub fn build(b: *std.build.Builder) void {
@@ -30,12 +31,11 @@ pub fn build(b: *std.build.Builder) void {
     // between Debug, ReleaseSafe, ReleaseFast, and ReleaseSmall.
     const mode = b.standardReleaseOptions();
 
-     // -- examples
+    // -- examples
 
     const example_step = b.step("examples", "Build all examples");
 
-    inline for (examples) |example|
-    {
+    inline for (examples) |example| {
         const exe = b.addExecutable(example.name, example.source);
         exe.setBuildMode(mode);
         exe.setTarget(target);
