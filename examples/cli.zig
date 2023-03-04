@@ -14,6 +14,7 @@ pub fn main() !void {
 
     var out = zcon.Writer.init();
     defer out.flush();
+    out.setIndentStr("#dgry  |   #prv");
 
     var cli = try zcon.Cli.init(allocator, &out, option, input);
     defer cli.deinit();
@@ -63,9 +64,9 @@ fn input(cli: *zcon.Cli) !bool {
 
 fn help(cli: *zcon.Cli) !bool {
     cli.writer.put("\nTest program for zcon.Cli\n\n#yel Options#prv\n");
-    zcon.Writer.indent(1);
+    cli.writer.indent(1);
     cli.printOptionHelp();
-    zcon.Writer.indent(-1);
+    cli.writer.unindent(1);
     cli.writer.putChar('\n');
     return true;
 }

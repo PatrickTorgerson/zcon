@@ -141,9 +141,9 @@ pub fn printOptionHelp(this: This) void {
 
         this.writer.fmt("   {s}", .{option.arguments});
 
-        Writer.indent(1);
+        this.writer.indent(1);
         this.writer.fmt("\n{s}\n", .{option.desc});
-        Writer.indent(-1);
+        this.writer.unindent(1);
         this.writer.setColor(.default);
     }
 }

@@ -108,6 +108,13 @@ stdout: std.fs.File.Writer,
 buffer: [2048]u8 = undefined,
 /// marks end of buffer contents
 buffer_end: usize = 0,
+/// current level of indentation
+indent_lvl: i32 = 0,
+/// string used for a single indent
+indent_str: []const u8 = "    ",
+/// whether last write ended with a newline
+/// important for indentation
+trailing_newline: bool = false,
 
 /// creates a Zcon.Writer
 pub fn init() This {
@@ -157,8 +164,7 @@ pub fn printRaw(this: *This, comptime fmt_str: []const u8, args: anytype) !void 
 
 ///
 pub fn write(this: *This, str: []const u8) Error!usize {
-    var out = this.bufferWriter();
-    var indent_writer = IndentWriter.init(&indent_lvl, &trailing_newline, indent_str, WriterProxy.init(&out));
+    var indent_writer = IndentWriter.init(this);
     var macro_writer = MacroWriter.init(zcon_macros, WriterProxy.init(&indent_writer));
     macro_writer.writeAll(str) catch |e| return convert_err(e);
     return str.len;
@@ -166,8 +172,7 @@ pub fn write(this: *This, str: []const u8) Error!usize {
 
 ///
 pub fn print(this: *This, comptime fmt_str: []const u8, args: anytype) Error!void {
-    var out = this.bufferWriter();
-    var indent_writer = IndentWriter.init(&indent_lvl, &trailing_newline, indent_str, WriterProxy.init(&out));
+    var indent_writer = IndentWriter.init(this);
     var macro_writer = MacroWriter.init(zcon_macros, WriterProxy.init(&indent_writer));
     std.fmt.format(macro_writer, fmt_str, args) catch |e| return convert_err(e);
 }
@@ -434,107 +439,97 @@ pub fn drawBoxAt(this: *This, pos: input.Position, size: input.Size) !void {
     try this.drawBox(size);
 }
 
-var indent_lvl: i32 = 0;
-var indent_str: []const u8 = "    ";
-var trailing_newline: bool = false;
-
-///
+/// helper writer that inserts indentatin after newlines
 pub const IndentWriter = struct {
     pub const Error = anyerror;
     pub const WriterInterface = std.io.Writer(IndentWriter, IndentWriter.Error, IndentWriter.write);
 
-    lvl: *i32,
-    str: []const u8,
-    output: WriterProxy,
-    trailing_newline: *bool,
+    out: *This,
 
+    /// forward bytes to out inserting indents after newlines
     pub fn write(this: IndentWriter, bytes: []const u8) IndentWriter.Error!usize {
-        if (this.trailing_newline.*) {
-            this.trailing_newline.* = false;
-            try this.writeIndent();
+        if (this.out.trailing_newline) {
+            this.out.trailing_newline = false;
+            this.out.putIndent();
         }
-
         var i: usize = 0;
         while (i < bytes.len) : (i += 1) {
             const start = i;
-
             while (i < bytes.len and bytes[i] != '\n')
                 i += 1;
-
-            try this.output.writeAll(bytes[start..i]);
-
+            this.out.putRaw(bytes[start..i]);
             if (i >= bytes.len)
                 return bytes.len;
-
-            try this.output.writeByte('\n');
-
+            this.out.putChar('\n');
             if (i + 1 >= bytes.len) {
-                this.trailing_newline.* = true;
+                this.out.trailing_newline = true;
                 return bytes.len;
             }
-
-            try this.writeIndent();
+            this.out.putIndent();
         }
-
         return bytes.len;
     }
 
-    pub fn init(lvl: *i32, trailing: *bool, str: []const u8, out_writer: WriterProxy) WriterInterface {
+    pub fn init(out: *This) WriterInterface {
         return .{ .context = IndentWriter{
-            .lvl = lvl,
-            .str = str,
-            .output = out_writer,
-            .trailing_newline = trailing,
+            .out = out,
         } };
-    }
-
-    fn writeIndent(this: IndentWriter) !void {
-        var l: usize = 0;
-        while (l < this.lvl.*) : (l += 1)
-            try this.output.writeAll(this.str);
     }
 };
 
 ///
-pub fn indent(amt: i32) void {
-    indent_lvl += amt;
-    if (indent_lvl < 0)
-        indent_lvl = 0;
+fn putIndent(this: *This) void {
+    var l: usize = 0;
+    while (l < this.indent_lvl) : (l += 1)
+        this.put(this.indent_str);
 }
 
 ///
-pub fn set_indent_str(comptime str: []const u8) void {
-    indent_str = str;
+pub fn indent(this: *This, amt: i32) void {
+    this.indent_lvl += amt;
+    if (this.indent_lvl < 0)
+        this.indent_lvl = 0;
 }
 
 ///
+pub fn unindent(this: *This, amt: i32) void {
+    this.indent_lvl -= amt;
+    if (this.indent_lvl < 0)
+        this.indent_lvl = 0;
+}
+
+///
+pub fn setIndentStr(this: *This, comptime str: []const u8) void {
+    this.indent_str = str;
+}
+
+/// helper writer that aligns every line with a given column
 const MarginWriter = struct {
-    pub const Error = This.Error;
-    pub const WriterInterface = std.io.Writer(MarginWriter, MarginWriter.Error, MarginWriter.write);
+    pub const WriterInterface = std.io.Writer(MarginWriter, error{}, MarginWriter.write);
 
-    output: WriterProxy,
+    out: WriterProxy,
     column: i16,
 
-    pub fn write(this: MarginWriter, bytes: []const u8) MarginWriter.Error!usize {
+    pub fn write(this: MarginWriter, bytes: []const u8) error{}!usize {
         var i: usize = 0;
         while (i < bytes.len) : (i += 1) {
             const start = i;
             while (i < bytes.len and bytes[i] != '\n')
                 i += 1;
-            this.output.writeAll(bytes[start..i]) catch |e| return convert_err(e);
+            this.out.writeAll(bytes[start..i]) catch {};
             if (i >= bytes.len)
                 return bytes.len;
-            this.output.writeByte('\n') catch |e| return convert_err(e);
-            this.output.print("\x1b[{}G", .{this.column}) catch |e| return convert_err(e);
+            this.out.writeByte('\n') catch {};
+            this.out.print("\x1b[{}G", .{this.column}) catch {};
         }
 
         return bytes.len;
     }
 
-    pub fn init(column: i16, out_writer: WriterProxy) WriterInterface {
+    pub fn init(column: i16, out: WriterProxy) WriterInterface {
         return .{
             .context = .{
-                .output = out_writer,
+                .out = out,
                 .column = column,
             },
         };
