@@ -13,6 +13,10 @@ pub fn main() !void {
     defer out.flush();
     defer out.useDefaultColors();
 
-    out.setBackground(zcon.Color.rgb(100, 50, 50));
-    out.put("#red one #grn two #blu three #prv four #prv five #prv six #prv seven\n");
+    out.putRaw("\n\n\n");
+
+    out.put("#box:21,3    Hello friend!");
+    out.cursorDown(5);
+    out.put("#down:5 #left:20 hello#indent friend");
+    out.put("#up:5 (printed last)");
 }

@@ -349,7 +349,7 @@ pub fn drawBox(this: *This, size: input.Size) void {
     const out = MarginWriter.init(column, WriterProxy.init(&buffer_writer));
 
     out.writeAll("\x1b(0") catch {}; // line draw mode
-    defer out.writeAll("\x1b(B") catch {}; // back to norm
+    //defer out.writeAll("\x1b(B") catch {}; // back to norm
 
     var y: i16 = 0;
     while (y < size.height) : (y += 1) {
@@ -369,6 +369,9 @@ pub fn drawBox(this: *This, size: input.Size) void {
             out.writeByte('\n') catch {};
         } else out.print("x\x1b[{}Cx\n", .{size.width - 2}) catch {};
     }
+
+    out.writeAll("\x1b(B") catch {}; // back to norm
+    out.print("\x1b[1C\x1b[{}A", .{size.height - 1}) catch {};
 }
 
 ///
@@ -521,7 +524,50 @@ const zcon_macros = MacroMap.init(.{
     .{ "dgry", dgryMacro },
     .{ "rule", ruleMacro },
     .{ "box", boxMacro },
+    .{ "indent", indentMacro },
+    .{ "up", upMacro },
+    .{ "down", downMacro },
+    .{ "left", leftMacro },
+    .{ "right", rightMacro },
 });
+
+fn upMacro(writer: *This, param_iter: *ParamIterator) !bool {
+    if (param_iter.next()) |amt_str| {
+        var amt = try std.fmt.parseInt(i16, amt_str, 10);
+        writer.cursorUp(amt);
+    } else writer.cursorUp(1);
+    return true;
+}
+
+fn downMacro(writer: *This, param_iter: *ParamIterator) !bool {
+    if (param_iter.next()) |amt_str| {
+        var amt = try std.fmt.parseInt(i16, amt_str, 10);
+        writer.cursorDown(amt);
+    } else writer.cursorDown(1);
+    return true;
+}
+
+fn leftMacro(writer: *This, param_iter: *ParamIterator) !bool {
+    if (param_iter.next()) |amt_str| {
+        var amt = try std.fmt.parseInt(i16, amt_str, 10);
+        writer.cursorLeft(amt);
+    } else writer.cursorLeft(1);
+    return true;
+}
+
+fn rightMacro(writer: *This, param_iter: *ParamIterator) !bool {
+    if (param_iter.next()) |amt_str| {
+        var amt = try std.fmt.parseInt(i16, amt_str, 10);
+        writer.cursorRight(amt);
+    } else writer.cursorRight(1);
+    return true;
+}
+
+fn indentMacro(writer: *This, param_iter: *ParamIterator) !bool {
+    _ = param_iter;
+    writer.put(writer.indent_str);
+    return true;
+}
 
 fn defMacro(writer: *This, param_iter: *ParamIterator) !bool {
     _ = param_iter;
