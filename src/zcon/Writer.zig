@@ -12,7 +12,7 @@
 const std = @import("std");
 const builtin = @import("builtin");
 const win32 = @import("../zigwin32/win32.zig").system.console;
-const input = @import("input.zig");
+const input = @import("InputQueue.zig");
 const macro = @import("macro.zig");
 
 const WriterProxy = @import("WriterProxy.zig");
@@ -132,13 +132,13 @@ pub fn fmtRaw(this: *This, comptime fmt_str: []const u8, args: anytype) void {
 
 ///
 pub fn putAt(this: *This, pos: input.Position, str: []const u8) void {
-    this.set_cursor(pos);
+    this.setCursor(pos);
     this.put(str);
 }
 
 ///
 pub fn fmtAt(this: *This, pos: input.Position, comptime fmt_str: []const u8, args: anytype) void {
-    this.set_cursor(pos);
+    this.setCursor(pos);
     this.fmt(fmt_str, args);
 }
 

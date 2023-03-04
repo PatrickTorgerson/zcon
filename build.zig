@@ -14,7 +14,7 @@ const win32 = Pkg{
 };
 
 const examples = [_]struct { name: []const u8, source: []const u8 }{
-    // .{ .name = "paint", .source = "examples/paint.zig"},
+    .{ .name = "paint", .source = "examples/paint.zig" },
     // .{ .name = "todo", .source = "examples/todo.zig"},
     .{ .name = "cli", .source = "examples/cli.zig" },
     .{ .name = "bench", .source = "examples/bench.zig" },

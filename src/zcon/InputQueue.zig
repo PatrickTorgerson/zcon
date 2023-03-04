@@ -192,16 +192,16 @@ pub const InputModifiers = struct {
     pub fn capslock(this: InputModifiers) bool {
         return this.state & win32.system.console.CAPSLOCK_ON > 0;
     }
-    pub fn left_alt(this: InputModifiers) bool {
+    pub fn leftAlt(this: InputModifiers) bool {
         return this.state & win32.system.console.LEFT_ALT_PRESSED > 0;
     }
-    pub fn right_alt(this: InputModifiers) bool {
+    pub fn rightAlt(this: InputModifiers) bool {
         return this.state & win32.system.console.RIGHT_ALT_PRESSED > 0;
     }
-    pub fn left_control(this: InputModifiers) bool {
+    pub fn leftControl(this: InputModifiers) bool {
         return this.state & win32.system.console.LEFT_CTRL_PRESSED > 0;
     }
-    pub fn right_control(this: InputModifiers) bool {
+    pub fn rightControl(this: InputModifiers) bool {
         return this.state & win32.system.console.RIGHT_CTRL_PRESSED > 0;
     }
     pub fn numlock(this: InputModifiers) bool {
@@ -214,10 +214,10 @@ pub const InputModifiers = struct {
         return this.state & win32.system.console.SHIFT_PRESSED > 0;
     }
     pub fn control(this: InputModifiers) bool {
-        return this.left_control() or this.right_control();
+        return this.leftControl() or this.rightControl();
     }
     pub fn alt(this: InputModifiers) bool {
-        return this.left_alt() or this.right_alt();
+        return this.leftAlt() or this.rightAlt();
     }
 
     pub fn matches(this: InputModifiers, modifiers: anytype) bool {
@@ -263,49 +263,42 @@ pub const Key = struct {
     }
 };
 
+const This = @This();
+
+buffer: [10]win32.system.console.INPUT_RECORD = undefined,
+count: u32 = 0,
+next: usize = 0,
+mouse_state: u8 = 0,
+
+pub fn init() !This {
+    try enableInputEvents();
+    return .{};
+}
+
 /// windows only
-pub fn enable_input_events() !void {
+fn enableInputEvents() !void {
     const stdin = std.io.getStdIn();
-    var mode: win32.CONSOLE_MODE = undefined;
-    mode = @intToEnum(win32.CONSOLE_MODE, @enumToInt(win32.ENABLE_MOUSE_INPUT) |
-        @enumToInt(win32.ENABLE_WINDOW_INPUT) |
-        @enumToInt(win32.ENABLE_INSERT_MODE) |
-        @enumToInt(win32.ENABLE_EXTENDED_FLAGS));
+    var mode: win32.system.console.CONSOLE_MODE = undefined;
+    mode = @intToEnum(win32.system.console.CONSOLE_MODE, @enumToInt(win32.system.console.ENABLE_MOUSE_INPUT) |
+        @enumToInt(win32.system.console.ENABLE_WINDOW_INPUT) |
+        @enumToInt(win32.system.console.ENABLE_INSERT_MODE) |
+        @enumToInt(win32.system.console.ENABLE_EXTENDED_FLAGS));
     if (win32.system.console.SetConsoleMode(stdin.handle, mode) == 0)
         return error.could_not_enable_input_events;
 }
 
-pub fn get_buffer_size() !Size {
-    const out = std.io.getStdOut();
-    var csbi: win32.system.console.CONSOLE_SCREEN_BUFFER_INFO = undefined;
-    if (win32.system.console.GetConsoleScreenBufferInfo(out.handle, &csbi) == 0)
-        return error.get_console_info_fail;
-    return Size{ .width = csbi.dwSize.X, .height = csbi.dwSize.Y };
-}
-
-var inbuf: [10]win32.system.console.INPUT_RECORD = undefined;
-var read_count: u32 = 0;
-var i: u32 = 0;
-var mouse_state: u8 = 0;
-var buffer_size: Size = undefined;
-
-pub fn poll_input() ?Input {
+pub fn pollInput(this: *This) ?Input {
     const stdin = std.io.getStdIn();
-
-    if (i >= read_count) {
-        i = 0;
-        if (win32.system.console.ReadConsoleInputA(stdin.handle, &inbuf, 10, &read_count) == 0)
+    if (this.next >= this.count) {
+        this.next = 0;
+        if (win32.system.console.ReadConsoleInputA(stdin.handle, &this.buffer, 10, &this.count) == 0)
             return null;
     }
-
-    if (read_count == 0)
+    if (this.count == 0)
         return null;
-
     var input: Input = undefined;
-
-    const event = inbuf[@intCast(usize, i)];
-    i += 1;
-
+    const event = this.buffer[this.next];
+    this.next += 1;
     switch (event.EventType) {
         win32.system.console.KEY_EVENT => {
             if (event.Event.KeyEvent.bKeyDown == 0) {
@@ -343,10 +336,10 @@ pub fn poll_input() ?Input {
                 },
 
                 win32.system.console.DOUBLE_CLICK, 0 => {
-                    const xor: u8 = mouse_state ^ @intCast(u8, event.Event.MouseEvent.dwButtonState & 0x07);
+                    const xor: u8 = this.mouse_state ^ @intCast(u8, event.Event.MouseEvent.dwButtonState & 0x07);
                     std.debug.assert(xor > 0 and xor <= 4 and xor != 3); // 1, 2, 4
                     // pressed
-                    if (xor & mouse_state == 0) {
+                    if (xor & this.mouse_state == 0) {
                         input = .{ .mouse_pressed = .{
                             .pos = .{
                                 .x = event.Event.MouseEvent.dwMousePosition.X + 1,
@@ -372,7 +365,7 @@ pub fn poll_input() ?Input {
                 else => return null,
             }
 
-            mouse_state = @intCast(u8, event.Event.MouseEvent.dwButtonState & 0x07);
+            this.mouse_state = @intCast(u8, event.Event.MouseEvent.dwButtonState & 0x07);
         },
 
         win32.system.console.WINDOW_BUFFER_SIZE_EVENT => {
@@ -381,8 +374,6 @@ pub fn poll_input() ?Input {
                 .width = event.Event.WindowBufferSizeEvent.dwSize.X,
                 .height = event.Event.WindowBufferSizeEvent.dwSize.Y,
             };
-            buffer_size.width = event.Event.WindowBufferSizeEvent.dwSize.X;
-            buffer_size.height = event.Event.WindowBufferSizeEvent.dwSize.Y;
         },
 
         win32.system.console.FOCUS_EVENT => {

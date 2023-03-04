@@ -5,23 +5,24 @@ const zcon = @import("zcon");
 
 pub fn main() !void {
 
-    try zcon.enable_input_events();
+    var out = zcon.Writer.init();
+    var queue = try zcon.InputQueue.init();
 
-    zcon.alternate_buffer();
-    defer zcon.main_buffer();
+    out.useDedicatedScreen();
+    defer out.useDefaultScreen();
 
-    zcon.clear_buffer();
+    out.clearScreen();
 
-    zcon.set_color(zcon.bright_yellow);
+    out.setColor(zcon.Color.col16(bright_yellow));
 
-    zcon.write("yellow text #red red text #def default text");
+    out.put("yellow text #red red text #def default text #prv red text");
 
     while(true)
-    while(zcon.poll_input()) |input| {
+    while(queue.pollInput()) |input| {
         .key_pressed => |key| {
             if(key.equals(.c, .{.ctrl}))
                 return;
-            zcon.print("key press: {}", .{@tagName(key.code)});
+            out.fmt("key press: {}", .{@tagName(key.code)});
         },
         .key_released => |key| _ = key,
         .mouse_pressed => |button| _ = button,
