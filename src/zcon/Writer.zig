@@ -16,88 +16,13 @@ const input = @import("input.zig");
 const macro = @import("macro.zig");
 
 const WriterProxy = @import("WriterProxy.zig");
+const Color = @import("color.zig").Color;
 
 const MacroMap = macro.MacroMap;
 const ParamIterator = macro.ParamIterator;
 const MacroWriter = macro.MacroWriter;
 
 const This = @This();
-
-pub const black = Color.foreground(.black, .dim, .normal);
-pub const red = Color.foreground(.red, .dim, .normal);
-pub const green = Color.foreground(.green, .dim, .normal);
-pub const yellow = Color.foreground(.yellow, .dim, .normal);
-pub const blue = Color.foreground(.blue, .dim, .normal);
-pub const magenta = Color.foreground(.magenta, .dim, .normal);
-pub const cyan = Color.foreground(.cyan, .dim, .normal);
-pub const white = Color.foreground(.white, .dim, .normal);
-pub const bright_black = Color.foreground(.black, .bright, .normal);
-pub const bright_red = Color.foreground(.red, .bright, .normal);
-pub const bright_green = Color.foreground(.green, .bright, .normal);
-pub const bright_yellow = Color.foreground(.yellow, .bright, .normal);
-pub const bright_blue = Color.foreground(.blue, .bright, .normal);
-pub const bright_magenta = Color.foreground(.magenta, .bright, .normal);
-pub const bright_cyan = Color.foreground(.cyan, .bright, .normal);
-pub const bright_white = Color.foreground(.white, .bright, .normal);
-pub const black_bg = Color.background(.black, .dim, .normal);
-pub const red_bg = Color.background(.red, .dim, .normal);
-pub const green_bg = Color.background(.green, .dim, .normal);
-pub const yellow_bg = Color.background(.yellow, .dim, .normal);
-pub const blue_bg = Color.background(.blue, .dim, .normal);
-pub const magenta_bg = Color.background(.magenta, .dim, .normal);
-pub const cyan_bg = Color.background(.cyan, .dim, .normal);
-pub const white_bg = Color.background(.white, .dim, .normal);
-pub const bright_black_bg = Color.background(.black, .bright, .normal);
-pub const bright_red_bg = Color.background(.red, .bright, .normal);
-pub const bright_green_bg = Color.background(.green, .bright, .normal);
-pub const bright_yellow_bg = Color.background(.yellow, .bright, .normal);
-pub const bright_blue_bg = Color.background(.blue, .bright, .normal);
-pub const bright_magenta_bg = Color.background(.magenta, .bright, .normal);
-pub const bright_cyan_bg = Color.background(.cyan, .bright, .normal);
-pub const bright_white_bg = Color.background(.white, .bright, .normal);
-
-/// this will be replaced very soon
-pub const Color = enum(u8) {
-    default = 0,
-    black = 30,
-    red,
-    green,
-    yellow,
-    blue,
-    magenta,
-    cyan,
-    white,
-    _,
-
-    pub const Brightness = enum(u8) { dim = 0, bright = 1 };
-    pub const Style = enum(u8) { normal = 0, underline = 1 };
-
-    pub fn foreground(color: Color, bright: Brightness, underline: Style) Color {
-        if (color == .default)
-            return color;
-
-        return @intToEnum(Color, (@enumToInt(color) + @enumToInt(bright) * 60) | (@enumToInt(underline) << 7));
-    }
-
-    pub fn background(color: Color, bright: Brightness, underline: Style) Color {
-        if (color == .default)
-            return color;
-
-        return @intToEnum(Color, (@enumToInt(color) + 10 + @enumToInt(bright) * 60) | (@enumToInt(underline) << 7));
-    }
-
-    pub fn underlined(color: Color) Color {
-        return @intToEnum(Color, @enumToInt(color) | 0x80);
-    }
-
-    pub fn is_underline(color: Color) bool {
-        return (@enumToInt(color) & 0x80) != 0;
-    }
-
-    pub fn get_ansi_code(color: Color) u8 {
-        return @enumToInt(color) & 0x7F;
-    }
-};
 
 const FsError = std.fs.File.WriteError;
 const Error = FsError || macro.Error;
@@ -240,58 +165,22 @@ pub fn writeByteNTimes(this: *This, byte: u8, n: usize) Error!void {
     }
 }
 
-///
-pub fn setColor(this: *This, color: Color) void {
-    write_color(this.bufferWriter(), color);
+/// sets foreground color
+pub fn setForeground(this: *This, color: Color) void {
+    color.writeAnsiFg(this.bufferWriter()) catch {};
 }
 
-///
-pub fn prevColor(this: *This) void {
-    write_prev_color(this.bufferWriter());
+/// sets background color
+pub fn setBackground(this: *This, color: Color) void {
+    color.writeAnsiBg(this.bufferWriter()) catch {};
 }
 
-///
-pub fn setUnderline(this: *This, u: bool) void {
-    write_underline(this.bufferWriter(), u);
+/// sets colors to console defaults
+pub fn useDefaultColors(this: *This) void {
+    this.putRaw("\x1b[0m");
 }
 
-///
-pub fn setBright(this: *This, b: bool) void {
-    write_bright(this.bufferWriter(), b);
-}
-
-///
-fn write_color(writer: anytype, color: Color) void {
-    set_color_impl(writer, color);
-    color_hist_push(color);
-}
-
-///
-fn write_prev_color(writer: anytype) void {
-    set_color_impl(writer, color_hist_pop());
-}
-
-///
-pub fn write_underline(writer: anytype, u: bool) void {
-    const prev = color_hist_peek(-2);
-    write_color(writer, @intToEnum(Color, @enumToInt(prev) & (@boolToInt(u) << 7)));
-}
-
-///
-pub fn write_bright(writer: anytype, b: bool) void {
-    const prev = color_hist_peek(-2);
-    if (prev.get_ansi_code() < 90)
-        write_color(writer, @intToEnum(Color, @enumToInt(prev) + 60 * @boolToInt(b)))
-    else
-        write_color(writer, @intToEnum(Color, @enumToInt(prev) - 60 * @boolToInt(!b)));
-}
-
-///
-fn set_color_impl(writer: anytype, color: Color) void {
-    const code = color.get_ansi_code();
-    const u: u8 = if (color.is_underline()) 4 else 24;
-    writer.print("\x1b[{};{}m", .{ u, code }) catch return;
-}
+// TODO: usePreviousColor()
 
 ///
 pub fn setMargins(this: *This, top: i16, bottom: i16) void {
@@ -536,60 +425,6 @@ const MarginWriter = struct {
     }
 };
 
-// -- color history junk, TODO: overhaul soon
-
-// circle buffer stack of previous colors
-const color_hist_capacity = 32;
-var color_hist = [_]Color{.default} ** color_hist_capacity;
-var color_hist_next: usize = 0;
-var color_hist_available: usize = 0;
-
-///
-fn color_hist_inc() void {
-    color_hist_next += 1;
-    if (color_hist_next >= color_hist.len)
-        color_hist_next = 0;
-    if (color_hist_available <= color_hist_capacity)
-        color_hist_available += 1;
-}
-
-///
-fn color_hist_dec() void {
-    if (color_hist_available == 0)
-        return;
-    color_hist_available -= 1;
-    color_hist_next -%= 1; // wrapping subtraction
-    if (color_hist_next >= color_hist.len)
-        color_hist_next = color_hist.len - 1;
-}
-
-///
-fn color_hist_push(color: Color) void {
-    color_hist[color_hist_next] = color;
-    color_hist_inc();
-}
-
-///
-fn color_hist_pop() Color {
-    color_hist_dec();
-    return color_hist_peek(-1);
-}
-
-///
-fn color_hist_peek(amt: isize) Color {
-    if (amt + @intCast(isize, color_hist_available) < 0)
-        return .default;
-
-    var i: isize = @intCast(isize, color_hist_next) + amt;
-
-    if (i < 0)
-        i += color_hist.len;
-    if (i >= color_hist.len)
-        i -= color_hist.len;
-
-    return color_hist[@intCast(usize, i)];
-}
-
 /// converts any error type to `zcon.Writer.Error`
 /// any error not in `zcon.Writer.Error` with return
 /// `zcon.Writer.Error.Unexpected`
@@ -645,92 +480,93 @@ const zcon_macros = MacroMap.init(.{
 
 fn def_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    write_color(writer, .default);
+    try writer.writeAll("\x1b[0m");
     return true;
 }
 fn macro_prv(writer: WriterProxy, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    write_prev_color(writer);
+    // TODO
+    try writer.writeAll("\x1b[0m");
     return true;
 }
 fn red_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    write_color(writer, .red);
+    try Color.col16(.red).writeAnsiFg(writer);
     return true;
 }
 fn grn_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    write_color(writer, .green);
+    try Color.col16(.green).writeAnsiFg(writer);
     return true;
 }
 fn blu_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    write_color(writer, .blue);
+    try Color.col16(.blue).writeAnsiFg(writer);
     return true;
 }
 fn mag_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    write_color(writer, .magenta);
+    try Color.col16(.magenta).writeAnsiFg(writer);
     return true;
 }
 fn cyn_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    write_color(writer, .cyan);
+    try Color.col16(.cyan).writeAnsiFg(writer);
     return true;
 }
 fn yel_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    write_color(writer, .yellow);
+    try Color.col16(.yellow).writeAnsiFg(writer);
     return true;
 }
 fn wht_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    write_color(writer, bright_white);
+    try Color.col16(.white).writeAnsiFg(writer);
     return true;
 }
 fn blk_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    write_color(writer, .black);
+    try Color.col16(.black).writeAnsiFg(writer);
     return true;
 }
 fn gry_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    write_color(writer, white);
+    try Color.col16(.gray).writeAnsiFg(writer);
     return true;
 }
 fn dgry_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    write_color(writer, bright_black);
+    try Color.col16(.dark_gray).writeAnsiFg(writer);
     return true;
 }
 fn bred_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    write_color(writer, bright_red);
+    try Color.col16(.bright_red).writeAnsiFg(writer);
     return true;
 }
 fn bgrn_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    write_color(writer, bright_green);
+    try Color.col16(.bright_green).writeAnsiFg(writer);
     return true;
 }
 fn bblu_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    write_color(writer, bright_blue);
+    try Color.col16(.bright_blue).writeAnsiFg(writer);
     return true;
 }
 fn bmag_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    write_color(writer, bright_magenta);
+    try Color.col16(.bright_magenta).writeAnsiFg(writer);
     return true;
 }
 fn bcyn_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    write_color(writer, bright_cyan);
+    try Color.col16(.bright_cyan).writeAnsiFg(writer);
     return true;
 }
 fn byel_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    write_color(writer, bright_yellow);
+    try Color.col16(.bright_yellow).writeAnsiFg(writer);
     return true;
 }
 
