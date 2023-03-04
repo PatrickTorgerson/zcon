@@ -17,9 +17,10 @@
 const std = @import("std");
 const root = @import("root");
 const WriterProxy = @import("WriterProxy.zig");
+const Writer = @import("Writer.zig");
 
 ///
-pub const Macro = *const fn (WriterProxy, *ParamIterator) anyerror!bool;
+pub const Macro = *const fn (*Writer, *ParamIterator) anyerror!bool;
 pub const Error = error{macro_returned_error};
 
 /// maps macro names to macro functions
@@ -104,48 +105,53 @@ pub const MacroWriter = struct {
 
     macros: ?MacroMap,
     output: WriterProxy,
+    zcon_writer: *Writer,
 
     pub fn write(this: MacroWriter, bytes: []const u8) MacroWriter.Error!usize {
-        return try expand_macros(this.macros, this.output, bytes);
+        return try expand_macros(this.macros, this.zcon_writer, this.output, bytes);
     }
 
-    pub fn init(macros: ?MacroMap, out_writer: WriterProxy) WriterInterface {
-        return .{ .context = MacroWriter{ .macros = macros, .output = out_writer } };
+    pub fn init(macros: ?MacroMap, zcon_writer: *Writer, out_writer: WriterProxy) WriterInterface {
+        return .{ .context = MacroWriter{
+            .macros = macros,
+            .output = out_writer,
+            .zcon_writer = zcon_writer,
+        } };
     }
 };
 
 ///
-pub fn expand_macro(macros: ?MacroMap, writer: anytype, name: []const u8, params: []const u8) Error!bool {
+pub fn expand_macro(macros: ?MacroMap, writer: *Writer, name: []const u8, params: []const u8) Error!bool {
     if (macros) |m|
         if (m.get(name)) |macro| {
-            return macro(WriterProxy.init(&writer), &ParamIterator{ .slice = params }) catch return Error.macro_returned_error;
+            return macro(writer, &ParamIterator{ .slice = params }) catch return Error.macro_returned_error;
         };
 
     if (@hasDecl(root, "macros")) {
         if (@typeInfo(@TypeOf(root.macros)) != .Struct)
             return false;
         if (root.macros.get(name)) |macro| {
-            return macro(WriterProxy.init(&writer), &ParamIterator{ .slice = params }) catch return Error.macro_returned_error;
+            return macro(writer, &ParamIterator{ .slice = params }) catch return Error.macro_returned_error;
         } else return false;
     } else return false;
 }
 
 /// TODO: accept multiple maps? `?[]const MacroMap`
-pub fn expand_macros(macros: ?MacroMap, writer: anytype, fmt: []const u8) !usize {
+pub fn expand_macros(macros: ?MacroMap, writer: *Writer, out: WriterProxy, str: []const u8) !usize {
     var i: usize = 0;
-    while (i < fmt.len) {
+    while (i < str.len) {
         var prefix_start = i;
 
         // locate next macro
         var escape_count: usize = 0;
-        while (i < fmt.len) : (i += 1) {
-            switch (fmt[i]) {
+        while (i < str.len) : (i += 1) {
+            switch (str[i]) {
                 '#' => {
                     if (escape_count % 2 == 0) {
                         break;
                     } else {
                         // write back slashes
-                        try writer.writeAll(fmt[prefix_start .. i - 1 - (escape_count - 1) / 2]);
+                        try out.writeAll(str[prefix_start .. i - 1 - (escape_count - 1) / 2]);
                         prefix_start = i;
                         escape_count = 0;
                     }
@@ -159,15 +165,15 @@ pub fn expand_macros(macros: ?MacroMap, writer: anytype, fmt: []const u8) !usize
 
         // write prefix
         if (prefix_start != prefix_end)
-            try writer.writeAll(fmt[prefix_start..prefix_end]);
+            try out.writeAll(str[prefix_start..prefix_end]);
 
         // no more macros
-        if (i >= fmt.len) return i;
+        if (i >= str.len) return i;
 
         // Get past the '#'
         i += 1;
 
-        const tag = parse_tag(fmt[i..]);
+        const tag = parse_tag(str[i..]);
 
         i += tag.len;
 

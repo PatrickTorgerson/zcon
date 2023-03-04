@@ -16,6 +16,7 @@ const input = @import("input.zig");
 const macro = @import("macro.zig");
 
 const WriterProxy = @import("WriterProxy.zig");
+const RingBuffer = @import("ring_buffer.zig").RingBuffer;
 const Color = @import("color.zig").Color;
 
 const MacroMap = macro.MacroMap;
@@ -40,6 +41,13 @@ indent_str: []const u8 = "    ",
 /// whether last write ended with a newline
 /// important for indentation
 trailing_newline: bool = false,
+/// stores history of previous colors
+color_hist: RingBuffer(ColorState, 32) = .{},
+
+const ColorState = struct {
+    fg: ?Color,
+    bg: ?Color,
+};
 
 /// creates a Zcon.Writer
 pub fn init() This {
@@ -90,7 +98,7 @@ pub fn printRaw(this: *This, comptime fmt_str: []const u8, args: anytype) !void 
 ///
 pub fn write(this: *This, str: []const u8) Error!usize {
     var indent_writer = IndentWriter.init(this);
-    var macro_writer = MacroWriter.init(zcon_macros, WriterProxy.init(&indent_writer));
+    var macro_writer = MacroWriter.init(zcon_macros, this, WriterProxy.init(&indent_writer));
     macro_writer.writeAll(str) catch |e| return convert_err(e);
     return str.len;
 }
@@ -98,7 +106,7 @@ pub fn write(this: *This, str: []const u8) Error!usize {
 ///
 pub fn print(this: *This, comptime fmt_str: []const u8, args: anytype) Error!void {
     var indent_writer = IndentWriter.init(this);
-    var macro_writer = MacroWriter.init(zcon_macros, WriterProxy.init(&indent_writer));
+    var macro_writer = MacroWriter.init(zcon_macros, this, WriterProxy.init(&indent_writer));
     std.fmt.format(macro_writer, fmt_str, args) catch |e| return convert_err(e);
 }
 
@@ -165,22 +173,63 @@ pub fn writeByteNTimes(this: *This, byte: u8, n: usize) Error!void {
     }
 }
 
+/// returns current foreground color
+/// null for default console foreground
+pub fn getForeground(this: *This) ?Color {
+    if (this.color_hist.top()) |color_state| {
+        return color_state.fg;
+    } else return null;
+}
+
+/// returns current foreground color
+/// null for default console foreground
+pub fn getBackground(this: *This) ?Color {
+    if (this.color_hist.top()) |color_state| {
+        return color_state.bg;
+    } else return null;
+}
+
 /// sets foreground color
 pub fn setForeground(this: *This, color: Color) void {
     color.writeAnsiFg(this.bufferWriter()) catch {};
+    this.color_hist.push(.{
+        .fg = color,
+        .bg = this.getBackground(),
+    });
 }
 
 /// sets background color
 pub fn setBackground(this: *This, color: Color) void {
     color.writeAnsiBg(this.bufferWriter()) catch {};
+    this.color_hist.push(.{
+        .fg = this.getForeground(),
+        .bg = color,
+    });
+}
+
+/// sets color to last used foreground or background color
+pub fn usePreviousColor(this: *This) void {
+    _ = this.color_hist.pop();
+    if (this.color_hist.top()) |prev| {
+        if (prev.fg) |fg|
+            fg.writeAnsiFg(this.bufferWriter()) catch {}
+        else
+            this.putRaw("\x1b[39m");
+        if (prev.bg) |bg|
+            bg.writeAnsiBg(this.bufferWriter()) catch {}
+        else
+            this.putRaw("\x1b[49m");
+    } else this.putRaw("\x1b[0m");
 }
 
 /// sets colors to console defaults
 pub fn useDefaultColors(this: *This) void {
     this.putRaw("\x1b[0m");
+    this.color_hist.push(.{
+        .fg = null,
+        .bg = null,
+    });
 }
-
-// TODO: usePreviousColor()
 
 ///
 pub fn setMargins(this: *This, top: i16, bottom: i16) void {
@@ -277,7 +326,7 @@ pub fn draw(this: *This, comptime fmt_str: []const u8, args: anytype) void {
     const out = this.bufferWriter();
     const column = csbi.dwCursorPosition.X + 1;
     const margin_writer = MarginWriter.init(column, WriterProxy.init(&out));
-    const macro_writer = MacroWriter.init(zcon_macros, WriterProxy.init(&margin_writer));
+    const macro_writer = MacroWriter.init(zcon_macros, this, WriterProxy.init(&margin_writer));
     std.fmt.format(macro_writer, fmt_str, args) catch {};
 }
 
@@ -452,157 +501,143 @@ fn convert_err(e: anyerror) Error {
 
 ///
 const zcon_macros = MacroMap.init(.{
-    .{ "def", def_macro },
-    .{ "prv", macro_prv },
-
-    .{ "red", red_macro },
-    .{ "grn", grn_macro },
-    .{ "blu", blu_macro },
-    .{ "mag", mag_macro },
-    .{ "cyn", cyn_macro },
-    .{ "yel", yel_macro },
-    .{ "wht", wht_macro },
-    .{ "blk", blk_macro },
-
-    .{ "bred", red_macro },
-    .{ "bgrn", grn_macro },
-    .{ "bblu", blu_macro },
-    .{ "bmag", mag_macro },
-    .{ "bcyn", cyn_macro },
-    .{ "byel", yel_macro },
-
-    .{ "gry", gry_macro },
-    .{ "dgry", dgry_macro },
-
-    .{ "rule", rule_macro },
-    .{ "box", box_macro },
+    .{ "def", defMacro },
+    .{ "prv", prvMacro },
+    .{ "red", redMacro },
+    .{ "grn", grnMacro },
+    .{ "blu", bluMacro },
+    .{ "mag", magMacro },
+    .{ "cyn", cynMacro },
+    .{ "yel", yelMacro },
+    .{ "wht", whtMacro },
+    .{ "blk", blkMacro },
+    .{ "bred", redMacro },
+    .{ "bgrn", grnMacro },
+    .{ "bblu", bluMacro },
+    .{ "bmag", magMacro },
+    .{ "bcyn", cynMacro },
+    .{ "byel", yelMacro },
+    .{ "gry", gryMacro },
+    .{ "dgry", dgryMacro },
+    .{ "rule", ruleMacro },
+    .{ "box", boxMacro },
 });
 
-fn def_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
+fn defMacro(writer: *This, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    try writer.writeAll("\x1b[0m");
+    writer.useDefaultColors();
     return true;
 }
-fn macro_prv(writer: WriterProxy, param_iter: *ParamIterator) !bool {
+fn prvMacro(writer: *This, param_iter: *ParamIterator) !bool {
     _ = param_iter;
     // TODO
-    try writer.writeAll("\x1b[0m");
+    writer.usePreviousColor();
     return true;
 }
-fn red_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
+fn redMacro(writer: *This, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    try Color.col16(.red).writeAnsiFg(writer);
+    writer.setForeground(Color.col16(.red));
     return true;
 }
-fn grn_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
+fn grnMacro(writer: *This, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    try Color.col16(.green).writeAnsiFg(writer);
+    writer.setForeground(Color.col16(.green));
     return true;
 }
-fn blu_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
+fn bluMacro(writer: *This, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    try Color.col16(.blue).writeAnsiFg(writer);
+    writer.setForeground(Color.col16(.blue));
     return true;
 }
-fn mag_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
+fn magMacro(writer: *This, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    try Color.col16(.magenta).writeAnsiFg(writer);
+    writer.setForeground(Color.col16(.magenta));
     return true;
 }
-fn cyn_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
+fn cynMacro(writer: *This, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    try Color.col16(.cyan).writeAnsiFg(writer);
+    writer.setForeground(Color.col16(.cyan));
     return true;
 }
-fn yel_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
+fn yelMacro(writer: *This, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    try Color.col16(.yellow).writeAnsiFg(writer);
+    writer.setForeground(Color.col16(.yellow));
     return true;
 }
-fn wht_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
+fn whtMacro(writer: *This, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    try Color.col16(.white).writeAnsiFg(writer);
+    writer.setForeground(Color.col16(.white));
     return true;
 }
-fn blk_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
+fn blkMacro(writer: *This, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    try Color.col16(.black).writeAnsiFg(writer);
+    writer.setForeground(Color.col16(.black));
     return true;
 }
-fn gry_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
+fn gryMacro(writer: *This, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    try Color.col16(.gray).writeAnsiFg(writer);
+    writer.setForeground(Color.col16(.gray));
     return true;
 }
-fn dgry_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
+fn dgryMacro(writer: *This, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    try Color.col16(.dark_gray).writeAnsiFg(writer);
+    writer.setForeground(Color.col16(.dark_gray));
     return true;
 }
-fn bred_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
+fn bredMacro(writer: *This, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    try Color.col16(.bright_red).writeAnsiFg(writer);
+    writer.setForeground(Color.col16(.bright_red));
     return true;
 }
-fn bgrn_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
+fn bgrnMacro(writer: *This, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    try Color.col16(.bright_green).writeAnsiFg(writer);
+    writer.setForeground(Color.col16(.bright_green));
     return true;
 }
-fn bblu_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
+fn bbluMacro(writer: *This, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    try Color.col16(.bright_blue).writeAnsiFg(writer);
+    writer.setForeground(Color.col16(.bright_blue));
     return true;
 }
-fn bmag_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
+fn bmagMacro(writer: *This, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    try Color.col16(.bright_magenta).writeAnsiFg(writer);
+    writer.setForeground(Color.col16(.bright_magenta));
     return true;
 }
-fn bcyn_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
+fn bcynMacro(writer: *This, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    try Color.col16(.bright_cyan).writeAnsiFg(writer);
+    writer.setForeground(Color.col16(.bright_cyan));
     return true;
 }
-fn byel_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
+fn byelMacro(writer: *This, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    try Color.col16(.bright_yellow).writeAnsiFg(writer);
+    writer.setForeground(Color.col16(.bright_yellow));
     return true;
 }
 
-fn rule_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
-    const lstr = param_iter.next();
-
-    if (lstr != null) {
-        var l = try std.fmt.parseInt(i16, lstr.?, 10);
-
-        try writer.writeAll("\x1b(0");
-
-        while (l > 0) : (l -= 1) {
-            try writer.writeByte('q');
+fn ruleMacro(writer: *This, param_iter: *ParamIterator) !bool {
+    if (param_iter.next()) |len_str| {
+        var len = try std.fmt.parseInt(i16, len_str, 10);
+        writer.putRaw("\x1b(0");
+        defer writer.putRaw("\x1b(B");
+        while (len > 0) : (len -= 1) {
+            writer.putChar('q');
         }
+    }
+    return true;
+}
 
-        defer writer.writeAll("\x1b(B") catch {};
+fn boxMacro(writer: *This, param_iter: *ParamIterator) !bool {
+    const wstr = param_iter.next();
+    const hstr = param_iter.next();
+
+    if (wstr != null and hstr != null) {
+        const w = try std.fmt.parseInt(i16, wstr.?, 10);
+        const h = try std.fmt.parseInt(i16, hstr.?, 10);
+        writer.drawBox(.{ .width = w, .height = h });
     }
 
     return true;
-}
-
-fn box_macro(writer: WriterProxy, param_iter: *ParamIterator) !bool {
-    _ = writer;
-    _ = param_iter;
-    // TODO
-    //     const wstr = param_iter.next();
-    //     const hstr = param_iter.next();
-    //
-    //     if (wstr != null and hstr != null) {
-    //         const w = try std.fmt.parseInt(i16, wstr.?, 10);
-    //         const h = try std.fmt.parseInt(i16, hstr.?, 10);
-    //         draw_box(.{ .width = w, .height = h });
-    //     }
-    //
-    //     return true;
-    return false;
 }
 
 // slightly modified from 'std.debug.detectTTYConfig()'

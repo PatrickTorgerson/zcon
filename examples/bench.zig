@@ -14,5 +14,5 @@ pub fn main() !void {
     defer out.useDefaultColors();
 
     out.setBackground(zcon.Color.rgb(100, 50, 50));
-    out.fmt("Now we be #red {s}#prv !", .{"ziggin"});
+    out.put("#red one #grn two #blu three #prv four #prv five #prv six #prv seven\n");
 }
