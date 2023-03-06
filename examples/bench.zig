@@ -14,6 +14,7 @@ pub fn main() !void {
     defer out.useDefaultColors();
 
     out.putRaw("\n\n\n");
+    out.setForeground(zcon.Color.hex("a2a") orelse zcon.Color.col16(.red));
 
     out.put("#box:21,3    Hello friend!");
     out.cursorDown(5);

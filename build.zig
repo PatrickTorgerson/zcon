@@ -3,13 +3,13 @@ const Pkg = std.build.Pkg;
 
 const zcon = Pkg{
     .name = "zcon",
-    .source = .{ .path = "/src/zcon.zig" },
+    .source = .{ .path = "src/zcon.zig" },
     .dependencies = &[_]Pkg{},
 };
 
 const win32 = Pkg{
     .name = "win32",
-    .source = .{ .path = "/src/zigwin32/win32.zig" },
+    .source = .{ .path = "src/zigwin32/win32.zig" },
     .dependencies = &[_]Pkg{},
 };
 
@@ -24,11 +24,11 @@ pub fn link(b: *std.build.Builder, exe: *std.build.LibExeObjStep) void {
     _ = b;
     exe.addPackage(.{
         .name = zcon.name,
-        .source = .{ .path = sdkPath(zcon.source.path) },
+        .source = .{ .path = sdkPath("/" ++ zcon.source.path) },
     });
     exe.addPackage(.{
         .name = win32.name,
-        .source = .{ .path = sdkPath(win32.source.path) },
+        .source = .{ .path = sdkPath("/" ++ win32.source.path) },
     });
 }
 
