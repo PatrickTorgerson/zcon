@@ -20,4 +20,5 @@ pub fn main() !void {
     out.cursorDown(5);
     out.put("#down:5 #left:20 hello#indent friend");
     out.put("#up:5 (printed last)");
+    out.put("#down:5 #fg#bg #repeat:once  #repeat:' Many',5");
 }

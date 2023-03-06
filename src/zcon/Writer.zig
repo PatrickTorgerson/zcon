@@ -524,6 +524,9 @@ const zcon_macros = MacroMap.init(.{
     .{ "byel", yelMacro },
     .{ "gry", gryMacro },
     .{ "dgry", dgryMacro },
+    .{ "fg", fgMacro },
+    .{ "bg", bgMacro },
+    .{ "repeat", repeatMacro },
     .{ "rule", ruleMacro },
     .{ "box", boxMacro },
     .{ "indent", indentMacro },
@@ -533,9 +536,29 @@ const zcon_macros = MacroMap.init(.{
     .{ "right", rightMacro },
 });
 
+fn fgMacro(writer: *This, param_iter: *ParamIterator) !bool {
+    const hex = param_iter.next() orelse return false;
+    writer.setForeground(Color.hex(hex) orelse return false);
+    return true;
+}
+fn bgMacro(writer: *This, param_iter: *ParamIterator) !bool {
+    const hex = param_iter.next() orelse return false;
+    writer.setBackground(Color.hex(hex) orelse return false);
+    return true;
+}
+
+fn repeatMacro(writer: *This, param_iter: *ParamIterator) !bool {
+    const text = param_iter.next() orelse return false;
+    const count_str = param_iter.next() orelse "1";
+    var count = std.fmt.parseInt(usize, count_str, 10) catch return false;
+    while (count > 0) : (count -= 1)
+        writer.put(text);
+    return true;
+}
+
 fn upMacro(writer: *This, param_iter: *ParamIterator) !bool {
     if (param_iter.next()) |amt_str| {
-        var amt = try std.fmt.parseInt(i16, amt_str, 10);
+        var amt = std.fmt.parseInt(i16, amt_str, 10) catch return false;
         writer.cursorUp(amt);
     } else writer.cursorUp(1);
     return true;
@@ -543,7 +566,7 @@ fn upMacro(writer: *This, param_iter: *ParamIterator) !bool {
 
 fn downMacro(writer: *This, param_iter: *ParamIterator) !bool {
     if (param_iter.next()) |amt_str| {
-        var amt = try std.fmt.parseInt(i16, amt_str, 10);
+        var amt = std.fmt.parseInt(i16, amt_str, 10) catch return false;
         writer.cursorDown(amt);
     } else writer.cursorDown(1);
     return true;
@@ -551,7 +574,7 @@ fn downMacro(writer: *This, param_iter: *ParamIterator) !bool {
 
 fn leftMacro(writer: *This, param_iter: *ParamIterator) !bool {
     if (param_iter.next()) |amt_str| {
-        var amt = try std.fmt.parseInt(i16, amt_str, 10);
+        var amt = std.fmt.parseInt(i16, amt_str, 10) catch return false;
         writer.cursorLeft(amt);
     } else writer.cursorLeft(1);
     return true;
@@ -559,7 +582,7 @@ fn leftMacro(writer: *This, param_iter: *ParamIterator) !bool {
 
 fn rightMacro(writer: *This, param_iter: *ParamIterator) !bool {
     if (param_iter.next()) |amt_str| {
-        var amt = try std.fmt.parseInt(i16, amt_str, 10);
+        var amt = std.fmt.parseInt(i16, amt_str, 10) catch return false;
         writer.cursorRight(amt);
     } else writer.cursorRight(1);
     return true;
@@ -578,7 +601,6 @@ fn defMacro(writer: *This, param_iter: *ParamIterator) !bool {
 }
 fn prvMacro(writer: *This, param_iter: *ParamIterator) !bool {
     _ = param_iter;
-    // TODO
     writer.usePreviousColor();
     return true;
 }
@@ -665,7 +687,7 @@ fn byelMacro(writer: *This, param_iter: *ParamIterator) !bool {
 
 fn ruleMacro(writer: *This, param_iter: *ParamIterator) !bool {
     if (param_iter.next()) |len_str| {
-        var len = try std.fmt.parseInt(i16, len_str, 10);
+        var len = std.fmt.parseInt(i16, len_str, 10) catch return false;
         writer.putRaw("\x1b(0");
         defer writer.putRaw("\x1b(B");
         while (len > 0) : (len -= 1) {
@@ -676,15 +698,11 @@ fn ruleMacro(writer: *This, param_iter: *ParamIterator) !bool {
 }
 
 fn boxMacro(writer: *This, param_iter: *ParamIterator) !bool {
-    const wstr = param_iter.next();
-    const hstr = param_iter.next();
-
-    if (wstr != null and hstr != null) {
-        const w = try std.fmt.parseInt(i16, wstr.?, 10);
-        const h = try std.fmt.parseInt(i16, hstr.?, 10);
-        writer.drawBox(.{ .width = w, .height = h });
-    }
-
+    const wstr = param_iter.next() orelse return false;
+    const hstr = param_iter.next() orelse return false;
+    const w = std.fmt.parseInt(i16, wstr, 10) catch return false;
+    const h = std.fmt.parseInt(i16, hstr, 10) catch return false;
+    writer.drawBox(.{ .width = w, .height = h });
     return true;
 }
 
