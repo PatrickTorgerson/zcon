@@ -3,13 +3,13 @@ const Pkg = std.build.Pkg;
 
 const zcon = Pkg{
     .name = "zcon",
-    .source = .{ .path = "src/zcon.zig" },
+    .source = .{ .path = "/src/zcon.zig" },
     .dependencies = &[_]Pkg{},
 };
 
 const win32 = Pkg{
     .name = "win32",
-    .source = .{ .path = "src/zigwin32/win32.zig" },
+    .source = .{ .path = "/src/zigwin32/win32.zig" },
     .dependencies = &[_]Pkg{},
 };
 
@@ -19,6 +19,18 @@ const examples = [_]struct { name: []const u8, source: []const u8 }{
     .{ .name = "cli", .source = "examples/cli.zig" },
     .{ .name = "bench", .source = "examples/bench.zig" },
 };
+
+pub fn link(b: *std.build.Builder, exe: *std.build.LibExeObjStep) void {
+    _ = b;
+    exe.addPackage(.{
+        .name = zcon.name,
+        .source = .{ .path = sdkPath(zcon.source.path) },
+    });
+    exe.addPackage(.{
+        .name = win32.name,
+        .source = .{ .path = sdkPath(win32.source.path) },
+    });
+}
 
 pub fn build(b: *std.build.Builder) void {
     // Standard target options allows the person running `zig build` to choose
@@ -56,4 +68,12 @@ pub fn build(b: *std.build.Builder) void {
 
         run_example_step.dependOn(&run_example_cmd.step);
     }
+}
+
+fn sdkPath(comptime suffix: []const u8) []const u8 {
+    if (suffix[0] != '/') @compileError("suffix must be an absolute path");
+    return comptime blk: {
+        const root_dir = std.fs.path.dirname(@src().file) orelse ".";
+        break :blk root_dir ++ suffix;
+    };
 }
