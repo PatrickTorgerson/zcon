@@ -178,7 +178,7 @@ pub fn expand_macros(macros: ?MacroMap, writer: *Writer, out: WriterProxy, str: 
         i += tag.len;
 
         if (!try expand_macro(macros, writer, tag.name, tag.params))
-            return i;
+            try out.print("<ERR:{s}>", .{tag.name});
     }
 
     return i;
@@ -220,7 +220,7 @@ fn parse_tag(fmt: []const u8) Tag {
                         }
                     }
                 },
-                '#', ' ', '\t', '\n', '\r', ',' => {
+                '#', ' ', '\t', '\n', '\r', ',', ';' => {
                     if (!in_quote)
                         end_param = true;
                 },
@@ -250,7 +250,10 @@ fn parse_tag(fmt: []const u8) Tag {
             .name = fmt[0..name_end],
             .params = fmt[param_start..param_end],
             // +1 for courtesy space
-            .len = if (param_end < fmt.len and fmt[param_end] == ' ') param_end + 1 else param_end,
+            .len = if ((param_end < fmt.len and fmt[param_end] == ' ') or (param_end < fmt.len and fmt[param_end] == ';'))
+                param_end + 1
+            else
+                param_end,
         };
     }
     // return without params
@@ -258,7 +261,10 @@ fn parse_tag(fmt: []const u8) Tag {
         .name = fmt[0..name_end],
         .params = fmt[name_end..name_end],
         // +1 for courtesy space
-        .len = if (name_end < fmt.len and fmt[name_end] == ' ') name_end + 1 else name_end,
+        .len = if ((name_end < fmt.len and fmt[name_end] == ' ') or (name_end < fmt.len and fmt[name_end] == ';'))
+            name_end + 1
+        else
+            name_end,
     };
 }
 
