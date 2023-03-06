@@ -333,6 +333,7 @@ pub fn draw(this: *This, comptime fmt_str: []const u8, args: anytype) void {
 /// like print but newlines line up with starting column
 pub fn drawAt(this: *This, pos: input.Position, comptime fmt_str: []const u8, args: anytype) void {
     this.setCursor(pos);
+    this.flush();
     this.draw(fmt_str, args);
 }
 
@@ -375,9 +376,10 @@ pub fn drawBox(this: *This, size: input.Size) void {
 }
 
 ///
-pub fn drawBoxAt(this: *This, pos: input.Position, size: input.Size) !void {
-    try this.setCursor(pos);
-    try this.drawBox(size);
+pub fn drawBoxAt(this: *This, pos: input.Position, size: input.Size) void {
+    this.setCursor(pos);
+    this.flush();
+    this.drawBox(size);
 }
 
 /// helper writer that inserts indentatin after newlines
