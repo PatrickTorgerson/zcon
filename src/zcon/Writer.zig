@@ -11,7 +11,7 @@
 
 const std = @import("std");
 const builtin = @import("builtin");
-const win32 = @import("../zigwin32/win32.zig").system.console;
+const win32 = @import("zigwin32").system.console;
 const input = @import("InputQueue.zig");
 const macro = @import("macro.zig");
 

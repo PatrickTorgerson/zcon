@@ -21,7 +21,7 @@ pub const Key = InputQueue.Key;
 
 pub usingnamespace @import("zcon/macro.zig");
 
-const win32 = @import("../zigwin32/win32.zig");
+const win32 = @import("zigwin32");
 
 pub fn getBufferSize() !Size {
     const out = std.io.getStdOut();

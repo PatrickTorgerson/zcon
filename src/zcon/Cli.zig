@@ -37,7 +37,7 @@ pub fn OptionList(comptime list: anytype) type {
         var long_map: [MAP_LEN]usize = [_]usize{LEN} ** MAP_LEN;
         var short_map: [MAP_LEN]usize = [_]usize{LEN} ** MAP_LEN;
 
-        for (list) |opt, i| {
+        for (list, 0..) |opt, i| {
             options[i] = opt;
 
             if (opt.alias_long.len > 0) {
@@ -141,7 +141,7 @@ exe_path: ?[]const u8,
 
 /// must be deinited with @This().deinit();
 pub fn init(allocator: std.mem.Allocator, writer: *Writer) !This {
-    var this = This {
+    var this = This{
         .args = try std.process.argsWithAllocator(allocator),
         .current_arg = "",
         .writer = writer,

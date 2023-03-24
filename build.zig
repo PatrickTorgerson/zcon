@@ -1,17 +1,5 @@
 const std = @import("std");
-const Pkg = std.build.Pkg;
-
-const zcon = Pkg{
-    .name = "zcon",
-    .source = .{ .path = "src/zcon.zig" },
-    .dependencies = &[_]Pkg{},
-};
-
-const win32 = Pkg{
-    .name = "win32",
-    .source = .{ .path = "src/zigwin32/win32.zig" },
-    .dependencies = &[_]Pkg{},
-};
+const win32 = @import("src/zigwin32/build.zig");
 
 const examples = [_]struct { name: []const u8, source: []const u8 }{
     .{ .name = "paint", .source = "examples/paint.zig" },
@@ -20,39 +8,48 @@ const examples = [_]struct { name: []const u8, source: []const u8 }{
     .{ .name = "bench", .source = "examples/bench.zig" },
 };
 
-pub fn link(b: *std.build.Builder, exe: *std.build.LibExeObjStep) void {
-    _ = b;
-    exe.addPackage(.{
-        .name = zcon.name,
-        .source = .{ .path = sdkPath("/" ++ zcon.source.path) },
+pub fn module(b: *std.Build) *std.Build.Module {
+    const zigwin32 = b.addModule("zigwin32", .{
+        .source_file = .{ .path = sdkPath("/src/zigwin32/win32.zig") },
     });
-    exe.addPackage(.{
-        .name = win32.name,
-        .source = .{ .path = sdkPath("/" ++ win32.source.path) },
+    return b.addModule("zcon", .{
+        .source_file = .{ .path = sdkPath("/src/zcon.zig") },
+        .dependencies = &[_]std.Build.ModuleDependency{
+            .{
+                .name = "zigwin32",
+                .module = zigwin32,
+            },
+        },
     });
 }
 
-pub fn build(b: *std.build.Builder) void {
+pub fn build(b: *std.Build) void {
     // Standard target options allows the person running `zig build` to choose
     // what target to build for. Here we do not override the defaults, which
     // means any target is allowed, and the default is native. Other options
     // for restricting supported target set are available.
     const target = b.standardTargetOptions(.{});
 
-    // Standard release options allow the person running `zig build` to select
-    // between Debug, ReleaseSafe, ReleaseFast, and ReleaseSmall.
-    const mode = b.standardReleaseOptions();
+    // Standard optimization options allow the person running `zig build` to select
+    // between Debug, ReleaseSafe, ReleaseFast, and ReleaseSmall. Here we do not
+    // set a preferred release mode, allowing the user to decide how to optimize.
+    const optimize = b.standardOptimizeOption(.{});
+
+    const zcon = module(b);
 
     // -- examples
 
     const example_step = b.step("examples", "Build all examples");
 
     inline for (examples) |example| {
-        const exe = b.addExecutable(example.name, example.source);
-        exe.setBuildMode(mode);
-        exe.setTarget(target);
-        exe.addPackage(zcon);
-        exe.addPackage(win32);
+        const exe = b.addExecutable(.{
+            .name = example.name,
+            .root_source_file = .{ .path = example.source },
+            .target = target,
+            .optimize = optimize,
+        });
+        exe.addModule("zcon", zcon);
+
         const instal_step = &b.addInstallArtifact(exe).step;
 
         example_step.dependOn(instal_step);
@@ -60,7 +57,7 @@ pub fn build(b: *std.build.Builder) void {
         const run_example_step = b.step(example.name, "Run example '" ++ example.name ++ "'");
         run_example_step.dependOn(example_step);
 
-        const run_example_cmd = exe.run();
+        const run_example_cmd = b.addRunArtifact(exe);
         run_example_cmd.step.dependOn(instal_step);
         if (b.args) |args| {
             run_example_cmd.addArgs(args);
@@ -68,6 +65,16 @@ pub fn build(b: *std.build.Builder) void {
 
         run_example_step.dependOn(&run_example_cmd.step);
     }
+
+    // -- tests
+
+    const exe_tests = b.addTest(.{
+        .root_source_file = zcon.source_file,
+        .target = target,
+        .optimize = optimize,
+    });
+    const test_step = b.step("test", "Run unit tests");
+    test_step.dependOn(&exe_tests.step);
 }
 
 fn sdkPath(comptime suffix: []const u8) []const u8 {

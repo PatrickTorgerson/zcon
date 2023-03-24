@@ -143,7 +143,7 @@ const pallete: [14]Swatch = blk: {
 
     // set bounds
     var i: i16 = 0;
-    for (p) |*swatch| {
+    for (p[0..]) |*swatch| {
         const col1 = i % 2 == 0;
 
         const left = if (col1) col1_left else col1_left + 6;

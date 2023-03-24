@@ -36,7 +36,7 @@ pub fn init_with_writefn(pointer: anytype, writefn: anytype) This {
     const proxy = struct {
         fn write_proxy(ptr: *const anyopaque, bytes: []const u8) !usize {
             const self = @ptrCast(Ptr, @alignCast(alignment, ptr));
-            return @call(.{ .modifier = .always_inline }, writefn, .{ self.*, bytes });
+            return @call(.always_inline, writefn, .{ self.*, bytes });
         }
     };
     return .{
