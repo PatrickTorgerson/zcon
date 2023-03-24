@@ -28,12 +28,5 @@ pub fn main() !void {
     }
     out.putChar('\n');
 
-    out.put("\n \x1b[31m RED \x1b[91m BRED \n");
-    out.fmt("\n \x1b[{}m RED \x1b[{}m BRED \n", .{ 31, 91 });
-    out.put("\n #red; RED #bred; BRED \n\n");
-
-    out.setForeground(zcon.Color.col16(.red));
-    out.putRaw("  RED");
-    out.setForeground(zcon.Color.col16(.bright_red));
-    out.putRaw("  BRED\n\n");
+    out.put(" #blu:'hello'; #grn:'world'; normal #fg:776611,'yellow'; normal");
 }

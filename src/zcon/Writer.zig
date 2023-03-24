@@ -536,14 +536,30 @@ const zcon_macros = MacroMap.init(.{
     .{ "right", rightMacro },
 });
 
+fn colorMacroFg(color: Color, writer: *This, param_iter: *ParamIterator) void {
+    writer.setForeground(color);
+    if (param_iter.next()) |text| {
+        writer.put(text);
+        writer.usePreviousColor();
+    }
+}
+
+fn colorMacroBg(color: Color, writer: *This, param_iter: *ParamIterator) void {
+    writer.setBackground(color);
+    if (param_iter.next()) |text| {
+        writer.put(text);
+        writer.usePreviousColor();
+    }
+}
+
 fn fgMacro(writer: *This, param_iter: *ParamIterator) !bool {
     const hex = param_iter.next() orelse return false;
-    writer.setForeground(Color.hex(hex) orelse return false);
+    colorMacroFg(Color.hex(hex) orelse return false, writer, param_iter);
     return true;
 }
 fn bgMacro(writer: *This, param_iter: *ParamIterator) !bool {
     const hex = param_iter.next() orelse return false;
-    writer.setBackground(Color.hex(hex) orelse return false);
+    colorMacroBg(Color.hex(hex) orelse return false, writer, param_iter);
     return true;
 }
 
@@ -605,83 +621,67 @@ fn prvMacro(writer: *This, param_iter: *ParamIterator) !bool {
     return true;
 }
 fn redMacro(writer: *This, param_iter: *ParamIterator) !bool {
-    _ = param_iter;
-    writer.setForeground(Color.col16(.red));
+    colorMacroFg(Color.col16(.red), writer, param_iter);
     return true;
 }
 fn grnMacro(writer: *This, param_iter: *ParamIterator) !bool {
-    _ = param_iter;
-    writer.setForeground(Color.col16(.green));
+    colorMacroFg(Color.col16(.green), writer, param_iter);
     return true;
 }
 fn bluMacro(writer: *This, param_iter: *ParamIterator) !bool {
-    _ = param_iter;
-    writer.setForeground(Color.col16(.blue));
+    colorMacroFg(Color.col16(.blue), writer, param_iter);
     return true;
 }
 fn magMacro(writer: *This, param_iter: *ParamIterator) !bool {
-    _ = param_iter;
-    writer.setForeground(Color.col16(.magenta));
+    colorMacroFg(Color.col16(.magenta), writer, param_iter);
     return true;
 }
 fn cynMacro(writer: *This, param_iter: *ParamIterator) !bool {
-    _ = param_iter;
-    writer.setForeground(Color.col16(.cyan));
+    colorMacroFg(Color.col16(.cyan), writer, param_iter);
     return true;
 }
 fn yelMacro(writer: *This, param_iter: *ParamIterator) !bool {
-    _ = param_iter;
-    writer.setForeground(Color.col16(.yellow));
+    colorMacroFg(Color.col16(.yellow), writer, param_iter);
     return true;
 }
 fn whtMacro(writer: *This, param_iter: *ParamIterator) !bool {
-    _ = param_iter;
-    writer.setForeground(Color.col16(.white));
+    colorMacroFg(Color.col16(.white), writer, param_iter);
     return true;
 }
 fn blkMacro(writer: *This, param_iter: *ParamIterator) !bool {
-    _ = param_iter;
-    writer.setForeground(Color.col16(.black));
+    colorMacroFg(Color.col16(.black), writer, param_iter);
     return true;
 }
 fn gryMacro(writer: *This, param_iter: *ParamIterator) !bool {
-    _ = param_iter;
-    writer.setForeground(Color.col16(.gray));
+    colorMacroFg(Color.col16(.gray), writer, param_iter);
     return true;
 }
 fn dgryMacro(writer: *This, param_iter: *ParamIterator) !bool {
-    _ = param_iter;
-    writer.setForeground(Color.col16(.dark_gray));
+    colorMacroFg(Color.col16(.dark_gray), writer, param_iter);
     return true;
 }
 fn bredMacro(writer: *This, param_iter: *ParamIterator) !bool {
-    _ = param_iter;
-    writer.setForeground(Color.col16(.bright_red));
+    colorMacroFg(Color.col16(.bright_red), writer, param_iter);
     return true;
 }
 fn bgrnMacro(writer: *This, param_iter: *ParamIterator) !bool {
-    _ = param_iter;
-    writer.setForeground(Color.col16(.bright_green));
+    colorMacroFg(Color.col16(.bright_green), writer, param_iter);
     return true;
 }
 fn bbluMacro(writer: *This, param_iter: *ParamIterator) !bool {
-    _ = param_iter;
-    writer.setForeground(Color.col16(.bright_blue));
+    colorMacroFg(Color.col16(.bright_blue), writer, param_iter);
     return true;
 }
 fn bmagMacro(writer: *This, param_iter: *ParamIterator) !bool {
-    _ = param_iter;
-    writer.setForeground(Color.col16(.bright_magenta));
+    colorMacroFg(Color.col16(.bright_magenta), writer, param_iter);
     return true;
 }
 fn bcynMacro(writer: *This, param_iter: *ParamIterator) !bool {
-    _ = param_iter;
-    writer.setForeground(Color.col16(.bright_cyan));
+    colorMacroFg(Color.col16(.bright_cyan), writer, param_iter);
     return true;
 }
 fn byelMacro(writer: *This, param_iter: *ParamIterator) !bool {
-    _ = param_iter;
-    writer.setForeground(Color.col16(.bright_yellow));
+    colorMacroFg(Color.col16(.bright_green), writer, param_iter);
     return true;
 }
 
