@@ -44,6 +44,16 @@ trailing_newline: bool = false,
 /// stores history of previous colors
 color_hist: RingBuffer(ColorState, 32) = .{},
 
+is_bold: bool = false,
+is_dim: bool = false,
+is_italic: bool = false,
+is_blink: bool = false,
+is_inverse: bool = false,
+is_strikethrough: bool = false,
+is_underline: Underline = .off,
+
+const Underline = enum { off, single, double };
+
 const ColorState = struct {
     fg: ?Color,
     bg: ?Color,
@@ -229,6 +239,81 @@ pub fn useDefaultColors(this: *This) void {
         .fg = null,
         .bg = null,
     });
+}
+
+/// turn underline off, single, or double
+/// may not be supported by all terminals
+pub fn underline(this: *This, on: Underline) void {
+    this.is_underline = on;
+    // switching directly from single to double, or vice-versa
+    // doesn't work, so we disable undeline first
+    this.putRaw("\x1b[24m");
+    switch (on) {
+        .off => {},
+        .single => this.putRaw("\x1b[4m"),
+        .double => this.putRaw("\x1b[21m"),
+    }
+}
+
+/// turn italics on or off
+/// may not be supported by all terminals
+pub fn italic(this: *This, on: bool) void {
+    this.is_italic = on;
+    if (on)
+        this.putRaw("\x1b[3m")
+    else
+        this.putRaw("\x1b[23m");
+}
+
+/// turn dim on or off
+/// may not be supported by all terminals
+pub fn dim(this: *This, on: bool) void {
+    this.is_dim = on;
+    if (on)
+        this.putRaw("\x1b[2m")
+    else
+        this.putRaw("\x1b[22m");
+}
+
+/// turn bold on or off
+/// may not be supported by all terminals
+pub fn bold(this: *This, on: bool) void {
+    this.is_bold = on;
+    if (on)
+        this.putRaw("\x1b[1m")
+    else
+        this.putRaw("\x1b[22m");
+}
+
+/// turn blink on or off
+/// may not be supported by all terminals
+pub fn blink(this: *This, on: bool) void {
+    this.is_blink = on;
+    if (on)
+        this.putRaw("\x1b[5m")
+    else
+        this.putRaw("\x1b[25m");
+}
+
+/// turn inverse on or off
+/// switches fg and bg color
+/// may not be supported by all terminals
+pub fn inverse(this: *This, on: bool) void {
+    this.is_inverse = on;
+    if (on)
+        this.putRaw("\x1b[7m")
+    else
+        this.putRaw("\x1b[27m");
+}
+
+/// turn strike through on or off
+/// may not be supported by all terminals
+pub fn strikethrough(this: *This, on: bool) void {
+    this.is_strikethrough = on;
+    if (on)
+        this.putRaw("\x1b[9m")
+    else
+        this.putRaw("\x1b[29m");
 }
 
 ///
@@ -526,6 +611,15 @@ const zcon_macros = MacroMap.init(.{
     .{ "dgry", dgryMacro },
     .{ "fg", fgMacro },
     .{ "bg", bgMacro },
+    .{ "n", normalMacro },
+    .{ "b", boldMacro },
+    .{ "d", dimMacro },
+    .{ "i", italicMacro },
+    .{ "u", underlineMacro },
+    .{ "s", strikeMacro },
+    .{ "du", doubleUnderlineMacro },
+    .{ "blink", blinkMacro },
+    .{ "inverse", inverseMacro },
     .{ "repeat", repeatMacro },
     .{ "rule", ruleMacro },
     .{ "box", boxMacro },
@@ -552,11 +646,152 @@ fn colorMacroBg(color: Color, writer: *This, param_iter: *ParamIterator) void {
     }
 }
 
+fn normalMacro(writer: *This, param_iter: *ParamIterator) !bool {
+    const is_underline = writer.is_underline;
+    const is_bold = writer.is_bold;
+    const is_dim = writer.is_dim;
+    const is_italic = writer.is_italic;
+    const is_blink = writer.is_blink;
+    const is_inverse = writer.is_inverse;
+    const is_strikethrough = writer.is_strikethrough;
+    writer.underline(.off);
+    writer.bold(false);
+    writer.dim(false);
+    writer.italic(false);
+    writer.blink(false);
+    writer.inverse(false);
+    writer.strikethrough(false);
+    if (param_iter.next()) |text| {
+        writer.put(text);
+        writer.underline(is_underline);
+        writer.bold(is_bold);
+        writer.dim(is_dim);
+        writer.italic(is_italic);
+        writer.blink(is_blink);
+        writer.inverse(is_inverse);
+        writer.strikethrough(is_strikethrough);
+    }
+    return true;
+}
+
+fn boldMacro(writer: *This, param_iter: *ParamIterator) !bool {
+    if (param_iter.next()) |param| {
+        if (std.mem.eql(u8, param, "off"))
+            writer.bold(false)
+        else {
+            const was_bold = writer.is_bold;
+            writer.bold(true);
+            writer.put(param);
+            writer.bold(was_bold);
+        }
+    } else writer.bold(true);
+    return true;
+}
+
+fn dimMacro(writer: *This, param_iter: *ParamIterator) !bool {
+    if (param_iter.next()) |param| {
+        if (std.mem.eql(u8, param, "off"))
+            writer.dim(false)
+        else {
+            const was_dim = writer.is_dim;
+            writer.dim(true);
+            writer.put(param);
+            writer.dim(was_dim);
+        }
+    } else writer.dim(true);
+    return true;
+}
+
+fn italicMacro(writer: *This, param_iter: *ParamIterator) !bool {
+    if (param_iter.next()) |param| {
+        if (std.mem.eql(u8, param, "off"))
+            writer.italic(false)
+        else {
+            const was_italic = writer.is_italic;
+            writer.italic(true);
+            writer.put(param);
+            writer.italic(was_italic);
+        }
+    } else writer.italic(true);
+    return true;
+}
+
+fn blinkMacro(writer: *This, param_iter: *ParamIterator) !bool {
+    if (param_iter.next()) |param| {
+        if (std.mem.eql(u8, param, "off"))
+            writer.blink(false)
+        else {
+            const was_blink = writer.is_blink;
+            writer.blink(true);
+            writer.put(param);
+            writer.blink(was_blink);
+        }
+    } else writer.blink(true);
+    return true;
+}
+
+fn inverseMacro(writer: *This, param_iter: *ParamIterator) !bool {
+    if (param_iter.next()) |param| {
+        if (std.mem.eql(u8, param, "off"))
+            writer.inverse(false)
+        else {
+            const was_inverse = writer.is_inverse;
+            writer.inverse(true);
+            writer.put(param);
+            writer.inverse(was_inverse);
+        }
+    } else writer.inverse(true);
+    return true;
+}
+
+fn underlineMacro(writer: *This, param_iter: *ParamIterator) !bool {
+    if (param_iter.next()) |param| {
+        if (std.mem.eql(u8, param, "off"))
+            writer.underline(.off)
+        else {
+            const was_underline = writer.is_underline;
+            writer.underline(.single);
+            writer.put(param);
+            writer.underline(was_underline);
+        }
+    } else writer.underline(.single);
+    return true;
+}
+
+fn strikeMacro(writer: *This, param_iter: *ParamIterator) !bool {
+    if (param_iter.next()) |param| {
+        if (std.mem.eql(u8, param, "off"))
+            writer.strikethrough(false)
+        else {
+            const was_strikethrough = writer.is_strikethrough;
+            writer.strikethrough(true);
+            writer.put(param);
+            writer.strikethrough(was_strikethrough);
+        }
+    } else writer.strikethrough(true);
+    return true;
+}
+
+fn doubleUnderlineMacro(writer: *This, param_iter: *ParamIterator) !bool {
+    if (param_iter.next()) |param| {
+        if (std.mem.eql(u8, param, "off"))
+            writer.underline(.off)
+        else {
+            const was_underline = writer.is_underline;
+            writer.underline(.double);
+            writer.put(param);
+            writer.underline(was_underline);
+        }
+    } else writer.underline(.double);
+    return true;
+}
+
 fn fgMacro(writer: *This, param_iter: *ParamIterator) !bool {
     const hex = param_iter.next() orelse return false;
     colorMacroFg(Color.hex(hex) orelse return false, writer, param_iter);
     return true;
 }
+
 fn bgMacro(writer: *This, param_iter: *ParamIterator) !bool {
     const hex = param_iter.next() orelse return false;
     colorMacroBg(Color.hex(hex) orelse return false, writer, param_iter);

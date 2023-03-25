@@ -28,5 +28,5 @@ pub fn main() !void {
     }
     out.putChar('\n');
 
-    out.put(" #blu:'hello'; #grn:'world'; normal #fg:776611,'yellow'; normal");
+    out.put("#blink#inverse#du#s#b#i Whoa Dude #n , what bruh");
 }
