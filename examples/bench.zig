@@ -12,21 +12,10 @@ pub fn main() !void {
     defer out.flush();
     defer out.useDefaultColors();
 
-    const evens = [_]i32{ 2, 4, 6, 8 };
-    const odds = [_]i32{ 1, 3, 5, 7 };
-
-    // new zig 0.11.x feature
-    for (&evens, &odds) |even, odd| {
-        out.fmt("{}, {}, ", .{ odd, even });
-    }
-    out.putChar('\n');
-
-    // sundenly for loops are usefull
-    // inclusive..exclusive
-    for (1..11) |i| {
-        out.fmt("({}) ", .{i});
-    }
-    out.putChar('\n');
-
-    out.put("#blink#inverse#du#s#b#i Whoa Dude #n , what bruh");
+    out.put("#inverse\n");
+    out.put("#blk;  #gry;  #red;  #yel;  #grn;  #cyn;  #blu;  #mag;  \n");
+    out.put("#dgry;  #wht;  #bred;  #byel;  #bgrn;  #bcyn;  #bblu;  #bmag;  \n");
+    out.put("#d");
+    out.put("#blk;  #gry;  #red;  #yel;  #grn;  #cyn;  #blu;  #mag;  \n");
+    out.put("#dgry;  #wht;  #bred;  #byel;  #bgrn;  #bcyn;  #bblu;  #bmag;  \n");
 }

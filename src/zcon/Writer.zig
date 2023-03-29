@@ -916,7 +916,7 @@ fn bcynMacro(writer: *This, param_iter: *ParamIterator) !bool {
     return true;
 }
 fn byelMacro(writer: *This, param_iter: *ParamIterator) !bool {
-    colorMacroFg(Color.col16(.bright_green), writer, param_iter);
+    colorMacroFg(Color.col16(.bright_yellow), writer, param_iter);
     return true;
 }
 
