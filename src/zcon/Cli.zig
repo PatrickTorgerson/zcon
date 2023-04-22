@@ -17,7 +17,7 @@
 const std = @import("std");
 const Writer = @import("Writer.zig");
 
-const Option = struct {
+pub const Option = struct {
     alias_long: []const u8,
     alias_short: []const u8,
     desc: []const u8,
