@@ -174,7 +174,7 @@ pub fn putChar(this: *This, char: u8) void {
 /// for std writer compatability
 pub fn writeByteNTimes(this: *This, byte: u8, n: usize) Error!void {
     var bytes: [256]u8 = undefined;
-    std.mem.set(u8, bytes[0..], byte);
+    @memset(bytes[0..], byte);
     var remaining: usize = n;
     while (remaining > 0) {
         const to_write = std.math.min(remaining, bytes.len);

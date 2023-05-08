@@ -76,7 +76,7 @@ pub fn writeByte(self: This, byte: u8) !void {
 
 pub fn writeByteNTimes(self: This, byte: u8, n: usize) !void {
     var bytes: [256]u8 = undefined;
-    std.mem.set(u8, bytes[0..], byte);
+    @memset(bytes[0..], byte);
     var remaining: usize = n;
     while (remaining > 0) {
         const to_write = std.math.min(remaining, bytes.len);
