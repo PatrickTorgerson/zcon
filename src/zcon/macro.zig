@@ -108,7 +108,7 @@ pub const MacroWriter = struct {
     zcon_writer: *Writer,
 
     pub fn write(this: MacroWriter, bytes: []const u8) MacroWriter.Error!usize {
-        return try expand_macros(this.macros, this.zcon_writer, this.output, bytes);
+        return try expandMacros(this.macros, this.zcon_writer, this.output, bytes);
     }
 
     pub fn init(macros: ?MacroMap, zcon_writer: *Writer, out_writer: WriterProxy) WriterInterface {
@@ -121,23 +121,25 @@ pub const MacroWriter = struct {
 };
 
 ///
-pub fn expand_macro(macros: ?MacroMap, writer: *Writer, name: []const u8, params: []const u8) Error!bool {
+pub fn expandMacro(macros: ?MacroMap, writer: *Writer, name: []const u8, params: []const u8) Error!bool {
     if (macros) |m|
         if (m.get(name)) |macro| {
-            return macro(writer, &ParamIterator{ .slice = params }) catch return Error.macro_returned_error;
+            var param_iter = ParamIterator{ .slice = params };
+            return macro(writer, &param_iter) catch return Error.macro_returned_error;
         };
 
     if (@hasDecl(root, "macros")) {
         if (@typeInfo(@TypeOf(root.macros)) != .Struct)
             return false;
         if (root.macros.get(name)) |macro| {
-            return macro(writer, &ParamIterator{ .slice = params }) catch return Error.macro_returned_error;
+            var param_iter = ParamIterator{ .slice = params };
+            return macro(writer, &param_iter) catch return Error.macro_returned_error;
         } else return false;
     } else return false;
 }
 
 /// TODO: accept multiple maps? `?[]const MacroMap`
-pub fn expand_macros(macros: ?MacroMap, writer: *Writer, out: WriterProxy, str: []const u8) !usize {
+pub fn expandMacros(macros: ?MacroMap, writer: *Writer, out: WriterProxy, str: []const u8) !usize {
     var i: usize = 0;
     while (i < str.len) {
         var prefix_start = i;
@@ -173,11 +175,11 @@ pub fn expand_macros(macros: ?MacroMap, writer: *Writer, out: WriterProxy, str: 
         // Get past the '#'
         i += 1;
 
-        const tag = parse_tag(str[i..]);
+        const tag = parseTag(str[i..]);
 
         i += tag.len;
 
-        if (!try expand_macro(macros, writer, tag.name, tag.params))
+        if (!try expandMacro(macros, writer, tag.name, tag.params))
             try out.print("<ERR:{s}>", .{tag.name});
     }
 
@@ -185,7 +187,7 @@ pub fn expand_macros(macros: ?MacroMap, writer: *Writer, out: WriterProxy, str: 
 }
 
 ///
-fn parse_tag(fmt: []const u8) Tag {
+fn parseTag(fmt: []const u8) Tag {
     // name
     var name_end: usize = 0;
     while (name_end < fmt.len and (std.ascii.isAlphabetic(fmt[name_end]) or

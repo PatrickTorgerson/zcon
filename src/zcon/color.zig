@@ -72,7 +72,7 @@ pub const Color = union(enum) {
     pub fn writeAnsiFg(color: Color, writer: anytype) !void {
         switch (color) {
             .as_col16 => |col| {
-                try writer.print("\x1b[{}m", .{@enumToInt(col)});
+                try writer.print("\x1b[{}m", .{@intFromEnum(col)});
             },
             .as_rgb => |col| {
                 try writer.print("\x1b[38;2;{};{};{}m", .{ col.r, col.g, col.b });
@@ -84,7 +84,7 @@ pub const Color = union(enum) {
     pub fn writeAnsiBg(color: Color, writer: anytype) !void {
         switch (color) {
             .as_col16 => |col| {
-                try writer.print("\x1b[{}m", .{@enumToInt(col) + 10});
+                try writer.print("\x1b[{}m", .{@intFromEnum(col) + 10});
             },
             .as_rgb => |col| {
                 try writer.print("\x1b[48;2;{};{};{}m", .{ col.r, col.g, col.b });

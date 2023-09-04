@@ -11,8 +11,6 @@
 
 const std = @import("std");
 const builtin = @import("builtin");
-const win32 = @import("zigwin32").system.console;
-const input = @import("InputQueue.zig");
 const macro = @import("macro.zig");
 
 const WriterProxy = @import("WriterProxy.zig");
@@ -141,13 +139,13 @@ pub fn fmtRaw(this: *This, comptime fmt_str: []const u8, args: anytype) void {
 }
 
 ///
-pub fn putAt(this: *This, pos: input.Position, str: []const u8) void {
+pub fn putAt(this: *This, pos: Cursor, str: []const u8) void {
     this.setCursor(pos);
     this.put(str);
 }
 
 ///
-pub fn fmtAt(this: *This, pos: input.Position, comptime fmt_str: []const u8, args: anytype) void {
+pub fn fmtAt(this: *This, pos: Cursor, comptime fmt_str: []const u8, args: anytype) void {
     this.setCursor(pos);
     this.fmt(fmt_str, args);
 }
@@ -318,8 +316,11 @@ pub fn strikethrough(this: *This, on: bool) void {
 
 ///
 pub fn setMargins(this: *This, top: i16, bottom: i16) void {
-    const size = input.get_buffer_size() catch return;
-    this.fmtRaw("\x1b[{};{}r", .{ top, size.height - bottom });
+    _ = bottom;
+    _ = top;
+    _ = this;
+    //const size = input.get_buffer_size() catch return;
+    //this.fmtRaw("\x1b[{};{}r", .{ top, size.height - bottom });
 }
 
 ///
@@ -332,9 +333,14 @@ pub fn restoreCursor(this: *This) void {
     this.putRaw("\x1b8");
 }
 
+pub const Cursor = struct {
+    x: i16,
+    y: i16,
+};
+
 ///
-pub fn setCursor(this: *This, pos: input.Position) void {
-    this.fmtRaw("\x1b[{};{}H", .{ pos.y, pos.x });
+pub fn setCursor(this: *This, cur: Cursor) void {
+    this.fmtRaw("\x1b[{};{}H", .{ cur.y, cur.x });
 }
 
 ///
@@ -375,6 +381,117 @@ pub fn showCursor(this: *This, show: bool) void {
         this.putRaw("\x1b[?25l");
 }
 
+/// Gets the cursor position
+/// returned cursor will be invalidated when the buffer scrolls
+/// use of this function should be minimized
+pub fn getCursor(this: *This) !Cursor {
+    if (builtin.os.tag == .windows) {
+        const win32 = @import("win32.zig");
+
+        const stdout = std.io.getStdOut();
+        var csbi: win32.CONSOLE_SCREEN_BUFFER_INFO = undefined;
+        if (win32.GetConsoleScreenBufferInfo(stdout.handle, &csbi) == 0)
+            return error.win32_fail;
+        return .{
+            .x = csbi.dwCursorPosition.X + 1,
+            .y = csbi.dwCursorPosition.Y + 1,
+        };
+    } else {
+        const c = @import("c.zig");
+        this.flush();
+
+        // save current term state
+        var saved_term: c.termios = undefined;
+        var result: i32 = 0;
+        while (true) {
+            result = c.tcgetattr(std.io.getStdOut().handle, &saved_term);
+            if (!(result == -1 and std.c.getErrno(result) == .INTR)) break;
+        }
+        if (result == -1) return error.save_state_fail;
+
+        // restore previos term state on return
+        defer {
+            while (true) {
+                result = c.tcsetattr(std.io.getStdOut().handle, c.TCSANOW, &saved_term);
+                if (!(result == -1 and std.c.getErrno(result) == .INTR)) break;
+            }
+        }
+
+        var term: c.termios = saved_term;
+        term.c_lflag &= ~@as(c_uint, @intCast(c.ICANON)); // don't hang on read
+        term.c_lflag &= ~@as(c_uint, @intCast(c.ECHO)); // don't display response
+        term.c_lflag &= ~@as(c_uint, @intCast(c.CREAD)); // don't mix standard input and console responses.
+
+        // update term state with above flags
+        while (true) {
+            result = c.tcsetattr(std.io.getStdOut().handle, c.TCSANOW, &term);
+            if (!(result == -1 and std.c.getErrno(result) == .INTR)) break;
+        }
+        if (result == -1) return error.update_state_fail;
+
+        // request cursor position
+        this.stdout.writeAll("\x1b[6n") catch unreachable;
+
+        var buffer_data: [16]u8 = undefined;
+        const reader = std.io.getStdIn().reader();
+
+        const buffer = reader.readUntilDelimiterOrEof(&buffer_data, 'R') catch {
+            return error.read_fail;
+        } orelse return error.read_fail;
+
+        if (buffer[0] != '\x1b')
+            return error.missing_escape;
+        if (buffer[1] != '[')
+            return error.missing_bracket;
+
+        var end: usize = 2;
+        while (end < buffer.len and buffer[end] != ';')
+            end += 1;
+        const y = std.fmt.parseInt(i16, buffer[2..end], 10) catch return error.parse_fail;
+        var r: usize = 2;
+        while (r < buffer.len and buffer[r] != 'R')
+            r += 1;
+        const x = std.fmt.parseInt(i16, buffer[end + 1 .. r], 10) catch return error.parse_fail;
+
+        return .{ .x = x, .y = y };
+    }
+}
+
+pub const Size = struct {
+    width: i16,
+    height: i16,
+};
+
+/// Get size of the console screen buffer
+/// use of this function should be minimized
+pub fn getSize(this: *This) !Size {
+    _ = this;
+    if (builtin.os.tag == .windows) {
+        const win32 = @import("win32.zig");
+
+        const stdout = std.io.getStdOut();
+        var csbi: win32.CONSOLE_SCREEN_BUFFER_INFO = undefined;
+        if (win32.GetConsoleScreenBufferInfo(stdout.handle, &csbi) == 0)
+            return error.win32_fail;
+        return .{
+            .width = csbi.dwSize.X,
+            .height = csbi.dwSize.Y,
+        };
+    } else {
+        const c = @import("c.zig");
+
+        var w: c.winsize = undefined;
+        const result = c.ioctl(c.STDOUT_FILENO, c.TIOCGWINSZ, &w);
+        if (result != 0)
+            return error.ioctl_fail;
+
+        return .{
+            .width = @intCast(w.ws_col),
+            .height = @intCast(w.ws_row),
+        };
+    }
+}
+
 /// switches to a dedicated console buffer
 pub fn useDedicatedScreen(this: *This) void {
     this.putRaw("\x1b[?1049h");
@@ -400,43 +517,39 @@ pub fn backspace(this: *This) void {
     try this.putRaw("\x1b[1D \x1b[1D");
 }
 
-// like print but newlines line up with starting column
+/// like print but newlines line up with starting column
+/// `drawAt()` should be preffered wherever possible
 pub fn draw(this: *This, comptime fmt_str: []const u8, args: anytype) void {
-    // get cursor pos
-    const stdout = std.io.getStdOut();
-    var csbi: win32.CONSOLE_SCREEN_BUFFER_INFO = undefined;
-    if (win32.GetConsoleScreenBufferInfo(stdout.handle, &csbi) == 0)
-        return;
+    const cur = this.getCursor() catch return;
+    this.drawAt(this, cur, fmt_str, args);
+}
 
+/// like print but newlines line up with starting column
+pub fn drawAt(this: *This, cur: Cursor, comptime fmt_str: []const u8, args: anytype) void {
+    this.setCursor(cur);
+    this.flush();
     const out = this.bufferWriter();
-    const column = csbi.dwCursorPosition.X + 1;
+    const column = cur.x;
     const margin_writer = MarginWriter.init(column, WriterProxy.init(&out));
     const macro_writer = MacroWriter.init(zcon_macros, this, WriterProxy.init(&margin_writer));
     std.fmt.format(macro_writer, fmt_str, args) catch {};
 }
 
-/// like print but newlines line up with starting column
-pub fn drawAt(this: *This, pos: input.Position, comptime fmt_str: []const u8, args: anytype) void {
-    this.setCursor(pos);
-    this.flush();
-    this.draw(fmt_str, args);
+/// leaves cursor pos at top left corner inside box
+/// `drawBoxAt()` should be preffered wherever possible
+pub fn drawBox(this: *This, size: Size) void {
+    const cur = this.getCursor() catch return;
+    this.drawBoxAt(cur, size);
 }
 
 /// leaves cursor pos at top left corner inside box
-pub fn drawBox(this: *This, size: input.Size) void {
-    // get cursor pos
-    const stdout = std.io.getStdOut();
-    var csbi: win32.CONSOLE_SCREEN_BUFFER_INFO = undefined;
-    if (win32.GetConsoleScreenBufferInfo(stdout.handle, &csbi) == 0)
-        return;
-
-    const column = csbi.dwCursorPosition.X + 1;
+pub fn drawBoxAt(this: *This, cur: Cursor, size: Size) void {
+    this.setCursor(cur);
+    this.flush();
+    const column = cur.x;
     const buffer_writer = this.bufferWriter();
     const out = MarginWriter.init(column, WriterProxy.init(&buffer_writer));
-
     out.writeAll("\x1b(0") catch {}; // line draw mode
-    //defer out.writeAll("\x1b(B") catch {}; // back to norm
-
     var y: i16 = 0;
     while (y < size.height) : (y += 1) {
         if (y == 0) {
@@ -455,16 +568,8 @@ pub fn drawBox(this: *This, size: input.Size) void {
             out.writeByte('\n') catch {};
         } else out.print("x\x1b[{}Cx\n", .{size.width - 2}) catch {};
     }
-
     out.writeAll("\x1b(B") catch {}; // back to norm
     out.print("\x1b[1C\x1b[{}A", .{size.height - 1}) catch {};
-}
-
-///
-pub fn drawBoxAt(this: *This, pos: input.Position, size: input.Size) void {
-    this.setCursor(pos);
-    this.flush();
-    this.drawBox(size);
 }
 
 /// helper writer that inserts indentatin after newlines
@@ -582,7 +687,7 @@ fn convert_err(e: anyerror) Error {
         error.WouldBlock,
         error.ConnectionResetByPeer,
         error.macro_returned_error,
-        => @errSetCast(Error, e),
+        => @errSetCast(e),
         else => FsError.Unexpected,
     };
 }
@@ -933,11 +1038,14 @@ fn ruleMacro(writer: *This, param_iter: *ParamIterator) !bool {
 }
 
 fn boxMacro(writer: *This, param_iter: *ParamIterator) !bool {
+    _ = writer;
     const wstr = param_iter.next() orelse return false;
     const hstr = param_iter.next() orelse return false;
     const w = std.fmt.parseInt(i16, wstr, 10) catch return false;
+    _ = w;
     const h = std.fmt.parseInt(i16, hstr, 10) catch return false;
-    writer.drawBox(.{ .width = w, .height = h });
+    _ = h;
+    // writer.drawBox(.{ .width = w, .height = h });
     return true;
 }
 

@@ -28,7 +28,7 @@ pub const Option = struct {
 ///
 pub fn OptionList(comptime list: anytype) type {
     const LEN = list.len;
-    const MAP_LEN = @floatToInt(usize, @intToFloat(f64, LEN + 1) * 1.25);
+    const MAP_LEN = @as(usize, @intFromFloat(@as(f64, @floatFromInt(LEN + 1)) * 1.25));
 
     const precomputed = comptime blk: {
         @setEvalBranchQuota(2000);

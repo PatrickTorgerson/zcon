@@ -1,9 +1,8 @@
 const std = @import("std");
 const win32 = @import("src/zigwin32/build.zig");
+const builtin = @import("builtin");
 
 const examples = [_]struct { name: []const u8, source: []const u8 }{
-    .{ .name = "paint", .source = "examples/paint.zig" },
-    // .{ .name = "todo", .source = "examples/todo.zig"},
     .{ .name = "cli", .source = "examples/cli.zig" },
     .{ .name = "bench", .source = "examples/bench.zig" },
 };
@@ -14,12 +13,13 @@ pub fn module(b: *std.Build) *std.Build.Module {
     });
     return b.addModule("zcon", .{
         .source_file = .{ .path = sdkPath("/src/zcon.zig") },
-        .dependencies = &[_]std.Build.ModuleDependency{
-            .{
+        .dependencies = if (builtin.os.tag == .windows)
+            &[_]std.Build.ModuleDependency{.{
                 .name = "zigwin32",
                 .module = zigwin32,
-            },
-        },
+            }}
+        else
+            &[_]std.Build.ModuleDependency{},
     });
 }
 
@@ -49,8 +49,11 @@ pub fn build(b: *std.Build) void {
             .optimize = optimize,
         });
         exe.addModule("zcon", zcon);
+        if (builtin.os.tag != .windows) {
+            exe.linkSystemLibrary("c");
+        }
 
-        const instal_step = &b.addInstallArtifact(exe).step;
+        const instal_step = &b.addInstallArtifact(exe, .{}).step;
 
         example_step.dependOn(instal_step);
 
