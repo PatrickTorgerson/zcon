@@ -108,6 +108,7 @@ fn option(cli: *zcon.Cli) !bool {
             cli.writer.put("  expected width\n");
             return false;
         };
+        _ = width;
         const height = cli.readArg(i16) catch {
             cli.writer.put("  expected height to be an int\n");
             return false;
@@ -115,7 +116,7 @@ fn option(cli: *zcon.Cli) !bool {
             cli.writer.put("  expected height\n");
             return false;
         };
-        cli.writer.drawBox(.{ .width = width, .height = height });
+        // cli.writer.drawBox(.{ .width = width, .height = height });
         cli.writer.cursorDown(height);
         cli.writer.putChar('\n');
     } else if (cli.isOption("echo")) {

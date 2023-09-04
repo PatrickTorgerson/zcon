@@ -25,17 +25,16 @@ writefn: *const fn (ptr: *const anyopaque, bytes: []const u8) anyerror!usize,
 /// create writer from pointer to writer and write fn
 /// expected signiture of writefn `fn(self: @TypeOf(pointer), bytes: []const u8) !usize`
 /// where number of bytes written is returned
-pub fn init_with_writefn(pointer: anytype, writefn: anytype) This {
+pub fn initWithWriteFn(pointer: anytype, writefn: anytype) This {
     comptime var ptr_info = @typeInfo(@TypeOf(pointer));
     comptime assert(ptr_info == .Pointer); // Must be a pointer
     comptime assert(ptr_info.Pointer.size == .One); // Must be a single-item pointer
     comptime assert(@typeInfo(@TypeOf(writefn)) == .Fn); // writefn must be function
     ptr_info.Pointer.is_const = true;
     const Ptr = @Type(ptr_info);
-    const alignment = ptr_info.Pointer.alignment;
     const proxy = struct {
         fn write_proxy(ptr: *const anyopaque, bytes: []const u8) !usize {
-            const self = @ptrCast(Ptr, @alignCast(alignment, ptr));
+            const self = @as(Ptr, @ptrCast(@alignCast(ptr)));
             return @call(.always_inline, writefn, .{ self.*, bytes });
         }
     };
@@ -55,7 +54,7 @@ pub fn init(pointer: anytype) This {
     const Child = ptr_info.Pointer.child;
     const child_info = @typeInfo(ptr_info.Pointer.child);
     assert(child_info == .Struct);
-    return This.init_with_writefn(pointer, @field(Child, "write"));
+    return This.initWithWriteFn(pointer, @field(Child, "write"));
 }
 
 pub fn write(self: This, bytes: []const u8) anyerror!usize {
@@ -79,7 +78,7 @@ pub fn writeByteNTimes(self: This, byte: u8, n: usize) !void {
     @memset(bytes[0..], byte);
     var remaining: usize = n;
     while (remaining > 0) {
-        const to_write = std.math.min(remaining, bytes.len);
+        const to_write = @min(remaining, bytes.len);
         try self.writeAll(bytes[0..to_write]);
         remaining -= to_write;
     }
