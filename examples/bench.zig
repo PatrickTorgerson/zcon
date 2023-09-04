@@ -22,12 +22,12 @@ pub fn main() !void {
     out.put("#dgry;  #wht;  #bred;  #byel;  #bgrn;  #bcyn;  #bblu;  #bmag;  #def");
 
     const cur = out.getCursor() catch |err| {
-        out.fmt("err: {s}\n", .{@tagName(std.c.getErrno(-1))});
+        out.fmt("err: {s}\n", .{@errorName(err)});
         return err;
     };
     out.put("\n");
     const cur2 = out.getCursor() catch |err| {
-        out.fmt("err: {s}\n", .{@tagName(std.c.getErrno(-1))});
+        out.fmt("err: {s}\n", .{@errorName(err)});
         return err;
     };
 
@@ -39,7 +39,7 @@ pub fn main() !void {
     out.cursorDown(5);
 
     const sz = out.getSize() catch |err| {
-        out.fmt("err: {s}\n", .{@tagName(std.c.getErrno(-1))});
+        out.fmt("err: {s}\n", .{@errorName(err)});
         return err;
     };
     out.fmt("#def;size: {},{}\n\n    ", .{ sz.width, sz.height });

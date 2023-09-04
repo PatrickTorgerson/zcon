@@ -316,11 +316,8 @@ pub fn strikethrough(this: *This, on: bool) void {
 
 ///
 pub fn setMargins(this: *This, top: i16, bottom: i16) void {
-    _ = bottom;
-    _ = top;
-    _ = this;
-    //const size = input.get_buffer_size() catch return;
-    //this.fmtRaw("\x1b[{};{}r", .{ top, size.height - bottom });
+    const size = this.getSize() catch return;
+    this.fmtRaw("\x1b[{};{}r", .{ top, size.height - bottom });
 }
 
 ///
@@ -387,6 +384,7 @@ pub fn showCursor(this: *This, show: bool) void {
 pub fn getCursor(this: *This) !Cursor {
     if (builtin.os.tag == .windows) {
         const win32 = @import("win32.zig");
+        this.flush();
 
         const stdout = std.io.getStdOut();
         var csbi: win32.CONSOLE_SCREEN_BUFFER_INFO = undefined;
@@ -1038,40 +1036,10 @@ fn ruleMacro(writer: *This, param_iter: *ParamIterator) !bool {
 }
 
 fn boxMacro(writer: *This, param_iter: *ParamIterator) !bool {
-    _ = writer;
     const wstr = param_iter.next() orelse return false;
     const hstr = param_iter.next() orelse return false;
     const w = std.fmt.parseInt(i16, wstr, 10) catch return false;
-    _ = w;
     const h = std.fmt.parseInt(i16, hstr, 10) catch return false;
-    _ = h;
-    // writer.drawBox(.{ .width = w, .height = h });
+    writer.drawBox(.{ .width = w, .height = h });
     return true;
 }
-
-// slightly modified from 'std.debug.detectTTYConfig()'
-// to check stdout instead of stderr and to better detect ansi support on windows
-// fn detectTTYConfig() std.debug.TTY.Config
-// {
-//     if (std.process.hasEnvVarConstant("ZIG_DEBUG_COLOR")) {
-//         return .escape_codes;
-//     } else if (std.process.hasEnvVarConstant("NO_COLOR")) {
-//         return .no_color;
-//     } else {
-//         const stdout_file = std.io.getStdOut();
-//         if (stdout_file.supportsAnsiEscapeCodes()) {
-//             return .escape_codes;
-//         } else if (builtin.os.tag == .windows and stdout_file.isTty()) {
-//             const ENABLE_VIRTUAL_TERMINAL_PROCESSING = 0x0004;
-//             var mode: win.DWORD = undefined;
-//             if(win.kernel32.GetConsoleMode(stdout_file.handle, &mode) != 0) {
-//                 if((mode & ENABLE_VIRTUAL_TERMINAL_PROCESSING) > 0)
-//                     return .escape_codes;
-//             }
-//             // else
-//             return .windows_api;
-//         } else {
-//             return .no_color;
-//         }
-//     }
-// }
