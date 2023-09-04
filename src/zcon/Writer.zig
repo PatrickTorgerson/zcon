@@ -175,7 +175,7 @@ pub fn writeByteNTimes(this: *This, byte: u8, n: usize) Error!void {
     @memset(bytes[0..], byte);
     var remaining: usize = n;
     while (remaining > 0) {
-        const to_write = std.math.min(remaining, bytes.len);
+        const to_write = @min(remaining, bytes.len);
         try this.writeAll(bytes[0..to_write]);
         remaining -= to_write;
     }
