@@ -126,6 +126,45 @@ pub fn main() !void {
 }
 ```
 
+## usage
+
+1. Add `zcon` as a dependency in your `build.zig.zon`.
+
+    <details>
+
+    <summary><code>build.zig.zon</code> example</summary>
+
+    ```zig
+    .{
+        .name = "<name_of_your_package>",
+        .version = "<version_of_your_package>",
+        .dependencies = .{
+            .zcon = .{
+                .url = "https://github.com/PatrickTorgerson/zcon/archive/<git_tag_or_commit_hash>.tar.gz",
+                .hash = "<package_hash>",
+            },
+        },
+    }
+    ```
+
+    Set `<package_hash>` to `12200000000000000000000000000000000000000000000000000000000000000000`, and Zig will provide the correct found value in an error message.
+
+    </details>
+
+2. Add `zcon` as a module in your `build.zig`.
+
+    <details>
+
+    <summary><code>build.zig</code> example</summary>
+
+    ```zig
+    const zcon = b.dependency("zcon", .{}).module("zcon");
+    //...
+    exe.addModule("zcon", zcon);
+    ```
+
+    </details>
+
 ## license
 
 > MIT License

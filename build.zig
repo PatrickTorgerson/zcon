@@ -1,5 +1,4 @@
 const std = @import("std");
-const win32 = @import("src/zigwin32/build.zig");
 const builtin = @import("builtin");
 
 const examples = [_]struct { name: []const u8, source: []const u8 }{
@@ -7,35 +6,20 @@ const examples = [_]struct { name: []const u8, source: []const u8 }{
     .{ .name = "bench", .source = "examples/bench.zig" },
 };
 
-pub fn module(b: *std.Build) *std.Build.Module {
-    const zigwin32 = b.addModule("zigwin32", .{
-        .source_file = .{ .path = sdkPath("/src/zigwin32/win32.zig") },
-    });
-    return b.addModule("zcon", .{
+pub fn build(b: *std.Build) void {
+    const target = b.standardTargetOptions(.{});
+    const optimize = b.standardOptimizeOption(.{});
+
+    const zcon = b.addModule("zcon", .{
         .source_file = .{ .path = sdkPath("/src/zcon.zig") },
         .dependencies = if (builtin.os.tag == .windows)
             &[_]std.Build.ModuleDependency{.{
                 .name = "zigwin32",
-                .module = zigwin32,
+                .module = b.dependency("zigwin32", .{}).module("zigwin32"),
             }}
         else
             &[_]std.Build.ModuleDependency{},
     });
-}
-
-pub fn build(b: *std.Build) void {
-    // Standard target options allows the person running `zig build` to choose
-    // what target to build for. Here we do not override the defaults, which
-    // means any target is allowed, and the default is native. Other options
-    // for restricting supported target set are available.
-    const target = b.standardTargetOptions(.{});
-
-    // Standard optimization options allow the person running `zig build` to select
-    // between Debug, ReleaseSafe, ReleaseFast, and ReleaseSmall. Here we do not
-    // set a preferred release mode, allowing the user to decide how to optimize.
-    const optimize = b.standardOptimizeOption(.{});
-
-    const zcon = module(b);
 
     // -- examples
 
