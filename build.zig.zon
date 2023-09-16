@@ -1,6 +1,6 @@
 .{
     .name = "zcon",
-    .version = "1.0.1",
+    .version = "1.1.0",
     .dependencies = .{
         .zigwin32 = .{
             .url = "https://github.com/marlersoft/zigwin32/archive/967edfddab98255b117b4fac779e589902ad9984.tar.gz",

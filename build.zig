@@ -2,7 +2,6 @@ const std = @import("std");
 const builtin = @import("builtin");
 
 const examples = [_]struct { name: []const u8, source: []const u8 }{
-    .{ .name = "cli", .source = "examples/cli.zig" },
     .{ .name = "bench", .source = "examples/bench.zig" },
 };
 
