@@ -12,6 +12,6 @@ pub const Color = @import("zcon/color.zig").Color;
 
 pub usingnamespace @import("zcon/macro.zig");
 
-test "zcon" {
+test {
     std.testing.refAllDecls(@This());
 }

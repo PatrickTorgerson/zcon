@@ -1,6 +1,6 @@
 // ********************************************************************************
 //  https://github.com/PatrickTorgerson
-//  Copyright (c) 2022 Patrick Torgerson
+//  Copyright (c) 2024 Patrick Torgerson
 //  MIT license, see LICENSE for more information
 // ********************************************************************************
 
@@ -78,8 +78,7 @@ pub fn writeRaw(this: *This, str: []const u8) FsError!usize {
         if (str.len > this.buffer.len)
             return try this.stdout.write(str);
     }
-
-    std.mem.copy(u8, this.buffer[this.buffer_end..], str);
+    @memcpy(this.buffer[this.buffer_end..][0..str.len], str);
     this.buffer_end += str.len;
     return str.len;
 }
@@ -103,48 +102,40 @@ pub fn printRaw(this: *This, comptime fmt_str: []const u8, args: anytype) !void 
     try std.fmt.format(this.bufferWriter(), fmt_str, args);
 }
 
-///
 pub fn write(this: *This, str: []const u8) Error!usize {
     var indent_writer = IndentWriter.init(this);
     var macro_writer = MacroWriter.init(zcon_macros, this, WriterProxy.init(&indent_writer));
-    macro_writer.writeAll(str) catch |e| return convert_err(e);
+    macro_writer.writeAll(str) catch |e| return convertErr(e);
     return str.len;
 }
 
-///
 pub fn print(this: *This, comptime fmt_str: []const u8, args: anytype) Error!void {
     var indent_writer = IndentWriter.init(this);
-    var macro_writer = MacroWriter.init(zcon_macros, this, WriterProxy.init(&indent_writer));
-    std.fmt.format(macro_writer, fmt_str, args) catch |e| return convert_err(e);
+    const macro_writer = MacroWriter.init(zcon_macros, this, WriterProxy.init(&indent_writer));
+    std.fmt.format(macro_writer, fmt_str, args) catch |e| return convertErr(e);
 }
 
-///
 pub fn put(this: *This, str: []const u8) void {
     _ = this.write(str) catch {};
 }
 
-///
 pub fn putRaw(this: *This, str: []const u8) void {
     this.writeAllRaw(str) catch {};
 }
 
-///
 pub fn fmt(this: *This, comptime fmt_str: []const u8, args: anytype) void {
     this.print(fmt_str, args) catch {};
 }
 
-///
 pub fn fmtRaw(this: *This, comptime fmt_str: []const u8, args: anytype) void {
     std.fmt.format(this.bufferWriter(), fmt_str, args) catch {};
 }
 
-///
 pub fn putAt(this: *This, pos: Cursor, str: []const u8) void {
     this.setCursor(pos);
     this.put(str);
 }
 
-///
 pub fn fmtAt(this: *This, pos: Cursor, comptime fmt_str: []const u8, args: anytype) void {
     this.setCursor(pos);
     this.fmt(fmt_str, args);
@@ -314,18 +305,15 @@ pub fn strikethrough(this: *This, on: bool) void {
         this.putRaw("\x1b[29m");
 }
 
-///
 pub fn setMargins(this: *This, top: i16, bottom: i16) void {
     const size = this.getSize() catch return;
     this.fmtRaw("\x1b[{};{}r", .{ top, size.height - bottom });
 }
 
-///
 pub fn saveCursor(this: *This) void {
     this.putRaw("\x1b7");
 }
 
-///
 pub fn restoreCursor(this: *This) void {
     this.putRaw("\x1b8");
 }
@@ -335,42 +323,34 @@ pub const Cursor = struct {
     y: i16,
 };
 
-///
 pub fn setCursor(this: *This, cur: Cursor) void {
     this.fmtRaw("\x1b[{};{}H", .{ cur.y, cur.x });
 }
 
-///
 pub fn setCursorX(this: *This, x: i16) void {
     this.fmtRaw("\x1b[{}G", .{x});
 }
 
-///
 pub fn setCursorY(this: *This, y: i16) void {
     this.fmtRaw("\x1b[{}d", .{y});
 }
 
-///
 pub fn cursorRight(this: *This, amt: i16) void {
     this.fmtRaw("\x1b[{}C", .{amt});
 }
 
-///
 pub fn cursorLeft(this: *This, amt: i16) void {
     this.fmtRaw("\x1b[{}D", .{amt});
 }
 
-///
 pub fn cursorUp(this: *This, amt: i16) void {
     this.fmtRaw("\x1b[{}A", .{amt});
 }
 
-///
 pub fn cursorDown(this: *This, amt: i16) void {
     this.fmtRaw("\x1b[{}B", .{amt});
 }
 
-///
 pub fn showCursor(this: *This, show: bool) void {
     if (show)
         this.putRaw("\x1b[?25h")
@@ -510,7 +490,6 @@ pub fn clearLine(this: *This) void {
     this.putRaw("\x1b[2K");
 }
 
-///
 pub fn backspace(this: *This) void {
     try this.putRaw("\x1b[1D \x1b[1D");
 }
@@ -608,28 +587,24 @@ pub const IndentWriter = struct {
     }
 };
 
-///
 fn putIndent(this: *This) void {
     var l: usize = 0;
     while (l < this.indent_lvl) : (l += 1)
         this.put(this.indent_str);
 }
 
-///
 pub fn indent(this: *This, amt: i32) void {
     this.indent_lvl += amt;
     if (this.indent_lvl < 0)
         this.indent_lvl = 0;
 }
 
-///
 pub fn unindent(this: *This, amt: i32) void {
     this.indent_lvl -= amt;
     if (this.indent_lvl < 0)
         this.indent_lvl = 0;
 }
 
-///
 pub fn setIndentStr(this: *This, comptime str: []const u8) void {
     this.indent_str = str;
 }
@@ -670,7 +645,7 @@ const MarginWriter = struct {
 /// converts any error type to `zcon.Writer.Error`
 /// any error not in `zcon.Writer.Error` with return
 /// `zcon.Writer.Error.Unexpected`
-fn convert_err(e: anyerror) Error {
+fn convertErr(e: anyerror) Error {
     return switch (e) {
         error.DiskQuota,
         error.FileTooBig,
@@ -685,14 +660,13 @@ fn convert_err(e: anyerror) Error {
         error.WouldBlock,
         error.ConnectionResetByPeer,
         error.macro_returned_error,
-        => @errSetCast(e),
+        => @errorCast(e),
         else => FsError.Unexpected,
     };
 }
 
 // -- builtin macros
 
-///
 const zcon_macros = MacroMap.init(.{
     .{ "def", defMacro },
     .{ "prv", prvMacro },
@@ -912,7 +886,7 @@ fn repeatMacro(writer: *This, param_iter: *ParamIterator) !bool {
 
 fn upMacro(writer: *This, param_iter: *ParamIterator) !bool {
     if (param_iter.next()) |amt_str| {
-        var amt = std.fmt.parseInt(i16, amt_str, 10) catch return false;
+        const amt = std.fmt.parseInt(i16, amt_str, 10) catch return false;
         writer.cursorUp(amt);
     } else writer.cursorUp(1);
     return true;
@@ -920,7 +894,7 @@ fn upMacro(writer: *This, param_iter: *ParamIterator) !bool {
 
 fn downMacro(writer: *This, param_iter: *ParamIterator) !bool {
     if (param_iter.next()) |amt_str| {
-        var amt = std.fmt.parseInt(i16, amt_str, 10) catch return false;
+        const amt = std.fmt.parseInt(i16, amt_str, 10) catch return false;
         writer.cursorDown(amt);
     } else writer.cursorDown(1);
     return true;
@@ -928,7 +902,7 @@ fn downMacro(writer: *This, param_iter: *ParamIterator) !bool {
 
 fn leftMacro(writer: *This, param_iter: *ParamIterator) !bool {
     if (param_iter.next()) |amt_str| {
-        var amt = std.fmt.parseInt(i16, amt_str, 10) catch return false;
+        const amt = std.fmt.parseInt(i16, amt_str, 10) catch return false;
         writer.cursorLeft(amt);
     } else writer.cursorLeft(1);
     return true;
@@ -936,7 +910,7 @@ fn leftMacro(writer: *This, param_iter: *ParamIterator) !bool {
 
 fn rightMacro(writer: *This, param_iter: *ParamIterator) !bool {
     if (param_iter.next()) |amt_str| {
-        var amt = std.fmt.parseInt(i16, amt_str, 10) catch return false;
+        const amt = std.fmt.parseInt(i16, amt_str, 10) catch return false;
         writer.cursorRight(amt);
     } else writer.cursorRight(1);
     return true;

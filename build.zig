@@ -1,3 +1,9 @@
+// ********************************************************************************
+//  https://github.com/PatrickTorgerson
+//  Copyright (c) 2024 Patrick Torgerson
+//  MIT license, see LICENSE for more information
+// ********************************************************************************
+
 const std = @import("std");
 const builtin = @import("builtin");
 
@@ -10,24 +16,15 @@ pub fn build(b: *std.Build) void {
     const optimize = b.standardOptimizeOption(.{});
 
     const zcon = b.addModule("zcon", .{
-        .source_file = .{ .path = sdkPath("/src/zcon.zig") },
-        .dependencies = if (builtin.os.tag == .windows)
-            &[_]std.Build.ModuleDependency{.{
-                .name = "zigwin32",
-                .module = b.dependency("zigwin32", .{}).module("zigwin32"),
-            }}
-        else
-            &[_]std.Build.ModuleDependency{},
+        .source_file = std.Build.FileSource.relative("./src/zcon.zig"),
+        .dependencies = &[_]std.Build.ModuleDependency{},
     });
 
-    // -- examples
-
     const example_step = b.step("examples", "Build all examples");
-
     inline for (examples) |example| {
         const exe = b.addExecutable(.{
             .name = example.name,
-            .root_source_file = .{ .path = example.source },
+            .root_source_file = std.Build.FileSource.relative(example.source),
             .target = target,
             .optimize = optimize,
         });
@@ -35,24 +32,17 @@ pub fn build(b: *std.Build) void {
         if (builtin.os.tag != .windows) {
             exe.linkSystemLibrary("c");
         }
-
         const instal_step = &b.addInstallArtifact(exe, .{}).step;
-
         example_step.dependOn(instal_step);
-
         const run_example_step = b.step(example.name, "Run example '" ++ example.name ++ "'");
         run_example_step.dependOn(example_step);
-
         const run_example_cmd = b.addRunArtifact(exe);
         run_example_cmd.step.dependOn(instal_step);
         if (b.args) |args| {
             run_example_cmd.addArgs(args);
         }
-
         run_example_step.dependOn(&run_example_cmd.step);
     }
-
-    // -- tests
 
     const exe_tests = b.addTest(.{
         .root_source_file = zcon.source_file,
@@ -61,12 +51,12 @@ pub fn build(b: *std.Build) void {
     });
     const test_step = b.step("test", "Run unit tests");
     test_step.dependOn(&exe_tests.step);
-}
 
-fn sdkPath(comptime suffix: []const u8) []const u8 {
-    if (suffix[0] != '/') @compileError("suffix must be an absolute path");
-    return comptime blk: {
-        const root_dir = std.fs.path.dirname(@src().file) orelse ".";
-        break :blk root_dir ++ suffix;
-    };
+    const fmt_step = b.step("fmt", "Run formatter");
+    const fmt = b.addFmt(.{
+        .paths = &.{ "src", "examples", "build.zig" },
+        .check = true,
+    });
+    fmt_step.dependOn(&fmt.step);
+    b.default_step.dependOn(fmt_step);
 }

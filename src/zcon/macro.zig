@@ -1,6 +1,6 @@
 // ********************************************************************************
 //  https://github.com/PatrickTorgerson
-//  Copyright (c) 2022 Patrick Torgerson
+//  Copyright (c) 2024 Patrick Torgerson
 //  MIT license, see LICENSE for more information
 // ********************************************************************************
 
@@ -19,7 +19,6 @@ const root = @import("root");
 const WriterProxy = @import("WriterProxy.zig");
 const Writer = @import("Writer.zig");
 
-///
 pub const Macro = *const fn (*Writer, *ParamIterator) anyerror!bool;
 pub const Error = error{macro_returned_error};
 
@@ -49,7 +48,6 @@ pub const MacroMap = struct {
     }
 };
 
-///
 pub const ParamIterator = struct {
     slice: []const u8,
     index: usize = 0,
@@ -98,7 +96,6 @@ pub const ParamIterator = struct {
     }
 };
 
-///
 pub const MacroWriter = struct {
     pub const Error = anyerror;
     pub const WriterInterface = std.io.Writer(MacroWriter, MacroWriter.Error, MacroWriter.write);
@@ -120,7 +117,6 @@ pub const MacroWriter = struct {
     }
 };
 
-///
 pub fn expandMacro(macros: ?MacroMap, writer: *Writer, name: []const u8, params: []const u8) Error!bool {
     if (macros) |m|
         if (m.get(name)) |macro| {
@@ -186,7 +182,6 @@ pub fn expandMacros(macros: ?MacroMap, writer: *Writer, out: WriterProxy, str: [
     return i;
 }
 
-///
 fn parseTag(fmt: []const u8) Tag {
     // name
     var name_end: usize = 0;
@@ -270,7 +265,6 @@ fn parseTag(fmt: []const u8) Tag {
     };
 }
 
-///
 const Tag = struct {
     name: []const u8,
     params: []const u8,

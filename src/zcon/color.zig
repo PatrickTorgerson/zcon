@@ -1,12 +1,11 @@
 // ********************************************************************************
 //  https://github.com/PatrickTorgerson
-//  Copyright (c) 2022 Patrick Torgerson
+//  Copyright (c) 2024 Patrick Torgerson
 //  MIT license, see LICENSE for more information
 // ********************************************************************************
 
 const std = @import("std");
 
-///
 pub const Color = union(enum) {
     /// 16 bit color
     const Col16 = enum(u8) {
