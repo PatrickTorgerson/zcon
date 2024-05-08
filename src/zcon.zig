@@ -7,7 +7,6 @@
 const std = @import("std");
 
 pub const Writer = @import("zcon/Writer.zig");
-pub const WriterProxy = @import("zcon/WriterProxy.zig");
 pub const Color = @import("zcon/color.zig").Color;
 
 pub usingnamespace @import("zcon/macro.zig");

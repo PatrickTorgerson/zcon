@@ -16,19 +16,18 @@ pub fn build(b: *std.Build) void {
     const optimize = b.standardOptimizeOption(.{});
 
     const zcon = b.addModule("zcon", .{
-        .source_file = std.Build.FileSource.relative("./src/zcon.zig"),
-        .dependencies = &[_]std.Build.ModuleDependency{},
+        .root_source_file = b.path("src/zcon.zig"),
     });
 
     const example_step = b.step("examples", "Build all examples");
     inline for (examples) |example| {
         const exe = b.addExecutable(.{
             .name = example.name,
-            .root_source_file = std.Build.FileSource.relative(example.source),
+            .root_source_file = b.path(example.source),
             .target = target,
             .optimize = optimize,
         });
-        exe.addModule("zcon", zcon);
+        exe.root_module.addImport("zcon", zcon);
         if (builtin.os.tag != .windows) {
             exe.linkSystemLibrary("c");
         }
@@ -45,7 +44,7 @@ pub fn build(b: *std.Build) void {
     }
 
     const exe_tests = b.addTest(.{
-        .root_source_file = zcon.source_file,
+        .root_source_file = zcon.root_source_file.?,
         .target = target,
         .optimize = optimize,
     });

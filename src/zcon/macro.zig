@@ -16,7 +16,6 @@
 
 const std = @import("std");
 const root = @import("root");
-const WriterProxy = @import("WriterProxy.zig");
 const Writer = @import("Writer.zig");
 
 pub const Macro = *const fn (*Writer, *ParamIterator) anyerror!bool;
@@ -101,14 +100,14 @@ pub const MacroWriter = struct {
     pub const WriterInterface = std.io.Writer(MacroWriter, MacroWriter.Error, MacroWriter.write);
 
     macros: ?MacroMap,
-    output: WriterProxy,
+    output: std.io.AnyWriter,
     zcon_writer: *Writer,
 
     pub fn write(this: MacroWriter, bytes: []const u8) MacroWriter.Error!usize {
         return try expandMacros(this.macros, this.zcon_writer, this.output, bytes);
     }
 
-    pub fn init(macros: ?MacroMap, zcon_writer: *Writer, out_writer: WriterProxy) WriterInterface {
+    pub fn init(macros: ?MacroMap, zcon_writer: *Writer, out_writer: std.io.AnyWriter) WriterInterface {
         return .{ .context = MacroWriter{
             .macros = macros,
             .output = out_writer,
@@ -135,7 +134,7 @@ pub fn expandMacro(macros: ?MacroMap, writer: *Writer, name: []const u8, params:
 }
 
 /// TODO: accept multiple maps? `?[]const MacroMap`
-pub fn expandMacros(macros: ?MacroMap, writer: *Writer, out: WriterProxy, str: []const u8) !usize {
+pub fn expandMacros(macros: ?MacroMap, writer: *Writer, out: std.io.AnyWriter, str: []const u8) !usize {
     var i: usize = 0;
     while (i < str.len) {
         var prefix_start = i;

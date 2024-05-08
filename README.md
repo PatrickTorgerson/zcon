@@ -158,9 +158,12 @@ pub fn main() !void {
     <summary><code>build.zig</code> example</summary>
 
     ```zig
-    const zcon = b.dependency("zcon", .{}).module("zcon");
+    const zcon = b.lazyDependency("zcon", .{
+        .optimize = optimize,
+        .target = target,
+    }).module("zcon");
     //...
-    exe.addModule("zcon", zcon);
+    exe.root_module.addImport("zcon", zcon);
     ```
 
     </details>
@@ -169,7 +172,7 @@ pub fn main() !void {
 
 > MIT License
 >
-> Copyright (c) 2022 Patrick Torgerson
+> Copyright (c) 2024 Patrick Torgerson
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal

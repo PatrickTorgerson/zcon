@@ -13,7 +13,6 @@ const std = @import("std");
 const builtin = @import("builtin");
 const macro = @import("macro.zig");
 
-const WriterProxy = @import("WriterProxy.zig");
 const RingBuffer = @import("ring_buffer.zig").RingBuffer;
 const Color = @import("color.zig").Color;
 
@@ -93,7 +92,7 @@ pub fn writeAllRaw(this: *This, str: []const u8) FsError!void {
 
 /// return a writer that writes directly to the buffer without any processing
 /// this writer will carry a pointer and cannot out-live the calling `zcon.Writer`
-pub fn bufferWriter(this: *This) std.io.Writer(*This, FsError, This.writeRaw) {
+pub fn bufferWriter(this: *This) std.io.GenericWriter(*This, FsError, This.writeRaw) {
     return .{ .context = this };
 }
 
@@ -104,14 +103,14 @@ pub fn printRaw(this: *This, comptime fmt_str: []const u8, args: anytype) !void 
 
 pub fn write(this: *This, str: []const u8) Error!usize {
     var indent_writer = IndentWriter.init(this);
-    var macro_writer = MacroWriter.init(zcon_macros, this, WriterProxy.init(&indent_writer));
+    var macro_writer = MacroWriter.init(zcon_macros, this, anyWriter(&indent_writer));
     macro_writer.writeAll(str) catch |e| return convertErr(e);
     return str.len;
 }
 
 pub fn print(this: *This, comptime fmt_str: []const u8, args: anytype) Error!void {
     var indent_writer = IndentWriter.init(this);
-    const macro_writer = MacroWriter.init(zcon_macros, this, WriterProxy.init(&indent_writer));
+    const macro_writer = MacroWriter.init(zcon_macros, this, anyWriter(&indent_writer));
     std.fmt.format(macro_writer, fmt_str, args) catch |e| return convertErr(e);
 }
 
@@ -169,6 +168,13 @@ pub fn writeByteNTimes(this: *This, byte: u8, n: usize) Error!void {
         const to_write = @min(remaining, bytes.len);
         try this.writeAll(bytes[0..to_write]);
         remaining -= to_write;
+    }
+}
+
+/// for std writer compatability
+pub fn writeBytesNTimes(this: *This, bytes: []const u8, n: usize) Error!void {
+    for (0..n) |_| {
+        try this.writeAll(bytes);
     }
 }
 
@@ -507,8 +513,8 @@ pub fn drawAt(this: *This, cur: Cursor, comptime fmt_str: []const u8, args: anyt
     this.flush();
     const out = this.bufferWriter();
     const column = cur.x;
-    const margin_writer = MarginWriter.init(column, WriterProxy.init(&out));
-    const macro_writer = MacroWriter.init(zcon_macros, this, WriterProxy.init(&margin_writer));
+    const margin_writer = MarginWriter.init(column, anyWriter(&out));
+    const macro_writer = MacroWriter.init(zcon_macros, this, anyWriter(&margin_writer));
     std.fmt.format(macro_writer, fmt_str, args) catch {};
 }
 
@@ -525,7 +531,7 @@ pub fn drawBoxAt(this: *This, cur: Cursor, size: Size) void {
     this.flush();
     const column = cur.x;
     const buffer_writer = this.bufferWriter();
-    const out = MarginWriter.init(column, WriterProxy.init(&buffer_writer));
+    const out = MarginWriter.init(column, anyWriter(&buffer_writer));
     out.writeAll("\x1b(0") catch {}; // line draw mode
     var y: i16 = 0;
     while (y < size.height) : (y += 1) {
@@ -613,7 +619,7 @@ pub fn setIndentStr(this: *This, comptime str: []const u8) void {
 const MarginWriter = struct {
     pub const WriterInterface = std.io.Writer(MarginWriter, error{}, MarginWriter.write);
 
-    out: WriterProxy,
+    out: std.io.AnyWriter,
     column: i16,
 
     pub fn write(this: MarginWriter, bytes: []const u8) error{}!usize {
@@ -632,7 +638,7 @@ const MarginWriter = struct {
         return bytes.len;
     }
 
-    pub fn init(column: i16, out: WriterProxy) WriterInterface {
+    pub fn init(column: i16, out: std.io.AnyWriter) WriterInterface {
         return .{
             .context = .{
                 .out = out,
@@ -641,6 +647,27 @@ const MarginWriter = struct {
         };
     }
 };
+
+fn anyWriter(pointer: anytype) std.io.AnyWriter {
+    comptime var ptr_info = @typeInfo(@TypeOf(pointer));
+    comptime std.debug.assert(ptr_info == .Pointer); // Must be a pointer
+    comptime std.debug.assert(ptr_info.Pointer.size == .One); // Must be a single-item pointer
+    const Child = ptr_info.Pointer.child;
+    const child_info = @typeInfo(ptr_info.Pointer.child);
+    ptr_info.Pointer.is_const = true;
+    const Ptr = @Type(ptr_info);
+    std.debug.assert(child_info == .Struct);
+    const proxy = struct {
+        fn write_proxy(ptr: *const anyopaque, bytes: []const u8) anyerror!usize {
+            const self = @as(Ptr, @ptrCast(@alignCast(ptr)));
+            return @call(.always_inline, @field(Child, "write"), .{ self.*, bytes });
+        }
+    };
+    return .{
+        .context = pointer,
+        .writeFn = proxy.write_proxy,
+    };
+}
 
 /// converts any error type to `zcon.Writer.Error`
 /// any error not in `zcon.Writer.Error` with return
