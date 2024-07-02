@@ -6,10 +6,15 @@
 
 const std = @import("std");
 
-pub const Writer = @import("zcon/Writer.zig");
-pub const Color = @import("zcon/color.zig").Color;
+pub const Writer = @import("Writer.zig");
+pub const Color = @import("color.zig").Color;
+pub const MacroFn = macro.MacroFn;
+pub const MacroMap = macro.MacroMap;
+pub const ParamIterator = macro.ParamIterator;
+pub const MacroWriter = macro.MacroWriter;
+pub const expandMacros = macro.expandMacros;
 
-pub usingnamespace @import("zcon/macro.zig");
+const macro = @import("macro.zig");
 
 test {
     std.testing.refAllDecls(@This());

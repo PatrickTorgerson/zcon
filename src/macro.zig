@@ -18,39 +18,21 @@ const std = @import("std");
 const root = @import("root");
 const Writer = @import("Writer.zig");
 
-pub const Macro = *const fn (*Writer, *ParamIterator) anyerror!bool;
+pub const MacroFn = *const fn (*Writer, *ParamIterator) anyerror!bool;
 pub const Error = error{macro_returned_error};
+pub const MacroMap = std.StaticStringMap(MacroFn);
 
-/// maps macro names to macro functions
-/// just a type-erased std.ComptimeStringMap(Macro, ...);
-pub const MacroMap = struct {
-    has: *const fn (str: []const u8) bool,
-    get: *const fn (str: []const u8) ?Macro,
-
-    /// `kvs_list` expects a list literal containing list literals or an array/slice of structs
-    /// where .@"0" is the macro name and .@"1" is the associated macro function
-    pub fn init(comptime kvs_list: anytype) MacroMap {
-        const map = std.ComptimeStringMap(Macro, kvs_list);
-
-        return .{
-            .has = map.has,
-            .get = map.get,
-        };
-    }
-
-    pub fn has(this: MacroMap, macro: []const u8) bool {
-        return this.vtable.has(macro);
-    }
-
-    pub fn get(this: MacroMap, macro: []const u8) ?Macro {
-        return this.vtable.get(macro);
-    }
-};
-
+/// helper to iterate over parameters supplied to a macro.
+/// with the macro "#hello:a,b,c"
+/// ParamIterator.next() will return; "a", "b", "c", then null
 pub const ParamIterator = struct {
     slice: []const u8,
     index: usize = 0,
 
+    /// returns the next parameter in the macro's parameter list,
+    /// null if no parameters remain.
+    /// with the macro "#hello:a,b,c"
+    /// ParamIterator.next() will return; "a", "b", "c", then null
     pub fn next(this: *ParamIterator) ?[]const u8 {
         // skip white
         while (this.index < this.slice.len and this.slice[this.index] == ' ')
@@ -97,44 +79,44 @@ pub const ParamIterator = struct {
 
 pub const MacroWriter = struct {
     pub const Error = anyerror;
-    pub const WriterInterface = std.io.Writer(MacroWriter, MacroWriter.Error, MacroWriter.write);
 
     macros: ?MacroMap,
     output: std.io.AnyWriter,
     zcon_writer: *Writer,
 
-    pub fn write(this: MacroWriter, bytes: []const u8) MacroWriter.Error!usize {
-        return try expandMacros(this.macros, this.zcon_writer, this.output, bytes);
-    }
-
-    pub fn init(macros: ?MacroMap, zcon_writer: *Writer, out_writer: std.io.AnyWriter) WriterInterface {
-        return .{ .context = MacroWriter{
+    pub fn init(macros: ?MacroMap, zcon_writer: *Writer, out_writer: std.io.AnyWriter) MacroWriter {
+        return .{
             .macros = macros,
             .output = out_writer,
             .zcon_writer = zcon_writer,
-        } };
+        };
+    }
+
+    pub fn write(this: *const MacroWriter, bytes: []const u8) MacroWriter.Error!usize {
+        return try expandMacros(this.macros, this.zcon_writer, this.output, bytes);
+    }
+
+    pub fn any(this: *const MacroWriter) std.io.AnyWriter {
+        return .{
+            .context = @ptrCast(this),
+            .writeFn = typeErasedWriteFn,
+        };
+    }
+
+    fn typeErasedWriteFn(context: *const anyopaque, bytes: []const u8) anyerror!usize {
+        const ptr: *const MacroWriter = @alignCast(@ptrCast(context));
+        return ptr.write(bytes);
     }
 };
 
-pub fn expandMacro(macros: ?MacroMap, writer: *Writer, name: []const u8, params: []const u8) Error!bool {
-    if (macros) |m|
-        if (m.get(name)) |macro| {
-            var param_iter = ParamIterator{ .slice = params };
-            return macro(writer, &param_iter) catch return Error.macro_returned_error;
-        };
-
-    if (@hasDecl(root, "macros")) {
-        if (@typeInfo(@TypeOf(root.macros)) != .Struct)
-            return false;
-        if (root.macros.get(name)) |macro| {
-            var param_iter = ParamIterator{ .slice = params };
-            return macro(writer, &param_iter) catch return Error.macro_returned_error;
-        } else return false;
-    } else return false;
-}
-
-/// TODO: accept multiple maps? `?[]const MacroMap`
-pub fn expandMacros(macros: ?MacroMap, writer: *Writer, out: std.io.AnyWriter, str: []const u8) !usize {
+/// todo: accept multiple maps? `?[]const MacroMap`
+pub fn expandMacros(
+    macros: ?MacroMap,
+    writer: *Writer,
+    out: std.io.AnyWriter,
+    str: []const u8,
+) !usize {
+    // todo: accept multiple maps? `?[]const MacroMap`
     var i: usize = 0;
     while (i < str.len) {
         var prefix_start = i;
@@ -179,6 +161,28 @@ pub fn expandMacros(macros: ?MacroMap, writer: *Writer, out: std.io.AnyWriter, s
     }
 
     return i;
+}
+
+fn expandMacro(
+    macros: ?MacroMap,
+    writer: *Writer,
+    name: []const u8,
+    params: []const u8,
+) Error!bool {
+    if (macros) |m| {
+        if (m.get(name)) |macro| {
+            var param_iter = ParamIterator{ .slice = params };
+            return macro(writer, &param_iter) catch return Error.macro_returned_error;
+        }
+    }
+    if (@hasDecl(root, "macros")) {
+        if (@typeInfo(@TypeOf(root.macros)) != .Struct)
+            return false;
+        if (root.macros.get(name)) |macro| {
+            var param_iter = ParamIterator{ .slice = params };
+            return macro(writer, &param_iter) catch return Error.macro_returned_error;
+        } else return false;
+    } else return false;
 }
 
 fn parseTag(fmt: []const u8) Tag {

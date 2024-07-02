@@ -36,18 +36,37 @@ pub fn main() !void {
     out.drawBox(.{ .width = 11, .height = 3 });
     out.put("  hello");
     out.setCursorX(1);
-    out.cursorDown(5);
+    out.cursorDown(3);
 
     const sz = out.getSize() catch |err| {
         out.fmt("err: {s}\n", .{@errorName(err)});
         return err;
     };
-    out.fmt("#def;size: {},{}\n\n    ", .{ sz.width, sz.height });
+    out.fmt("#def;size: {},{}\n\n", .{ sz.width, sz.height });
+
+    out.putRaw("Title:\n");
+    out.indent(1);
+    out.put("- a\n");
+    out.put("- b\n");
+    out.put("- c\n");
+    out.indent(1);
+    out.put("* a\n");
+    out.put("* b\n");
+    out.put("* c\n");
+    out.indent(1);
+    out.put("+ a\n");
+    out.put("+ b\n");
+    out.put("+ c\n");
+    out.unindent(1);
+    out.put("* d\n");
+    out.put("* e\n");
+    out.put("* f\n");
 }
 
 fn primeBuffer(writer: *zcon.Writer, comptime lines: comptime_int, comptime cols: comptime_int) void {
     inline for (0..lines) |_| {
-        writer.fmt("{[s]s: <[w]}\n", .{ .s = " ", .w = cols });
+        writer.fmt("{[s]s: <[w]}.\n", .{ .s = " ", .w = cols });
     }
     writer.cursorUp(lines);
+    writer.flush();
 }
