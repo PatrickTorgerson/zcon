@@ -98,7 +98,7 @@ pub fn write(this: *ZconWriter, str: []const u8) Error!usize {
     if (this.buffer_end > 0)
         this.trailing_newline = this.buffer[this.buffer_end - 1] == '\n';
     const indent_writer = IndentWriter.init(this);
-    const macro_writer = MacroWriter.init(zcon_macros, this, indent_writer.any());
+    const macro_writer = macro.macroWriter(zcon_macros, this, indent_writer);
     macro_writer.any().writeAll(str) catch |e| return convertErr(e);
     return str.len;
 }
@@ -107,7 +107,7 @@ pub fn print(this: *ZconWriter, comptime fmt_str: []const u8, args: anytype) Err
     if (this.buffer_end > 0)
         this.trailing_newline = this.buffer[this.buffer_end - 1] == '\n';
     const indent_writer = IndentWriter.init(this);
-    const macro_writer = MacroWriter.init(zcon_macros, this, indent_writer.any());
+    const macro_writer = macro.macroWriter(zcon_macros, this, indent_writer);
     std.fmt.format(macro_writer.any(), fmt_str, args) catch |e| return convertErr(e);
 }
 
@@ -162,7 +162,7 @@ pub fn writeByteNTimes(this: *ZconWriter, byte: u8, n: usize) Error!void {
     var remaining: usize = n;
     while (remaining > 0) {
         const to_write = @min(remaining, bytes.len);
-        try this.writeAll(bytes[0..to_write]);
+        try this.writeRaw(bytes[0..to_write]);
         remaining -= to_write;
     }
 }
@@ -509,7 +509,7 @@ pub fn drawAt(this: *ZconWriter, cur: Cursor, comptime fmt_str: []const u8, args
     this.flush();
     const column = cur.x;
     const margin_writer = MarginWriter.init(column, this);
-    const macro_writer = MacroWriter.init(zcon_macros, this, margin_writer.any());
+    const macro_writer = macro.macroWriter(zcon_macros, this, margin_writer);
     std.fmt.format(macro_writer.any(), fmt_str, args) catch {};
 }
 
@@ -552,18 +552,14 @@ pub fn drawBoxAt(this: *ZconWriter, cur: Cursor, size: Size) void {
 
 /// helper writer that inserts indentation after newlines
 pub const IndentWriter = struct {
-    pub const Error = anyerror;
-
     out: *ZconWriter,
 
-    pub fn init(out: *ZconWriter) IndentWriter {
-        return .{
-            .out = out,
-        };
+    pub fn init(out: *ZconWriter) std.io.GenericWriter(IndentWriter, error{}, IndentWriter.write) {
+        return .{ .context = .{ .out = out } };
     }
 
     /// forward bytes to output writer, inserting indents after newlines
-    pub fn write(this: *const IndentWriter, bytes: []const u8) IndentWriter.Error!usize {
+    pub fn write(this: IndentWriter, bytes: []const u8) error{}!usize {
         if (this.out.trailing_newline) {
             this.out.putIndent();
         }
@@ -580,25 +576,13 @@ pub const IndentWriter = struct {
         }
         return bytes.len;
     }
-
-    pub fn any(this: *const IndentWriter) std.io.AnyWriter {
-        return .{
-            .context = @ptrCast(this),
-            .writeFn = typeErasedWriteFn,
-        };
-    }
-
-    fn typeErasedWriteFn(context: *const anyopaque, bytes: []const u8) anyerror!usize {
-        const ptr: *const IndentWriter = @alignCast(@ptrCast(context));
-        return ptr.write(bytes);
-    }
 };
 
 fn putIndent(this: *ZconWriter) void {
     var l: usize = 0;
     while (l < this.indent_lvl) : (l += 1) {
         const buffer_writer = this.bufferWriter();
-        const macro_writer = MacroWriter.init(zcon_macros, this, buffer_writer.any());
+        const macro_writer = macro.macroWriter(zcon_macros, this, buffer_writer);
         macro_writer.any().writeAll(this.indent_str) catch {};
     }
 }
@@ -624,14 +608,11 @@ const MarginWriter = struct {
     out: *ZconWriter,
     column: i16,
 
-    pub fn init(column: i16, out: *ZconWriter) MarginWriter {
-        return .{
-            .out = out,
-            .column = column,
-        };
+    pub fn init(column: i16, out: *ZconWriter) std.io.GenericWriter(MarginWriter, error{}, MarginWriter.write) {
+        return .{ .context = .{ .column = column, .out = out } };
     }
 
-    pub fn write(this: *const MarginWriter, bytes: []const u8) error{}!usize {
+    pub fn write(this: MarginWriter, bytes: []const u8) error{}!usize {
         var i: usize = 0;
         while (i < bytes.len) : (i += 1) {
             const start = i;
@@ -645,18 +626,6 @@ const MarginWriter = struct {
         }
 
         return bytes.len;
-    }
-
-    pub fn any(this: *const MarginWriter) std.io.AnyWriter {
-        return .{
-            .context = @ptrCast(this),
-            .writeFn = typeErasedWriteFn,
-        };
-    }
-
-    fn typeErasedWriteFn(context: *const anyopaque, bytes: []const u8) anyerror!usize {
-        const ptr: *const MarginWriter = @alignCast(@ptrCast(context));
-        return ptr.write(bytes);
     }
 };
 

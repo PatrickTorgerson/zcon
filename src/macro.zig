@@ -16,9 +16,9 @@
 
 const std = @import("std");
 const root = @import("root");
-const Writer = @import("Writer.zig");
+const ZconWriter = @import("Writer.zig");
 
-pub const MacroFn = *const fn (*Writer, *ParamIterator) anyerror!bool;
+pub const MacroFn = *const fn (*ZconWriter, *ParamIterator) anyerror!bool;
 pub const Error = error{macro_returned_error};
 pub const MacroMap = std.StaticStringMap(MacroFn);
 
@@ -77,43 +77,80 @@ pub const ParamIterator = struct {
     }
 };
 
-pub const MacroWriter = struct {
-    pub const Error = anyerror;
+// pub const MacroWriter = struct {
+//     pub const Error = anyerror;
+//
+//     macros: ?MacroMap,
+//     output: std.io.AnyWriter,
+//     zcon_writer: *ZconWriter,
+//
+//     pub fn init(macros: ?MacroMap, zcon_writer: *ZconWriter, out_writer: std.io.AnyWriter) MacroWriter {
+//         return .{
+//             .macros = macros,
+//             .output = out_writer,
+//             .zcon_writer = zcon_writer,
+//         };
+//     }
+//
+//     pub fn write(this: *const MacroWriter, bytes: []const u8) MacroWriter.Error!usize {
+//         return try expandMacros(this.macros, this.zcon_writer, this.output, bytes);
+//     }
+//
+//     pub fn any(this: *const MacroWriter) std.io.AnyWriter {
+//         return .{
+//             .context = @ptrCast(this),
+//             .writeFn = typeErasedWriteFn,
+//         };
+//     }
+//
+//     fn typeErasedWriteFn(context: *const anyopaque, bytes: []const u8) anyerror!usize {
+//         const ptr: *const MacroWriter = @alignCast(@ptrCast(context));
+//         return ptr.write(bytes);
+//     }
+// };
 
-    macros: ?MacroMap,
-    output: std.io.AnyWriter,
-    zcon_writer: *Writer,
+pub fn MacroWriter(comptime writer: type) type {
+    return struct {
+        const ThisMacroWriter = @This();
+        macros: ?MacroMap,
+        output: writer,
+        zcon_writer: *ZconWriter,
 
-    pub fn init(macros: ?MacroMap, zcon_writer: *Writer, out_writer: std.io.AnyWriter) MacroWriter {
-        return .{
-            .macros = macros,
-            .output = out_writer,
-            .zcon_writer = zcon_writer,
-        };
-    }
+        pub fn init(macros: ?MacroMap, zcon_writer: *ZconWriter, out_writer: writer) ThisMacroWriter {
+            return .{
+                .macros = macros,
+                .output = out_writer,
+                .zcon_writer = zcon_writer,
+            };
+        }
 
-    pub fn write(this: *const MacroWriter, bytes: []const u8) MacroWriter.Error!usize {
-        return try expandMacros(this.macros, this.zcon_writer, this.output, bytes);
-    }
+        pub fn write(this: *const ThisMacroWriter, bytes: []const u8) anyerror!usize {
+            return try expandMacros(this.macros, this.zcon_writer, this.output, bytes);
+        }
 
-    pub fn any(this: *const MacroWriter) std.io.AnyWriter {
-        return .{
-            .context = @ptrCast(this),
-            .writeFn = typeErasedWriteFn,
-        };
-    }
+        pub fn any(this: *const ThisMacroWriter) std.io.AnyWriter {
+            return .{
+                .context = @ptrCast(this),
+                .writeFn = typeErasedWriteFn,
+            };
+        }
 
-    fn typeErasedWriteFn(context: *const anyopaque, bytes: []const u8) anyerror!usize {
-        const ptr: *const MacroWriter = @alignCast(@ptrCast(context));
-        return ptr.write(bytes);
-    }
-};
+        fn typeErasedWriteFn(context: *const anyopaque, bytes: []const u8) anyerror!usize {
+            const ptr: *const ThisMacroWriter = @alignCast(@ptrCast(context));
+            return ptr.write(bytes);
+        }
+    };
+}
+
+pub fn macroWriter(macros: ?MacroMap, zcon_writer: *ZconWriter, out_writer: anytype) MacroWriter(@TypeOf(out_writer)) {
+    return MacroWriter(@TypeOf(out_writer)).init(macros, zcon_writer, out_writer);
+}
 
 /// todo: accept multiple maps? `?[]const MacroMap`
 pub fn expandMacros(
     macros: ?MacroMap,
-    writer: *Writer,
-    out: std.io.AnyWriter,
+    writer: *ZconWriter,
+    out: anytype,
     str: []const u8,
 ) !usize {
     // todo: accept multiple maps? `?[]const MacroMap`
@@ -165,7 +202,7 @@ pub fn expandMacros(
 
 fn expandMacro(
     macros: ?MacroMap,
-    writer: *Writer,
+    writer: *ZconWriter,
     name: []const u8,
     params: []const u8,
 ) Error!bool {
