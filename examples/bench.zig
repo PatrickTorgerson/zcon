@@ -14,6 +14,8 @@ pub fn main() !void {
 
     primeBuffer(&out, 20, 60);
 
+    out.writeByteNTimes('=', 20) catch {};
+
     out.put("#inverse\n");
     out.put("#blk;  #gry;  #red;  #yel;  #grn;  #cyn;  #blu;  #mag;  \n");
     out.put("#dgry;  #wht;  #bred;  #byel;  #bgrn;  #bcyn;  #bblu;  #bmag;  \n");

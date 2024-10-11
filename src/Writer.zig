@@ -162,7 +162,7 @@ pub fn writeByteNTimes(this: *ZconWriter, byte: u8, n: usize) Error!void {
     var remaining: usize = n;
     while (remaining > 0) {
         const to_write = @min(remaining, bytes.len);
-        try this.writeRaw(bytes[0..to_write]);
+        _ = try this.writeRaw(bytes[0..to_write]);
         remaining -= to_write;
     }
 }
