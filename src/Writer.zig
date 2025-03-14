@@ -37,7 +37,7 @@ indent_str: []const u8 = "    ",
 /// important for indentation
 trailing_newline: bool = false,
 /// stores history of previous colors
-color_hist: RingBuffer(ColorState, 32) = .{},
+color_hist: RingBuffer(ColorState, 32),
 
 is_bold: bool = false,
 is_dim: bool = false,
@@ -59,6 +59,7 @@ pub fn init() ZconWriter {
     const stdout_file = std.io.getStdOut();
     return ZconWriter{
         .stdout = stdout_file.writer(),
+        .color_hist = .init(),
     };
 }
 

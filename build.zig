@@ -23,9 +23,11 @@ pub fn build(b: *std.Build) void {
     inline for (examples) |example| {
         const exe = b.addExecutable(.{
             .name = example.name,
-            .root_source_file = b.path(example.source),
-            .target = target,
-            .optimize = optimize,
+            .root_module = b.createModule(.{
+                .root_source_file = b.path(example.source),
+                .target = target,
+                .optimize = optimize,
+            }),
         });
         exe.root_module.addImport("zcon", zcon);
         if (builtin.os.tag != .windows) {

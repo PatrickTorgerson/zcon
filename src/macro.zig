@@ -77,38 +77,6 @@ pub const ParamIterator = struct {
     }
 };
 
-// pub const MacroWriter = struct {
-//     pub const Error = anyerror;
-//
-//     macros: ?MacroMap,
-//     output: std.io.AnyWriter,
-//     zcon_writer: *ZconWriter,
-//
-//     pub fn init(macros: ?MacroMap, zcon_writer: *ZconWriter, out_writer: std.io.AnyWriter) MacroWriter {
-//         return .{
-//             .macros = macros,
-//             .output = out_writer,
-//             .zcon_writer = zcon_writer,
-//         };
-//     }
-//
-//     pub fn write(this: *const MacroWriter, bytes: []const u8) MacroWriter.Error!usize {
-//         return try expandMacros(this.macros, this.zcon_writer, this.output, bytes);
-//     }
-//
-//     pub fn any(this: *const MacroWriter) std.io.AnyWriter {
-//         return .{
-//             .context = @ptrCast(this),
-//             .writeFn = typeErasedWriteFn,
-//         };
-//     }
-//
-//     fn typeErasedWriteFn(context: *const anyopaque, bytes: []const u8) anyerror!usize {
-//         const ptr: *const MacroWriter = @alignCast(@ptrCast(context));
-//         return ptr.write(bytes);
-//     }
-// };
-
 pub fn MacroWriter(comptime writer: type) type {
     return struct {
         const ThisMacroWriter = @This();

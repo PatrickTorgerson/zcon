@@ -10,19 +10,24 @@ const std = @import("std");
 /// pushes always succeed and overite oldest element when full
 pub fn RingBuffer(comptime T: type, comptime capacity: usize) type {
     return struct {
-        buffer: [capacity]T = undefined,
+        buffer: [capacity]T,
         /// next element to write to
-        head: usize = 0,
+        head: usize,
         /// oldest element in buffer
-        tail: usize = 0,
+        tail: usize,
         /// empty flag, when head and tail are
         /// equal buffer could be full or empty
-        empty: bool = true,
+        empty: bool,
 
         const This = @This();
 
         pub fn init() This {
-            return .{};
+            return .{
+                .buffer = undefined,
+                .head = 0,
+                .tail = 0,
+                .empty = true,
+            };
         }
 
         pub fn size(this: This) usize {

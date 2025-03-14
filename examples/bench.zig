@@ -8,7 +8,7 @@ const std = @import("std");
 const zcon = @import("zcon");
 
 pub fn main() !void {
-    var out = zcon.Writer.init();
+    var out: zcon.Writer = .init();
     defer out.flush();
     defer out.useDefaultColors();
 
