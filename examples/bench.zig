@@ -9,10 +9,18 @@ const zcon = @import("zcon");
 
 pub fn main() !void {
     var out: zcon.Writer = .init();
-    defer out.flush();
-    defer out.useDefaultColors();
+    out.useDedicatedScreen();
 
-    primeBuffer(&out, 20, 60);
+    defer {
+        out.putRaw("\npress 'enter' to continue");
+        out.useDefaultColors();
+        out.flush();
+        _ = std.io.getStdIn().reader().readByte() catch {};
+        out.useDefaultScreen();
+        out.flush();
+    }
+
+    primeBuffer(&out, 30, 60);
 
     out.writeByteNTimes('=', 20) catch {};
 

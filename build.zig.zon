@@ -1,7 +1,7 @@
 .{
     .name = .zcon,
     .fingerprint = 0x2738d1aa4e215007,
-    .version = "1.2.0",
+    .version = "1.2.1",
     .minimum_zig_version = "0.14.0",
     .dependencies = .{},
     .paths = .{

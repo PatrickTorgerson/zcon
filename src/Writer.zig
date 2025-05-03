@@ -386,7 +386,7 @@ pub fn getCursor(this: *ZconWriter) !Cursor {
         var result: i32 = 0;
         while (true) {
             result = c.tcgetattr(std.io.getStdOut().handle, &saved_term);
-            if (!(result == -1 and std.c.getErrno(result) == .INTR)) break;
+            if (!(result == -1 and std.c.E.init(@intCast(result)) == .INTR)) break;
         }
         if (result == -1) return error.save_state_fail;
 
@@ -394,7 +394,7 @@ pub fn getCursor(this: *ZconWriter) !Cursor {
         defer {
             while (true) {
                 result = c.tcsetattr(std.io.getStdOut().handle, c.TCSANOW, &saved_term);
-                if (!(result == -1 and std.c.getErrno(result) == .INTR)) break;
+                if (!(result == -1 and std.c.E.init(@intCast(result)) == .INTR)) break;
             }
         }
 
@@ -406,7 +406,7 @@ pub fn getCursor(this: *ZconWriter) !Cursor {
         // update term state with above flags
         while (true) {
             result = c.tcsetattr(std.io.getStdOut().handle, c.TCSANOW, &term);
-            if (!(result == -1 and std.c.getErrno(result) == .INTR)) break;
+            if (!(result == -1 and std.c.E.init(@intCast(result)) == .INTR)) break;
         }
         if (result == -1) return error.update_state_fail;
 
