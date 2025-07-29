@@ -192,7 +192,7 @@ pub fn main() !void {
 
 1. Add `zcon` as a dependency in your `build.zig.zon`.
 
-   `zig fetch --save "https://github.com/PatrickTorgerson/zcon/archive/v1.2.1.tar.gz"`
+   `zig fetch --save "git+https://github.com/PatrickTorgerson/zcon#v1.2.2"`
 
 2. Add `zcon` as a module in your `build.zig`.
 
